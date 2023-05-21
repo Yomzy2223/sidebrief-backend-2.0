@@ -1,0 +1,108 @@
+{"level":"info","message":"correct"}
+{"level":"info","message":"correct logger"}
+{"level":"error","message":"correct logger"}
+info: Label: 19-05-2023 16:45:36: correct logger
+info: Label: 19-May-2023 16:46:42: correct logger
+info: Label: 19-May-2023 16:53:59: correct logger
+error: Label: 19-May-2023 17:53:58: correct logger
+error: Label: 19-May-2023 17:54:18: correct logger
+error: Label: 19-May-2023 17:55:09: correct logger
+error: Label: 19-May-2023 18:01:31: correct logger
+error: Label: 19-May-2023 18:02:53: correct logger
+error: Label: 19-May-2023 18:03:16: correct logger
+error: Label: 19-May-2023 18:08:51: correct logger
+error: Label: 19-May-2023 18:11:23: correct logger
+error: Label: 19-May-2023 18:12:38: correct logger
+error: Label: 20-May-2023 07:50:35: correct logger
+error: Label: 20-May-2023 07:53:22: correct logger
+error: Label: 20-May-2023 07:53:41: correct logger
+error: Label: 20-May-2023 07:56:49: correct logger
+info: Label: 20-May-2023 07:57:24: correct logger
+error: Label: 20-May-2023 07:57:34: correct logger
+info: Label: 20-May-2023 08:08:19: correct logger
+info: Label: 20-May-2023 08:09:20: correct logger
+error: Label: 20-May-2023 08:11:37: correct logger
+error: Label: 20-May-2023 08:12:37: correct logger
+error: Label: 20-May-2023 08:13:26: error occured while creatiing new user
+error: Label: 20-May-2023 08:13:59: error occured while creatiing new user
+error: Label: 20-May-2023 08:14:34: error occured while creatiing new user
+error: Label: 20-May-2023 08:22:27: error occured while creatiing akinyemibamidele2@gmail.com as a user
+error: Label: 20-May-2023 08:33:00: error occured while creatiing akinyemibamidele2@gmail.com as a user
+error: Label: 20-May-2023 08:33:10: error occured while creatiing akinyemibamidele2@gmail.com as a user
+error: Label: 20-May-2023 08:33:43: error occured while creatiing akinyemibamidele2@gmail.com as a user
+error: Label: 20-May-2023 08:57:10: error occured while creatiing akinyemibamidele2@gmail.com as a user
+error: Label: 20-May-2023 08:57:38: error occured while creatiing akinyemibamidele2@gmail.com as a user
+error: Label: 20-May-2023 08:57:56: error occured while creatiing akinyemibamidele2@gmail.com as a user
+error: Label: 20-May-2023 09:01:26: error occured while creatiing akinyemibamidele2@gmail.com as a user
+error: Label: 20-May-2023 09:10:24: error occured while creatiing akinyemibamidele2@gmail.com as a user
+info: Label: 20-May-2023 12:04:15: User created!
+info: Label: 20-May-2023 12:07:02: User created!
+info: Label: 20-May-2023 12:10:47: User created!
+error: Label: 20-May-2023 12:11:35: error occured while creatiing akinyemibamidele21243@gmail.com as a user
+info: Label: 20-May-2023 12:17:16: User fetched!
+info: Label: 20-May-2023 12:17:45: User fetched!
+info: Label: 20-May-2023 12:17:47: User fetched!
+info: Label: 20-May-2023 12:19:36: User fetched successfuly
+info: Label: 20-May-2023 13:48:23: Banks fetched successfuly
+error: Label: 20-May-2023 13:48:38: error occured while creatiing undefined as a user
+error: Label: 20-May-2023 13:49:37: error occured while creatiing undefined as a user
+error: Label: 20-May-2023 13:50:14: error occured while creatiing undefined as a user
+error: Label: 20-May-2023 13:51:02: error occured while creatiing undefined as a user
+info: Label: 20-May-2023 13:52:09: Sterling Bank created successfully
+info: Label: 20-May-2023 13:52:51: Banks fetched successfuly
+error: Label: 20-May-2023 13:53:10: error occured while getting 
+error: Label: 20-May-2023 13:54:34: error occured while getting 
+info: Label: 20-May-2023 13:55:48: Bank fetched successfuly
+info: Label: 20-May-2023 13:55:59: Bank fetched successfuly
+info: Label: 20-May-2023 16:10:44: Bank deleted successfuly
+info: Label: 20-May-2023 16:20:54: Banks fetched successfuly
+info: Label: 20-May-2023 19:20:05: Sterling Bank created successfully
+info: Label: 20-May-2023 19:21:09: Sterling Bank created successfully
+info: Label: 20-May-2023 19:22:32: Sterling Bank created successfully
+info: Label: 20-May-2023 19:37:29: Bank fetched successfuly
+error: Label: 21-May-2023 00:54:50: error occured while creatiing akinyemibamidele21243@gmail.com as a user
+error: Label: 21-May-2023 00:54:56: error occured while creatiing akinyemibamidele21243@gmail.com as a user
+error: Label: 21-May-2023 00:55:21: error occured while creatiing akinyemibamidele21243@gmail.com as a user
+error: Label: 21-May-2023 00:56:13: error occured while creatiing akinyemibamidele21243@gmail.com as a user
+info: Label: 21-May-2023 00:56:39: User created!
+info: Label: 21-May-2023 00:56:40: User created!
+info: Label: 21-May-2023 00:56:41: User created!
+error: Label: 21-May-2023 01:01:15: error occured while creatiing akinyemibamidele21243@gmail.com as a user
+error: Label: 21-May-2023 01:01:16: error occured while creatiing akinyemibamidele21243@gmail.com as a user
+error: Label: 21-May-2023 01:01:18: error occured while creatiing akinyemibamidele21243@gmail.com as a user
+error: Label: 21-May-2023 01:02:05: error occured while creatiing akinyemibamidele21243@gmail.com as a user
+info: Label: 21-May-2023 01:02:32: User created!
+info: Label: 21-May-2023 01:03:00: User created!
+info: Label: 21-May-2023 01:03:01: User created!
+info: Label: 21-May-2023 01:05:11: User created!
+info: Label: 21-May-2023 01:05:44: User created!
+info: Label: 21-May-2023 01:05:55: User created!
+info: Label: 21-May-2023 01:06:01: User created!
+info: Label: 21-May-2023 01:06:35: User created!
+info: Label: 21-May-2023 01:07:51: User created!
+info: Label: 21-May-2023 01:09:32: User created!
+info: Label: 21-May-2023 01:09:46: User created!
+info: Label: 21-May-2023 01:20:15: User created!
+info: Label: 21-May-2023 01:45:22: Bank fetched successfuly
+info: Label: 21-May-2023 01:45:27: Banks fetched successfuly
+error: Label: 21-May-2023 01:45:42: error occured while deleting bank 
+error: Label: 21-May-2023 01:45:44: error occured while deleting bank 
+error: Label: 21-May-2023 01:47:22: error occured while deleting bank 
+error: Label: 21-May-2023 01:47:27: error occured while deleting bank 
+error: Label: 21-May-2023 01:47:28: error occured while deleting bank 
+error: Label: 21-May-2023 01:48:54: error occured while deleting bank 
+error: Label: 21-May-2023 01:49:50: error occured while deleting bank 
+info: Label: 21-May-2023 01:51:30: First Bank created successfully
+info: Label: 21-May-2023 01:51:40: First Bank created successfully
+error: Label: 21-May-2023 01:58:33: error occured while creatiin a bank
+error: Label: 21-May-2023 01:59:01: error occured while creatiin a bank
+error: Label: 21-May-2023 01:59:31: error occured while creatiin a bank
+error: Label: 21-May-2023 01:59:45: error occured while creatiin a bank
+error: Label: 21-May-2023 02:00:39: error occured while creatiin a bank
+error: Label: 21-May-2023 02:01:34: error occured while creatiin a bank
+error: Label: 21-May-2023 02:01:35: error occured while creatiin a bank
+error: Label: 21-May-2023 02:02:38: error occured while creatiin a bank
+error: Label: 21-May-2023 02:03:12: error occured while creatiin a bank
+error: Label: 21-May-2023 02:05:39: error occured while creatiin a bank
+error: Label: 21-May-2023 02:07:12: error occured while creatiin a bank
+info: Label: 21-May-2023 02:08:00: 23335 created successfully
