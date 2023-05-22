@@ -1,13 +1,16 @@
-const models = require("../../../sequelize/models/index");
+const logger = require("../../config/logger");
+const models = require("../../data/entities/index");
 
 //create bank service
-const saveBank = async ({ bankName, bankCode, bankUrl, bankImage }) => {
+const saveBank = async (bankPayload) => {
+  //   //add the new bank to the table
+
   try {
     const values = {
-      bankName: bankName,
-      bankCode: bankCode,
-      bankUrl: bankUrl,
-      bankImage: bankImage,
+      bankName: bankPayload.bankName,
+      bankCode: bankPayload.bankCode,
+      bankUrl: bankPayload.bankUrl,
+      bankImage: bankPayload.bankImage,
     };
     const bank = await models.Bank.create(values);
 
@@ -15,11 +18,15 @@ const saveBank = async ({ bankName, bankCode, bankUrl, bankImage }) => {
       return { error: "Error occured while creating bank", statusCode: 400 };
     }
 
+    logger.info({ message: `${bankName} created successfully` });
     return {
       message: "Bank created successfully",
       data: bank,
     };
   } catch (error) {
+    logger.error({
+      message: `error occured while creating a bank with error ${error}`,
+    });
     return {
       message: "Error occurred!.",
     };
@@ -29,7 +36,7 @@ const saveBank = async ({ bankName, bankCode, bankUrl, bankImage }) => {
 //get all bank service
 const getAllBanks = async () => {
   //  get the bank list from the table
-  //  return the bank list to the client
+  //  return the bank list to the bank controller
   try {
     const bank = await models.Bank.findAll();
     return {
@@ -37,8 +44,12 @@ const getAllBanks = async () => {
       data: bank,
     };
   } catch (error) {
+    logger.error({
+      message: `error occured while fetching all banks with error message: ${error}`,
+    });
     return {
-      message: "Error occurred!.",
+      error: "Error occurred!.",
+      statusCode: 500,
     };
   }
 };
@@ -46,7 +57,7 @@ const getAllBanks = async () => {
 //get a bank service
 const getBank = async (id) => {
   //   //check if the bank exists
-  //   //return the bank to the client
+  //   //return the bank to the bank controller
 
   try {
     const bank = await models.Bank.findByPk(id);
@@ -61,19 +72,31 @@ const getBank = async (id) => {
       data: bank,
     };
   } catch (error) {
+    logger.error({
+      message: `error occured while fetching bank with error message: ${error}`,
+    });
     return {
-      message: "Error occurred!.",
+      error: "Error occurred!.",
+      statusCode: 500,
     };
   }
 };
 
 //update a bank service
-const updateBank = async (id, body) => {
-  //   //check if the bank exists
-  //   update the bank
-  //   //return the bank to the client
+const updateBank = async (id, bankPayload) => {
+  // take both id and bank payload from the bank controller
+  //  check if the bank exists
+  //  update the bank
+  //  return the bank to the bank controller
 
   try {
+    const values = {
+      bankName: bankPayload.bankName,
+      bankCode: bankPayload.bankCode,
+      bankUrl: bankPayload.bankUrl,
+      bankImage: bankPayload.bankImage,
+    };
+
     const bank = await models.Bank.findByPk(id);
     if (bank === null) {
       return {
@@ -82,7 +105,7 @@ const updateBank = async (id, body) => {
       };
     }
 
-    const updateBank = await models.Bank.update(body, {
+    const updateBank = await models.Bank.update(values, {
       where: {
         id: id,
       },
@@ -100,17 +123,23 @@ const updateBank = async (id, body) => {
       message: "Bank updated successfully",
     };
   } catch (error) {
+    logger.error({
+      message: `error occured while updating bank with error message: ${error}`,
+    });
     return {
-      message: "Error occurred!.",
+      error: "Error occurred!.",
+      statusCode: 500,
     };
   }
 };
 
 //remove a bank service
 const removeBank = async (id) => {
+  //take id from the bank controller
   //check if the bank exists
   //remove the bank from the record
-  console.log("ddddddddd", id);
+  //return response to the bank controller
+
   try {
     const deleteBank = await models.Bank.destroy({
       where: {
@@ -128,8 +157,12 @@ const removeBank = async (id) => {
       message: "Bank deleted successfully",
     };
   } catch (error) {
+    logger.error({
+      message: `error occured while deleting bank with error message: ${error}`,
+    });
     return {
-      message: "Error occurred!.",
+      error: "Error occurred!.",
+      statusCode: 500,
     };
   }
 };
