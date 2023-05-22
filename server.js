@@ -4,6 +4,7 @@ const logger = require("./src/utils/logger");
 const path = require("path");
 const usersRoutes = require("./src/modules/user/routes/routes");
 const bankRoutes = require("./src/modules/bank/routes/routes");
+const connectDb = require("./src/config/database");
 
 const app = express();
 dotenv.config({ path: path.resolve(__dirname, "./.env.development") });
@@ -15,11 +16,14 @@ app.get("/", (req, res) => {
   logger.info({ message: "correct logger", level: "info" });
 });
 
-//users routes
+//connect to database
+connectDb();
+
+//all routes
 app.use("/users", usersRoutes);
 app.use("/banks", bankRoutes);
 
 const port = process.env.PORT || "8000";
 app.listen(port, () => {
-  console.log("Port 8000 Active");
+  console.log(`Port ${port} Active`);
 });

@@ -1,17 +1,20 @@
+const models = require("../../../sequelize/models/index");
 const logger = require("../../../utils/logger");
 const {
-  removeBank,
   saveBank,
   getAllBanks,
   getBank,
+  removeBank,
+  updateBank,
 } = require("../services/bankService");
 
+// create a new bank
 exports.CreateBank = async (req, res) => {
-  try {
-    //get the payload from the request body
-    //validate the payload
-    //add the new bank to the table
+  //   //get the payload from the the request body
+  //   //validate the payload
+  //   //add the new bank to the table
 
+  try {
     const { bankName, bankCode, bankUrl, bankImage } = req.body;
 
     const bank = await saveBank({
@@ -21,34 +24,25 @@ exports.CreateBank = async (req, res) => {
       bankImage,
     });
 
-    if (!bank) {
-      return res
-        .status(400)
-        .json({ message: "Error occured while creating this bank." });
-    }
-
     if (bank.error) {
       return res.status(bank.statusCode).json({ error: bank.error });
     }
 
     res.status(200).json(bank);
-    console.log("dddd", bankCode);
-    logger.info({ message: `${bankCode} created successfully` });
+    logger.info({ message: `${bankName} created successfully` });
   } catch (error) {
     logger.error({
       message: `error occured while creatiin a bank`,
       level: "error",
     });
     console.log(error);
-    return res.status(500).json({ message: "Error Occured!." });
+    return res.status(500).json({ error: "Error Occured!." });
   }
 };
 
+//get all banks
 exports.GetAllBanks = async (req, res) => {
   try {
-    //get the bank list from the table
-    //return the bank list to the client
-
     const banks = await getAllBanks();
     if (banks === null) {
       return res
@@ -57,85 +51,98 @@ exports.GetAllBanks = async (req, res) => {
     }
 
     res.status(200).json(banks);
-
-    logger.info("Banks fetched successfuly");
   } catch (error) {
     logger.error({
       message: `error occured while fetching all banks`,
       level: "error",
     });
     console.log(error);
-    return res.status(500).json({ message: "Error Occured!." });
+    return res.status(500).json({ error: "Error Occured!." });
   }
 };
 
+//get a bank with id
 exports.GetBank = async (req, res) => {
-  try {
-    //check if there is id
-    //check if the bank exists
-    //get the bank from the record
-    //return the bank to the client
+  // check if there is id
+  // return bank to client
 
+  try {
     const id = req.params.id;
     if (!id) {
-      return res.status(400).json({ message: "Please provide an id." });
+      return res.status(400).json({
+        error: "Please provide id",
+      });
     }
     const bank = await getBank(id);
 
-    if (bank.rowCount < 1) {
-      return res.status(400).json({ message: "Bank not found!." });
+    if (bank.error) {
+      return res.status(bank.statusCode).json({ error: bank.error });
     }
-
-    if (!bank) {
-      return res
-        .status(400)
-        .json({ message: "Error occured while getting bank." });
-    }
-
-    res.status(200).json({
-      message: "Bank fetched successfully",
-      data: bank.rows,
-    });
-
-    logger.info("Bank fetched successfuly");
+    res.status(200).json(bank);
   } catch (error) {
     logger.error({
-      message: `error occured while getting `,
+      message: `error occured while getting bank`,
       level: "error",
     });
-    console.log(error);
-    return res.status(500).json({ message: "Error Occured!." });
+    return res.status(500).json({ error: "Error Occured!." });
   }
 };
 
-exports.DeleteBank = async (req, res) => {
+//update a bank
+exports.UpdateBank = async (req, res) => {
   try {
-    //check if there is id
-    //check if the bank exists
-    //remove the bank from the record
-
     const id = req.params.id;
+    const { bankName, bankCode, bankUrl, bankImage } = req.body;
+    const body = {
+      bankName: bankName,
+      bankCode: bankCode,
+      bankUrl: bankUrl,
+      bankImage: bankImage,
+    };
+    const bank = await updateBank(id, body);
 
-    const bank = await removeBank(id);
-
-    if (bank.rowCount < 1) {
-      return res.status(400).json({ error: "Bank not found!." });
+    if (bank.error) {
+      return res.status(bank.statusCode).json({ error: bank.error });
     }
 
-    if (!bank) {
-      return res
-        .status(400)
-        .json({ error: "Error occured while deleting bank." });
-    }
+    console.log("service baaaa", bank);
 
-    res.status(200).json({
-      message: "Bank deleted successfully",
+    res.status(200).json(bank);
+  } catch (error) {
+    logger.error({
+      message: `error occured while fetching all banks`,
+      level: "error",
     });
+    console.log(error);
+    return res.status(500).json({ error: "Error Occured!." });
+  }
+};
+
+//delete a bank
+exports.DeleteBank = async (req, res) => {
+  //check if there is id
+  //delete the bank
+
+  try {
+    const id = req.params.id;
+    if (!id) {
+      return res.status(400).json({
+        error: "Please provide id",
+      });
+    }
+    const deleteBank = await removeBank(id);
+
+    if (deleteBank.error) {
+      return res
+        .status(deleteBank.statusCode)
+        .json({ error: deleteBank.error });
+    }
+    res.status(200).json(deleteBank);
   } catch (error) {
     logger.error({
       message: `error occured while deleting bank `,
       level: "error",
     });
-    return res.status(500).json({ error: "Error Occured!." });
+    return res.status(500).json({ error: "Error Occuredddd!." });
   }
 };

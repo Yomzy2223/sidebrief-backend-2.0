@@ -7,12 +7,13 @@ const {
   GetBank,
   GetAllBanks,
   CreateBank,
+  UpdateBank,
 } = require("../controller/bankController");
 
 router.post("/", CreateBank);
 router.get("/", GetAllBanks);
 router.get("/:id", GetBank);
-// router.put("/:id", GetAll);
+router.put("/:id", UpdateBank);
 router.delete("/:id", DeleteBank);
 
 module.exports = router;
