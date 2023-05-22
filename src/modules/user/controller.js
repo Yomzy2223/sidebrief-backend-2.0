@@ -1,8 +1,12 @@
-const { hash } = require("../../common/hash");
-const validateUser = require("../../common/validation");
-const { saveUser } = require("./service");
+const {
+  validateUser,
+  validateUserCredentials,
+} = require("../../common/validation");
+const { saveUser, getUser, loginUser } = require("./service");
 
-exports.Regisration = async (req, res) => {
+//IN PROGRESS
+
+exports.UserRegisration = async (req, res) => {
   const userPayload = req.body;
 
   const isValidUser = validateUser(userPayload);
@@ -19,34 +23,43 @@ exports.Regisration = async (req, res) => {
   return res.status(400).json({ error: check[0].message });
 };
 
-exports.Login = async (req, res) => {
-  try {
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: "Error Occured!." });
+//get a user with id
+exports.UserFetcher = async (req, res) => {
+  // check if there is id
+  // pass the id to the service
+  // return user to client
+
+  const id = req.params.id;
+  if (!id) {
+    return res.status(400).json({
+      error: "Please provide id",
+    });
   }
+  const user = await getUser(id);
+
+  if (user.error) {
+    return res.status(user.statusCode).json({ error: user.error });
+  }
+  return res.status(200).json(user);
 };
 
-exports.GetUser = async (req, res) => {
-  try {
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: "Error Occured!." });
-  }
-};
+exports.UserGrantor = async (req, res) => {
+  // get the login payload
+  // validate the payload
+  // pass wht payload to login service
+  // generate token
+  // return user and the token to client
 
-exports.GetAllUsers = async (req, res) => {
-  try {
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: "Error Occured!." });
-  }
-};
+  const loginPayload = req.body;
+  isValidUser = await validateUserCredentials(loginPayload);
+  if (isValidUser) {
+    const user = await loginUser(loginPayload);
 
-exports.UpdateUser = async (req, res) => {
-  try {
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: "Error Occured!." });
+    if (user.error) {
+      return res.status(user.statusCode).json({ error: user.error });
+    }
+    return res.status(200).json(user);
   }
+
+  return res.status(400).json({ error: check[0].message });
 };

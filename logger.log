@@ -182,3 +182,13 @@ error: Label: 22-May-2023 12:03:45: error occured while fetching all banks
 error: Label: 22-May-2023 12:03:47: error occured while fetching all banks
 error: Label: 22-May-2023 12:04:24: error occured while fetching all banks
 error: Label: 22-May-2023 12:05:21: error occured while fetching all banks
+error: Label: 22-May-2023 19:19:37: error occured while creating an account for akinyemibamidele2@gmail.com with error message: ReferenceError: hash is not defined
+info: Label: 22-May-2023 19:30:00: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 22-May-2023 19:59:46: error occured while updating user with error message: ReferenceError: cryptedPassword is not defined
+error: Label: 22-May-2023 21:02:53: error occured while creating an account for usmansotunde@gmail.com with error message: TypeError: Cannot read properties of null (reading 'username')
+info: Label: 22-May-2023 21:08:03: Usman Sotunde created an account successfully with usmansotunde@gmail.com.
+info: Label: 22-May-2023 21:08:57: Usman Sotunde created an account successfully with usmansotunde2@gmail.com.
+info: Label: 22-May-2023 21:18:17: User with usmansotunde2@gmail.com signed in successfully.
+info: Label: 22-May-2023 21:20:20: User with usmansotunde2@gmail.com signed in successfully.
+info: Label: 22-May-2023 21:20:46: User with usmansotunde2@gmail.com signed in successfully.
+info: Label: 22-May-2023 21:21:12: User with usmansotunde@gmail.com signed in successfully.

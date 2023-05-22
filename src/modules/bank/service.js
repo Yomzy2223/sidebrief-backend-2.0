@@ -110,7 +110,6 @@ const updateBank = async (id, bankPayload) => {
         id: id,
       },
     });
-    console.log("upd", updateBank);
 
     if (!bank) {
       return {
