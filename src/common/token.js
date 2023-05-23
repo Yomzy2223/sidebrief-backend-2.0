@@ -1,20 +1,25 @@
 const jwt = require("jsonwebtoken");
 
-exports.generateToken = (payload, expired) => {
-  return jwt.sign(payload, process.env.TOKEN_SECRET, {
+exports.generateToken = (payload, secret, expired) => {
+  return jwt.sign(payload, secret, {
     expiresIn: expired,
   });
 };
 
-exports.verifyUserToken = (token) => {
+exports.verifyUserToken = (token, secret) => {
   try {
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-      if (err) {
-        return res.status(400).json({
-          message: "Authentification error, please check your token.",
-        });
-      }
-      return user;
-    });
-  } catch (error) {}
+    const validate = jwt.verify(token, secret);
+    if (!validate) {
+      return {
+        error: "Authentification error, please check your token.",
+        statusCode: 403,
+      };
+    }
+    return validate;
+  } catch (error) {
+    return {
+      error: "Authentification error, please check your token.",
+      statusCode: 403,
+    };
+  }
 };

@@ -1,4 +1,5 @@
 const express = require("express");
+const { userAuth, staffAuth } = require("../../middleware/auth");
 const router = express.Router();
 
 const {
@@ -9,10 +10,10 @@ const {
   BankModifier,
 } = require("./controller");
 
-router.post("/", BankCreator);
-router.get("/", BanksFetcher);
-router.get("/:id", BankFetcher);
-router.put("/:id", BankModifier);
-router.delete("/:id", BankRemover);
+router.post("/", staffAuth, BankCreator);
+router.get("/", userAuth, BanksFetcher);
+router.get("/:id", userAuth, BankFetcher);
+router.put("/:id", staffAuth, BankModifier);
+router.delete("/:id", staffAuth, BankRemover);
 
 module.exports = router;

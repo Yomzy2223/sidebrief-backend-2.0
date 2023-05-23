@@ -192,3 +192,31 @@ info: Label: 22-May-2023 21:18:17: User with usmansotunde2@gmail.com signed in s
 info: Label: 22-May-2023 21:20:20: User with usmansotunde2@gmail.com signed in successfully.
 info: Label: 22-May-2023 21:20:46: User with usmansotunde2@gmail.com signed in successfully.
 info: Label: 22-May-2023 21:21:12: User with usmansotunde@gmail.com signed in successfully.
+info: Label: 23-May-2023 09:57:47: User with usmansotunde@gmail.com signed in successfully.
+info: Label: 23-May-2023 10:09:06: User with usmansotunde@gmail.com signed in successfully.
+info: Label: 23-May-2023 10:09:36: User with usmansotunde@gmail.com signed in successfully.
+info: Label: 23-May-2023 10:12:16: User with usmansotunde@gmail.com signed in successfully.
+info: Label: 23-May-2023 12:31:40: Bamidele Akinyemi created an account successfully with akinyemibamidele@gmail.com.
+info: Label: 23-May-2023 12:44:54: Bamidele Akinyemi created an account successfully with akainyemi@sidebrief.com.
+info: Label: 23-May-2023 12:45:46: staff with akainyemi@sidebrief.com signed in successfully.
+info: Label: 23-May-2023 12:45:59: staff with akainyemi@sidebrief.com signed in successfully.
+info: Label: 23-May-2023 12:48:47: Bamidele Akinyemi created an account successfully with akinyemibamidele@gmail.com.
+info: Label: 23-May-2023 12:48:59: Bamidele Akinyemi created an account successfully with akainyemi@sidebrief.com.
+info: Label: 23-May-2023 13:03:21: staff with akainyemi@sidebrief.com signed in successfully.
+error: Label: 23-May-2023 13:03:46: error occured while creating a bank with error ReferenceError: bankName is not defined
+error: Label: 23-May-2023 13:06:25: error occured while creating a bank with error ReferenceError: bankName is not defined
+error: Label: 23-May-2023 13:08:34: error occured while creating a bank with error ReferenceError: bankName is not defined
+error: Label: 23-May-2023 13:09:35: error occured while creating a bank with error ReferenceError: bankName is not defined
+error: Label: 23-May-2023 13:10:49: error occured while creating a bank with error ReferenceError: bankName is not defined
+info: Label: 23-May-2023 13:11:33: Providus Bank created successfully
+info: Label: 23-May-2023 13:12:49: Providus Bank created successfully
+info: Label: 23-May-2023 13:14:32: Providus Bank created successfully
+info: Label: 23-May-2023 13:16:07: Providus Bank created successfully
+info: Label: 23-May-2023 13:18:24: Providus Bank created successfully
+info: Label: 23-May-2023 13:19:51: User with akinyemibamidele@gmail.com signed in successfully.
+info: Label: 23-May-2023 13:20:45: Providus Bank created successfully
+info: Label: 23-May-2023 13:55:52: Bamidele Akinyemi created an account successfully with akinyemibamidele@gmail.com.
+info: Label: 23-May-2023 13:56:09: Bamidele Akinyemi created an account successfully with akainyemi@sidebrief.com.
+info: Label: 23-May-2023 13:56:43: staff with akainyemi@sidebrief.com signed in successfully.
+info: Label: 23-May-2023 13:56:55: User with akinyemibamidele@gmail.com signed in successfully.
+info: Label: 23-May-2023 13:57:44: Providus Bank created successfully

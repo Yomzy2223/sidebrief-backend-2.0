@@ -1,5 +1,5 @@
 const logger = require("../../config/logger");
-const models = require("../../data/entities/index");
+const models = require("../../data/models/index");
 
 //create bank service
 const saveBank = async (bankPayload) => {
@@ -12,13 +12,14 @@ const saveBank = async (bankPayload) => {
       bankUrl: bankPayload.bankUrl,
       bankImage: bankPayload.bankImage,
     };
+    console.log(values);
     const bank = await models.Bank.create(values);
 
     if (!bank) {
       return { error: "Error occured while creating bank", statusCode: 400 };
     }
 
-    logger.info({ message: `${bankName} created successfully` });
+    logger.info({ message: `${bankPayload.bankName} created successfully` });
     return {
       message: "Bank created successfully",
       data: bank,
@@ -28,7 +29,8 @@ const saveBank = async (bankPayload) => {
       message: `error occured while creating a bank with error ${error}`,
     });
     return {
-      message: "Error occurred!.",
+      error: "Error occurred!.",
+      statusCode: 500,
     };
   }
 };

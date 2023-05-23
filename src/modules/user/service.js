@@ -1,5 +1,5 @@
 const logger = require("../../config/logger");
-const models = require("../../data/entities/index");
+const models = require("../../data/models/index");
 const { hasher, matchChecker } = require("../../common/hash");
 const { generateToken } = require("../../common/token");
 
@@ -36,7 +36,6 @@ const saveUser = async (userPayload) => {
       email: userPayload.email.toLowerCase(),
       password: cryptedPassword,
       phone: userPayload.phone,
-      picture: userPayload.picture,
       verified: false,
       referral: userPayload.referral,
     };
@@ -81,7 +80,18 @@ const getUser = async (id) => {
     }
     return {
       message: "User fetched successfully",
-      data: user,
+      data: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        picture: user.picture,
+        token: token,
+        verified: user.verified,
+        referral: user.referral,
+      },
     };
   } catch (error) {
     logger.error({
@@ -122,7 +132,8 @@ const loginUser = async (loginPayload) => {
         statusCode: 400,
       };
 
-    const token = generateToken({ id: user.id.toString() }, "14d");
+    const userSecret = process.env.TOKEN_USER_SECRET;
+    const token = generateToken({ id: user.id }, userSecret, "14d");
     logger.info({
       message: `User with ${loginPayload.email} signed in successfully.`,
     });

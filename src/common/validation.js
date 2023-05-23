@@ -10,7 +10,6 @@ const userSchema = {
   email: { type: "email", min: 3, max: 255 },
   password: { type: "string", min: 6, max: 8 },
   phone: { type: "string", min: 6, max: 15 },
-  picture: { type: "string", min: 3, max: 255, optional: true },
   referral: { type: "string", min: 3, max: 255 },
 };
 
@@ -24,6 +23,17 @@ const loginSchema = {
 
 const validateUserCredentials = validate.compile(loginSchema);
 
+//staff registration
+const staffSchema = {
+  firstName: { type: "string", min: 3, max: 255 },
+  lastName: { type: "string", min: 3, max: 255 },
+  email: { type: "email", min: 3, max: 255 },
+  password: { type: "string", min: 6, max: 8 },
+  phone: { type: "string", min: 6, max: 15 },
+};
+
+const validateStaff = validate.compile(staffSchema);
+
 const bankSchema = {
   bankName: { type: "string", min: 3, max: 255 },
   bankName: { type: "string", min: 3, max: 255 },
@@ -33,4 +43,9 @@ const bankSchema = {
 
 const validateBank = validate.compile(bankSchema);
 
-module.exports = { validateUser, validateUserCredentials, validateBank };
+module.exports = {
+  validateUser,
+  validateUserCredentials,
+  validateStaff,
+  validateBank,
+};

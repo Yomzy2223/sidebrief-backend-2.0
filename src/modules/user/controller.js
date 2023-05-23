@@ -11,7 +11,7 @@ exports.UserRegisration = async (req, res) => {
 
   const isValidUser = validateUser(userPayload);
 
-  if (isValidUser) {
+  if (isValidUser === true) {
     const user = await saveUser(userPayload);
 
     if (user.error) {
@@ -20,7 +20,7 @@ exports.UserRegisration = async (req, res) => {
     return res.status(200).json(user);
   }
 
-  return res.status(400).json({ error: check[0].message });
+  return res.status(400).json({ error: isValidUser[0].message });
 };
 
 //get a user with id
@@ -52,7 +52,7 @@ exports.UserGrantor = async (req, res) => {
 
   const loginPayload = req.body;
   isValidUser = await validateUserCredentials(loginPayload);
-  if (isValidUser) {
+  if (isValidUser === true) {
     const user = await loginUser(loginPayload);
 
     if (user.error) {
@@ -61,5 +61,5 @@ exports.UserGrantor = async (req, res) => {
     return res.status(200).json(user);
   }
 
-  return res.status(400).json({ error: check[0].message });
+  return res.status(400).json({ error: isValidUser[0].message });
 };
