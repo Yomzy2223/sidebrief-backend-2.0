@@ -1,4 +1,4 @@
-const { sequelize } = require("../data/entities/index");
+const { sequelize } = require("../data/models/index");
 
 const connectDb = async () => {
   console.log("Checking database connection...");

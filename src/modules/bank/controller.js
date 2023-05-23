@@ -16,8 +16,7 @@ exports.BankCreator = async (req, res) => {
 
   const bankPayload = req.body;
   const isValidBank = validateBank(bankPayload);
-
-  if (isValidBank) {
+  if (isValidBank === true) {
     const bank = await saveBank(bankPayload);
 
     if (bank.error) {
@@ -27,7 +26,7 @@ exports.BankCreator = async (req, res) => {
     return res.status(200).json(bank);
   }
 
-  return res.status(400).json({ error: check[0].message });
+  return res.status(400).json({ error: isValidBank[0].message });
 };
 
 //get all banks
@@ -84,7 +83,7 @@ exports.BankModifier = async (req, res) => {
 
     return res.status(200).json(bank);
   }
-  return res.status(400).json({ error: check[0].message });
+  return res.status(400).json({ error: isValidBank[0].message });
 };
 
 //delete a bank
