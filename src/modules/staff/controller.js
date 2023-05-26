@@ -3,7 +3,7 @@ const {
   validatestaffCredentials,
   validateUserCredentials,
   validateStaff,
-} = require("../../common/validation");
+} = require("../../utils/validation");
 const { getStaff, loginStaff, saveStaff } = require("./service");
 
 //IN PROGRESS

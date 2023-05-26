@@ -220,3 +220,232 @@ info: Label: 23-May-2023 13:56:09: Bamidele Akinyemi created an account successf
 info: Label: 23-May-2023 13:56:43: staff with akainyemi@sidebrief.com signed in successfully.
 info: Label: 23-May-2023 13:56:55: User with akinyemibamidele@gmail.com signed in successfully.
 info: Label: 23-May-2023 13:57:44: Providus Bank created successfully
+error: Label: 24-May-2023 15:46:42: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:47:09: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:47:11: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:47:21: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:47:22: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:48:05: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:48:20: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:54:09: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create({
+       name: 'manage',
+       ~~~~
+       description: 'this is manage category',
+       ~~~~~~~~~~~
+     + data: ServiceCategoryCreateInput | ServiceCategoryUncheckedCreateInput
+     })
+
+Unknown arg `name` in name for type ServiceCategory. Did you mean `data`?
+Unknown arg `description` in description for type ServiceCategory. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+error: Label: 24-May-2023 15:55:54: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create({
+       name: 'manage',
+       ~~~~
+       description: 'this is manage category',
+       ~~~~~~~~~~~
+     + data: ServiceCategoryCreateInput | ServiceCategoryUncheckedCreateInput
+     })
+
+Unknown arg `name` in name for type ServiceCategory. Did you mean `data`?
+Unknown arg `description` in description for type ServiceCategory. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+error: Label: 24-May-2023 15:55:56: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create({
+       name: 'manage',
+       ~~~~
+       description: 'this is manage category',
+       ~~~~~~~~~~~
+     + data: ServiceCategoryCreateInput | ServiceCategoryUncheckedCreateInput
+     })
+
+Unknown arg `name` in name for type ServiceCategory. Did you mean `data`?
+Unknown arg `description` in description for type ServiceCategory. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+info: Label: 24-May-2023 15:57:49: manage created successfully
+info: Label: 25-May-2023 15:43:07: onboard service category created successfully
+error: Label: 25-May-2023 15:43:40: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 15:43:40: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:45:56: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 15:45:56: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 25-May-2023 15:46:43: manages service category created successfully
+error: Label: 25-May-2023 15:50:02: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 15:50:02: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 25-May-2023 15:51:16: testing service category created successfully
+error: Label: 25-May-2023 15:51:16: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:53:00: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 15:53:00: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:55:54: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:57:00: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:58:22: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 16:00:33: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 16:01:12: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 25-May-2023 16:02:05: testing service category created successfully
+error: Label: 25-May-2023 16:02:05: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 16:16:29: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 16:16:29: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:161:63
+
+  158 //return response to the service category controller
+  159 
+  160 try {
+→ 161   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 25-May-2023 16:18:08: usman service category created successfully

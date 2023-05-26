@@ -36,16 +36,24 @@ const validateStaff = validate.compile(staffSchema);
 
 const bankSchema = {
   bankName: { type: "string", min: 3, max: 255 },
-  bankName: { type: "string", min: 3, max: 255 },
+  bankCode: { type: "string", min: 3, max: 255 },
   bankUrl: { type: "string", min: 3, max: 255 },
   bankImage: { type: "string", min: 3, max: 500 },
 };
 
 const validateBank = validate.compile(bankSchema);
 
+const serviceCategorySchema = {
+  name: { type: "string", min: 3, max: 50 },
+  description: { type: "string", min: 3, max: 255 },
+};
+
+const validateServiceCategory = validate.compile(serviceCategorySchema);
+
 module.exports = {
   validateUser,
   validateUserCredentials,
   validateStaff,
   validateBank,
+  validateServiceCategory,
 };

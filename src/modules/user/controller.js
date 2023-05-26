@@ -1,7 +1,7 @@
 const {
   validateUser,
   validateUserCredentials,
-} = require("../../common/validation");
+} = require("../../utils/validation");
 const { saveUser, getUser, loginUser } = require("./service");
 
 //IN PROGRESS

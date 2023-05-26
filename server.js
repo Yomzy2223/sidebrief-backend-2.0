@@ -4,6 +4,7 @@ const path = require("path");
 const usersRoutes = require("./src/modules/user/routes");
 const bankRoutes = require("./src/modules/bank/routes");
 const staffRoutes = require("./src/modules/staff/routes");
+const serviceRoutes = require("./src/modules/service/routes");
 const connectDb = require("./src/config/database");
 const logger = require("./src/config/logger");
 
@@ -17,8 +18,8 @@ app.get("/", (req, res) => {
   logger.info({ message: "Testing the server" });
 });
 
-//connect to database
-connectDb();
+// //connect to database
+// connectDb();
 
 //all routes
 //user
@@ -27,8 +28,11 @@ app.use("/users", usersRoutes);
 app.use("/banks", bankRoutes);
 // staff
 app.use("/staffs", staffRoutes);
+//service
+app.use("/services", serviceRoutes);
 
 const port = process.env.PORT || "8000";
 app.listen(port, () => {
   console.log(`Port ${port} Active`);
 });
+module.exports = app;
