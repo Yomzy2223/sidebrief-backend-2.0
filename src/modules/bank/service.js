@@ -15,7 +15,7 @@ const saveBank = async (bankPayload) => {
       bankImage: bankPayload.bankImage,
     };
     console.log(values);
-    const bank = await prisma.bank.create({data: values});
+    const bank = await prisma.bank.create({ data: values });
 
     if (!bank) {
       return { error: "Error occured while creating bank", statusCode: 400 };
@@ -68,7 +68,7 @@ const getBank = async (id) => {
     const bank = await prisma.bank.findUnique({
       where: {
         id: id,
-      }
+      },
     });
     if (bank === null) {
       return {
@@ -108,8 +108,8 @@ const updateBank = async (id, bankPayload) => {
 
     const bank = await prisma.bank.findUnique({
       where: {
-        id:id
-      }
+        id: id,
+      },
     });
     if (bank === null) {
       return {
@@ -118,11 +118,11 @@ const updateBank = async (id, bankPayload) => {
       };
     }
 
-    const updateBank = await prisma.bank.update( {
+    const updateBank = await prisma.bank.update({
       where: {
         id: id,
       },
-      data: values
+      data: values,
     });
 
     if (!updateBank) {

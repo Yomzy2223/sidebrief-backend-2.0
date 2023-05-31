@@ -1,30 +1,21 @@
+const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
-const models = require("../../data/models/index");
 const { hasher, matchChecker } = require("../../common/hash");
 const { generateToken } = require("../../common/token");
+const EmailSender = require("../../services/emailEngine");
+const prisma = new PrismaClient();
 
 //IN PROGRESS
 
 //create user service
 const saveUser = async (userPayload) => {
   try {
-    const checkUser = await models.User.findOne({
+    const checkUser = await prisma.user.findUnique({
       where: { email: userPayload.email.toLowerCase() },
     });
-
+    console.log(checkUser);
     if (checkUser !== null) {
       return { error: "User with this email already exists", statusCode: 400 };
-    }
-
-    const checkUsername = await models.User.findOne({
-      where: { username: userPayload.username.toLowerCase() },
-    });
-
-    if (checkUsername !== null) {
-      return {
-        error: "Username already taken, please try another one",
-        statusCode: 400,
-      };
     }
 
     const cryptedPassword = await hasher(userPayload.password, 12);
@@ -39,11 +30,36 @@ const saveUser = async (userPayload) => {
       verified: false,
       referral: userPayload.referral,
     };
-    const user = await models.User.create(values);
+    const user = await prisma.user.create({ data: values });
 
     if (!user) {
       return { error: "Error occured while creating user", statusCode: 400 };
     }
+
+    const userSecret = process.env.TOKEN_USER_SECRET;
+    const emailVerificationToken = generateToken(
+      { id: user.id },
+      userSecret,
+      "30m"
+    );
+    console.log("emailVerificationToken", emailVerificationToken);
+    const url = `${process.env.BASE_URL}/user/activate/${emailVerificationToken}`;
+    console.log("url", url);
+    //send user email
+    const subject = "Welcome to Sidebrief.";
+    payload = {
+      name: userPayload.firstName,
+      url: url,
+    };
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = userPayload.email;
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/welcomeUser.ejs"
+    );
 
     logger.info({
       message: `${userPayload.firstName} ${userPayload.lastName} created an account successfully with ${userPayload.email}.`,
@@ -51,7 +67,18 @@ const saveUser = async (userPayload) => {
 
     return {
       message: "User created successfully",
-      data: user,
+      data: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        picture: user.picture,
+        verified: user.verified,
+        referral: user.referral,
+      },
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
@@ -71,7 +98,7 @@ const getUser = async (id) => {
   //   //return the user to the user controller
 
   try {
-    const user = await models.User.findByPk(id);
+    const user = await prisma.user.findUnique({ where: { id: id } });
     if (user === null) {
       return {
         error: "User not found!.",
@@ -88,10 +115,10 @@ const getUser = async (id) => {
         email: user.email,
         phone: user.phone,
         picture: user.picture,
-        token: token,
         verified: user.verified,
         referral: user.referral,
       },
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
@@ -103,6 +130,37 @@ const getUser = async (id) => {
     };
   }
 };
+
+//get all users service
+const getAllUsers = async (id) => {
+  //   //return the users list to the user controller
+
+  try {
+    const users = await prisma.user.findMany();
+
+    if (users === null) {
+      return {
+        error: "User not found!.",
+        statusCode: 400,
+      };
+    }
+
+    return {
+      message: "Users fetched successfully",
+      data: users,
+      statusCode: 200,
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while fetching all users with error message: ${error}`,
+    });
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+
 //sign in service
 const loginUser = async (loginPayload) => {
   // take the login payload  from the controller
@@ -110,7 +168,7 @@ const loginUser = async (loginPayload) => {
   //   //return the user to the user controller
 
   try {
-    const user = await models.User.findOne({
+    const user = await prisma.user.findUnique({
       where: { email: loginPayload.email },
     });
 
@@ -148,7 +206,6 @@ const loginUser = async (loginPayload) => {
         email: user.email,
         phone: user.phone,
         picture: user.picture,
-        token: token,
         verified: user.verified,
         referral: user.referral,
       },
@@ -163,4 +220,42 @@ const loginUser = async (loginPayload) => {
     };
   }
 };
-module.exports = { saveUser, getUser, loginUser };
+
+// verify account service
+verifyAccount = async (req, res) => {
+  try {
+    const { token } = req.body;
+
+    const userSecret = process.env.TOKEN_USER_SECRET;
+    const user = await verifyUserToken(token, userSecret);
+
+    const checkUser = await prisma.user.findUnique({ where: { id: user.id } });
+    if (checkUser === null) {
+      return {
+        error: "User not found.",
+        statusCode: 400,
+      };
+    }
+    if (checkUser.verified == true) {
+      return res
+        .status(400)
+        .json({ message: "This account is already verified." });
+    }
+
+    const updateUser = await prisma.user.update({
+      where: { id: checkUser.id },
+      verified: true,
+    });
+
+    return res.status(200).json({ message: "Your account is now verified." });
+  } catch (error) {
+    logger.error({
+      message: `error occured while verifying this user with error message: ${error}`,
+    });
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+module.exports = { saveUser, getUser, getAllUsers, loginUser };

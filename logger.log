@@ -449,3 +449,190 @@ Invalid `prisma.serviceCategory.delete()` invocation in
 → 161   const deleteCategory = await prisma.serviceCategory.delete(
 An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
 info: Label: 25-May-2023 16:18:08: usman service category created successfully
+error: Label: 31-May-2023 13:14:51: error occured while fetching user with error message: ReferenceError: token is not defined
+error: Label: 31-May-2023 13:30:40: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:36:24: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:36:37: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:40:22: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:40:35: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:43:59: error occured while creating an account for akinyemi@sidebrief.com with error message: ReferenceError: models is not defined
+error: Label: 31-May-2023 13:44:03: error occured while creating an account for akinyemi@sidebrief.com with error message: ReferenceError: models is not defined
+error: Label: 31-May-2023 13:44:35: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:20:45
+
+  17   return { error: "User with this email already exists", statusCode: 400 };
+  18 }
+  19 
+→ 20 const checkUsername = await prisma.user.findUnique({
+       where: {
+         username: 'bamidele2'
+         ~~~~~~~~
+       }
+     })
+
+Unknown arg `username` in where.username for type UserWhereUniqueInput. Available args:
+
+type UserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+
+error: Label: 31-May-2023 13:44:39: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:20:45
+
+  17   return { error: "User with this email already exists", statusCode: 400 };
+  18 }
+  19 
+→ 20 const checkUsername = await prisma.user.findUnique({
+       where: {
+         username: 'bamidele2'
+         ~~~~~~~~
+       }
+     })
+
+Unknown arg `username` in where.username for type UserWhereUniqueInput. Available args:
+
+type UserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+
+error: Label: 31-May-2023 13:45:36: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:20:45
+
+  17   return { error: "User with this email already exists", statusCode: 400 };
+  18 }
+  19 
+→ 20 const checkUsername = await prisma.user.findUnique({
+       where: {
+         username: 'bamidele2'
+         ~~~~~~~~
+       }
+     })
+
+Unknown arg `username` in where.username for type UserWhereUniqueInput. Available args:
+
+type UserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+
+info: Label: 31-May-2023 13:46:35: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+info: Label: 31-May-2023 13:47:40: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+info: Label: 31-May-2023 13:57:55: Bamidele Akinyemi created an account successfully with damola@sidebrief.com.
+info: Label: 31-May-2023 14:02:18: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 14:02:18: error occured while creating an account for akinyemibamidele2@gmail.com with error message: ReferenceError: token is not defined
+info: Label: 31-May-2023 14:03:02: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 14:03:02: error occured while creating an account for akinyemibamidele2@gmail.com with error message: ReferenceError: token is not defined
+info: Label: 31-May-2023 14:03:30: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 14:03:30: error occured while creating an account for akinyemibamidele2@gmail.com with error message: ReferenceError: token is not defined
+info: Label: 31-May-2023 14:05:27: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 31-May-2023 14:25:24: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 31-May-2023 14:26:33: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 31-May-2023 14:27:28: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.

@@ -8,7 +8,7 @@ const userSchema = {
   lastName: { type: "string", min: 3, max: 255 },
   username: { type: "string", min: 3, max: 20 },
   email: { type: "email", min: 3, max: 255 },
-  password: { type: "string", min: 6, max: 8 },
+  password: { type: "string", min: 6, max: 12 },
   phone: { type: "string", min: 6, max: 15 },
   referral: { type: "string", min: 3, max: 255 },
 };
@@ -18,7 +18,7 @@ const validateUser = validate.compile(userSchema);
 //user login
 const loginSchema = {
   email: { type: "email", min: 3, max: 255 },
-  password: { type: "string", min: 6, max: 8 },
+  password: { type: "string", min: 6, max: 12 },
 };
 
 const validateUserCredentials = validate.compile(loginSchema);
@@ -28,7 +28,7 @@ const staffSchema = {
   firstName: { type: "string", min: 3, max: 255 },
   lastName: { type: "string", min: 3, max: 255 },
   email: { type: "email", min: 3, max: 255 },
-  password: { type: "string", min: 6, max: 8 },
+  password: { type: "string", min: 6, max: 12 },
   phone: { type: "string", min: 6, max: 15 },
 };
 

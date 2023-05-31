@@ -2,7 +2,7 @@ const {
   validateUser,
   validateUserCredentials,
 } = require("../../utils/validation");
-const { saveUser, getUser, loginUser } = require("./service");
+const { saveUser, getUser, loginUser, getAllUsers } = require("./service");
 
 //IN PROGRESS
 
@@ -17,7 +17,9 @@ exports.UserRegisration = async (req, res) => {
     if (user.error) {
       return res.status(user.statusCode).json({ error: user.error });
     }
-    return res.status(200).json(user);
+    return res
+      .status(user.statusCode)
+      .json({ message: user.message, data: user.data });
   }
 
   return res.status(400).json({ error: isValidUser[0].message });
@@ -40,7 +42,25 @@ exports.UserFetcher = async (req, res) => {
   if (user.error) {
     return res.status(user.statusCode).json({ error: user.error });
   }
-  return res.status(200).json(user);
+  return res
+    .status(user.statusCode)
+    .json({ message: user.message, data: user.data });
+};
+
+//get all users controller
+exports.UsersFetcher = async (req, res) => {
+  // call the getAllUsers service
+  // return user to client
+
+  const users = await getAllUsers();
+
+  if (users.error) {
+    return res.status(users.statusCode).json({ error: users.error });
+  }
+
+  return res
+    .status(users.statusCode)
+    .json({ message: users.message, data: users.data });
 };
 
 exports.UserGrantor = async (req, res) => {

@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const path = require("path");
 const ejs = require("ejs");
 
-const sendEmail = async (
+const EmailSender = async (
   subject,
   payload,
   recipientEmail,
@@ -43,8 +43,9 @@ const sendEmail = async (
       }
     });
   } catch (error) {
-    return error;
+    // return error;
+    console.log(error);
   }
 };
 
-module.exports = sendEmail;
+module.exports = EmailSender;

@@ -1,6 +1,7 @@
+const { PrismaClient } = require("@prisma/client");
 const { verifyUserToken } = require("../common/token");
 const { emailTypePicker } = require("../utils");
-const models = require("../data/models/index");
+const prisma = new PrismaClient();
 
 //IN PROGRESS
 const userAuth = async (req, res, next) => {
@@ -39,7 +40,7 @@ const staffAuth = async (req, res, next) => {
     return res.status(401).json({ error: "Invalid or expired staff token." });
   }
 
-  const checkStaff = await models.Staff.findByPk(staff.id);
+  const checkStaff = await prisma.staff.findUnique({ where: { id: staff.id } });
   if (checkStaff === null) {
     return {
       error: "Staff is not authorized.",
