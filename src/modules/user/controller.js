@@ -2,7 +2,14 @@ const {
   validateUser,
   validateUserCredentials,
 } = require("../../utils/validation");
-const { saveUser, getUser, loginUser, getAllUsers } = require("./service");
+const {
+  saveUser,
+  getUser,
+  loginUser,
+  getAllUsers,
+  verifyAccount,
+  sendResetPasswordCode,
+} = require("./service");
 
 //IN PROGRESS
 
@@ -68,6 +75,57 @@ exports.UserGrantor = async (req, res) => {
   // validate the payload
   // pass wht payload to login service
   // generate token
+  // return user and the token to client
+
+  const loginPayload = req.body;
+  isValidUser = await validateUserCredentials(loginPayload);
+  if (isValidUser === true) {
+    const user = await loginUser(loginPayload);
+
+    if (user.error) {
+      return res.status(user.statusCode).json({ error: user.error });
+    }
+    return res.status(200).json(user);
+  }
+
+  return res.status(400).json({ error: isValidUser[0].message });
+};
+
+exports.UserVerification = async (req, res) => {
+  const verifyPayload = req.params.token;
+
+  const verify = await verifyAccount(verifyPayload);
+  if (verify.error) {
+    return res.status(verify.statusCode).json({ error: verify.error });
+  }
+  return res.status(verify.statusCode).json({ message: verify.message });
+};
+
+// IN PROGRESS
+exports.UserPasswordResetCode = async (req, res) => {
+  const email = req.body;
+  // check that email is not empty
+
+  if (!email) {
+    return res.status(400).json({
+      message: "Please provide your email address.",
+    });
+  }
+
+  const reset = await sendResetPasswordCode(email);
+
+  if (reset.error) {
+    return res.status(reset.statusCode).json({ error: reset.error });
+  }
+  return res.status(reset.statusCode).json({ message: reset.message });
+};
+
+//IN PROGRESSS
+exports.UserPasswordReset = async (req, res) => {
+  // get the login payload
+  // validate the payload
+  // pass the payload to reset service
+
   // return user and the token to client
 
   const loginPayload = req.body;

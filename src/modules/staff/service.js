@@ -1,7 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
 const { hasher, matchChecker } = require("../../common/hash");
-const { generateToken } = require("../../common/token");
+const { generateToken, verifyUserToken } = require("../../common/token");
 const prisma = new PrismaClient();
 
 //IN PROGRESS
@@ -32,6 +32,31 @@ const saveStaff = async (staffPayload) => {
     if (!staff) {
       return { error: "Error occured while creating staff", statusCode: 400 };
     }
+
+    const staffSecret = process.env.TOKEN_STAFF_SECRET;
+    const emailVerificationToken = generateToken(
+      { id: user.id },
+      staffSecret,
+      "30m"
+    );
+    console.log("emailVerificationToken", emailVerificationToken);
+    const url = `${process.env.BASE_URL}/staff/activate/${emailVerificationToken}`;
+    console.log("url", url);
+    //send user email
+    const subject = "Welcome to Sidebrief.";
+    payload = {
+      name: staffPayload.firstName,
+      url: url,
+    };
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = staffPayload.email;
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/welcomeStaff.ejs"
+    );
 
     logger.info({
       message: `${staffPayload.firstName} ${staffPayload.lastName} created an account successfully with ${staffPayload.email}.`,
@@ -69,7 +94,7 @@ const getStaff = async (id) => {
   //   //return the staff to the staff controller
 
   try {
-    const staff = await prisma.staff.findUnique({ where: { id } });
+    const staff = await prisma.staff.findUnique({ where: { id: id } });
     if (staff === null) {
       return {
         error: "staff not found!.",
@@ -157,4 +182,55 @@ const loginStaff = async (loginPayload) => {
     };
   }
 };
-module.exports = { saveStaff, getStaff, loginStaff };
+
+// verify staff account service
+const verifyStaffAccount = async (verifyPayload) => {
+  try {
+    const staffSecret = process.env.TOKEN_STAFF_SECRET;
+    const staff = await verifyUserToken(verifyPayload, staffSecret);
+
+    if (staff.error) {
+      return {
+        error: staff.error,
+        statusCode: staff.statusCode,
+      };
+    }
+
+    const checkStaff = await prisma.staff.findUnique({
+      where: { id: staff.id },
+    });
+
+    if (checkStaff === null) {
+      return {
+        error: "Staff not found.",
+        statusCode: 400,
+      };
+    }
+
+    if (checkStaff.verified == true) {
+      return {
+        statusCode: 400,
+        error: "This account is already verified.",
+      };
+    }
+
+    const updateStaff = await prisma.staff.update({
+      where: { id: checkStaff.id },
+      data: { verified: true },
+    });
+
+    return {
+      message: "Your account is now verified.",
+      statusCode: 200,
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while verifying this staff with error message: ${error}`,
+    });
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+module.exports = { saveStaff, getStaff, loginStaff, verifyStaffAccount };

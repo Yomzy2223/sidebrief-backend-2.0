@@ -6,9 +6,10 @@ exports.generateToken = (payload, secret, expired) => {
   });
 };
 
-exports.verifyUserToken = (token, secret) => {
+exports.verifyUserToken = async (token, secret) => {
   try {
-    const validate = jwt.verify(token, secret);
+    const validate = await jwt.verify(token, secret);
+
     if (!validate) {
       return {
         error: "Authentification error, please check your token.",

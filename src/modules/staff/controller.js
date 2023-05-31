@@ -4,7 +4,12 @@ const {
   validateUserCredentials,
   validateStaff,
 } = require("../../utils/validation");
-const { getStaff, loginStaff, saveStaff } = require("./service");
+const {
+  getStaff,
+  loginStaff,
+  saveStaff,
+  verifyStaffAccount,
+} = require("./service");
 
 //IN PROGRESS
 // collect payload from the request body
@@ -64,4 +69,14 @@ exports.StaffLogin = async (req, res) => {
   }
 
   return res.status(400).json({ error: isValidStaff[0].message });
+};
+
+exports.StaffVerification = async (req, res) => {
+  const verifyPayload = req.params.token;
+
+  const verify = await verifyStaffAccount(verifyPayload);
+  if (verify.error) {
+    return res.status(verify.statusCode).json({ error: verify.error });
+  }
+  return res.status(verify.statusCode).json({ message: verify.message });
 };

@@ -1,7 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
 const { hasher, matchChecker } = require("../../common/hash");
-const { generateToken } = require("../../common/token");
+const { generateToken, verifyUserToken } = require("../../common/token");
 const EmailSender = require("../../services/emailEngine");
 const prisma = new PrismaClient();
 
@@ -132,7 +132,7 @@ const getUser = async (id) => {
 };
 
 //get all users service
-const getAllUsers = async (id) => {
+const getAllUsers = async () => {
   //   //return the users list to the user controller
 
   try {
@@ -221,14 +221,19 @@ const loginUser = async (loginPayload) => {
   }
 };
 
-// verify account service
-verifyAccount = async (req, res) => {
+// verify user account service
+const verifyAccount = async (verifyPayload) => {
   try {
-    const { token } = req.body;
-
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const user = await verifyUserToken(token, userSecret);
+    const user = await verifyUserToken(verifyPayload, userSecret);
 
+    if (user.error) {
+      return {
+        error: user.error,
+        statusCode: user.statusCode,
+      };
+    }
+    // console.log(user);
     const checkUser = await prisma.user.findUnique({ where: { id: user.id } });
     if (checkUser === null) {
       return {
@@ -236,18 +241,23 @@ verifyAccount = async (req, res) => {
         statusCode: 400,
       };
     }
+
     if (checkUser.verified == true) {
-      return res
-        .status(400)
-        .json({ message: "This account is already verified." });
+      return {
+        statusCode: 400,
+        error: "This account is already verified.",
+      };
     }
 
     const updateUser = await prisma.user.update({
       where: { id: checkUser.id },
-      verified: true,
+      data: { verified: true },
     });
 
-    return res.status(200).json({ message: "Your account is now verified." });
+    return {
+      message: "Your account is now verified.",
+      statusCode: 200,
+    };
   } catch (error) {
     logger.error({
       message: `error occured while verifying this user with error message: ${error}`,
@@ -258,4 +268,79 @@ verifyAccount = async (req, res) => {
     };
   }
 };
-module.exports = { saveUser, getUser, getAllUsers, loginUser };
+
+const sendResetPasswordCode = async (resetPayload) => {
+  try {
+    // if (!validateStaffEmail(email)) {
+    //   return res.status(400).json({
+    //     message: "Only staff can use this link to reset password.",
+    //   });
+    // }
+
+    // check that the email is registered to a staff account
+
+    const staff = await prisma.staff.findUnique({ where: { email: email } });
+
+    if (staff === null) {
+      return {
+        error: "staff not found!.",
+        statusCode: 400,
+      };
+    }
+
+    if (staff) {
+      await Code.findOneAndRemove({ staff: staff._id });
+      const code = generateCode(5);
+      const savedCode = await new Code({
+        code,
+        staff: staff._id,
+      }).save();
+      sendResetCode(staff.email, staff.first_name, code);
+      return res.status(200).json({
+        message: "Email reset code has been sent to your email",
+      });
+    }
+  } catch (error) {
+    logger.error({
+      message: `error occured while sending reset code with error message: ${error}`,
+    });
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+
+// IN PROGRESS
+const changePassword = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email) {
+    return res.status(400).json({
+      message: "Please enter your email",
+    });
+  }
+
+  if (!password) {
+    return res.status(400).json({
+      message: "Please enter your password",
+    });
+  }
+
+  const cryptedPassword = await bcrypt.hash(password, 12);
+  await Staff.findOneAndUpdate(
+    { email },
+    {
+      password: cryptedPassword,
+    }
+  );
+  return res.status(200).json({ message: "ok" });
+};
+module.exports = {
+  saveUser,
+  getUser,
+  getAllUsers,
+  verifyAccount,
+  sendResetPasswordCode,
+  loginUser,
+};

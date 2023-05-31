@@ -636,3 +636,203 @@ info: Label: 31-May-2023 14:05:27: Bamidele Akinyemi created an account successf
 info: Label: 31-May-2023 14:25:24: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
 info: Label: 31-May-2023 14:26:33: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
 info: Label: 31-May-2023 14:27:28: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 19:14:36: error occured while verifying this user with error message: ReferenceError: verifyUserToken is not defined
+error: Label: 31-May-2023 19:15:02: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:15:06: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:17:07: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:18:00: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:25:33: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:25:40: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:26:10: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:26:12: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+info: Label: 31-May-2023 19:28:51: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 19:29:59: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:231:41
+
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+  230 console.log(user);
+→ 231 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:39:56: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:231:41
+
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+  230 // console.log(user);
+→ 231 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:40:50: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:231:41
+
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+  230 // console.log(user);
+→ 231 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
