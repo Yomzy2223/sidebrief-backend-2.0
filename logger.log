@@ -220,3 +220,638 @@ info: Label: 23-May-2023 13:56:09: Bamidele Akinyemi created an account successf
 info: Label: 23-May-2023 13:56:43: staff with akainyemi@sidebrief.com signed in successfully.
 info: Label: 23-May-2023 13:56:55: User with akinyemibamidele@gmail.com signed in successfully.
 info: Label: 23-May-2023 13:57:44: Providus Bank created successfully
+error: Label: 24-May-2023 15:46:42: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:47:09: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:47:11: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:47:21: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:47:22: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:48:05: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:48:20: error occured while fetching all service category with error message: TypeError: Cannot read properties of undefined (reading 'findMany')
+error: Label: 24-May-2023 15:54:09: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create({
+       name: 'manage',
+       ~~~~
+       description: 'this is manage category',
+       ~~~~~~~~~~~
+     + data: ServiceCategoryCreateInput | ServiceCategoryUncheckedCreateInput
+     })
+
+Unknown arg `name` in name for type ServiceCategory. Did you mean `data`?
+Unknown arg `description` in description for type ServiceCategory. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+error: Label: 24-May-2023 15:55:54: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create({
+       name: 'manage',
+       ~~~~
+       description: 'this is manage category',
+       ~~~~~~~~~~~
+     + data: ServiceCategoryCreateInput | ServiceCategoryUncheckedCreateInput
+     })
+
+Unknown arg `name` in name for type ServiceCategory. Did you mean `data`?
+Unknown arg `description` in description for type ServiceCategory. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+error: Label: 24-May-2023 15:55:56: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create({
+       name: 'manage',
+       ~~~~
+       description: 'this is manage category',
+       ~~~~~~~~~~~
+     + data: ServiceCategoryCreateInput | ServiceCategoryUncheckedCreateInput
+     })
+
+Unknown arg `name` in name for type ServiceCategory. Did you mean `data`?
+Unknown arg `description` in description for type ServiceCategory. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+info: Label: 24-May-2023 15:57:49: manage created successfully
+info: Label: 25-May-2023 15:43:07: onboard service category created successfully
+error: Label: 25-May-2023 15:43:40: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 15:43:40: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:45:56: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 15:45:56: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 25-May-2023 15:46:43: manages service category created successfully
+error: Label: 25-May-2023 15:50:02: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 15:50:02: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 25-May-2023 15:51:16: testing service category created successfully
+error: Label: 25-May-2023 15:51:16: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:53:00: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 15:53:00: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:55:54: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:57:00: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 15:58:22: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 16:00:33: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 16:01:12: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 25-May-2023 16:02:05: testing service category created successfully
+error: Label: 25-May-2023 16:02:05: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:157:63
+
+  154 //return response to the service category controller
+  155 
+  156 try {
+→ 157   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+error: Label: 25-May-2023 16:16:29: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:15:51
+
+  12   description: serviceCategoryPayload.description,
+  13 };
+  14 console.log(values);
+→ 15 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 25-May-2023 16:16:29: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:161:63
+
+  158 //return response to the service category controller
+  159 
+  160 try {
+→ 161   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 25-May-2023 16:18:08: usman service category created successfully
+error: Label: 31-May-2023 13:14:51: error occured while fetching user with error message: ReferenceError: token is not defined
+error: Label: 31-May-2023 13:30:40: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:36:24: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:36:37: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:40:22: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:40:35: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:12:43
+
+   9 //create staff service
+  10 const saveStaff = async (staffPayload) => {
+  11   try {
+→ 12     const checkStaff = await prisma.staff.findUnique({
+           where: {
+             email: 'akinyemi@sidebrief.com'
+             ~~~~~
+           }
+         })
+
+Unknown arg `email` in where.email for type StaffWhereUniqueInput. Did you mean `id`? Available args:
+type StaffWhereUniqueInput {
+  id?: String
+  firstName?: String
+}
+
+
+error: Label: 31-May-2023 13:43:59: error occured while creating an account for akinyemi@sidebrief.com with error message: ReferenceError: models is not defined
+error: Label: 31-May-2023 13:44:03: error occured while creating an account for akinyemi@sidebrief.com with error message: ReferenceError: models is not defined
+error: Label: 31-May-2023 13:44:35: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:20:45
+
+  17   return { error: "User with this email already exists", statusCode: 400 };
+  18 }
+  19 
+→ 20 const checkUsername = await prisma.user.findUnique({
+       where: {
+         username: 'bamidele2'
+         ~~~~~~~~
+       }
+     })
+
+Unknown arg `username` in where.username for type UserWhereUniqueInput. Available args:
+
+type UserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+
+error: Label: 31-May-2023 13:44:39: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:20:45
+
+  17   return { error: "User with this email already exists", statusCode: 400 };
+  18 }
+  19 
+→ 20 const checkUsername = await prisma.user.findUnique({
+       where: {
+         username: 'bamidele2'
+         ~~~~~~~~
+       }
+     })
+
+Unknown arg `username` in where.username for type UserWhereUniqueInput. Available args:
+
+type UserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+
+error: Label: 31-May-2023 13:45:36: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:20:45
+
+  17   return { error: "User with this email already exists", statusCode: 400 };
+  18 }
+  19 
+→ 20 const checkUsername = await prisma.user.findUnique({
+       where: {
+         username: 'bamidele2'
+         ~~~~~~~~
+       }
+     })
+
+Unknown arg `username` in where.username for type UserWhereUniqueInput. Available args:
+
+type UserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+
+info: Label: 31-May-2023 13:46:35: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+info: Label: 31-May-2023 13:47:40: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+info: Label: 31-May-2023 13:57:55: Bamidele Akinyemi created an account successfully with damola@sidebrief.com.
+info: Label: 31-May-2023 14:02:18: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 14:02:18: error occured while creating an account for akinyemibamidele2@gmail.com with error message: ReferenceError: token is not defined
+info: Label: 31-May-2023 14:03:02: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 14:03:02: error occured while creating an account for akinyemibamidele2@gmail.com with error message: ReferenceError: token is not defined
+info: Label: 31-May-2023 14:03:30: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 14:03:30: error occured while creating an account for akinyemibamidele2@gmail.com with error message: ReferenceError: token is not defined
+info: Label: 31-May-2023 14:05:27: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 31-May-2023 14:25:24: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 31-May-2023 14:26:33: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 31-May-2023 14:27:28: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 19:14:36: error occured while verifying this user with error message: ReferenceError: verifyUserToken is not defined
+error: Label: 31-May-2023 19:15:02: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:15:06: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:17:07: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:18:00: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:25:33: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:25:40: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:26:10: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:26:12: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:230:41
+
+  227 const userSecret = process.env.TOKEN_USER_SECRET;
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 console.log(user);
+→ 230 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+info: Label: 31-May-2023 19:28:51: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-May-2023 19:29:59: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:231:41
+
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+  230 console.log(user);
+→ 231 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:39:56: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:231:41
+
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+  230 // console.log(user);
+→ 231 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 31-May-2023 19:40:50: error occured while verifying this user with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:231:41
+
+  228 const user = await verifyUserToken(verifyPayload, userSecret);
+  229 
+  230 // console.log(user);
+→ 231 const checkUser = await prisma.user.findUnique({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 14:48:04: error occured while sending reset link with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:280:36
+
+  277 // generate reset token string
+  278 // save and send the reset token the user
+  279 
+→ 280 const user = await prisma.user.findUnique({
+        where: {
+      ?   email?: String,
+      ?   id?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+info: Label: 01-Jun-2023 15:24:01: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.

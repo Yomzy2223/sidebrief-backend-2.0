@@ -1,4 +1,4 @@
-const { validateBank } = require("../../common/validation");
+const { validateBank } = require("../../utils/validation");
 const {
   saveBank,
   getAllBanks,
@@ -23,7 +23,7 @@ exports.BankCreator = async (req, res) => {
       return res.status(bank.statusCode).json({ error: bank.error });
     }
 
-    return res.status(200).json(bank);
+    return res.json(bank);
   }
 
   return res.status(400).json({ error: isValidBank[0].message });

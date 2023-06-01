@@ -1,5 +1,7 @@
+const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
 const models = require("../../data/models/index");
+const prisma = new PrismaClient();
 
 //create bank service
 const saveBank = async (bankPayload) => {
@@ -12,8 +14,7 @@ const saveBank = async (bankPayload) => {
       bankUrl: bankPayload.bankUrl,
       bankImage: bankPayload.bankImage,
     };
-    console.log(values);
-    const bank = await models.Bank.create(values);
+    const bank = await prisma.bank.create({ data: values });
 
     if (!bank) {
       return { error: "Error occured while creating bank", statusCode: 400 };
@@ -22,6 +23,7 @@ const saveBank = async (bankPayload) => {
     logger.info({ message: `${bankPayload.bankName} created successfully` });
     return {
       message: "Bank created successfully",
+      statusCode: 200,
       data: bank,
     };
   } catch (error) {
@@ -40,7 +42,7 @@ const getAllBanks = async () => {
   //  get the bank list from the table
   //  return the bank list to the bank controller
   try {
-    const bank = await models.Bank.findAll();
+    const bank = await prisma.bank.findMany({});
     return {
       message: "banks fetched successfully",
       data: bank,
@@ -62,7 +64,11 @@ const getBank = async (id) => {
   //   //return the bank to the bank controller
 
   try {
-    const bank = await models.Bank.findByPk(id);
+    const bank = await prisma.bank.findUnique({
+      where: {
+        id: id,
+      },
+    });
     if (bank === null) {
       return {
         error: "Bank not found!.",
@@ -99,7 +105,11 @@ const updateBank = async (id, bankPayload) => {
       bankImage: bankPayload.bankImage,
     };
 
-    const bank = await models.Bank.findByPk(id);
+    const bank = await prisma.bank.findUnique({
+      where: {
+        id: id,
+      },
+    });
     if (bank === null) {
       return {
         error: "Bank not found!.",
@@ -107,13 +117,14 @@ const updateBank = async (id, bankPayload) => {
       };
     }
 
-    const updateBank = await models.Bank.update(values, {
+    const updateBank = await prisma.bank.update({
       where: {
         id: id,
       },
+      data: values,
     });
 
-    if (!bank) {
+    if (!updateBank) {
       return {
         error: "Error occured while updating bank!.",
         statusCode: 400,
@@ -142,7 +153,7 @@ const removeBank = async (id) => {
   //return response to the bank controller
 
   try {
-    const deleteBank = await models.Bank.destroy({
+    const deleteBank = await prisma.bank.delete({
       where: {
         id: id,
       },
