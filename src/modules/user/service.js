@@ -384,6 +384,45 @@ const changePassword = async (changePayload) => {
     };
   }
 };
+
+// IN PROGRESS
+// update profile service
+const updateProfile = async (updatePayload, id) => {
+  try {
+    const user = prisma.user.findUnique({ where: { id: id } });
+    if (user === null) {
+      return {
+        error: "User not found",
+        statusCode: 400,
+      };
+    }
+
+    const updateUser = await prisma.user.update({
+      where: { id: user.id },
+      data: { phone: updatePayload.phone },
+    });
+
+    if (!updateUser) {
+      return {
+        error: "Error occured while updating user",
+        statusCode: 400,
+      };
+    }
+    return {
+      message: "Profile updated successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while updating this user profile with error message: ${error}`,
+    });
+
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
 module.exports = {
   saveUser,
   getUser,
@@ -392,4 +431,5 @@ module.exports = {
   loginUser,
   forgotPassword,
   changePassword,
+  updateProfile,
 };

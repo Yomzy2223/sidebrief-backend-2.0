@@ -7,6 +7,7 @@ const {
   UserVerification,
   UserPasswordResetLink,
   UserPasswordReset,
+  UserProfileModifier,
 } = require("./controller");
 const router = express.Router();
 
@@ -17,5 +18,6 @@ router.get("/", UsersFetcher);
 router.post("/verification/:token", UserVerification);
 router.post("/forgotpassword", UserPasswordResetLink);
 router.post("/passwordreset", UserPasswordReset);
+router.put("/update", UserProfileModifier);
 
 module.exports = router;

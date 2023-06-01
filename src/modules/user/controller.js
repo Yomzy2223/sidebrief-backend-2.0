@@ -12,6 +12,7 @@ const {
   sendResetPasswordCode,
   forgotPassword,
   changePassword,
+  updateProfile,
 } = require("./service");
 
 //IN PROGRESS
@@ -126,7 +127,7 @@ exports.UserPasswordReset = async (req, res) => {
   // validate the payload
   // pass the payload to reset service
 
-  // return user and the token to client
+  // return the response to the client
 
   const loginPayload = req.body;
   isValidUser = await validateResetCredentials(loginPayload);
@@ -137,6 +138,34 @@ exports.UserPasswordReset = async (req, res) => {
       return res.status(userPass.statusCode).json({ error: userPass.error });
     }
     return res.status(userPass.statusCode).json({ message: userPass.message });
+  }
+
+  return res.status(400).json({ error: isValidUser[0].message });
+};
+
+// IN PROGRESS
+exports.UserProfileModifier = async (req, res) => {
+  // get the updatePayload and the user id
+  // validate the payload
+  // pass the payload and the id to update service
+
+  // return user and message
+
+  const id = req.params.id;
+  const updatePayload = req.body;
+
+  isValidUser = await validateResetCredentials(updatePayload);
+  if (isValidUser === true) {
+    const userUpdate = await updateProfile(updatePayload, id);
+
+    if (userUpdate.error) {
+      return res
+        .status(userUpdate.statusCode)
+        .json({ error: userUpdate.error });
+    }
+    return res
+      .status(userUpdate.statusCode)
+      .json({ message: userUpdate.message });
   }
 
   return res.status(400).json({ error: isValidUser[0].message });
