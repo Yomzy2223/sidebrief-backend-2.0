@@ -1,6 +1,7 @@
 const {
   validateUser,
   validateUserCredentials,
+  validateResetCredentials,
 } = require("../../utils/validation");
 const {
   saveUser,
@@ -9,6 +10,8 @@ const {
   getAllUsers,
   verifyAccount,
   sendResetPasswordCode,
+  forgotPassword,
+  changePassword,
 } = require("./service");
 
 //IN PROGRESS
@@ -101,8 +104,7 @@ exports.UserVerification = async (req, res) => {
   return res.status(verify.statusCode).json({ message: verify.message });
 };
 
-// IN PROGRESS
-exports.UserPasswordResetCode = async (req, res) => {
+exports.UserPasswordResetLink = async (req, res) => {
   const email = req.body;
   // check that email is not empty
 
@@ -112,7 +114,7 @@ exports.UserPasswordResetCode = async (req, res) => {
     });
   }
 
-  const reset = await sendResetPasswordCode(email);
+  const reset = await forgotPassword(email);
 
   if (reset.error) {
     return res.status(reset.statusCode).json({ error: reset.error });
@@ -120,7 +122,6 @@ exports.UserPasswordResetCode = async (req, res) => {
   return res.status(reset.statusCode).json({ message: reset.message });
 };
 
-//IN PROGRESSS
 exports.UserPasswordReset = async (req, res) => {
   // get the login payload
   // validate the payload
@@ -129,14 +130,14 @@ exports.UserPasswordReset = async (req, res) => {
   // return user and the token to client
 
   const loginPayload = req.body;
-  isValidUser = await validateUserCredentials(loginPayload);
+  isValidUser = await validateResetCredentials(loginPayload);
   if (isValidUser === true) {
-    const user = await loginUser(loginPayload);
+    const userPass = await changePassword(loginPayload);
 
-    if (user.error) {
-      return res.status(user.statusCode).json({ error: user.error });
+    if (userPass.error) {
+      return res.status(userPass.statusCode).json({ error: userPass.error });
     }
-    return res.status(200).json(user);
+    return res.status(userPass.statusCode).json({ message: userPass.message });
   }
 
   return res.status(400).json({ error: isValidUser[0].message });

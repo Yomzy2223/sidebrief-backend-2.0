@@ -269,40 +269,67 @@ const verifyAccount = async (verifyPayload) => {
   }
 };
 
-const sendResetPasswordCode = async (resetPayload) => {
+// forgot password service
+const forgotPassword = async (resetPayload) => {
   try {
-    // if (!validateStaffEmail(email)) {
-    //   return res.status(400).json({
-    //     message: "Only staff can use this link to reset password.",
-    //   });
-    // }
+    // take the email from the controller
+    // check that the email is registered to a user account
+    // generate reset token string
+    // save and send the reset token the user
 
-    // check that the email is registered to a staff account
+    const user = await prisma.user.findUnique({
+      where: { email: resetPayload.email },
+    });
 
-    const staff = await prisma.staff.findUnique({ where: { email: email } });
-
-    if (staff === null) {
+    if (user === null) {
       return {
-        error: "staff not found!.",
+        error: "user not found!.",
         statusCode: 400,
       };
     }
 
-    if (staff) {
-      await Code.findOneAndRemove({ staff: staff._id });
-      const code = generateCode(5);
-      const savedCode = await new Code({
-        code,
-        staff: staff._id,
-      }).save();
-      sendResetCode(staff.email, staff.first_name, code);
-      return res.status(200).json({
-        message: "Email reset code has been sent to your email",
-      });
+    const userSecret = process.env.TOKEN_USER_SECRET;
+    const userToken = await verifyUserToken(resetPayload, userSecret);
+
+    if (userToken.error) {
+      return {
+        error: userToken.error,
+        statusCode: userToken.statusCode,
+      };
     }
+
+    const cryptedToken = await bcrypt.hash(userToken, 12);
+
+    const updatedUser = await prisma.user.update({
+      where: { id: user.id },
+      data: { resetToken: cryptedToken },
+    });
+
+    const url = `${process.env.BASE_URL}/reset-password/${userToken}`;
+
+    //send user email
+    const subject = "Reset Password.";
+    payload = {
+      name: user.firstName,
+      url: url,
+    };
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = user.email;
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/welcomeUser.ejs"
+    );
+
+    return {
+      message: "Email reset code has been sent to your email",
+      statusCode: 200,
+    };
   } catch (error) {
     logger.error({
-      message: `error occured while sending reset code with error message: ${error}`,
+      message: `error occured while sending reset link with error message: ${error}`,
     });
     return {
       error: "Error occurred!.",
@@ -311,30 +338,54 @@ const sendResetPasswordCode = async (resetPayload) => {
   }
 };
 
-// IN PROGRESS
-const changePassword = async (req, res) => {
-  const { email, password } = req.body;
+// change password service
+const changePassword = async (changePayload) => {
+  // take the email, resetToken and password from the controller
+  // check that the email is registered to a user account
+  // compare the token with the one saved in the database
+  // save the new password and update reset token to null
 
-  if (!email) {
-    return res.status(400).json({
-      message: "Please enter your email",
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email: changePayload.email },
     });
-  }
 
-  if (!password) {
-    return res.status(400).json({
-      message: "Please enter your password",
-    });
-  }
-
-  const cryptedPassword = await bcrypt.hash(password, 12);
-  await Staff.findOneAndUpdate(
-    { email },
-    {
-      password: cryptedPassword,
+    if (user === null) {
+      return {
+        error: "User not found!.",
+        statusCode: 400,
+      };
     }
-  );
-  return res.status(200).json({ message: "ok" });
+
+    let checkToken = await matchChecker(changePayload.token, user.resetToken);
+
+    if (!checkToken)
+      return {
+        error: "Invalid token",
+        statusCode: 400,
+      };
+
+    const cryptedPassword = await hasher(changePayload.password, 12);
+
+    const updateUser = await prisma.user.update({
+      where: { id: user.id },
+      data: { resetToken: null, password: cryptedPassword },
+    });
+
+    return {
+      message: "Password reset successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while reseting password with error message: ${error}`,
+    });
+
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
 };
 module.exports = {
   saveUser,
@@ -343,4 +394,6 @@ module.exports = {
   verifyAccount,
   sendResetPasswordCode,
   loginUser,
+  forgotPassword,
+  changePassword,
 };

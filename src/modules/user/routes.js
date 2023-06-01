@@ -5,6 +5,8 @@ const {
   UserGrantor,
   UsersFetcher,
   UserVerification,
+  UserPasswordResetLink,
+  UserPasswordReset,
 } = require("./controller");
 const router = express.Router();
 
@@ -13,5 +15,7 @@ router.post("/login", UserGrantor);
 router.get("/:id", UserFetcher);
 router.get("/", UsersFetcher);
 router.post("/verification/:token", UserVerification);
+router.post("/forgotpassword", UserPasswordResetLink);
+router.post("/passwordreset", UserPasswordReset);
 
 module.exports = router;

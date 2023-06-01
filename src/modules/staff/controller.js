@@ -3,12 +3,15 @@ const {
   validatestaffCredentials,
   validateUserCredentials,
   validateStaff,
+  validateResetCredentials,
 } = require("../../utils/validation");
 const {
   getStaff,
   loginStaff,
   saveStaff,
   verifyStaffAccount,
+  forgotPassword,
+  changePassword,
 } = require("./service");
 
 //IN PROGRESS
@@ -79,4 +82,45 @@ exports.StaffVerification = async (req, res) => {
     return res.status(verify.statusCode).json({ error: verify.error });
   }
   return res.status(verify.statusCode).json({ message: verify.message });
+};
+
+exports.StaffPasswordResetLink = async (req, res) => {
+  const email = req.body;
+  // check that email is not empty
+
+  if (!email) {
+    return res.status(400).json({
+      message: "Please provide your email address.",
+    });
+  }
+
+  const reset = await forgotPassword(email);
+
+  if (reset.error) {
+    return res.status(reset.statusCode).json({ error: reset.error });
+  }
+  return res.status(reset.statusCode).json({ message: reset.message });
+};
+
+exports.StaffPasswordReset = async (req, res) => {
+  // get the login payload
+  // validate the payload
+  // pass the payload to reset service
+
+  // return staff and the token to client
+
+  const loginPayload = req.body;
+  isValidStaff = await validateResetCredentials(loginPayload);
+  if (isValidStaff === true) {
+    const staffPass = await changePassword(loginPayload);
+
+    if (staffPass.error) {
+      return res.status(staffPass.statusCode).json({ error: staffPass.error });
+    }
+    return res
+      .status(staffPass.statusCode)
+      .json({ message: staffPass.message });
+  }
+
+  return res.status(400).json({ error: isValidStaff[0].message });
 };
