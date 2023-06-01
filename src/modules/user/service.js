@@ -385,11 +385,49 @@ const changePassword = async (changePayload) => {
   }
 };
 
+// delete account
+const deleteUser = async (id) => {
+  try {
+    const user = await prisma.user.findUnique({ where: { id: id } });
+    if (user === null) {
+      return {
+        error: "User not found",
+        statusCode: 400,
+      };
+    }
+    console.log(user);
+    const deleteUser = await prisma.user.delete({
+      where: { id: user.id },
+    });
+
+    console.log(deleteUser);
+    if (!deleteUser) {
+      return {
+        error: "Error occured while deleting user",
+        statusCode: 400,
+      };
+    }
+    return {
+      message: "User deleted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while deleting this user profile with error message: ${error}`,
+    });
+
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+
 // IN PROGRESS
 // update profile service
 const updateProfile = async (updatePayload, id) => {
   try {
-    const user = prisma.user.findUnique({ where: { id: id } });
+    const user = await prisma.user.findUnique({ where: { id: id } });
     if (user === null) {
       return {
         error: "User not found",
@@ -432,4 +470,5 @@ module.exports = {
   forgotPassword,
   changePassword,
   updateProfile,
+  deleteUser,
 };

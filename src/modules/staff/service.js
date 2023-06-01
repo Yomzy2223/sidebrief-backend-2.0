@@ -351,6 +351,45 @@ const changePassword = async (changePayload) => {
     };
   }
 };
+
+// delete staff account
+const deleteStaff = async (id) => {
+  try {
+    const staff = await prisma.staff.findUnique({ where: { id: id } });
+    if (staff === null) {
+      return {
+        error: "Staff not found",
+        statusCode: 400,
+      };
+    }
+    console.log(staff);
+    const deleteStaff = await prisma.staff.delete({
+      where: { id: staff.id },
+    });
+
+    console.log(deleteStaff);
+    if (!deleteStaff) {
+      return {
+        error: "Error occured while deleting staff",
+        statusCode: 400,
+      };
+    }
+    return {
+      message: "Staff deleted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while deleting this staff profile with error message: ${error}`,
+    });
+
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+
 module.exports = {
   saveStaff,
   getStaff,
@@ -358,4 +397,5 @@ module.exports = {
   verifyStaffAccount,
   forgotPassword,
   changePassword,
+  deleteStaff,
 };

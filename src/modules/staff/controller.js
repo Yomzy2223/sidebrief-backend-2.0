@@ -12,6 +12,7 @@ const {
   verifyStaffAccount,
   forgotPassword,
   changePassword,
+  deleteStaff,
 } = require("./service");
 
 //IN PROGRESS
@@ -123,4 +124,24 @@ exports.StaffPasswordReset = async (req, res) => {
   }
 
   return res.status(400).json({ error: isValidStaff[0].message });
+};
+
+//get a staff with id
+exports.StaffRemover = async (req, res) => {
+  // check if there is id
+  // pass the id to the service
+  // return staff to client
+
+  const id = req.params.id;
+  if (!id) {
+    return res.status(400).json({
+      error: "Please provide id",
+    });
+  }
+  const staff = await deleteStaff(id);
+
+  if (staff.error) {
+    return res.status(staff.statusCode).json({ error: staff.error });
+  }
+  return res.status(staff.statusCode).json({ message: staff.message });
 };

@@ -6,6 +6,7 @@ const {
   StaffPasswordReset,
   StaffPasswordResetLink,
   StaffVerification,
+  StaffRemover,
 } = require("./controller");
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.get("/:id", StaffProfileFetcher);
 router.post("/verification/:token", StaffVerification);
 router.post("/forgotpassword", StaffPasswordResetLink);
 router.post("/passwordreset", StaffPasswordReset);
+router.delete("/:id", StaffRemover);
 
 module.exports = router;

@@ -855,3 +855,111 @@ Argument where of type UserWhereUniqueInput needs at least one argument. Availab
 Note: Lines with ? are optional.
 
 info: Label: 01-Jun-2023 15:24:01: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 01-Jun-2023 20:58:01: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const updateUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 20:59:49: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 20:59:55: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 20:59:58: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 21:00:14: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 21:01:09: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 console.log(user);
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
