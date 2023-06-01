@@ -1,12 +1,10 @@
 const { PrismaClient } = require("@prisma/client");
 const { verifyUserToken } = require("../common/token");
-const { emailTypePicker } = require("../utils");
 const prisma = new PrismaClient();
 
 //IN PROGRESS
 const userAuth = async (req, res, next) => {
   const reqToken = req.headers.authorization;
-  console.log(reqToken);
   if (!reqToken) {
     return res.status(401).json({ error: "Authorization token is missing." });
   }

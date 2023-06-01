@@ -14,7 +14,6 @@ describe("GET /services/:id", () => {
     const res = await request(app).get(
       "/services/0304eaf0-c317-4008-9bd4-5c33f6753a28"
     );
-    console.log(res.body)
     expect(res.statusCode).toBe(200);
     expect(res.body.data.name).toBe("tax");
   });
@@ -49,7 +48,6 @@ describe("DELETE /services/:id", () => {
     const res = await request(app).delete(
       "/services/b6b7d520-f771-4d6e-a397-fd30d96fca39"
     );
-    console.log(res.body);
     expect(res.statusCode).toBe(200);
     expect(res.body.message).toBe("Service category deleted successfully");
   });

@@ -2,6 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
 const { hasher, matchChecker } = require("../../common/hash");
 const { generateToken, verifyUserToken } = require("../../common/token");
+const EmailSender = require("../../services/emailEngine");
 const prisma = new PrismaClient();
 
 //IN PROGRESS
@@ -39,9 +40,8 @@ const saveStaff = async (staffPayload) => {
       staffSecret,
       "30m"
     );
-    console.log("emailVerificationToken", emailVerificationToken);
+
     const url = `${process.env.BASE_URL}/staff/activate/${emailVerificationToken}`;
-    console.log("url", url);
     //send staff email
     const subject = "Welcome to Sidebrief.";
     payload = {
@@ -71,7 +71,6 @@ const saveStaff = async (staffPayload) => {
         email: staff.email,
         phone: staff.phone,
         picture: staff.picture,
-        token: token,
         verified: staff.verified,
       },
       statusCode: 200,
@@ -254,7 +253,7 @@ const forgotPassword = async (resetPayload) => {
     }
 
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
-    const staffToken = await verifyUserToken(resetPayload, staffSecret);
+    const staffToken = await generateToken(resetPayload, staffSecret, "30m");
 
     if (staffToken.error) {
       return {
@@ -263,7 +262,7 @@ const forgotPassword = async (resetPayload) => {
       };
     }
 
-    const cryptedToken = await bcrypt.hash(staffToken, 12);
+    const cryptedToken = await await hasher(staffToken, 12);
 
     const updatedStaff = await prisma.staff.update({
       where: { id: staff.id },

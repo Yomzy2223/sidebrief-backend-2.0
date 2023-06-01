@@ -11,9 +11,7 @@ const saveServiceCategory = async (serviceCategoryPayload) => {
       name: serviceCategoryPayload.name,
       description: serviceCategoryPayload.description,
     };
-    console.log(values);
     const category = await prisma.serviceCategory.create({ data: values });
-    console.log("test", category);
     if (!category) {
       return {
         error: "Error occured while creating this service category",
@@ -27,7 +25,7 @@ const saveServiceCategory = async (serviceCategoryPayload) => {
     return {
       message: "Service category created successfully",
       data: category,
-      statusCode: 200
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
@@ -49,7 +47,7 @@ const getAllServiceCategory = async () => {
     return {
       message: "Service category fetched successfully",
       data: category,
-      statusCode: 200
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
@@ -82,7 +80,7 @@ const getServiceCategory = async (id) => {
     return {
       message: "Service category fetched successfully",
       data: category,
-      statusCode: 200
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
@@ -136,7 +134,7 @@ const updateServiceCategory = async (id, serviceCategoryPayload) => {
 
     return {
       message: "Service category updated successfully",
-      statusCode: 200
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
@@ -171,7 +169,7 @@ const removeServiceCategory = async (id) => {
 
     return {
       message: "Service category deleted successfully",
-      statusCode: 200
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({

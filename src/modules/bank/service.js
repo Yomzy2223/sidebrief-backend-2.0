@@ -14,7 +14,6 @@ const saveBank = async (bankPayload) => {
       bankUrl: bankPayload.bankUrl,
       bankImage: bankPayload.bankImage,
     };
-    console.log(values);
     const bank = await prisma.bank.create({ data: values });
 
     if (!bank) {

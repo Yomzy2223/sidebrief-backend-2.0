@@ -107,7 +107,6 @@ exports.UserVerification = async (req, res) => {
 exports.UserPasswordResetLink = async (req, res) => {
   const email = req.body;
   // check that email is not empty
-
   if (!email) {
     return res.status(400).json({
       message: "Please provide your email address.",

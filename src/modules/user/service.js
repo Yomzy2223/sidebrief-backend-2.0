@@ -13,7 +13,6 @@ const saveUser = async (userPayload) => {
     const checkUser = await prisma.user.findUnique({
       where: { email: userPayload.email.toLowerCase() },
     });
-    console.log(checkUser);
     if (checkUser !== null) {
       return { error: "User with this email already exists", statusCode: 400 };
     }
@@ -42,9 +41,8 @@ const saveUser = async (userPayload) => {
       userSecret,
       "30m"
     );
-    console.log("emailVerificationToken", emailVerificationToken);
+
     const url = `${process.env.BASE_URL}/user/activate/${emailVerificationToken}`;
-    console.log("url", url);
     //send user email
     const subject = "Welcome to Sidebrief.";
     payload = {
@@ -233,7 +231,6 @@ const verifyAccount = async (verifyPayload) => {
         statusCode: user.statusCode,
       };
     }
-    // console.log(user);
     const checkUser = await prisma.user.findUnique({ where: { id: user.id } });
     if (checkUser === null) {
       return {
@@ -289,7 +286,7 @@ const forgotPassword = async (resetPayload) => {
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const userToken = await verifyUserToken(resetPayload, userSecret);
+    const userToken = await generateToken(resetPayload, userSecret, "30m");
 
     if (userToken.error) {
       return {
@@ -298,7 +295,7 @@ const forgotPassword = async (resetPayload) => {
       };
     }
 
-    const cryptedToken = await bcrypt.hash(userToken, 12);
+    const cryptedToken = await hasher(userToken, 12);
 
     const updatedUser = await prisma.user.update({
       where: { id: user.id },
@@ -392,7 +389,6 @@ module.exports = {
   getUser,
   getAllUsers,
   verifyAccount,
-  sendResetPasswordCode,
   loginUser,
   forgotPassword,
   changePassword,

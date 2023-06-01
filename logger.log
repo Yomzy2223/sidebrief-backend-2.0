@@ -836,3 +836,22 @@ Argument where of type UserWhereUniqueInput needs at least one argument. Availab
 
 Note: Lines with ? are optional.
 
+error: Label: 01-Jun-2023 14:48:04: error occured while sending reset link with error message: Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:280:36
+
+  277 // generate reset token string
+  278 // save and send the reset token the user
+  279 
+→ 280 const user = await prisma.user.findUnique({
+        where: {
+      ?   email?: String,
+      ?   id?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+info: Label: 01-Jun-2023 15:24:01: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
