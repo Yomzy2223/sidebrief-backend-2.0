@@ -963,3 +963,38 @@ Argument where of type UserWhereUniqueInput needs at least one argument. Availab
 
 Note: Lines with ? are optional.
 
+error: Label: 02-Jun-2023 19:36:06: error occured while creating an account for akinyemibamidele2@gmail.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:13:43
+
+  10 //create staff service
+  11 const saveStaff = async (staffPayload) => {
+  12   try {
+→ 13     const checkStaff = await prisma.staff.findUnique(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`.
+info: Label: 04-Jun-2023 08:36:49: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 05-Jun-2023 10:30:11: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:14:51
+
+  11   name: serviceCategoryPayload.name,
+  12   description: serviceCategoryPayload.description,
+  13 };
+→ 14 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 05-Jun-2023 10:30:11: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:158:63
+
+  155 //return response to the service category controller
+  156 
+  157 try {
+→ 158   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 05-Jun-2023 14:31:11: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 05-Jun-2023 14:33:05: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 05-Jun-2023 14:33:39: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 05-Jun-2023 18:52:19: Martins Luther created an account successfully with martins@gmail.com.
+info: Label: 05-Jun-2023 19:03:06: West Luther created an account successfully with sleekwest@gmail.com.
