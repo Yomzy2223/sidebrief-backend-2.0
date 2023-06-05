@@ -19,7 +19,7 @@ router.get("/", UsersFetcher);
 router.post("/verification/:token", UserVerification);
 router.post("/forgotpassword", UserPasswordResetLink);
 router.post("/passwordreset", UserPasswordReset);
-router.put("/update", UserProfileModifier);
+router.put("/:id", UserProfileModifier);
 router.delete("/:id", UserRemover);
 
 module.exports = router;

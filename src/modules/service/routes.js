@@ -10,10 +10,10 @@ const {
   ServiceCategoryRemover,
 } = require("./controller");
 
-router.post("/", ServiceCategoryCreator);
+router.post("/", staffAuth, ServiceCategoryCreator);
 router.get("/", ServiceCategoriesFetcher);
-router.get("/:id", ServiceCategoryFetcher);
-router.put("/:id", ServiceCategoryModifier);
-router.delete("/:id", ServiceCategoryRemover);
+router.get("/:id", userAuth, ServiceCategoryFetcher);
+router.put("/:id", staffAuth, ServiceCategoryModifier);
+router.delete("/:id", staffAuth, ServiceCategoryRemover);
 
 module.exports = router;

@@ -202,6 +202,7 @@ const loginUser = async (loginPayload) => {
         lastName: user.lastName,
         username: user.username,
         email: user.email,
+        token: token,
         phone: user.phone,
         picture: user.picture,
         verified: user.verified,
@@ -423,7 +424,6 @@ const deleteUser = async (id) => {
   }
 };
 
-// IN PROGRESS
 // update profile service
 const updateProfile = async (updatePayload, id) => {
   try {
@@ -461,6 +461,37 @@ const updateProfile = async (updatePayload, id) => {
     };
   }
 };
+
+// IN PROGRESS
+// sign in with google
+const signInWithGoogle = async () => {
+  try {
+    const data = req.body;
+
+    const response = await prisma.create({ data: { data } });
+
+    return {
+      statusCode: 200,
+      message: "Signed in successfully",
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while updating this user profile with error message: ${error}`,
+    });
+
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+
+//sign up with google
+const signUpWithGoogle = async () => {
+  try {
+  } catch (error) {}
+};
+
 module.exports = {
   saveUser,
   getUser,
