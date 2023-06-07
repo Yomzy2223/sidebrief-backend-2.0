@@ -1,14 +1,15 @@
-const { sequelize } = require("../data/models/index");
+const { PrismaClient } = require("@prisma/client");
 
 const connectDb = async () => {
   console.log("Checking database connection...");
 
   try {
-    await sequelize.sync({ force: false });
-    console.log("Connection has been established successfully.");
+    const prisma = new PrismaClient();
+    const check = await prisma.$connect();
+    console.log("checkddd", check);
   } catch (error) {
     console.log("Database connection failed", error);
-    process.exit(1);
+    // process.exit(1);
   }
 };
 

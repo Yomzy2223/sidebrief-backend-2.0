@@ -1,6 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
-const models = require("../../data/models/index");
 const prisma = new PrismaClient();
 
 //create bank service

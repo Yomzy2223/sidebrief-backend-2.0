@@ -13,9 +13,8 @@ const {
   forgotPassword,
   changePassword,
   updateProfile,
+  deleteUser,
 } = require("./service");
-
-//IN PROGRESS
 
 exports.UserRegisration = async (req, res) => {
   const userPayload = req.body;
@@ -141,6 +140,26 @@ exports.UserPasswordReset = async (req, res) => {
   }
 
   return res.status(400).json({ error: isValidUser[0].message });
+};
+
+//get a user with id
+exports.UserRemover = async (req, res) => {
+  // check if there is id
+  // pass the id to the service
+  // return user to client
+
+  const id = req.params.id;
+  if (!id) {
+    return res.status(400).json({
+      error: "Please provide id",
+    });
+  }
+  const user = await deleteUser(id);
+
+  if (user.error) {
+    return res.status(user.statusCode).json({ error: user.error });
+  }
+  return res.status(user.statusCode).json({ message: user.message });
 };
 
 // IN PROGRESS

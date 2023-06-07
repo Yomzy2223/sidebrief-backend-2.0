@@ -855,3 +855,146 @@ Argument where of type UserWhereUniqueInput needs at least one argument. Availab
 Note: Lines with ? are optional.
 
 info: Label: 01-Jun-2023 15:24:01: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 01-Jun-2023 20:58:01: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const updateUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 20:59:49: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 20:59:55: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 20:59:58: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 21:00:14: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 01-Jun-2023 21:01:09: error occured while deleting this user profile with error message: Error: 
+Invalid `prisma.user.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:399:48
+
+  396   };
+  397 }
+  398 console.log(user);
+→ 399 const deleteUser = await prisma.user.delete({
+        where: {
+      ?   id?: String,
+      ?   email?: String
+        }
+      })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+error: Label: 02-Jun-2023 19:36:06: error occured while creating an account for akinyemibamidele2@gmail.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:13:43
+
+  10 //create staff service
+  11 const saveStaff = async (staffPayload) => {
+  12   try {
+→ 13     const checkStaff = await prisma.staff.findUnique(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`.
+info: Label: 04-Jun-2023 08:36:49: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 05-Jun-2023 10:30:11: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:14:51
+
+  11   name: serviceCategoryPayload.name,
+  12   description: serviceCategoryPayload.description,
+  13 };
+→ 14 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 05-Jun-2023 10:30:11: error occured while deleting service category with error message: Error: 
+Invalid `prisma.serviceCategory.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:158:63
+
+  155 //return response to the service category controller
+  156 
+  157 try {
+→ 158   const deleteCategory = await prisma.serviceCategory.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+info: Label: 05-Jun-2023 14:31:11: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 05-Jun-2023 14:33:05: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 05-Jun-2023 14:33:39: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 05-Jun-2023 18:52:19: Martins Luther created an account successfully with martins@gmail.com.
+info: Label: 05-Jun-2023 19:03:06: West Luther created an account successfully with sleekwest@gmail.com.

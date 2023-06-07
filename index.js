@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   logger.info({ message: "Testing the server" });
 });
 
-// //connect to database
+//connect to database
 // connectDb();
 
 //all routes
