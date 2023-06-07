@@ -1,10 +1,8 @@
-FROM  node:slim
+FROM  node:alpine
 
 EXPOSE 8000
 
 WORKDIR /src 
-
-RUN npm install
 
 COPY package*.json ./
 
@@ -12,4 +10,7 @@ RUN npm install
 
 COPY . .
 
-CMD nodemon server.js
+RUN npx prisma generate
+
+CMD ["node", "index.js"]
+

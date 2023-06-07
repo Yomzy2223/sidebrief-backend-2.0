@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../../server");
+const app = require("../../index");
 
 describe("GET /services", () => {
   it("should return all service categories", async () => {
