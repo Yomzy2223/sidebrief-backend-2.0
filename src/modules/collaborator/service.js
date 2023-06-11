@@ -378,6 +378,44 @@ const changePassword = async (changePayload) => {
   }
 };
 
+// update profile service
+const updateProfile = async (updatePayload, id) => {
+  try {
+    const collaborator = await prisma.user.findUnique({ where: { id: id } });
+    if (collaborator === null) {
+      return {
+        error: "Collaborator not found",
+        statusCode: 400,
+      };
+    }
+
+    const updateCollaborator = await prisma.user.update({
+      where: { id: collaborator.id },
+      data: { phone: updatePayload.phone },
+    });
+
+    if (!updateCollaborator) {
+      return {
+        error: "Error occured while updating user",
+        statusCode: 400,
+      };
+    }
+    return {
+      message: "Collaborator profile updated successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while updating this collaborator profile with error message: ${error}`,
+    });
+
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+
 // delete collaborator account
 const deleteCollaborator = async (id) => {
   try {
@@ -418,6 +456,97 @@ const deleteCollaborator = async (id) => {
   }
 };
 
+//save collaborator documents
+const saveDocument = async (documentPayload, id) => {
+  //   //add the new document to the table
+
+  try {
+    const values = {
+      documentName: documentPayload.documentName,
+      documentType: documentPayload.documentType,
+      documentDescription: documentPayload.documentDescription,
+      collaboratorId: id,
+    };
+
+    const collaborator = await prisma.collaborator.findUnique({
+      where: { id: id },
+    });
+    if (collaborator === null) {
+      return {
+        error: "collaborator not found!.",
+        statusCode: 400,
+      };
+    }
+
+    const document = await prisma.collaboratorDocument.create({ data: values });
+
+    if (!document) {
+      return {
+        error: "Error occured while creating document",
+        statusCode: 400,
+      };
+    }
+
+    logger.info({
+      message: `${documentPayload.documentName} created successfully`,
+    });
+    return {
+      message: "Document created successfully",
+      statusCode: 200,
+      data: document,
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while creating a document with error ${error}`,
+    });
+    console.log(error);
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+
+//get a collaborator service
+const getDocumentByCollaboratorId = async (id) => {
+  //   //check if the collaborator exists
+  //   //return the collaborator document to the doument controller
+
+  try {
+    const collaborator = await prisma.collaborator.findUnique({
+      where: { id: id },
+    });
+    if (collaborator === null) {
+      return {
+        error: "collaborator not found!.",
+        statusCode: 400,
+      };
+    }
+    const documents = await prisma.collaboratorDocument.findMany();
+
+    if (documents === null) {
+      return {
+        error: "Documents not found!.",
+        statusCode: 400,
+      };
+    }
+
+    return {
+      message: "Documents fetched successfully",
+      data: documents,
+      statusCode: 200,
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while fetching all collaborator documents with error message: ${error}`,
+    });
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
+};
+
 module.exports = {
   saveCollaborator,
   getCollaborator,
@@ -425,5 +554,8 @@ module.exports = {
   verifyCollaboratorAccount,
   forgotPassword,
   changePassword,
+  updateProfile,
   deleteCollaborator,
+  saveDocument,
+  getDocumentByCollaboratorId,
 };

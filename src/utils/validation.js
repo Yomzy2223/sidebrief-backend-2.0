@@ -59,7 +59,7 @@ const resetSchema = {
 
 const validateResetCredentials = validate.compile(resetSchema);
 
-//staff registration
+//collaborator registration
 const collaboratorSchema = {
   firstName: { type: "string", min: 3, max: 255 },
   lastName: { type: "string", min: 3, max: 255 },
@@ -71,6 +71,15 @@ const collaboratorSchema = {
 
 const validateCollaborator = validate.compile(collaboratorSchema);
 
+//document registration
+const documentSchema = {
+  documentName: { type: "string", min: 3, max: 100 },
+  documentType: { type: "string", min: 3, max: 50 },
+  documentDescription: { type: "string", min: 3, max: 255 },
+};
+
+const validateDocument = validate.compile(documentSchema);
+
 module.exports = {
   validateUser,
   validateUserCredentials,
@@ -79,4 +88,5 @@ module.exports = {
   validateServiceCategory,
   validateResetCredentials,
   validateCollaborator,
+  validateDocument,
 };

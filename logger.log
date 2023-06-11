@@ -1337,3 +1337,62 @@ info: Label: 11-Jun-2023 17:43:25: Bamidele Akinyemi created an account successf
 info: Label: 11-Jun-2023 17:43:37: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
 error: Label: 11-Jun-2023 18:17:50: error occured while fetching collaborator with error message: ReferenceError: loginPayload is not defined
 info: Label: 11-Jun-2023 18:18:41: collaborator with akinyemi@sidebrief.com signed in successfully.
+error: Label: 11-Jun-2023 19:35:12: error occured while creating an account for undefined with error message: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+info: Label: 11-Jun-2023 19:36:24: Passport created successfully
+error: Label: 11-Jun-2023 19:50:23: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+error: Label: 11-Jun-2023 19:50:51: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+error: Label: 11-Jun-2023 19:52:24: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+error: Label: 11-Jun-2023 19:53:09: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+error: Label: 11-Jun-2023 19:53:52: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+info: Label: 11-Jun-2023 19:57:16: NIN created successfully
+error: Label: 11-Jun-2023 19:57:45: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+info: Label: 11-Jun-2023 20:02:25: Passport created successfully
+info: Label: 11-Jun-2023 20:02:37: Photo created successfully

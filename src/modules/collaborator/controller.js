@@ -2,6 +2,7 @@ const {
   validateUserCredentials,
   validateCollaborator,
   validateResetCredentials,
+  validateDocument,
 } = require("../../utils/validation");
 const {
   getCollaborator,
@@ -10,6 +11,9 @@ const {
   verifyCollaboratorAccount,
   forgotPassword,
   changePassword,
+  updateProfile,
+  saveDocument,
+  getDocumentByCollaboratorId,
   deleteCollaborator,
 } = require("./service");
 
@@ -154,4 +158,71 @@ exports.CollaboratorRemover = async (req, res) => {
   return res
     .status(collaborator.statusCode)
     .json({ message: collaborator.message });
+};
+
+// IN PROGRESS
+exports.ControllerProfileModifier = async (req, res) => {
+  // get the updatePayload and the user id
+  // validate the payload
+  // pass the payload and the id to update service
+
+  // return collaborator and message
+
+  const id = req.params.id;
+  const updatePayload = req.body;
+
+  const isValidCollaborator = await validateResetCredentials(updatePayload);
+  if (isValidCollaborator === true) {
+    const collaboratorUpdate = await updateProfile(updatePayload, id);
+
+    if (collaboratorUpdate.error) {
+      return res
+        .status(collaboratorUpdate.statusCode)
+        .json({ error: collaboratorUpdate.error });
+    }
+    return res
+      .status(collaboratorUpdate.statusCode)
+      .json({ message: collaboratorUpdate.message });
+  }
+
+  return res.status(400).json({ error: isValidCollaborator[0].message });
+};
+
+exports.CollaboratorDocument = async (req, res) => {
+  const documentPayload = req.body;
+  const id = req.params.collaboratorId;
+  console.log("dsfdfsdfsdfs", id);
+  const isValidDocument = validateDocument(documentPayload);
+
+  if (isValidDocument === true) {
+    const document = await saveDocument(documentPayload, id);
+    if (document.error) {
+      return res.status(document.statusCode).json({ error: document.error });
+    }
+    return res.status(200).json(document);
+  }
+
+  return res.status(400).json({ error: isValidDocument[0].message });
+};
+
+//get collaborator documents with id
+exports.CollectorDocumentsFetcher = async (req, res) => {
+  // check if there is id
+  // pass the id to the service
+  // return collaborator to client
+
+  const id = req.params.collaboratorId;
+  if (!id) {
+    return res.status(400).json({
+      error: "Please provide id",
+    });
+  }
+  const collaboratorDoc = await getDocumentByCollaboratorId(id);
+
+  if (collaboratorDoc.error) {
+    return res
+      .status(collaboratorDoc.statusCode)
+      .json({ error: collaboratorDoc.error });
+  }
+  return res.status(200).json(collaboratorDoc);
 };

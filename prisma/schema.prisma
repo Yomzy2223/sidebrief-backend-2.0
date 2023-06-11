@@ -75,7 +75,7 @@ model Collaborator {
       resetToken String?
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      collaboratorDocument CollaboratorDocument? 
+      collaboratorDocument CollaboratorDocument[]
 }
 
 model CollaboratorDocument {
@@ -86,7 +86,7 @@ model CollaboratorDocument {
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       collaborator Collaborator @relation(fields: [collaboratorId], references: [id])
-      collaboratorId String @unique
+      collaboratorId String
 }
 model Reward {
       id String @id @default(uuid())
