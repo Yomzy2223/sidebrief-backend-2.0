@@ -79,7 +79,7 @@ const saveStaff = async (staffPayload) => {
     logger.error({
       message: `error occured while creating an account for ${staffPayload.email} with error message: ${error}`,
     });
-
+    console.log(error);
     return {
       error: "Error occurred!.",
       statusCode: 500,

@@ -39,6 +39,7 @@ model User {
       email String @unique
       password String
       phone String
+      picture String?
       verified Boolean
       referral String
       resetToken String?
@@ -55,37 +56,38 @@ model Staff {
       password String
       phone String
       verified Boolean
+      picture String?
       resetToken String?
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
 
-model Reseller {
+model Collaborator {
       id String @id @default(uuid())
       firstName String 
       lastName String
       email String @unique
       password String
       phone String
+      picture String?
       verified Boolean
-      resetToken String
+      isPartner Boolean
+      resetToken String?
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      collaboratorDocument CollaboratorDocument? 
 }
 
-model Partner {
+model CollaboratorDocument {
       id String @id @default(uuid())
-      firstName String 
-      lastName String
-      email String @unique
-      password String
-      phone String
-      verified Boolean
-      resetToken String
+      documentName String 
+      documentType String
+      documentDescription String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      collaborator Collaborator @relation(fields: [collaboratorId], references: [id])
+      collaboratorId String @unique
 }
-
 model Reward {
       id String @id @default(uuid())
       rewardName String 
