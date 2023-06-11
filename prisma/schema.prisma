@@ -60,7 +60,31 @@ model Staff {
       updatedAt DateTime @default(now())
 }
 
+model Reseller {
+      id String @id @default(uuid())
+      firstName String 
+      lastName String
+      email String @unique
+      password String
+      phone String
+      verified Boolean
+      resetToken String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
 
+model Partner {
+      id String @id @default(uuid())
+      firstName String 
+      lastName String
+      email String @unique
+      password String
+      phone String
+      verified Boolean
+      resetToken String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
 
 model Reward {
       id String @id @default(uuid())
@@ -71,7 +95,6 @@ model Reward {
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
-
 
 model Country {
       id String @id @default(uuid())

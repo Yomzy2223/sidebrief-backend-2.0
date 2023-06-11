@@ -53,6 +53,7 @@ const getAllServiceCategory = async () => {
     logger.error({
       message: `error occured while fetching all service category with error message: ${error}`,
     });
+    console.log("dfsdf", error);
     return {
       error: "Error occurred!.",
       statusCode: 500,
