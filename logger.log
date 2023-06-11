@@ -1170,3 +1170,170 @@ Invalid `prisma.serviceCategory.findMany()` invocation in
 Can't reach database server at `postgres`:`5432`
 
 Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 11-Jun-2023 16:52:40: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:13:43
+
+  10 //create staff service
+  11 const saveStaff = async (staffPayload) => {
+  12   try {
+→ 13     const checkStaff = await prisma.staff.findUnique(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 11-Jun-2023 16:53:14: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:13:43
+
+  10 //create staff service
+  11 const saveStaff = async (staffPayload) => {
+  12   try {
+→ 13     const checkStaff = await prisma.staff.findUnique(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 11-Jun-2023 16:53:15: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:13:43
+
+  10 //create staff service
+  11 const saveStaff = async (staffPayload) => {
+  12   try {
+→ 13     const checkStaff = await prisma.staff.findUnique(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 11-Jun-2023 16:53:35: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:13:43
+
+  10 //create staff service
+  11 const saveStaff = async (staffPayload) => {
+  12   try {
+→ 13     const checkStaff = await prisma.staff.findUnique(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`.
+info: Label: 11-Jun-2023 16:54:01: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+error: Label: 11-Jun-2023 16:57:08: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:31:38
+
+  28   phone: staffPayload.phone,
+  29   verified: false,
+  30 };
+→ 31 const staff = await prisma.staff.create(
+Null constraint violation on the fields: (`resetToken`)
+error: Label: 11-Jun-2023 16:57:42: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:31:38
+
+  28   phone: staffPayload.phone,
+  29   verified: false,
+  30 };
+→ 31 const staff = await prisma.staff.create({
+       data: {
+         firstName: 'Bamidele',
+         lastName: 'Akinyemi',
+         email: 'akinyemi@sidebrief.com',
+         password: '$2a$12$OvgN/FBpZ7vY5I1ydz2SO.NrftnkuyNj1OISIDncXdrwUY/J8xx6e',
+         phone: '07060797442',
+         verified: false,
+     +   resetToken: String,
+     ?   id?: String,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument resetToken for data.resetToken is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 11-Jun-2023 17:00:54: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:31:38
+
+  28   phone: staffPayload.phone,
+  29   verified: false,
+  30 };
+→ 31 const staff = await prisma.staff.create({
+       data: {
+         firstName: 'Bamidele',
+         lastName: 'Akinyemi',
+         email: 'akinyemi@sidebrief.com',
+         password: '$2a$12$eOHAr6UkbjuN18DAEvZMCeaYqgv5gNQ5cgELAaWJhTSyNGCzjsEmG',
+         phone: '07060797442',
+         verified: false,
+     +   resetToken: String,
+     ?   id?: String,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument resetToken for data.resetToken is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 11-Jun-2023 17:03:03: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:31:38
+
+  28   phone: staffPayload.phone,
+  29   verified: false,
+  30 };
+→ 31 const staff = await prisma.staff.create({
+       data: {
+         firstName: 'Bamidele',
+         lastName: 'Akinyemi',
+         email: 'akinyemi@sidebrief.com',
+         password: '$2a$12$Dah7kSt.yPYyIK7ucMuzueRDAiplAi.a.5AmkJ8BHCVSnxMcOnyse',
+         phone: '07060797442',
+         verified: false,
+     +   resetToken: String,
+     ?   id?: String,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument resetToken for data.resetToken is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 11-Jun-2023 17:15:07: error occured while creating an account for akinyemi@sidebrief.com with error message: Error: 
+Invalid `prisma.staff.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:31:38
+
+  28   phone: staffPayload.phone,
+  29   verified: false,
+  30 };
+→ 31 const staff = await prisma.staff.create({
+       data: {
+         firstName: 'Bamidele',
+         lastName: 'Akinyemi',
+         email: 'akinyemi@sidebrief.com',
+         password: '$2a$12$/MYdnUPtXjn00nZhy.4OIuMJQcqPtSbWkg8noS1edu/NqyXorw/EW',
+         phone: '07060797442',
+         verified: false,
+     +   resetToken: String,
+     ?   id?: String,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument resetToken for data.resetToken is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+info: Label: 11-Jun-2023 17:18:08: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+info: Label: 11-Jun-2023 17:31:23: Bamidele Akinyemi created an account successfully with test@sidebrief.com.
+error: Label: 11-Jun-2023 17:38:21: error occured while creating an account for test@sidebrief.com with error message: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+error: Label: 11-Jun-2023 17:41:35: error occured while creating an account for test@sidebrief.com with error message: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+error: Label: 11-Jun-2023 17:42:18: error occured while creating an account for test@sidebrief.com with error message: ReferenceError: staffPayload is not defined
+info: Label: 11-Jun-2023 17:43:25: Bamidele Akinyemi created an account successfully with akinyemibamidele2@sidebrief.com.
+info: Label: 11-Jun-2023 17:43:37: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+error: Label: 11-Jun-2023 18:17:50: error occured while fetching collaborator with error message: ReferenceError: loginPayload is not defined
+info: Label: 11-Jun-2023 18:18:41: collaborator with akinyemi@sidebrief.com signed in successfully.

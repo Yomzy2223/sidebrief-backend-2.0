@@ -5,6 +5,7 @@ const usersRoutes = require("./src/modules/user/routes");
 const bankRoutes = require("./src/modules/bank/routes");
 const staffRoutes = require("./src/modules/staff/routes");
 const serviceRoutes = require("./src/modules/service/routes");
+const collaboratorRoutes = require("./src/modules/collaborator/routes");
 const connectDb = require("./src/config/database");
 const logger = require("./src/config/logger");
 
@@ -30,6 +31,8 @@ app.use("/banks", bankRoutes);
 app.use("/staffs", staffRoutes);
 //service
 app.use("/services", serviceRoutes);
+//collaborator
+app.use("/collaborators", collaboratorRoutes);
 
 const port = process.env.PORT || "8000";
 app.listen(port, () => {
