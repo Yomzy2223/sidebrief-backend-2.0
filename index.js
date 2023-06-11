@@ -9,7 +9,7 @@ const connectDb = require("./src/config/database");
 const logger = require("./src/config/logger");
 
 const app = express();
-dotenv.config({ path: path.resolve(__dirname, "./.env.development") });
+dotenv.config({ path: path.resolve(__dirname, "./.env") });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
