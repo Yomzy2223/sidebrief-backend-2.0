@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.6% </span>
+                <span class="strong">34.03% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>47/191</span>
+                <span class='fraction'>65/191</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.11% </span>
+                <span class="strong">22.22% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/9</span>
+                <span class='fraction'>2/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.6% </span>
+                <span class="strong">34.03% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>47/191</span>
+                <span class='fraction'>65/191</span>
             </div>
         
             
@@ -273,28 +273,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -315,19 +293,41 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -463,12 +463,12 @@ const {
   deleteUser,
 } = require("./service");
 &nbsp;
-exports.UserRegisration = async (req, res) =&gt; {
-  const userPayload = req.body;
-&nbsp;
-  const isValidUser = validateUser(userPayload);
-&nbsp;
-  if (isValidUser === true) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+exports.UserRegisration = <span class="fstat-no" title="function not covered" >async (req, res) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const userPayload = req.body;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  const isValidUser = validateUser(userPayload);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  if (isValidUser === true) {</span>
 <span class="cstat-no" title="statement not covered" >    const user = await saveUser(userPayload);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >    if (user.error) {</span>
@@ -478,47 +478,47 @@ exports.UserRegisration = async (req, res) =&gt; {
 <span class="cstat-no" title="statement not covered" >      .status(user.statusCode)</span>
 <span class="cstat-no" title="statement not covered" >      .json({ message: user.message, data: user.data });</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-&nbsp;
-  return res.status(400).json({ error: isValidUser[0].message });
-};
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return res.status(400).json({ error: isValidUser[0].message });</span>
+<span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 //get a user with id
-exports.UserFetcher = <span class="fstat-no" title="function not covered" >async (req, res) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  // check if there is id</span>
-<span class="cstat-no" title="statement not covered" >  // pass the id to the service</span>
-<span class="cstat-no" title="statement not covered" >  // return user to client</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const id = req.params.id;</span>
-<span class="cstat-no" title="statement not covered" >  if (!id) {</span>
+exports.UserFetcher = async (req, res) =&gt; {
+  // check if there is id
+  // pass the id to the service
+  // return user to client
+&nbsp;
+  const id = req.params.id;
+  if (!id) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    return res.status(400).json({</span>
 <span class="cstat-no" title="statement not covered" >      error: "Please provide id",</span>
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >  const user = await getUser(id);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  if (user.error) {</span>
-<span class="cstat-no" title="statement not covered" >    return res.status(user.statusCode).json({ error: user.error });</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >  return res</span>
-<span class="cstat-no" title="statement not covered" >    .status(user.statusCode)</span>
-<span class="cstat-no" title="statement not covered" >    .json({ message: user.message, data: user.data });</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+  const user = await getUser(id);
+&nbsp;
+  if (user.error) {
+    return res.status(user.statusCode).json({ error: user.error });
+  }
+  return res
+    .status(user.statusCode)
+    .json({ message: user.message, data: user.data });
+};
 &nbsp;
 //get all users controller
-exports.UsersFetcher = <span class="fstat-no" title="function not covered" >async (req, res) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  // call the getAllUsers service</span>
-<span class="cstat-no" title="statement not covered" >  // return user to client</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  const users = await getAllUsers();</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  if (users.error) {</span>
+exports.UsersFetcher = async (req, res) =&gt; {
+  // call the getAllUsers service
+  // return user to client
+&nbsp;
+  const users = await getAllUsers();
+&nbsp;
+  if (users.error) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    return res.status(users.statusCode).json({ error: users.error });</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return res</span>
-<span class="cstat-no" title="statement not covered" >    .status(users.statusCode)</span>
-<span class="cstat-no" title="statement not covered" >    .json({ message: users.message, data: users.data });</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+&nbsp;
+  return res
+    .status(users.statusCode)
+    .json({ message: users.message, data: users.data });
+};
 &nbsp;
 exports.UserGrantor = <span class="fstat-no" title="function not covered" >async (req, res) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  // get the login payload</span>
@@ -643,7 +643,7 @@ exports.UserProfileModifier = <span class="fstat-no" title="function not covered
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-06-05T09:30:12.090Z
+                at 2023-06-20T22:32:57.207Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

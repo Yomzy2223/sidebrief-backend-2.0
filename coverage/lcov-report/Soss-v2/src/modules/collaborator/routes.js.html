@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Soss-v2/src/config/logger.js</title>
+    <title>Code coverage report for Soss-v2/src/modules/collaborator/routes.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">Soss-v2/src/config</a> logger.js</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">Soss-v2/src/modules/collaborator</a> routes.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/25</span>
+                <span class='fraction'>25/25</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/25</span>
+                <span class='fraction'>25/25</span>
             </div>
         
             
@@ -105,7 +105,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -113,31 +112,32 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const winston = require("winston");
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const express = require("express");
+const {
+  CollaboratorLogin,
+  CollectorProfileFetcher,
+  CollaboratorRegisration,
+  CollaboratorPasswordReset,
+  CollaboratorPasswordResetLink,
+  CollaboratorVerification,
+  CollaboratorRemover,
+  CollaboratorDocument,
+  CollectorDocumentsFetcher,
+} = require("./controller");
+const router = express.Router();
 &nbsp;
-const logConfiguration = {
-  transports: [
-    new winston.transports.File({
-      filename: "./logger.log",
-    }),
-  ],
-  format: winston.format.combine(
-    winston.format.label({
-      label: `Label`,
-    }),
-    winston.format.timestamp({
-      format: "DD-MMM-YYYY HH:mm:ss",
-    }),
-    winston.format.printf(
-      (info) =&gt;
-<span class="cstat-no" title="statement not covered" >        `${info.level}: ${info.label}: ${[info.timestamp]}: ${info.message}`</span>
-    )
-  ),
-};
+router.post("/", CollaboratorRegisration);
+router.post("/login", CollaboratorLogin);
+router.get("/:id", CollectorProfileFetcher);
+router.post("/verification/:token", CollaboratorVerification);
+router.post("/forgotpassword", CollaboratorPasswordResetLink);
+router.post("/passwordreset", CollaboratorPasswordReset);
+router.delete("/:id", CollaboratorRemover);
+router.post("/document/:collaboratorId", CollaboratorDocument);
+router.get("/document/:collaboratorId", CollectorDocumentsFetcher);
 &nbsp;
-const logger = winston.createLogger(logConfiguration);
-&nbsp;
-module.exports = logger;
+module.exports = router;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -147,14 +147,14 @@ module.exports = logger;
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2023-06-20T22:32:57.207Z
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     

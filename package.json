@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --forceExit --detectOpenHandles --runInBand",
     "start": "npx prisma generate && nodemon index.js"
   },
   "author": "",

@@ -1337,3 +1337,173 @@ info: Label: 11-Jun-2023 17:43:25: Bamidele Akinyemi created an account successf
 info: Label: 11-Jun-2023 17:43:37: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
 error: Label: 11-Jun-2023 18:17:50: error occured while fetching collaborator with error message: ReferenceError: loginPayload is not defined
 info: Label: 11-Jun-2023 18:18:41: collaborator with akinyemi@sidebrief.com signed in successfully.
+error: Label: 11-Jun-2023 19:35:12: error occured while creating an account for undefined with error message: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+info: Label: 11-Jun-2023 19:36:24: Passport created successfully
+error: Label: 11-Jun-2023 19:50:23: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+error: Label: 11-Jun-2023 19:50:51: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+error: Label: 11-Jun-2023 19:52:24: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+error: Label: 11-Jun-2023 19:53:09: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+error: Label: 11-Jun-2023 19:53:52: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+info: Label: 11-Jun-2023 19:57:16: NIN created successfully
+error: Label: 11-Jun-2023 19:57:45: error occured while creating a document with error Error: 
+Invalid `prisma.collaboratorDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/collaborator/service.js:481:56
+
+  478   };
+  479 }
+  480 
+→ 481 const document = await prisma.collaboratorDocument.create(
+Unique constraint failed on the fields: (`collaboratorId`)
+info: Label: 11-Jun-2023 20:02:25: Passport created successfully
+info: Label: 11-Jun-2023 20:02:37: Photo created successfully
+error: Label: 15-Jun-2023 17:23:20: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:46:51
+
+  43 //  get the service category list from the table
+  44 //  return the service category list to the service category controller
+  45 try {
+→ 46   const category = await prisma.serviceCategory.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`.
+error: Label: 15-Jun-2023 17:23:20: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:46:51
+
+  43 //  get the service category list from the table
+  44 //  return the service category list to the service category controller
+  45 try {
+→ 46   const category = await prisma.serviceCategory.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`.
+error: Label: 15-Jun-2023 18:30:27: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:46:51
+
+  43 //  get the service category list from the table
+  44 //  return the service category list to the service category controller
+  45 try {
+→ 46   const category = await prisma.serviceCategory.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`.
+info: Label: 15-Jun-2023 18:46:34: tax service category created successfully
+error: Label: 15-Jun-2023 18:48:15: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:14:51
+
+  11   name: serviceCategoryPayload.name,
+  12   description: serviceCategoryPayload.description,
+  13 };
+→ 14 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 15-Jun-2023 18:49:36: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:14:51
+
+  11   name: serviceCategoryPayload.name,
+  12   description: serviceCategoryPayload.description,
+  13 };
+→ 14 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 15-Jun-2023 18:50:11: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:14:51
+
+  11   name: serviceCategoryPayload.name,
+  12   description: serviceCategoryPayload.description,
+  13 };
+→ 14 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 15-Jun-2023 18:51:11: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:14:51
+
+  11   name: serviceCategoryPayload.name,
+  12   description: serviceCategoryPayload.description,
+  13 };
+→ 14 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 17-Jun-2023 10:05:40: error occured while fetching all users with error message: Error: 
+Invalid `prisma.user.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:137:37
+
+  134 //   //return the users list to the user controller
+  135 
+  136 try {
+→ 137   const users = await prisma.user.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`.
+error: Label: 17-Jun-2023 10:08:15: error occured while fetching all users with error message: Error: 
+Invalid `prisma.user.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:137:37
+
+  134 //   //return the users list to the user controller
+  135 
+  136 try {
+→ 137   const users = await prisma.user.findMany(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`.
+error: Label: 17-Jun-2023 10:28:39: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:14:51
+
+  11   name: serviceCategoryPayload.name,
+  12   description: serviceCategoryPayload.description,
+  13 };
+→ 14 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+error: Label: 17-Jun-2023 10:46:47: error occured while creating this service category with error Error: 
+Invalid `prisma.serviceCategory.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/service/service.js:14:51
+
+  11   name: serviceCategoryPayload.name,
+  12   description: serviceCategoryPayload.description,
+  13 };
+→ 14 const category = await prisma.serviceCategory.create(
+Unique constraint failed on the fields: (`name`)
+info: Label: 20-Jun-2023 20:36:45: Testing the server
