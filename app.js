@@ -8,6 +8,9 @@ const serviceRoutes = require("./src/modules/service/routes");
 const collaboratorRoutes = require("./src/modules/collaborator/routes");
 const connectDb = require("./src/config/database");
 const logger = require("./src/config/logger");
+const swaggerJSDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const options = require("./src/config/swagger");
 
 const app = express();
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
@@ -33,5 +36,12 @@ app.use("/staffs", staffRoutes);
 app.use("/services", serviceRoutes);
 //collaborator
 app.use("/collaborators", collaboratorRoutes);
+
+const specs = swaggerJSDoc(options);
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs, { explorer: true })
+);
 
 module.exports = app;
