@@ -10,10 +10,10 @@ const {
   BankModifier,
 } = require("./controller");
 
-router.post("/", staffAuth, BankCreator);
+router.post("/", BankCreator);
 router.get("/", BanksFetcher);
-router.get("/:id", userAuth, BankFetcher);
-router.put("/:id", staffAuth, BankModifier);
-router.delete("/:id", staffAuth, BankRemover);
+router.get("/:id", BankFetcher);
+router.put("/:id", BankModifier);
+router.delete("/:id", BankRemover);
 
 module.exports = router;

@@ -57,6 +57,48 @@ const options = {
           },
         },
 
+        UserLogin: {
+          type: "object",
+          require: ["email", "password"],
+          properties: {
+            email: {
+              type: "string",
+              description: "The email of the user",
+            },
+            password: {
+              type: "string",
+              description: "The password of the user",
+            },
+          },
+        },
+
+        Staffs: {
+          type: "object",
+          require: ["firstName", "lastName", "email", "password", "phone"],
+          properties: {
+            firstName: {
+              type: "string",
+              description: "The first name of the staff",
+            },
+            lastName: {
+              type: "string",
+              description: "The last name of the staff",
+            },
+            email: {
+              type: "string",
+              description: "The email of the staff",
+            },
+            password: {
+              type: "string",
+              description: "The password of the staff",
+            },
+            phone: {
+              type: "string",
+              description: "The phone number of the staff",
+            },
+          },
+        },
+
         Banks: {
           type: "object",
           require: ["bankName", "bankCode", "bankUrl", "bankImage"],
@@ -109,6 +151,7 @@ const options = {
       "/users": {
         post: {
           tags: ["Users"],
+          summary: "Create new user in system",
           description: "Create new user in system",
           parameters: [
             {
@@ -215,6 +258,148 @@ const options = {
               description: "User is updated",
               schema: {
                 $ref: "#/components/schemas/Users",
+              },
+            },
+          },
+        },
+      },
+
+      "/users/login": {
+        post: {
+          tags: ["Users"],
+          summary: "Sign in user into system",
+          description: "Login into system",
+          parameters: [
+            {
+              name: "user",
+              in: "body",
+              description: "Sign in with email and password",
+              schema: {
+                $ref: "#/components/schemas/UserLogin",
+              },
+            },
+          ],
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "User successfully logged in",
+              schema: {
+                $ref: "#/components/schemas/Users",
+              },
+            },
+          },
+        },
+      },
+
+      "/staffs": {
+        post: {
+          tags: ["Staffs"],
+          description: "Create new staff in system",
+          parameters: [
+            {
+              name: "staff",
+              in: "body",
+              description: "Staff that we want to create",
+              schema: {
+                $ref: "#/components/schemas/Staffs",
+              },
+            },
+          ],
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New staff is created",
+              schema: {
+                $ref: "#/components/schemas/Staffs",
+              },
+            },
+          },
+        },
+
+        get: {
+          tags: ["Staffs"],
+          summary: "Get all staffs in system",
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/Staffs",
+              },
+            },
+          },
+        },
+      },
+
+      "/staffs/{id}": {
+        get: {
+          summary: "Get a staff with given ID",
+          tags: ["Staffs"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of staff that we want to find",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Staff is fetched",
+              schema: {
+                $ref: "#/components/schemas/Staffs",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete staff with given ID",
+          tags: ["Staffs"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of staff that we want to find",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Staff is deleted",
+              schema: {
+                $ref: "#/components/schemas/Staffs",
+              },
+            },
+          },
+        },
+
+        put: {
+          summary: "Update staff with give ID",
+          tags: ["Staffs"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of staff that we want to find",
+              type: "string",
+            },
+            {
+              name: "staff",
+              in: "body",
+              description: "Staff with new values of properties",
+              schema: {
+                $ref: "#/components/schemas/Staffs",
+              },
+            },
+          ],
+          responses: {
+            200: {
+              description: "Staff is updated",
+              schema: {
+                $ref: "#/components/schemas/Staffs",
               },
             },
           },
@@ -337,7 +522,11 @@ const options = {
       },
     },
   },
-  apis: ["../modules/user/routes.js", "../modules/bank/routes.js"],
+  apis: [
+    "../modules/user/routes.js",
+    "../modules/bank/routes.js",
+    "../modules/staff/routes.js",
+  ],
 };
 
 module.exports = options;

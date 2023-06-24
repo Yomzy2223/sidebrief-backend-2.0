@@ -138,7 +138,7 @@ const getAllUsers = async () => {
 
     if (users === null) {
       return {
-        error: "User not found!.",
+        error: "Users not found!.",
         statusCode: 400,
       };
     }
