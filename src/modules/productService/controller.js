@@ -9,24 +9,18 @@ const {
 
 // create a new service category
 exports.ServiceCategoryCreator = async (req, res) => {
-  // get the payload from the the request body
-  //  validate the payload
-  // send the payload to addServiceCategory service
+  // get the validated payload from the the request body
+  // send the validated payload to addServiceCategory service
   // return response to the client
 
   const serviceCategoryPayload = req.body;
-  const isValidCategory = validateServiceCategory(serviceCategoryPayload);
-  if (isValidCategory === true) {
-    const category = await saveServiceCategory(serviceCategoryPayload);
+  const category = await saveServiceCategory(serviceCategoryPayload);
 
-    if (category.error) {
-      return res.status(category.statusCode).json({ error: category.error });
-    }
-
-    return res.status(category.statusCode).json(category);
+  if (category.error) {
+    return res.status(category.statusCode).json({ error: category.error });
   }
 
-  return res.status(400).json({ error: isValidCategory[0].message });
+  return res.status(category.statusCode).json(category);
 };
 
 //get all service categories
@@ -73,17 +67,13 @@ exports.ServiceCategoryModifier = async (req, res) => {
 
   const id = req.params.id;
   const serviceCategoryPayload = req.body;
-  const isValidCategory = validateServiceCategory(serviceCategoryPayload);
-  if (isValidCategory === true) {
-    const category = await updateServiceCategory(id, serviceCategoryPayload);
+  const category = await updateServiceCategory(id, serviceCategoryPayload);
 
-    if (category.error) {
-      return res.status(category.statusCode).json({ error: category.error });
-    }
-
-    return res.status(category.statusCode).json(category.message);
+  if (category.error) {
+    return res.status(category.statusCode).json({ error: category.error });
   }
-  return res.status(400).json({ error: isValidCategory[0].message });
+
+  return res.status(category.statusCode).json(category.message);
 };
 
 //delete a service category

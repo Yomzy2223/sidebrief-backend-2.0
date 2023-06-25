@@ -19,20 +19,14 @@ const {
 exports.UserRegisration = async (req, res) => {
   const userPayload = req.body;
 
-  const isValidUser = validateUser(userPayload);
+  const user = await saveUser(userPayload);
 
-  if (isValidUser === true) {
-    const user = await saveUser(userPayload);
-
-    if (user.error) {
-      return res.status(user.statusCode).json({ error: user.error });
-    }
-    return res
-      .status(user.statusCode)
-      .json({ message: user.message, data: user.data });
+  if (user.error) {
+    return res.status(user.statusCode).json({ error: user.error });
   }
-
-  return res.status(400).json({ error: isValidUser[0].message });
+  return res
+    .status(user.statusCode)
+    .json({ message: user.message, data: user.data });
 };
 
 //get a user with id
@@ -81,17 +75,13 @@ exports.UserGrantor = async (req, res) => {
   // return user and the token to client
 
   const loginPayload = req.body;
-  isValidUser = await validateUserCredentials(loginPayload);
-  if (isValidUser === true) {
-    const user = await loginUser(loginPayload);
 
-    if (user.error) {
-      return res.status(user.statusCode).json({ error: user.error });
-    }
-    return res.status(200).json(user);
+  const user = await loginUser(loginPayload);
+
+  if (user.error) {
+    return res.status(user.statusCode).json({ error: user.error });
   }
-
-  return res.status(400).json({ error: isValidUser[0].message });
+  return res.status(200).json(user);
 };
 
 exports.UserVerification = async (req, res) => {
@@ -129,17 +119,12 @@ exports.UserPasswordReset = async (req, res) => {
   // return the response to the client
 
   const loginPayload = req.body;
-  isValidUser = await validateResetCredentials(loginPayload);
-  if (isValidUser === true) {
-    const userPass = await changePassword(loginPayload);
+  const userPass = await changePassword(loginPayload);
 
-    if (userPass.error) {
-      return res.status(userPass.statusCode).json({ error: userPass.error });
-    }
-    return res.status(userPass.statusCode).json({ message: userPass.message });
+  if (userPass.error) {
+    return res.status(userPass.statusCode).json({ error: userPass.error });
   }
-
-  return res.status(400).json({ error: isValidUser[0].message });
+  return res.status(userPass.statusCode).json({ message: userPass.message });
 };
 
 //get a user with id

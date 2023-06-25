@@ -59,6 +59,13 @@ const resetSchema = {
 
 const validateResetCredentials = validate.compile(resetSchema);
 
+//update profile
+const updateUserSchema = {
+  phone: { type: "email", min: 6, max: 15 },
+};
+
+const validateUserUpdateCredentials = validate.compile(updateUserSchema);
+
 //collaborator registration
 const collaboratorSchema = {
   firstName: { type: "string", min: 3, max: 255 },
@@ -87,6 +94,7 @@ module.exports = {
   validateBank,
   validateServiceCategory,
   validateResetCredentials,
+  validateUserUpdateCredentials,
   validateCollaborator,
   validateDocument,
 };

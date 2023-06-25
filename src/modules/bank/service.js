@@ -8,7 +8,7 @@ const saveBank = async (bankPayload) => {
 
   try {
     const checkBank = await prisma.bank.findUnique({
-      where: { bankName: serviceCategoryPayload.bankName.toLowerCase() },
+      where: { bankName: bankPayload.bankName.toLowerCase() },
     });
     if (checkBank !== null) {
       return {
@@ -39,6 +39,7 @@ const saveBank = async (bankPayload) => {
     logger.error({
       message: `error occured while creating a bank with error ${error}`,
     });
+    console.log(error);
     return {
       error: "Error occurred!.",
       statusCode: 500,
