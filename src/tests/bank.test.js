@@ -3,11 +3,17 @@ const request = require("supertest");
 const app = require("../../app");
 const prisma = new PrismaClient();
 
-describe("Testing all service endpoints", () => {
+describe("Testing all bank endpoints", () => {
   let staffToken = "";
   let userToken = "";
 
   beforeAll(async () => {
+    await prisma.bank.delete({
+      where: {
+        bankName: "test",
+      },
+    });
+
     const loginData = {
       email: process.env.TEST_STAFF,
       password: process.env.TEST_STAFF_PASSWORD,
@@ -27,70 +33,70 @@ describe("Testing all service endpoints", () => {
       .send(userLoginData);
     expect(userResponse.body.message).toBe("Login successfully");
     userToken = userResponse.body.data.token;
-
-    await prisma.serviceCategory.delete({
-      where: {
-        name: "test",
-      },
-    });
   });
 
   const data = {
-    name: "test",
-    description: "this is a test service",
+    bankName: "test",
+    bankCode: "this is a test bank",
+    bankUrl: "https://test.com",
+    bankImage: "https://test.com",
   };
 
-  it("should create a new service", async () => {
+  it("should create a new bank", async () => {
     const res = await request(app)
-      .post("/services")
+      .post("/banks")
       .set("Authorization", `Bearer ${staffToken}`)
       .send(data);
     expect(res.statusCode).toBe(200);
-    expect(res.body.message).toBe("Service category created successfully");
-    expect(res.body.data.name).toBe("test");
+    expect(res.body.message).toBe("Bank created successfully");
+    expect(res.body.data.bankName).toBe("test");
   });
 
-  it("should return all service categories", async () => {
-    const res = await request(app).get("/services");
+  it("should return all bank", async () => {
+    const res = await request(app).get("/banks");
     expect(res.statusCode).toBe(200);
     expect(res.body.data.length).toBeGreaterThan(0);
   });
 
-  const serviceId = "12ef5df3-b9a8-4742-bfd6-228042e0ddc5";
+  const bankId = "87c0f77d-1cbc-4583-8edf-355987d20871";
   it("should return a 200", async () => {
     const res = await request(app)
-      .get(`/services/${serviceId}`)
+      .get(`/banks/${bankId}`)
       .set("Authorization", `Bearer ${userToken}`);
     expect(res.statusCode).toBe(200);
   });
 
-  const w_serviceId = "8aa2882e-78bd-4c88-9968-474bbc6a6545";
+  const w_bankId = "8aa2882e-78bd-4c88-9968-474bbc6a6545";
   it("should return a 400", async () => {
     const res = await request(app)
-      .get(`/services/${w_serviceId}`)
+      .get(`/banks/${w_bankId}`)
       .set("Authorization", `Bearer ${userToken}`);
     expect(res.statusCode).toBe(400);
   });
 
-  it("should update a service category", async () => {
+  it("should update a bank", async () => {
     const res = await request(app)
-      .put("/services/12ef5df3-b9a8-4742-bfd6-228042e0ddc5")
+      .put("/banks/87c0f77d-1cbc-4583-8edf-355987d20871")
       .set("Authorization", `Bearer ${staffToken}`)
       .send({
-        name: "taxess",
-        description: "this is taxess service category",
+        bankName: "Sterling Bank",
+        bankCode: "23333",
+        bankUrl: "sterling.com",
+        bankImage: "cloudinary.com",
       });
     expect(res.statusCode).toBe(200);
-    expect(res.body).toBe("Service category updated successfully");
+    expect(res.body.message).toBe("Bank updated successfully");
   });
 
   it("should return 400 ", async () => {
     const res = await request(app)
-      .put("/services/dbc5b4f4-5b81-46f6-a1b4-2bea6646a45c")
+      .put("/banks/dbc5b4f4-5b81-46f6-a1b4-2bea6646a45c")
       .set("Authorization", `Bearer ${staffToken}`)
       .send({
-        name: "taxess",
-        description: "this is taxess service category",
+        bankName: "test",
+        bankCode: "this is a test bank",
+        bankUrl: "https://test.com",
+        bankImage: "https://test.com",
       });
 
     expect(res.statusCode).toBe(400);

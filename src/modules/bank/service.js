@@ -7,8 +7,18 @@ const saveBank = async (bankPayload) => {
   //   //add the new bank to the table
 
   try {
+    const checkBank = await prisma.bank.findUnique({
+      where: { bankName: serviceCategoryPayload.bankName.toLowerCase() },
+    });
+    if (checkBank !== null) {
+      return {
+        error: "Bank with this name already exists",
+        statusCode: 400,
+      };
+    }
+
     const values = {
-      bankName: bankPayload.bankName,
+      bankName: bankPayload.bankName.toLowerCase(),
       bankCode: bankPayload.bankCode,
       bankUrl: bankPayload.bankUrl,
       bankImage: bankPayload.bankImage,

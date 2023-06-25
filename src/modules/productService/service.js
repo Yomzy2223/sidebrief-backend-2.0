@@ -7,8 +7,18 @@ const saveServiceCategory = async (serviceCategoryPayload) => {
   //   //add the new service category to the table
 
   try {
+    const checkService = await prisma.serviceCategory.findUnique({
+      where: { name: serviceCategoryPayload.name.toLowerCase() },
+    });
+    if (checkService !== null) {
+      return {
+        error: "Service with this name already exists",
+        statusCode: 400,
+      };
+    }
+
     const values = {
-      name: serviceCategoryPayload.name,
+      name: serviceCategoryPayload.name.toLowerCase(),
       description: serviceCategoryPayload.description,
     };
     const category = await prisma.serviceCategory.create({ data: values });

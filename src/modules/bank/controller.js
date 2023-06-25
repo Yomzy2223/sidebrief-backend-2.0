@@ -9,24 +9,19 @@ const {
 
 // create a new bank
 exports.BankCreator = async (req, res) => {
-  // get the payload from the the request body
-  //  validate the payload
-  // send the payload to addBank service
+  // get the validated payload from the the request body
+  // send the validated payload to addBank service
   // return response to the client
 
   const bankPayload = req.body;
-  const isValidBank = validateBank(bankPayload);
-  if (isValidBank === true) {
-    const bank = await saveBank(bankPayload);
 
-    if (bank.error) {
-      return res.status(bank.statusCode).json({ error: bank.error });
-    }
+  const bank = await saveBank(bankPayload);
 
-    return res.json(bank);
+  if (bank.error) {
+    return res.status(bank.statusCode).json({ error: bank.error });
   }
 
-  return res.status(400).json({ error: isValidBank[0].message });
+  return res.json(bank);
 };
 
 //get all banks
@@ -73,17 +68,13 @@ exports.BankModifier = async (req, res) => {
 
   const id = req.params.id;
   const bankPayload = req.body;
-  const isValidBank = validateBank(bankPayload);
-  if (isValidBank) {
-    const bank = await updateBank(id, bankPayload);
+  const bank = await updateBank(id, bankPayload);
 
-    if (bank.error) {
-      return res.status(bank.statusCode).json({ error: bank.error });
-    }
-
-    return res.status(200).json(bank);
+  if (bank.error) {
+    return res.status(bank.statusCode).json({ error: bank.error });
   }
-  return res.status(400).json({ error: isValidBank[0].message });
+
+  return res.status(200).json(bank);
 };
 
 //delete a bank
