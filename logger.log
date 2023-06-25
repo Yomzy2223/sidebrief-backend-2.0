@@ -1680,3 +1680,106 @@ Invalid `prisma.bank.create()` invocation in
   15 };
 → 16 const bank = await prisma.bank.create(
 Unique constraint failed on the fields: (`bankName`)
+info: Label: 25-Jun-2023 10:03:10: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:03:13: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:03:23: test service category created successfully
+info: Label: 25-Jun-2023 10:03:36: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:03:38: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 25-Jun-2023 10:03:41: error occured while creating a bank with error ReferenceError: serviceCategoryPayload is not defined
+info: Label: 25-Jun-2023 10:03:58: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:04:00: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:08:46: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:08:48: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:09:01: test service category created successfully
+info: Label: 25-Jun-2023 10:09:16: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:09:18: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:09:47: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:09:49: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 25-Jun-2023 10:09:52: error occured while creating a bank with error ReferenceError: serviceCategoryPayload is not defined
+info: Label: 25-Jun-2023 10:10:04: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:10:06: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:10:18: test service category created successfully
+info: Label: 25-Jun-2023 10:10:33: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:10:35: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:14:59: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:15:01: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:15:10: test created successfully
+info: Label: 25-Jun-2023 10:15:18: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:15:21: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:15:29: test service category created successfully
+info: Label: 25-Jun-2023 10:15:42: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:15:44: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:26:01: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:26:03: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:26:11: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:26:13: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:26:20: test created successfully
+info: Label: 25-Jun-2023 10:26:29: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:26:32: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:26:43: test service category created successfully
+info: Label: 25-Jun-2023 10:27:00: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:27:02: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 25-Jun-2023 10:28:47: error occured while fetching staff with error message: ReferenceError: token is not defined
+info: Label: 25-Jun-2023 10:28:48: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:28:52: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:28:55: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 25-Jun-2023 10:29:10: error occured while fetching staff with error message: ReferenceError: token is not defined
+info: Label: 25-Jun-2023 10:29:11: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:29:15: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:29:18: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:29:30: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:29:33: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:29:39: test created successfully
+info: Label: 25-Jun-2023 10:29:52: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:29:54: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:31:38: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:31:41: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:31:46: test service category created successfully
+error: Label: 25-Jun-2023 10:31:58: error occured while fetching staff with error message: ReferenceError: token is not defined
+info: Label: 25-Jun-2023 10:31:59: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:32:03: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:32:06: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:32:19: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:32:21: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:35:14: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:35:17: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:35:22: test created successfully
+info: Label: 25-Jun-2023 10:35:36: Test Test created an account successfully with test@gmail.com.
+error: Label: 25-Jun-2023 10:35:36: error occured while fetching staff with error message: ReferenceError: token is not defined
+info: Label: 25-Jun-2023 10:35:37: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:35:41: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:35:44: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:35:52: test service category created successfully
+info: Label: 25-Jun-2023 10:36:04: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:36:06: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:38:20: Test Test created an account successfully with test@gmail.com.
+error: Label: 25-Jun-2023 10:38:20: error occured while fetching staff with error message: ReferenceError: token is not defined
+info: Label: 25-Jun-2023 10:38:21: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:38:30: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:38:33: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:38:38: test created successfully
+info: Label: 25-Jun-2023 10:38:46: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:38:48: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:38:58: test service category created successfully
+info: Label: 25-Jun-2023 10:39:11: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:39:13: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:39:39: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:39:40: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:39:47: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:39:50: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:39:55: test created successfully
+info: Label: 25-Jun-2023 10:40:03: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:40:06: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:40:15: test service category created successfully
+info: Label: 25-Jun-2023 10:40:28: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:40:30: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:43:23: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:43:26: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:43:34: test service category created successfully
+info: Label: 25-Jun-2023 10:43:46: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 10:43:48: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:43:54: test created successfully
+info: Label: 25-Jun-2023 10:44:07: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:44:09: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 10:44:19: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 10:44:20: staff with akinyemi@sidebrief.com signed in successfully.

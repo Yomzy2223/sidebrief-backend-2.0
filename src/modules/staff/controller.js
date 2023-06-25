@@ -1,11 +1,4 @@
 const {
-  validatestaff,
-  validatestaffCredentials,
-  validateUserCredentials,
-  validateStaff,
-  validateResetCredentials,
-} = require("../../utils/validation");
-const {
   getStaff,
   loginStaff,
   saveStaff,
@@ -21,17 +14,12 @@ const {
 // return response to client
 exports.StaffRegisration = async (req, res) => {
   const staffPayload = req.body;
-  const isValidStaff = validateStaff(staffPayload);
 
-  if (isValidStaff === true) {
-    const staff = await saveStaff(staffPayload);
-    if (staff.error) {
-      return res.status(staff.statusCode).json({ error: staff.error });
-    }
-    return res.status(200).json(staff);
+  const staff = await saveStaff(staffPayload);
+  if (staff.error) {
+    return res.status(staff.statusCode).json({ error: staff.error });
   }
-
-  return res.status(400).json({ error: isValidStaff[0].message });
+  return res.status(200).json(staff);
 };
 
 //get a staff with id
@@ -55,24 +43,18 @@ exports.StaffProfileFetcher = async (req, res) => {
 };
 
 exports.StaffLogin = async (req, res) => {
-  // get the login payload
-  // validate the payload
-  // pass wht payload to login service
+  // get the validated login payload
+  // pass the validated payload to login service
   // generate token
   // return staff and the token to client
 
   const loginPayload = req.body;
-  isValidStaff = await validateUserCredentials(loginPayload);
-  if (isValidStaff === true) {
-    const staff = await loginStaff(loginPayload);
+  const staff = await loginStaff(loginPayload);
 
-    if (staff.error) {
-      return res.status(staff.statusCode).json({ error: staff.error });
-    }
-    return res.status(200).json(staff);
+  if (staff.error) {
+    return res.status(staff.statusCode).json({ error: staff.error });
   }
-
-  return res.status(400).json({ error: isValidStaff[0].message });
+  return res.status(200).json(staff);
 };
 
 exports.StaffVerification = async (req, res) => {
@@ -107,23 +89,15 @@ exports.StaffPasswordReset = async (req, res) => {
   // get the login payload
   // validate the payload
   // pass the payload to reset service
-
   // return staff and the token to client
 
   const loginPayload = req.body;
-  isValidStaff = await validateResetCredentials(loginPayload);
-  if (isValidStaff === true) {
-    const staffPass = await changePassword(loginPayload);
+  const staffPass = await changePassword(loginPayload);
 
-    if (staffPass.error) {
-      return res.status(staffPass.statusCode).json({ error: staffPass.error });
-    }
-    return res
-      .status(staffPass.statusCode)
-      .json({ message: staffPass.message });
+  if (staffPass.error) {
+    return res.status(staffPass.statusCode).json({ error: staffPass.error });
   }
-
-  return res.status(400).json({ error: isValidStaff[0].message });
+  return res.status(staffPass.statusCode).json({ message: staffPass.message });
 };
 
 //get a staff with id

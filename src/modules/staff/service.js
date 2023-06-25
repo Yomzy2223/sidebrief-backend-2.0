@@ -63,7 +63,7 @@ const saveStaff = async (staffPayload) => {
     });
 
     return {
-      message: "staff created successfully",
+      message: "Staff created successfully",
       data: {
         id: staff.id,
         firstName: staff.firstName,
@@ -109,7 +109,6 @@ const getStaff = async (id) => {
         email: staff.email,
         phone: staff.phone,
         picture: staff.picture,
-        token: token,
         verified: staff.verified,
       },
     };
@@ -117,6 +116,7 @@ const getStaff = async (id) => {
     logger.error({
       message: `error occured while fetching staff with error message: ${error}`,
     });
+    console.log(error);
     return {
       error: "Error occurred!.",
       statusCode: 500,
