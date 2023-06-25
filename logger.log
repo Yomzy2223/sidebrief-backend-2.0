@@ -1572,3 +1572,111 @@ info: Label: 24-Jun-2023 14:32:53: test created successfully
 info: Label: 24-Jun-2023 14:33:09: test service category created successfully
 info: Label: 24-Jun-2023 14:33:27: Test Test created an account successfully with test@gmail.com.
 info: Label: 24-Jun-2023 14:33:29: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 24-Jun-2023 15:08:56: Bamidele Akinyemi created an account successfully with akainyemi@sidebrief.com.
+info: Label: 24-Jun-2023 15:09:09: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+info: Label: 24-Jun-2023 15:13:39: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 08:35:44: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 08:37:51: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 08:40:18: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 08:40:21: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 08:42:43: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 08:44:45: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 08:44:48: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 08:44:55: test created successfully
+info: Label: 25-Jun-2023 08:47:07: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 08:47:09: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 08:47:18: test service category created successfully
+info: Label: 25-Jun-2023 08:47:29: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 08:47:32: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 25-Jun-2023 08:47:38: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:16:36
+
+  13   bankUrl: bankPayload.bankUrl,
+  14   bankImage: bankPayload.bankImage,
+  15 };
+→ 16 const bank = await prisma.bank.create(
+Unique constraint failed on the fields: (`bankName`)
+info: Label: 25-Jun-2023 08:50:35: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 08:50:39: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 25-Jun-2023 08:50:45: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:16:36
+
+  13   bankUrl: bankPayload.bankUrl,
+  14   bankImage: bankPayload.bankImage,
+  15 };
+→ 16 const bank = await prisma.bank.create(
+Unique constraint failed on the fields: (`bankName`)
+info: Label: 25-Jun-2023 08:51:02: test service category created successfully
+info: Label: 25-Jun-2023 08:51:18: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 08:51:20: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 08:53:00: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 08:53:03: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 08:53:09: test created successfully
+info: Label: 25-Jun-2023 08:53:25: test service category created successfully
+info: Label: 25-Jun-2023 08:53:42: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 08:53:44: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 08:59:07: test service category created successfully
+info: Label: 25-Jun-2023 09:02:55: test service category created successfully
+info: Label: 25-Jun-2023 09:03:07: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 09:03:09: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:10:55: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 09:10:59: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:11:05: test created successfully
+info: Label: 25-Jun-2023 09:11:16: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 09:11:19: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:11:39: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 09:11:41: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:12:59: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 09:13:03: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:13:10: test service category created successfully
+info: Label: 25-Jun-2023 09:13:25: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 09:13:27: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:13:33: test created successfully
+info: Label: 25-Jun-2023 09:13:46: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:15:46: Test Test created an account successfully with test@gmail.com.
+info: Label: 25-Jun-2023 09:15:48: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:15:59: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 09:16:02: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:16:07: test created successfully
+info: Label: 25-Jun-2023 09:16:19: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 25-Jun-2023 09:16:23: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 25-Jun-2023 09:16:34: test service category created successfully
+info: Label: 25-Jun-2023 09:34:42: Sterling s Bank created successfully
+error: Label: 25-Jun-2023 09:35:02: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:16:36
+
+  13   bankUrl: bankPayload.bankUrl,
+  14   bankImage: bankPayload.bankImage,
+  15 };
+→ 16 const bank = await prisma.bank.create(
+Unique constraint failed on the fields: (`bankName`)
+error: Label: 25-Jun-2023 09:36:20: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:16:36
+
+  13   bankUrl: bankPayload.bankUrl,
+  14   bankImage: bankPayload.bankImage,
+  15 };
+→ 16 const bank = await prisma.bank.create(
+Unique constraint failed on the fields: (`bankName`)
+error: Label: 25-Jun-2023 09:36:47: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:16:36
+
+  13   bankUrl: bankPayload.bankUrl,
+  14   bankImage: bankPayload.bankImage,
+  15 };
+→ 16 const bank = await prisma.bank.create(
+Unique constraint failed on the fields: (`bankName`)
+error: Label: 25-Jun-2023 09:38:01: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:16:36
+
+  13   bankUrl: bankPayload.bankUrl,
+  14   bankImage: bankPayload.bankImage,
+  15 };
+→ 16 const bank = await prisma.bank.create(
+Unique constraint failed on the fields: (`bankName`)
