@@ -1,9 +1,22 @@
 const winston = require("winston");
+const WinstonCloudwatch = require("winston-cloudwatch");
 
 const logConfiguration = {
   transports: [
     new winston.transports.File({
       filename: "./logger.log",
+    }),
+    new WinstonCloudwatch({
+      logGroupName: process.env.CLOUDWATCH_GROUP_NAME,
+      logStreamName: process.env.CLOUDWATCH_STREAM_NAME,
+      awsRegion: process.env.CLOUDWATCH_AWS_REGION,
+      awsOptions: {
+        credentials: {
+          accessKeyId: process.env.AWS_ACCESS_KEY,
+          secretAccessKey: process.env.AWS_KEY_SECRET,
+        },
+        region: process.env.CLOUDWATCH_AWS_REGION,
+      },
     }),
   ],
   format: winston.format.combine(
