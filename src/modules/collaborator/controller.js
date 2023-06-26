@@ -23,19 +23,14 @@ const {
 // return response to client
 exports.CollaboratorRegisration = async (req, res) => {
   const collaboratorPayload = req.body;
-  const isValidCollaborator = validateCollaborator(collaboratorPayload);
 
-  if (isValidCollaborator === true) {
-    const collaborator = await saveCollaborator(collaboratorPayload);
-    if (collaborator.error) {
-      return res
-        .status(collaborator.statusCode)
-        .json({ error: collaborator.error });
-    }
-    return res.status(200).json(collaborator);
+  const collaborator = await saveCollaborator(collaboratorPayload);
+  if (collaborator.error) {
+    return res
+      .status(collaborator.statusCode)
+      .json({ error: collaborator.error });
   }
-
-  return res.status(400).json({ error: isValidCollaborator[0].message });
+  return res.status(200).json(collaborator);
 };
 
 //get a collaborator with id
@@ -68,19 +63,15 @@ exports.CollaboratorLogin = async (req, res) => {
   // return collaborator and the token to client
 
   const collaboratorPayload = req.body;
-  isValidCollaborator = await validateUserCredentials(collaboratorPayload);
-  if (isValidCollaborator === true) {
-    const collaborator = await loginCollaborator(collaboratorPayload);
 
-    if (collaborator.error) {
-      return res
-        .status(collaborator.statusCode)
-        .json({ error: collaborator.error });
-    }
-    return res.status(200).json(collaborator);
+  const collaborator = await loginCollaborator(collaboratorPayload);
+
+  if (collaborator.error) {
+    return res
+      .status(collaborator.statusCode)
+      .json({ error: collaborator.error });
   }
-
-  return res.status(400).json({ error: isValidCollaborator[0].message });
+  return res.status(200).json(collaborator);
 };
 
 exports.CollaboratorVerification = async (req, res) => {
@@ -119,21 +110,17 @@ exports.CollaboratorPasswordReset = async (req, res) => {
   // return collaborator and the token to client
 
   const loginPayload = req.body;
-  const isValidCollaborator = await validateResetCredentials(loginPayload);
-  if (isValidCollaborator === true) {
-    const collaboratorPass = await changePassword(loginPayload);
 
-    if (collaboratorPass.error) {
-      return res
-        .status(collaboratorPass.statusCode)
-        .json({ error: collaboratorPass.error });
-    }
+  const collaboratorPass = await changePassword(loginPayload);
+
+  if (collaboratorPass.error) {
     return res
       .status(collaboratorPass.statusCode)
-      .json({ message: collaboratorPass.message });
+      .json({ error: collaboratorPass.error });
   }
-
-  return res.status(400).json({ error: isValidCollaborator[0].message });
+  return res
+    .status(collaboratorPass.statusCode)
+    .json({ message: collaboratorPass.message });
 };
 
 //delete a collaborator with id

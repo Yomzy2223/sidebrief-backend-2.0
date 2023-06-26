@@ -10,14 +10,24 @@ const {
   CollaboratorDocument,
   CollectorDocumentsFetcher,
 } = require("./controller");
+const validator = require("../../middleware/validator");
+const {
+  validateCollaborator,
+  validateUserCredentials,
+  validateResetCredentials,
+} = require("../../utils/validation");
 const router = express.Router();
 
-router.post("/", CollaboratorRegisration);
-router.post("/login", CollaboratorLogin);
+router.post("/", validator(validateCollaborator), CollaboratorRegisration);
+router.post("/login", validator(validateUserCredentials), CollaboratorLogin);
 router.get("/:id", CollectorProfileFetcher);
 router.post("/verification/:token", CollaboratorVerification);
 router.post("/forgotpassword", CollaboratorPasswordResetLink);
-router.post("/passwordreset", CollaboratorPasswordReset);
+router.post(
+  "/passwordreset",
+  validator(validateResetCredentials),
+  CollaboratorPasswordReset
+);
 router.delete("/:id", CollaboratorRemover);
 router.post("/document/:collaboratorId", CollaboratorDocument);
 router.get("/document/:collaboratorId", CollectorDocumentsFetcher);
