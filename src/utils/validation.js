@@ -87,6 +87,16 @@ const documentSchema = {
 
 const validateDocument = validate.compile(documentSchema);
 
+const countrySchema = {
+  countryName: { type: "string", min: 3, max: 255 },
+  countryISO: { type: "string", min: 3, max: 10 },
+  countryCurrency: { type: "string", min: 3, max: 10 },
+  countryCode: { type: "string", min: 3, max: 10 },
+  countryFlagUrl: { type: "string", min: 3, max: 255 },
+};
+
+const validateCountry = validate.compile(countrySchema);
+
 module.exports = {
   validateUser,
   validateUserCredentials,
@@ -97,4 +107,5 @@ module.exports = {
   validateUserUpdateCredentials,
   validateCollaborator,
   validateDocument,
+  validateCountry,
 };

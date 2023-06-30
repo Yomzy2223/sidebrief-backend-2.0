@@ -11,7 +11,8 @@ const logger = require("./src/config/logger");
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const options = require("./src/config/swagger");
-
+const passport = require("passport");
+const { OAuth2Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const app = express();
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
 app.use(express.json());

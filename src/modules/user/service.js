@@ -211,7 +211,7 @@ const loginUser = async (loginPayload) => {
     };
   } catch (error) {
     logger.error({
-      message: `error occured while fetching user with error message: ${error}`,
+      message: `error occured while logging user into the system with error message: ${error}`,
     });
     return {
       error: "Error occurred!.",
@@ -464,15 +464,75 @@ const updateProfile = async (updatePayload, id) => {
 
 // IN PROGRESS
 // sign in with google
-const signInWithGoogle = async () => {
+const signInWithGoogle = async (oauthUser) => {
   try {
-    const data = req.body;
+    const isUserExists = await prisma.user.findUnique({
+      where: {
+        email: oauthUser.emails[0].value,
+      },
+    });
+    if (isUserExists !== null) {
+      return { error: "User already exists", statusCode: 400 };
+    }
 
-    const response = await prisma.create({ data: { data } });
+    const values = {
+      firstName: userPayload.firstName,
+      lastName: userPayload.lastName,
+      username: userPayload.username,
+      email: userPayload.email.toLowerCase(),
+      password: cryptedPassword,
+      phone: userPayload.phone,
+      verified: false,
+      referral: "",
+    };
+
+    const newUser = await prisma.user.create({ data: { values } });
+    if (!newUser) {
+      return { error: "Error occured while creating user", statusCode: 400 };
+    }
+
+    const userSecret = process.env.TOKEN_USER_SECRET;
+    const emailVerificationToken = generateToken(
+      { id: newUser.id },
+      userSecret,
+      "30m"
+    );
+
+    const url = `${process.env.BASE_URL}/user/activate/${emailVerificationToken}`;
+    //send user email
+    const subject = "Welcome to Sidebrief.";
+    payload = {
+      name: userPayload.firstName,
+      url: url,
+    };
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = userPayload.email;
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/welcomeUser.ejs"
+    );
+
+    logger.info({
+      message: `${oauthUser.displayName} created an account successfully with ${oauthUser.emails[0].value}.`,
+    });
 
     return {
+      message: "User created successfully",
+      data: {
+        id: newUser.id,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        username: newUser.username,
+        email: newUser.email,
+        phone: newUser.phone,
+        picture: newUser.picture,
+        verified: newUser.verified,
+        referral: newUser.referral,
+      },
       statusCode: 200,
-      message: "Signed in successfully",
     };
   } catch (error) {
     logger.error({
@@ -487,9 +547,49 @@ const signInWithGoogle = async () => {
 };
 
 //sign up with google
-const signUpWithGoogle = async () => {
+const signUpWithGoogle = async (oauthUser) => {
   try {
-  } catch (error) {}
+    const user = await prisma.user.findUnique({
+      where: { email: oauthUser.emails[0].value },
+    });
+
+    if (user === null) {
+      return {
+        error: "User not found!.",
+        statusCode: 400,
+      };
+    }
+
+    const userSecret = process.env.TOKEN_USER_SECRET;
+    const token = generateToken({ id: user.id }, userSecret, "14d");
+    logger.info({
+      message: `User with ${loginPayload.email} signed in successfully.`,
+    });
+
+    return {
+      message: "Login successfully",
+      data: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        email: user.email,
+        token: token,
+        phone: user.phone,
+        picture: user.picture,
+        verified: user.verified,
+        referral: user.referral,
+      },
+    };
+  } catch (error) {
+    logger.error({
+      message: `error occured while logging user into the system with error message: ${error}`,
+    });
+    return {
+      error: "Error occurred!.",
+      statusCode: 500,
+    };
+  }
 };
 
 module.exports = {
@@ -502,4 +602,6 @@ module.exports = {
   changePassword,
   updateProfile,
   deleteUser,
+  signInWithGoogle,
+  signUpWithGoogle,
 };
