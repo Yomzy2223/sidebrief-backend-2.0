@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const usersRoutes = require("./src/modules/user/routes");
 const bankRoutes = require("./src/modules/bank/routes");
+const countryRoutes = require("./src/modules/country/routes");
 const staffRoutes = require("./src/modules/staff/routes");
 const serviceRoutes = require("./src/modules/productService/routes");
 const collaboratorRoutes = require("./src/modules/collaborator/routes");
@@ -11,7 +12,8 @@ const logger = require("./src/config/logger");
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const options = require("./src/config/swagger");
-
+const passport = require("passport");
+const { OAuth2Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const app = express();
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
 app.use(express.json());
@@ -28,14 +30,16 @@ app.get("/", (req, res) => {
 //all routes
 //user
 app.use("/users", usersRoutes);
-//bank
-app.use("/banks", bankRoutes);
 // staff
 app.use("/staffs", staffRoutes);
-//service
-app.use("/services", serviceRoutes);
 //collaborator
 app.use("/collaborators", collaboratorRoutes);
+//service
+app.use("/services", serviceRoutes);
+//bank
+app.use("/banks", bankRoutes);
+//country
+app.use("/countries", countryRoutes);
 
 const specs = swaggerJSDoc(options);
 app.use(

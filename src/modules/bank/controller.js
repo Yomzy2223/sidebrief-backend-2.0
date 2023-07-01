@@ -8,7 +8,7 @@ const {
 } = require("./service");
 
 // create a new bank
-exports.BankCreator = async (req, res) => {
+exports.CreateBank = async (req, res) => {
   // get the validated payload from the the request body
   // send the validated payload to addBank service
   // return response to the client
@@ -21,26 +21,28 @@ exports.BankCreator = async (req, res) => {
     return res.status(bank.statusCode).json({ error: bank.error });
   }
 
-  return res.json(bank);
+  return res
+    .status(bank.statusCode)
+    .json({ message: bank.message, data: bank.data });
 };
 
 //get all banks
-exports.BanksFetcher = async (req, res) => {
+exports.GetAllBanks = async (req, res) => {
   // get the bank list
   // return response to the client
 
   const banks = await getAllBanks();
-  if (banks === null) {
-    return res
-      .status(500)
-      .json({ error: "Error occured while getting all banks." });
+  if (banks.error) {
+    return res.status(banks.statusCode).json({ error: banks.error });
   }
 
-  return res.status(200).json(banks);
+  return res
+    .status(banks.statusCode)
+    .json({ message: banks.message, data: banks.data });
 };
 
 //get a bank with id
-exports.BankFetcher = async (req, res) => {
+exports.GetBank = async (req, res) => {
   // check if there is id
   // pass the id to the service
   // return bank to client
@@ -56,11 +58,13 @@ exports.BankFetcher = async (req, res) => {
   if (bank.error) {
     return res.status(bank.statusCode).json({ error: bank.error });
   }
-  return res.status(200).json(bank);
+  return res
+    .status(bank.statusCode)
+    .json({ message: bank.message, data: bank.data });
 };
 
 //update a bank
-exports.BankModifier = async (req, res) => {
+exports.UpdateBank = async (req, res) => {
   //get the payload
   // validate the payload
   // send the payload to the service
@@ -74,11 +78,11 @@ exports.BankModifier = async (req, res) => {
     return res.status(bank.statusCode).json({ error: bank.error });
   }
 
-  return res.status(200).json(bank);
+  return res.status(bank.statusCode).json({ message: bank.message });
 };
 
 //delete a bank
-exports.BankRemover = async (req, res) => {
+exports.DeleteBank = async (req, res) => {
   //check if there is id
   // send the id to the delete service
   //return response to the client
@@ -94,5 +98,7 @@ exports.BankRemover = async (req, res) => {
   if (deleteBank.error) {
     return res.status(deleteBank.statusCode).json({ error: deleteBank.error });
   }
-  return res.status(200).json(deleteBank);
+  return res
+    .status(deleteBank.statusCode)
+    .json({ message: deleteBank.message });
 };

@@ -27,7 +27,7 @@ describe("All staff endpoints test", () => {
     expect(res.body.data.email).toBe("test@gmail.com");
   });
 
-  const id = "328b852e-fd6b-45ce-9f70-2338537c5534";
+  const id = "bd38b27c-7aa0-4d00-bbb9-4d1ad7444988";
   it("should return a 200", async () => {
     const res = await request(app).get(`/staffs/${id}`);
     expect(res.statusCode).toBe(200);
@@ -41,8 +41,8 @@ describe("All staff endpoints test", () => {
 
   it("should return a 200", async () => {
     const data = {
-      email: "akinyemi@sidebrief.com",
-      password: "12341234",
+      email: process.env.TEST_STAFF,
+      password: process.env.TEST_STAFF_PASSWORD,
     };
     const res = await request(app).post("/staffs/login").send(data);
     expect(res.body.message).toBe("Login successfully");

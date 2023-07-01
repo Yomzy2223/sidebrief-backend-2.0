@@ -35,7 +35,7 @@ describe("All user endpoints test", () => {
     expect(res.body.data.length).toBeGreaterThan(0);
   });
 
-  const id = "d3b991b4-a2ac-4b8e-a247-40776ae65027";
+  const id = "d666e364-58e9-4d51-a716-ce5551601ade";
   it("should return a 200", async () => {
     const res = await request(app).get(`/users/${id}`);
     expect(res.statusCode).toBe(200);

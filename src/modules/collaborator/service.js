@@ -462,9 +462,9 @@ const saveDocument = async (documentPayload, id) => {
 
   try {
     const values = {
-      documentName: documentPayload.documentName,
-      documentType: documentPayload.documentType,
-      documentDescription: documentPayload.documentDescription,
+      name: documentPayload.name,
+      type: documentPayload.type,
+      description: documentPayload.description,
       collaboratorId: id,
     };
 
@@ -488,7 +488,7 @@ const saveDocument = async (documentPayload, id) => {
     }
 
     logger.info({
-      message: `${documentPayload.documentName} created successfully`,
+      message: `${documentPayload.name} created successfully`,
     });
     return {
       message: "Document created successfully",

@@ -174,3 +174,11 @@ exports.UserProfileModifier = async (req, res) => {
 
   return res.status(400).json({ error: isValidUser[0].message });
 };
+
+//sign in with google
+exports.SuccessfulGmail = async (req, res) => {
+  const { failure, success } = await signUpWithGoogle(userProfile);
+  if (failure)
+    return res.status(400).json({ error: "Google user already exist in DB." });
+  return res.status(200).json({ message: "success", user: userProfile });
+};
