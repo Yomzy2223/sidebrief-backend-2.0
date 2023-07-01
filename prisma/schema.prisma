@@ -12,25 +12,6 @@ datasource db {
 
 
 
-model Bank {
-      id String @id @default(uuid())
-      bankName String @unique
-      bankCode String
-      bankUrl String
-      bankImage String
-      createdAt DateTime @default(now())
-      updatedAt DateTime @default(now())
-}
-
-model ServiceCategory {
-      id String @id @default(uuid())
-      name String @unique
-      description String
-      createdAt DateTime @default(now())
-      updatedAt DateTime @default(now())
-}
-
-
 model User {
       id String @id @default(uuid())
       firstName String 
@@ -80,9 +61,9 @@ model Collaborator {
 
 model CollaboratorDocument {
       id String @id @default(uuid())
-      documentName String 
-      documentType String
-      documentDescription String
+      name String @unique
+      type String
+      description String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       collaborator Collaborator @relation(fields: [collaboratorId], references: [id])
@@ -90,21 +71,39 @@ model CollaboratorDocument {
 }
 model Reward {
       id String @id @default(uuid())
-      rewardName String 
-      rewardUrl String
-      rewardDescrition String @unique
-      rewardImage String
+      name String @unique
+      url String
+      descrition String 
+      image String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
 
 model Country {
       id String @id @default(uuid())
-      countryName String
-      countryISO String
-      countryCurrency String
-      countryCode String
-      countryFlagUrl String
+      name String @unique
+      iso String
+      currency String
+      code String
+      flagUrl String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+
+model Bank {
+      id String @id @default(uuid())
+      name String @unique
+      code String
+      url String
+      image String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+
+model ServiceCategory {
+      id String @id @default(uuid())
+      name String @unique
+      description String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }

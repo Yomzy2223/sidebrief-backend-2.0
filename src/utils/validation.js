@@ -35,10 +35,10 @@ const staffSchema = {
 const validateStaff = validate.compile(staffSchema);
 
 const bankSchema = {
-  bankName: { type: "string", min: 3, max: 255 },
-  bankCode: { type: "string", min: 3, max: 255 },
-  bankUrl: { type: "string", min: 3, max: 255 },
-  bankImage: { type: "string", min: 3, max: 500 },
+  name: { type: "string", min: 3, max: 255 },
+  code: { type: "string", min: 3, max: 255 },
+  url: { type: "string", min: 3, max: 255 },
+  image: { type: "string", min: 3, max: 500 },
 };
 
 const validateBank = validate.compile(bankSchema);
@@ -80,19 +80,19 @@ const validateCollaborator = validate.compile(collaboratorSchema);
 
 //document registration
 const documentSchema = {
-  documentName: { type: "string", min: 3, max: 100 },
-  documentType: { type: "string", min: 3, max: 50 },
-  documentDescription: { type: "string", min: 3, max: 255 },
+  name: { type: "string", min: 3, max: 100 },
+  type: { type: "string", min: 3, max: 50 },
+  description: { type: "string", min: 3, max: 255 },
 };
 
 const validateDocument = validate.compile(documentSchema);
 
 const countrySchema = {
-  countryName: { type: "string", min: 3, max: 255 },
-  countryISO: { type: "string", min: 3, max: 10 },
-  countryCurrency: { type: "string", min: 3, max: 10 },
-  countryCode: { type: "string", min: 3, max: 10 },
-  countryFlagUrl: { type: "string", min: 3, max: 255 },
+  name: { type: "string", min: 3, max: 255 },
+  iso: { type: "string", min: 3, max: 10 },
+  currency: { type: "string", min: 3, max: 10 },
+  code: { type: "string", min: 3, max: 10 },
+  flagUrl: { type: "string", min: 3, max: 255 },
 };
 
 const validateCountry = validate.compile(countrySchema);

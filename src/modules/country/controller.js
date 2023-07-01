@@ -1,10 +1,9 @@
-const { validateBank } = require("../../utils/validation");
 const {
-  saveBank,
-  getAllBanks,
-  getBank,
-  removeBank,
-  updateBank,
+  saveCountry,
+  getAllCountries,
+  getCountry,
+  updateCountry,
+  removeCountry,
 } = require("./service");
 
 // create a new country
@@ -24,26 +23,26 @@ exports.CreateCountry = async (req, res) => {
   return res.json(country);
 };
 
-//get all banks
+//get all countries
 exports.GetCountries = async (req, res) => {
-  // get the bank list
+  // get the country list
   // return response to the client
 
-  const banks = await getAllBanks();
-  if (banks === null) {
-    return res
-      .status(500)
-      .json({ error: "Error occured while getting all banks." });
+  const countries = await getAllCountries();
+  if (countries.error) {
+    return res.status(countries.statusCode).json({ error: countries.error });
   }
 
-  return res.status(200).json(banks);
+  return res
+    .status(countries.statusCode)
+    .json({ message: countries.message, data: countries.data });
 };
 
-//get a bank with id
+//get a country with id
 exports.GetCountry = async (req, res) => {
   // check if there is id
   // pass the id to the service
-  // return bank to client
+  // return country to client
 
   const id = req.params.id;
   if (!id) {
@@ -51,15 +50,17 @@ exports.GetCountry = async (req, res) => {
       error: "Please provide id",
     });
   }
-  const bank = await getBank(id);
+  const country = await getCountry(id);
 
-  if (bank.error) {
-    return res.status(bank.statusCode).json({ error: bank.error });
+  if (country.error) {
+    return res.status(country.statusCode).json({ error: country.error });
   }
-  return res.status(200).json(bank);
+  return res
+    .status(country.statusCode)
+    .json({ message: country.message, data: country.data });
 };
 
-//update a bank
+//update a country
 exports.UpdateCountry = async (req, res) => {
   //get the payload
   // validate the payload
@@ -67,18 +68,18 @@ exports.UpdateCountry = async (req, res) => {
   // return response
 
   const id = req.params.id;
-  const bankPayload = req.body;
-  const bank = await updateBank(id, bankPayload);
+  const countryPayload = req.body;
+  const country = await updateCountry(id, countryPayload);
 
-  if (bank.error) {
-    return res.status(bank.statusCode).json({ error: bank.error });
+  if (country.error) {
+    return res.status(country.statusCode).json({ error: country.error });
   }
 
-  return res.status(200).json(bank);
+  return res.status(country.statusCode).json({ message: country.message });
 };
 
-//delete a bank
-exports.BankRemover = async (req, res) => {
+//delete a country
+exports.DeleteCountry = async (req, res) => {
   //check if there is id
   // send the id to the delete service
   //return response to the client
@@ -89,10 +90,14 @@ exports.BankRemover = async (req, res) => {
       error: "Please provide id",
     });
   }
-  const deleteBank = await removeBank(id);
+  const deleteCountry = await removeCountry(id);
 
-  if (deleteBank.error) {
-    return res.status(deleteBank.statusCode).json({ error: deleteBank.error });
+  if (deleteCountry.error) {
+    return res
+      .status(deleteCountry.statusCode)
+      .json({ error: deleteCountry.error });
   }
-  return res.status(200).json(deleteBank);
+  return res
+    .status(deleteCountry.statusCode)
+    .json({ message: deleteCountry.message });
 };

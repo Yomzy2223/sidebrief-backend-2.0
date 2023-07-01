@@ -1,28 +1,4 @@
 -- CreateTable
-CREATE TABLE "Bank" (
-    "id" TEXT NOT NULL,
-    "bankName" TEXT NOT NULL,
-    "bankCode" TEXT NOT NULL,
-    "bankUrl" TEXT NOT NULL,
-    "bankImage" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "Bank_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "ServiceCategory" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "ServiceCategory_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "firstName" TEXT NOT NULL,
@@ -79,9 +55,9 @@ CREATE TABLE "Collaborator" (
 -- CreateTable
 CREATE TABLE "CollaboratorDocument" (
     "id" TEXT NOT NULL,
-    "documentName" TEXT NOT NULL,
-    "documentType" TEXT NOT NULL,
-    "documentDescription" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "collaboratorId" TEXT NOT NULL,
@@ -92,10 +68,10 @@ CREATE TABLE "CollaboratorDocument" (
 -- CreateTable
 CREATE TABLE "Reward" (
     "id" TEXT NOT NULL,
-    "rewardName" TEXT NOT NULL,
-    "rewardUrl" TEXT NOT NULL,
-    "rewardDescrition" TEXT NOT NULL,
-    "rewardImage" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "descrition" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -105,15 +81,39 @@ CREATE TABLE "Reward" (
 -- CreateTable
 CREATE TABLE "Country" (
     "id" TEXT NOT NULL,
-    "countryName" TEXT NOT NULL,
-    "countryISO" TEXT NOT NULL,
-    "countryCurrency" TEXT NOT NULL,
-    "countryCode" TEXT NOT NULL,
-    "countryFlagUrl" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "iso" TEXT NOT NULL,
+    "currency" TEXT NOT NULL,
+    "code" TEXT NOT NULL,
+    "flagUrl" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Country_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Bank" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "code" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "image" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Bank_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ServiceCategory" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "ServiceCategory_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -129,12 +129,6 @@ CREATE TABLE "Notification" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Bank_bankName_key" ON "Bank"("bankName");
-
--- CreateIndex
-CREATE UNIQUE INDEX "ServiceCategory_name_key" ON "ServiceCategory"("name");
-
--- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
@@ -144,7 +138,19 @@ CREATE UNIQUE INDEX "Staff_email_key" ON "Staff"("email");
 CREATE UNIQUE INDEX "Collaborator_email_key" ON "Collaborator"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Reward_rewardDescrition_key" ON "Reward"("rewardDescrition");
+CREATE UNIQUE INDEX "CollaboratorDocument_name_key" ON "CollaboratorDocument"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Reward_name_key" ON "Reward"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Country_name_key" ON "Country"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Bank_name_key" ON "Bank"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ServiceCategory_name_key" ON "ServiceCategory"("name");
 
 -- AddForeignKey
 ALTER TABLE "CollaboratorDocument" ADD CONSTRAINT "CollaboratorDocument_collaboratorId_fkey" FOREIGN KEY ("collaboratorId") REFERENCES "Collaborator"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

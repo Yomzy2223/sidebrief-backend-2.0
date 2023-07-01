@@ -8,7 +8,7 @@ const saveBank = async (bankPayload) => {
 
   try {
     const checkBank = await prisma.bank.findUnique({
-      where: { bankName: bankPayload.bankName.toLowerCase() },
+      where: { name: bankPayload.name.toLowerCase() },
     });
     if (checkBank !== null) {
       return {
@@ -18,10 +18,10 @@ const saveBank = async (bankPayload) => {
     }
 
     const values = {
-      bankName: bankPayload.bankName.toLowerCase(),
-      bankCode: bankPayload.bankCode,
-      bankUrl: bankPayload.bankUrl,
-      bankImage: bankPayload.bankImage,
+      name: bankPayload.name.toLowerCase(),
+      code: bankPayload.code,
+      url: bankPayload.url,
+      image: bankPayload.image,
     };
     const bank = await prisma.bank.create({ data: values });
 
@@ -29,7 +29,7 @@ const saveBank = async (bankPayload) => {
       return { error: "Error occured while creating bank", statusCode: 400 };
     }
 
-    logger.info({ message: `${bankPayload.bankName} created successfully` });
+    logger.info({ message: `${bankPayload.name} created successfully` });
     return {
       message: "Bank created successfully",
       statusCode: 200,
@@ -52,10 +52,18 @@ const getAllBanks = async () => {
   //  get the bank list from the table
   //  return the bank list to the bank controller
   try {
-    const bank = await prisma.bank.findMany({});
+    const banks = await prisma.bank.findMany({});
+    if (banks === null) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
     return {
-      message: "banks fetched successfully",
-      data: bank,
+      message: "Banks fetched successfully",
+      data: banks,
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
@@ -88,6 +96,7 @@ const getBank = async (id) => {
     return {
       message: "Bank fetched successfully",
       data: bank,
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
@@ -109,10 +118,10 @@ const updateBank = async (id, bankPayload) => {
 
   try {
     const values = {
-      bankName: bankPayload.bankName,
-      bankCode: bankPayload.bankCode,
-      bankUrl: bankPayload.bankUrl,
-      bankImage: bankPayload.bankImage,
+      name: bankPayload.name.toLowerCase(),
+      code: bankPayload.code,
+      url: bankPayload.url,
+      image: bankPayload.image,
     };
 
     const bank = await prisma.bank.findUnique({
@@ -143,6 +152,7 @@ const updateBank = async (id, bankPayload) => {
 
     return {
       message: "Bank updated successfully",
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({

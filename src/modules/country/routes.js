@@ -1,15 +1,21 @@
 const express = require("express");
 const { userAuth, staffAuth } = require("../../middleware/auth");
 const validator = require("../../middleware/validator");
-const { validateBank } = require("../../utils/validation");
+const { validateCountry } = require("../../utils/validation");
 const router = express.Router();
 
-const { CreateCountry } = require("./controller");
+const {
+  CreateCountry,
+  UpdateCountry,
+  GetCountry,
+  DeleteCountry,
+  GetCountries,
+} = require("./controller");
 
-router.post("/", staffAuth, validator(validateBank), CreateCountry);
-router.get("/", BanksFetcher);
-router.get("/:id", userAuth, BankFetcher);
-router.put("/:id", staffAuth, validator(validateBank), BankModifier);
-router.delete("/:id", staffAuth, BankRemover);
+router.post("/", staffAuth, validator(validateCountry), CreateCountry);
+router.get("/", GetCountries);
+router.get("/:id", GetCountry);
+router.put("/:id", staffAuth, validator(validateCountry), UpdateCountry);
+router.delete("/:id", staffAuth, DeleteCountry);
 
 module.exports = router;

@@ -8,7 +8,7 @@ const saveCountry = async (countryPayload) => {
 
   try {
     const checkCountry = await prisma.country.findUnique({
-      where: { countryName: countryPayload.countryName.toLowerCase() },
+      where: { name: countryPayload.name.toLowerCase() },
     });
     if (checkCountry !== null) {
       return {
@@ -18,9 +18,11 @@ const saveCountry = async (countryPayload) => {
     }
 
     const values = {
-      countryName: countryName.countryName.toLowerCase(),
-      countryISO: bankPayload.countryISO,
-      countryImage: bankPayload.countryImage,
+      name: countryPayload.name.toLowerCase(),
+      iso: countryPayload.iso,
+      flagUrl: countryPayload.flagUrl,
+      code: countryPayload.code,
+      currency: countryPayload.currency,
     };
 
     const country = await prisma.country.create({ data: values });
@@ -30,7 +32,7 @@ const saveCountry = async (countryPayload) => {
     }
 
     logger.info({
-      message: `${countryPayload.countryName} created successfully`,
+      message: `${countryPayload.name} created successfully`,
     });
     return {
       message: "Country created successfully",
@@ -50,19 +52,27 @@ const saveCountry = async (countryPayload) => {
   }
 };
 
-//get all bank service
-const getAllBanks = async () => {
-  //  get the bank list from the table
-  //  return the bank list to the bank controller
+//get all country service
+const getAllCountries = async () => {
+  //  get the country list from the table
+  //  return the country list to the country controller
   try {
-    const bank = await prisma.bank.findMany({});
+    const countries = await prisma.country.findMany({});
+    if (countries === null) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
     return {
-      message: "banks fetched successfully",
-      data: bank,
+      message: "Countries fetched successfully",
+      data: countries,
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
-      message: `error occured while fetching all banks with error message: ${error}`,
+      message: `Error occured while fetching all countries with error message: ${error}`,
     });
     return {
       error: "Error occurred!.",
@@ -71,30 +81,31 @@ const getAllBanks = async () => {
   }
 };
 
-//get a bank service
-const getBank = async (id) => {
-  //   //check if the bank exists
-  //   //return the bank to the bank controller
+//get a country service
+const getCountry = async (id) => {
+  //   //check if the country exists
+  //   //return the country to the country controller
 
   try {
-    const bank = await prisma.bank.findUnique({
+    const country = await prisma.country.findUnique({
       where: {
         id: id,
       },
     });
-    if (bank === null) {
+    if (country === null) {
       return {
-        error: "Bank not found!.",
+        error: "Country not found!.",
         statusCode: 400,
       };
     }
     return {
-      message: "Bank fetched successfully",
-      data: bank,
+      message: "Country fetched successfully",
+      data: country,
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
-      message: `error occured while fetching bank with error message: ${error}`,
+      message: `Error occured while fetching country with error message: ${error}`,
     });
     return {
       error: "Error occurred!.",
@@ -103,53 +114,57 @@ const getBank = async (id) => {
   }
 };
 
-//update a bank service
-const updateBank = async (id, bankPayload) => {
-  // take both id and bank payload from the bank controller
-  //  check if the bank exists
-  //  update the bank
-  //  return the bank to the bank controller
+//update a country service
+const updateCountry = async (id, countryPayload) => {
+  // take both id and country payload from the country controller
+  //  check if the country exists
+  //  update the country
+  //  return the country to the country controller
 
   try {
     const values = {
-      bankName: bankPayload.bankName,
-      bankCode: bankPayload.bankCode,
-      bankUrl: bankPayload.bankUrl,
-      bankImage: bankPayload.bankImage,
+      name: countryPayload.name.toLowerCase(),
+      iso: countryPayload.iso,
+      flagUrl: countryPayload.flagUrl,
+      code: countryPayload.code,
+      currency: countryPayload.currency,
     };
 
-    const bank = await prisma.bank.findUnique({
+    const country = await prisma.country.findUnique({
       where: {
         id: id,
       },
     });
-    if (bank === null) {
+    if (country === null) {
       return {
-        error: "Bank not found!.",
+        error: "Country not found!.",
         statusCode: 400,
       };
     }
 
-    const updateBank = await prisma.bank.update({
+    const updateCountry = await prisma.country.update({
       where: {
         id: id,
       },
       data: values,
     });
 
-    if (!updateBank) {
+    if (!updateCountry) {
       return {
-        error: "Error occured while updating bank!.",
+        error: "Error occured while updating country!.",
         statusCode: 400,
       };
     }
-
+    logger.info({
+      message: `${countryPayload.name} updated successfully`,
+    });
     return {
-      message: "Bank updated successfully",
+      message: "Country updated successfully",
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
-      message: `error occured while updating bank with error message: ${error}`,
+      message: `error occured while updating country with error message: ${error}`,
     });
     return {
       error: "Error occurred!.",
@@ -158,32 +173,33 @@ const updateBank = async (id, bankPayload) => {
   }
 };
 
-//remove a bank service
-const removeBank = async (id) => {
-  //take id from the bank controller
-  //check if the bank exists
-  //remove the bank from the record
-  //return response to the bank controller
+//remove a country service
+const removeCountry = async (id) => {
+  //take id from the country controller
+  //check if the country exists
+  //remove the country from the record
+  //return response to the country controller
 
   try {
-    const deleteBank = await prisma.bank.delete({
+    const deleteCountry = await prisma.country.delete({
       where: {
         id: id,
       },
     });
-    if (!deleteBank) {
+    if (!deleteCountry) {
       return {
-        error: "Bank not found.",
+        error: "Country not found.",
         statusCode: 400,
       };
     }
 
     return {
-      message: "Bank deleted successfully",
+      message: "Country deleted successfully",
+      statusCode: 200,
     };
   } catch (error) {
     logger.error({
-      message: `error occured while deleting bank with error message: ${error}`,
+      message: `error occured while deleting country with error message: ${error}`,
     });
     return {
       error: "Error occurred!.",
@@ -194,8 +210,8 @@ const removeBank = async (id) => {
 
 module.exports = {
   saveCountry,
-  getAllBanks,
-  getBank,
-  updateBank,
-  removeBank,
+  getAllCountries,
+  getCountry,
+  updateCountry,
+  removeCountry,
 };
