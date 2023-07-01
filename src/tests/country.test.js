@@ -3,11 +3,17 @@ const request = require("supertest");
 const app = require("../../app");
 const prisma = new PrismaClient();
 
-describe("Testing all service endpoints", () => {
+describe("Testing all country endpoints", () => {
   let staffToken = "";
   let userToken = "";
 
   beforeAll(async () => {
+    await prisma.country.delete({
+      where: {
+        name: "test",
+      },
+    });
+
     const loginData = {
       email: process.env.TEST_STAFF,
       password: process.env.TEST_STAFF_PASSWORD,
@@ -15,6 +21,7 @@ describe("Testing all service endpoints", () => {
 
     const StaffRes = await request(app).post("/staffs/login").send(loginData);
     expect(StaffRes.body.message).toBe("Login successfully");
+
     staffToken = StaffRes.body.data.token;
 
     const userLoginData = {
@@ -27,70 +34,73 @@ describe("Testing all service endpoints", () => {
       .send(userLoginData);
     expect(userResponse.body.message).toBe("Login successfully");
     userToken = userResponse.body.data.token;
-
-    await prisma.serviceCategory.delete({
-      where: {
-        name: "test",
-      },
-    });
   });
 
   const data = {
-    name: "test",
-    description: "this is a test service",
+    name: "Test",
+    iso: "TEST",
+    flagUrl: "test.com",
+    code: "234",
+    currency: "TEST",
   };
 
-  it("should create a new service", async () => {
+  it("should create a new country", async () => {
     const res = await request(app)
-      .post("/services")
+      .post("/countries")
       .set("Authorization", `Bearer ${staffToken}`)
       .send(data);
     expect(res.statusCode).toBe(200);
-    expect(res.body.message).toBe("Service category created successfully");
+    expect(res.body.message).toBe("Country created successfully");
     expect(res.body.data.name).toBe("test");
   });
 
-  it("should return all service categories", async () => {
-    const res = await request(app).get("/services");
+  it("should return all countries", async () => {
+    const res = await request(app).get("/countries");
     expect(res.statusCode).toBe(200);
     expect(res.body.data.length).toBeGreaterThan(0);
   });
 
-  const serviceId = "eac5be02-ddd6-42ef-ab48-19e36e2dd7d8";
+  const countryId = "bc134f97-12b5-4e2f-9f3c-9231807dfa26";
   it("should return a 200", async () => {
     const res = await request(app)
-      .get(`/services/${serviceId}`)
+      .get(`/countries/${countryId}`)
       .set("Authorization", `Bearer ${userToken}`);
     expect(res.statusCode).toBe(200);
   });
 
-  const w_serviceId = "8aa2882e-78bd-4c88-9968-474bbc6a6545";
+  const w_countryId = "8aa2882e-78bd-4c88-9968-474bbc6a6545";
   it("should return a 400", async () => {
     const res = await request(app)
-      .get(`/services/${w_serviceId}`)
+      .get(`/countries/${w_countryId}`)
       .set("Authorization", `Bearer ${userToken}`);
     expect(res.statusCode).toBe(400);
   });
 
-  it("should update a service category", async () => {
+  it("should update a country", async () => {
     const res = await request(app)
-      .put(`/services/${serviceId}`)
+      .put(`/countries/${countryId}`)
       .set("Authorization", `Bearer ${staffToken}`)
       .send({
-        name: "taxess",
-        description: "this is taxess service category",
+        name: "Kenya",
+        iso: "KEN",
+        flagUrl: "kenya.com",
+        code: "233",
+        currency: "KEN",
       });
     expect(res.statusCode).toBe(200);
-    expect(res.body).toBe("Service category updated successfully");
+    expect(res.body.message).toBe("Country updated successfully");
   });
 
   it("should return 400 ", async () => {
     const res = await request(app)
-      .put("/services/dbc5b4f4-5b81-46f6-a1b4-2bea6646a45c")
+      .put("/countries/dbc5b4f4-5b81-46f6-a1b4-2bea6646a45c")
       .set("Authorization", `Bearer ${staffToken}`)
       .send({
-        name: "taxess",
-        description: "this is taxess service category",
+        name: "Test",
+        iso: "TEST",
+        flagUrl: "test.com",
+        code: "234",
+        currency: "TEST",
       });
 
     expect(res.statusCode).toBe(400);

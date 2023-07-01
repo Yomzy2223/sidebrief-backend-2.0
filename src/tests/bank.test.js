@@ -10,7 +10,7 @@ describe("Testing all bank endpoints", () => {
   beforeAll(async () => {
     await prisma.bank.delete({
       where: {
-        bankName: "test",
+        name: "test",
       },
     });
 
@@ -52,13 +52,13 @@ describe("Testing all bank endpoints", () => {
     expect(res.body.data.name).toBe("test");
   });
 
-  it("should return all bank", async () => {
+  it("should return all banks", async () => {
     const res = await request(app).get("/banks");
     expect(res.statusCode).toBe(200);
     expect(res.body.data.length).toBeGreaterThan(0);
   });
 
-  const bankId = "87c0f77d-1cbc-4583-8edf-355987d20871";
+  const bankId = "bd8b1a56-d3a8-4716-a763-3ebe135715c7";
   it("should return a 200", async () => {
     const res = await request(app)
       .get(`/banks/${bankId}`)
@@ -76,7 +76,7 @@ describe("Testing all bank endpoints", () => {
 
   it("should update a bank", async () => {
     const res = await request(app)
-      .put("/banks/87c0f77d-1cbc-4583-8edf-355987d20871")
+      .put(`/banks/${bankId}`)
       .set("Authorization", `Bearer ${staffToken}`)
       .send({
         name: "Sterling Bank",
