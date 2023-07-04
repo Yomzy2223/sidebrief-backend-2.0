@@ -1860,3 +1860,15 @@ info: Label: 01-Jul-2023 23:58:39: Test Test created an account successfully wit
 info: Label: 01-Jul-2023 23:58:41: User with akinyemibamidele2@gmail.com signed in successfully.
 info: Label: 01-Jul-2023 23:58:51: Test Test created an account successfully with test@gmail.com.
 info: Label: 01-Jul-2023 23:58:53: staff with akinyemi@sidebrief.com signed in successfully.
+error: Label: 04-Jul-2023 20:17:10: error occured while fetching staff with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:133:38
+
+  130 //   //return the staff to the staff controller
+  131 
+  132 try {
+→ 133   const staff = await prisma.staff.findUnique(
+Can't reach database server at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`.
+info: Label: 04-Jul-2023 20:54:01: Testing the server
