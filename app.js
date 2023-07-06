@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
   res.send("testing");
   logger.info({ message: "Testing the server" });
 });
-
+console.log("checking env", process.env.NODE_ENV);
 //connect to database
 // connectDb();
 app.use(
@@ -35,8 +35,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true }, // THIS WON'T WORK WITHOUT HTTPS
-    // store: new PrismaStore({ prismaConnection: prisma.connection })
+    cookie: { secure: true },
   })
 );
 
