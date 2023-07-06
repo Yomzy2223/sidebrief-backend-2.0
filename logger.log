@@ -1872,3 +1872,503 @@ Can't reach database server at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.ama
 
 Please make sure your database server is running at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`.
 info: Label: 04-Jul-2023 20:54:01: Testing the server
+error: Label: 05-Jul-2023 14:31:04: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'Kelvin',
+            lastName: 'Zuks',
+            username: undefined,
+            email: 'kelvinzuks@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtcPLZ8ex8n3GT_xla1IR_4xqBOcH0Yfz1sjIf9452Iu=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:32:25: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: undefined,
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:33:06: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: undefined,
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:36:20: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: undefined,
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:37:06: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: undefined,
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:37:40: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:38:14: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:39:36: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: 0,
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:40:45: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '00000000',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:46:36: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:495:39
+
+  492   picture: profile.photos[0].value,
+  493 };
+  494 console.log("values", values);
+→ 495 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '$2a$12$F0FYsqAuE84hW6TrPjiweuEi5mizvy6F/p7HWjSf7mLrcwZoZYZL6',
+            phone: '00000000',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+info: Label: 05-Jul-2023 14:48:18: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:01:58: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:18:04: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:46:04: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:47:40: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:51:42: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 16:00:58: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 06-Jul-2023 10:27:14: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 06-Jul-2023 10:27:37: User with akindanemmy2161@gmail.com signed in successfully.
+info: Label: 06-Jul-2023 10:28:35: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.

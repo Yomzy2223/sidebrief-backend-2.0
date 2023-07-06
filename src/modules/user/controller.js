@@ -1,8 +1,4 @@
-const {
-  validateUser,
-  validateUserCredentials,
-  validateResetCredentials,
-} = require("../../utils/validation");
+const { validateResetCredentials } = require("../../utils/validation");
 const {
   saveUser,
   getUser,
@@ -158,29 +154,12 @@ exports.UserProfileModifier = async (req, res) => {
   const id = req.params.id;
   const updatePayload = req.body;
 
-  isValidUser = await validateResetCredentials(updatePayload);
-  if (isValidUser === true) {
-    const userUpdate = await updateProfile(updatePayload, id);
+  const userUpdate = await updateProfile(updatePayload, id);
 
-    if (userUpdate.error) {
-      return res
-        .status(userUpdate.statusCode)
-        .json({ error: userUpdate.error });
-    }
-    return res
-      .status(userUpdate.statusCode)
-      .json({ message: userUpdate.message });
+  if (userUpdate.error) {
+    return res.status(userUpdate.statusCode).json({ error: userUpdate.error });
   }
-
-  return res.status(400).json({ error: isValidUser[0].message });
-};
-
-//sign in with google
-exports.SuccessfulGmail = async (req, res) => {
-  // const { failure, success } = await signUpWithGoogle(userProfile);
-  // if (failure)
-  //   return res.status(400).json({ error: "Google user already exist in DB." });
-  // return res.status(200).json({ message: "success", user: userProfile });
-  let name = req.user.displayName;
-  res.send("hello", name);
+  return res
+    .status(userUpdate.statusCode)
+    .json({ message: userUpdate.message });
 };

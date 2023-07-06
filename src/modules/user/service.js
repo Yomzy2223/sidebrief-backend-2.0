@@ -463,30 +463,55 @@ const updateProfile = async (updatePayload, id) => {
 };
 
 // IN PROGRESS
-// sign in with google
-const signInWithGoogle = async (oauthUser) => {
+// auth with google
+const authWithGoogle = async (profile) => {
   try {
-    const isUserExists = await prisma.user.findUnique({
-      where: {
-        email: oauthUser.emails[0].value,
-      },
+    let user = await prisma.user.findUnique({
+      where: { email: profile.emails[0].value.toLowerCase() },
     });
-    if (isUserExists !== null) {
-      return { error: "User already exists", statusCode: 400 };
+    if (user !== null) {
+      console.log("console.log User already exi");
+
+      // if user exists
+
+      const userSecret = process.env.TOKEN_USER_SECRET;
+      const token = generateToken({ id: user.id }, userSecret, "14d");
+      logger.info({
+        message: `User with ${user.email} signed in successfully.`,
+      });
+
+      return {
+        message: "Login successfully",
+        data: {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          username: user.username,
+          email: user.email,
+          token: token,
+          phone: user.phone,
+          picture: user.picture,
+          verified: user.verified,
+          referral: user.referral,
+        },
+      };
     }
 
+    const cryptedPassword = await hasher(process.env.GOOGLE_USER_PASSWORD, 12);
+
     const values = {
-      firstName: userPayload.firstName,
-      lastName: userPayload.lastName,
-      username: userPayload.username,
-      email: userPayload.email.toLowerCase(),
+      firstName: profile.name.givenName,
+      lastName: profile.name.familyName,
+      username: profile.name.familyName,
+      email: profile.emails[0].value.toLowerCase(),
       password: cryptedPassword,
-      phone: userPayload.phone,
+      phone: "00000000",
       verified: false,
-      referral: "",
+      referral: profile.provider,
+      picture: profile.photos[0].value,
     };
 
-    const newUser = await prisma.user.create({ data: { values } });
+    const newUser = await prisma.user.create({ data: values });
     if (!newUser) {
       return { error: "Error occured while creating user", statusCode: 400 };
     }
@@ -502,11 +527,11 @@ const signInWithGoogle = async (oauthUser) => {
     //send user email
     const subject = "Welcome to Sidebrief.";
     payload = {
-      name: userPayload.firstName,
+      name: newUser.firstName,
       url: url,
     };
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
-    const recipientEmail = userPayload.email;
+    const recipientEmail = newUser.email;
     EmailSender(
       subject,
       payload,
@@ -516,7 +541,7 @@ const signInWithGoogle = async (oauthUser) => {
     );
 
     logger.info({
-      message: `${oauthUser.displayName} created an account successfully with ${oauthUser.emails[0].value}.`,
+      message: `${newUser.firstName} created an account successfully with ${newUser.email}.`,
     });
 
     return {
@@ -546,52 +571,6 @@ const signInWithGoogle = async (oauthUser) => {
   }
 };
 
-//sign up with google
-const signUpWithGoogle = async (oauthUser) => {
-  try {
-    const user = await prisma.user.findUnique({
-      where: { email: oauthUser.emails[0].value },
-    });
-
-    if (user === null) {
-      return {
-        error: "User not found!.",
-        statusCode: 400,
-      };
-    }
-
-    const userSecret = process.env.TOKEN_USER_SECRET;
-    const token = generateToken({ id: user.id }, userSecret, "14d");
-    logger.info({
-      message: `User with ${loginPayload.email} signed in successfully.`,
-    });
-
-    return {
-      message: "Login successfully",
-      data: {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        username: user.username,
-        email: user.email,
-        token: token,
-        phone: user.phone,
-        picture: user.picture,
-        verified: user.verified,
-        referral: user.referral,
-      },
-    };
-  } catch (error) {
-    logger.error({
-      message: `error occured while logging user into the system with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
-  }
-};
-
 module.exports = {
   saveUser,
   getUser,
@@ -602,6 +581,5 @@ module.exports = {
   changePassword,
   updateProfile,
   deleteUser,
-  signInWithGoogle,
-  signUpWithGoogle,
+  authWithGoogle,
 };

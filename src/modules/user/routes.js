@@ -9,7 +9,6 @@ const {
   UserPasswordReset,
   UserProfileModifier,
   UserRemover,
-  SuccessfulGmail,
 } = require("./controller");
 const validator = require("../../middleware/validator");
 const {
@@ -20,6 +19,7 @@ const {
 } = require("../../utils/validation");
 const router = express.Router();
 const passport = require("passport");
+const { staffAuth, userAuth } = require("../../middleware/auth");
 // OAuth routes
 router.get(
   "/auth/google",
@@ -28,15 +28,12 @@ router.get(
 
 router.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  passport.authenticate("google", { failureRedirect: "/auth" }),
   (req, res) => {
     // Redirect or perform any additional logic after successful authentication
-    console.log("cccchhecdcc");
-    res.redirect("/success");
+    res.status(200).json({ data: req.user });
   }
 );
-
-router.get("/success", SuccessfulGmail);
 
 router.post("/", validator(validateUser), UserRegisration);
 router.post("/login", validator(validateUserCredentials), UserGrantor);
@@ -51,9 +48,10 @@ router.post(
 );
 router.put(
   "/:id",
+  userAuth,
   validator(validateUserUpdateCredentials),
   UserProfileModifier
 );
-router.delete("/:id", UserRemover);
+router.delete("/:id", staffAuth, UserRemover);
 
 module.exports = router;
