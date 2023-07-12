@@ -13,8 +13,14 @@ exports.CreateCountry = async (req, res) => {
   // return response to the client
 
   const countryPayload = req.body;
-
-  const country = await saveCountry(countryPayload);
+  const values = {
+    name: countryPayload.name.toLowerCase(),
+    iso: countryPayload.iso,
+    flagUrl: countryPayload.flagUrl,
+    code: countryPayload.code,
+    currency: countryPayload.currency,
+  };
+  const country = await saveCountry(values);
 
   if (country.error) {
     return res.status(country.statusCode).json({ error: country.error });
@@ -69,7 +75,14 @@ exports.UpdateCountry = async (req, res) => {
 
   const id = req.params.id;
   const countryPayload = req.body;
-  const country = await updateCountry(id, countryPayload);
+  const values = {
+    name: countryPayload.name.toLowerCase(),
+    iso: countryPayload.iso,
+    flagUrl: countryPayload.flagUrl,
+    code: countryPayload.code,
+    currency: countryPayload.currency,
+  };
+  const country = await updateCountry(id, values);
 
   if (country.error) {
     return res.status(country.statusCode).json({ error: country.error });

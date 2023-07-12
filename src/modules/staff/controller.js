@@ -1,3 +1,4 @@
+const { hasher } = require("../../common/hash");
 const {
   getStaff,
   loginStaff,
@@ -15,7 +16,18 @@ const {
 exports.StaffRegisration = async (req, res) => {
   const staffPayload = req.body;
 
-  const staff = await saveStaff(staffPayload);
+  const cryptedPassword = await hasher(staffPayload.password, 12);
+
+  const values = {
+    firstName: staffPayload.firstName,
+    lastName: staffPayload.lastName,
+    email: staffPayload.email.toLowerCase(),
+    password: cryptedPassword,
+    phone: staffPayload.phone,
+    verified: false,
+  };
+
+  const staff = await saveStaff(values);
   if (staff.error) {
     return res.status(staff.statusCode).json({ error: staff.error });
   }

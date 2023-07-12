@@ -1,3 +1,4 @@
+const { hasher } = require("../../common/hash");
 const { validateResetCredentials } = require("../../utils/validation");
 const {
   saveUser,
@@ -14,8 +15,19 @@ const {
 
 exports.UserRegisration = async (req, res) => {
   const userPayload = req.body;
+  const cryptedPassword = await hasher(userPayload.password, 12);
+  const values = {
+    firstName: userPayload.firstName,
+    lastName: userPayload.lastName,
+    username: userPayload.username,
+    email: userPayload.email.toLowerCase(),
+    password: cryptedPassword,
+    phone: userPayload.phone,
+    verified: false,
+    referral: userPayload.referral,
+  };
 
-  const user = await saveUser(userPayload);
+  const user = await saveUser(values);
 
   if (user.error) {
     return res.status(user.statusCode).json({ error: user.error });

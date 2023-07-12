@@ -14,7 +14,11 @@ exports.ServiceCategoryCreator = async (req, res) => {
   // return response to the client
 
   const serviceCategoryPayload = req.body;
-  const category = await saveServiceCategory(serviceCategoryPayload);
+  const values = {
+    name: serviceCategoryPayload.name.toLowerCase(),
+    description: serviceCategoryPayload.description,
+  };
+  const category = await saveServiceCategory(values);
 
   if (category.error) {
     return res.status(category.statusCode).json({ error: category.error });
@@ -29,10 +33,8 @@ exports.ServiceCategoriesFetcher = async (req, res) => {
   // return response to the client
 
   const categories = await getAllServiceCategory();
-  if (categories === null) {
-    return res
-      .status(500)
-      .json({ error: "Error occured while getting all service categories." });
+  if (categories.error) {
+    return res.status(categories.statusCode).json({ error: categories.error });
   }
 
   return res.status(categories.statusCode).json(categories);
@@ -67,7 +69,11 @@ exports.ServiceCategoryModifier = async (req, res) => {
 
   const id = req.params.id;
   const serviceCategoryPayload = req.body;
-  const category = await updateServiceCategory(id, serviceCategoryPayload);
+  const values = {
+    name: serviceCategoryPayload.name,
+    description: serviceCategoryPayload.description,
+  };
+  const category = await updateServiceCategory(id, values);
 
   if (category.error) {
     return res.status(category.statusCode).json({ error: category.error });

@@ -8,20 +8,17 @@ const saveServiceCategory = async (serviceCategoryPayload) => {
 
   try {
     const checkService = await prisma.serviceCategory.findUnique({
-      where: { name: serviceCategoryPayload.name.toLowerCase() },
+      where: { name: serviceCategoryPayload.name },
     });
-    if (checkService !== null) {
+    if (checkService) {
       return {
         error: "Service with this name already exists",
         statusCode: 400,
       };
     }
-
-    const values = {
-      name: serviceCategoryPayload.name.toLowerCase(),
-      description: serviceCategoryPayload.description,
-    };
-    const category = await prisma.serviceCategory.create({ data: values });
+    const category = await prisma.serviceCategory.create({
+      data: serviceCategoryPayload,
+    });
     if (!category) {
       return {
         error: "Error occured while creating this service category",
@@ -54,6 +51,13 @@ const getAllServiceCategory = async () => {
   //  return the service category list to the service category controller
   try {
     const category = await prisma.serviceCategory.findMany({});
+    if (!category) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
     return {
       message: "Service category fetched successfully",
       data: category,
@@ -82,7 +86,7 @@ const getServiceCategory = async (id) => {
         id: id,
       },
     });
-    if (category === null) {
+    if (!category) {
       return {
         error: "Service category not found!.",
         statusCode: 400,
@@ -112,17 +116,12 @@ const updateServiceCategory = async (id, serviceCategoryPayload) => {
   //  return the service category to the service category controller
 
   try {
-    const values = {
-      name: serviceCategoryPayload.name,
-      description: serviceCategoryPayload.description,
-    };
-
     const category = await prisma.serviceCategory.findUnique({
       where: {
         id: id,
       },
     });
-    if (category === null) {
+    if (!category) {
       return {
         error: "Service Category not found!.",
         statusCode: 400,
@@ -133,7 +132,7 @@ const updateServiceCategory = async (id, serviceCategoryPayload) => {
       where: {
         id: id,
       },
-      data: values,
+      data: serviceCategoryPayload,
     });
 
     if (!updateCategory) {

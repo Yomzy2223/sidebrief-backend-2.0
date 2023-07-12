@@ -2374,3 +2374,130 @@ info: Label: 06-Jul-2023 10:27:37: User with akindanemmy2161@gmail.com signed in
 info: Label: 06-Jul-2023 10:28:35: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
 info: Label: 06-Jul-2023 10:40:38: Bamidele created an account successfully with akinyemi@sidebrief.com.
 info: Label: 06-Jul-2023 10:59:20: User with akinyemi@sidebrief.com signed in successfully.
+error: Label: 06-Jul-2023 13:03:32: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:22:49: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:23:51: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:23:53: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:31:18: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:31:34: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Database `sidebrief` does not exist on the database server at `localhost:5432`.
+error: Label: 06-Jul-2023 13:32:11: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Database `sidebrief` does not exist on the database server at `localhost:5432`.
+error: Label: 12-Jul-2023 22:55:02: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:20:36
+
+  17     statusCode: 400,
+  18   };
+  19 }
+→ 20 const bank = await prisma.bank.create({
+       name: 'gt bank',
+       ~~~~
+       code: '23335',
+       ~~~~
+       url: 'first.com',
+       ~~~
+       image: 'cloudinary.com',
+       ~~~~~
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `name` in name for type Bank. Did you mean `data`?
+Unknown arg `code` in code for type Bank. Did you mean `data`?
+Unknown arg `url` in url for type Bank.
+Unknown arg `image` in image for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+error: Label: 12-Jul-2023 22:55:39: error occured while creating a bank with error TypeError: Found non-callable @@iterator
+error: Label: 12-Jul-2023 22:57:05: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:20:36
+
+  17     statusCode: 400,
+  18   };
+  19 }
+→ 20 const bank = await prisma.bank.create({
+       detail: {
+       ~~~~~~
+         name: 'gt bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `detail` in detail for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+info: Label: 12-Jul-2023 22:57:29: gt bank created successfully
+info: Label: 12-Jul-2023 23:59:43: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+info: Label: 13-Jul-2023 00:00:24: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.

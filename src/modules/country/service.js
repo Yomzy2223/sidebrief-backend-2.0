@@ -8,24 +8,16 @@ const saveCountry = async (countryPayload) => {
 
   try {
     const checkCountry = await prisma.country.findUnique({
-      where: { name: countryPayload.name.toLowerCase() },
+      where: { name: countryPayload.name },
     });
-    if (checkCountry !== null) {
+    if (!checkCountry) {
       return {
         error: "Country with this name already exists",
         statusCode: 400,
       };
     }
 
-    const values = {
-      name: countryPayload.name.toLowerCase(),
-      iso: countryPayload.iso,
-      flagUrl: countryPayload.flagUrl,
-      code: countryPayload.code,
-      currency: countryPayload.currency,
-    };
-
-    const country = await prisma.country.create({ data: values });
+    const country = await prisma.country.create({ data: countryPayload });
 
     if (!country) {
       return { error: "Error occured while creating country", statusCode: 400 };
@@ -43,8 +35,6 @@ const saveCountry = async (countryPayload) => {
     logger.error({
       message: `error occured while creating a country with error ${error}`,
     });
-    console.log(error);
-    country;
     return {
       error: "Error occurred!.",
       statusCode: 500,
@@ -58,7 +48,7 @@ const getAllCountries = async () => {
   //  return the country list to the country controller
   try {
     const countries = await prisma.country.findMany({});
-    if (countries === null) {
+    if (!countries) {
       return {
         message: "Empty Data",
         statusCode: 200,
@@ -92,7 +82,7 @@ const getCountry = async (id) => {
         id: id,
       },
     });
-    if (country === null) {
+    if (!country) {
       return {
         error: "Country not found!.",
         statusCode: 400,
@@ -122,20 +112,12 @@ const updateCountry = async (id, countryPayload) => {
   //  return the country to the country controller
 
   try {
-    const values = {
-      name: countryPayload.name.toLowerCase(),
-      iso: countryPayload.iso,
-      flagUrl: countryPayload.flagUrl,
-      code: countryPayload.code,
-      currency: countryPayload.currency,
-    };
-
     const country = await prisma.country.findUnique({
       where: {
         id: id,
       },
     });
-    if (country === null) {
+    if (!country) {
       return {
         error: "Country not found!.",
         statusCode: 400,
@@ -146,7 +128,7 @@ const updateCountry = async (id, countryPayload) => {
       where: {
         id: id,
       },
-      data: values,
+      data: countryPayload,
     });
 
     if (!updateCountry) {

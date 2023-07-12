@@ -11,24 +11,14 @@ const prisma = new PrismaClient();
 const saveStaff = async (staffPayload) => {
   try {
     const checkStaff = await prisma.staff.findUnique({
-      where: { email: staffPayload.email.toLowerCase() },
+      where: { email: staffPayload.email },
     });
 
-    if (checkStaff !== null) {
+    if (checkStaff) {
       return { error: "staff with this email already exists", statusCode: 400 };
     }
 
-    const cryptedPassword = await hasher(staffPayload.password, 12);
-
-    const values = {
-      firstName: staffPayload.firstName,
-      lastName: staffPayload.lastName,
-      email: staffPayload.email.toLowerCase(),
-      password: cryptedPassword,
-      phone: staffPayload.phone,
-      verified: false,
-    };
-    const staff = await prisma.staff.create({ data: values });
+    const staff = await prisma.staff.create({ data: staffPayload });
 
     if (!staff) {
       return { error: "Error occured while creating staff", statusCode: 400 };
@@ -94,7 +84,7 @@ const getStaff = async (id) => {
 
   try {
     const staff = await prisma.staff.findUnique({ where: { id: id } });
-    if (staff === null) {
+    if (!staff) {
       return {
         error: "staff not found!.",
         statusCode: 400,
@@ -134,7 +124,7 @@ const loginStaff = async (loginPayload) => {
       where: { email: loginPayload.email },
     });
 
-    if (staff === null) {
+    if (!staff) {
       return {
         error: "staff not found!.",
         statusCode: 400,
@@ -199,7 +189,7 @@ const verifyStaffAccount = async (verifyPayload) => {
       where: { id: staff.id },
     });
 
-    if (checkStaff === null) {
+    if (!checkStaff) {
       return {
         error: "Staff not found.",
         statusCode: 400,
@@ -245,7 +235,7 @@ const forgotPassword = async (resetPayload) => {
       where: { email: resetPayload.email },
     });
 
-    if (staff === null) {
+    if (!staff) {
       return {
         error: "staff not found!.",
         statusCode: 400,
@@ -314,7 +304,7 @@ const changePassword = async (changePayload) => {
       where: { email: changePayload.email },
     });
 
-    if (staff === null) {
+    if (!staff) {
       return {
         error: "staff not found!.",
         statusCode: 400,
@@ -356,7 +346,7 @@ const changePassword = async (changePayload) => {
 const deleteStaff = async (id) => {
   try {
     const staff = await prisma.staff.findUnique({ where: { id: id } });
-    if (staff === null) {
+    if (!staff) {
       return {
         error: "Staff not found",
         statusCode: 400,

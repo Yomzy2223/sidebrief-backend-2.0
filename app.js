@@ -15,6 +15,7 @@ const options = require("./src/config/swagger");
 const session = require("express-session");
 
 const passport = require("passport");
+// const ErrorHandler = require("./src/middleware/errorHandler");
 
 require("./src/modules/user/googleAuth")(passport);
 
@@ -63,4 +64,5 @@ app.use(
   swaggerUi.setup(specs, { explorer: true })
 );
 
+// app.use(ErrorHandler);
 module.exports = app;

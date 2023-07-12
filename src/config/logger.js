@@ -6,18 +6,6 @@ const developmentLogConfiguration = {
     new winston.transports.File({
       filename: "./logger.log",
     }),
-    // new WinstonCloudwatch({
-    //   logGroupName: process.env.CLOUDWATCH_GROUP_NAME,
-    //   logStreamName: process.env.CLOUDWATCH_STREAM_NAME,
-    //   awsRegion: process.env.CLOUDWATCH_AWS_REGION,
-    //   awsOptions: {
-    //     credentials: {
-    //       accessKeyId: process.env.AWS_ACCESS_KEY,
-    //       secretAccessKey: process.env.AWS_KEY_SECRET,
-    //     },
-    //     region: process.env.CLOUDWATCH_AWS_REGION,
-    //   },
-    // }),
   ],
   format: winston.format.combine(
     winston.format.label({
@@ -35,9 +23,6 @@ const developmentLogConfiguration = {
 
 const productionLogConfiguration = {
   transports: [
-    // new winston.transports.File({
-    //   filename: "./logger.log",
-    // }),
     new WinstonCloudwatch({
       logGroupName: process.env.CLOUDWATCH_GROUP_NAME,
       logStreamName: process.env.CLOUDWATCH_STREAM_NAME,
@@ -71,3 +56,5 @@ const logger =
     : winston.createLogger(productionLogConfiguration);
 
 module.exports = logger;
+
+//the server should be able to know different evironments

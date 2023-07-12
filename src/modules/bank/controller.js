@@ -15,7 +15,14 @@ exports.CreateBank = async (req, res) => {
 
   const bankPayload = req.body;
 
-  const bank = await saveBank(bankPayload);
+  const values = {
+    name: bankPayload.name.toLowerCase(),
+    code: bankPayload.code,
+    url: bankPayload.url,
+    image: bankPayload.image,
+  };
+
+  const bank = await saveBank(values);
 
   if (bank.error) {
     return res.status(bank.statusCode).json({ error: bank.error });
@@ -72,7 +79,15 @@ exports.UpdateBank = async (req, res) => {
 
   const id = req.params.id;
   const bankPayload = req.body;
-  const bank = await updateBank(id, bankPayload);
+
+  const values = {
+    name: bankPayload.name.toLowerCase(),
+    code: bankPayload.code,
+    url: bankPayload.url,
+    image: bankPayload.image,
+  };
+
+  const bank = await updateBank(id, values);
 
   if (bank.error) {
     return res.status(bank.statusCode).json({ error: bank.error });

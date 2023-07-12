@@ -11,25 +11,13 @@ const prisma = new PrismaClient();
 const saveUser = async (userPayload) => {
   try {
     const checkUser = await prisma.user.findUnique({
-      where: { email: userPayload.email.toLowerCase() },
+      where: { email: userPayload.email },
     });
-    if (checkUser !== null) {
+    if (checkUser) {
       return { error: "User with this email already exists", statusCode: 400 };
     }
 
-    const cryptedPassword = await hasher(userPayload.password, 12);
-
-    const values = {
-      firstName: userPayload.firstName,
-      lastName: userPayload.lastName,
-      username: userPayload.username,
-      email: userPayload.email.toLowerCase(),
-      password: cryptedPassword,
-      phone: userPayload.phone,
-      verified: false,
-      referral: userPayload.referral,
-    };
-    const user = await prisma.user.create({ data: values });
+    const user = await prisma.user.create({ data: userPayload });
 
     if (!user) {
       return { error: "Error occured while creating user", statusCode: 400 };
@@ -97,7 +85,7 @@ const getUser = async (id) => {
 
   try {
     const user = await prisma.user.findUnique({ where: { id: id } });
-    if (user === null) {
+    if (!user) {
       return {
         error: "User not found!.",
         statusCode: 400,
@@ -136,7 +124,7 @@ const getAllUsers = async () => {
   try {
     const users = await prisma.user.findMany();
 
-    if (users === null) {
+    if (!users) {
       return {
         error: "Users not found!.",
         statusCode: 400,
@@ -170,7 +158,7 @@ const loginUser = async (loginPayload) => {
       where: { email: loginPayload.email },
     });
 
-    if (user === null) {
+    if (!user) {
       return {
         error: "User not found!.",
         statusCode: 400,
@@ -233,7 +221,7 @@ const verifyAccount = async (verifyPayload) => {
       };
     }
     const checkUser = await prisma.user.findUnique({ where: { id: user.id } });
-    if (checkUser === null) {
+    if (!checkUser) {
       return {
         error: "User not found.",
         statusCode: 400,
@@ -279,7 +267,7 @@ const forgotPassword = async (resetPayload) => {
       where: { email: resetPayload.email },
     });
 
-    if (user === null) {
+    if (!user) {
       return {
         error: "user not found!.",
         statusCode: 400,
@@ -348,7 +336,7 @@ const changePassword = async (changePayload) => {
       where: { email: changePayload.email },
     });
 
-    if (user === null) {
+    if (!user) {
       return {
         error: "User not found!.",
         statusCode: 400,
@@ -390,7 +378,7 @@ const changePassword = async (changePayload) => {
 const deleteUser = async (id) => {
   try {
     const user = await prisma.user.findUnique({ where: { id: id } });
-    if (user === null) {
+    if (!user) {
       return {
         error: "User not found",
         statusCode: 400,
@@ -428,7 +416,7 @@ const deleteUser = async (id) => {
 const updateProfile = async (updatePayload, id) => {
   try {
     const user = await prisma.user.findUnique({ where: { id: id } });
-    if (user === null) {
+    if (!user) {
       return {
         error: "User not found",
         statusCode: 400,
@@ -466,37 +454,6 @@ const updateProfile = async (updatePayload, id) => {
 // auth with google
 const authWithGoogle = async (profile) => {
   try {
-    let user = await prisma.user.findUnique({
-      where: { email: profile.emails[0].value.toLowerCase() },
-    });
-    if (user !== null) {
-      console.log("console.log User already exi");
-
-      // if user exists
-
-      const userSecret = process.env.TOKEN_USER_SECRET;
-      const token = generateToken({ id: user.id }, userSecret, "14d");
-      logger.info({
-        message: `User with ${user.email} signed in successfully.`,
-      });
-
-      return {
-        message: "Login successfully",
-        data: {
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          username: user.username,
-          email: user.email,
-          token: token,
-          phone: user.phone,
-          picture: user.picture,
-          verified: user.verified,
-          referral: user.referral,
-        },
-      };
-    }
-
     const cryptedPassword = await hasher(process.env.GOOGLE_USER_PASSWORD, 12);
 
     const values = {
@@ -571,6 +528,40 @@ const authWithGoogle = async (profile) => {
   }
 };
 
+const authLogin = async () => {
+  let user = await prisma.user.findUnique({
+    where: { email: profile.emails[0].value.toLowerCase() },
+  });
+  if (!user) {
+    return {
+      message: "User not found",
+    };
+  }
+  // if user exists
+
+  const userSecret = process.env.TOKEN_USER_SECRET;
+  const token = generateToken({ id: user.id }, userSecret, "14d");
+  logger.info({
+    message: `User with ${user.email} signed in successfully.`,
+  });
+
+  return {
+    message: "Login successfully",
+    data: {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      username: user.username,
+      email: user.email,
+      token: token,
+      phone: user.phone,
+      picture: user.picture,
+      verified: user.verified,
+      referral: user.referral,
+    },
+  };
+};
+
 module.exports = {
   saveUser,
   getUser,
@@ -582,4 +573,5 @@ module.exports = {
   updateProfile,
   deleteUser,
   authWithGoogle,
+  authLogin,
 };

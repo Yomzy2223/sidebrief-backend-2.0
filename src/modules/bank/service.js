@@ -8,22 +8,16 @@ const saveBank = async (bankPayload) => {
 
   try {
     const checkBank = await prisma.bank.findUnique({
-      where: { name: bankPayload.name.toLowerCase() },
+      where: { name: bankPayload.name },
     });
-    if (checkBank !== null) {
+    console.log("sdfsf", checkBank);
+    if (checkBank) {
       return {
         error: "Bank with this name already exists",
         statusCode: 400,
       };
     }
-
-    const values = {
-      name: bankPayload.name.toLowerCase(),
-      code: bankPayload.code,
-      url: bankPayload.url,
-      image: bankPayload.image,
-    };
-    const bank = await prisma.bank.create({ data: values });
+    const bank = await prisma.bank.create({ data: bankPayload });
 
     if (!bank) {
       return { error: "Error occured while creating bank", statusCode: 400 };
@@ -53,7 +47,7 @@ const getAllBanks = async () => {
   //  return the bank list to the bank controller
   try {
     const banks = await prisma.bank.findMany({});
-    if (banks === null) {
+    if (!banks) {
       return {
         message: "Empty Data",
         statusCode: 200,
@@ -87,7 +81,7 @@ const getBank = async (id) => {
         id: id,
       },
     });
-    if (bank === null) {
+    if (!bank) {
       return {
         error: "Bank not found!.",
         statusCode: 400,
@@ -111,25 +105,18 @@ const getBank = async (id) => {
 
 //update a bank service
 const updateBank = async (id, bankPayload) => {
-  // take both id and bank payload from the bank controller
+  // take both id and validated bank payload from the bank controller
   //  check if the bank exists
   //  update the bank
   //  return the bank to the bank controller
 
   try {
-    const values = {
-      name: bankPayload.name.toLowerCase(),
-      code: bankPayload.code,
-      url: bankPayload.url,
-      image: bankPayload.image,
-    };
-
     const bank = await prisma.bank.findUnique({
       where: {
         id: id,
       },
     });
-    if (bank === null) {
+    if (!bank) {
       return {
         error: "Bank not found!.",
         statusCode: 400,
@@ -140,7 +127,7 @@ const updateBank = async (id, bankPayload) => {
       where: {
         id: id,
       },
-      data: values,
+      data: bankPayload,
     });
 
     if (!updateBank) {
@@ -205,4 +192,5 @@ module.exports = {
   getBank,
   updateBank,
   removeBank,
+  // checkIfBankExists
 };

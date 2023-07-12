@@ -11,28 +11,19 @@ const prisma = new PrismaClient();
 const saveCollaborator = async (collaboratorPayload) => {
   try {
     const checkCollaborator = await prisma.collaborator.findUnique({
-      where: { email: collaboratorPayload.email.toLowerCase() },
+      where: { email: collaboratorPayload.email },
     });
 
-    if (checkCollaborator !== null) {
+    if (checkCollaborator) {
       return {
         error: "collaborator with this email already exists",
         statusCode: 400,
       };
     }
 
-    const cryptedPassword = await hasher(collaboratorPayload.password, 12);
-
-    const values = {
-      firstName: collaboratorPayload.firstName,
-      lastName: collaboratorPayload.lastName,
-      email: collaboratorPayload.email.toLowerCase(),
-      password: cryptedPassword,
-      phone: collaboratorPayload.phone,
-      verified: false,
-      isPartner: collaboratorPayload.isPartner,
-    };
-    const collaborator = await prisma.collaborator.create({ data: values });
+    const collaborator = await prisma.collaborator.create({
+      data: collaboratorPayload,
+    });
 
     if (!collaborator) {
       return {
@@ -105,7 +96,7 @@ const getCollaborator = async (id) => {
     const collaborator = await prisma.collaborator.findUnique({
       where: { id: id },
     });
-    if (collaborator === null) {
+    if (!collaborator) {
       return {
         error: "collaborator not found!.",
         statusCode: 400,
@@ -145,7 +136,7 @@ const loginCollaborator = async (collaboratorPayload) => {
       where: { email: collaboratorPayload.email },
     });
 
-    if (collaborator === null) {
+    if (!collaborator) {
       return {
         error: "collaborator not found!.",
         statusCode: 400,
@@ -218,7 +209,7 @@ const verifyCollaboratorAccount = async (collaboratorPayload) => {
       where: { id: collaborator.id },
     });
 
-    if (checkCollaborator === null) {
+    if (!checkCollaborator) {
       return {
         error: "Collaborator not found.",
         statusCode: 400,
@@ -264,7 +255,7 @@ const forgotPassword = async (resetPayload) => {
       where: { email: resetPayload.email },
     });
 
-    if (collaborator === null) {
+    if (!collaborator) {
       return {
         error: "collaborator not found!.",
         statusCode: 400,
@@ -337,7 +328,7 @@ const changePassword = async (changePayload) => {
       where: { email: changePayload.email },
     });
 
-    if (collaborator === null) {
+    if (!collaborator) {
       return {
         error: "collaborator not found!.",
         statusCode: 400,
@@ -382,7 +373,7 @@ const changePassword = async (changePayload) => {
 const updateProfile = async (updatePayload, id) => {
   try {
     const collaborator = await prisma.user.findUnique({ where: { id: id } });
-    if (collaborator === null) {
+    if (!collaborator) {
       return {
         error: "Collaborator not found",
         statusCode: 400,
@@ -422,13 +413,12 @@ const deleteCollaborator = async (id) => {
     const collaborator = await prisma.collaborator.findUnique({
       where: { id: id },
     });
-    if (collaborator === null) {
+    if (!collaborator) {
       return {
         error: "Collaborator not found",
         statusCode: 400,
       };
     }
-    console.log(collaborator);
     const deleteCollaborator = await prisma.collaborator.delete({
       where: { id: collaborator.id },
     });
@@ -461,24 +451,19 @@ const saveDocument = async (documentPayload, id) => {
   //   //add the new document to the table
 
   try {
-    const values = {
-      name: documentPayload.name,
-      type: documentPayload.type,
-      description: documentPayload.description,
-      collaboratorId: id,
-    };
-
     const collaborator = await prisma.collaborator.findUnique({
       where: { id: id },
     });
-    if (collaborator === null) {
+    if (!collaborator) {
       return {
         error: "collaborator not found!.",
         statusCode: 400,
       };
     }
 
-    const document = await prisma.collaboratorDocument.create({ data: values });
+    const document = await prisma.collaboratorDocument.create({
+      data: documentPayload,
+    });
 
     if (!document) {
       return {
@@ -516,7 +501,7 @@ const getDocumentByCollaboratorId = async (id) => {
     const collaborator = await prisma.collaborator.findUnique({
       where: { id: id },
     });
-    if (collaborator === null) {
+    if (!collaborator) {
       return {
         error: "collaborator not found!.",
         statusCode: 400,
@@ -524,7 +509,7 @@ const getDocumentByCollaboratorId = async (id) => {
     }
     const documents = await prisma.collaboratorDocument.findMany();
 
-    if (documents === null) {
+    if (!documents) {
       return {
         error: "Documents not found!.",
         statusCode: 400,

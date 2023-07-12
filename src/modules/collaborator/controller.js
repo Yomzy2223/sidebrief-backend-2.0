@@ -1,3 +1,4 @@
+const { hasher } = require("../../common/hash");
 const {
   validateUserCredentials,
   validateCollaborator,
@@ -24,7 +25,19 @@ const {
 exports.CollaboratorRegisration = async (req, res) => {
   const collaboratorPayload = req.body;
 
-  const collaborator = await saveCollaborator(collaboratorPayload);
+  const cryptedPassword = await hasher(collaboratorPayload.password, 12);
+
+  const values = {
+    firstName: collaboratorPayload.firstName,
+    lastName: collaboratorPayload.lastName,
+    email: collaboratorPayload.email.toLowerCase(),
+    password: cryptedPassword,
+    phone: collaboratorPayload.phone,
+    verified: false,
+    isPartner: collaboratorPayload.isPartner,
+  };
+
+  const collaborator = await saveCollaborator(values);
   if (collaborator.error) {
     return res
       .status(collaborator.statusCode)
@@ -182,7 +195,14 @@ exports.CollaboratorDocument = async (req, res) => {
   const isValidDocument = validateDocument(documentPayload);
 
   if (isValidDocument === true) {
-    const document = await saveDocument(documentPayload, id);
+    const values = {
+      name: documentPayload.name,
+      type: documentPayload.type,
+      description: documentPayload.description,
+      collaboratorId: id,
+    };
+
+    const document = await saveDocument(values, id);
     if (document.error) {
       return res.status(document.statusCode).json({ error: document.error });
     }
