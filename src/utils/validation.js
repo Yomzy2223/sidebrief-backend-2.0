@@ -97,6 +97,12 @@ const countrySchema = {
 
 const validateCountry = validate.compile(countrySchema);
 
+const emailSchema = {
+  email: { type: "email", min: 3, max: 255 },
+};
+
+const validateEmail = validate.compile(emailSchema);
+
 module.exports = {
   validateUser,
   validateUserCredentials,
@@ -108,4 +114,5 @@ module.exports = {
   validateCollaborator,
   validateDocument,
   validateCountry,
+  validateEmail,
 };

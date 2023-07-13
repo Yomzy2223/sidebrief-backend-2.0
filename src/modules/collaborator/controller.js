@@ -95,12 +95,6 @@ exports.CollaboratorPasswordResetLink = async (req, res, next) => {
   try {
     const email = req.body;
     // check that email is not empty
-    // CREATE VALIDATION SCHEMA FOR THIS
-    if (!email) {
-      return res.status(400).json({
-        message: "Please provide your email address.",
-      });
-    }
 
     const reset = await forgotPassword(email);
 
@@ -156,25 +150,15 @@ exports.ControllerProfileModifier = async (req, res, next) => {
     // pass the payload and the id to update service
 
     // return collaborator and message
-    //CREATE VALIDATOR
+
     const id = req.params.id;
     const updatePayload = req.body;
 
-    const isValidCollaborator = await validateResetCredentials(updatePayload);
-    if (isValidCollaborator === true) {
-      const collaboratorUpdate = await updateProfile(updatePayload, id);
+    const collaboratorUpdate = await updateProfile(updatePayload, id);
 
-      if (collaboratorUpdate.error) {
-        return res
-          .status(collaboratorUpdate.statusCode)
-          .json({ error: collaboratorUpdate.error });
-      }
-      return res
-        .status(collaboratorUpdate.statusCode)
-        .json({ message: collaboratorUpdate.message });
-    }
-
-    return res.status(400).json({ error: isValidCollaborator[0].message });
+    return res
+      .status(collaboratorUpdate.statusCode)
+      .json({ message: collaboratorUpdate.message });
   } catch (error) {
     next(error);
   }
@@ -183,25 +167,19 @@ exports.ControllerProfileModifier = async (req, res, next) => {
 exports.CollaboratorDocument = async (req, res, next) => {
   const documentPayload = req.body;
   const id = req.params.collaboratorId;
-  console.log("dsfdfsdfsdfs", id);
-  const isValidDocument = validateDocument(documentPayload);
 
-  if (isValidDocument === true) {
-    const values = {
-      name: documentPayload.name,
-      type: documentPayload.type,
-      description: documentPayload.description,
-      collaboratorId: id,
-    };
+  const values = {
+    name: documentPayload.name,
+    type: documentPayload.type,
+    description: documentPayload.description,
+    collaboratorId: id,
+  };
 
-    const document = await saveDocument(values, id);
-    if (document.error) {
-      return res.status(document.statusCode).json({ error: document.error });
-    }
-    return res.status(200).json(document);
+  const document = await saveDocument(values, id);
+  if (document.error) {
+    return res.status(document.statusCode).json({ error: document.error });
   }
-
-  return res.status(400).json({ error: isValidDocument[0].message });
+  return res.status(200).json(document);
 };
 
 //get collaborator documents with id

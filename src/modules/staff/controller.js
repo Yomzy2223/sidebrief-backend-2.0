@@ -82,13 +82,6 @@ exports.StaffVerification = async (req, res, next) => {
 exports.StaffPasswordResetLink = async (req, res, next) => {
   try {
     const email = req.body;
-    // check that email is not empty
-    //CREATE VALIDATOR
-    if (!email) {
-      return res.status(400).json({
-        message: "Please provide your email address.",
-      });
-    }
 
     const reset = await forgotPassword(email);
 

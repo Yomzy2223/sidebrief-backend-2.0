@@ -105,12 +105,6 @@ exports.UserVerification = async (req, res, next) => {
 exports.UserPasswordResetLink = async (req, res, next) => {
   try {
     const email = req.body;
-    // check that email is not empty
-    if (!email) {
-      return res.status(400).json({
-        message: "Please provide your email address.",
-      });
-    }
 
     const reset = await forgotPassword(email);
 

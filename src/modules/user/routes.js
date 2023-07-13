@@ -16,6 +16,7 @@ const {
   validateUser,
   validateResetCredentials,
   validateUserUpdateCredentials,
+  validateEmail,
 } = require("../../utils/validation");
 const router = express.Router();
 const passport = require("passport");
@@ -54,7 +55,7 @@ router.post("/login", validator(validateUserCredentials), UserGrantor);
 router.get("/:id", UserFetcher);
 router.get("/", UsersFetcher);
 router.post("/verification/:token", UserVerification);
-router.post("/forgotpassword", UserPasswordResetLink);
+router.post("/forgotpassword", validator(validateEmail), UserPasswordResetLink);
 router.post(
   "/passwordreset",
   validator(validateResetCredentials),
