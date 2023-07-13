@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { BadRequest } = require("../utils/requestErrors");
 
 exports.generateToken = (payload, secret, expired) => {
   return jwt.sign(payload, secret, {
@@ -11,16 +12,10 @@ exports.verifyUserToken = async (token, secret) => {
     const validate = await jwt.verify(token, secret);
 
     if (!validate) {
-      return {
-        error: "Authentification error, please check your token.",
-        statusCode: 403,
-      };
+      throw new BadRequest("Authentification error, please check your token.");
     }
     return validate;
   } catch (error) {
-    return {
-      error: "Authentification error, please check your token.",
-      statusCode: 403,
-    };
+    throw error;
   }
 };

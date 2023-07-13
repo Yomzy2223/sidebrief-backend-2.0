@@ -7,7 +7,7 @@ const countryRoutes = require("./src/modules/country/routes");
 const staffRoutes = require("./src/modules/staff/routes");
 const serviceRoutes = require("./src/modules/productService/routes");
 const collaboratorRoutes = require("./src/modules/collaborator/routes");
-const connectDb = require("./src/config/database");
+// const connectDb = require("./src/config/database");
 const logger = require("./src/config/logger");
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
   res.send("testing");
   logger.info({ message: "Testing the server" });
 });
-console.log("checking env", process.env.NODE_ENV);
+
 //connect to database
 // connectDb();
 app.use(

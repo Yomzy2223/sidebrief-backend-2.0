@@ -4,6 +4,7 @@ const { hasher, matchChecker } = require("../../common/hash");
 const { generateToken, verifyUserToken } = require("../../common/token");
 const EmailSender = require("../../services/emailEngine");
 const prisma = new PrismaClient();
+const { BadRequest } = require("../../utils/requestErrors");
 
 //IN PROGRESS
 
@@ -15,10 +16,7 @@ const saveCollaborator = async (collaboratorPayload) => {
     });
 
     if (checkCollaborator) {
-      return {
-        error: "collaborator with this email already exists",
-        statusCode: 400,
-      };
+      throw new BadRequest("collaborator with this name already exists");
     }
 
     const collaborator = await prisma.collaborator.create({
@@ -26,10 +24,7 @@ const saveCollaborator = async (collaboratorPayload) => {
     });
 
     if (!collaborator) {
-      return {
-        error: "Error occured while creating collaborator",
-        statusCode: 400,
-      };
+      throw new BadRequest("Error occured while creating collaborator");
     }
 
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
@@ -75,15 +70,7 @@ const saveCollaborator = async (collaboratorPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while creating an account for ${collaboratorPayload.email} with error message: ${error}`,
-    });
-
-    console.log(error);
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -97,10 +84,7 @@ const getCollaborator = async (id) => {
       where: { id: id },
     });
     if (!collaborator) {
-      return {
-        error: "collaborator not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("collaborator not found!.");
     }
     return {
       message: "Collaborator fetched successfully",
@@ -116,13 +100,7 @@ const getCollaborator = async (id) => {
       },
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching collaborator with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 //sign in service
@@ -137,10 +115,7 @@ const loginCollaborator = async (collaboratorPayload) => {
     });
 
     if (!collaborator) {
-      return {
-        error: "collaborator not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("collaborator not found!.");
     }
 
     let checkPassword = await matchChecker(
@@ -148,11 +123,9 @@ const loginCollaborator = async (collaboratorPayload) => {
       collaborator.password
     );
 
-    if (!checkPassword)
-      return {
-        error: "Invalid credentials",
-        statusCode: 400,
-      };
+    if (!checkPassword) {
+      throw new BadRequest("Invalid credentials");
+    }
 
     const collaboraorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
     const token = generateToken(
@@ -179,13 +152,7 @@ const loginCollaborator = async (collaboratorPayload) => {
       },
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching collaborator with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -198,29 +165,16 @@ const verifyCollaboratorAccount = async (collaboratorPayload) => {
       collaboratorSecret
     );
 
-    if (collaborator.error) {
-      return {
-        error: collaborator.error,
-        statusCode: collaborator.statusCode,
-      };
-    }
-
     const checkCollaborator = await prisma.collaborator.findUnique({
       where: { id: collaborator.id },
     });
 
     if (!checkCollaborator) {
-      return {
-        error: "Collaborator not found.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Collaborator not found.");
     }
 
     if (checkCollaborator.verified == true) {
-      return {
-        statusCode: 400,
-        error: "This account is already verified.",
-      };
+      throw new BadRequest("This account is already verified.");
     }
 
     const updateCollaborator = await prisma.collaborator.update({
@@ -233,13 +187,7 @@ const verifyCollaboratorAccount = async (collaboratorPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while verifying this collaborator with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -256,10 +204,7 @@ const forgotPassword = async (resetPayload) => {
     });
 
     if (!collaborator) {
-      return {
-        error: "collaborator not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Collaborator not found.");
     }
 
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
@@ -268,13 +213,6 @@ const forgotPassword = async (resetPayload) => {
       collaboratorSecret,
       "30m"
     );
-
-    if (collaboratorToken.error) {
-      return {
-        error: collaboratorToken.error,
-        statusCode: collaboratorToken.statusCode,
-      };
-    }
 
     const cryptedToken = await await hasher(collaboratorToken, 12);
 
@@ -306,13 +244,7 @@ const forgotPassword = async (resetPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while sending reset link with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -329,10 +261,7 @@ const changePassword = async (changePayload) => {
     });
 
     if (!collaborator) {
-      return {
-        error: "collaborator not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Collaborator not found.");
     }
 
     let checkToken = await matchChecker(
@@ -340,11 +269,7 @@ const changePassword = async (changePayload) => {
       collaborator.resetToken
     );
 
-    if (!checkToken)
-      return {
-        error: "Invalid token",
-        statusCode: 400,
-      };
+    if (!checkToken) throw new BadRequest("Invalid token");
 
     const cryptedPassword = await hasher(changePayload.password, 12);
 
@@ -358,14 +283,7 @@ const changePassword = async (changePayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while reseting password with error message: ${error}`,
-    });
-
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -374,10 +292,7 @@ const updateProfile = async (updatePayload, id) => {
   try {
     const collaborator = await prisma.user.findUnique({ where: { id: id } });
     if (!collaborator) {
-      return {
-        error: "Collaborator not found",
-        statusCode: 400,
-      };
+      throw new BadRequest("Collaborator not found.");
     }
 
     const updateCollaborator = await prisma.user.update({
@@ -386,24 +301,14 @@ const updateProfile = async (updatePayload, id) => {
     });
 
     if (!updateCollaborator) {
-      return {
-        error: "Error occured while updating user",
-        statusCode: 400,
-      };
+      throw new BadRequest("Error occured while updating user");
     }
     return {
       message: "Collaborator profile updated successfully",
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while updating this collaborator profile with error message: ${error}`,
-    });
-
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -414,10 +319,7 @@ const deleteCollaborator = async (id) => {
       where: { id: id },
     });
     if (!collaborator) {
-      return {
-        error: "Collaborator not found",
-        statusCode: 400,
-      };
+      throw new BadRequest("Collaborator not found.");
     }
     const deleteCollaborator = await prisma.collaborator.delete({
       where: { id: collaborator.id },
@@ -425,24 +327,14 @@ const deleteCollaborator = async (id) => {
 
     console.log(deleteCollaborator);
     if (!deleteCollaborator) {
-      return {
-        error: "Error occured while deleting collaborator",
-        statusCode: 400,
-      };
+      throw new BadRequest("Error occured while deleting collaborator");
     }
     return {
       message: "Collaborator deleted successfully",
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while deleting this collaborator profile with error message: ${error}`,
-    });
-
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -455,10 +347,7 @@ const saveDocument = async (documentPayload, id) => {
       where: { id: id },
     });
     if (!collaborator) {
-      return {
-        error: "collaborator not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Collaborator not found.");
     }
 
     const document = await prisma.collaboratorDocument.create({
@@ -466,10 +355,7 @@ const saveDocument = async (documentPayload, id) => {
     });
 
     if (!document) {
-      return {
-        error: "Error occured while creating document",
-        statusCode: 400,
-      };
+      throw new BadRequest("Error occured while creating document");
     }
 
     logger.info({
@@ -481,14 +367,7 @@ const saveDocument = async (documentPayload, id) => {
       data: document,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while creating a document with error ${error}`,
-    });
-    console.log(error);
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -502,18 +381,12 @@ const getDocumentByCollaboratorId = async (id) => {
       where: { id: id },
     });
     if (!collaborator) {
-      return {
-        error: "collaborator not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Collaborator not found.");
     }
     const documents = await prisma.collaboratorDocument.findMany();
 
     if (!documents) {
-      return {
-        error: "Documents not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Documents not found!.");
     }
 
     return {
@@ -522,13 +395,7 @@ const getDocumentByCollaboratorId = async (id) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching all collaborator documents with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 

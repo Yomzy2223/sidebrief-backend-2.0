@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
 const prisma = new PrismaClient();
+const { BadRequest } = require("../../utils/requestErrors");
 
 //create service category service
 const saveServiceCategory = async (serviceCategoryPayload) => {
@@ -11,19 +12,16 @@ const saveServiceCategory = async (serviceCategoryPayload) => {
       where: { name: serviceCategoryPayload.name },
     });
     if (checkService) {
-      return {
-        error: "Service with this name already exists",
-        statusCode: 400,
-      };
+      throw new BadRequest("Service with this name already exists");
     }
+
     const category = await prisma.serviceCategory.create({
       data: serviceCategoryPayload,
     });
     if (!category) {
-      return {
-        error: "Error occured while creating this service category",
-        statusCode: 400,
-      };
+      throw new BadRequest(
+        "Error occured while creating this service category"
+      );
     }
 
     logger.info({
@@ -35,13 +33,7 @@ const saveServiceCategory = async (serviceCategoryPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while creating this service category with error ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -64,14 +56,7 @@ const getAllServiceCategory = async () => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching all service category with error message: ${error}`,
-    });
-    console.log("dfsdf", error);
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -87,10 +72,7 @@ const getServiceCategory = async (id) => {
       },
     });
     if (!category) {
-      return {
-        error: "Service category not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Service category not found!.");
     }
     return {
       message: "Service category fetched successfully",
@@ -98,13 +80,7 @@ const getServiceCategory = async (id) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching service category with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -122,10 +98,7 @@ const updateServiceCategory = async (id, serviceCategoryPayload) => {
       },
     });
     if (!category) {
-      return {
-        error: "Service Category not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Service category not found!.");
     }
 
     const updateCategory = await prisma.serviceCategory.update({
@@ -136,10 +109,7 @@ const updateServiceCategory = async (id, serviceCategoryPayload) => {
     });
 
     if (!updateCategory) {
-      return {
-        error: "Error occured while updating service category!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Error occured while updating service category!.");
     }
 
     return {
@@ -147,13 +117,7 @@ const updateServiceCategory = async (id, serviceCategoryPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while updating service category with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -171,10 +135,7 @@ const removeServiceCategory = async (id) => {
       },
     });
     if (!deleteCategory) {
-      return {
-        error: "Service category not found.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Service category not found!.");
     }
 
     return {
@@ -182,13 +143,7 @@ const removeServiceCategory = async (id) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while deleting service category with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
