@@ -2501,3 +2501,402 @@ Note: Lines with + are required
 info: Label: 12-Jul-2023 22:57:29: gt bank created successfully
 info: Label: 12-Jul-2023 23:59:43: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
 info: Label: 13-Jul-2023 00:00:24: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 13-Jul-2023 12:55:47: Bank with this name already exists
+error: Label: 13-Jul-2023 13:04:24: Bank with this name already exists
+error: Label: 13-Jul-2023 13:08:00: Bank with this name already exists
+error: Label: 13-Jul-2023 13:12:15: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:24:04: BadRequest is not a constructor with error TypeError: BadRequest is not a constructor occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:29:17: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:29:35: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:31:00: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:35:04: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:36:03: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:38:29: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:38:38: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:39:05: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:39:35: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:48:29: Error occured with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+info: Label: 13-Jul-2023 13:48:57: fcmb bank created successfully
+error: Label: 13-Jul-2023 13:49:02: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
+info: Label: 13-Jul-2023 13:50:55: fcmbr bank created successfully
+error: Label: 13-Jul-2023 13:53:19: Error occured with error TypeError: Cannot read properties of undefined (reading 'findMany') occurred when GET /banks was called
+error: Label: 13-Jul-2023 14:08:59: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /banks was called
+error: Label: 13-Jul-2023 14:10:34: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /banks was called
+info: Label: 13-Jul-2023 14:11:15: staff with akinyemi@sidebrief.com signed in successfully.
+error: Label: 13-Jul-2023 14:11:49: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
+info: Label: 13-Jul-2023 14:12:07: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 13-Jul-2023 14:13:42: union bank created successfully

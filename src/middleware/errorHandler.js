@@ -1,15 +1,15 @@
 const logger = require("../config/logger");
 
 const ErrorHandler = (err, req, res, next) => {
-  const errStatuts = err.statusCode || 500;
-  const errMessage = err?.message ?? "Error occured";
+  const errStatus = err?.statusCode || 500;
+
+  const errMessage = errStatus === 500 ? "Error occured" : err?.message;
 
   logger.error({
-    method: req.method,
-    url: req.originalUrl,
-    message: errMessage,
+    message: `${errMessage} with error ${err} occurred when ${req.method} ${req.originalUrl} was called`,
   });
-  res.status(errStatuts).json({
+
+  res.status(errStatus).json({
     error: errMessage,
   });
 };

@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
+const { BadRequest } = require("../../utils/requestErrors");
 const prisma = new PrismaClient();
 
 //create bank service
@@ -10,17 +11,15 @@ const saveBank = async (bankPayload) => {
     const checkBank = await prisma.bank.findUnique({
       where: { name: bankPayload.name },
     });
-    console.log("sdfsf", checkBank);
+
     if (checkBank) {
-      return {
-        error: "Bank with this name already exists",
-        statusCode: 400,
-      };
+      throw new BadRequest("Bank with this name already exists");
     }
+
     const bank = await prisma.bank.create({ data: bankPayload });
 
     if (!bank) {
-      return { error: "Error occured while creating bank", statusCode: 400 };
+      throw new BadRequest("Error occured while creating bank");
     }
 
     logger.info({ message: `${bankPayload.name} created successfully` });
@@ -30,14 +29,7 @@ const saveBank = async (bankPayload) => {
       data: bank,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while creating a bank with error ${error}`,
-    });
-    console.log(error);
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -60,13 +52,7 @@ const getAllBanks = async () => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching all banks with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -82,10 +68,7 @@ const getBank = async (id) => {
       },
     });
     if (!bank) {
-      return {
-        error: "Bank not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Bank not found!.");
     }
     return {
       message: "Bank fetched successfully",
@@ -93,13 +76,7 @@ const getBank = async (id) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching bank with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -117,10 +94,7 @@ const updateBank = async (id, bankPayload) => {
       },
     });
     if (!bank) {
-      return {
-        error: "Bank not found!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Bank not found!");
     }
 
     const updateBank = await prisma.bank.update({
@@ -131,10 +105,7 @@ const updateBank = async (id, bankPayload) => {
     });
 
     if (!updateBank) {
-      return {
-        error: "Error occured while updating bank!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Error occured while updating bank!.");
     }
 
     return {
@@ -142,13 +113,7 @@ const updateBank = async (id, bankPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while updating bank with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -166,23 +131,14 @@ const removeBank = async (id) => {
       },
     });
     if (!deleteBank) {
-      return {
-        error: "Bank not found.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Bank not found");
     }
 
     return {
       message: "Bank deleted successfully",
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while deleting bank with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -192,5 +148,4 @@ module.exports = {
   getBank,
   updateBank,
   removeBank,
-  // checkIfBankExists
 };
