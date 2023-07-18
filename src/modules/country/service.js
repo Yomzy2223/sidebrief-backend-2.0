@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
+const { BadRequest } = require("../../utils/requestErrors");
 const prisma = new PrismaClient();
 
 //create country service
@@ -8,27 +9,16 @@ const saveCountry = async (countryPayload) => {
 
   try {
     const checkCountry = await prisma.country.findUnique({
-      where: { name: countryPayload.name.toLowerCase() },
+      where: { name: countryPayload.name },
     });
-    if (checkCountry !== null) {
-      return {
-        error: "Country with this name already exists",
-        statusCode: 400,
-      };
+    if (!checkCountry) {
+      throw new BadRequest("Country with this name already exists");
     }
 
-    const values = {
-      name: countryPayload.name.toLowerCase(),
-      iso: countryPayload.iso,
-      flagUrl: countryPayload.flagUrl,
-      code: countryPayload.code,
-      currency: countryPayload.currency,
-    };
-
-    const country = await prisma.country.create({ data: values });
+    const country = await prisma.country.create({ data: countryPayload });
 
     if (!country) {
-      return { error: "Error occured while creating country", statusCode: 400 };
+      throw new BadRequest("Error occured while creating country");
     }
 
     logger.info({
@@ -40,15 +30,7 @@ const saveCountry = async (countryPayload) => {
       data: country,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while creating a country with error ${error}`,
-    });
-    console.log(error);
-    country;
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -58,7 +40,7 @@ const getAllCountries = async () => {
   //  return the country list to the country controller
   try {
     const countries = await prisma.country.findMany({});
-    if (countries === null) {
+    if (!countries) {
       return {
         message: "Empty Data",
         statusCode: 200,
@@ -71,13 +53,7 @@ const getAllCountries = async () => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `Error occured while fetching all countries with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -92,11 +68,8 @@ const getCountry = async (id) => {
         id: id,
       },
     });
-    if (country === null) {
-      return {
-        error: "Country not found!.",
-        statusCode: 400,
-      };
+    if (!country) {
+      throw new BadRequest("Country not found!.");
     }
     return {
       message: "Country fetched successfully",
@@ -104,13 +77,7 @@ const getCountry = async (id) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `Error occured while fetching country with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -122,38 +89,24 @@ const updateCountry = async (id, countryPayload) => {
   //  return the country to the country controller
 
   try {
-    const values = {
-      name: countryPayload.name.toLowerCase(),
-      iso: countryPayload.iso,
-      flagUrl: countryPayload.flagUrl,
-      code: countryPayload.code,
-      currency: countryPayload.currency,
-    };
-
     const country = await prisma.country.findUnique({
       where: {
         id: id,
       },
     });
-    if (country === null) {
-      return {
-        error: "Country not found!.",
-        statusCode: 400,
-      };
+    if (!country) {
+      throw new BadRequest("Country not found!.");
     }
 
     const updateCountry = await prisma.country.update({
       where: {
         id: id,
       },
-      data: values,
+      data: countryPayload,
     });
 
     if (!updateCountry) {
-      return {
-        error: "Error occured while updating country!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Error occured while updating country!.");
     }
     logger.info({
       message: `${countryPayload.name} updated successfully`,
@@ -163,13 +116,7 @@ const updateCountry = async (id, countryPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while updating country with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -187,10 +134,7 @@ const removeCountry = async (id) => {
       },
     });
     if (!deleteCountry) {
-      return {
-        error: "Country not found.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Country not found!.");
     }
 
     return {
@@ -198,13 +142,7 @@ const removeCountry = async (id) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while deleting country with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 

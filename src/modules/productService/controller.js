@@ -8,92 +8,89 @@ const {
 } = require("./service");
 
 // create a new service category
-exports.ServiceCategoryCreator = async (req, res) => {
-  // get the validated payload from the the request body
-  // send the validated payload to addServiceCategory service
-  // return response to the client
+exports.ServiceCategoryCreator = async (req, res, next) => {
+  try {
+    // get the validated payload from the the request body
+    // send the validated payload to addServiceCategory service
+    // return response to the client
 
-  const serviceCategoryPayload = req.body;
-  const category = await saveServiceCategory(serviceCategoryPayload);
+    const serviceCategoryPayload = req.body;
+    const values = {
+      name: serviceCategoryPayload.name.toLowerCase(),
+      description: serviceCategoryPayload.description,
+    };
+    const category = await saveServiceCategory(values);
 
-  if (category.error) {
-    return res.status(category.statusCode).json({ error: category.error });
+    return res.status(category.statusCode).json(category);
+  } catch (error) {
+    next(error);
   }
-
-  return res.status(category.statusCode).json(category);
 };
 
 //get all service categories
-exports.ServiceCategoriesFetcher = async (req, res) => {
-  // get the service category list
-  // return response to the client
+exports.ServiceCategoriesFetcher = async (req, res, next) => {
+  try {
+    // get the service category list
+    // return response to the client
 
-  const categories = await getAllServiceCategory();
-  if (categories === null) {
-    return res
-      .status(500)
-      .json({ error: "Error occured while getting all service categories." });
+    const categories = await getAllServiceCategory();
+
+    return res.status(categories.statusCode).json(categories);
+  } catch (error) {
+    next(error);
   }
-
-  return res.status(categories.statusCode).json(categories);
 };
 
 //get a service category with id
-exports.ServiceCategoryFetcher = async (req, res) => {
-  // check if there is id
-  // pass the id to the service
-  // return service category to client
+exports.ServiceCategoryFetcher = async (req, res, next) => {
+  try {
+    // check if there is id
+    // pass the id to the service
+    // return service category to client
 
-  const id = req.params.id;
-  if (!id) {
-    return res.status(400).json({
-      error: "Please provide id",
-    });
-  }
-  const category = await getServiceCategory(id);
+    const id = req.params.id;
+    const category = await getServiceCategory(id);
 
-  if (category.error) {
-    return res.status(category.statusCode).json({ error: category.error });
+    return res.status(category.statusCode).json(category);
+  } catch (error) {
+    next(error);
   }
-  return res.status(category.statusCode).json(category);
 };
 
 //update a service category
-exports.ServiceCategoryModifier = async (req, res) => {
-  //get the payload
-  // validate the payload
-  // send the payload to the service
-  // return response
+exports.ServiceCategoryModifier = async (req, res, next) => {
+  try {
+    //get the payload
+    // validate the payload
+    // send the payload to the service
+    // return response
 
-  const id = req.params.id;
-  const serviceCategoryPayload = req.body;
-  const category = await updateServiceCategory(id, serviceCategoryPayload);
+    const id = req.params.id;
+    const serviceCategoryPayload = req.body;
+    const values = {
+      name: serviceCategoryPayload.name,
+      description: serviceCategoryPayload.description,
+    };
+    const category = await updateServiceCategory(id, values);
 
-  if (category.error) {
-    return res.status(category.statusCode).json({ error: category.error });
+    return res.status(category.statusCode).json(category.message);
+  } catch (error) {
+    next(error);
   }
-
-  return res.status(category.statusCode).json(category.message);
 };
 
 //delete a service category
-exports.ServiceCategoryRemover = async (req, res) => {
-  //check if there is id
-  // send the id to the delete service
-  //return response to the client
+exports.ServiceCategoryRemover = async (req, res, next) => {
+  try {
+    //check if there is id
+    // send the id to the delete service
+    //return response to the client
 
-  const id = req.params.id;
-  if (!id) {
-    return res.status(400).json({
-      error: "Please provide id",
-    });
-  }
-  const deleteCategory = await removeServiceCategory(id);
+    const id = req.params.id;
+    const deleteCategory = await removeServiceCategory(id);
 
-  if (deleteCategory.error) {
-    return res
-      .status(deleteCategory.statusCode)
-      .json({ error: deleteCategory.error });
+    return res.status(deleteCategory.statusCode).json(deleteCategory.message);
+  } catch (error) {
+    next(error);
   }
-  return res.status(deleteCategory.statusCode).json(deleteCategory.message);
 };

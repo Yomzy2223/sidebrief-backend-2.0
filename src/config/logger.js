@@ -1,11 +1,28 @@
 const winston = require("winston");
 const WinstonCloudwatch = require("winston-cloudwatch");
 
-const logConfiguration = {
+const developmentLogConfiguration = {
   transports: [
     new winston.transports.File({
       filename: "./logger.log",
     }),
+  ],
+  format: winston.format.combine(
+    winston.format.label({
+      label: `Label`,
+    }),
+    winston.format.timestamp({
+      format: "DD-MMM-YYYY HH:mm:ss",
+    }),
+    winston.format.printf(
+      (info) =>
+        `${info.level}: ${info.label}: ${[info.timestamp]}: ${info.message}`
+    )
+  ),
+};
+
+const productionLogConfiguration = {
+  transports: [
     new WinstonCloudwatch({
       logGroupName: process.env.CLOUDWATCH_GROUP_NAME,
       logStreamName: process.env.CLOUDWATCH_STREAM_NAME,
@@ -33,6 +50,11 @@ const logConfiguration = {
   ),
 };
 
-const logger = winston.createLogger(logConfiguration);
+const logger =
+  process.env.NODE_ENV === "development"
+    ? winston.createLogger(developmentLogConfiguration)
+    : winston.createLogger(productionLogConfiguration);
 
 module.exports = logger;
+
+//the server should be able to know different evironments

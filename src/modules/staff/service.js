@@ -3,6 +3,7 @@ const logger = require("../../config/logger");
 const { hasher, matchChecker } = require("../../common/hash");
 const { generateToken, verifyUserToken } = require("../../common/token");
 const EmailSender = require("../../services/emailEngine");
+const { BadRequest } = require("../../utils/requestErrors");
 const prisma = new PrismaClient();
 
 //IN PROGRESS
@@ -11,27 +12,17 @@ const prisma = new PrismaClient();
 const saveStaff = async (staffPayload) => {
   try {
     const checkStaff = await prisma.staff.findUnique({
-      where: { email: staffPayload.email.toLowerCase() },
+      where: { email: staffPayload.email },
     });
 
-    if (checkStaff !== null) {
-      return { error: "staff with this email already exists", statusCode: 400 };
+    if (checkStaff) {
+      throw new BadRequest("staff with this email already exists");
     }
 
-    const cryptedPassword = await hasher(staffPayload.password, 12);
-
-    const values = {
-      firstName: staffPayload.firstName,
-      lastName: staffPayload.lastName,
-      email: staffPayload.email.toLowerCase(),
-      password: cryptedPassword,
-      phone: staffPayload.phone,
-      verified: false,
-    };
-    const staff = await prisma.staff.create({ data: values });
+    const staff = await prisma.staff.create({ data: staffPayload });
 
     if (!staff) {
-      return { error: "Error occured while creating staff", statusCode: 400 };
+      throw new BadRequest("Error occured while creating staff");
     }
 
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
@@ -76,14 +67,7 @@ const saveStaff = async (staffPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while creating an account for ${staffPayload.email} with error message: ${error}`,
-    });
-    console.log(error);
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -94,11 +78,8 @@ const getStaff = async (id) => {
 
   try {
     const staff = await prisma.staff.findUnique({ where: { id: id } });
-    if (staff === null) {
-      return {
-        error: "staff not found!.",
-        statusCode: 400,
-      };
+    if (!staff) {
+      throw new BadRequest("staff not found!.");
     }
     return {
       message: "Staff fetched successfully",
@@ -113,14 +94,7 @@ const getStaff = async (id) => {
       },
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching staff with error message: ${error}`,
-    });
-    console.log(error);
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 //sign in service
@@ -134,11 +108,8 @@ const loginStaff = async (loginPayload) => {
       where: { email: loginPayload.email },
     });
 
-    if (staff === null) {
-      return {
-        error: "staff not found!.",
-        statusCode: 400,
-      };
+    if (!staff) {
+      throw new BadRequest("staff not found!.");
     }
 
     let checkPassword = await matchChecker(
@@ -146,11 +117,9 @@ const loginStaff = async (loginPayload) => {
       staff.password
     );
 
-    if (!checkPassword)
-      return {
-        error: "Invalid credentials",
-        statusCode: 400,
-      };
+    if (!checkPassword) {
+      throw new BadRequest("Invalid credentials!");
+    }
 
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
     const token = generateToken({ id: staff.id }, staffSecret, "14d");
@@ -172,13 +141,7 @@ const loginStaff = async (loginPayload) => {
       },
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching staff with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -188,29 +151,16 @@ const verifyStaffAccount = async (verifyPayload) => {
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
     const staff = await verifyUserToken(verifyPayload, staffSecret);
 
-    if (staff.error) {
-      return {
-        error: staff.error,
-        statusCode: staff.statusCode,
-      };
-    }
-
     const checkStaff = await prisma.staff.findUnique({
       where: { id: staff.id },
     });
 
-    if (checkStaff === null) {
-      return {
-        error: "Staff not found.",
-        statusCode: 400,
-      };
+    if (!checkStaff) {
+      throw new BadRequest("Staff not found");
     }
 
     if (checkStaff.verified == true) {
-      return {
-        statusCode: 400,
-        error: "This account is already verified.",
-      };
+      throw new BadRequest("This account is already verified.");
     }
 
     const updateStaff = await prisma.staff.update({
@@ -223,13 +173,7 @@ const verifyStaffAccount = async (verifyPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while verifying this staff with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -245,22 +189,12 @@ const forgotPassword = async (resetPayload) => {
       where: { email: resetPayload.email },
     });
 
-    if (staff === null) {
-      return {
-        error: "staff not found!.",
-        statusCode: 400,
-      };
+    if (!staff) {
+      throw new BadRequest("Staff not found");
     }
 
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
     const staffToken = await generateToken(resetPayload, staffSecret, "30m");
-
-    if (staffToken.error) {
-      return {
-        error: staffToken.error,
-        statusCode: staffToken.statusCode,
-      };
-    }
 
     const cryptedToken = await await hasher(staffToken, 12);
 
@@ -292,13 +226,7 @@ const forgotPassword = async (resetPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while sending reset link with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -314,21 +242,15 @@ const changePassword = async (changePayload) => {
       where: { email: changePayload.email },
     });
 
-    if (staff === null) {
-      return {
-        error: "staff not found!.",
-        statusCode: 400,
-      };
+    if (!staff) {
+      throw new BadRequest("Staff not found");
     }
 
     let checkToken = await matchChecker(changePayload.token, staff.resetToken);
 
-    if (!checkToken)
-      return {
-        error: "Invalid token",
-        statusCode: 400,
-      };
-
+    if (!checkToken) {
+      throw new BadRequest("Invalid token");
+    }
     const cryptedPassword = await hasher(changePayload.password, 12);
 
     const updateStaff = await prisma.staff.update({
@@ -341,14 +263,7 @@ const changePassword = async (changePayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while reseting password with error message: ${error}`,
-    });
-
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -356,11 +271,8 @@ const changePassword = async (changePayload) => {
 const deleteStaff = async (id) => {
   try {
     const staff = await prisma.staff.findUnique({ where: { id: id } });
-    if (staff === null) {
-      return {
-        error: "Staff not found",
-        statusCode: 400,
-      };
+    if (!staff) {
+      throw new BadRequest("Staff not found");
     }
     console.log(staff);
     const deleteStaff = await prisma.staff.delete({
@@ -369,24 +281,15 @@ const deleteStaff = async (id) => {
 
     console.log(deleteStaff);
     if (!deleteStaff) {
-      return {
-        error: "Error occured while deleting staff",
-        statusCode: 400,
-      };
+      throw new BadRequest("Error occurred while deleting staff");
     }
+
     return {
       message: "Staff deleted successfully",
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while deleting this staff profile with error message: ${error}`,
-    });
-
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 

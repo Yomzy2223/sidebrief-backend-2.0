@@ -9,7 +9,6 @@ const {
   UserPasswordReset,
   UserProfileModifier,
   UserRemover,
-  SuccessfulGmail,
 } = require("./controller");
 const validator = require("../../middleware/validator");
 const {
@@ -17,50 +16,46 @@ const {
   validateUser,
   validateResetCredentials,
   validateUserUpdateCredentials,
+  validateEmail,
 } = require("../../utils/validation");
 const router = express.Router();
-
 const passport = require("passport");
-// const { OAuth2Strategy: GoogleStrategy } = require("passport-google-oauth20");
-
-//OAuth configuration
-// passport.use(
-//   new GoogleStrategy(
-//     {
-//       clientID: process.env.GOOGLE_CLIENT_ID,
-//       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-//       callbackURL: process.env.GOOGLE_CALL_BACK_URL,
-//     },
-//     (accessToken, refreshToken, profile, done) => {
-//       let userProfile = profile;
-//       return done(null, userProfile);
-//     }
-//   )
-// );
-
+const { staffAuth, userAuth } = require("../../middleware/auth");
 // OAuth routes
 router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  "/auth/google",
+  passport.authenticate("google-signup", { scope: ["profile", "email"] })
 );
 
 router.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/auth" }),
   (req, res) => {
     // Redirect or perform any additional logic after successful authentication
-    res.redirect("/success");
+    res.status(200).json({ data: req.user });
   }
 );
 
-router.get("/success", SuccessfulGmail);
+router.get(
+  "/auth/google/signin",
+  passport.authenticate("google-signin", { scope: ["profile", "email"] })
+);
+
+router.get(
+  "/auth/login/google/callback",
+  passport.authenticate("google", { failureRedirect: "/auth" }),
+  (req, res) => {
+    // Redirect or perform any additional logic after successful authentication
+    res.status(200).json({ data: req.user });
+  }
+);
 
 router.post("/", validator(validateUser), UserRegisration);
 router.post("/login", validator(validateUserCredentials), UserGrantor);
 router.get("/:id", UserFetcher);
 router.get("/", UsersFetcher);
 router.post("/verification/:token", UserVerification);
-router.post("/forgotpassword", UserPasswordResetLink);
+router.post("/forgotpassword", validator(validateEmail), UserPasswordResetLink);
 router.post(
   "/passwordreset",
   validator(validateResetCredentials),
@@ -68,9 +63,10 @@ router.post(
 );
 router.put(
   "/:id",
+  userAuth,
   validator(validateUserUpdateCredentials),
   UserProfileModifier
 );
-router.delete("/:id", UserRemover);
+router.delete("/:id", staffAuth, UserRemover);
 
 module.exports = router;

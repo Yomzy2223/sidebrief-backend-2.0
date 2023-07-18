@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
 const prisma = new PrismaClient();
+const { BadRequest } = require("../../utils/requestErrors");
 
 //create service category service
 const saveServiceCategory = async (serviceCategoryPayload) => {
@@ -8,25 +9,19 @@ const saveServiceCategory = async (serviceCategoryPayload) => {
 
   try {
     const checkService = await prisma.serviceCategory.findUnique({
-      where: { name: serviceCategoryPayload.name.toLowerCase() },
+      where: { name: serviceCategoryPayload.name },
     });
-    if (checkService !== null) {
-      return {
-        error: "Service with this name already exists",
-        statusCode: 400,
-      };
+    if (checkService) {
+      throw new BadRequest("Service with this name already exists");
     }
 
-    const values = {
-      name: serviceCategoryPayload.name.toLowerCase(),
-      description: serviceCategoryPayload.description,
-    };
-    const category = await prisma.serviceCategory.create({ data: values });
+    const category = await prisma.serviceCategory.create({
+      data: serviceCategoryPayload,
+    });
     if (!category) {
-      return {
-        error: "Error occured while creating this service category",
-        statusCode: 400,
-      };
+      throw new BadRequest(
+        "Error occured while creating this service category"
+      );
     }
 
     logger.info({
@@ -38,13 +33,7 @@ const saveServiceCategory = async (serviceCategoryPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while creating this service category with error ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -54,20 +43,20 @@ const getAllServiceCategory = async () => {
   //  return the service category list to the service category controller
   try {
     const category = await prisma.serviceCategory.findMany({});
+    if (!category) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
     return {
       message: "Service category fetched successfully",
       data: category,
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching all service category with error message: ${error}`,
-    });
-    console.log("dfsdf", error);
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -82,11 +71,8 @@ const getServiceCategory = async (id) => {
         id: id,
       },
     });
-    if (category === null) {
-      return {
-        error: "Service category not found!.",
-        statusCode: 400,
-      };
+    if (!category) {
+      throw new BadRequest("Service category not found!.");
     }
     return {
       message: "Service category fetched successfully",
@@ -94,13 +80,7 @@ const getServiceCategory = async (id) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while fetching service category with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -112,35 +92,24 @@ const updateServiceCategory = async (id, serviceCategoryPayload) => {
   //  return the service category to the service category controller
 
   try {
-    const values = {
-      name: serviceCategoryPayload.name,
-      description: serviceCategoryPayload.description,
-    };
-
     const category = await prisma.serviceCategory.findUnique({
       where: {
         id: id,
       },
     });
-    if (category === null) {
-      return {
-        error: "Service Category not found!.",
-        statusCode: 400,
-      };
+    if (!category) {
+      throw new BadRequest("Service category not found!.");
     }
 
     const updateCategory = await prisma.serviceCategory.update({
       where: {
         id: id,
       },
-      data: values,
+      data: serviceCategoryPayload,
     });
 
     if (!updateCategory) {
-      return {
-        error: "Error occured while updating service category!.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Error occured while updating service category!.");
     }
 
     return {
@@ -148,13 +117,7 @@ const updateServiceCategory = async (id, serviceCategoryPayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while updating service category with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 
@@ -172,10 +135,7 @@ const removeServiceCategory = async (id) => {
       },
     });
     if (!deleteCategory) {
-      return {
-        error: "Service category not found.",
-        statusCode: 400,
-      };
+      throw new BadRequest("Service category not found!.");
     }
 
     return {
@@ -183,13 +143,7 @@ const removeServiceCategory = async (id) => {
       statusCode: 200,
     };
   } catch (error) {
-    logger.error({
-      message: `error occured while deleting service category with error message: ${error}`,
-    });
-    return {
-      error: "Error occurred!.",
-      statusCode: 500,
-    };
+    throw error;
   }
 };
 

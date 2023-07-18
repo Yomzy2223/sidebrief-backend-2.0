@@ -1860,3 +1860,1043 @@ info: Label: 01-Jul-2023 23:58:39: Test Test created an account successfully wit
 info: Label: 01-Jul-2023 23:58:41: User with akinyemibamidele2@gmail.com signed in successfully.
 info: Label: 01-Jul-2023 23:58:51: Test Test created an account successfully with test@gmail.com.
 info: Label: 01-Jul-2023 23:58:53: staff with akinyemi@sidebrief.com signed in successfully.
+error: Label: 04-Jul-2023 20:17:10: error occured while fetching staff with error message: Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.js:133:38
+
+  130 //   //return the staff to the staff controller
+  131 
+  132 try {
+→ 133   const staff = await prisma.staff.findUnique(
+Can't reach database server at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`.
+info: Label: 04-Jul-2023 20:54:01: Testing the server
+error: Label: 05-Jul-2023 14:31:04: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'Kelvin',
+            lastName: 'Zuks',
+            username: undefined,
+            email: 'kelvinzuks@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtcPLZ8ex8n3GT_xla1IR_4xqBOcH0Yfz1sjIf9452Iu=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:32:25: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: undefined,
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:33:06: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: undefined,
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:36:20: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: undefined,
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:37:06: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: undefined,
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:37:40: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:38:14: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:39:36: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: 0,
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:40:45: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:493:39
+
+  490   picture: profile.photos[0].value,
+  491 };
+  492 console.log("values", values);
+→ 493 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '',
+            phone: '00000000',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+error: Label: 05-Jul-2023 14:46:36: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:495:39
+
+  492   picture: profile.photos[0].value,
+  493 };
+  494 console.log("values", values);
+→ 495 const newUser = await prisma.user.create({
+        data: {
+          values: {
+          ~~~~~~
+            firstName: 'AKINYEMI',
+            lastName: 'DANIEL',
+            username: 'DANIEL',
+            email: 'akindanemmy2161@gmail.com',
+            password: '$2a$12$F0FYsqAuE84hW6TrPjiweuEi5mizvy6F/p7HWjSf7mLrcwZoZYZL6',
+            phone: '00000000',
+            verified: false,
+            referral: 'google',
+            picture: 'https://lh3.googleusercontent.com/a/AAcHTtd8QY4WLUUHjZ8MQje7CrtnVT9gr_VcUu-v-tumhm_1=s96-c'
+          },
+      +   firstName: String,
+      +   lastName: String,
+      +   username: String,
+      +   email: String,
+      +   password: String,
+      +   phone: String,
+      +   verified: Boolean,
+      +   referral: String,
+      ?   id?: String,
+      ?   picture?: String | null,
+      ?   resetToken?: String | null,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Unknown arg `values` in data.values for type UserCreateInput. Did you mean `phone`?
+Argument firstName for data.firstName is missing.
+Argument lastName for data.lastName is missing.
+Argument username for data.username is missing.
+Argument email for data.email is missing.
+Argument password for data.password is missing.
+Argument phone for data.phone is missing.
+Argument verified for data.verified is missing.
+Argument referral for data.referral is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+info: Label: 05-Jul-2023 14:48:18: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:01:58: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:18:04: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:46:04: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:47:40: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 15:51:42: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 05-Jul-2023 16:00:58: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 06-Jul-2023 10:27:14: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 06-Jul-2023 10:27:37: User with akindanemmy2161@gmail.com signed in successfully.
+info: Label: 06-Jul-2023 10:28:35: AKINYEMI created an account successfully with akindanemmy2161@gmail.com.
+info: Label: 06-Jul-2023 10:40:38: Bamidele created an account successfully with akinyemi@sidebrief.com.
+info: Label: 06-Jul-2023 10:59:20: User with akinyemi@sidebrief.com signed in successfully.
+error: Label: 06-Jul-2023 13:03:32: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:22:49: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:23:51: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:23:53: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:31:18: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Can't reach database server at `postgres`:`5432`
+
+Please make sure your database server is running at `postgres`:`5432`.
+error: Label: 06-Jul-2023 13:31:34: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Database `sidebrief` does not exist on the database server at `localhost:5432`.
+error: Label: 06-Jul-2023 13:32:11: error occured while fetching all service category with error message: Error: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.js:56:51
+
+  53 //  get the service category list from the table
+  54 //  return the service category list to the service category controller
+  55 try {
+→ 56   const category = await prisma.serviceCategory.findMany(
+Database `sidebrief` does not exist on the database server at `localhost:5432`.
+error: Label: 12-Jul-2023 22:55:02: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:20:36
+
+  17     statusCode: 400,
+  18   };
+  19 }
+→ 20 const bank = await prisma.bank.create({
+       name: 'gt bank',
+       ~~~~
+       code: '23335',
+       ~~~~
+       url: 'first.com',
+       ~~~
+       image: 'cloudinary.com',
+       ~~~~~
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `name` in name for type Bank. Did you mean `data`?
+Unknown arg `code` in code for type Bank. Did you mean `data`?
+Unknown arg `url` in url for type Bank.
+Unknown arg `image` in image for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+error: Label: 12-Jul-2023 22:55:39: error occured while creating a bank with error TypeError: Found non-callable @@iterator
+error: Label: 12-Jul-2023 22:57:05: error occured while creating a bank with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:20:36
+
+  17     statusCode: 400,
+  18   };
+  19 }
+→ 20 const bank = await prisma.bank.create({
+       detail: {
+       ~~~~~~
+         name: 'gt bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `detail` in detail for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+
+info: Label: 12-Jul-2023 22:57:29: gt bank created successfully
+info: Label: 12-Jul-2023 23:59:43: Bamidele Akinyemi created an account successfully with akinyemi@sidebrief.com.
+info: Label: 13-Jul-2023 00:00:24: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 13-Jul-2023 12:55:47: Bank with this name already exists
+error: Label: 13-Jul-2023 13:04:24: Bank with this name already exists
+error: Label: 13-Jul-2023 13:08:00: Bank with this name already exists
+error: Label: 13-Jul-2023 13:12:15: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:24:04: BadRequest is not a constructor with error TypeError: BadRequest is not a constructor occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:29:17: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:29:35: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:31:00: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:35:04: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:36:03: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:38:29: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:38:38: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:39:05: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:39:35: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+error: Label: 13-Jul-2023 13:48:29: Error occured with error Error: 
+Invalid `prisma.bank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/bank/service.js:19:36
+
+  16   throw new BadRequest("Bank with this name already exists");
+  17 }
+  18 
+→ 19 const bank = await prisma.bank.create({
+       bankPayload: {
+       ~~~~~~~~~~~
+         name: 'fcmb bank',
+         code: '23335',
+         url: 'first.com',
+         image: 'cloudinary.com'
+       },
+     + data: BankCreateInput | BankUncheckedCreateInput
+     })
+
+Unknown arg `bankPayload` in bankPayload for type Bank. Did you mean `data`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when POST /banks was called
+info: Label: 13-Jul-2023 13:48:57: fcmb bank created successfully
+error: Label: 13-Jul-2023 13:49:02: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
+info: Label: 13-Jul-2023 13:50:55: fcmbr bank created successfully
+error: Label: 13-Jul-2023 13:53:19: Error occured with error TypeError: Cannot read properties of undefined (reading 'findMany') occurred when GET /banks was called
+error: Label: 13-Jul-2023 14:08:59: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /banks was called
+error: Label: 13-Jul-2023 14:10:34: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /banks was called
+info: Label: 13-Jul-2023 14:11:15: staff with akinyemi@sidebrief.com signed in successfully.
+error: Label: 13-Jul-2023 14:11:49: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
+info: Label: 13-Jul-2023 14:12:07: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 13-Jul-2023 14:13:42: union bank created successfully
