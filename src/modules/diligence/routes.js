@@ -40,7 +40,7 @@ router.post(
   CreateAccount
 );
 router.post(
-  "/addDocument",
+  "/addDocument/:requestId",
   staffAuth,
   validator(validateDiligenceDocument),
   AddRequestDocument

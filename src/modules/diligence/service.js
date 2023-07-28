@@ -39,9 +39,17 @@ const createBank = async (bankPayload) => {
       throw new BadRequest("Bank with this name already exists");
     }
 
+    const checkAdminEmail = await prisma.diligenceBank.findUnique({
+      where: { adminEmail: bankPayload.adminEmail },
+    });
+
+    if (checkAdminEmail) {
+      throw new BadRequest("Email already exists");
+    }
+
     const diligence = await prisma.diligenceBank.create({ data: bankPayload });
 
-    if (!bank) {
+    if (!diligence) {
       throw new BadRequest("Error occured while creating bank");
     }
     logger.info({ message: `${bankPayload.name} created successfully` });
@@ -114,7 +122,7 @@ const createBranch = async (bankId, branchPayload) => {
     }
 
     const checkManagerEmail = await prisma.diligenceBranch.findUnique({
-      where: { name: branchPayload.managerEmail },
+      where: { managerEmail: branchPayload.managerEmail },
     });
 
     if (checkManagerEmail) {
@@ -141,7 +149,7 @@ const createBranch = async (bankId, branchPayload) => {
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
-    const recipientEmail = branchPayload.adminEmail;
+    const recipientEmail = branchPayload.managerEmail;
     //send email
     EmailSender(
       subject,
@@ -151,9 +159,11 @@ const createBranch = async (bankId, branchPayload) => {
       "../view/welcomeBank.ejs"
     );
 
-    res
-      .status(200)
-      .json({ message: "Branch created successfully!", data: diligenceBranch });
+    return {
+      statusCode: 200,
+      message: "Branch created successfully!",
+      data: diligenceBranch,
+    };
   } catch (error) {
     throw error;
   }
@@ -180,7 +190,7 @@ const getAllDiligenceBranches = async () => {
 };
 
 //create diligence staff
-const createStaff = async (branchId, email) => {
+const createStaff = async (branchId, staffPayload) => {
   try {
     const checkBranch = await prisma.diligenceBranch.findUnique({
       where: { id: branchId },
@@ -190,7 +200,7 @@ const createStaff = async (branchId, email) => {
     }
 
     const checkStaff = await prisma.diligenceStaff.findUnique({
-      where: { name: email },
+      where: { email: staffPayload.email },
     });
 
     if (checkStaff) {
@@ -205,19 +215,19 @@ const createStaff = async (branchId, email) => {
       throw new BadRequest("Error occured while creating staff");
     }
     logger.info({
-      message: `diligence staff with ${email} created successfully`,
+      message: `diligence staff with ${staffPayload.email} created successfully`,
     });
 
     const regUrl = `${process.env.BASE_URL}/diligence`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
-      name: email,
+      name: staffPayload.email,
       url: regUrl,
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
-    const recipientEmail = email;
+    const recipientEmail = staffPayload.email;
     //send email
     EmailSender(
       subject,
@@ -227,9 +237,11 @@ const createStaff = async (branchId, email) => {
       "../view/welcomeBank.ejs"
     );
 
-    res
-      .status(200)
-      .json({ message: "Staff created successfully!", data: diligenceStaff });
+    return {
+      statusCode: 200,
+      message: "Staff created successfully!",
+      data: diligenceStaff,
+    };
   } catch (error) {
     throw error;
   }
@@ -261,7 +273,7 @@ const createDiligenceUser = async (accountPayload, role) => {
     ...accountPayload,
     role: `${role}`,
   };
-  const user = await prisma.diligenceUser.create(value);
+  const user = await prisma.diligenceUser.create({ data: value });
 
   if (!user) {
     throw new BadRequest("Error occurred while creating user");
@@ -272,7 +284,7 @@ const createDiligenceUser = async (accountPayload, role) => {
 const createAccount = async (accountPayload) => {
   try {
     const checkUser = await prisma.diligenceUser.findUnique({
-      where: { name: accountPayload.email },
+      where: { email: accountPayload.email },
     });
 
     if (checkUser) {
@@ -280,13 +292,13 @@ const createAccount = async (accountPayload) => {
     }
 
     const admin = await prisma.diligenceBank.findUnique({
-      data: accountPayload.email,
+      where: { adminEmail: accountPayload.email },
     });
     const manager = await prisma.diligenceBranch.findUnique({
-      data: accountPayload.email,
+      where: { managerEmail: accountPayload.email },
     });
     const staff = await prisma.diligenceStaff.findUnique({
-      data: accountPayload.email,
+      where: { email: accountPayload.email },
     });
 
     if (!admin && !manager && !staff) {
@@ -310,10 +322,11 @@ const createAccount = async (accountPayload) => {
     });
 
     const findCreatedUser = await prisma.diligenceUser.findUnique({
-      where: { name: accountPayload.email },
+      where: { email: accountPayload.email },
     });
 
-    res.status(200).json({
+    return {
+      statusCode: 200,
       message: `User created successfully!`,
       data: {
         firstName: findCreatedUser.firstName,
@@ -321,7 +334,7 @@ const createAccount = async (accountPayload) => {
         email: findCreatedUser.email,
         role: findCreatedUser.role,
       },
-    });
+    };
   } catch (error) {
     throw error;
   }
@@ -390,7 +403,7 @@ const forgotPassword = async (email) => {
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const userToken = await generateToken(user.id, userSecret, "30m");
+    const userToken = await generateToken({ email: email }, userSecret, "30m");
 
     const cryptedToken = await hasher(userToken, 12);
 
@@ -468,7 +481,7 @@ const changePassword = async (changePayload) => {
 const createRequest = async (requestPayload) => {
   try {
     const checkUser = await prisma.diligenceUser.findUnique({
-      where: { name: requestPayload.createdBy },
+      where: { email: requestPayload.createdBy },
     });
 
     if (!checkUser) {
@@ -501,7 +514,7 @@ const getAllDiligenceRequests = async () => {
   //  get the diligence requests list from the table
   //  return the diligence requests list to the diligence requests controller
   try {
-    const diligenceRequests = await prisma.diligenceStaff.findMany({});
+    const diligenceRequests = await prisma.diligenceRequest.findMany({});
     if (!diligenceRequests) {
       throw new BadRequest("Diligence requests not found!.");
     }
@@ -598,6 +611,13 @@ const saveRequestDocument = async (requestId, documentPayload) => {
       );
     }
 
+    const docName = await prisma.diligenceRequestDocument.findUnique({
+      where: { name: documentPayload.name },
+    });
+    if (docName) {
+      throw new BadRequest("document already exist");
+    }
+
     const document = await prisma.diligenceRequestDocument.create({
       data: documentPayload,
     });
@@ -633,6 +653,13 @@ const removeRequestDocument = async (id) => {
   //return response to the request controller
 
   try {
+    const doc = await prisma.diligenceRequestDocument.findUnique({
+      where: { id: id },
+    });
+    if (!doc) {
+      throw new BadRequest("Document does not exist");
+    }
+
     const deleteRequestDocument = await prisma.diligenceRequestDocument.delete({
       where: {
         id: id,
@@ -643,6 +670,7 @@ const removeRequestDocument = async (id) => {
     }
 
     return {
+      statusCode: 200,
       message: "Document deleted successfully",
     };
   } catch (error) {

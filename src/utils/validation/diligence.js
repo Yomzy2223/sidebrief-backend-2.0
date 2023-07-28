@@ -4,20 +4,21 @@ const validate = new Validator();
 
 //bank
 const bankSchema = {
-  firstName: { type: "string", min: 3, max: 50 },
-  lastName: { type: "string", min: 6, max: 50 },
-  email: { type: "email", min: 3, max: 255 },
-  password: { type: "string", min: 6, max: 12 },
+  name: { type: "string", min: 3, max: 50 },
+  address: { type: "string", min: 6, max: 200 },
+  url: { type: "string", min: 3, max: 255 },
+  adminName: { type: "string", min: 6, max: 100 },
+  adminEmail: { type: "string", min: 6, max: 100 },
 };
 
 const validateBankCredentials = validate.compile(bankSchema);
 
 //branch
 const userBranchSchema = {
-  firstName: { type: "string", min: 3, max: 50 },
-  lastName: { type: "string", min: 6, max: 50 },
-  email: { type: "email", min: 3, max: 255 },
-  password: { type: "string", min: 6, max: 12 },
+  name: { type: "string", min: 3, max: 50 },
+  state: { type: "string", min: 3, max: 50 },
+  managerEmail: { type: "email", min: 3, max: 255 },
+  managerName: { type: "string", min: 6, max: 100 },
 };
 
 const validateBranchCredentials = validate.compile(userBranchSchema);
@@ -41,14 +42,13 @@ const loginSchema = {
 const validateUserCredentials = validate.compile(loginSchema);
 
 //request
-const userRequestSchema = {
-  firstName: { type: "string", min: 3, max: 50 },
-  lastName: { type: "string", min: 6, max: 50 },
+const requestSchema = {
+  name: { type: "string", min: 3, max: 100 },
+  registrationNumber: { type: "string", min: 6, max: 100 },
   email: { type: "email", min: 3, max: 255 },
-  password: { type: "string", min: 6, max: 12 },
 };
 
-const validateRequestCredentials = validate.compile(userRequestSchema);
+const validateRequestCredentials = validate.compile(requestSchema);
 
 //email
 const emailSchema = {

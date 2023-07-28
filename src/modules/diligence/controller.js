@@ -17,6 +17,9 @@ const {
   removeRequestDocument,
   verifyRequest,
   updateRequest,
+  getAllDiligenceBranches,
+  forgotPassword,
+  changePassword,
 } = require("./service");
 
 //DILIGENCE PRODUCT CONTROLLERS
@@ -28,7 +31,6 @@ exports.GetAllNigerianBanks = async (req, res, next) => {
     // return response to the client
 
     const banks = await getAllBanks();
-    console.log(banks);
     return res
       .status(banks.statusCode)
       .json({ message: banks.message, data: banks.data });
@@ -67,7 +69,6 @@ exports.GetAllDiligenceBanks = async (req, res, next) => {
     // return response to the client
 
     const diligenceBanks = await getAllDiligenceBanks();
-    console.log(diligenceBanks);
     return res
       .status(diligenceBanks.statusCode)
       .json({ message: diligenceBanks.message, data: diligenceBanks.data });
@@ -87,6 +88,7 @@ exports.CreateBranch = async (req, res, next) => {
       state: branchPayload.state,
       managerName: branchPayload.managerName,
       managerEmail: branchPayload.managerEmail,
+      diligenceBankId: bankId,
     };
 
     const diligenceBranch = await createBranch(bankId, values);
@@ -106,7 +108,7 @@ exports.GetAllDiligenceBranches = async (req, res, next) => {
     // return response to the client
 
     const diligenceBranches = await getAllDiligenceBranches();
-    console.log(diligenceBranches);
+
     return res.status(diligenceBranches.statusCode).json({
       message: diligenceBranches.message,
       data: diligenceBranches.data,
@@ -122,7 +124,11 @@ exports.CreateStaff = async (req, res, next) => {
     const branchId = req.params.branchId;
     const { email } = req.body;
 
-    const diligenceStaff = await createStaff(branchId, email);
+    const values = {
+      email: email,
+      diligenceBranchId: branchId,
+    };
+    const diligenceStaff = await createStaff(branchId, values);
 
     return res
       .status(diligenceStaff.statusCode)
@@ -139,7 +145,7 @@ exports.GetAllDiligenceStaffs = async (req, res, next) => {
     // return response to the client
 
     const diligenceStaffs = await getAllDiligenceStaffs();
-    console.log(diligenceStaffs);
+
     return res.status(diligenceStaffs.statusCode).json({
       message: diligenceStaffs.message,
       data: diligenceStaffs.data,
@@ -229,7 +235,7 @@ exports.CreateRequest = async (req, res, next) => {
     const values = {
       name: requestPayload.name,
       registrationNumber: requestPayload.registrationNumber,
-      status: "unverified",
+      status: "Unverified",
       createdBy: requestPayload.email,
     };
 
@@ -261,7 +267,7 @@ exports.GetAllDiligenceRequests = async (req, res, next) => {
 };
 
 //verify a request
-exports.VerifyRequest = async (req, res) => {
+exports.VerifyRequest = async (req, res, next) => {
   try {
     //check if there is id
     // send the id to the verify service
@@ -278,7 +284,7 @@ exports.VerifyRequest = async (req, res) => {
 };
 
 //update a request
-exports.UpdateRequest = async (req, res) => {
+exports.UpdateRequest = async (req, res, next) => {
   try {
     //check if there is id
     // send the id to the update service
@@ -304,6 +310,7 @@ exports.AddRequestDocument = async (req, res, next) => {
       type: documentPayload.type,
       description: documentPayload.description,
       link: documentPayload.link,
+      diligenceRequestId: requestId,
     };
 
     const document = await saveRequestDocument(requestId, values);
@@ -317,7 +324,7 @@ exports.AddRequestDocument = async (req, res, next) => {
 };
 
 //delete a document
-exports.DeleteDocument = async (req, res) => {
+exports.DeleteDocument = async (req, res, next) => {
   try {
     //check if there is id
     // send the id to the delete service
