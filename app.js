@@ -14,7 +14,6 @@ const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const options = require("./src/config/swagger");
 const session = require("express-session");
-const { default: axios } = require("axios");
 const passport = require("passport");
 const ErrorHandler = require("./src/middleware/errorHandler");
 

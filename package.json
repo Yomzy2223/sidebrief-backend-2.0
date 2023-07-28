@@ -9,14 +9,13 @@
   "scripts": {
     "test": "jest --forceExit --detectOpenHandles --runInBand",
     "dev": "nodemon index.js",
-    "start": "npx prisma migrate dev --name modify && node index.js"
+    "start": "npx prisma migrate dev --name update && node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-cloudwatch-logs": "^3.359.0",
     "@prisma/client": "^4.14.1",
-    "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",

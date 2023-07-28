@@ -1,7 +1,5 @@
-const { PrismaClient } = require("@prisma/client");
-const { default: axios } = require("axios");
 const { hasher } = require("../../common/hash");
-const prisma = new PrismaClient();
+
 const {
   createBank,
   getAllBanks,
