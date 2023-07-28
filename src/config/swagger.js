@@ -146,6 +146,10 @@ const options = {
         name: "Banks",
         description: "The banks management API",
       },
+      {
+        name: "Nigerian Banks",
+        description: "The nigerian banks management API",
+      },
     ],
     paths: {
       "/users": {
@@ -516,6 +520,21 @@ const options = {
               schema: {
                 $ref: "#/components/schemas/Banks",
               },
+            },
+          },
+        },
+      },
+
+      "/diligence/nigerianBanks": {
+        get: {
+          tags: ["Nigerian Banks"],
+          summary: "Get all Nigerian banks",
+          responses: {
+            200: {
+              description: "OK",
+              // schema: {
+              //   $ref: "#/components/schemas/Banks",
+              // },
             },
           },
         },

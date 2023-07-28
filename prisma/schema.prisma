@@ -117,3 +117,77 @@ model Notification {
       updatedAt DateTime @default(now())
 }
 
+model DiligenceUser { 
+      id String @id @default(uuid())
+      firstName String
+      lastName String
+      email String @unique
+      password String
+      role String
+      resetToken String?
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+model DiligenceRequest {
+      id String @id @default(uuid())
+      name String
+      registrationNumber String
+      status String
+      createdBy String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      diligenceRequestDocument DiligenceRequestDocument[]
+}
+
+model DiligenceRequestDocument {
+      id String @id @default(uuid())
+      name String @unique
+      type String
+      description String
+      link String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      diligenceRequest DiligenceRequest @relation(fields: [diligenceRequestId], references: [id])
+      diligenceRequestId String
+}
+
+model DiligenceBank {
+      id String @id @default(uuid())
+      name String @unique
+      address String
+      url String
+      adminName String
+      adminEmail String @unique
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      diligenceBranch DiligenceBranch[]
+}
+
+model DiligenceBranch {
+      id String @id @default(uuid())
+      name String @unique
+      state String
+      managerName String
+      managerEmail String @unique
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      diligenceStaff DiligenceStaff[]
+      diligenceBank DiligenceBank @relation(fields: [diligenceBankId], references: [id])
+      diligenceBankId String
+}
+
+model DiligenceStaff {
+      id String @id @default(uuid())
+      email String @unique
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      diligenceBranch DiligenceBranch @relation(fields: [diligenceBranchId], references: [id])
+      diligenceBranchId String
+}
+
+model NigerianBank {
+      id String @id @default(uuid())
+      name String
+      slug String
+      logo String
+}

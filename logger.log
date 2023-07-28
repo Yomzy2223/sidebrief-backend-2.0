@@ -2900,3 +2900,493 @@ info: Label: 13-Jul-2023 14:11:15: staff with akinyemi@sidebrief.com signed in s
 error: Label: 13-Jul-2023 14:11:49: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
 info: Label: 13-Jul-2023 14:12:07: User with akinyemibamidele2@gmail.com signed in successfully.
 info: Label: 13-Jul-2023 14:13:42: union bank created successfully
+error: Label: 27-Jul-2023 19:29:32: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:28: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:45: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:46: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:47: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:48: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:31:24: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:31:24: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:31:51: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:81:36
+
+  78 //   //return the user to the user controller
+  79 
+  80 try {
+→ 81   const user = await prisma.user.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /users/getAllUsers was called
+error: Label: 27-Jul-2023 19:32:23: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:81:36
+
+  78 //   //return the user to the user controller
+  79 
+  80 try {
+→ 81   const user = await prisma.user.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /users/getAllUsers was called
+error: Label: 27-Jul-2023 19:32:25: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:71:42
+
+  68 //   //return the country to the country controller
+  69 
+  70 try {
+→ 71   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:32:26: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:71:42
+
+  68 //   //return the country to the country controller
+  69 
+  70 try {
+→ 71   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:34:30: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:71:42
+
+  68 //   //return the country to the country controller
+  69 
+  70 try {
+→ 71   const country = await prisma.country.findUnique(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:34:33: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:81:36
+
+  78 //   //return the user to the user controller
+  79 
+  80 try {
+→ 81   const user = await prisma.user.findUnique(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /users/getAllUsers was called
+error: Label: 27-Jul-2023 19:35:02: Error occured with error Error: 
+Invalid `prisma.user.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:110:37
+
+  107 //   //return the users list to the user controller
+  108 
+  109 try {
+→ 110   const users = await prisma.user.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /users was called
+error: Label: 27-Jul-2023 19:35:24: Error occured with error Error: 
+Invalid `prisma.user.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:110:37
+
+  107 //   //return the users list to the user controller
+  108 
+  109 try {
+→ 110   const users = await prisma.user.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /users was called
+error: Label: 27-Jul-2023 19:35:54: Error occured with error Error: 
+Invalid `prisma.user.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:110:37
+
+  107 //   //return the users list to the user controller
+  108 
+  109 try {
+→ 110   const users = await prisma.user.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /users was called
+error: Label: 27-Jul-2023 19:36:11: Error occured with error Error: 
+Invalid `prisma.country.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/country/service.js:42:44
+
+  39 //  get the country list from the table
+  40 //  return the country list to the country controller
+  41 try {
+→ 42   const countries = await prisma.country.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /countries was called
+info: Label: 27-Jul-2023 19:38:41: Testing the server
+info: Label: 27-Jul-2023 19:40:39: Testing the server
+info: Label: 27-Jul-2023 19:41:09: Testing the server
+info: Label: 27-Jul-2023 19:41:31: Testing the server
+info: Label: 27-Jul-2023 19:42:12: Testing the server
+error: Label: 27-Jul-2023 19:53:45: Country not found!. with error Error: Country not found!. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:54:12: Country not found!. with error Error: Country not found!. occurred when GET /diligence/dtest was called
+error: Label: 27-Jul-2023 19:54:47: Country not found!. with error Error: Country not found!. occurred when GET /diligence/dtest was called
+error: Label: 27-Jul-2023 19:54:48: Country not found!. with error Error: Country not found!. occurred when GET /diligence/dtest was called
+error: Label: 27-Jul-2023 19:54:49: Country not found!. with error Error: Country not found!. occurred when GET /diligence/dtest was called
+error: Label: 28-Jul-2023 12:20:42: Error occured with error ReferenceError: countries is not defined occurred when GET /diligence/nigerianBanks was called
+info: Label: 28-Jul-2023 15:51:37: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 28-Jul-2023 16:19:30: staff with akinyemi@sidebrief.com signed in successfully.
+error: Label: 28-Jul-2023 16:28:06: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/createBank was called
+error: Label: 28-Jul-2023 16:32:08: Error occured with error ReferenceError: bank is not defined occurred when POST /diligence/createBank was called
+error: Label: 28-Jul-2023 16:32:52: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /diligence/createBank was called
+error: Label: 28-Jul-2023 16:34:16: Error occured with error Error: 
+Invalid `prisma.diligenceBank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:42:50
+
+  39   throw new BadRequest("Bank with this name already exists");
+  40 }
+  41 
+→ 42 const diligence = await prisma.diligenceBank.create(
+Unique constraint failed on the fields: (`adminEmail`) occurred when POST /diligence/createBank was called
+error: Label: 28-Jul-2023 16:35:45: Error occured with error Error: 
+Invalid `prisma.diligenceBank.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:50:50
+
+  47   throw new BadRequest("Email already exists");
+  48 }
+  49 
+→ 50 const diligence = await prisma.diligenceBank.create(
+Unique constraint failed on the fields: (`adminEmail`) occurred when POST /diligence/createBank was called
+error: Label: 28-Jul-2023 16:36:27: Email already exists with error Error: Email already exists occurred when POST /diligence/createBank was called
+info: Label: 28-Jul-2023 16:36:46: Trust Bank created successfully
+error: Label: 28-Jul-2023 16:41:22: Error occured with error Error: 
+Invalid `prisma.diligenceBranch.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:132:58
+
+  129   throw new BadRequest("Branch Manager this email already exists");
+  130 }
+  131 
+→ 132 const diligenceBranch = await prisma.diligenceBranch.create({
+        data: {
+          name: 'Testing Branch',
+          state: 'Lagos',
+          managerName: 'Bamidele Emmanuel',
+          managerEmail: 'akinyemisdfs@sidebrief.com',
+      +   diligenceBank: {
+      +     create?: DiligenceBankCreateWithoutDiligenceBranchInput | DiligenceBankUncheckedCreateWithoutDiligenceBranchInput,
+      +     connectOrCreate?: DiligenceBankCreateOrConnectWithoutDiligenceBranchInput,
+      +     connect?: DiligenceBankWhereUniqueInput
+      +   },
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime,
+      ?   diligenceStaff?: {
+      ?     create?: DiligenceStaffCreateWithoutDiligenceBranchInput | DiligenceStaffCreateWithoutDiligenceBranchInput | DiligenceStaffUncheckedCreateWithoutDiligenceBranchInput | DiligenceStaffUncheckedCreateWithoutDiligenceBranchInput,
+      ?     connectOrCreate?: DiligenceStaffCreateOrConnectWithoutDiligenceBranchInput | DiligenceStaffCreateOrConnectWithoutDiligenceBranchInput,
+      ?     createMany?: DiligenceStaffCreateManyDiligenceBranchInputEnvelope,
+      ?     connect?: DiligenceStaffWhereUniqueInput | DiligenceStaffWhereUniqueInput
+      ?   }
+        }
+      })
+
+Argument diligenceBank for data.diligenceBank is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /diligence/createBranch/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+info: Label: 28-Jul-2023 16:45:22: Testing Branch diligence branch created successfully
+error: Label: 28-Jul-2023 16:45:22: Error occured with error ReferenceError: res is not defined occurred when POST /diligence/createBranch/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+error: Label: 28-Jul-2023 16:45:59: Branch with this name already exists with error Error: Branch with this name already exists occurred when POST /diligence/createBranch/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+error: Label: 28-Jul-2023 16:47:07: Error occured with error ReferenceError: getAllDiligenceBranches is not defined occurred when GET /diligence/allBranches was called
+error: Label: 28-Jul-2023 16:47:37: Error occured with error ReferenceError: getAllDiligenceBranches is not defined occurred when GET /diligence/allBranches was called
+error: Label: 28-Jul-2023 16:51:01: Error occured with error Error: 
+Invalid `prisma.diligenceStaff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:202:52
+
+  199   throw new BadRequest("Branch not found.");
+  200 }
+  201 
+→ 202 const checkStaff = await prisma.diligenceStaff.findUnique({
+        where: {
+          name: 'damola@sidebrief.com'
+          ~~~~
+        }
+      })
+
+Unknown arg `name` in where.name for type DiligenceStaffWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceStaffWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/createStaff/b223060b-ada2-4a67-ad52-4f3b2993e7dc was called
+info: Label: 28-Jul-2023 16:51:40: diligence staff with damola@sidebrief.com created successfully
+error: Label: 28-Jul-2023 16:51:40: Error occured with error ReferenceError: res is not defined occurred when POST /diligence/createStaff/b223060b-ada2-4a67-ad52-4f3b2993e7dc was called
+error: Label: 28-Jul-2023 16:52:09: Staff with this email already exists with error Error: Staff with this email already exists occurred when POST /diligence/createStaff/b223060b-ada2-4a67-ad52-4f3b2993e7dc was called
+info: Label: 28-Jul-2023 16:52:20: diligence staff with bam@sidebrief.com created successfully
+error: Label: 28-Jul-2023 16:53:48: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:286:50
+
+  283 //create diligence user
+  284 const createAccount = async (accountPayload) => {
+  285   try {
+→ 286     const checkUser = await prisma.diligenceUser.findUnique({
+            where: {
+              name: 'akinyemi@sidebrief.com'
+              ~~~~
+            }
+          })
+
+Unknown arg `name` in where.name for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/createAccount was called
+error: Label: 28-Jul-2023 16:55:04: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:286:50
+
+  283 //create diligence user
+  284 const createAccount = async (accountPayload) => {
+  285   try {
+→ 286     const checkUser = await prisma.diligenceUser.findUnique({
+            where: {
+              name: 'akinyemi@sidebrief.com'
+              ~~~~
+            }
+          })
+
+Unknown arg `name` in where.name for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/createAccount was called
+error: Label: 28-Jul-2023 16:55:29: The email address is not registered with error Error: The email address is not registered occurred when POST /diligence/createAccount was called
+info: Label: 28-Jul-2023 16:56:01: Diligence user with tbank@gmail.com created successfully
+info: Label: 28-Jul-2023 16:57:44: Diligence user with tbank@gmail.com created successfully
+error: Label: 28-Jul-2023 16:57:44: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:324:56
+
+  321   message: `Diligence user with ${accountPayload.email} created successfully`,
+  322 });
+  323 
+→ 324 const findCreatedUser = await prisma.diligenceUser.findUnique({
+        where: {
+          name: 'tbank@gmail.com'
+          ~~~~
+        }
+      })
+
+Unknown arg `name` in where.name for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/createAccount was called
+error: Label: 28-Jul-2023 16:58:05: User with this email already exists with error Error: User with this email already exists occurred when POST /diligence/createAccount was called
+info: Label: 28-Jul-2023 16:58:25: Diligence user with bam@sidebrief.com created successfully
+error: Label: 28-Jul-2023 16:58:25: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:324:56
+
+  321   message: `Diligence user with ${accountPayload.email} created successfully`,
+  322 });
+  323 
+→ 324 const findCreatedUser = await prisma.diligenceUser.findUnique({
+        where: {
+          name: 'bam@sidebrief.com'
+          ~~~~
+        }
+      })
+
+Unknown arg `name` in where.name for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/createAccount was called
+error: Label: 28-Jul-2023 16:58:31: User with this email already exists with error Error: User with this email already exists occurred when POST /diligence/createAccount was called
+info: Label: 28-Jul-2023 16:59:20: Diligence user with akinyemisdfs@sidebrief.com created successfully
+error: Label: 28-Jul-2023 17:00:33: Diligence user not found!. with error Error: Diligence user not found!. occurred when POST /diligence/login was called
+info: Label: 28-Jul-2023 17:01:14: User with bam@sidebrief.com signed in successfully.
+error: Label: 28-Jul-2023 17:03:39: Branch with this name already exists with error Error: Branch with this name already exists occurred when POST /diligence/createBranch/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+info: Label: 28-Jul-2023 17:04:21: jah Branch diligence branch created successfully
+info: Label: 28-Jul-2023 17:05:37: jahbless Branch diligence branch created successfully
+error: Label: 28-Jul-2023 17:07:02: Error occured with error ReferenceError: forgotPassword is not defined occurred when POST /diligence/forgotpassword was called
+error: Label: 28-Jul-2023 17:07:15: User not found!. with error Error: User not found!. occurred when POST /diligence/forgotpassword was called
+info: Label: 28-Jul-2023 17:07:44: Diligence user with akinyemibamidele2@gmail.com created successfully
+error: Label: 28-Jul-2023 17:07:55: Error occured with error Error: invalid expiresIn option for string payload occurred when POST /diligence/forgotpassword was called
+error: Label: 28-Jul-2023 17:13:17: Error occured with error ReferenceError: changePassword is not defined occurred when POST /diligence/resetPassword was called
+info: Label: 28-Jul-2023 17:14:33: User with bam@sidebrief.com signed in successfully.
+error: Label: 28-Jul-2023 17:14:51: Invalid credentials! with error Error: Invalid credentials! occurred when POST /diligence/login was called
+info: Label: 28-Jul-2023 17:15:00: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 28-Jul-2023 17:17:00: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:483:50
+
+  480 //create diligence request
+  481 const createRequest = async (requestPayload) => {
+  482   try {
+→ 483     const checkUser = await prisma.diligenceUser.findUnique({
+            where: {
+              name: 'akinyemibamidele2@gmail.com'
+              ~~~~
+            }
+          })
+
+Unknown arg `name` in where.name for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/createRequest was called
+info: Label: 28-Jul-2023 17:17:23: request with the name Testing Limited created successfully by akinyemibamidele2@gmail.com
+error: Label: 28-Jul-2023 17:20:30: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/verify/34DFKJ345LN was called
+info: Label: 28-Jul-2023 17:21:13: Request with the name Testing Limited, verified successfully
+error: Label: 28-Jul-2023 17:21:34: Authorization token is missing. with error Error: Authorization token is missing. occurred when PUT /diligence/update/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+info: Label: 28-Jul-2023 17:21:52: Request with the name Testing Limited, updated successfully
+error: Label: 28-Jul-2023 17:22:17: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/addDocument was called
+error: Label: 28-Jul-2023 17:24:33: Error occured with error Error: 
+Invalid `prisma.diligenceRequestDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:614:60
+
+  611   );
+  612 }
+  613 
+→ 614 const document = await prisma.diligenceRequestDocument.create({
+        data: {
+          name: 'Business Certificate',
+          type: 'pdf',
+          description: 'This is the certificate',
+          link: 'cloudinary.com',
+      +   diligenceRequest: {
+      +     create?: DiligenceRequestCreateWithoutDiligenceRequestDocumentInput | DiligenceRequestUncheckedCreateWithoutDiligenceRequestDocumentInput,
+      +     connectOrCreate?: DiligenceRequestCreateOrConnectWithoutDiligenceRequestDocumentInput,
+      +     connect?: DiligenceRequestWhereUniqueInput
+      +   },
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Argument diligenceRequest for data.diligenceRequest is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /diligence/addDocument/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+info: Label: 28-Jul-2023 17:25:06: dcoument with the name Business Certificate saved successfully
+error: Label: 28-Jul-2023 17:26:35: Error occured with error Error: 
+Invalid `prisma.diligenceRequestDocument.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:649:79
+
+  646 //return response to the request controller
+  647 
+  648 try {
+→ 649   const deleteRequestDocument = await prisma.diligenceRequestDocument.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /diligence/deleteDocument/c1d217d0-7686-40c1-ac0a-657408a99331 was called
+info: Label: 28-Jul-2023 17:27:23: dcoument with the name Business Certificate saved successfully
+error: Label: 28-Jul-2023 17:27:26: Error occured with error Error: 
+Invalid `prisma.diligenceRequestDocument.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:614:60
+
+  611   );
+  612 }
+  613 
+→ 614 const document = await prisma.diligenceRequestDocument.create(
+Unique constraint failed on the fields: (`name`) occurred when POST /diligence/addDocument/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+error: Label: 28-Jul-2023 17:28:47: document already exist with error Error: document already exist occurred when POST /diligence/addDocument/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+error: Label: 28-Jul-2023 17:29:38: Error occured with error RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: undefined occurred when DELETE /diligence/deleteDocument/d96dc81e-d6b6-4207-b1a6-ef2330fb5959 was called
+info: Label: 28-Jul-2023 17:30:16: dcoument with the name Business Certificate saved successfully
+error: Label: 28-Jul-2023 17:30:43: Error occured with error Error: 
+Invalid `prisma.diligenceRequestDocument.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:656:79
+
+  653 //return response to the request controller
+  654 
+  655 try {
+→ 656   const deleteRequestDocument = await prisma.diligenceRequestDocument.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /diligence/deleteDocument/d9154dc5-1321-4bc9-b7b2-c6594a9508c0 was called
+error: Label: 28-Jul-2023 17:31:38: Document does not exist with error Error: Document does not exist occurred when DELETE /diligence/deleteDocument/d9154dc5-1321-4bc9-b7b2-c6594a9508c0 was called
