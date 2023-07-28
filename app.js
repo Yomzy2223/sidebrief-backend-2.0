@@ -17,7 +17,7 @@ const session = require("express-session");
 const passport = require("passport");
 const ErrorHandler = require("./src/middleware/errorHandler");
 
-require("./src/modules/user/googleAuth")(passport);
+// require("./src/modules/user/googleAuth")(passport);
 
 const app = express();
 dotenv.config({ path: path.resolve(__dirname, "./.env") });

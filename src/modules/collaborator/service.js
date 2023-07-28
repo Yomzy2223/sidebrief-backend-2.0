@@ -325,7 +325,7 @@ const deleteCollaborator = async (id) => {
       where: { id: collaborator.id },
     });
 
-    console.log(deleteCollaborator);
+
     if (!deleteCollaborator) {
       throw new BadRequest("Error occured while deleting collaborator");
     }
