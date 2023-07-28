@@ -2900,3 +2900,214 @@ info: Label: 13-Jul-2023 14:11:15: staff with akinyemi@sidebrief.com signed in s
 error: Label: 13-Jul-2023 14:11:49: Bank with this name already exists with error Error: Bank with this name already exists occurred when POST /banks was called
 info: Label: 13-Jul-2023 14:12:07: User with akinyemibamidele2@gmail.com signed in successfully.
 info: Label: 13-Jul-2023 14:13:42: union bank created successfully
+error: Label: 27-Jul-2023 19:29:32: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:28: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:45: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:46: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:47: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:30:48: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:31:24: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:31:24: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:81:42
+
+  78 //   //return the country to the country controller
+  79 
+  80 try {
+→ 81   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:31:51: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:81:36
+
+  78 //   //return the user to the user controller
+  79 
+  80 try {
+→ 81   const user = await prisma.user.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /users/getAllUsers was called
+error: Label: 27-Jul-2023 19:32:23: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:81:36
+
+  78 //   //return the user to the user controller
+  79 
+  80 try {
+→ 81   const user = await prisma.user.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /users/getAllUsers was called
+error: Label: 27-Jul-2023 19:32:25: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:71:42
+
+  68 //   //return the country to the country controller
+  69 
+  70 try {
+→ 71   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:32:26: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:71:42
+
+  68 //   //return the country to the country controller
+  69 
+  70 try {
+→ 71   const country = await prisma.country.findUnique(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:34:30: Error occured with error Error: 
+Invalid `prisma.country.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:71:42
+
+  68 //   //return the country to the country controller
+  69 
+  70 try {
+→ 71   const country = await prisma.country.findUnique(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:34:33: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:81:36
+
+  78 //   //return the user to the user controller
+  79 
+  80 try {
+→ 81   const user = await prisma.user.findUnique(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /users/getAllUsers was called
+error: Label: 27-Jul-2023 19:35:02: Error occured with error Error: 
+Invalid `prisma.user.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:110:37
+
+  107 //   //return the users list to the user controller
+  108 
+  109 try {
+→ 110   const users = await prisma.user.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /users was called
+error: Label: 27-Jul-2023 19:35:24: Error occured with error Error: 
+Invalid `prisma.user.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:110:37
+
+  107 //   //return the users list to the user controller
+  108 
+  109 try {
+→ 110   const users = await prisma.user.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /users was called
+error: Label: 27-Jul-2023 19:35:54: Error occured with error Error: 
+Invalid `prisma.user.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.js:110:37
+
+  107 //   //return the users list to the user controller
+  108 
+  109 try {
+→ 110   const users = await prisma.user.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /users was called
+error: Label: 27-Jul-2023 19:36:11: Error occured with error Error: 
+Invalid `prisma.country.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/country/service.js:42:44
+
+  39 //  get the country list from the table
+  40 //  return the country list to the country controller
+  41 try {
+→ 42   const countries = await prisma.country.findMany(
+Authentication failed against database server at `localhost`, the provided database credentials for `postgres` are not valid.
+
+Please make sure to provide valid database credentials for the database server at `localhost`. occurred when GET /countries was called
+info: Label: 27-Jul-2023 19:38:41: Testing the server
+info: Label: 27-Jul-2023 19:40:39: Testing the server
+info: Label: 27-Jul-2023 19:41:09: Testing the server
+info: Label: 27-Jul-2023 19:41:31: Testing the server
+info: Label: 27-Jul-2023 19:42:12: Testing the server
+error: Label: 27-Jul-2023 19:53:45: Country not found!. with error Error: Country not found!. occurred when GET /diligence/test was called
+error: Label: 27-Jul-2023 19:54:12: Country not found!. with error Error: Country not found!. occurred when GET /diligence/dtest was called
+error: Label: 27-Jul-2023 19:54:47: Country not found!. with error Error: Country not found!. occurred when GET /diligence/dtest was called
+error: Label: 27-Jul-2023 19:54:48: Country not found!. with error Error: Country not found!. occurred when GET /diligence/dtest was called
+error: Label: 27-Jul-2023 19:54:49: Country not found!. with error Error: Country not found!. occurred when GET /diligence/dtest was called
+error: Label: 28-Jul-2023 12:20:42: Error occured with error ReferenceError: countries is not defined occurred when GET /diligence/nigerianBanks was called
+info: Label: 28-Jul-2023 15:51:37: staff with akinyemi@sidebrief.com signed in successfully.
+info: Label: 28-Jul-2023 16:19:30: staff with akinyemi@sidebrief.com signed in successfully.
