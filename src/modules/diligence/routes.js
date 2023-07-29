@@ -31,6 +31,10 @@ const {
   GetAllDiligenceRequests,
   UserPasswordResetLink,
   UserPasswordReset,
+  Test,
+  GetSingleBank,
+  GetSingleBranch,
+  GetSingleStaff,
 } = require("./controller");
 
 //Post request
@@ -83,5 +87,10 @@ router.get("/allBanks", GetAllDiligenceBanks);
 router.get("/allBranches", GetAllDiligenceBranches);
 router.get("/allStaffs", GetAllDiligenceStaffs);
 router.get("/allRequests", GetAllDiligenceRequests);
+router.get("/bank/:bankId", GetSingleBank);
+router.get("/branch/:branchId", GetSingleBranch);
+router.get("/staff/:staffId", GetSingleStaff);
+
+// router.get("/test", Test);
 
 module.exports = router;
