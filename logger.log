@@ -3482,3 +3482,5 @@ Argument where of type DiligenceBankWhereUniqueInput needs at least one argument
 
 Note: Lines with ? are optional.
  occurred when GET /diligence/bank/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+error: Label: 29-Jul-2023 14:52:25: Branch with this name already exists with error Error: Branch with this name already exists occurred when POST /diligence/createBranch/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+error: Label: 29-Jul-2023 14:53:11: Staff with this email already exists with error Error: Staff with this email already exists occurred when POST /diligence/createStaff/b223060b-ada2-4a67-ad52-4f3b2993e7dc was called

@@ -84,8 +84,8 @@ router.delete("/deleteDocument/:id", staffAuth, DeleteDocument);
 //Get request
 router.get("/nigerianBanks", GetAllNigerianBanks);
 router.get("/allBanks", GetAllDiligenceBanks);
-router.get("/allBranches", GetAllDiligenceBranches);
-router.get("/allStaffs", GetAllDiligenceStaffs);
+router.get("/allBranches/:bankId", GetAllDiligenceBranches);
+router.get("/allStaffs/:branchId", GetAllDiligenceStaffs);
 router.get("/allRequests", GetAllDiligenceRequests);
 router.get("/bank/:bankId", GetSingleBank);
 router.get("/branch/:branchId", GetSingleBranch);
