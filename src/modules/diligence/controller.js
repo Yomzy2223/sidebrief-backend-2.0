@@ -109,8 +109,8 @@ exports.GetAllDiligenceBranches = async (req, res, next) => {
   try {
     // get the diligence branches list
     // return response to the client
-
-    const diligenceBranches = await getAllDiligenceBranches();
+    const bankId = req.params.bankId;
+    const diligenceBranches = await getAllDiligenceBranches(bankId);
 
     return res.status(diligenceBranches.statusCode).json({
       message: diligenceBranches.message,
@@ -146,8 +146,8 @@ exports.GetAllDiligenceStaffs = async (req, res, next) => {
   try {
     // get the diligence staffs list
     // return response to the client
-
-    const diligenceStaffs = await getAllDiligenceStaffs();
+    const branchId = req.params.branchId;
+    const diligenceStaffs = await getAllDiligenceStaffs(branchId);
 
     return res.status(diligenceStaffs.statusCode).json({
       message: diligenceStaffs.message,

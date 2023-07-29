@@ -170,11 +170,13 @@ const createBranch = async (bankId, branchPayload) => {
 };
 
 //get all diligence branches service
-const getAllDiligenceBranches = async () => {
+const getAllDiligenceBranches = async (bankId) => {
   //  get the diligence branches list from the table
   //  return the diligence branches list to the diligence branches controller
   try {
-    const diligenceBranches = await prisma.diligenceBranch.findMany({});
+    const diligenceBranches = await prisma.diligenceBranch.findMany({
+      where: { diligenceBankId: bankId },
+    });
     if (!diligenceBranches) {
       throw new BadRequest("Diligence Branches not found!.");
     }
@@ -248,11 +250,13 @@ const createStaff = async (branchId, staffPayload) => {
 };
 
 //get all diligence Staffs service
-const getAllDiligenceStaffs = async () => {
+const getAllDiligenceStaffs = async (branchId) => {
   //  get the diligence Staffs list from the table
   //  return the diligence Staffs list to the diligence branches controller
   try {
-    const diligenceStaffs = await prisma.diligenceStaff.findMany({});
+    const diligenceStaffs = await prisma.diligenceStaff.findMany({
+      where: { diligenceBranchId: branchId },
+    });
     if (!diligenceStaffs) {
       throw new BadRequest("Diligence Staffs not found!.");
     }
@@ -679,7 +683,7 @@ const removeRequestDocument = async (id) => {
 };
 
 const getBank = async (id) => {
-  console.log(id)
+  console.log(id);
   try {
     const checkBank = await prisma.diligenceBank.findUnique({
       where: { id: id },
