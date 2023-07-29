@@ -3390,3 +3390,95 @@ Invalid `prisma.diligenceRequestDocument.delete()` invocation in
 → 656   const deleteRequestDocument = await prisma.diligenceRequestDocument.delete(
 An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /diligence/deleteDocument/d9154dc5-1321-4bc9-b7b2-c6594a9508c0 was called
 error: Label: 28-Jul-2023 17:31:38: Document does not exist with error Error: Document does not exist occurred when DELETE /diligence/deleteDocument/d9154dc5-1321-4bc9-b7b2-c6594a9508c0 was called
+error: Label: 28-Jul-2023 22:15:27: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+info: Label: 28-Jul-2023 22:15:36: staff with akinyemi@sidebrief.com signed in successfully.
+error: Label: 29-Jul-2023 14:31:43: Error occured with error Error: 
+Invalid `prisma.diligenceBank.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:91:55
+
+  88 //  get the diligence bank list from the table
+  89 //  return the diligence bank list to the diligence bank controller
+  90 try {
+→ 91   const diligenceBanks = await prisma.diligenceBank.findMany(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/allBanks was called
+error: Label: 29-Jul-2023 14:32:01: Error occured with error Error: 
+Invalid `prisma.diligenceBank.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:91:55
+
+  88 //  get the diligence bank list from the table
+  89 //  return the diligence bank list to the diligence bank controller
+  90 try {
+→ 91   const diligenceBanks = await prisma.diligenceBank.findMany(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/allBanks was called
+error: Label: 29-Jul-2023 14:32:26: Error occured with error Error: 
+Invalid `prisma.diligenceBank.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:91:55
+
+  88 //  get the diligence bank list from the table
+  89 //  return the diligence bank list to the diligence bank controller
+  90 try {
+→ 91   const diligenceBanks = await prisma.diligenceBank.findMany(
+Can't reach database server at `localhost`:`5432`
+
+Please make sure your database server is running at `localhost`:`5432`. occurred when GET /diligence/allBanks was called
+error: Label: 29-Jul-2023 14:35:17: Error occured with error Error: 
+Invalid `prisma.diligenceBank.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:683:50
+
+  680 
+  681 const getBank = async (id) => {
+  682   try {
+→ 683     const checkBank = await prisma.diligenceBank.findUnique({
+            where: {
+          ?   id?: String,
+          ?   name?: String,
+          ?   adminEmail?: String
+            }
+          })
+
+Argument where of type DiligenceBankWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/bank/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+error: Label: 29-Jul-2023 14:35:48: Error occured with error Error: 
+Invalid `prisma.diligenceBank.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:683:50
+
+  680 
+  681 const getBank = async (id) => {
+  682   try {
+→ 683     const checkBank = await prisma.diligenceBank.findUnique({
+            where: {
+          ?   id?: String,
+          ?   name?: String,
+          ?   adminEmail?: String
+            }
+          })
+
+Argument where of type DiligenceBankWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/bank/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+error: Label: 29-Jul-2023 14:36:27: Error occured with error Error: 
+Invalid `prisma.diligenceBank.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:684:50
+
+  681 const getBank = async (id) => {
+  682   console.log(id)
+  683   try {
+→ 684     const checkBank = await prisma.diligenceBank.findUnique({
+            where: {
+          ?   id?: String,
+          ?   name?: String,
+          ?   adminEmail?: String
+            }
+          })
+
+Argument where of type DiligenceBankWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/bank/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called

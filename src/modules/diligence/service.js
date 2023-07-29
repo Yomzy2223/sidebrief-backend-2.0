@@ -678,6 +678,64 @@ const removeRequestDocument = async (id) => {
   }
 };
 
+const getBank = async (id) => {
+  console.log(id)
+  try {
+    const checkBank = await prisma.diligenceBank.findUnique({
+      where: { id: id },
+    });
+    if (!checkBank) {
+      throw new BadRequest("Bank with this id does not exist");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Bank fetched successfully",
+      data: checkBank,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getBranch = async (id) => {
+  try {
+    const checkBranch = await prisma.diligenceBranch.findUnique({
+      where: { id: id },
+    });
+    if (!checkBranch) {
+      throw new BadRequest("Branch with this id does not exist");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Branch fetched successfully",
+      data: checkBranch,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getStaff = async (id) => {
+  try {
+    const checkStaff = await prisma.diligenceStaff.findUnique({
+      where: { id: id },
+    });
+    if (!checkStaff) {
+      throw new BadRequest("Staff with this id does not exist");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Staff fetched successfully",
+      data: checkStaff,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllBanks,
   createBank,
@@ -696,4 +754,7 @@ module.exports = {
   updateRequest,
   saveRequestDocument,
   removeRequestDocument,
+  getBank,
+  getBranch,
+  getStaff,
 };

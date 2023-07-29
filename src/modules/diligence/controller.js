@@ -1,5 +1,7 @@
+const { default: axios } = require("axios");
 const { hasher } = require("../../common/hash");
-
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 const {
   createBank,
   getAllBanks,
@@ -18,6 +20,9 @@ const {
   getAllDiligenceBranches,
   forgotPassword,
   changePassword,
+  getBranch,
+  getStaff,
+  getBank,
 } = require("./service");
 
 //DILIGENCE PRODUCT CONTROLLERS
@@ -339,3 +344,64 @@ exports.DeleteDocument = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.GetSingleBank = async (req, res, next) => {
+  try {
+    const bankId = req.params.bankId;
+    const bank = await getBank(bankId);
+
+    return res
+      .status(bank.statusCode)
+      .json({ message: bank.message, data: bank.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.GetSingleBranch = async (req, res, next) => {
+  try {
+    const branchId = req.params.branchId;
+    const branch = await getBranch(branchId);
+
+    return res
+      .status(branch.statusCode)
+      .json({ message: branch.message, data: branch.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.GetSingleStaff = async (req, res, next) => {
+  try {
+    const staffId = req.params.staffId;
+    const staff = await getStaff(staffId);
+
+    return res
+      .status(staff.statusCode)
+      .json({ message: staff.message, data: staff.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// exports.Test = async (req, res, next) => {
+//   try {
+//     const url = "https://nigerianbanks.xyz";
+//     const response = await axios.get(url);
+
+//     const newList = response.data.map((data) => ({
+//       name: data.name,
+//       slug: data.slug,
+//       logo: data.logo,
+//     }));
+
+//     const save = await prisma.nigerianBank.createMany({
+//       data: newList,
+//       skipDuplicates: true,
+//     });
+//     console.log(save);
+//     return res.status(200).json({ data: save });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
