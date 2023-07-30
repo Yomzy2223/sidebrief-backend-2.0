@@ -76,7 +76,7 @@ router.put("/bank/:bankId", staffAuth, UpdateBank);
 
 //Delete request
 router.delete("/document/:id", staffAuth, DeleteDocument);
-router.delete("/bank/:bankId", staffAuth, DeleteBank);
+router.delete("/bank/:bankId", DeleteBank);
 router.delete("/request/:requestId", staffAuth, DeleteRequest);
 
 //Get request

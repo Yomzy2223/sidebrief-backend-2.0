@@ -3531,3 +3531,4 @@ Invalid `prisma.diligenceBank.delete()` invocation in
 → 128 const diligence = await prisma.diligenceBank.delete(
 Foreign key constraint failed on the field: `DiligenceBranch_diligenceBankId_fkey (index)` occurred when DELETE /diligence/bank/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
 info: Label: 30-Jul-2023 22:55:57: Guaranty Trust Bank bankd deleted successfully
+info: Label: 30-Jul-2023 23:41:13: Guaranty Trust Bank bankd deleted successfully
