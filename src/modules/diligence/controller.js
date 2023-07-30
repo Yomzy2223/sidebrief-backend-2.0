@@ -23,6 +23,10 @@ const {
   getBranch,
   getStaff,
   getBank,
+  udpateBank,
+  deleteBank,
+  getDiligenceRequest,
+  deleteRequest,
 } = require("./service");
 
 //DILIGENCE PRODUCT CONTROLLERS
@@ -50,7 +54,6 @@ exports.CreateBank = async (req, res, next) => {
     const values = {
       name: bankPayload.name,
       address: bankPayload.address,
-      url: bankPayload.url,
       adminName: bankPayload.adminName,
       adminEmail: bankPayload.adminEmail,
     };
@@ -61,6 +64,45 @@ exports.CreateBank = async (req, res, next) => {
       .status(diligenceBank.statusCode)
       .json({ message: diligenceBank.message, data: diligenceBank.data });
   } catch (error) {
+    next(error);
+  }
+};
+
+//update diligence bank
+exports.UpdateBank = async (req, res, next) => {
+  try {
+    const bankId = req.params.bankId;
+    const bankPayload = req.body;
+
+    const values = {
+      name: bankPayload.name,
+      address: bankPayload.address,
+      adminName: bankPayload.adminName,
+      adminEmail: bankPayload.adminEmail,
+    };
+
+    const diligenceBank = await udpateBank(bankId, values);
+
+    return res
+      .status(diligenceBank.statusCode)
+      .json({ message: diligenceBank.message, data: diligenceBank.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete diligence bank
+exports.DeleteBank = async (req, res, next) => {
+  try {
+    const bankId = req.params.bankId;
+
+    const diligenceBank = await deleteBank(bankId);
+
+    return res
+      .status(diligenceBank.statusCode)
+      .json({ message: diligenceBank.message });
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -248,6 +290,38 @@ exports.CreateRequest = async (req, res, next) => {
       .status(diligenceRequest.statusCode)
       .json({ message: diligenceRequest.message, data: diligenceRequest.data });
   } catch (error) {
+    next(error);
+  }
+};
+
+//get a diligence request
+exports.GetRequest = async (req, res, next) => {
+  try {
+    const requestId = req.params.requestId;
+
+    const diligenceRequest = await getDiligenceRequest(requestId);
+
+    return res
+      .status(diligenceRequest.statusCode)
+      .json({ message: diligenceRequest.message, data: diligenceRequest });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+//delete a diligence request
+exports.DeleteRequest = async (req, res, next) => {
+  try {
+    const requestId = req.params.requestId;
+
+    const diligenceRequest = await deleteRequest(requestId);
+
+    return res
+      .status(diligenceRequest.statusCode)
+      .json({ message: diligenceRequest.message });
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 };
