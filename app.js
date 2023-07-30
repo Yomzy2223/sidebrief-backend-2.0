@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const path = require("path");
+const cors = require("cors");
 const usersRoutes = require("./src/modules/user/routes");
 const bankRoutes = require("./src/modules/bank/routes");
 const countryRoutes = require("./src/modules/country/routes");
@@ -43,6 +44,12 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 //all routes
 //user
