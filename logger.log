@@ -3484,3 +3484,50 @@ Note: Lines with ? are optional.
  occurred when GET /diligence/bank/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
 error: Label: 29-Jul-2023 14:52:25: Branch with this name already exists with error Error: Branch with this name already exists occurred when POST /diligence/createBranch/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
 error: Label: 29-Jul-2023 14:53:11: Staff with this email already exists with error Error: Staff with this email already exists occurred when POST /diligence/createStaff/b223060b-ada2-4a67-ad52-4f3b2993e7dc was called
+error: Label: 30-Jul-2023 22:37:00: Authorization token is missing. with error Error: Authorization token is missing. occurred when DELETE /diligence/request/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+error: Label: 30-Jul-2023 22:37:37: Staff is not authorized. with error Error: Staff is not authorized. occurred when DELETE /diligence/request/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+info: Label: 30-Jul-2023 22:39:09: staff with akinyemi@sidebrief.com signed in successfully.
+error: Label: 30-Jul-2023 22:39:19: Error occured with error ReferenceError: bankId is not defined occurred when DELETE /diligence/request/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+error: Label: 30-Jul-2023 22:39:46: Error occured with error ReferenceError: bankId is not defined occurred when DELETE /diligence/request/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+error: Label: 30-Jul-2023 22:40:22: Error occured with error ReferenceError: bankId is not defined occurred when DELETE /diligence/request/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+error: Label: 30-Jul-2023 22:40:43: Error occured with error Error: 
+Invalid `prisma.diligenceBank.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:627:54
+
+  624   throw new BadRequest("Request not found.");
+  625 }
+  626 
+→ 627 const request = await prisma.diligenceBank.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /diligence/request/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+error: Label: 30-Jul-2023 22:41:34: Error occured with error Error: 
+Invalid `prisma.diligenceBank.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:628:54
+
+  625   throw new BadRequest("Request not found.");
+  626 }
+  627 
+→ 628 const request = await prisma.diligenceBank.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /diligence/request/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+info: Label: 30-Jul-2023 22:41:52: Testing Limited request deleted successfully
+error: Label: 30-Jul-2023 22:41:57: Request not found. with error Error: Request not found. occurred when DELETE /diligence/request/8e3b162d-38f6-491f-b5b1-3074d9dccb44 was called
+info: Label: 30-Jul-2023 22:45:00: Trust Bank updated successfully
+error: Label: 30-Jul-2023 22:45:03: Bank not found. with error Error: Bank not found. occurred when DELETE /diligence/bank/4538e317-a523-4f97-aee7-3a76390b2b4e was called
+error: Label: 30-Jul-2023 22:51:12: Error occured with error Error: 
+Invalid `prisma.diligenceBank.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:128:56
+
+  125   throw new BadRequest("Bank not found.");
+  126 }
+  127 
+→ 128 const diligence = await prisma.diligenceBank.delete(
+Foreign key constraint failed on the field: `DiligenceBranch_diligenceBankId_fkey (index)` occurred when DELETE /diligence/bank/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+error: Label: 30-Jul-2023 22:51:34: Error occured with error Error: 
+Invalid `prisma.diligenceBank.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:128:56
+
+  125   throw new BadRequest("Bank not found.");
+  126 }
+  127 
+→ 128 const diligence = await prisma.diligenceBank.delete(
+Foreign key constraint failed on the field: `DiligenceBranch_diligenceBankId_fkey (index)` occurred when DELETE /diligence/bank/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
+info: Label: 30-Jul-2023 22:55:57: Guaranty Trust Bank bankd deleted successfully

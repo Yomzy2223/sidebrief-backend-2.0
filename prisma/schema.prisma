@@ -155,7 +155,6 @@ model DiligenceBank {
       id String @id @default(uuid())
       name String @unique
       address String
-      url String
       adminName String
       adminEmail String @unique
       createdAt DateTime @default(now())

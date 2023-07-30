@@ -54,7 +54,7 @@ const createBank = async (bankPayload) => {
     }
     logger.info({ message: `${bankPayload.name} created successfully` });
 
-    const regUrl = `${process.env.BASE_URL}/${bankPayload.url}`;
+    const regUrl = `${process.env.BASE_URL}`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
@@ -77,6 +77,66 @@ const createBank = async (bankPayload) => {
       statusCode: 200,
       message: "Bank created successfully!",
       data: diligence,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//update diligence bank
+const udpateBank = async (bankId, bankPayload) => {
+  try {
+    const checkBank = await prisma.diligenceBank.findUnique({
+      where: { id: bankId },
+    });
+
+    if (!checkBank) {
+      throw new BadRequest("Bank not found.");
+    }
+
+    const diligence = await prisma.diligenceBank.update({
+      where: { id: bankId },
+      data: bankPayload,
+    });
+
+    if (!diligence) {
+      throw new BadRequest("Error occured while updating bank");
+    }
+    logger.info({ message: `${bankPayload.name} bank updated successfully` });
+
+    return {
+      statusCode: 200,
+      message: "Bank updated successfully!",
+      data: diligence,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//delete diligence bank
+const deleteBank = async (bankId) => {
+  try {
+    const checkBank = await prisma.diligenceBank.findUnique({
+      where: { id: bankId },
+    });
+
+    if (!checkBank) {
+      throw new BadRequest("Bank not found.");
+    }
+
+    const diligence = await prisma.diligenceBank.delete({
+      where: { id: bankId },
+    });
+
+    if (!diligence) {
+      throw new BadRequest("Error occured while deleting bank");
+    }
+    logger.info({ message: `${checkBank.name} bankd deleted successfully` });
+
+    return {
+      statusCode: 200,
+      message: "Bank deleted successfully!",
     };
   } catch (error) {
     throw error;
@@ -533,6 +593,58 @@ const getAllDiligenceRequests = async () => {
   }
 };
 
+//get a diligence request service
+const getDiligenceRequest = async (requestId) => {
+  //  get the diligence request  from the table
+  //  return the diligence request lis to the diligence requests controller
+  try {
+    const diligenceRequest = await prisma.diligenceRequest.findUnique({
+      where: { id: requestId },
+    });
+    if (!diligenceRequest) {
+      throw new BadRequest("Diligence requests not found!.");
+    }
+    return {
+      message: "Diligence request fetched successfully",
+      data: diligenceRequest,
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//delete diligence request
+const deleteRequest = async (requestId) => {
+  try {
+    const checkRequest = await prisma.diligenceRequest.findUnique({
+      where: { id: requestId },
+    });
+
+    if (!checkRequest) {
+      throw new BadRequest("Request not found.");
+    }
+
+    const request = await prisma.diligenceRequest.delete({
+      where: { id: requestId },
+    });
+
+    if (!request) {
+      throw new BadRequest("Error occured while deleting request");
+    }
+    logger.info({
+      message: `${checkRequest.name} request deleted successfully`,
+    });
+
+    return {
+      statusCode: 200,
+      message: "Request deleted successfully!",
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 //verify request document
 const verifyRequest = async (requestId) => {
   //add the new request to the table
@@ -741,6 +853,11 @@ const getStaff = async (id) => {
 };
 
 module.exports = {
+  getDiligenceRequest,
+  deleteBank,
+  udpateBank,
+  deleteRequest,
+
   getAllBanks,
   createBank,
   getAllDiligenceBanks,
