@@ -3532,3 +3532,237 @@ Invalid `prisma.diligenceBank.delete()` invocation in
 Foreign key constraint failed on the field: `DiligenceBranch_diligenceBankId_fkey (index)` occurred when DELETE /diligence/bank/eb2e2701-75d6-4c34-bf1a-584ab42d95b1 was called
 info: Label: 30-Jul-2023 22:55:57: Guaranty Trust Bank bankd deleted successfully
 info: Label: 30-Jul-2023 23:41:13: Guaranty Trust Bank bankd deleted successfully
+error: Label: 01-Aug-2023 11:55:47: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+info: Label: 01-Aug-2023 11:55:55: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 01-Aug-2023 15:37:44: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 01-Aug-2023 21:28:24: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /diligence/bank was called
+error: Label: 01-Aug-2023 21:29:19: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /diligence/bank was called
+error: Label: 01-Aug-2023 21:30:12: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+error: Label: 01-Aug-2023 22:11:33: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /diligence/bank was called
+error: Label: 01-Aug-2023 22:11:48: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+error: Label: 01-Aug-2023 22:12:07: Invalid credentials! with error Error: Invalid credentials! occurred when POST /staffs/login was called
+info: Label: 01-Aug-2023 22:12:18: staff with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 01-Aug-2023 22:12:37: Trust Bank created successfully
+error: Label: 01-Aug-2023 22:22:36: Bank not found. with error Error: Bank not found. occurred when POST /diligence/branch/299212f0-53d9-4af7-b8e9-f56f113d5f18 was called
+error: Label: 01-Aug-2023 22:23:31: Bank not found. with error Error: Bank not found. occurred when POST /diligence/branch/299212f0-53d9-4af7-b8e9-f56f113d5f18 was called
+error: Label: 01-Aug-2023 22:23:51: Bank not found. with error Error: Bank not found. occurred when POST /diligence/branch/299212f0-53d9-4af7-b8e9-f56f113d5f18 was called
+info: Label: 01-Aug-2023 22:24:28: jahbless Branch diligence branch created successfully
+error: Label: 01-Aug-2023 22:25:05: Error occured with error Error: 
+Invalid `prisma.diligenceBank.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:894:50
+
+  891 const getBank = async (id) => {
+  892   console.log(id);
+  893   try {
+→ 894     const checkBank = await prisma.diligenceBank.findUnique(
+Can't reach database server at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/bank/b036f88a-4f51-43ac-b01d-e4416d076997 was called
+error: Label: 01-Aug-2023 22:27:12: Bank with this id does not exist with error Error: Bank with this id does not exist occurred when GET /diligence/bank/akinyemi@sidebrief.com was called
+error: Label: 01-Aug-2023 22:28:17: Bank with this id does not exist with error Error: Bank with this id does not exist occurred when GET /diligence/bank/akinyemi@sidebrief.com was called
+error: Label: 01-Aug-2023 22:29:18: Error occured with error Error: 
+Invalid `prisma.diligenceBank.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:894:50
+
+  891 const getBank = async (id) => {
+  892   console.log(id);
+  893   try {
+→ 894     const checkBank = await prisma.diligenceBank.findUnique(
+Can't reach database server at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief.cluster-ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/bank/akinyemi@sidebrief.com was called
+error: Label: 01-Aug-2023 22:30:25: Bank with this id does not exist with error Error: Bank with this id does not exist occurred when GET /diligence/bank/akinyemi@sidebrief.com was called
+error: Label: 01-Aug-2023 22:31:35: Bank with this id does not exist with error Error: Bank with this id does not exist occurred when GET /diligence/bank/akinyemi@sidebrief.com was called
+info: Label: 01-Aug-2023 22:35:08: Trust Bank bank updated successfully
+info: Label: 01-Aug-2023 22:35:42: First Bank bank updated successfully
+info: Label: 01-Aug-2023 22:36:07: Trust Bank bank updated successfully
+error: Label: 01-Aug-2023 22:36:15: Email already exists with error Error: Email already exists occurred when POST /diligence/bank was called
+info: Label: 01-Aug-2023 22:36:32: First Bank created successfully
+info: Label: 01-Aug-2023 22:36:47: First Bank bank deleted successfully
+error: Label: 01-Aug-2023 22:37:24: Branch Manager this email already exists with error Error: Branch Manager this email already exists occurred when POST /diligence/branch/b036f88a-4f51-43ac-b01d-e4416d076997 was called
+info: Label: 01-Aug-2023 22:37:31: Test Branch diligence branch created successfully
+error: Label: 01-Aug-2023 22:40:21: Authorization token is missing. with error Error: Authorization token is missing. occurred when PUT /diligence/branch/e5ffe7ea-a360-48f4-9804-1b5428ca0d8d was called
+error: Label: 01-Aug-2023 22:40:51: Error occured with error Error: 
+Invalid `prisma.diligenceBranch.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1003:54
+
+  1000 //update diligence branch
+  1001 const udpateBranch = async (bankId, branchId, branchPayload) => {
+  1002   try {
+→ 1003     const checkBranch = await prisma.diligenceBranch.findUnique({
+             where: {
+               id: {
+                 name: 'Test Branch',
+                 state: 'Lagos state',
+                 managerName: undefined
+               }
+               ~~~~~~~~~~~~~~~~~~~~~~~~
+             }
+           })
+
+Argument id: Got invalid value 
+{
+  name: 'Test Branch',
+  state: 'Lagos state',
+  managerName: undefined
+}
+on prisma.findUniqueDiligenceBranch. Provided Json, expected String.
+
+ occurred when PUT /diligence/branch/e5ffe7ea-a360-48f4-9804-1b5428ca0d8d was called
+error: Label: 01-Aug-2023 22:41:12: Error occured with error Error: 
+Invalid `prisma.diligenceBranch.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1003:54
+
+  1000 //update diligence branch
+  1001 const udpateBranch = async (bankId, branchId, branchPayload) => {
+  1002   try {
+→ 1003     const checkBranch = await prisma.diligenceBranch.findUnique({
+             where: {
+               id: {
+                 name: 'Test Branch',
+                 state: 'Lagos state',
+                 managerName: undefined
+               }
+               ~~~~~~~~~~~~~~~~~~~~~~~~
+             }
+           })
+
+Argument id: Got invalid value 
+{
+  name: 'Test Branch',
+  state: 'Lagos state',
+  managerName: undefined
+}
+on prisma.findUniqueDiligenceBranch. Provided Json, expected String.
+
+ occurred when PUT /diligence/branch/e5ffe7ea-a360-48f4-9804-1b5428ca0d8d was called
+error: Label: 01-Aug-2023 22:42:45: Error occured with error Error: 
+Invalid `prisma.diligenceBranch.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1003:54
+
+  1000 //update diligence branch
+  1001 const udpateBranch = async (bankId, branchId, branchPayload) => {
+  1002   try {
+→ 1003     const checkBranch = await prisma.diligenceBranch.findUnique({
+             where: {
+               id: {
+                 name: 'Test Branch',
+                 state: 'Lagos state',
+                 managerEmail: 'test@gmail.com'
+               }
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             }
+           })
+
+Argument id: Got invalid value 
+{
+  name: 'Test Branch',
+  state: 'Lagos state',
+  managerEmail: 'test@gmail.com'
+}
+on prisma.findUniqueDiligenceBranch. Provided Json, expected String.
+
+ occurred when PUT /diligence/branch/e5ffe7ea-a360-48f4-9804-1b5428ca0d8d was called
+info: Label: 01-Aug-2023 22:44:15: Test Branch branch updated successfully
+info: Label: 01-Aug-2023 22:44:44: Test Branch branch deleted successfully
+error: Label: 01-Aug-2023 22:50:46: Error occured with error ReferenceError: branchId is not defined occurred when PUT /diligence/nigerianBank/ee5a2207-d8bb-420f-a01d-28a492f6ad02 was called
+error: Label: 01-Aug-2023 22:51:43: Error occured with error ReferenceError: branchId is not defined occurred when PUT /diligence/nigerianBank/ee5a2207-d8bb-420f-a01d-28a492f6ad02 was called
+error: Label: 01-Aug-2023 22:56:08: User with this email not registered with error Error: User with this email not registered occurred when POST /diligence/request was called
+info: Label: 01-Aug-2023 22:57:51: Diligence user with akinyemi@sidebrief.com created successfully
+info: Label: 01-Aug-2023 22:58:04: request with the name Testing Limited created successfully by akinyemi@sidebrief.com
+info: Label: 01-Aug-2023 22:58:26: request with the name Testing Nigeria Limited created successfully by akinyemi@sidebrief.com
+info: Label: 01-Aug-2023 23:01:24: Testing Nigeria Limited request deleted successfully
+info: Label: 01-Aug-2023 23:02:07: Request with the name Testing Limited, verified successfully
+info: Label: 01-Aug-2023 23:02:24: Request with the name Testing Limited, updated successfully
+info: Label: 01-Aug-2023 23:03:05: User with akinyemi@sidebrief.com signed in successfully.
+error: Label: 01-Aug-2023 23:03:40: Branch not found. with error Error: Branch not found. occurred when POST /diligence/staff/e5ffe7ea-a360-48f4-9804-1b5428ca0d8d was called
+error: Label: 01-Aug-2023 23:04:17: Branch with this id does not exist with error Error: Branch with this id does not exist occurred when GET /diligence/branch/e5ffe7ea-a360-48f4-9804-1b5428ca0d8d was called
+error: Label: 01-Aug-2023 23:04:26: Branch with this id does not exist with error Error: Branch with this id does not exist occurred when GET /diligence/branch/b036f88a-4f51-43ac-b01d-e4416d076997 was called
+error: Label: 01-Aug-2023 23:04:29: Branch with this id does not exist with error Error: Branch with this id does not exist occurred when GET /diligence/branch/299212f0-53d9-4af7-b8e9-f56f113d5f18 was called
+info: Label: 01-Aug-2023 23:05:07: diligence staff with bam@sidebrief.com created successfully
+info: Label: 01-Aug-2023 23:05:17: diligence staff with test@sidebrief.com created successfully
+error: Label: 01-Aug-2023 23:06:08: Authorization token is missing. with error Error: Authorization token is missing. occurred when DELETE /diligence/staff/1823e19c-de0e-47d2-87c9-87f9c79d18a6 was called
+error: Label: 01-Aug-2023 23:06:29: Error occured with error ReferenceError: checkBank is not defined occurred when DELETE /diligence/staff/1823e19c-de0e-47d2-87c9-87f9c79d18a6 was called
+error: Label: 01-Aug-2023 23:07:13: Staff not found. with error Error: Staff not found. occurred when DELETE /diligence/staff/1823e19c-de0e-47d2-87c9-87f9c79d18a6 was called
+error: Label: 01-Aug-2023 23:09:05: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /diligence/document/1e259184-9ea0-4e86-b08a-2649b2eefb6c was called
+info: Label: 01-Aug-2023 23:10:43: dcoument with the name Business Certificate saved successfully
+error: Label: 01-Aug-2023 23:11:05: document already exist with error Error: document already exist occurred when POST /diligence/document/1e259184-9ea0-4e86-b08a-2649b2eefb6c was called
+info: Label: 01-Aug-2023 23:12:11: dcoument with the name CAC Certificate saved successfully
+error: Label: 01-Aug-2023 23:12:18: document already exist with error Error: document already exist occurred when POST /diligence/document/1e259184-9ea0-4e86-b08a-2649b2eefb6c was called
+error: Label: 01-Aug-2023 23:12:35: Error occured with error Error: 
+Invalid `prisma.diligenceRequestDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:832:63
+
+  829 
+  830 const getDocument = async (requestId) => {
+  831   try {
+→ 832     const checkBranch = await prisma.diligenceRequestDocument.findUnique({
+            where: {
+          ?   id?: String,
+          ?   name?: String
+            }
+          })
+
+Argument where of type DiligenceRequestDocumentWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/document/1e259184-9ea0-4e86-b08a-2649b2eefb6c was called
+error: Label: 01-Aug-2023 23:13:23: Document with this id does not exist with error Error: Document with this id does not exist occurred when GET /diligence/document/1e259184-9ea0-4e86-b08a-2649b2eefb6c was called
+error: Label: 01-Aug-2023 23:18:53: Document with this id does not exist with error Error: Document with this id does not exist occurred when GET /diligence/document/1e259184-9ea0-4e86-b08a-2649b2eefb6c was called
+error: Label: 01-Aug-2023 23:18:59: Error occured with error Error: 
+Invalid `prisma.diligenceRequestDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:860:65
+
+  857   throw new BadRequest("Request with this id does not exist");
+  858 }
+  859 
+→ 860 const checkDocument = await prisma.diligenceRequestDocument.findUnique({
+        where: {
+          diligenceRequestId: '1e259184-9ea0-4e86-b08a-2649b2eefb6c'
+          ~~~~~~~~~~~~~~~~~~
+        }
+      })
+
+Unknown arg `diligenceRequestId` in where.diligenceRequestId for type DiligenceRequestDocumentWhereUniqueInput. Available args:
+
+type DiligenceRequestDocumentWhereUniqueInput {
+  id?: String
+  name?: String
+}
+
+ occurred when GET /diligence/documents/1e259184-9ea0-4e86-b08a-2649b2eefb6c was called
+error: Label: 01-Aug-2023 23:26:33: Error occured with error ReferenceError: documentPayload is not defined occurred when PUT /diligence/document/6ee8e41f-684f-43ab-a3be-4b1bbdfcd1ca was called
+error: Label: 01-Aug-2023 23:27:08: Error occured with error ReferenceError: documentPayload is not defined occurred when PUT /diligence/document/6ee8e41f-684f-43ab-a3be-4b1bbdfcd1ca was called
+error: Label: 01-Aug-2023 23:28:37: Error occured with error ReferenceError: updateRequestDocument is not defined occurred when PUT /diligence/document/6ee8e41f-684f-43ab-a3be-4b1bbdfcd1ca was called
+error: Label: 01-Aug-2023 23:29:08: Error occured with error Error: 
+Invalid `prisma.diligenceRequestDocument.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:892:73
+
+  889   throw new BadRequest("Document does not exist");
+  890 }
+  891 
+→ 892 const updateRequestDocument = await prisma.diligenceRequestDocument.update({
+        where: {
+          id: '6ee8e41f-684f-43ab-a3be-4b1bbdfcd1ca',
+          data: {
+          ~~~~
+            name: 'CAC test Certificate',
+            type: 'pdf',
+            description: 'This is the certificate',
+            link: 'cloudinary.com'
+          }
+        },
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + data: DiligenceRequestDocumentUpdateInput | DiligenceRequestDocumentUncheckedUpdateInput
+      })
+
+Argument where of type DiligenceRequestDocumentWhereUniqueInput needs exactly one argument, but you provided id and data. Please choose one. Available args: 
+type DiligenceRequestDocumentWhereUniqueInput {
+  id?: String
+  name?: String
+}
+Unknown arg `data` in where.data for type DiligenceRequestDocumentWhereUniqueInput. Did you mean `name`?
+Argument data is missing.
+
+Note: Lines with + are required
+ occurred when PUT /diligence/document/6ee8e41f-684f-43ab-a3be-4b1bbdfcd1ca was called

@@ -28,6 +28,38 @@ const getAllBanks = async () => {
   }
 };
 
+//update nigerian branch
+const udpateNigerianBank = async (bankId, bankPayload) => {
+  try {
+    const checkBank = await prisma.nigerianBank.findUnique({
+      where: { id: bankId },
+    });
+
+    if (!checkBank) {
+      throw new BadRequest("Bank not found.");
+    }
+
+    const bank = await prisma.nigerianBank.update({
+      where: { id: bankId },
+      data: {
+        color: bankPayload.color,
+      },
+    });
+
+    if (!bank) {
+      throw new BadRequest("Error occured while updating bank");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Bank updated successfully!",
+      data: bank,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 //create diligence bank
 const createBank = async (bankPayload) => {
   try {
@@ -132,7 +164,7 @@ const deleteBank = async (bankId) => {
     if (!diligence) {
       throw new BadRequest("Error occured while deleting bank");
     }
-    logger.info({ message: `${checkBank.name} bankd deleted successfully` });
+    logger.info({ message: `${checkBank.name} bank deleted successfully` });
 
     return {
       statusCode: 200,
@@ -169,6 +201,7 @@ const createBranch = async (bankId, branchPayload) => {
     const checkBank = await prisma.diligenceBank.findUnique({
       where: { id: bankId },
     });
+
     if (!checkBank) {
       throw new BadRequest("Bank not found.");
     }
@@ -794,14 +827,115 @@ const removeRequestDocument = async (id) => {
   }
 };
 
+//get a document
+const getDocument = async (documentId) => {
+  try {
+    const checkDocument = await prisma.diligenceRequestDocument.findUnique({
+      where: { id: documentId },
+    });
+    if (!checkDocument) {
+      throw new BadRequest("Document with this id does not exist");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Document fetched successfully",
+      data: checkDocument,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//get all documents
+const getAllDocuments = async (requestId) => {
+  try {
+    const checkRequest = await prisma.diligenceRequest.findUnique({
+      where: { id: requestId },
+    });
+    if (!checkRequest) {
+      throw new BadRequest("Request with this id does not exist");
+    }
+
+    const checkDocument = await prisma.diligenceRequestDocument.findMany({
+      where: { diligenceRequestId: requestId },
+    });
+    if (!checkDocument) {
+      throw new BadRequest("Documents with this id does not exist");
+    }
+    return {
+      statusCode: 200,
+      message: "Documents fetched successfully",
+      data: checkDocument,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//update a request document
+const updateRequestDocument = async (documentId, updatePayload) => {
+  //take id from the request controller
+  //check if the request exists
+  //update the document from the record
+  //return response to the request controller
+
+  try {
+    const doc = await prisma.diligenceRequestDocument.findUnique({
+      where: { id: documentId },
+    });
+
+    if (!doc) {
+      throw new BadRequest("Document does not exist");
+    }
+
+    const updateRequestDocument = await prisma.diligenceRequestDocument.update({
+      where: {
+        id: documentId,
+      },
+      data: updatePayload,
+    });
+    if (!updateRequestDocument) {
+      throw new BadRequest("Error occured while updating document");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Document updated successfully",
+      data: updateRequestDocument,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 const getBank = async (id) => {
-  console.log(id);
   try {
     const checkBank = await prisma.diligenceBank.findUnique({
       where: { id: id },
     });
     if (!checkBank) {
       throw new BadRequest("Bank with this id does not exist");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Bank fetched successfully",
+      data: checkBank,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getBankByAdminEmail = async (adminEmail) => {
+  try {
+    const checkBank = await prisma.diligenceBank.findUnique({
+      where: { adminEmail: adminEmail },
+    });
+
+    if (!checkBank) {
+      throw new BadRequest("Bank with this admin email does not exist");
     }
 
     return {
@@ -852,12 +986,105 @@ const getStaff = async (id) => {
   }
 };
 
+//delete diligence staff
+const deleteStaff = async (staffId) => {
+  try {
+    const checkStaff = await prisma.diligenceStaff.findUnique({
+      where: { id: staffId },
+    });
+
+    if (!checkStaff) {
+      throw new BadRequest("Staff not found.");
+    }
+
+    const diligence = await prisma.diligenceStaff.delete({
+      where: { id: staffId },
+    });
+
+    if (!diligence) {
+      throw new BadRequest("Error occured while deleting stafaf");
+    }
+    logger.info({
+      message: `staff with this email ${checkStaff.email}, deleted successfully`,
+    });
+
+    return {
+      statusCode: 200,
+      message: "Staff deleted successfully!",
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//update diligence branch
+const udpateBranch = async (branchId, branchPayload) => {
+  try {
+    const checkBranch = await prisma.diligenceBranch.findUnique({
+      where: { id: branchId },
+    });
+
+    if (!checkBranch) {
+      throw new BadRequest("Branch not found.");
+    }
+
+    const diligence = await prisma.diligenceBranch.update({
+      where: { id: branchId },
+      data: branchPayload,
+    });
+
+    if (!diligence) {
+      throw new BadRequest("Error occured while updating branch");
+    }
+    logger.info({
+      message: `${branchPayload.name} branch updated successfully`,
+    });
+
+    return {
+      statusCode: 200,
+      message: "Branch updated successfully!",
+      data: diligence,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//delete diligence branch
+const deleteBranch = async (branchId) => {
+  try {
+    const checkBranch = await prisma.diligenceBranch.findUnique({
+      where: { id: branchId },
+    });
+
+    if (!checkBranch) {
+      throw new BadRequest("Branch not found.");
+    }
+
+    const diligence = await prisma.diligenceBranch.delete({
+      where: { id: branchId },
+    });
+
+    if (!diligence) {
+      throw new BadRequest("Error occured while deleting branch");
+    }
+    logger.info({ message: `${checkBranch.name} branch deleted successfully` });
+
+    return {
+      statusCode: 200,
+      message: "Branch deleted successfully!",
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getDiligenceRequest,
   deleteBank,
   udpateBank,
   deleteRequest,
-
+  udpateNigerianBank,
   getAllBanks,
   createBank,
   getAllDiligenceBanks,
@@ -878,4 +1105,11 @@ module.exports = {
   getBank,
   getBranch,
   getStaff,
+  deleteStaff,
+  udpateBranch,
+  deleteBranch,
+  getBankByAdminEmail,
+  updateRequestDocument,
+  getDocument,
+  getAllDocuments,
 };

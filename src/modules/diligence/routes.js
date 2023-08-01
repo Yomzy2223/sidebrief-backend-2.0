@@ -39,22 +39,57 @@ const {
   UpdateBank,
   DeleteRequest,
   GetRequest,
+  DeleteStaff,
+  UpdateBranch,
+  UpdateNigerianBank,
+  DeleteBranch,
+  GetDocument,
+  GetSingleBankByAdminEmail,
+  UpdateDocument,
+  GetAllDocuments,
 } = require("./controller");
 
-//Post request
-router.post("/user", validator(validateUserAcccountCredentials), CreateAccount);
-router.post(
-  "/document/:requestId",
-  staffAuth,
-  validator(validateDiligenceDocument),
-  AddRequestDocument
-);
+//NIGERIAN BANKS
+router.get("/nigerianbanks", GetAllNigerianBanks);
+router.put("/nigerianbank/:bankId", staffAuth, UpdateNigerianBank);
+
+//BANKS
 router.post("/bank", staffAuth, validator(validateBankCredentials), CreateBank);
+router.get("/banks", GetAllDiligenceBanks);
+router.get("/bank/:bankId", GetSingleBank);
+router.get("/bankByEmail/:adminEmail", GetSingleBankByAdminEmail);
+router.put(
+  "/bank/:bankId",
+  staffAuth,
+  validator(validateBankCredentials),
+  UpdateBank
+);
+router.delete("/bank/:bankId", DeleteBank);
+
+//BRANCH
 router.post(
   "/branch/:bankId",
   validator(validateBranchCredentials),
   CreateBranch
 );
+router.get("/branches/:bankId", GetAllDiligenceBranches);
+router.get("/branch/:branchId", GetSingleBranch);
+router.put(
+  "/branch/:branchId",
+  validator(validateBranchCredentials),
+  UpdateBranch
+);
+router.delete("/branch/:branchId", DeleteBranch);
+
+//STAFF
+router.post("/staff/:branchId", validator(validateEmail), CreateStaff);
+router.get("/staffs/:branchId", GetAllDiligenceStaffs);
+router.get("/staff/:staffId", GetSingleStaff);
+router.delete("/staff/:staffId", DeleteStaff);
+
+//DILIGENCE USER
+router.post("/user", validator(validateUserAcccountCredentials), CreateAccount);
+router.post("/user/login", validator(validateUserCredentials), UserLogin);
 router.post(
   "/user/forgotpassword",
   validator(validateEmail),
@@ -65,31 +100,30 @@ router.post(
   validator(validateResetCredentials),
   UserPasswordReset
 );
-router.post("/staff/:branchId", validator(validateEmail), CreateStaff);
-router.post("/user/login", validator(validateUserCredentials), UserLogin);
+
+//DILIIGENCE REQUEST
 router.post("/request", validator(validateRequestCredentials), CreateRequest);
-
-//Put request
-router.put("/request/verify/:id", VerifyRequest);
-router.put("/request/update/:id", staffAuth, UpdateRequest);
-router.put("/bank/:bankId", staffAuth, UpdateBank);
-
-//Delete request
-router.delete("/document/:id", staffAuth, DeleteDocument);
-router.delete("/bank/:bankId", DeleteBank);
-router.delete("/request/:requestId", staffAuth, DeleteRequest);
-
-//Get request
-router.get("/nigerianBanks", GetAllNigerianBanks);
-router.get("/banks", GetAllDiligenceBanks);
-router.get("/branches/:bankId", GetAllDiligenceBranches);
-router.get("/staffs/:branchId", GetAllDiligenceStaffs);
 router.get("/request", GetAllDiligenceRequests);
-router.get("/bank/:bankId", GetSingleBank);
-router.get("/branch/:branchId", GetSingleBranch);
-router.get("/staff/:staffId", GetSingleStaff);
 router.get("/request/:requestId", GetRequest);
+router.put("/request/verify/:id", VerifyRequest);
+router.put("/request/update/:id", UpdateRequest);
+router.delete("/request/:requestId", DeleteRequest);
 
-// router.get("/test", Test);
+//REQUEST DOCUMENT
+router.post(
+  "/document/:requestId",
+  staffAuth,
+  validator(validateDiligenceDocument),
+  AddRequestDocument
+);
+router.get("/documents/:requestId", GetAllDocuments);
+router.get("/document/:documentId", GetDocument);
+router.put(
+  "/document/:documentId",
+  validator(validateDiligenceDocument),
+  staffAuth,
+  UpdateDocument
+);
+router.delete("/document/:id", staffAuth, DeleteDocument);
 
 module.exports = router;

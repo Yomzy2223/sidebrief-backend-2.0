@@ -1,7 +1,6 @@
-const { default: axios } = require("axios");
 const { hasher } = require("../../common/hash");
 const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+
 const {
   createBank,
   getAllBanks,
@@ -27,6 +26,14 @@ const {
   deleteBank,
   getDiligenceRequest,
   deleteRequest,
+  deleteBranch,
+  udpateBranch,
+  deleteStaff,
+  getBankByAdminEmail,
+  udpateNigerianBank,
+  getDocument,
+  getAllDocuments,
+  updateRequestDocument,
 } = require("./service");
 
 //DILIGENCE PRODUCT CONTROLLERS
@@ -54,7 +61,6 @@ exports.CreateBank = async (req, res, next) => {
     const values = {
       name: bankPayload.name,
       address: bankPayload.address,
-      adminName: bankPayload.adminName,
       adminEmail: bankPayload.adminEmail,
     };
 
@@ -77,7 +83,6 @@ exports.UpdateBank = async (req, res, next) => {
     const values = {
       name: bankPayload.name,
       address: bankPayload.address,
-      adminName: bankPayload.adminName,
       adminEmail: bankPayload.adminEmail,
     };
 
@@ -102,7 +107,6 @@ exports.DeleteBank = async (req, res, next) => {
       .status(diligenceBank.statusCode)
       .json({ message: diligenceBank.message });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -131,7 +135,6 @@ exports.CreateBranch = async (req, res, next) => {
     const values = {
       name: branchPayload.name,
       state: branchPayload.state,
-      managerName: branchPayload.managerName,
       managerEmail: branchPayload.managerEmail,
       diligenceBankId: bankId,
     };
@@ -224,6 +227,7 @@ exports.CreateAccount = async (req, res, next) => {
   }
 };
 
+// login user
 exports.UserLogin = async (req, res, next) => {
   try {
     // get the login payload
@@ -303,9 +307,8 @@ exports.GetRequest = async (req, res, next) => {
 
     return res
       .status(diligenceRequest.statusCode)
-      .json({ message: diligenceRequest.message, data: diligenceRequest });
+      .json({ message: diligenceRequest.message, data: diligenceRequest.data });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -321,7 +324,6 @@ exports.DeleteRequest = async (req, res, next) => {
       .status(diligenceRequest.statusCode)
       .json({ message: diligenceRequest.message });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -419,6 +421,61 @@ exports.DeleteDocument = async (req, res, next) => {
   }
 };
 
+//update a document
+exports.UpdateDocument = async (req, res, next) => {
+  try {
+    //check if there is id
+    // send the id to the delete service
+    //return response to the client
+    const documentId = req.params.documentId;
+    const documentPayload = req.body;
+
+    const values = {
+      name: documentPayload.name,
+      type: documentPayload.type,
+      description: documentPayload.description,
+      link: documentPayload.link,
+    };
+
+    const deleteDocument = await updateRequestDocument(documentId, values);
+
+    return res
+      .status(deleteDocument.statusCode)
+      .json({ message: deleteDocument.message, data: deleteDocument.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get single document
+exports.GetDocument = async (req, res, next) => {
+  try {
+    const documentId = req.params.documentId;
+    const document = await getDocument(documentId);
+
+    return res
+      .status(document.statusCode)
+      .json({ message: document.message, data: document.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get all documents
+exports.GetAllDocuments = async (req, res, next) => {
+  try {
+    const requestId = req.params.requestId;
+    const document = await getAllDocuments(requestId);
+
+    return res
+      .status(document.statusCode)
+      .json({ message: document.message, data: document.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get single bank
 exports.GetSingleBank = async (req, res, next) => {
   try {
     const bankId = req.params.bankId;
@@ -432,6 +489,7 @@ exports.GetSingleBank = async (req, res, next) => {
   }
 };
 
+//get single branch
 exports.GetSingleBranch = async (req, res, next) => {
   try {
     const branchId = req.params.branchId;
@@ -445,6 +503,7 @@ exports.GetSingleBranch = async (req, res, next) => {
   }
 };
 
+//get single staff
 exports.GetSingleStaff = async (req, res, next) => {
   try {
     const staffId = req.params.staffId;
@@ -453,6 +512,92 @@ exports.GetSingleStaff = async (req, res, next) => {
     return res
       .status(staff.statusCode)
       .json({ message: staff.message, data: staff.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete diligence staff
+exports.DeleteStaff = async (req, res, next) => {
+  try {
+    const staffId = req.params.staffId;
+
+    const diligenceStaff = await deleteStaff(staffId);
+
+    return res
+      .status(diligenceStaff.statusCode)
+      .json({ message: diligenceStaff.message });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//update diligence branch
+exports.UpdateBranch = async (req, res, next) => {
+  try {
+    const branchId = req.params.branchId;
+    const branchPayload = req.body;
+
+    const values = {
+      name: branchPayload.name,
+      state: branchPayload.state,
+      managerEmail: branchPayload.managerEmail,
+    };
+
+    const diligenceBranch = await udpateBranch(branchId, values);
+
+    return res
+      .status(diligenceBranch.statusCode)
+      .json({ message: diligenceBranch.message, data: diligenceBranch.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete diligence branch
+exports.DeleteBranch = async (req, res, next) => {
+  try {
+    const branchId = req.params.branchId;
+
+    const diligenceBranch = await deleteBranch(branchId);
+
+    return res
+      .status(diligenceBranch.statusCode)
+      .json({ message: diligenceBranch.message });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get a single bank with admin email address
+exports.GetSingleBankByAdminEmail = async (req, res, next) => {
+  try {
+    const adminEmail = req.params.adminEmail;
+    const bank = await getBankByAdminEmail(adminEmail);
+
+    return res
+      .status(bank.statusCode)
+      .json({ message: bank.message, data: bank.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//update Nigerian bank
+exports.UpdateNigerianBank = async (req, res, next) => {
+  try {
+    const bankId = req.params.bankId;
+    const bankPayload = req.body;
+
+    const values = {
+      color: bankPayload.color,
+    };
+
+    const bank = await udpateNigerianBank(bankId, values);
+
+    return res
+      .status(bank.statusCode)
+      .json({ message: bank.message, data: bank.data });
   } catch (error) {
     next(error);
   }

@@ -155,7 +155,6 @@ model DiligenceBank {
       id String @id @default(uuid())
       name String @unique
       address String
-      adminName String
       adminEmail String @unique
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
@@ -166,7 +165,6 @@ model DiligenceBranch {
       id String @id @default(uuid())
       name String @unique
       state String
-      managerName String
       managerEmail String @unique
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
@@ -187,6 +185,9 @@ model DiligenceStaff {
 model NigerianBank {
       id String @id @default(uuid())
       name String
+      color String?
       slug String
       logo String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
 }
