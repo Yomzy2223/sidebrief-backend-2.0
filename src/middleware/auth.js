@@ -47,6 +47,7 @@ const staffAuth = async (req, res, next) => {
     const checkStaff = await prisma.staff.findUnique({
       where: { id: staff.id },
     });
+
     if (!checkStaff) {
       throw new Unauthorized("Staff is not authorized.");
     }

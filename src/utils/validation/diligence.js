@@ -6,8 +6,6 @@ const validate = new Validator();
 const bankSchema = {
   name: { type: "string", min: 3, max: 50 },
   address: { type: "string", min: 6, max: 200 },
-  url: { type: "string", min: 3, max: 255 },
-  adminName: { type: "string", min: 6, max: 100 },
   adminEmail: { type: "string", min: 6, max: 100 },
 };
 
@@ -18,7 +16,6 @@ const userBranchSchema = {
   name: { type: "string", min: 3, max: 50 },
   state: { type: "string", min: 3, max: 50 },
   managerEmail: { type: "email", min: 3, max: 255 },
-  managerName: { type: "string", min: 6, max: 100 },
 };
 
 const validateBranchCredentials = validate.compile(userBranchSchema);
