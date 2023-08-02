@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "jest --forceExit --detectOpenHandles --runInBand",
-    "dev": "nodemon index.js",
+    "dev": "npx prisma migrate dev --name diligence && nodemon index.js ",
     "start": "npx prisma migrate dev --name update && node index.js"
   },
   "author": "",

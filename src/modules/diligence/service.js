@@ -1079,6 +1079,118 @@ const deleteBranch = async (branchId) => {
   }
 };
 
+const categoryService = {
+  create: async (categoryPayload) => {
+    try {
+      const checkCategory = await prisma.requestCategory.findUnique({
+        where: { name: categoryPayload.name },
+      });
+      if (checkCategory) {
+        throw BadRequest("Category with this name already exists");
+      }
+
+      const category = await prisma.requestCategory.create({
+        data: categoryPayload,
+      });
+      if (!category) {
+        throw BadRequest("Error occured while creating category");
+      }
+
+      return {
+        message: "Category created successfully",
+        statusCode: 200,
+        data: category,
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
+  getAll: async () => {
+    try {
+      const category = await prisma.requestCategory.findMany({});
+      if (!category) {
+        throw BadRequest("Error occured while fetching category list.");
+      }
+
+      return {
+        message: "Categories fetched successfully",
+        statusCode: 200,
+        data: category,
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
+  get: async (categoryId) => {
+    try {
+      const checkCategory = await prisma.requestCategory.findUnique({
+        where: { id: categoryId },
+      });
+      if (checkCategory) {
+        throw BadRequest("Error occured while creating category");
+      }
+
+      return {
+        message: "Category fetched successfully",
+        statusCode: 200,
+        data: checkCategory,
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
+  update: async (categoryId, categoryPayload) => {
+    try {
+      const checkCategory = await prisma.requestCategory.findUnique({
+        where: { id: categoryId },
+      });
+      if (!checkCategory) {
+        throw BadRequest("Category with this Id does not exist.");
+      }
+
+      const category = await prisma.requestCategory.update({
+        where: { id: categoryId },
+        data: categoryPayload,
+      });
+      if (!category) {
+        throw BadRequest("Error occured while updating category");
+      }
+
+      return {
+        message: "Category updated successfully",
+        statusCode: 200,
+        data: category,
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
+  delete: async (categoryId) => {
+    try {
+      const checkCategory = await prisma.requestCategory.findUnique({
+        where: { id: categoryId },
+      });
+      if (!checkCategory) {
+        throw BadRequest("Category with this Id does not exist.");
+      }
+
+      const category = await prisma.requestCategory.delete({
+        where: { id: categoryId },
+      });
+      if (!category) {
+        throw BadRequest("Error occured while deleting category");
+      }
+
+      return {
+        message: "Category deleted successfully",
+        statusCode: 200,
+      };
+    } catch (error) {
+      throw error;
+    }
+  },
+};
+
 module.exports = {
   getDiligenceRequest,
   deleteBank,
@@ -1112,4 +1224,5 @@ module.exports = {
   updateRequestDocument,
   getDocument,
   getAllDocuments,
+  categoryService,
 };

@@ -34,6 +34,7 @@ const {
   getDocument,
   getAllDocuments,
   updateRequestDocument,
+  categoryService,
 } = require("./service");
 
 //DILIGENCE PRODUCT CONTROLLERS
@@ -624,3 +625,91 @@ exports.UpdateNigerianBank = async (req, res, next) => {
 //     console.log(error);
 //   }
 // };
+
+//create category
+exports.CreateCategory = async (req, res, next) => {
+  try {
+    const countryId = req.params.countryId;
+    const categoryPayload = req.body;
+
+    const values = {
+      name: categoryPayload.name,
+      description: categoryPayload.description,
+      slug: categoryPayload.slug,
+      price: categoryPayload.price,
+      name: categoryPayload.name,
+      countryId: countryId,
+    };
+
+    const reqCat = await categoryService.create(values);
+
+    return res
+      .status(reqCat.statusCode)
+      .json({ message: reqCat.message, data: reqCat.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get category list
+exports.GetAllCategory = async (req, res, next) => {
+  try {
+    const reqCat = await categoryService.getAll();
+
+    return res
+      .status(reqCat.statusCode)
+      .json({ message: reqCat.message, data: reqCat.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get category
+exports.GetCategory = async (req, res, next) => {
+  try {
+    const categoryId = req.params.categoryId;
+    const reqCat = await categoryService.get(categoryId);
+
+    return res
+      .status(reqCat.statusCode)
+      .json({ message: reqCat.message, data: reqCat.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//update category
+exports.UpdateCategory = async (req, res, next) => {
+  try {
+    const categoryId = req.params.categoryId;
+    const categoryPayload = req.body;
+
+    const values = {
+      name: categoryPayload.name,
+      description: categoryPayload.description,
+      slug: categoryPayload.slug,
+      price: categoryPayload.price,
+      name: categoryPayload.name,
+    };
+
+    const reqCat = await categoryService.update(categoryId, values);
+
+    return res
+      .status(reqCat.statusCode)
+      .json({ message: reqCat.message, data: reqCat.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete category
+exports.DeleteCategory = async (req, res, next) => {
+  try {
+    const categoryId = req.params.categoryId;
+    const reqCat = await categoryService.delete(categoryId);
+
+    return res.status(reqCat.statusCode).json({ message: reqCat.message });
+  } catch (error) {
+    next(error);
+  }
+};

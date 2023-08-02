@@ -86,6 +86,7 @@ model Country {
       currency String
       code String
       flagUrl String
+      requestCategory RequestCategory[]
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
@@ -191,3 +192,16 @@ model NigerianBank {
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
+
+model RequestCategory {
+      id String @id @default(uuid())
+      name String
+      description String
+      slug String
+      price String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())      
+      country Country @relation(fields: [countryId], references: [id])
+      countryId String
+}
+
