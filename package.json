@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "jest --forceExit --detectOpenHandles --runInBand",
-    "dev": "nodemon index.js",
-    "start": "npx prisma migrate dev --name update && node index.js"
+    "dev": "npx prisma migrate dev --name diligenceMigration && nodemon index.js ",
+    "start": "npx prisma migrate dev --name diligenceMigration && node index.js"
   },
   "author": "",
   "license": "ISC",

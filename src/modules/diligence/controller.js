@@ -2,10 +2,7 @@ const { hasher } = require("../../common/hash");
 const { PrismaClient } = require("@prisma/client");
 
 const {
-  createBank,
   getAllBanks,
-  getAllDiligenceBanks,
-  createBranch,
   createStaff,
   getAllDiligenceStaffs,
   createAccount,
@@ -16,24 +13,27 @@ const {
   removeRequestDocument,
   verifyRequest,
   updateRequest,
-  getAllDiligenceBranches,
   forgotPassword,
   changePassword,
-  getBranch,
   getStaff,
-  getBank,
-  udpateBank,
-  deleteBank,
   getDiligenceRequest,
   deleteRequest,
-  deleteBranch,
-  udpateBranch,
   deleteStaff,
-  getBankByAdminEmail,
   udpateNigerianBank,
   getDocument,
   getAllDocuments,
   updateRequestDocument,
+  createEnterprise,
+  udpateEnterprise,
+  deleteEnterprise,
+  getAllDiligenceEnterprises,
+  getEnterprise,
+  getEnterpriseByAdminEmail,
+  getAllDiligenceManagers,
+  getManagerByManagerEmail,
+  createManager,
+  udpateManager,
+  deleteManager,
 } = require("./service");
 
 //DILIGENCE PRODUCT CONTROLLERS
@@ -53,130 +53,231 @@ exports.GetAllNigerianBanks = async (req, res, next) => {
   }
 };
 
-//create diligence bank
-exports.CreateBank = async (req, res, next) => {
+//ENTERPRISE
+//create diligence enterprise
+exports.CreateEnterprise = async (req, res, next) => {
   try {
-    const bankPayload = req.body;
+    const enterprisePayload = req.body;
 
     const values = {
-      name: bankPayload.name,
-      address: bankPayload.address,
-      adminEmail: bankPayload.adminEmail,
+      name: enterprisePayload.name,
+      address: enterprisePayload.address,
+      adminEmail: enterprisePayload.adminEmail,
+      color: enterprisePayload.color,
+      logo: enterprisePayload.logo,
     };
 
-    const diligenceBank = await createBank(values);
+    const diligenceEnterprise = await createEnterprise(values);
 
-    return res
-      .status(diligenceBank.statusCode)
-      .json({ message: diligenceBank.message, data: diligenceBank.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//update diligence bank
-exports.UpdateBank = async (req, res, next) => {
-  try {
-    const bankId = req.params.bankId;
-    const bankPayload = req.body;
-
-    const values = {
-      name: bankPayload.name,
-      address: bankPayload.address,
-      adminEmail: bankPayload.adminEmail,
-    };
-
-    const diligenceBank = await udpateBank(bankId, values);
-
-    return res
-      .status(diligenceBank.statusCode)
-      .json({ message: diligenceBank.message, data: diligenceBank.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//delete diligence bank
-exports.DeleteBank = async (req, res, next) => {
-  try {
-    const bankId = req.params.bankId;
-
-    const diligenceBank = await deleteBank(bankId);
-
-    return res
-      .status(diligenceBank.statusCode)
-      .json({ message: diligenceBank.message });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//get all banks
-exports.GetAllDiligenceBanks = async (req, res, next) => {
-  try {
-    // get the diligence banks list
-    // return response to the client
-
-    const diligenceBanks = await getAllDiligenceBanks();
-    return res
-      .status(diligenceBanks.statusCode)
-      .json({ message: diligenceBanks.message, data: diligenceBanks.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//create diligence branch
-exports.CreateBranch = async (req, res, next) => {
-  try {
-    const bankId = req.params.bankId;
-    const branchPayload = req.body;
-
-    const values = {
-      name: branchPayload.name,
-      state: branchPayload.state,
-      managerEmail: branchPayload.managerEmail,
-      diligenceBankId: bankId,
-    };
-
-    const diligenceBranch = await createBranch(bankId, values);
-
-    return res
-      .status(diligenceBranch.statusCode)
-      .json({ message: diligenceBranch.message, data: diligenceBranch.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//get all branches
-exports.GetAllDiligenceBranches = async (req, res, next) => {
-  try {
-    // get the diligence branches list
-    // return response to the client
-    const bankId = req.params.bankId;
-    const diligenceBranches = await getAllDiligenceBranches(bankId);
-
-    return res.status(diligenceBranches.statusCode).json({
-      message: diligenceBranches.message,
-      data: diligenceBranches.data,
+    return res.status(diligenceEnterprise.statusCode).json({
+      message: diligenceEnterprise.message,
+      data: diligenceEnterprise.data,
     });
   } catch (error) {
     next(error);
   }
 };
 
+//update diligence enterprise
+exports.UpdateEnterprise = async (req, res, next) => {
+  try {
+    const enterpriseId = req.params.enterpriseId;
+    const enterprisePayload = req.body;
+
+    const values = {
+      name: enterprisePayload.name,
+      address: enterprisePayload.address,
+      adminEmail: enterprisePayload.adminEmail,
+      color: enterprisePayload.color,
+      logo: enterprisePayload.logo,
+    };
+
+    const diligenceEnterprise = await udpateEnterprise(enterpriseId, values);
+
+    return res.status(diligenceEnterprise.statusCode).json({
+      message: diligenceEnterprise.message,
+      data: diligenceEnterprise.data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete diligence enterprise
+exports.DeleteEnterprise = async (req, res, next) => {
+  try {
+    const enterpriseId = req.params.enterpriseId;
+
+    const diligenceEnterprise = await deleteEnterprise(enterpriseId);
+
+    return res
+      .status(diligenceEnterprise.statusCode)
+      .json({ message: diligenceEnterprise.message });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get single enterprise
+exports.GetSingleEnterprise = async (req, res, next) => {
+  try {
+    const enterpriseId = req.params.enterpriseId;
+    const enterprise = await getEnterprise(enterpriseId);
+
+    return res
+      .status(enterprise.statusCode)
+      .json({ message: enterprise.message, data: enterprise.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get all enterprises
+exports.GetAllDiligenceEnterprises = async (req, res, next) => {
+  try {
+    // get the diligence enterprises list
+    // return response to the client
+
+    const diligenceEnterprises = await getAllDiligenceEnterprises();
+    return res.status(diligenceEnterprises.statusCode).json({
+      message: diligenceEnterprises.message,
+      data: diligenceEnterprises.data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get a single enterprise with admin email address
+exports.GetSingleEnterpriseByAdminEmail = async (req, res, next) => {
+  try {
+    const adminEmail = req.params.adminEmail;
+    const enterprise = await getEnterpriseByAdminEmail(adminEmail);
+
+    return res
+      .status(enterprise.statusCode)
+      .json({ message: enterprise.message, data: enterprise.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//MANAGER
+//create diligence manager
+exports.CreateManager = async (req, res, next) => {
+  try {
+    const enterpriseId = req.params.enterpriseId;
+    const managerPayload = req.body;
+
+    const values = {
+      name: managerPayload.name,
+      location: managerPayload.location,
+      managerEmail: managerPayload.managerEmail,
+      diligenceEnterpriseId: enterpriseId,
+    };
+
+    const manager = await createManager(enterpriseId, values);
+
+    return res
+      .status(manager.statusCode)
+      .json({ message: manager.message, data: manager.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get all managers
+exports.GetAllDiligenceManagers = async (req, res, next) => {
+  try {
+    // get the diligence branches list
+    // return response to the client
+    const enterpriseId = req.params.enterpriseId;
+    const managers = await getAllDiligenceManagers(enterpriseId);
+
+    return res.status(managers.statusCode).json({
+      message: managers.message,
+      data: managers.data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get single manager
+exports.GetSingleManager = async (req, res, next) => {
+  try {
+    const managerId = req.params.managerId;
+    const manager = await getManagers(managerId);
+
+    return res
+      .status(manager.statusCode)
+      .json({ message: manager.message, data: manager.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get a single manager with email address
+exports.GetSingleManagerByManagerEmail = async (req, res, next) => {
+  try {
+    const managerEmail = req.params.managerEmail;
+    const manager = await getManagerByManagerEmail(managerEmail);
+
+    return res
+      .status(manager.statusCode)
+      .json({ message: manager.message, data: manager.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//update diligence manager
+exports.UpdateManager = async (req, res, next) => {
+  try {
+    const managerId = req.params.managerId;
+    const managerPayload = req.body;
+
+    const values = {
+      name: managerPayload.name,
+      location: managerPayload.location,
+      managerEmail: managerPayload.managerEmail,
+    };
+
+    const manager = await udpateManager(managerId, values);
+
+    return res
+      .status(manager.statusCode)
+      .json({ message: manager.message, data: manager.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete diligence branch
+exports.DeleteManager = async (req, res, next) => {
+  try {
+    const managerId = req.params.managerId;
+
+    const manager = await deleteManager(managerId);
+
+    return res.status(manager.statusCode).json({ message: manager.message });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//STAFF
 //create diligence staff
 exports.CreateStaff = async (req, res, next) => {
   try {
-    const branchId = req.params.branchId;
+    const managerId = req.params.managerId;
     const { email } = req.body;
 
     const values = {
       email: email,
-      diligenceBranchId: branchId,
+      diligenceManagerId: managerId,
     };
-    const diligenceStaff = await createStaff(branchId, values);
+    const diligenceStaff = await createStaff(managerId, values);
 
     return res
       .status(diligenceStaff.statusCode)
@@ -191,13 +292,42 @@ exports.GetAllDiligenceStaffs = async (req, res, next) => {
   try {
     // get the diligence staffs list
     // return response to the client
-    const branchId = req.params.branchId;
-    const diligenceStaffs = await getAllDiligenceStaffs(branchId);
+    const managerId = req.params.managerId;
+    const diligenceStaffs = await getAllDiligenceStaffs(managerId);
 
     return res.status(diligenceStaffs.statusCode).json({
       message: diligenceStaffs.message,
       data: diligenceStaffs.data,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get single staff
+exports.GetSingleStaff = async (req, res, next) => {
+  try {
+    const staffId = req.params.staffId;
+    const staff = await getStaff(staffId);
+
+    return res
+      .status(staff.statusCode)
+      .json({ message: staff.message, data: staff.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete diligence staff
+exports.DeleteStaff = async (req, res, next) => {
+  try {
+    const staffId = req.params.staffId;
+
+    const diligenceStaff = await deleteStaff(staffId);
+
+    return res
+      .status(diligenceStaff.statusCode)
+      .json({ message: diligenceStaff.message });
   } catch (error) {
     next(error);
   }
@@ -223,6 +353,7 @@ exports.CreateAccount = async (req, res, next) => {
       .status(diligenceUser.statusCode)
       .json({ message: diligenceUser.message, data: diligenceUser.data });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -475,114 +606,6 @@ exports.GetAllDocuments = async (req, res, next) => {
   }
 };
 
-// get single bank
-exports.GetSingleBank = async (req, res, next) => {
-  try {
-    const bankId = req.params.bankId;
-    const bank = await getBank(bankId);
-
-    return res
-      .status(bank.statusCode)
-      .json({ message: bank.message, data: bank.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//get single branch
-exports.GetSingleBranch = async (req, res, next) => {
-  try {
-    const branchId = req.params.branchId;
-    const branch = await getBranch(branchId);
-
-    return res
-      .status(branch.statusCode)
-      .json({ message: branch.message, data: branch.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//get single staff
-exports.GetSingleStaff = async (req, res, next) => {
-  try {
-    const staffId = req.params.staffId;
-    const staff = await getStaff(staffId);
-
-    return res
-      .status(staff.statusCode)
-      .json({ message: staff.message, data: staff.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//delete diligence staff
-exports.DeleteStaff = async (req, res, next) => {
-  try {
-    const staffId = req.params.staffId;
-
-    const diligenceStaff = await deleteStaff(staffId);
-
-    return res
-      .status(diligenceStaff.statusCode)
-      .json({ message: diligenceStaff.message });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//update diligence branch
-exports.UpdateBranch = async (req, res, next) => {
-  try {
-    const branchId = req.params.branchId;
-    const branchPayload = req.body;
-
-    const values = {
-      name: branchPayload.name,
-      state: branchPayload.state,
-      managerEmail: branchPayload.managerEmail,
-    };
-
-    const diligenceBranch = await udpateBranch(branchId, values);
-
-    return res
-      .status(diligenceBranch.statusCode)
-      .json({ message: diligenceBranch.message, data: diligenceBranch.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//delete diligence branch
-exports.DeleteBranch = async (req, res, next) => {
-  try {
-    const branchId = req.params.branchId;
-
-    const diligenceBranch = await deleteBranch(branchId);
-
-    return res
-      .status(diligenceBranch.statusCode)
-      .json({ message: diligenceBranch.message });
-  } catch (error) {
-    next(error);
-  }
-};
-
-//get a single bank with admin email address
-exports.GetSingleBankByAdminEmail = async (req, res, next) => {
-  try {
-    const adminEmail = req.params.adminEmail;
-    const bank = await getBankByAdminEmail(adminEmail);
-
-    return res
-      .status(bank.statusCode)
-      .json({ message: bank.message, data: bank.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
 //update Nigerian bank
 exports.UpdateNigerianBank = async (req, res, next) => {
   try {
@@ -622,5 +645,93 @@ exports.UpdateNigerianBank = async (req, res, next) => {
 //     return res.status(200).json({ data: save });
 //   } catch (error) {
 //     console.log(error);
+//   }
+// };
+
+// //create category
+// exports.CreateCategory = async (req, res, next) => {
+//   try {
+//     const countryId = req.params.countryId;
+//     const categoryPayload = req.body;
+
+//     const values = {
+//       name: categoryPayload.name,
+//       description: categoryPayload.description,
+//       slug: categoryPayload.slug,
+//       price: categoryPayload.price,
+//       name: categoryPayload.name,
+//       countryId: countryId,
+//     };
+
+//     const reqCat = await categoryService.create(values);
+
+//     return res
+//       .status(reqCat.statusCode)
+//       .json({ message: reqCat.message, data: reqCat.data });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+// //get category list
+// exports.GetAllCategory = async (req, res, next) => {
+//   try {
+//     const reqCat = await categoryService.getAll();
+
+//     return res
+//       .status(reqCat.statusCode)
+//       .json({ message: reqCat.message, data: reqCat.data });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+// //get category
+// exports.GetCategory = async (req, res, next) => {
+//   try {
+//     const categoryId = req.params.categoryId;
+//     const reqCat = await categoryService.get(categoryId);
+
+//     return res
+//       .status(reqCat.statusCode)
+//       .json({ message: reqCat.message, data: reqCat.data });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+// //update category
+// exports.UpdateCategory = async (req, res, next) => {
+//   try {
+//     const categoryId = req.params.categoryId;
+//     const categoryPayload = req.body;
+
+//     const values = {
+//       name: categoryPayload.name,
+//       description: categoryPayload.description,
+//       slug: categoryPayload.slug,
+//       price: categoryPayload.price,
+//       name: categoryPayload.name,
+//     };
+
+//     const reqCat = await categoryService.update(categoryId, values);
+
+//     return res
+//       .status(reqCat.statusCode)
+//       .json({ message: reqCat.message, data: reqCat.data });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+// //delete category
+// exports.DeleteCategory = async (req, res, next) => {
+//   try {
+//     const categoryId = req.params.categoryId;
+//     const reqCat = await categoryService.delete(categoryId);
+
+//     return res.status(reqCat.statusCode).json({ message: reqCat.message });
+//   } catch (error) {
+//     next(error);
 //   }
 // };

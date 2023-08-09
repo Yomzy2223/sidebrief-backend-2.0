@@ -151,26 +151,28 @@ model DiligenceRequestDocument {
       diligenceRequestId String
 }
 
-model DiligenceBank {
+model DiligenceEnterprise {
       id String @id @default(uuid())
       name String @unique
       address String
       adminEmail String @unique
+      color String?
+      logo String?
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      diligenceBranch DiligenceBranch[]
+      diligenceManager DiligenceManager[]
 }
 
-model DiligenceBranch {
+model DiligenceManager {
       id String @id @default(uuid())
-      name String @unique
-      state String
+      name String?
+      location String?
       managerEmail String @unique
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       diligenceStaff DiligenceStaff[]
-      diligenceBank DiligenceBank @relation(fields: [diligenceBankId], references: [id])
-      diligenceBankId String
+      diligenceEnterprise DiligenceEnterprise @relation(fields: [diligenceEnterpriseId], references: [id])
+      diligenceEnterpriseId String
 }
 
 model DiligenceStaff {
@@ -178,8 +180,8 @@ model DiligenceStaff {
       email String @unique
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      diligenceBranch DiligenceBranch @relation(fields: [diligenceBranchId], references: [id])
-      diligenceBranchId String
+      diligenceManager DiligenceManager @relation(fields: [diligenceManagerId], references: [id])
+      diligenceManagerId String
 }
 
 model NigerianBank {
@@ -191,3 +193,5 @@ model NigerianBank {
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
+
+
