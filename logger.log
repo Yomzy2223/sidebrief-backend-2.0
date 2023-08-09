@@ -3783,3 +3783,130 @@ error: Label: 09-Aug-2023 22:10:32: Error occured with error ReferenceError: che
 info: Label: 09-Aug-2023 22:11:26: manager with akinyemibamidele2@gmail.com added  successfully
 info: Label: 09-Aug-2023 22:12:17: diligence staff with test@sidebrief.com created successfully
 error: Label: 09-Aug-2023 22:12:58: Staff with this id does not exist with error Error: Staff with this id does not exist occurred when GET /diligence/staff/4cd87713-ca48-480e-a931-c2b08c859fb3 was called
+info: Label: 09-Aug-2023 22:24:34: Diligence user with akinyemibamidele2@gmail.com created successfully
+info: Label: 09-Aug-2023 22:25:35: Diligence user with test@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:27:04: Diligence user with test@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:27:48: Diligence user with test@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:29:34: Diligence user with test@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:32:55: Diligence user with test@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:35:43: Diligence user with test@sidebrief.com created successfully
+error: Label: 09-Aug-2023 22:36:42: User with this email already exists with error Error: User with this email already exists occurred when POST /diligence/user was called
+info: Label: 09-Aug-2023 22:37:13: Diligence user with test@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:39:10: Diligence user with test@sidebrief.com created successfully
+error: Label: 09-Aug-2023 22:39:41: The email address is not registered with error Error: The email address is not registered occurred when POST /diligence/user was called
+error: Label: 09-Aug-2023 22:42:43: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:585:50
+
+  582 //create diligence user
+  583 const createAccount = async (accountPayload) => {
+  584   try {
+→ 585     const checkUser = await prisma.diligenceUser.findUnique({
+            where: {
+              email: 'testee@sidebrief.com'
+              ~~~~~
+            }
+          })
+
+Unknown arg `email` in where.email for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+}
+
+ occurred when POST /diligence/user was called
+error: Label: 09-Aug-2023 22:45:13: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:585:50
+
+  582 //create diligence user
+  583 const createAccount = async (accountPayload) => {
+  584   try {
+→ 585     const checkUser = await prisma.diligenceUser.findUnique({
+            where: {
+              email: 'testee@sidebrief.com'
+              ~~~~~
+            }
+          })
+
+Unknown arg `email` in where.email for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+}
+
+ occurred when POST /diligence/user was called
+error: Label: 09-Aug-2023 22:46:15: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:586:50
+
+  583 const createAccount = async (accountPayload) => {
+  584   console.log(accountPayload);
+  585   try {
+→ 586     const checkUser = await prisma.diligenceUser.findUnique({
+            where: {
+              email: 'testee@sidebrief.com'
+              ~~~~~
+            }
+          })
+
+Unknown arg `email` in where.email for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+}
+
+ occurred when POST /diligence/user was called
+error: Label: 09-Aug-2023 22:46:29: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:586:50
+
+  583 const createAccount = async (accountPayload) => {
+  584   console.log(accountPayload);
+  585   try {
+→ 586     const checkUser = await prisma.diligenceUser.findUnique({
+            where: {
+              email: 'test@sidebrief.com'
+              ~~~~~
+            }
+          })
+
+Unknown arg `email` in where.email for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+}
+
+ occurred when POST /diligence/user was called
+error: Label: 09-Aug-2023 22:47:16: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:586:50
+
+  583 const createAccount = async (accountPayload) => {
+  584   console.log(accountPayload);
+  585   try {
+→ 586     const checkUser = await prisma.diligenceUser.findUnique({
+            where: {
+              email: 'test@sidebrief.com'
+              ~~~~~
+            }
+          })
+
+Unknown arg `email` in where.email for type DiligenceUserWhereUniqueInput. Did you mean `id`? Available args:
+type DiligenceUserWhereUniqueInput {
+  id?: String
+}
+
+ occurred when POST /diligence/user was called
+info: Label: 09-Aug-2023 22:49:42: Diligence user with test@sidebrief.com created successfully
+error: Label: 09-Aug-2023 22:51:24: User with this email already exists with error Error: User with this email already exists occurred when POST /diligence/user was called
+info: Label: 09-Aug-2023 22:52:07: Diligence user with test@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:55:07: Diligence user with akinyemibamidele2@gmail.com created successfully
+info: Label: 09-Aug-2023 22:56:05: Diligence user with test@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:56:59: Diligence user with tes222t@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:57:39: diligence staff with akinnagbe@sidebrief.com created successfully
+info: Label: 09-Aug-2023 22:57:52: Diligence user with akinnagbe@sidebrief.com created successfully
+error: Label: 09-Aug-2023 22:57:52: Error occured with error TypeError: Cannot read properties of null (reading 'firstName') occurred when POST /diligence/user was called
+error: Label: 09-Aug-2023 22:59:25: User with this email already exists with error Error: User with this email already exists occurred when POST /diligence/user was called
+info: Label: 09-Aug-2023 23:00:23: Diligence user with akinnagbe@sidebrief.com created successfully
+error: Label: 09-Aug-2023 23:00:30: User with this email already exists with error Error: User with this email already exists occurred when POST /diligence/user was called
+info: Label: 09-Aug-2023 23:00:43: Diligence user with akinnagbe@sidebrief.com created successfully
+error: Label: 09-Aug-2023 23:00:43: Error occured with error TypeError: Cannot read properties of null (reading 'firstName') occurred when POST /diligence/user was called
+info: Label: 09-Aug-2023 23:01:55: Diligence user with akinnagbe@sidebrief.com created successfully
+error: Label: 09-Aug-2023 23:02:06: User with this email already exists with error Error: User with this email already exists occurred when POST /diligence/user was called

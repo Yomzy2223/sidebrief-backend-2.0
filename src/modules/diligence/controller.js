@@ -353,6 +353,7 @@ exports.CreateAccount = async (req, res, next) => {
       .status(diligenceUser.statusCode)
       .json({ message: diligenceUser.message, data: diligenceUser.data });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };

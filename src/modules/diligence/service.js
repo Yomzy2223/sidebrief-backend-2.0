@@ -568,14 +568,18 @@ const deleteStaff = async (staffId) => {
 // DILIGENCE USER
 //add diligence user helper
 const createDiligenceUser = async (accountPayload, role) => {
-  const value = {
-    ...accountPayload,
-    role: `${role}`,
-  };
-  const user = await prisma.diligenceUser.create({ data: value });
+  try {
+    const value = {
+      ...accountPayload,
+      role: `${role}`,
+    };
+    const user = await prisma.diligenceUser.create({ data: value });
 
-  if (!user) {
-    throw new BadRequest("Error occurred while creating user");
+    if (!user) {
+      throw new BadRequest("Error occurred while creating user");
+    }
+  } catch (error) {
+    throw error;
   }
 };
 
