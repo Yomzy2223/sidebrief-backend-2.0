@@ -3766,3 +3766,20 @@ Argument data is missing.
 
 Note: Lines with + are required
  occurred when PUT /diligence/document/6ee8e41f-684f-43ab-a3be-4b1bbdfcd1ca was called
+error: Label: 09-Aug-2023 21:30:09: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /diligence/enterprise was called
+error: Label: 09-Aug-2023 21:30:29: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+info: Label: 09-Aug-2023 21:37:46: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 09-Aug-2023 21:38:11: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 09-Aug-2023 21:38:23: Error occured with error ReferenceError: adminPayload is not defined occurred when POST /diligence/enterprise was called
+error: Label: 09-Aug-2023 21:39:22: Error occured with error ReferenceError: adminPayload is not defined occurred when POST /diligence/enterprise was called
+info: Label: 09-Aug-2023 22:06:56: First Bank created successfully
+error: Label: 09-Aug-2023 22:08:07: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+info: Label: 09-Aug-2023 22:08:16: sdf Bank created successfully
+info: Label: 09-Aug-2023 22:09:43: manager with akinyemibamidele2@gmail.com added  successfully
+error: Label: 09-Aug-2023 22:09:43: Error occured with error ReferenceError: checkBank is not defined occurred when POST /diligence/manager/8ecb4dbc-e4fc-49ff-beed-17e8ac3489ee was called
+error: Label: 09-Aug-2023 22:09:52: Manager this email already exists with error Error: Manager this email already exists occurred when POST /diligence/manager/8ecb4dbc-e4fc-49ff-beed-17e8ac3489ee was called
+info: Label: 09-Aug-2023 22:10:32: manager with akinyemibamidele2@gmail.com added  successfully
+error: Label: 09-Aug-2023 22:10:32: Error occured with error ReferenceError: checkBank is not defined occurred when POST /diligence/manager/8ecb4dbc-e4fc-49ff-beed-17e8ac3489ee was called
+info: Label: 09-Aug-2023 22:11:26: manager with akinyemibamidele2@gmail.com added  successfully
+info: Label: 09-Aug-2023 22:12:17: diligence staff with test@sidebrief.com created successfully
+error: Label: 09-Aug-2023 22:12:58: Staff with this id does not exist with error Error: Staff with this id does not exist occurred when GET /diligence/staff/4cd87713-ca48-480e-a931-c2b08c859fb3 was called

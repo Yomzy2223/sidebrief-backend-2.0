@@ -2,23 +2,21 @@ const Validator = require("fastest-validator");
 
 const validate = new Validator();
 
-//bank
-const bankSchema = {
+//enterprise
+const enterpriseSchema = {
   name: { type: "string", min: 3, max: 50 },
   address: { type: "string", min: 6, max: 200 },
   adminEmail: { type: "string", min: 6, max: 100 },
 };
 
-const validateBankCredentials = validate.compile(bankSchema);
+const validateEnterpriseCredentials = validate.compile(enterpriseSchema);
 
-//branch
-const userBranchSchema = {
-  name: { type: "string", min: 3, max: 50 },
-  state: { type: "string", min: 3, max: 50 },
+//manager
+const userManagerSchema = {
   managerEmail: { type: "email", min: 3, max: 255 },
 };
 
-const validateBranchCredentials = validate.compile(userBranchSchema);
+const validateManagerCredentials = validate.compile(userManagerSchema);
 
 //account
 const userAccountSchema = {
@@ -87,10 +85,10 @@ module.exports = {
   validateEmail,
   validateResetCredentials,
   validateDiligenceRequest,
-  validateBankCredentials,
+  validateEnterpriseCredentials,
   validateDiligenceDocument,
   validateUserCredentials,
-  validateBranchCredentials,
+  validateManagerCredentials,
   validateUserAcccountCredentials,
   validateRequestCredentials,
 };
