@@ -9,7 +9,15 @@ const options = {
     servers: [
       {
         url: "http://localhost:8000",
+        description: "Local server",
+      },
+      {
+        url: "https://h2rwx2fbhm.us-east-1.awsapprunner.com ",
         description: "Development server",
+      },
+      {
+        url: "https://iapkmjspxh.us-east-1.awsapprunner.com ",
+        description: "Production server",
       },
     ],
     components: {
