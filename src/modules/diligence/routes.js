@@ -137,5 +137,4 @@ router.put(
 );
 router.delete("/document/:documentId", staffAuth, DeleteDocument);
 
-router.get("/test", Test);
 module.exports = router;
