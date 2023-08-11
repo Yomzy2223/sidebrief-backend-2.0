@@ -17,7 +17,7 @@ const {
 } = require("../../utils/validation");
 const router = express.Router();
 
-router.post("/", validator(validateStaff), StaffRegisration);
+router.post("/", StaffRegisration);
 router.post("/login", validator(validateUserCredentials), StaffLogin);
 router.get("/:id", StaffProfileFetcher);
 router.post("/verification/:token", StaffVerification);

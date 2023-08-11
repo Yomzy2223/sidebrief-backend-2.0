@@ -16,7 +16,6 @@ const {
 exports.StaffRegisration = async (req, res, next) => {
   try {
     const staffPayload = req.body;
-
     const cryptedPassword = await hasher(staffPayload.password, 12);
 
     const values = {
