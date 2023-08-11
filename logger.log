@@ -3910,3 +3910,18 @@ info: Label: 09-Aug-2023 23:00:43: Diligence user with akinnagbe@sidebrief.com c
 error: Label: 09-Aug-2023 23:00:43: Error occured with error TypeError: Cannot read properties of null (reading 'firstName') occurred when POST /diligence/user was called
 info: Label: 09-Aug-2023 23:01:55: Diligence user with akinnagbe@sidebrief.com created successfully
 error: Label: 09-Aug-2023 23:02:06: User with this email already exists with error Error: User with this email already exists occurred when POST /diligence/user was called
+error: Label: 11-Aug-2023 16:28:10: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called
+error: Label: 11-Aug-2023 17:02:11: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+error: Label: 11-Aug-2023 17:04:01: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+error: Label: 11-Aug-2023 17:12:23: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+error: Label: 11-Aug-2023 17:12:28: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+error: Label: 11-Aug-2023 17:13:11: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+error: Label: 11-Aug-2023 17:13:35: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+error: Label: 11-Aug-2023 17:17:03: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+error: Label: 11-Aug-2023 17:17:06: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+error: Label: 11-Aug-2023 17:17:28: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+error: Label: 11-Aug-2023 17:19:07: Error occured with error Error: Illegal arguments: undefined, number occurred when POST /staffs was called
+info: Label: 11-Aug-2023 17:41:56: string string created an account successfully with string.
+info: Label: 11-Aug-2023 18:35:05: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 11-Aug-2023 18:35:35: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 11-Aug-2023 18:36:31: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called

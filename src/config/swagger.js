@@ -6,6 +6,9 @@ const options = {
       version: "2.0.0",
       description: "This is Sidebrief version 2 application",
     },
+
+    schemas: ["http", "https"],
+
     servers: [
       {
         url: "http://localhost:8000",
@@ -21,6 +24,19 @@ const options = {
       },
     ],
     components: {
+      securitySchemes: {
+        petstore_auth: {
+          type: "oauth2",
+          flows: {},
+        },
+        Bearer: {
+          type: "apiKey",
+          name: "Authorization",
+          in: "header",
+          description: "Bearer token (Bearer + token)",
+        },
+      },
+
       schemas: {
         //User
         Users: {
@@ -118,22 +134,44 @@ const options = {
             firstName: {
               type: "string",
               description: "The first name of the staff",
+              required: true,
             },
             lastName: {
               type: "string",
               description: "The last name of the staff",
+              required: true,
             },
             email: {
               type: "string",
               description: "The email of the staff",
+              required: true,
             },
             password: {
               type: "string",
               description: "The password of the staff",
+              required: true,
             },
             phone: {
               type: "string",
               description: "The phone number of the staff",
+              required: true,
+            },
+          },
+        },
+
+        StaffLogin: {
+          type: "object",
+          require: ["email", "password"],
+          properties: {
+            email: {
+              type: "string",
+              description: "The email of the staff",
+              required: true,
+            },
+            password: {
+              type: "string",
+              description: "The password of the staff",
+              required: true,
             },
           },
         },
@@ -350,6 +388,10 @@ const options = {
         name: "Diligence Document",
         description: "The diligence document management API",
       },
+      {
+        name: "Diligence User",
+        description: "The diligence user management API",
+      },
     ],
     paths: {
       "/users": {
@@ -361,12 +403,23 @@ const options = {
             {
               name: "user",
               in: "body",
-              description: "User that we want to create",
+              description: "User to be created",
               schema: {
                 $ref: "#/components/schemas/Users",
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Users", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -401,7 +454,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of user that we want to find",
+              description: "ID of user to be found",
               type: "string",
             },
           ],
@@ -423,7 +476,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of user that we want to find",
+              description: "ID of user to be deleted",
               type: "string",
             },
           ],
@@ -445,7 +498,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of user that we want to find",
+              description: "ID of user to be updated",
               type: "string",
             },
             {
@@ -457,6 +510,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Users", //
+                },
+              },
+            },
+          },
           responses: {
             200: {
               description: "User is updated",
@@ -483,6 +547,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserLogin", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -510,6 +585,18 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserForgot", //
+                },
+              },
+            },
+          },
+
           produces: ["application/json"],
           responses: {
             200: {
@@ -537,6 +624,18 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserReset", //
+                },
+              },
+            },
+          },
+
           produces: ["application/json"],
           responses: {
             200: {
@@ -553,17 +652,31 @@ const options = {
       "/staffs": {
         post: {
           tags: ["Staffs"],
+          summary: "Create a new staff",
           description: "Create new staff in system",
           parameters: [
             {
-              name: "staff",
+              name: "requestBody",
               in: "body",
-              description: "Staff that we want to create",
+              description: "Staff to be created",
               schema: {
                 $ref: "#/components/schemas/Staffs",
               },
             },
           ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Staffs", //
+                },
+              },
+            },
+          },
+
           produces: ["application/json"],
           responses: {
             200: {
@@ -589,6 +702,46 @@ const options = {
         },
       },
 
+      "/staffs/login": {
+        post: {
+          tags: ["Staffs"],
+          summary: "Sign in staff",
+          description: "Allow registered staff into system",
+          parameters: [
+            {
+              name: "requestBody",
+              in: "body",
+              description: "Staff to be signed in",
+              schema: {
+                $ref: "#/components/schemas/StaffLogin",
+              },
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/StaffLogin", //
+                },
+              },
+            },
+          },
+
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: " staff signed in successfully",
+              schema: {
+                $ref: "#/components/schemas/StaffLogin",
+              },
+            },
+          },
+        },
+      },
+
       "/staffs/{id}": {
         get: {
           summary: "Get a staff with given ID",
@@ -598,7 +751,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of staff that we want to find",
+              description: "ID of staff to be fetched",
               type: "string",
             },
           ],
@@ -620,7 +773,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of staff that we want to find",
+              description: "ID of staff to be deleted",
               type: "string",
             },
           ],
@@ -642,7 +795,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of staff that we want to find",
+              description: "ID of staff to be updated",
               type: "string",
             },
             {
@@ -654,6 +807,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Staffs", //
+                },
+              },
+            },
+          },
           responses: {
             200: {
               description: "Staff is updated",
@@ -668,17 +832,29 @@ const options = {
       "/banks": {
         post: {
           tags: ["Banks"],
+          summary: "Create a new bank",
           description: "Create new bank in system",
           parameters: [
             {
               name: "bank",
               in: "body",
-              description: "Bank that we want to create",
+              description: "Bank to be created",
               schema: {
                 $ref: "#/components/schemas/Banks",
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Banks", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -713,7 +889,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of bank that we want to find",
+              description: "ID of bank to be fetched",
               type: "string",
             },
           ],
@@ -735,7 +911,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of bank that we want to find",
+              description: "ID of bank to be deleted",
               type: "string",
             },
           ],
@@ -757,7 +933,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of bank that we want to find",
+              description: "ID of bank to be updated",
               type: "string",
             },
             {
@@ -769,6 +945,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Banks", //
+                },
+              },
+            },
+          },
           responses: {
             200: {
               description: "Bank is updated",
@@ -822,6 +1009,7 @@ const options = {
         //update nigerianBanks
         put: {
           tags: ["Nigerian Banks"],
+          summary: "Update a nigerian bank color",
           description: "Update bank color",
           parameters: [
             {
@@ -834,12 +1022,23 @@ const options = {
             {
               name: "Nigerian Bank",
               in: "body",
-              description: "Bank that we want to update",
+              description: "Bank to be updated",
               schema: {
                 $ref: "#/components/schemas/NigerianBank",
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/NigerianBank", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -870,6 +1069,7 @@ const options = {
         //update diligence enterprise
         post: {
           tags: ["Diligence Enterprise"],
+          summary: "Create a diligence enterprise",
           description: "Update diligence enterprise",
           parameters: [
             {
@@ -881,6 +1081,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceEnterprise", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -902,7 +1113,7 @@ const options = {
               name: "id",
               in: "path",
               required: true,
-              description: "ID of enterprise that we want to find",
+              description: "ID of enterprise to be fetched",
               type: "string",
             },
           ],
@@ -946,7 +1157,7 @@ const options = {
               name: "enterpriseId",
               in: "path",
               required: true,
-              description: "ID of Diligence Enterprise that we want to find",
+              description: "ID of Diligence Enterpriseto be updated",
               type: "string",
             },
             {
@@ -958,6 +1169,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceEnterprise", //
+                },
+              },
+            },
+          },
           responses: {
             200: {
               description: "Diligence Enterprise is updated",
@@ -979,7 +1201,7 @@ const options = {
               in: "path",
               required: true,
               description:
-                "Enterprise admin email of the enterprise that we want to find",
+                "Enterprise admin email of the enterprise to be fetched",
               type: "string",
             },
           ],
@@ -1004,7 +1226,7 @@ const options = {
               name: "enterpriseId",
               in: "path",
               required: true,
-              description: "ID of enterprise that we want to find",
+              description: "ID of enterprise to be fetched",
               type: "string",
             },
           ],
@@ -1021,6 +1243,7 @@ const options = {
         //create diligence manager
         post: {
           tags: ["Diligence Manager"],
+          summary: "Create a diligence manager",
           description: "Update diligence manager",
           parameters: [
             {
@@ -1039,6 +1262,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceManager", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -1060,7 +1294,7 @@ const options = {
               name: "managerId",
               in: "path",
               required: true,
-              description: "ID of manager that we want to find",
+              description: "ID of manager to be fetched",
               type: "string",
             },
           ],
@@ -1104,7 +1338,7 @@ const options = {
               name: "managerId",
               in: "path",
               required: true,
-              description: "ID of Diligence manager that we want to find",
+              description: "ID of Diligence manager to be updated",
               type: "string",
             },
             {
@@ -1116,6 +1350,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceManager", //
+                },
+              },
+            },
+          },
           responses: {
             200: {
               description: "Diligence manager is updated",
@@ -1136,7 +1381,7 @@ const options = {
               name: "managerEmail",
               in: "path",
               required: true,
-              description: "Manager email of the manager that we want to find",
+              description: "Manager email of the manager to be fetced",
               type: "string",
             },
           ],
@@ -1155,6 +1400,7 @@ const options = {
       "/diligence/staff/managerId": {
         get: {
           tags: ["Diligence Staff"],
+          summary: "Create a diligence staff",
           summary: "Get all diligence manager",
           parameters: [
             {
@@ -1196,6 +1442,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceStaff", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -1217,7 +1474,7 @@ const options = {
               name: "staffId",
               in: "path",
               required: true,
-              description: "ID of staff that we want to find",
+              description: "ID of staff to be fetched",
               type: "string",
             },
           ],
@@ -1259,6 +1516,7 @@ const options = {
         //create diligence user
         post: {
           tags: ["Diligence User"],
+          summary: "Create a diligence user",
           description: "Update diligence enterprise",
           parameters: [
             {
@@ -1270,6 +1528,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceUser", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -1286,6 +1555,7 @@ const options = {
         //sign diligence user
         post: {
           tags: ["Diligence User"],
+          summary: "Sign in as a diligence user",
           description: "Update diligence enterprise",
           parameters: [
             {
@@ -1297,6 +1567,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserLogin", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -1324,6 +1605,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserForgot", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -1351,6 +1643,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserReset", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -1390,6 +1693,7 @@ const options = {
         //create diligence request document
         post: {
           tags: ["Diligence Document"],
+          summary: "Create a diligence request documents",
           description: "Update diligence manager",
           parameters: [
             {
@@ -1408,6 +1712,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceDocument", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -1464,6 +1779,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceDocument", //
+                },
+              },
+            },
+          },
           responses: {
             200: {
               description: "Diligence request document is updated",
@@ -1527,6 +1853,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceRequest", //
+                },
+              },
+            },
+          },
           produces: ["application/json"],
           responses: {
             200: {
@@ -1606,6 +1943,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceRequest", //
+                },
+              },
+            },
+          },
           responses: {
             200: {
               description: "Diligence request  is updated",
@@ -1638,6 +1986,17 @@ const options = {
               },
             },
           ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceRequest", //
+                },
+              },
+            },
+          },
           responses: {
             200: {
               description: "Diligence request  is updated",

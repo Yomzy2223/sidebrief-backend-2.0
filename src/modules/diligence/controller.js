@@ -1,5 +1,6 @@
 const { hasher } = require("../../common/hash");
 const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 const {
   getAllBanks,
@@ -36,6 +37,7 @@ const {
   deleteManager,
   getNigerianBank,
 } = require("./service");
+const { default: axios } = require("axios");
 
 //DILIGENCE PRODUCT CONTROLLERS
 
@@ -656,27 +658,27 @@ exports.UpdateNigerianBank = async (req, res, next) => {
   }
 };
 
-// exports.Test = async (req, res, next) => {
-//   try {
-//     const url = "https://nigerianbanks.xyz";
-//     const response = await axios.get(url);
+exports.Test = async (req, res, next) => {
+  try {
+    const url = "https://nigerianbanks.xyz";
+    const response = await axios.get(url);
 
-//     const newList = response.data.map((data) => ({
-//       name: data.name,
-//       slug: data.slug,
-//       logo: data.logo,
-//     }));
+    const newList = response.data.map((data) => ({
+      name: data.name,
+      slug: data.slug,
+      logo: data.logo,
+    }));
 
-//     const save = await prisma.nigerianBank.createMany({
-//       data: newList,
-//       skipDuplicates: true,
-//     });
-//     console.log(save);
-//     return res.status(200).json({ data: save });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+    const save = await prisma.nigerianBank.createMany({
+      data: newList,
+      skipDuplicates: true,
+    });
+    console.log(save);
+    return res.status(200).json({ data: save });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // //create category
 // exports.CreateCategory = async (req, res, next) => {
