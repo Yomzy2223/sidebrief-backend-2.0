@@ -28,6 +28,26 @@ const getAllBanks = async () => {
   }
 };
 
+//get an enterprise
+const getNigerianBank = async (id) => {
+  try {
+    const checkBank = await prisma.nigerianBank.findUnique({
+      where: { id: id },
+    });
+    if (!checkBank) {
+      throw new BadRequest("Nigerian Bank with this id does not exist");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Bank fetched successfully",
+      data: checkBank,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 //update nigerian bank
 const udpateNigerianBank = async (bankId, bankPayload) => {
   try {
@@ -1252,8 +1272,7 @@ module.exports = {
 
   //Nigerian banks
   getAllBanks,
-  getDiligenceRequest,
-  deleteRequest,
+  getNigerianBank,
   udpateNigerianBank,
 
   //User
@@ -1267,6 +1286,8 @@ module.exports = {
   getAllDiligenceRequests,
   verifyRequest,
   updateRequest,
+  getDiligenceRequest,
+  deleteRequest,
 
   //Request Document
   saveRequestDocument,

@@ -781,7 +781,7 @@ const options = {
       },
 
       //Nigerian Banks
-      "/diligence/nigerianBanks": {
+      "/diligence/nigerianBank": {
         get: {
           tags: ["Nigerian Banks"],
           summary: "Get all Nigerian banks",
@@ -794,12 +794,43 @@ const options = {
             },
           },
         },
+      },
+
+      "/diligence/nigerianBank/{bankId}": {
+        get: {
+          summary: "Get a Nigerian bank with given ID",
+          tags: ["Nigerian Banks"],
+          parameters: [
+            {
+              name: "bankId",
+              in: "path",
+              required: true,
+              description: "Nigerian bank Id to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Nigerian bank is fetched",
+              // schema: {
+              //   $ref: "#/components/schemas/DiligenceEnterprise",
+              // },
+            },
+          },
+        },
 
         //update nigerianBanks
         put: {
           tags: ["Nigerian Banks"],
           description: "Update bank color",
           parameters: [
+            {
+              name: "bankId",
+              in: "path",
+              required: true,
+              description: "Nigerian bank Id to be updated",
+              type: "string",
+            },
             {
               name: "Nigerian Bank",
               in: "body",
@@ -1121,7 +1152,7 @@ const options = {
       },
 
       // DILIGENCE STAFF
-      "/diligence/manager/managerId": {
+      "/diligence/staff/managerId": {
         get: {
           tags: ["Diligence Staff"],
           summary: "Get all diligence manager",

@@ -50,11 +50,13 @@ const {
   UpdateManager,
   DeleteManager,
   GetSingleManagerByManagerEmail,
+  GetANigerianBank,
 } = require("./controller");
 
 //NIGERIAN BANKS
-router.get("/nigerianbanks", GetAllNigerianBanks);
-router.put("/nigerianbank/:bankId", staffAuth, UpdateNigerianBank);
+router.get("/nigerianBank", GetAllNigerianBanks);
+router.get("/nigerianBank/:bankId", GetANigerianBank);
+router.put("/nigerianBank/:bankId", staffAuth, UpdateNigerianBank);
 
 //ENTERPRISE
 router.post(
@@ -63,7 +65,7 @@ router.post(
   validator(validateEnterpriseCredentials),
   CreateEnterprise
 );
-router.get("/enterprises", GetAllDiligenceEnterprises);
+router.get("/enterprise", GetAllDiligenceEnterprises);
 router.get("/enterprise/:enterpriseId", GetSingleEnterprise);
 router.get("/enterpriseByEmail/:adminEmail", GetSingleEnterpriseByAdminEmail);
 router.put(
@@ -80,7 +82,7 @@ router.post(
   validator(validateManagerCredentials),
   CreateManager
 );
-router.get("/managers/:enterpriseId", GetAllDiligenceManagers);
+router.get("/manager/:enterpriseId", GetAllDiligenceManagers);
 router.get("/manager/:managerId", GetSingleManager);
 router.get("/managerByEmail/:managerEmail", GetSingleManagerByManagerEmail);
 router.put(
@@ -92,7 +94,7 @@ router.delete("/manager/:managerId", DeleteManager);
 
 //STAFF
 router.post("/staff/:managerId", validator(validateEmail), CreateStaff);
-router.get("/staffs/:managerId", GetAllDiligenceStaffs);
+router.get("/staff/:managerId", GetAllDiligenceStaffs);
 router.get("/staff/:staffId", GetSingleStaff);
 router.delete("/staff/:staffId", DeleteStaff);
 
@@ -125,7 +127,7 @@ router.post(
   validator(validateDiligenceDocument),
   AddRequestDocument
 );
-router.get("/documents/:requestId", GetAllDocuments);
+router.get("/document/:requestId", GetAllDocuments);
 router.get("/document/:documentId", GetDocument);
 router.put(
   "/document/:documentId",

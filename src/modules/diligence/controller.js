@@ -34,6 +34,7 @@ const {
   createManager,
   udpateManager,
   deleteManager,
+  getNigerianBank,
 } = require("./service");
 
 //DILIGENCE PRODUCT CONTROLLERS
@@ -48,6 +49,35 @@ exports.GetAllNigerianBanks = async (req, res, next) => {
     return res
       .status(banks.statusCode)
       .json({ message: banks.message, data: banks.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get a Nigerian bank
+exports.GetANigerianBank = async (req, res, next) => {
+  try {
+    // get the bank
+    // return response to the client
+    const bankId = req.params.bankId;
+    const bank = await getNigerianBank(bankId);
+    return res
+      .status(bank.statusCode)
+      .json({ message: bank.message, data: bank.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get single enterprise
+exports.GetSingleEnterprise = async (req, res, next) => {
+  try {
+    const enterpriseId = req.params.enterpriseId;
+    const enterprise = await getEnterprise(enterpriseId);
+
+    return res
+      .status(enterprise.statusCode)
+      .json({ message: enterprise.message, data: enterprise.data });
   } catch (error) {
     next(error);
   }
