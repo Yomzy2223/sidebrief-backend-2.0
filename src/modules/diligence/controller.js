@@ -483,7 +483,7 @@ exports.VerifyRequest = async (req, res, next) => {
     // send the id to the verify service
     //return response to the client
 
-    const id = req.params.id;
+    const id = req.params.requestId;
 
     const verify = await verifyRequest(id);
 
@@ -500,7 +500,7 @@ exports.UpdateRequest = async (req, res, next) => {
     // send the id to the update service
     //return response to the client
 
-    const id = req.params.id;
+    const id = req.params.requestId;
 
     const update = await updateRequest(id);
 
@@ -540,7 +540,7 @@ exports.DeleteDocument = async (req, res, next) => {
     // send the id to the delete service
     //return response to the client
 
-    const id = req.params.id;
+    const id = req.params.documentId;
 
     const deleteDocument = await removeRequestDocument(id);
 

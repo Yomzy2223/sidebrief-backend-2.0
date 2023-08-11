@@ -6,7 +6,6 @@ const {
   validateResetCredentials,
   validateUserCredentials,
   validateUserAcccountCredentials,
-  validateBranchCredentials,
   validateRequestCredentials,
   validateEnterpriseCredentials,
   validateManagerCredentials,
@@ -115,8 +114,8 @@ router.post(
 router.post("/request", validator(validateRequestCredentials), CreateRequest);
 router.get("/request", GetAllDiligenceRequests);
 router.get("/request/:requestId", GetRequest);
-router.put("/request/verify/:id", VerifyRequest);
-router.put("/request/update/:id", UpdateRequest);
+router.put("/request/verify/:requestId", VerifyRequest);
+router.put("/request/update/:requestId", UpdateRequest);
 router.delete("/request/:requestId", DeleteRequest);
 
 //REQUEST DOCUMENT
@@ -134,6 +133,6 @@ router.put(
   staffAuth,
   UpdateDocument
 );
-router.delete("/document/:id", staffAuth, DeleteDocument);
+router.delete("/document/:documentId", staffAuth, DeleteDocument);
 
 module.exports = router;

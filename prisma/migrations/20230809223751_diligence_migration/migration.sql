@@ -128,6 +128,99 @@ CREATE TABLE "Notification" (
     CONSTRAINT "Notification_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "DiligenceUser" (
+    "id" TEXT NOT NULL,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
+    "resetToken" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "DiligenceUser_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "DiligenceRequest" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "registrationNumber" TEXT NOT NULL,
+    "status" TEXT NOT NULL,
+    "createdBy" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "DiligenceRequest_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "DiligenceRequestDocument" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "link" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "diligenceRequestId" TEXT NOT NULL,
+
+    CONSTRAINT "DiligenceRequestDocument_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "DiligenceEnterprise" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
+    "adminEmail" TEXT NOT NULL,
+    "color" TEXT,
+    "logo" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "DiligenceEnterprise_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "DiligenceManager" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "location" TEXT,
+    "managerEmail" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "diligenceEnterpriseId" TEXT NOT NULL,
+
+    CONSTRAINT "DiligenceManager_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "DiligenceStaff" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "diligenceManagerId" TEXT NOT NULL,
+
+    CONSTRAINT "DiligenceStaff_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "NigerianBank" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "color" TEXT,
+    "slug" TEXT NOT NULL,
+    "logo" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "NigerianBank_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
@@ -152,5 +245,32 @@ CREATE UNIQUE INDEX "Bank_name_key" ON "Bank"("name");
 -- CreateIndex
 CREATE UNIQUE INDEX "ServiceCategory_name_key" ON "ServiceCategory"("name");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "DiligenceUser_email_key" ON "DiligenceUser"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "DiligenceRequestDocument_name_key" ON "DiligenceRequestDocument"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "DiligenceEnterprise_name_key" ON "DiligenceEnterprise"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "DiligenceEnterprise_adminEmail_key" ON "DiligenceEnterprise"("adminEmail");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "DiligenceManager_managerEmail_key" ON "DiligenceManager"("managerEmail");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "DiligenceStaff_email_key" ON "DiligenceStaff"("email");
+
 -- AddForeignKey
 ALTER TABLE "CollaboratorDocument" ADD CONSTRAINT "CollaboratorDocument_collaboratorId_fkey" FOREIGN KEY ("collaboratorId") REFERENCES "Collaborator"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DiligenceRequestDocument" ADD CONSTRAINT "DiligenceRequestDocument_diligenceRequestId_fkey" FOREIGN KEY ("diligenceRequestId") REFERENCES "DiligenceRequest"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DiligenceManager" ADD CONSTRAINT "DiligenceManager_diligenceEnterpriseId_fkey" FOREIGN KEY ("diligenceEnterpriseId") REFERENCES "DiligenceEnterprise"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DiligenceStaff" ADD CONSTRAINT "DiligenceStaff_diligenceManagerId_fkey" FOREIGN KEY ("diligenceManagerId") REFERENCES "DiligenceManager"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
