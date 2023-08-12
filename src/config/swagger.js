@@ -180,19 +180,19 @@ const options = {
           type: "object",
           require: ["bankName", "bankCode", "bankUrl", "bankImage"],
           properties: {
-            bankName: {
+            name: {
               type: "string",
               description: "The bank name of the bank",
             },
-            bankCode: {
+            code: {
               type: "string",
               description: "The bank code of the bank",
             },
-            bankUrl: {
+            url: {
               type: "string",
               description: "The bank url of the bank",
             },
-            bankImgage: {
+            image: {
               type: "string",
               description: "The bank image of the bank",
             },
@@ -296,7 +296,7 @@ const options = {
               type: "string",
               description: "The reistration number of the business",
             },
-            email: {
+            createdBy: {
               type: "string",
               description: "The email of the diligence User",
             },
@@ -681,16 +681,6 @@ const options = {
           tags: ["Staffs"],
           summary: "Sign in staff",
           description: "Allow registered staff into system",
-          parameters: [
-            {
-              name: "requestBody",
-              in: "body",
-              description: "Staff to be signed in",
-              schema: {
-                $ref: "#/components/schemas/StaffLogin",
-              },
-            },
-          ],
 
           requestBody: {
             // expected request body
@@ -1250,10 +1240,10 @@ const options = {
         post: {
           tags: ["Diligence Manager"],
           summary: "Create a diligence manager",
-          description: "Update diligence manager",
+          description: "Create diligence manager",
           parameters: [
             {
-              name: "enterpriseId",
+              id: "enterpriseId",
               in: "path",
               required: true,
               description: "Enterprise ID",

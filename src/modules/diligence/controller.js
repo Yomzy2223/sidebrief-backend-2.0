@@ -214,6 +214,7 @@ exports.CreateManager = async (req, res, next) => {
       .status(manager.statusCode)
       .json({ message: manager.message, data: manager.data });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
