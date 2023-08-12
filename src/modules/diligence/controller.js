@@ -257,23 +257,15 @@ exports.GetSingleEnterpriseByAdminEmail = async (req, res, next) => {
 //create diligence manager
 exports.CreateManager = async (req, res, next) => {
   try {
-    const enterpriseId = req.params.enterpriseId;
+    const adminId = req.params.adminId;
     const managerPayload = req.body;
 
-    const values = {
-      name: managerPayload.name,
-      location: managerPayload.location,
-      managerEmail: managerPayload.managerEmail,
-      diligenceEnterpriseId: enterpriseId,
-    };
-
-    const manager = await createManager(enterpriseId, values);
+    const manager = await createManager(adminId, managerPayload);
 
     return res
       .status(manager.statusCode)
       .json({ message: manager.message, data: manager.data });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -365,11 +357,7 @@ exports.CreateStaff = async (req, res, next) => {
     const managerId = req.params.managerId;
     const { email } = req.body;
 
-    const values = {
-      email: email,
-      diligenceManagerId: managerId,
-    };
-    const diligenceStaff = await createStaff(managerId, values);
+    const diligenceStaff = await createStaff(managerId, email);
 
     return res
       .status(diligenceStaff.statusCode)

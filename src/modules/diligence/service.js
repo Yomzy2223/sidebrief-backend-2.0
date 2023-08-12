@@ -315,15 +315,30 @@ const getEnterpriseByAdminEmail = async (adminEmail) => {
 
 //MANAGER
 //create diligence manager
-const createManager = async (enterpriseId, managerPayload) => {
+const createManager = async (adminId, managerPayload) => {
   try {
-    const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
-      where: { id: enterpriseId },
+    const checkEnterpriseAdmin = await prisma.diligenceUser.findUnique({
+      where: { id: adminId },
     });
 
-    if (!checkEnterprise) {
-      throw new BadRequest("Enterprise with this ID not found.");
+    if (!checkEnterpriseAdmin) {
+      throw new BadRequest("Enterprise admin with this ID not found.");
     }
+
+    if (checkEnterpriseAdmin.role !== "Admin") {
+      throw new BadRequest("Enterprise admin with this ID not found.");
+    }
+
+    const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
+      where: { adminEmail: checkEnterpriseAdmin.email },
+    });
+
+    const values = {
+      name: managerPayload.name,
+      location: managerPayload.location,
+      managerEmail: managerPayload.managerEmail,
+      diligenceEnterpriseId: checkEnterprise.id,
+    };
 
     const checkManagerEmail = await prisma.diligenceManager.findUnique({
       where: { managerEmail: managerPayload.managerEmail },
@@ -334,7 +349,7 @@ const createManager = async (enterpriseId, managerPayload) => {
     }
 
     const manager = await prisma.diligenceManager.create({
-      data: managerPayload,
+      data: values,
     });
 
     if (!manager) {
@@ -415,7 +430,6 @@ const getManager = async (id) => {
       data: checkManager,
     };
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -507,17 +521,30 @@ const deleteManager = async (managerId) => {
 
 //STAFF
 //create diligence staff
-const createStaff = async (managerId, staffPayload) => {
+const createStaff = async (managerId, email) => {
   try {
-    const checkManager = await prisma.diligenceManager.findUnique({
+    const checkEnterpriseManager = await prisma.diligenceUser.findUnique({
       where: { id: managerId },
     });
-    if (!checkManager) {
+    if (!checkEnterpriseManager) {
       throw new BadRequest("Manager not found.");
     }
 
+    if (checkEnterpriseManager.role !== "Manager") {
+      throw new BadRequest("The user with this ID is not a manager.");
+    }
+
+    const checkManager = await prisma.diligenceManager.findUnique({
+      where: { managerEmail: checkEnterpriseManager.email },
+    });
+
+    const values = {
+      email: email,
+      diligenceManagerId: checkManager.id,
+    };
+
     const checkStaff = await prisma.diligenceStaff.findUnique({
-      where: { email: staffPayload.email },
+      where: { email: email },
     });
 
     if (checkStaff) {
@@ -525,26 +552,26 @@ const createStaff = async (managerId, staffPayload) => {
     }
 
     const diligenceStaff = await prisma.diligenceStaff.create({
-      data: staffPayload,
+      data: values,
     });
 
     if (!diligenceStaff) {
       throw new BadRequest("Error occured while creating staff");
     }
     logger.info({
-      message: `diligence staff with ${staffPayload.email} created successfully`,
+      message: `diligence staff with ${email} created successfully`,
     });
 
     const regUrl = `${process.env.BASE_URL}/diligence`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
-      name: staffPayload.email,
+      name: email,
       url: regUrl,
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
-    const recipientEmail = staffPayload.email;
+    const recipientEmail = email;
     //send email
     EmailSender(
       subject,
@@ -560,6 +587,7 @@ const createStaff = async (managerId, staffPayload) => {
       data: diligenceStaff,
     };
   } catch (error) {
+    console.log("eee", error);
     throw error;
   }
 };

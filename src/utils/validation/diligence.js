@@ -66,7 +66,7 @@ const diligenceRequestSchema = {
   name: { type: "string", min: 3, max: 50 },
   registrationNumber: { type: "string", min: 3, max: 50 },
   status: { type: "string", min: 3, max: 50 },
-  createdBy: { type: "string", min: 3, max: 100 },
+  email: { type: "string", min: 3, max: 100 },
 };
 
 const validateDiligenceRequest = validate.compile(diligenceRequestSchema);

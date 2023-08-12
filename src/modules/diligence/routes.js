@@ -82,7 +82,7 @@ router.delete("/enterprise/:enterpriseId", staffAuth, DeleteEnterprise);
 
 //MANAGER
 router.post(
-  "/manager/:enterpriseId",
+  "/manager/:adminId",
   validator(validateManagerCredentials),
   CreateManager
 );
