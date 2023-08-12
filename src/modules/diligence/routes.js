@@ -74,7 +74,7 @@ router.put(
   validator(validateEnterpriseCredentials),
   UpdateEnterprise
 );
-router.delete("/enterprise/:enterpriseId", DeleteEnterprise);
+router.delete("/enterprise/:enterpriseId", staffAuth, DeleteEnterprise);
 
 //MANAGER
 router.post(
@@ -136,5 +136,7 @@ router.put(
   UpdateDocument
 );
 router.delete("/document/:documentId", staffAuth, DeleteDocument);
+
+router.get("/test", Test);
 
 module.exports = router;

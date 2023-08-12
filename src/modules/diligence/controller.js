@@ -385,7 +385,6 @@ exports.CreateAccount = async (req, res, next) => {
       .status(diligenceUser.statusCode)
       .json({ message: diligenceUser.message, data: diligenceUser.data });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -673,7 +672,7 @@ exports.Test = async (req, res, next) => {
       data: newList,
       skipDuplicates: true,
     });
-    console.log(save);
+
     return res.status(200).json({ data: save });
   } catch (error) {
     console.log(error);

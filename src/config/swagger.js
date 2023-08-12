@@ -29,14 +29,13 @@ const options = {
           type: "oauth2",
           flows: {},
         },
-        Bearer: {
+        BearerAuth: {
           type: "apiKey",
           name: "Authorization",
           in: "header",
           description: "Bearer token (Bearer + token)",
         },
       },
-
       schemas: {
         //User
         Users: {
@@ -339,6 +338,18 @@ const options = {
             },
           },
         },
+
+        //ERRORS
+        Error: {
+          type: "object",
+          require: ["error"],
+          properties: {
+            error: {
+              type: "string",
+              description: "Bad request",
+            },
+          },
+        },
       },
       responses: {
         401: {
@@ -399,16 +410,7 @@ const options = {
           tags: ["Users"],
           summary: "Create new user in system",
           description: "Create new user in system",
-          parameters: [
-            {
-              name: "user",
-              in: "body",
-              description: "User to be created",
-              schema: {
-                $ref: "#/components/schemas/Users",
-              },
-            },
-          ],
+
           requestBody: {
             // expected request body
             content: {
@@ -537,16 +539,7 @@ const options = {
           tags: ["Users"],
           summary: "Sign in user into system",
           description: "Login into system",
-          parameters: [
-            {
-              name: "user",
-              in: "body",
-              description: "Sign in with email and password",
-              schema: {
-                $ref: "#/components/schemas/UserLogin",
-              },
-            },
-          ],
+
           requestBody: {
             // expected request body
             content: {
@@ -575,16 +568,7 @@ const options = {
           tags: ["Users"],
           summary: "Forgot password",
           description: "Forgot password ",
-          parameters: [
-            {
-              name: "user",
-              in: "body",
-              description: "Forgot password",
-              schema: {
-                $ref: "#/components/schemas/UserForgot",
-              },
-            },
-          ],
+
           requestBody: {
             // expected request body
             content: {
@@ -654,16 +638,6 @@ const options = {
           tags: ["Staffs"],
           summary: "Create a new staff",
           description: "Create new staff in system",
-          parameters: [
-            {
-              name: "requestBody",
-              in: "body",
-              description: "Staff to be created",
-              schema: {
-                $ref: "#/components/schemas/Staffs",
-              },
-            },
-          ],
 
           requestBody: {
             // expected request body
@@ -834,16 +808,7 @@ const options = {
           tags: ["Banks"],
           summary: "Create a new bank",
           description: "Create new bank in system",
-          parameters: [
-            {
-              name: "bank",
-              in: "body",
-              description: "Bank to be created",
-              schema: {
-                $ref: "#/components/schemas/Banks",
-              },
-            },
-          ],
+
           requestBody: {
             // expected request body
             content: {
@@ -936,14 +901,6 @@ const options = {
               description: "ID of bank to be updated",
               type: "string",
             },
-            {
-              name: "bank",
-              in: "body",
-              description: "Bank with new values of properties",
-              schema: {
-                $ref: "#/components/schemas/Banks",
-              },
-            },
           ],
           requestBody: {
             // expected request body
@@ -1011,6 +968,8 @@ const options = {
           tags: ["Nigerian Banks"],
           summary: "Update a nigerian bank color",
           description: "Update bank color",
+
+          security: [{ BearerAuth: [] }],
           parameters: [
             {
               name: "bankId",
@@ -1063,6 +1022,18 @@ const options = {
                 $ref: "#/components/schemas/DiligenceEnterprise",
               },
             },
+            401: {
+              description: "Unauthorized - User not authorized",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+            400: {
+              description: "Not found",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
           },
         },
 
@@ -1070,17 +1041,9 @@ const options = {
         post: {
           tags: ["Diligence Enterprise"],
           summary: "Create a diligence enterprise",
-          description: "Update diligence enterprise",
-          parameters: [
-            {
-              name: "Diligence Enterprise",
-              in: "body",
-              description: "Enterprise to be updated",
-              schema: {
-                $ref: "#/components/schemas/DiligenceEnterprise",
-              },
-            },
-          ],
+          description: "Create a diligence enterprise",
+          security: [{ BearerAuth: [] }],
+
           requestBody: {
             // expected request body
             content: {
@@ -1095,9 +1058,21 @@ const options = {
           produces: ["application/json"],
           responses: {
             200: {
-              description: "Enterprise to be updated",
+              description: "Success",
               schema: {
                 $ref: "#/components/schemas/DiligenceEnterprise",
+              },
+            },
+            401: {
+              description: "Unauthorized - User not authorized",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+            400: {
+              description: "Not found",
+              schema: {
+                $ref: "#/components/schemas/Error",
               },
             },
           },
@@ -1124,6 +1099,18 @@ const options = {
                 $ref: "#/components/schemas/DiligenceEnterprise",
               },
             },
+            401: {
+              description: "Unauthorized - User not authorized",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+            400: {
+              description: "Not found",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
           },
         },
 
@@ -1139,11 +1126,25 @@ const options = {
               type: "string",
             },
           ],
+
+          security: [{ BearerAuth: [] }],
           responses: {
             200: {
               description: "Diligence Enterprise is deleted",
               schema: {
                 $ref: "#/components/schemas/DiligenceEnterprise",
+              },
+            },
+            401: {
+              description: "Unauthorized - User not authorized",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+            400: {
+              description: "Not found",
+              schema: {
+                $ref: "#/components/schemas/Error",
               },
             },
           },
@@ -1152,6 +1153,7 @@ const options = {
         put: {
           summary: "Update Diligence Enterprise with give ID",
           tags: ["Diligence Enterprise"],
+          security: [{ BearerAuth: [] }],
           parameters: [
             {
               name: "enterpriseId",
@@ -1159,14 +1161,6 @@ const options = {
               required: true,
               description: "ID of Diligence Enterpriseto be updated",
               type: "string",
-            },
-            {
-              name: "enterprise",
-              in: "body",
-              description: "Diligence Enterprise with new values of properties",
-              schema: {
-                $ref: "#/components/schemas/DiligenceEnterprise",
-              },
             },
           ],
           requestBody: {
@@ -1185,6 +1179,18 @@ const options = {
               description: "Diligence Enterprise is updated",
               schema: {
                 $ref: "#/components/schemas/DiligeceEnterprise",
+              },
+            },
+            401: {
+              description: "Unauthorized - User not authorized",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+            400: {
+              description: "Not found",
+              schema: {
+                $ref: "#/components/schemas/Error",
               },
             },
           },
@@ -1252,14 +1258,6 @@ const options = {
               required: true,
               description: "Enterprise ID",
               type: "string",
-            },
-            {
-              name: "Diligence Manager",
-              in: "body",
-              description: "Manager to be updated",
-              schema: {
-                $ref: "#/components/schemas/DiligenceManager",
-              },
             },
           ],
           requestBody: {
@@ -1340,14 +1338,6 @@ const options = {
               required: true,
               description: "ID of Diligence manager to be updated",
               type: "string",
-            },
-            {
-              name: "manager",
-              in: "body",
-              description: "Diligence manager with new values of properties",
-              schema: {
-                $ref: "#/components/schemas/DiligenceManager",
-              },
             },
           ],
           requestBody: {
@@ -1433,14 +1423,6 @@ const options = {
               description: "Manager ID",
               type: "string",
             },
-            {
-              name: "Diligence Staff",
-              in: "body",
-              description: "staff to be created",
-              schema: {
-                $ref: "#/components/schemas/DiligenceStaff",
-              },
-            },
           ],
           requestBody: {
             // expected request body
@@ -1518,16 +1500,7 @@ const options = {
           tags: ["Diligence User"],
           summary: "Create a diligence user",
           description: "Update diligence enterprise",
-          parameters: [
-            {
-              name: "Diligence User",
-              in: "body",
-              description: "Enterprise to be updated",
-              schema: {
-                $ref: "#/components/schemas/DiligenceUser",
-              },
-            },
-          ],
+
           requestBody: {
             // expected request body
             content: {
@@ -1557,16 +1530,7 @@ const options = {
           tags: ["Diligence User"],
           summary: "Sign in as a diligence user",
           description: "Update diligence enterprise",
-          parameters: [
-            {
-              name: "Diligence User",
-              in: "body",
-              description: "Sign in diligene user",
-              schema: {
-                $ref: "#/components/schemas/UserLogin",
-              },
-            },
-          ],
+
           requestBody: {
             // expected request body
             content: {
@@ -1595,16 +1559,7 @@ const options = {
           tags: ["Diligence User"],
           summary: "Forgot password",
           description: "Forgot password ",
-          parameters: [
-            {
-              name: "user",
-              in: "body",
-              description: "Forgot password",
-              schema: {
-                $ref: "#/components/schemas/UserForgot",
-              },
-            },
-          ],
+
           requestBody: {
             // expected request body
             content: {
@@ -1633,16 +1588,7 @@ const options = {
           tags: ["Diligence User"],
           summary: "Reset password",
           description: "reset password",
-          parameters: [
-            {
-              name: "user",
-              in: "body",
-              description: "reset password",
-              schema: {
-                $ref: "#/components/schemas/UserReset",
-              },
-            },
-          ],
+
           requestBody: {
             // expected request body
             content: {
@@ -1695,6 +1641,8 @@ const options = {
           tags: ["Diligence Document"],
           summary: "Create a diligence request documents",
           description: "Update diligence manager",
+
+          security: [{ BearerAuth: [] }],
           parameters: [
             {
               name: "managerId",
@@ -1702,14 +1650,6 @@ const options = {
               required: true,
               description: "Manager ID",
               type: "string",
-            },
-            {
-              name: "Diligence Document",
-              in: "body",
-              description: "Document to be created",
-              schema: {
-                $ref: "#/components/schemas/DiligenceDocument",
-              },
             },
           ],
           requestBody: {
@@ -1761,6 +1701,7 @@ const options = {
         put: {
           summary: "Update Diligence request document with give ID",
           tags: ["Diligence Document"],
+          security: [{ BearerAuth: [] }],
           parameters: [
             {
               name: "documentId",
@@ -1803,6 +1744,7 @@ const options = {
         delete: {
           summary: "Delete Diligence request document with given ID",
           tags: ["Diligence Document"],
+          security: [{ BearerAuth: [] }],
           parameters: [
             {
               name: "documentId",
@@ -1843,16 +1785,7 @@ const options = {
           tags: ["Diligence Request"],
           description: "Update diligence manager",
           summary: "Create a diligence request ",
-          parameters: [
-            {
-              name: "Diligence Request",
-              in: "body",
-              description: "Request to be created",
-              schema: {
-                $ref: "#/components/schemas/DiligenceRequest",
-              },
-            },
-          ],
+
           requestBody: {
             // expected request body
             content: {
@@ -1933,14 +1866,6 @@ const options = {
               required: true,
               description: "ID of Diligence request  to be found",
               type: "string",
-            },
-            {
-              name: "Diligence request ",
-              in: "body",
-              description: "Diligence request  with new values of properties",
-              schema: {
-                $ref: "#/components/schemas/DiligenceRequest",
-              },
             },
           ],
           requestBody: {
