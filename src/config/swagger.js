@@ -296,7 +296,7 @@ const options = {
               type: "string",
               description: "The reistration number of the business",
             },
-            createdBy: {
+            email: {
               type: "string",
               description: "The email of the diligence User",
             },
@@ -1322,7 +1322,7 @@ const options = {
         },
       },
 
-      "/diligence/manager/{enterpriseId}": {
+      "/diligence/manager/{adminId}": {
         //create diligence manager
         post: {
           tags: ["Diligence Manager"],
@@ -1330,10 +1330,10 @@ const options = {
           description: "Create diligence manager",
           parameters: [
             {
-              id: "enterpriseId",
+              id: "adminId",
               in: "path",
               required: true,
-              description: "Enterprise ID",
+              description: "Enterprise admin ID",
               type: "string",
             },
           ],
@@ -1698,10 +1698,10 @@ const options = {
           summary: "Get all diligence request documents",
           parameters: [
             {
-              name: "managerId",
+              name: "requestId",
               in: "path",
               required: true,
-              description: "Manager ID",
+              description: "Request ID",
               type: "string",
             },
           ],
@@ -1724,10 +1724,10 @@ const options = {
           security: [{ BearerAuth: [] }],
           parameters: [
             {
-              name: "managerId",
+              name: "requestId",
               in: "path",
               required: true,
-              description: "Manager ID",
+              description: "Request ID",
               type: "string",
             },
           ],
@@ -1947,17 +1947,7 @@ const options = {
               type: "string",
             },
           ],
-          requestBody: {
-            // expected request body
-            content: {
-              // content-type
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/DiligenceRequest", //
-                },
-              },
-            },
-          },
+
           responses: {
             200: {
               description: "Diligence request  is updated",
@@ -1981,26 +1971,8 @@ const options = {
               description: "ID of Diligence request  to be found",
               type: "string",
             },
-            {
-              name: "Diligence request ",
-              in: "body",
-              description: "Diligence request  with new values of properties",
-              schema: {
-                $ref: "#/components/schemas/DiligenceRequest",
-              },
-            },
           ],
-          requestBody: {
-            // expected request body
-            content: {
-              // content-type
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/DiligenceRequest", //
-                },
-              },
-            },
-          },
+
           responses: {
             200: {
               description: "Diligence request  is updated",
