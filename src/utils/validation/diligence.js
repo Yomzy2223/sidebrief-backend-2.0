@@ -21,7 +21,7 @@ const validateManagerCredentials = validate.compile(userManagerSchema);
 //account
 const userAccountSchema = {
   firstName: { type: "string", min: 3, max: 50 },
-  lastName: { type: "string", min: 6, max: 50 },
+  lastName: { type: "string", min: 3, max: 50 },
   email: { type: "email", min: 3, max: 255 },
   password: { type: "string", min: 6, max: 12 },
 };
