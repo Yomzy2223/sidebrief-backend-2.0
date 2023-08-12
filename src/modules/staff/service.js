@@ -274,12 +274,11 @@ const deleteStaff = async (id) => {
     if (!staff) {
       throw new BadRequest("Staff not found");
     }
-    console.log(staff);
+
     const deleteStaff = await prisma.staff.delete({
       where: { id: staff.id },
     });
 
-    console.log(deleteStaff);
     if (!deleteStaff) {
       throw new BadRequest("Error occurred while deleting staff");
     }

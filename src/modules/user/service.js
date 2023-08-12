@@ -300,12 +300,11 @@ const deleteUser = async (id) => {
     if (!user) {
       throw new BadRequest("User not found!.");
     }
-    console.log(user);
+
     const deleteUser = await prisma.user.delete({
       where: { id: user.id },
     });
 
-    console.log(deleteUser);
     if (!deleteUser) {
       throw new BadRequest("Error occured while deleting user");
     }
