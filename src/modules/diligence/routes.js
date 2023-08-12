@@ -51,12 +51,16 @@ const {
   DeleteManager,
   GetSingleManagerByManagerEmail,
   GetANigerianBank,
+  CreateNigerianBank,
+  DeleteNigerianBank,
 } = require("./controller");
 
 //NIGERIAN BANKS
+router.post("/nigerianBank", staffAuth, CreateNigerianBank);
 router.get("/nigerianBank", GetAllNigerianBanks);
 router.get("/nigerianBank/:bankId", GetANigerianBank);
 router.put("/nigerianBank/:bankId", staffAuth, UpdateNigerianBank);
+router.delete("/nigerianBank/:bankId", staffAuth, DeleteNigerianBank);
 
 //ENTERPRISE
 router.post(
@@ -82,7 +86,7 @@ router.post(
   validator(validateManagerCredentials),
   CreateManager
 );
-router.get("/manager/:enterpriseId", GetAllDiligenceManagers);
+router.get("/managers/:enterpriseId", GetAllDiligenceManagers);
 router.get("/manager/:managerId", GetSingleManager);
 router.get("/managerByEmail/:managerEmail", GetSingleManagerByManagerEmail);
 router.put(
@@ -94,7 +98,7 @@ router.delete("/manager/:managerId", DeleteManager);
 
 //STAFF
 router.post("/staff/:managerId", validator(validateEmail), CreateStaff);
-router.get("/staff/:managerId", GetAllDiligenceStaffs);
+router.get("/staffs/:managerId", GetAllDiligenceStaffs);
 router.get("/staff/:staffId", GetSingleStaff);
 router.delete("/staff/:staffId", DeleteStaff);
 

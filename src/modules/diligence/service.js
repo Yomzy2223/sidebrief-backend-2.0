@@ -8,6 +8,28 @@ const { matchChecker } = require("../../common/hash");
 
 //DILIGENCE PRODUCT SERVICES
 
+//NIGERIAN BANKS
+//create diligence enterprise
+const createNigerianBank = async (bankPayload) => {
+  try {
+    const bank = await prisma.nigerianBank.create({
+      data: bankPayload,
+    });
+
+    if (!bank) {
+      throw new BadRequest("Error occured while creating this Nigerian bank");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Ngerian Bank created successfully!",
+      data: bank,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 //get all banks service
 const getAllBanks = async () => {
   //  get the bank list from the table
@@ -28,7 +50,7 @@ const getAllBanks = async () => {
   }
 };
 
-//get an enterprise
+//get a nigerian bank
 const getNigerianBank = async (id) => {
   try {
     const checkBank = await prisma.nigerianBank.findUnique({
@@ -74,6 +96,34 @@ const udpateNigerianBank = async (bankId, bankPayload) => {
       statusCode: 200,
       message: "Bank updated successfully!",
       data: bank,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//delete nigerian bank
+const deleteNigerianBank = async (bankId) => {
+  try {
+    const checkBank = await prisma.nigerianBank.findUnique({
+      where: { id: bankId },
+    });
+
+    if (!checkBank) {
+      throw new BadRequest("Bank with this ID not found.");
+    }
+
+    const bank = await prisma.nigerianBank.delete({
+      where: { id: bankId },
+    });
+
+    if (!bank) {
+      throw new BadRequest("Error occured while deleting bank");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Nigerian Bank deleted successfully!",
     };
   } catch (error) {
     throw error;
@@ -365,6 +415,7 @@ const getManager = async (id) => {
       data: checkManager,
     };
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
@@ -382,7 +433,7 @@ const getManagerByManagerEmail = async (managerEmail) => {
 
     return {
       statusCode: 200,
-      message: "Enterprise fetched successfully",
+      message: "Manager fetched successfully",
       data: checkManager,
     };
   } catch (error) {
@@ -1140,118 +1191,6 @@ const updateRequestDocument = async (documentId, updatePayload) => {
   }
 };
 
-// const categoryService = {
-//   create: async (categoryPayload) => {
-//     try {
-//       const checkCategory = await prisma.requestCategory.findUnique({
-//         where: { name: categoryPayload.name },
-//       });
-//       if (checkCategory) {
-//         throw BadRequest("Category with this name already exists");
-//       }
-
-//       const category = await prisma.requestCategory.create({
-//         data: categoryPayload,
-//       });
-//       if (!category) {
-//         throw BadRequest("Error occured while creating category");
-//       }
-
-//       return {
-//         message: "Category created successfully",
-//         statusCode: 200,
-//         data: category,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-//   getAll: async () => {
-//     try {
-//       const category = await prisma.requestCategory.findMany({});
-//       if (!category) {
-//         throw BadRequest("Error occured while fetching category list.");
-//       }
-
-//       return {
-//         message: "Categories fetched successfully",
-//         statusCode: 200,
-//         data: category,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-//   get: async (categoryId) => {
-//     try {
-//       const checkCategory = await prisma.requestCategory.findUnique({
-//         where: { id: categoryId },
-//       });
-//       if (checkCategory) {
-//         throw BadRequest("Error occured while creating category");
-//       }
-
-//       return {
-//         message: "Category fetched successfully",
-//         statusCode: 200,
-//         data: checkCategory,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-//   update: async (categoryId, categoryPayload) => {
-//     try {
-//       const checkCategory = await prisma.requestCategory.findUnique({
-//         where: { id: categoryId },
-//       });
-//       if (!checkCategory) {
-//         throw BadRequest("Category with this Id does not exist.");
-//       }
-
-//       const category = await prisma.requestCategory.update({
-//         where: { id: categoryId },
-//         data: categoryPayload,
-//       });
-//       if (!category) {
-//         throw BadRequest("Error occured while updating category");
-//       }
-
-//       return {
-//         message: "Category updated successfully",
-//         statusCode: 200,
-//         data: category,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-//   delete: async (categoryId) => {
-//     try {
-//       const checkCategory = await prisma.requestCategory.findUnique({
-//         where: { id: categoryId },
-//       });
-//       if (!checkCategory) {
-//         throw BadRequest("Category with this Id does not exist.");
-//       }
-
-//       const category = await prisma.requestCategory.delete({
-//         where: { id: categoryId },
-//       });
-//       if (!category) {
-//         throw BadRequest("Error occured while deleting category");
-//       }
-
-//       return {
-//         message: "Category deleted successfully",
-//         statusCode: 200,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-// };
-
 module.exports = {
   //enterprise
   createEnterprise,
@@ -1276,9 +1215,11 @@ module.exports = {
   getAllDiligenceStaffs,
 
   //Nigerian banks
+  createNigerianBank,
   getAllBanks,
   getNigerianBank,
   udpateNigerianBank,
+  deleteNigerianBank,
 
   //User
   createAccount,
