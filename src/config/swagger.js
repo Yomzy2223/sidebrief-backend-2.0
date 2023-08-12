@@ -328,7 +328,31 @@ const options = {
         },
 
         //NIGERIAN BANKS
-        NigerianBank: {
+        CreateNigerianBank: {
+          type: "object",
+          require: ["name", "slug", "logo", "color"],
+          properties: {
+            name: {
+              type: "string",
+              description: "The name of the bank",
+            },
+            slug: {
+              type: "string",
+              description: "The slug of the bank",
+            },
+            logo: {
+              type: "string",
+              description: "The logo of the bank",
+            },
+            color: {
+              type: "string",
+              description: "The color of the bank",
+            },
+          },
+        },
+
+        //UPDATE NIGERIAN BANKS
+        UpdateNigerianBank: {
           type: "object",
           require: ["color"],
           properties: {
@@ -928,6 +952,47 @@ const options = {
             },
           },
         },
+
+        //create Nigerian bank
+        post: {
+          tags: ["Nigerian Banks"],
+          summary: "Create a nigerian bank ",
+          description: "Create a nigerian bank ",
+          security: [{ BearerAuth: [] }],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/CreateNigerianBank", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Success",
+              schema: {
+                $ref: "#/components/schemas/CreateNigerianBank",
+              },
+            },
+            401: {
+              description: "Unauthorized - User not authorized",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+            400: {
+              description: "Not found",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+          },
+        },
       },
 
       "/diligence/nigerianBank/{bankId}": {
@@ -968,14 +1033,6 @@ const options = {
               description: "Nigerian bank Id to be updated",
               type: "string",
             },
-            {
-              name: "Nigerian Bank",
-              in: "body",
-              description: "Bank to be updated",
-              schema: {
-                $ref: "#/components/schemas/NigerianBank",
-              },
-            },
           ],
           requestBody: {
             // expected request body
@@ -983,11 +1040,39 @@ const options = {
               // content-type
               "application/json": {
                 schema: {
-                  $ref: "#/components/schemas/NigerianBank", //
+                  $ref: "#/components/schemas/UpdateNigerianBank", //
                 },
               },
             },
           },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Nigerian bank is udpated",
+              schema: {
+                $ref: "#/components/schemas/UpdateNigerianBank",
+              },
+            },
+          },
+        },
+
+        //delete nigerianBanks
+        delete: {
+          tags: ["Nigerian Banks"],
+          summary: "delete a nigerian bank color",
+          description: "delete bank color",
+
+          security: [{ BearerAuth: [] }],
+          parameters: [
+            {
+              name: "bankId",
+              in: "path",
+              required: true,
+              description: "Nigerian bank Id to be updated",
+              type: "string",
+            },
+          ],
+
           produces: ["application/json"],
           responses: {
             200: {
@@ -1027,7 +1112,7 @@ const options = {
           },
         },
 
-        //update diligence enterprise
+        //create diligence enterprise
         post: {
           tags: ["Diligence Enterprise"],
           summary: "Create a diligence enterprise",
@@ -1213,7 +1298,7 @@ const options = {
       },
 
       // DILIGENCE MANAGER
-      "/diligence/manager/enterpriseId": {
+      "/diligence/managers/{enterpriseId}": {
         get: {
           tags: ["Diligence Manager"],
           summary: "Get all diligence manager",
@@ -1235,7 +1320,9 @@ const options = {
             },
           },
         },
+      },
 
+      "/diligence/manager/{enterpriseId}": {
         //create diligence manager
         post: {
           tags: ["Diligence Manager"],
@@ -1377,7 +1464,7 @@ const options = {
       },
 
       // DILIGENCE STAFF
-      "/diligence/staff/managerId": {
+      "/diligence/staffs/{managerId}": {
         get: {
           tags: ["Diligence Staff"],
           summary: "Create a diligence staff",
@@ -1400,7 +1487,9 @@ const options = {
             },
           },
         },
+      },
 
+      "/diligence/staff/{managerId}": {
         //create diligence manager
         post: {
           tags: ["Diligence Staff"],
@@ -1603,7 +1692,7 @@ const options = {
       },
 
       // DILIGENCE REQUEST DOCUMENT
-      "/diligence/document/requestId": {
+      "/diligence/document/{requestId}": {
         get: {
           tags: ["Diligence Document"],
           summary: "Get all diligence request documents",

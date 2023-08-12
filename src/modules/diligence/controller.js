@@ -36,10 +36,36 @@ const {
   udpateManager,
   deleteManager,
   getNigerianBank,
+  getManager,
+  deleteNigerianBank,
 } = require("./service");
 const { default: axios } = require("axios");
 
 //DILIGENCE PRODUCT CONTROLLERS
+
+//NIGERIAN BANKS
+//create a nigerian bank
+exports.CreateNigerianBank = async (req, res, next) => {
+  try {
+    const nigerianBankPayload = req.body;
+
+    const values = {
+      name: nigerianBankPayload.name,
+      slug: nigerianBankPayload.slug,
+      color: nigerianBankPayload.color,
+      logo: nigerianBankPayload.logo,
+    };
+
+    const nigerianBank = await createNigerianBank(values);
+
+    return res.status(nigerianBank.statusCode).json({
+      message: nigerianBank.message,
+      data: nigerianBank.data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 //get all banks
 exports.GetAllNigerianBanks = async (req, res, next) => {
@@ -71,15 +97,34 @@ exports.GetANigerianBank = async (req, res, next) => {
   }
 };
 
-// get single enterprise
-exports.GetSingleEnterprise = async (req, res, next) => {
+//update Nigerian bank
+exports.UpdateNigerianBank = async (req, res, next) => {
   try {
-    const enterpriseId = req.params.enterpriseId;
-    const enterprise = await getEnterprise(enterpriseId);
+    const bankId = req.params.bankId;
+    const bankPayload = req.body;
+
+    const values = {
+      color: bankPayload.color,
+    };
+
+    const bank = await udpateNigerianBank(bankId, values);
 
     return res
-      .status(enterprise.statusCode)
-      .json({ message: enterprise.message, data: enterprise.data });
+      .status(bank.statusCode)
+      .json({ message: bank.message, data: bank.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete Nigerian Bank
+exports.DeleteNigerianBank = async (req, res, next) => {
+  try {
+    const bankId = req.params.bankId;
+
+    const bank = await deleteNigerianBank(bankId);
+
+    return res.status(bank.statusCode).json({ message: bank.message });
   } catch (error) {
     next(error);
   }
@@ -105,6 +150,20 @@ exports.CreateEnterprise = async (req, res, next) => {
       message: diligenceEnterprise.message,
       data: diligenceEnterprise.data,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get single enterprise
+exports.GetSingleEnterprise = async (req, res, next) => {
+  try {
+    const enterpriseId = req.params.enterpriseId;
+    const enterprise = await getEnterprise(enterpriseId);
+
+    return res
+      .status(enterprise.statusCode)
+      .json({ message: enterprise.message, data: enterprise.data });
   } catch (error) {
     next(error);
   }
@@ -240,7 +299,7 @@ exports.GetAllDiligenceManagers = async (req, res, next) => {
 exports.GetSingleManager = async (req, res, next) => {
   try {
     const managerId = req.params.managerId;
-    const manager = await getManagers(managerId);
+    const manager = await getManager(managerId);
 
     return res
       .status(manager.statusCode)
@@ -638,26 +697,6 @@ exports.GetAllDocuments = async (req, res, next) => {
   }
 };
 
-//update Nigerian bank
-exports.UpdateNigerianBank = async (req, res, next) => {
-  try {
-    const bankId = req.params.bankId;
-    const bankPayload = req.body;
-
-    const values = {
-      color: bankPayload.color,
-    };
-
-    const bank = await udpateNigerianBank(bankId, values);
-
-    return res
-      .status(bank.statusCode)
-      .json({ message: bank.message, data: bank.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
 exports.Test = async (req, res, next) => {
   try {
     const url = "https://nigerianbanks.xyz";
@@ -679,91 +718,3 @@ exports.Test = async (req, res, next) => {
     console.log(error);
   }
 };
-
-// //create category
-// exports.CreateCategory = async (req, res, next) => {
-//   try {
-//     const countryId = req.params.countryId;
-//     const categoryPayload = req.body;
-
-//     const values = {
-//       name: categoryPayload.name,
-//       description: categoryPayload.description,
-//       slug: categoryPayload.slug,
-//       price: categoryPayload.price,
-//       name: categoryPayload.name,
-//       countryId: countryId,
-//     };
-
-//     const reqCat = await categoryService.create(values);
-
-//     return res
-//       .status(reqCat.statusCode)
-//       .json({ message: reqCat.message, data: reqCat.data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// //get category list
-// exports.GetAllCategory = async (req, res, next) => {
-//   try {
-//     const reqCat = await categoryService.getAll();
-
-//     return res
-//       .status(reqCat.statusCode)
-//       .json({ message: reqCat.message, data: reqCat.data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// //get category
-// exports.GetCategory = async (req, res, next) => {
-//   try {
-//     const categoryId = req.params.categoryId;
-//     const reqCat = await categoryService.get(categoryId);
-
-//     return res
-//       .status(reqCat.statusCode)
-//       .json({ message: reqCat.message, data: reqCat.data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// //update category
-// exports.UpdateCategory = async (req, res, next) => {
-//   try {
-//     const categoryId = req.params.categoryId;
-//     const categoryPayload = req.body;
-
-//     const values = {
-//       name: categoryPayload.name,
-//       description: categoryPayload.description,
-//       slug: categoryPayload.slug,
-//       price: categoryPayload.price,
-//       name: categoryPayload.name,
-//     };
-
-//     const reqCat = await categoryService.update(categoryId, values);
-
-//     return res
-//       .status(reqCat.statusCode)
-//       .json({ message: reqCat.message, data: reqCat.data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// //delete category
-// exports.DeleteCategory = async (req, res, next) => {
-//   try {
-//     const categoryId = req.params.categoryId;
-//     const reqCat = await categoryService.delete(categoryId);
-
-//     return res.status(reqCat.statusCode).json({ message: reqCat.message });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
