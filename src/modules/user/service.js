@@ -82,6 +82,10 @@ const getUser = async (id) => {
     if (!user) {
       throw new BadRequest("User not found!.");
     }
+
+    const userSecret = process.env.TOKEN_USER_SECRET;
+    const token = generateToken({ id: user.id }, userSecret, "14d");
+
     return {
       message: "User fetched successfully",
       data: {
@@ -91,6 +95,7 @@ const getUser = async (id) => {
         username: user.username,
         email: user.email,
         phone: user.phone,
+        token: token,
         picture: user.picture,
         verified: user.verified,
         referral: user.referral,
