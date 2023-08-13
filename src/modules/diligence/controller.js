@@ -496,6 +496,7 @@ exports.CreateRequest = async (req, res, next) => {
       registrationNumber: requestPayload.registrationNumber,
       status: "Unverified",
       createdBy: requestPayload.email,
+      diligenceEnterpriseId: requestPayload.enterpriseId,
     };
 
     const diligenceRequest = await createRequest(values);

@@ -300,6 +300,10 @@ const options = {
               type: "string",
               description: "The email of the diligence User",
             },
+            enterpriseId: {
+              type: "string",
+              description: "The ID of the enterprise",
+            },
           },
         },
 

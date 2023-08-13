@@ -139,6 +139,7 @@ CREATE TABLE "DiligenceUser" (
     "resetToken" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "diligenceEnterpriseId" TEXT NOT NULL,
 
     CONSTRAINT "DiligenceUser_pkey" PRIMARY KEY ("id")
 );
@@ -152,6 +153,7 @@ CREATE TABLE "DiligenceRequest" (
     "createdBy" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "diligenceEnterpriseId" TEXT NOT NULL,
 
     CONSTRAINT "DiligenceRequest_pkey" PRIMARY KEY ("id")
 );
@@ -265,6 +267,12 @@ CREATE UNIQUE INDEX "DiligenceStaff_email_key" ON "DiligenceStaff"("email");
 
 -- AddForeignKey
 ALTER TABLE "CollaboratorDocument" ADD CONSTRAINT "CollaboratorDocument_collaboratorId_fkey" FOREIGN KEY ("collaboratorId") REFERENCES "Collaborator"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DiligenceUser" ADD CONSTRAINT "DiligenceUser_diligenceEnterpriseId_fkey" FOREIGN KEY ("diligenceEnterpriseId") REFERENCES "DiligenceEnterprise"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DiligenceRequest" ADD CONSTRAINT "DiligenceRequest_diligenceEnterpriseId_fkey" FOREIGN KEY ("diligenceEnterpriseId") REFERENCES "DiligenceEnterprise"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "DiligenceRequestDocument" ADD CONSTRAINT "DiligenceRequestDocument_diligenceRequestId_fkey" FOREIGN KEY ("diligenceRequestId") REFERENCES "DiligenceRequest"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
