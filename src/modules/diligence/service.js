@@ -277,7 +277,16 @@ const getAllDiligenceEnterprises = async () => {
   //  get the diligence enterprise list from the table
   //  return the diligence enterprise list to the diligence enterprise controller
   try {
-    const diligenceEnterprises = await prisma.diligenceEnterprise.findMany({});
+    const diligenceEnterprises = await prisma.diligenceEnterprise.findMany({
+      include: {
+        diligenceManager: {
+          include: {
+            diligenceStaff: true,
+          },
+        },
+        diligenceRequest: true,
+      },
+    });
     if (!diligenceEnterprises) {
       throw new BadRequest("Diligence enterprises not found!.");
     }
@@ -587,7 +596,6 @@ const createStaff = async (managerId, email) => {
       data: diligenceStaff,
     };
   } catch (error) {
-    console.log("eee", error);
     throw error;
   }
 };
@@ -666,11 +674,12 @@ const deleteStaff = async (staffId) => {
 
 // DILIGENCE USER
 //add diligence user helper
-const createDiligenceUser = async (accountPayload, role) => {
+const createDiligenceUser = async (accountPayload, role, enterpriseId) => {
   try {
     const value = {
       ...accountPayload,
       role: `${role}`,
+      diligenceEnterpriseId: enterpriseId,
     };
     const user = await prisma.diligenceUser.create({ data: value });
 
@@ -701,6 +710,9 @@ const createAccount = async (accountPayload) => {
     });
     const staff = await prisma.diligenceStaff.findUnique({
       where: { email: accountPayload.email },
+      include: {
+        diligenceManager: true,
+      },
     });
 
     if (!enterprise && !manager && !staff) {
@@ -708,15 +720,23 @@ const createAccount = async (accountPayload) => {
     }
 
     if (enterprise) {
-      createDiligenceUser(accountPayload, "Admin");
+      createDiligenceUser(accountPayload, "Admin", enterprise.id);
     }
 
     if (manager) {
-      createDiligenceUser(accountPayload, "Manager");
+      createDiligenceUser(
+        accountPayload,
+        "Manager",
+        manager.diligenceEnterpriseId
+      );
     }
 
     if (staff) {
-      createDiligenceUser(accountPayload, "Staff");
+      createDiligenceUser(
+        accountPayload,
+        "Staff",
+        staff.diligenceManager.diligenceEnterpriseId
+      );
     }
 
     logger.info({
@@ -740,6 +760,7 @@ const createAccount = async (accountPayload) => {
         email: findCreatedUser.email,
         token: token,
         role: findCreatedUser.role,
+        enterpriseId: findCreatedUser.diligenceEnterpriseId,
       },
     };
   } catch (error) {
@@ -786,6 +807,7 @@ const loginUser = async (loginPayload) => {
         email: user.email,
         token: token,
         role: user.role,
+        enterpriseId: user.diligenceEnterpriseId,
       },
     };
   } catch (error) {
@@ -921,7 +943,11 @@ const getAllDiligenceRequests = async () => {
   //  get the diligence requests list from the table
   //  return the diligence requests list to the diligence requests controller
   try {
-    const diligenceRequests = await prisma.diligenceRequest.findMany({});
+    const diligenceRequests = await prisma.diligenceRequest.findMany({
+      include: {
+        diligenceRequestDocument: true,
+      },
+    });
     if (!diligenceRequests) {
       throw new BadRequest("Diligence requests not found!.");
     }
