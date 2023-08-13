@@ -1164,7 +1164,7 @@ const options = {
           tags: ["Diligence Enterprise"],
           parameters: [
             {
-              name: "id",
+              name: "enterpriseId",
               in: "path",
               required: true,
               description: "ID of enterprise to be fetched",
