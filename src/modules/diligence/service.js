@@ -314,6 +314,14 @@ const getEnterpriseByAdminEmail = async (adminEmail) => {
   try {
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { adminEmail: adminEmail },
+      include: {
+        diligenceManager: {
+          include: {
+            diligenceStaff: true,
+          },
+        },
+        diligenceRequest: true,
+      },
     });
 
     if (!checkEnterprise) {
