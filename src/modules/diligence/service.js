@@ -257,6 +257,14 @@ const getEnterprise = async (id) => {
   try {
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { id: id },
+      include: {
+        diligenceManager: {
+          include: {
+            diligenceStaff: true,
+          },
+        },
+        diligenceRequest: true,
+      },
     });
     if (!checkEnterprise) {
       throw new BadRequest("Enterprise with this id does not exist");
