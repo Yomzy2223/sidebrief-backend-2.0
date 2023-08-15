@@ -1334,7 +1334,7 @@ const options = {
           description: "Create diligence manager",
           parameters: [
             {
-              id: "adminId",
+              name: "adminId",
               in: "path",
               required: true,
               description: "Enterprise admin ID",
