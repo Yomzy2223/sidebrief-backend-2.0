@@ -3925,3 +3925,8 @@ info: Label: 11-Aug-2023 17:41:56: string string created an account successfully
 info: Label: 11-Aug-2023 18:35:05: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
 info: Label: 11-Aug-2023 18:35:35: staff with akinyemibamidele2@gmail.com signed in successfully.
 error: Label: 11-Aug-2023 18:36:31: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called
+error: Label: 16-Aug-2023 10:25:01: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+info: Label: 16-Aug-2023 10:25:27: BAMIDELE tttt created successfully
+info: Label: 16-Aug-2023 10:26:11: Diligence user with mactest@sidebrief.com created successfully
+info: Label: 16-Aug-2023 10:26:33: BAMIDELE ttt created successfully
+info: Label: 16-Aug-2023 10:27:47: Diligence user with mactestt@sidebrief.com created successfully
