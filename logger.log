@@ -3930,3 +3930,8 @@ info: Label: 16-Aug-2023 10:25:27: BAMIDELE tttt created successfully
 info: Label: 16-Aug-2023 10:26:11: Diligence user with mactest@sidebrief.com created successfully
 info: Label: 16-Aug-2023 10:26:33: BAMIDELE ttt created successfully
 info: Label: 16-Aug-2023 10:27:47: Diligence user with mactestt@sidebrief.com created successfully
+error: Label: 16-Aug-2023 11:01:06: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /diligence/enterprise was called
+info: Label: 16-Aug-2023 11:10:38: BAMIDELE heady created successfully
+info: Label: 16-Aug-2023 11:12:54: Diligence user with heady@sidebrief.com created successfully
+error: Label: 16-Aug-2023 11:27:46: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+info: Label: 16-Aug-2023 11:27:53: BAMIDELE sadfa created successfully
