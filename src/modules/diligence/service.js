@@ -893,7 +893,7 @@ const forgotPassword = async (email) => {
       data: { resetToken: cryptedToken },
     });
 
-    const url = `${process.env.BASE_URL}/reset-password/${userToken}`;
+    const url = `${process.env.BASE_URL}/auth/new-password/${userToken}`;
 
     //send user email
     const subject = "Reset Password.";
