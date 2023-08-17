@@ -763,6 +763,11 @@ const createAccount = async (accountPayload) => {
       where: { email: accountPayload.email },
     });
 
+    logger.info({
+      message: `checking ${findCreatedUser.id} created successfully`,
+      data: findCreatedUser,
+    });
+
     const userSecret = process.env.TOKEN_USER_SECRET;
     const token = generateToken({ id: findCreatedUser.id }, userSecret, "14d");
 

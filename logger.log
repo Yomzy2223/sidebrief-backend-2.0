@@ -3936,3 +3936,9 @@ info: Label: 16-Aug-2023 11:12:54: Diligence user with heady@sidebrief.com creat
 error: Label: 16-Aug-2023 11:27:46: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
 info: Label: 16-Aug-2023 11:27:53: BAMIDELE sadfa created successfully
 info: Label: 17-Aug-2023 12:31:01: staff with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 17-Aug-2023 12:32:44: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 17-Aug-2023 12:47:11: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 12:47:53: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+error: Label: 17-Aug-2023 12:47:56: Invalid credentials! with error Error: Invalid credentials! occurred when POST /staffs/login was called
+info: Label: 17-Aug-2023 12:48:03: staff with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 17-Aug-2023 12:49:25: string created successfully
