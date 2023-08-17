@@ -55,6 +55,6 @@ const logger =
     ? winston.createLogger(stagingLogConfiguration)
     : winston.createLogger(productionLogConfiguration);
 
-module.exportstaging;
+module.exports = logger;
 
 //the server should be able to know different evironments
