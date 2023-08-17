@@ -8,6 +8,28 @@ const { matchChecker } = require("../../common/hash");
 
 //DILIGENCE PRODUCT SERVICES
 
+//NIGERIAN BANKS
+//create diligence enterprise
+const createNigerianBank = async (bankPayload) => {
+  try {
+    const bank = await prisma.nigerianBank.create({
+      data: bankPayload,
+    });
+
+    if (!bank) {
+      throw new BadRequest("Error occured while creating this Nigerian bank");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Ngerian Bank created successfully!",
+      data: bank,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 //get all banks service
 const getAllBanks = async () => {
   //  get the bank list from the table
@@ -22,6 +44,26 @@ const getAllBanks = async () => {
       message: "Nigerian banks fetched successfully",
       data: banks,
       statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//get a nigerian bank
+const getNigerianBank = async (id) => {
+  try {
+    const checkBank = await prisma.nigerianBank.findUnique({
+      where: { id: id },
+    });
+    if (!checkBank) {
+      throw new BadRequest("Nigerian Bank with this id does not exist");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Bank fetched successfully",
+      data: checkBank,
     };
   } catch (error) {
     throw error;
@@ -54,6 +96,34 @@ const udpateNigerianBank = async (bankId, bankPayload) => {
       statusCode: 200,
       message: "Bank updated successfully!",
       data: bank,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//delete nigerian bank
+const deleteNigerianBank = async (bankId) => {
+  try {
+    const checkBank = await prisma.nigerianBank.findUnique({
+      where: { id: bankId },
+    });
+
+    if (!checkBank) {
+      throw new BadRequest("Bank with this ID not found.");
+    }
+
+    const bank = await prisma.nigerianBank.delete({
+      where: { id: bankId },
+    });
+
+    if (!bank) {
+      throw new BadRequest("Error occured while deleting bank");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Nigerian Bank deleted successfully!",
     };
   } catch (error) {
     throw error;
@@ -187,6 +257,14 @@ const getEnterprise = async (id) => {
   try {
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { id: id },
+      include: {
+        diligenceManager: {
+          include: {
+            diligenceStaff: true,
+          },
+        },
+        diligenceRequest: true,
+      },
     });
     if (!checkEnterprise) {
       throw new BadRequest("Enterprise with this id does not exist");
@@ -207,7 +285,16 @@ const getAllDiligenceEnterprises = async () => {
   //  get the diligence enterprise list from the table
   //  return the diligence enterprise list to the diligence enterprise controller
   try {
-    const diligenceEnterprises = await prisma.diligenceEnterprise.findMany({});
+    const diligenceEnterprises = await prisma.diligenceEnterprise.findMany({
+      include: {
+        diligenceManager: {
+          include: {
+            diligenceStaff: true,
+          },
+        },
+        diligenceRequest: true,
+      },
+    });
     if (!diligenceEnterprises) {
       throw new BadRequest("Diligence enterprises not found!.");
     }
@@ -227,6 +314,14 @@ const getEnterpriseByAdminEmail = async (adminEmail) => {
   try {
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { adminEmail: adminEmail },
+      include: {
+        diligenceManager: {
+          include: {
+            diligenceStaff: true,
+          },
+        },
+        diligenceRequest: true,
+      },
     });
 
     if (!checkEnterprise) {
@@ -245,15 +340,30 @@ const getEnterpriseByAdminEmail = async (adminEmail) => {
 
 //MANAGER
 //create diligence manager
-const createManager = async (enterpriseId, managerPayload) => {
+const createManager = async (adminId, managerPayload) => {
   try {
-    const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
-      where: { id: enterpriseId },
+    const checkEnterpriseAdmin = await prisma.diligenceUser.findUnique({
+      where: { id: adminId },
     });
 
-    if (!checkEnterprise) {
-      throw new BadRequest("Enterprise with this ID not found.");
+    if (!checkEnterpriseAdmin) {
+      throw new BadRequest("Enterprise admin with this ID not found.");
     }
+
+    if (checkEnterpriseAdmin.role !== "Admin") {
+      throw new BadRequest("Enterprise admin with this ID not found.");
+    }
+
+    const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
+      where: { adminEmail: checkEnterpriseAdmin.email },
+    });
+
+    const values = {
+      name: managerPayload.name,
+      location: managerPayload.location,
+      managerEmail: managerPayload.managerEmail,
+      diligenceEnterpriseId: checkEnterprise.id,
+    };
 
     const checkManagerEmail = await prisma.diligenceManager.findUnique({
       where: { managerEmail: managerPayload.managerEmail },
@@ -264,7 +374,7 @@ const createManager = async (enterpriseId, managerPayload) => {
     }
 
     const manager = await prisma.diligenceManager.create({
-      data: managerPayload,
+      data: values,
     });
 
     if (!manager) {
@@ -362,7 +472,7 @@ const getManagerByManagerEmail = async (managerEmail) => {
 
     return {
       statusCode: 200,
-      message: "Enterprise fetched successfully",
+      message: "Manager fetched successfully",
       data: checkManager,
     };
   } catch (error) {
@@ -436,17 +546,30 @@ const deleteManager = async (managerId) => {
 
 //STAFF
 //create diligence staff
-const createStaff = async (managerId, staffPayload) => {
+const createStaff = async (managerId, email) => {
   try {
-    const checkManager = await prisma.diligenceManager.findUnique({
+    const checkEnterpriseManager = await prisma.diligenceUser.findUnique({
       where: { id: managerId },
     });
-    if (!checkManager) {
+    if (!checkEnterpriseManager) {
       throw new BadRequest("Manager not found.");
     }
 
+    if (checkEnterpriseManager.role !== "Manager") {
+      throw new BadRequest("The user with this ID is not a manager.");
+    }
+
+    const checkManager = await prisma.diligenceManager.findUnique({
+      where: { managerEmail: checkEnterpriseManager.email },
+    });
+
+    const values = {
+      email: email,
+      diligenceManagerId: checkManager.id,
+    };
+
     const checkStaff = await prisma.diligenceStaff.findUnique({
-      where: { email: staffPayload.email },
+      where: { email: email },
     });
 
     if (checkStaff) {
@@ -454,26 +577,26 @@ const createStaff = async (managerId, staffPayload) => {
     }
 
     const diligenceStaff = await prisma.diligenceStaff.create({
-      data: staffPayload,
+      data: values,
     });
 
     if (!diligenceStaff) {
       throw new BadRequest("Error occured while creating staff");
     }
     logger.info({
-      message: `diligence staff with ${staffPayload.email} created successfully`,
+      message: `diligence staff with ${email} created successfully`,
     });
 
     const regUrl = `${process.env.BASE_URL}/diligence`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
-      name: staffPayload.email,
+      name: email,
       url: regUrl,
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
-    const recipientEmail = staffPayload.email;
+    const recipientEmail = email;
     //send email
     EmailSender(
       subject,
@@ -567,17 +690,20 @@ const deleteStaff = async (staffId) => {
 
 // DILIGENCE USER
 //add diligence user helper
-const createDiligenceUser = async (accountPayload, role) => {
+const createDiligenceUser = async (accountPayload, role, enterpriseId) => {
   try {
     const value = {
       ...accountPayload,
       role: `${role}`,
+      diligenceEnterpriseId: enterpriseId,
     };
     const user = await prisma.diligenceUser.create({ data: value });
 
     if (!user) {
       throw new BadRequest("Error occurred while creating user");
     }
+
+    return user;
   } catch (error) {
     throw error;
   }
@@ -602,6 +728,9 @@ const createAccount = async (accountPayload) => {
     });
     const staff = await prisma.diligenceStaff.findUnique({
       where: { email: accountPayload.email },
+      include: {
+        diligenceManager: true,
+      },
     });
 
     if (!enterprise && !manager && !staff) {
@@ -609,35 +738,83 @@ const createAccount = async (accountPayload) => {
     }
 
     if (enterprise) {
-      createDiligenceUser(accountPayload, "Admin");
+      let create = await createDiligenceUser(
+        accountPayload,
+        "Admin",
+        enterprise.id
+      );
+
+      const userSecret = process.env.TOKEN_USER_SECRET;
+      const token = generateToken({ id: create.id }, userSecret, "14d");
+
+      return {
+        statusCode: 200,
+        message: `User created successfully!`,
+        data: {
+          id: create.id,
+          firstName: create.firstName,
+          lastName: create.lastName,
+          email: create.email,
+          token: token,
+          role: create.role,
+          enterpriseId: create.diligenceEnterpriseId,
+        },
+      };
     }
 
     if (manager) {
-      createDiligenceUser(accountPayload, "Manager");
+      let create = await createDiligenceUser(
+        accountPayload,
+        "Manager",
+        manager.diligenceEnterpriseId
+      );
+
+      const userSecret = process.env.TOKEN_USER_SECRET;
+      const token = generateToken({ id: create.id }, userSecret, "14d");
+
+      return {
+        statusCode: 200,
+        message: `User created successfully!`,
+        data: {
+          id: create.id,
+          firstName: create.firstName,
+          lastName: create.lastName,
+          email: create.email,
+          token: token,
+          role: create.role,
+          enterpriseId: create.diligenceEnterpriseId,
+        },
+      };
     }
 
     if (staff) {
-      createDiligenceUser(accountPayload, "Staff");
+      let create = await createDiligenceUser(
+        accountPayload,
+        "Staff",
+        staff.diligenceManager.diligenceEnterpriseId
+      );
+
+      const userSecret = process.env.TOKEN_USER_SECRET;
+      const token = generateToken({ id: create.id }, userSecret, "14d");
+
+      return {
+        statusCode: 200,
+        message: `User created successfully!`,
+        data: {
+          id: create.id,
+          firstName: create.firstName,
+          lastName: create.lastName,
+          email: create.email,
+          token: token,
+          role: create.role,
+          enterpriseId: create.diligenceEnterpriseId,
+        },
+      };
     }
 
     logger.info({
       message: `Diligence user with ${accountPayload.email} created successfully`,
     });
-
-    const findCreatedUser = await prisma.diligenceUser.findUnique({
-      where: { email: accountPayload.email },
-    });
-
-    return {
-      statusCode: 200,
-      message: `User created successfully!`,
-      data: {
-        firstName: findCreatedUser.firstName,
-        lastName: findCreatedUser.lastName,
-        email: findCreatedUser.email,
-        role: findCreatedUser.role,
-      },
-    };
   } catch (error) {
     throw error;
   }
@@ -682,6 +859,7 @@ const loginUser = async (loginPayload) => {
         email: user.email,
         token: token,
         role: user.role,
+        enterpriseId: user.diligenceEnterpriseId,
       },
     };
   } catch (error) {
@@ -817,7 +995,11 @@ const getAllDiligenceRequests = async () => {
   //  get the diligence requests list from the table
   //  return the diligence requests list to the diligence requests controller
   try {
-    const diligenceRequests = await prisma.diligenceRequest.findMany({});
+    const diligenceRequests = await prisma.diligenceRequest.findMany({
+      include: {
+        diligenceRequestDocument: true,
+      },
+    });
     if (!diligenceRequests) {
       throw new BadRequest("Diligence requests not found!.");
     }
@@ -1115,118 +1297,6 @@ const updateRequestDocument = async (documentId, updatePayload) => {
   }
 };
 
-// const categoryService = {
-//   create: async (categoryPayload) => {
-//     try {
-//       const checkCategory = await prisma.requestCategory.findUnique({
-//         where: { name: categoryPayload.name },
-//       });
-//       if (checkCategory) {
-//         throw BadRequest("Category with this name already exists");
-//       }
-
-//       const category = await prisma.requestCategory.create({
-//         data: categoryPayload,
-//       });
-//       if (!category) {
-//         throw BadRequest("Error occured while creating category");
-//       }
-
-//       return {
-//         message: "Category created successfully",
-//         statusCode: 200,
-//         data: category,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-//   getAll: async () => {
-//     try {
-//       const category = await prisma.requestCategory.findMany({});
-//       if (!category) {
-//         throw BadRequest("Error occured while fetching category list.");
-//       }
-
-//       return {
-//         message: "Categories fetched successfully",
-//         statusCode: 200,
-//         data: category,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-//   get: async (categoryId) => {
-//     try {
-//       const checkCategory = await prisma.requestCategory.findUnique({
-//         where: { id: categoryId },
-//       });
-//       if (checkCategory) {
-//         throw BadRequest("Error occured while creating category");
-//       }
-
-//       return {
-//         message: "Category fetched successfully",
-//         statusCode: 200,
-//         data: checkCategory,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-//   update: async (categoryId, categoryPayload) => {
-//     try {
-//       const checkCategory = await prisma.requestCategory.findUnique({
-//         where: { id: categoryId },
-//       });
-//       if (!checkCategory) {
-//         throw BadRequest("Category with this Id does not exist.");
-//       }
-
-//       const category = await prisma.requestCategory.update({
-//         where: { id: categoryId },
-//         data: categoryPayload,
-//       });
-//       if (!category) {
-//         throw BadRequest("Error occured while updating category");
-//       }
-
-//       return {
-//         message: "Category updated successfully",
-//         statusCode: 200,
-//         data: category,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-//   delete: async (categoryId) => {
-//     try {
-//       const checkCategory = await prisma.requestCategory.findUnique({
-//         where: { id: categoryId },
-//       });
-//       if (!checkCategory) {
-//         throw BadRequest("Category with this Id does not exist.");
-//       }
-
-//       const category = await prisma.requestCategory.delete({
-//         where: { id: categoryId },
-//       });
-//       if (!category) {
-//         throw BadRequest("Error occured while deleting category");
-//       }
-
-//       return {
-//         message: "Category deleted successfully",
-//         statusCode: 200,
-//       };
-//     } catch (error) {
-//       throw error;
-//     }
-//   },
-// };
-
 module.exports = {
   //enterprise
   createEnterprise,
@@ -1251,10 +1321,11 @@ module.exports = {
   getAllDiligenceStaffs,
 
   //Nigerian banks
+  createNigerianBank,
   getAllBanks,
-  getDiligenceRequest,
-  deleteRequest,
+  getNigerianBank,
   udpateNigerianBank,
+  deleteNigerianBank,
 
   //User
   createAccount,
@@ -1267,6 +1338,8 @@ module.exports = {
   getAllDiligenceRequests,
   verifyRequest,
   updateRequest,
+  getDiligenceRequest,
+  deleteRequest,
 
   //Request Document
   saveRequestDocument,

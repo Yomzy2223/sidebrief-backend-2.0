@@ -53,6 +53,9 @@ const saveStaff = async (staffPayload) => {
       message: `${staffPayload.firstName} ${staffPayload.lastName} created an account successfully with ${staffPayload.email}.`,
     });
 
+    const staffTokenSecret = process.env.TOKEN_STAFF_SECRET;
+    const token = generateToken({ id: staff.id }, staffTokenSecret, "14d");
+
     return {
       message: "Staff created successfully",
       data: {
@@ -62,6 +65,7 @@ const saveStaff = async (staffPayload) => {
         email: staff.email,
         phone: staff.phone,
         picture: staff.picture,
+        token: token,
         verified: staff.verified,
       },
       statusCode: 200,
@@ -274,12 +278,11 @@ const deleteStaff = async (id) => {
     if (!staff) {
       throw new BadRequest("Staff not found");
     }
-    console.log(staff);
+
     const deleteStaff = await prisma.staff.delete({
       where: { id: staff.id },
     });
 
-    console.log(deleteStaff);
     if (!deleteStaff) {
       throw new BadRequest("Error occurred while deleting staff");
     }

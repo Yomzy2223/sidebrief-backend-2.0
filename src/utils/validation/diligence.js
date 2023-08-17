@@ -21,7 +21,7 @@ const validateManagerCredentials = validate.compile(userManagerSchema);
 //account
 const userAccountSchema = {
   firstName: { type: "string", min: 3, max: 50 },
-  lastName: { type: "string", min: 6, max: 50 },
+  lastName: { type: "string", min: 3, max: 50 },
   email: { type: "email", min: 3, max: 255 },
   password: { type: "string", min: 6, max: 12 },
 };
@@ -66,7 +66,7 @@ const diligenceRequestSchema = {
   name: { type: "string", min: 3, max: 50 },
   registrationNumber: { type: "string", min: 3, max: 50 },
   status: { type: "string", min: 3, max: 50 },
-  createdBy: { type: "string", min: 3, max: 100 },
+  email: { type: "string", min: 3, max: 100 },
 };
 
 const validateDiligenceRequest = validate.compile(diligenceRequestSchema);

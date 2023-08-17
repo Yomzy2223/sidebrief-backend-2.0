@@ -1,7 +1,7 @@
 const winston = require("winston");
 const WinstonCloudwatch = require("winston-cloudwatch");
 
-const developmentLogConfiguration = {
+const stagingLogConfiguration = {
   transports: [
     new winston.transports.File({
       filename: "./logger.log",
@@ -51,8 +51,8 @@ const productionLogConfiguration = {
 };
 
 const logger =
-  process.env.NODE_ENV === "development"
-    ? winston.createLogger(developmentLogConfiguration)
+  process.env.NODE_ENV === "staging"
+    ? winston.createLogger(stagingLogConfiguration)
     : winston.createLogger(productionLogConfiguration);
 
 module.exports = logger;

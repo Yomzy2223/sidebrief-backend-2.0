@@ -1,5 +1,6 @@
 const { hasher } = require("../../common/hash");
 const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 const {
   getAllBanks,
@@ -34,9 +35,37 @@ const {
   createManager,
   udpateManager,
   deleteManager,
+  getNigerianBank,
+  getManager,
+  deleteNigerianBank,
 } = require("./service");
+const { default: axios } = require("axios");
 
 //DILIGENCE PRODUCT CONTROLLERS
+
+//NIGERIAN BANKS
+//create a nigerian bank
+exports.CreateNigerianBank = async (req, res, next) => {
+  try {
+    const nigerianBankPayload = req.body;
+
+    const values = {
+      name: nigerianBankPayload.name,
+      slug: nigerianBankPayload.slug,
+      color: nigerianBankPayload.color,
+      logo: nigerianBankPayload.logo,
+    };
+
+    const nigerianBank = await createNigerianBank(values);
+
+    return res.status(nigerianBank.statusCode).json({
+      message: nigerianBank.message,
+      data: nigerianBank.data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 //get all banks
 exports.GetAllNigerianBanks = async (req, res, next) => {
@@ -48,6 +77,54 @@ exports.GetAllNigerianBanks = async (req, res, next) => {
     return res
       .status(banks.statusCode)
       .json({ message: banks.message, data: banks.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get a Nigerian bank
+exports.GetANigerianBank = async (req, res, next) => {
+  try {
+    // get the bank
+    // return response to the client
+    const bankId = req.params.bankId;
+    const bank = await getNigerianBank(bankId);
+    return res
+      .status(bank.statusCode)
+      .json({ message: bank.message, data: bank.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//update Nigerian bank
+exports.UpdateNigerianBank = async (req, res, next) => {
+  try {
+    const bankId = req.params.bankId;
+    const bankPayload = req.body;
+
+    const values = {
+      color: bankPayload.color,
+    };
+
+    const bank = await udpateNigerianBank(bankId, values);
+
+    return res
+      .status(bank.statusCode)
+      .json({ message: bank.message, data: bank.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//delete Nigerian Bank
+exports.DeleteNigerianBank = async (req, res, next) => {
+  try {
+    const bankId = req.params.bankId;
+
+    const bank = await deleteNigerianBank(bankId);
+
+    return res.status(bank.statusCode).json({ message: bank.message });
   } catch (error) {
     next(error);
   }
@@ -73,6 +150,20 @@ exports.CreateEnterprise = async (req, res, next) => {
       message: diligenceEnterprise.message,
       data: diligenceEnterprise.data,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get single enterprise
+exports.GetSingleEnterprise = async (req, res, next) => {
+  try {
+    const enterpriseId = req.params.enterpriseId;
+    const enterprise = await getEnterprise(enterpriseId);
+
+    return res
+      .status(enterprise.statusCode)
+      .json({ message: enterprise.message, data: enterprise.data });
   } catch (error) {
     next(error);
   }
@@ -166,17 +257,10 @@ exports.GetSingleEnterpriseByAdminEmail = async (req, res, next) => {
 //create diligence manager
 exports.CreateManager = async (req, res, next) => {
   try {
-    const enterpriseId = req.params.enterpriseId;
+    const adminId = req.params.adminId;
     const managerPayload = req.body;
 
-    const values = {
-      name: managerPayload.name,
-      location: managerPayload.location,
-      managerEmail: managerPayload.managerEmail,
-      diligenceEnterpriseId: enterpriseId,
-    };
-
-    const manager = await createManager(enterpriseId, values);
+    const manager = await createManager(adminId, managerPayload);
 
     return res
       .status(manager.statusCode)
@@ -207,7 +291,7 @@ exports.GetAllDiligenceManagers = async (req, res, next) => {
 exports.GetSingleManager = async (req, res, next) => {
   try {
     const managerId = req.params.managerId;
-    const manager = await getManagers(managerId);
+    const manager = await getManager(managerId);
 
     return res
       .status(manager.statusCode)
@@ -273,11 +357,7 @@ exports.CreateStaff = async (req, res, next) => {
     const managerId = req.params.managerId;
     const { email } = req.body;
 
-    const values = {
-      email: email,
-      diligenceManagerId: managerId,
-    };
-    const diligenceStaff = await createStaff(managerId, values);
+    const diligenceStaff = await createStaff(managerId, email);
 
     return res
       .status(diligenceStaff.statusCode)
@@ -353,7 +433,6 @@ exports.CreateAccount = async (req, res, next) => {
       .status(diligenceUser.statusCode)
       .json({ message: diligenceUser.message, data: diligenceUser.data });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -417,6 +496,7 @@ exports.CreateRequest = async (req, res, next) => {
       registrationNumber: requestPayload.registrationNumber,
       status: "Unverified",
       createdBy: requestPayload.email,
+      diligenceEnterpriseId: requestPayload.enterpriseId,
     };
 
     const diligenceRequest = await createRequest(values);
@@ -483,7 +563,7 @@ exports.VerifyRequest = async (req, res, next) => {
     // send the id to the verify service
     //return response to the client
 
-    const id = req.params.id;
+    const id = req.params.requestId;
 
     const verify = await verifyRequest(id);
 
@@ -500,7 +580,7 @@ exports.UpdateRequest = async (req, res, next) => {
     // send the id to the update service
     //return response to the client
 
-    const id = req.params.id;
+    const id = req.params.requestId;
 
     const update = await updateRequest(id);
 
@@ -540,7 +620,7 @@ exports.DeleteDocument = async (req, res, next) => {
     // send the id to the delete service
     //return response to the client
 
-    const id = req.params.id;
+    const id = req.params.documentId;
 
     const deleteDocument = await removeRequestDocument(id);
 
@@ -606,132 +686,24 @@ exports.GetAllDocuments = async (req, res, next) => {
   }
 };
 
-//update Nigerian bank
-exports.UpdateNigerianBank = async (req, res, next) => {
+exports.Test = async (req, res, next) => {
   try {
-    const bankId = req.params.bankId;
-    const bankPayload = req.body;
+    const url = "https://nigerianbanks.xyz";
+    const response = await axios.get(url);
 
-    const values = {
-      color: bankPayload.color,
-    };
+    const newList = response.data.map((data) => ({
+      name: data.name,
+      slug: data.slug,
+      logo: data.logo,
+    }));
 
-    const bank = await udpateNigerianBank(bankId, values);
+    const save = await prisma.nigerianBank.createMany({
+      data: newList,
+      skipDuplicates: true,
+    });
 
-    return res
-      .status(bank.statusCode)
-      .json({ message: bank.message, data: bank.data });
+    return res.status(200).json({ data: save });
   } catch (error) {
-    next(error);
+    console.log(error);
   }
 };
-
-// exports.Test = async (req, res, next) => {
-//   try {
-//     const url = "https://nigerianbanks.xyz";
-//     const response = await axios.get(url);
-
-//     const newList = response.data.map((data) => ({
-//       name: data.name,
-//       slug: data.slug,
-//       logo: data.logo,
-//     }));
-
-//     const save = await prisma.nigerianBank.createMany({
-//       data: newList,
-//       skipDuplicates: true,
-//     });
-//     console.log(save);
-//     return res.status(200).json({ data: save });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// //create category
-// exports.CreateCategory = async (req, res, next) => {
-//   try {
-//     const countryId = req.params.countryId;
-//     const categoryPayload = req.body;
-
-//     const values = {
-//       name: categoryPayload.name,
-//       description: categoryPayload.description,
-//       slug: categoryPayload.slug,
-//       price: categoryPayload.price,
-//       name: categoryPayload.name,
-//       countryId: countryId,
-//     };
-
-//     const reqCat = await categoryService.create(values);
-
-//     return res
-//       .status(reqCat.statusCode)
-//       .json({ message: reqCat.message, data: reqCat.data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// //get category list
-// exports.GetAllCategory = async (req, res, next) => {
-//   try {
-//     const reqCat = await categoryService.getAll();
-
-//     return res
-//       .status(reqCat.statusCode)
-//       .json({ message: reqCat.message, data: reqCat.data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// //get category
-// exports.GetCategory = async (req, res, next) => {
-//   try {
-//     const categoryId = req.params.categoryId;
-//     const reqCat = await categoryService.get(categoryId);
-
-//     return res
-//       .status(reqCat.statusCode)
-//       .json({ message: reqCat.message, data: reqCat.data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// //update category
-// exports.UpdateCategory = async (req, res, next) => {
-//   try {
-//     const categoryId = req.params.categoryId;
-//     const categoryPayload = req.body;
-
-//     const values = {
-//       name: categoryPayload.name,
-//       description: categoryPayload.description,
-//       slug: categoryPayload.slug,
-//       price: categoryPayload.price,
-//       name: categoryPayload.name,
-//     };
-
-//     const reqCat = await categoryService.update(categoryId, values);
-
-//     return res
-//       .status(reqCat.statusCode)
-//       .json({ message: reqCat.message, data: reqCat.data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// //delete category
-// exports.DeleteCategory = async (req, res, next) => {
-//   try {
-//     const categoryId = req.params.categoryId;
-//     const reqCat = await categoryService.delete(categoryId);
-
-//     return res.status(reqCat.statusCode).json({ message: reqCat.message });
-//   } catch (error) {
-//     next(error);
-//   }
-// };

@@ -6,7 +6,6 @@ const {
   validateResetCredentials,
   validateUserCredentials,
   validateUserAcccountCredentials,
-  validateBranchCredentials,
   validateRequestCredentials,
   validateEnterpriseCredentials,
   validateManagerCredentials,
@@ -51,11 +50,17 @@ const {
   UpdateManager,
   DeleteManager,
   GetSingleManagerByManagerEmail,
+  GetANigerianBank,
+  CreateNigerianBank,
+  DeleteNigerianBank,
 } = require("./controller");
 
 //NIGERIAN BANKS
-router.get("/nigerianbanks", GetAllNigerianBanks);
-router.put("/nigerianbank/:bankId", staffAuth, UpdateNigerianBank);
+router.post("/nigerianBank", staffAuth, CreateNigerianBank);
+router.get("/nigerianBank", GetAllNigerianBanks);
+router.get("/nigerianBank/:bankId", GetANigerianBank);
+router.put("/nigerianBank/:bankId", staffAuth, UpdateNigerianBank);
+router.delete("/nigerianBank/:bankId", staffAuth, DeleteNigerianBank);
 
 //ENTERPRISE
 router.post(
@@ -64,7 +69,7 @@ router.post(
   validator(validateEnterpriseCredentials),
   CreateEnterprise
 );
-router.get("/enterprises", GetAllDiligenceEnterprises);
+router.get("/enterprise", GetAllDiligenceEnterprises);
 router.get("/enterprise/:enterpriseId", GetSingleEnterprise);
 router.get("/enterpriseByEmail/:adminEmail", GetSingleEnterpriseByAdminEmail);
 router.put(
@@ -73,11 +78,11 @@ router.put(
   validator(validateEnterpriseCredentials),
   UpdateEnterprise
 );
-router.delete("/enterprise/:enterpriseId", DeleteEnterprise);
+router.delete("/enterprise/:enterpriseId", staffAuth, DeleteEnterprise);
 
 //MANAGER
 router.post(
-  "/manager/:enterpriseId",
+  "/manager/:adminId",
   validator(validateManagerCredentials),
   CreateManager
 );
@@ -115,8 +120,8 @@ router.post(
 router.post("/request", validator(validateRequestCredentials), CreateRequest);
 router.get("/request", GetAllDiligenceRequests);
 router.get("/request/:requestId", GetRequest);
-router.put("/request/verify/:id", VerifyRequest);
-router.put("/request/update/:id", UpdateRequest);
+router.put("/request/verify/:requestId", VerifyRequest);
+router.put("/request/update/:requestId", UpdateRequest);
 router.delete("/request/:requestId", DeleteRequest);
 
 //REQUEST DOCUMENT
@@ -126,7 +131,7 @@ router.post(
   validator(validateDiligenceDocument),
   AddRequestDocument
 );
-router.get("/documents/:requestId", GetAllDocuments);
+router.get("/document/:requestId", GetAllDocuments);
 router.get("/document/:documentId", GetDocument);
 router.put(
   "/document/:documentId",
@@ -134,6 +139,8 @@ router.put(
   staffAuth,
   UpdateDocument
 );
-router.delete("/document/:id", staffAuth, DeleteDocument);
+router.delete("/document/:documentId", staffAuth, DeleteDocument);
+
+router.get("/test", Test);
 
 module.exports = router;
