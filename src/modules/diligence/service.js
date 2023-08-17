@@ -702,6 +702,8 @@ const createDiligenceUser = async (accountPayload, role, enterpriseId) => {
     if (!user) {
       throw new BadRequest("Error occurred while creating user");
     }
+
+    return user;
   } catch (error) {
     throw error;
   }
@@ -736,54 +738,83 @@ const createAccount = async (accountPayload) => {
     }
 
     if (enterprise) {
-      createDiligenceUser(accountPayload, "Admin", enterprise.id);
+      let create = await createDiligenceUser(
+        accountPayload,
+        "Admin",
+        enterprise.id
+      );
+
+      const userSecret = process.env.TOKEN_USER_SECRET;
+      const token = generateToken({ id: create.id }, userSecret, "14d");
+
+      return {
+        statusCode: 200,
+        message: `User created successfully!`,
+        data: {
+          id: create.id,
+          firstName: create.firstName,
+          lastName: create.lastName,
+          email: create.email,
+          token: token,
+          role: create.role,
+          enterpriseId: create.diligenceEnterpriseId,
+        },
+      };
     }
 
     if (manager) {
-      createDiligenceUser(
+      let create = await createDiligenceUser(
         accountPayload,
         "Manager",
         manager.diligenceEnterpriseId
       );
+
+      const userSecret = process.env.TOKEN_USER_SECRET;
+      const token = generateToken({ id: create.id }, userSecret, "14d");
+
+      return {
+        statusCode: 200,
+        message: `User created successfully!`,
+        data: {
+          id: create.id,
+          firstName: create.firstName,
+          lastName: create.lastName,
+          email: create.email,
+          token: token,
+          role: create.role,
+          enterpriseId: create.diligenceEnterpriseId,
+        },
+      };
     }
 
     if (staff) {
-      createDiligenceUser(
+      let create = await createDiligenceUser(
         accountPayload,
         "Staff",
         staff.diligenceManager.diligenceEnterpriseId
       );
+
+      const userSecret = process.env.TOKEN_USER_SECRET;
+      const token = generateToken({ id: create.id }, userSecret, "14d");
+
+      return {
+        statusCode: 200,
+        message: `User created successfully!`,
+        data: {
+          id: create.id,
+          firstName: create.firstName,
+          lastName: create.lastName,
+          email: create.email,
+          token: token,
+          role: create.role,
+          enterpriseId: create.diligenceEnterpriseId,
+        },
+      };
     }
 
     logger.info({
       message: `Diligence user with ${accountPayload.email} created successfully`,
     });
-
-    const findCreatedUser = await prisma.diligenceUser.findUnique({
-      where: { email: accountPayload.email },
-    });
-
-    logger.info({
-      message: `checking created successfully, ${findCreatedUser}`,
-      data: findCreatedUser,
-    });
-
-    const userSecret = process.env.TOKEN_USER_SECRET;
-    const token = generateToken({ id: findCreatedUser.id }, userSecret, "14d");
-
-    return {
-      statusCode: 200,
-      message: `User created successfully!`,
-      data: {
-        id: findCreatedUser.id,
-        firstName: findCreatedUser.firstName,
-        lastName: findCreatedUser.lastName,
-        email: findCreatedUser.email,
-        token: token,
-        role: findCreatedUser.role,
-        enterpriseId: findCreatedUser.diligenceEnterpriseId,
-      },
-    };
   } catch (error) {
     throw error;
   }

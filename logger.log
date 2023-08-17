@@ -3942,3 +3942,12 @@ error: Label: 17-Aug-2023 12:47:53: staff not found!. with error Error: staff no
 error: Label: 17-Aug-2023 12:47:56: Invalid credentials! with error Error: Invalid credentials! occurred when POST /staffs/login was called
 info: Label: 17-Aug-2023 12:48:03: staff with akinyemibamidele2@gmail.com signed in successfully.
 info: Label: 17-Aug-2023 12:49:25: string created successfully
+error: Label: 17-Aug-2023 13:31:11: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /diligence/enterprise was called
+info: Label: 17-Aug-2023 13:31:35: BAMIDELE sti created successfully
+error: Label: 17-Aug-2023 13:32:14: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+info: Label: 17-Aug-2023 13:32:21: BAMIDELE still created successfully
+error: Label: 17-Aug-2023 13:33:00: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+info: Label: 17-Aug-2023 13:33:10: BAMIDELE stilll created successfully
+info: Label: 17-Aug-2023 13:33:42: Diligence user with headyman123@sidebrief.com created successfully
+info: Label: 17-Aug-2023 13:33:45: checking created successfully, [object Object]
+info: Label: 17-Aug-2023 13:41:56: BAMIDELE tewerw created successfully
