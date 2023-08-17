@@ -764,7 +764,7 @@ const createAccount = async (accountPayload) => {
     });
 
     logger.info({
-      message: `checking created successfully`,
+      message: `checking created successfully, ${findCreatedUser}`,
       data: findCreatedUser,
     });
 
