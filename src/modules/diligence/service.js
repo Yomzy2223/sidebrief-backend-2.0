@@ -969,6 +969,14 @@ const createRequest = async (requestPayload) => {
       throw new BadRequest("User with this email not registered");
     }
 
+    const enterprise = await prisma.diligenceEnterprise.findUnique({
+      where: { id: requestPayload.enterpriseId },
+    });
+
+    if (!enterprise) {
+      throw new BadRequest("Enterprise with this ID not found");
+    }
+
     const request = await prisma.diligenceRequest.create({
       data: requestPayload,
     });
