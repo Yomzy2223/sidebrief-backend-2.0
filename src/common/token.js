@@ -10,7 +10,7 @@ exports.generateToken = (payload, secret, expired) => {
 exports.verifyUserToken = async (token, secret) => {
   try {
     const validate = await jwt.verify(token, secret);
-
+    console.log("sdfs", validate);
     if (!validate) {
       throw new BadRequest("Authentification error, please check your token.");
     }

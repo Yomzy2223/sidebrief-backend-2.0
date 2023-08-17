@@ -3951,3 +3951,73 @@ info: Label: 17-Aug-2023 13:33:10: BAMIDELE stilll created successfully
 info: Label: 17-Aug-2023 13:33:42: Diligence user with headyman123@sidebrief.com created successfully
 info: Label: 17-Aug-2023 13:33:45: checking created successfully, [object Object]
 info: Label: 17-Aug-2023 13:41:56: BAMIDELE tewerw created successfully
+error: Label: 17-Aug-2023 17:23:59: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+error: Label: 17-Aug-2023 17:24:27: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+error: Label: 17-Aug-2023 17:24:38: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+error: Label: 17-Aug-2023 17:24:40: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+info: Label: 17-Aug-2023 17:24:59: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 17-Aug-2023 17:27:10: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:31:14: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:32:42: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:33:15: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:33:28: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:33:30: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:43:17: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:972:57
+
+  969   throw new BadRequest("User with this email not registered");
+  970 }
+  971 
+→ 972 const enterprise = await prisma.diligenceEnterprise.findUnique({
+        where: {
+      ?   id?: String,
+      ?   name?: String,
+      ?   adminEmail?: String
+        }
+      })
+
+Argument where of type DiligenceEnterpriseWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/request was called
+error: Label: 17-Aug-2023 17:44:15: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:972:57
+
+  969   throw new BadRequest("User with this email not registered");
+  970 }
+  971 
+→ 972 const enterprise = await prisma.diligenceEnterprise.findUnique({
+        where: {
+      ?   id?: String,
+      ?   name?: String,
+      ?   adminEmail?: String
+        }
+      })
+
+Argument where of type DiligenceEnterpriseWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/request was called
+error: Label: 17-Aug-2023 17:47:43: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:973:62
+
+  970 }
+  971 
+  972 console.log(requestPayload);
+→ 973 const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
+        where: {
+      ?   id?: String,
+      ?   name?: String,
+      ?   adminEmail?: String
+        }
+      })
+
+Argument where of type DiligenceEnterpriseWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/request was called
+info: Label: 17-Aug-2023 17:48:21: request with the name Femi enterprise created successfully by oluwolesayo10@gmail.com
+error: Label: 17-Aug-2023 17:49:50: Enterprise with this ID not found. with error Error: Enterprise with this ID not found. occurred when POST /diligence/request was called

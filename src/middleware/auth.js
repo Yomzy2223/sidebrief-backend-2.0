@@ -37,6 +37,7 @@ const staffAuth = async (req, res, next) => {
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
 
     const staff = await verifyUserToken(token, staffSecret);
+    console.log(staff);
     if (!staff) {
       return res.status(staff.statusCode).json({ error: staff.error });
     }
@@ -54,6 +55,7 @@ const staffAuth = async (req, res, next) => {
     req.user = checkStaff;
     next();
   } catch (error) {
+    console.log("error", error);
     next(error);
   }
 };
