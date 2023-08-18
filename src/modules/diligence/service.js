@@ -35,7 +35,9 @@ const getAllBanks = async () => {
   //  get the bank list from the table
   //  return the bank list to the country controller
   try {
-    const banks = await prisma.nigerianBank.findMany({});
+    const banks = await prisma.nigerianBank.findMany({
+      where: { isDeprecated: false },
+    });
     if (!banks) {
       throw new BadRequest("Banks not found!.");
     }
@@ -113,8 +115,9 @@ const deleteNigerianBank = async (bankId) => {
       throw new BadRequest("Bank with this ID not found.");
     }
 
-    const bank = await prisma.nigerianBank.delete({
+    const bank = await prisma.nigerianBank.update({
       where: { id: bankId },
+      data: { isDeprecated: true },
     });
 
     if (!bank) {
@@ -232,8 +235,9 @@ const deleteEnterprise = async (enterpriseId) => {
       throw new BadRequest("Enterprise with this ID not found.");
     }
 
-    const diligence = await prisma.diligenceEnterprise.delete({
+    const diligence = await prisma.diligenceEnterprise.update({
       where: { id: enterpriseId },
+      data: { isDeprecated: true },
     });
 
     if (!diligence) {
@@ -286,6 +290,7 @@ const getAllDiligenceEnterprises = async () => {
   //  return the diligence enterprise list to the diligence enterprise controller
   try {
     const diligenceEnterprises = await prisma.diligenceEnterprise.findMany({
+      where: { isDeprecated: false },
       include: {
         diligenceManager: {
           include: {
@@ -419,7 +424,7 @@ const getAllDiligenceManagers = async (enterpriseId) => {
   //  return the diligence managers list to the diligence managers controller
   try {
     const managers = await prisma.diligenceManager.findMany({
-      where: { diligenceEnterpriseId: enterpriseId },
+      where: { diligenceEnterpriseId: enterpriseId, isDeprecated: false },
     });
     if (!managers) {
       throw new BadRequest(" managers not found!.");
@@ -524,8 +529,9 @@ const deleteManager = async (managerId) => {
       throw new BadRequest("Manager not found.");
     }
 
-    const diligence = await prisma.diligenceManager.delete({
+    const diligence = await prisma.diligenceManager.update({
       where: { id: managerId },
+      data: { isDeprecated: true },
     });
 
     if (!diligence) {
@@ -622,7 +628,7 @@ const getAllDiligenceStaffs = async (managerId) => {
   //  return the diligence Staffs list to the diligence managers controller
   try {
     const diligenceStaffs = await prisma.diligenceStaff.findMany({
-      where: { diligenceManagerId: managerId },
+      where: { diligenceManagerId: managerId, isDeprecated: false },
     });
     if (!diligenceStaffs) {
       throw new BadRequest("Diligence Staffs not found!.");
@@ -668,8 +674,9 @@ const deleteStaff = async (staffId) => {
       throw new BadRequest("Staff not found.");
     }
 
-    const diligence = await prisma.diligenceStaff.delete({
+    const diligence = await prisma.diligenceStaff.update({
       where: { id: staffId },
+      data: { isDeprecated: true },
     });
 
     if (!diligence) {
@@ -1004,6 +1011,7 @@ const getAllDiligenceRequests = async () => {
   //  return the diligence requests list to the diligence requests controller
   try {
     const diligenceRequests = await prisma.diligenceRequest.findMany({
+      where: { isDeprecated: false },
       include: {
         diligenceRequestDocument: true,
       },
@@ -1091,8 +1099,9 @@ const deleteRequest = async (requestId) => {
       throw new BadRequest("Request not found.");
     }
 
-    const request = await prisma.diligenceRequest.delete({
+    const request = await prisma.diligenceRequest.update({
       where: { id: requestId },
+      data: { isDeprecated: true },
     });
 
     if (!request) {
@@ -1242,10 +1251,9 @@ const removeRequestDocument = async (id) => {
       throw new BadRequest("Document does not exist");
     }
 
-    const deleteRequestDocument = await prisma.diligenceRequestDocument.delete({
-      where: {
-        id: id,
-      },
+    const deleteRequestDocument = await prisma.diligenceRequestDocument.update({
+      where: { id: id },
+      data: { isDeprecated: true },
     });
     if (!deleteRequestDocument) {
       throw new BadRequest("Document not found");
@@ -1291,7 +1299,7 @@ const getAllDocuments = async (requestId) => {
     }
 
     const checkDocument = await prisma.diligenceRequestDocument.findMany({
-      where: { diligenceRequestId: requestId },
+      where: { diligenceRequestId: requestId, isDeprecated: false },
     });
     if (!checkDocument) {
       throw new BadRequest("Documents with this id does not exist");

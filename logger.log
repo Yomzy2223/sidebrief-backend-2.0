@@ -4044,3 +4044,38 @@ error: Label: 18-Aug-2023 11:25:37: Authentification error, please check your to
 error: Label: 18-Aug-2023 11:26:02: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /diligence/enterprise was called
 error: Label: 18-Aug-2023 11:28:48: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /diligence/enterprise was called
 error: Label: 18-Aug-2023 11:29:17: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:34:52: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:235:62
+
+  232   throw new BadRequest("Enterprise with this ID not found.");
+  233 }
+  234 
+→ 235 const diligence = await prisma.diligenceEnterprise.delete(
+Foreign key constraint failed on the field: `DiligenceUser_diligenceEnterpriseId_fkey (index)` occurred when DELETE /diligence/enterprise/e573ade8-234b-4c19-8e02-d823121da642 was called
+error: Label: 18-Aug-2023 11:35:50: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:235:62
+
+  232   throw new BadRequest("Enterprise with this ID not found.");
+  233 }
+  234 
+→ 235 const diligence = await prisma.diligenceEnterprise.delete(
+Foreign key constraint failed on the field: `DiligenceUser_diligenceEnterpriseId_fkey (index)` occurred when DELETE /diligence/enterprise/e573ade8-234b-4c19-8e02-d823121da642 was called
+error: Label: 18-Aug-2023 11:37:36: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:235:62
+
+  232   throw new BadRequest("Enterprise with this ID not found.");
+  233 }
+  234 
+→ 235 const diligence = await prisma.diligenceEnterprise.delete(
+Foreign key constraint failed on the field: `DiligenceUser_diligenceEnterpriseId_fkey (index)` occurred when DELETE /diligence/enterprise/e573ade8-234b-4c19-8e02-d823121da642 was called
+error: Label: 18-Aug-2023 13:14:19: Authorization token is missing. with error Error: Authorization token is missing. occurred when DELETE /diligence/enterprise/3d5a6fda-cc19-4c60-ab8c-78667c79c97a was called
+info: Label: 18-Aug-2023 13:20:48: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 18-Aug-2023 13:21:40: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.delete()` invocation:
+
+
+Foreign key constraint failed on the field: `DiligenceUser_diligenceEnterpriseId_fkey (index)` occurred when DELETE /diligence/enterprise/d516b778-4dbe-4e11-aa2f-2610110d9213 was called
+info: Label: 18-Aug-2023 13:30:12: Wema Bank enterprise deleted successfully
