@@ -4079,3 +4079,12 @@ Invalid `prisma.diligenceEnterprise.delete()` invocation:
 
 Foreign key constraint failed on the field: `DiligenceUser_diligenceEnterpriseId_fkey (index)` occurred when DELETE /diligence/enterprise/d516b778-4dbe-4e11-aa2f-2610110d9213 was called
 info: Label: 18-Aug-2023 13:30:12: Wema Bank enterprise deleted successfully
+info: Label: 18-Aug-2023 15:36:36: User with oluwolesayo10@gmail.com signed in successfully.
+info: Label: 18-Aug-2023 15:37:12: User with oluwolesayo10@gmail.com signed in successfully.
+error: Label: 18-Aug-2023 15:38:41: Enterprise admin with this ID not found. with error Error: Enterprise admin with this ID not found. occurred when POST /diligence/manager/eebdacfa-c169-47f6-9503-e5d83577521d was called
+info: Label: 18-Aug-2023 15:39:17: manager with string@gmail.com added  successfully
+error: Label: 18-Aug-2023 15:47:55: Manager not found. with error Error: Manager not found. occurred when POST /diligence/staff/54115794-aa33-4aa5-83f9-bb4255cf4a31 was called
+info: Label: 18-Aug-2023 15:48:35: diligence staff with stringg@gmail.com created successfully
+info: Label: 18-Aug-2023 15:49:42: User with oluwolesayo10@gmail.com signed in successfully.
+info: Label: 18-Aug-2023 15:50:02: User with string@gmail.com signed in successfully.
+info: Label: 18-Aug-2023 15:50:39: User with oluwolesayo10@gmail.com signed in successfully.

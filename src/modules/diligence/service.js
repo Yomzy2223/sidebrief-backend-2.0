@@ -697,12 +697,18 @@ const deleteStaff = async (staffId) => {
 
 // DILIGENCE USER
 //add diligence user helper
-const createDiligenceUser = async (accountPayload, role, enterpriseId) => {
+const createDiligenceUser = async (
+  accountPayload,
+  role,
+  enterpriseId,
+  managerId
+) => {
   try {
     const value = {
       ...accountPayload,
       role: `${role}`,
       diligenceEnterpriseId: enterpriseId,
+      managerId: managerId,
     };
     const user = await prisma.diligenceUser.create({ data: value });
 
@@ -748,7 +754,8 @@ const createAccount = async (accountPayload) => {
       let create = await createDiligenceUser(
         accountPayload,
         "Admin",
-        enterprise.id
+        enterprise.id,
+        ""
       );
 
       const userSecret = process.env.TOKEN_USER_SECRET;
@@ -773,7 +780,8 @@ const createAccount = async (accountPayload) => {
       let create = await createDiligenceUser(
         accountPayload,
         "Manager",
-        manager.diligenceEnterpriseId
+        manager.diligenceEnterpriseId,
+        manager.id
       );
 
       const userSecret = process.env.TOKEN_USER_SECRET;
@@ -790,6 +798,7 @@ const createAccount = async (accountPayload) => {
           token: token,
           role: create.role,
           enterpriseId: create.diligenceEnterpriseId,
+          managerId: create.managerId,
         },
       };
     }
@@ -798,7 +807,8 @@ const createAccount = async (accountPayload) => {
       let create = await createDiligenceUser(
         accountPayload,
         "Staff",
-        staff.diligenceManager.diligenceEnterpriseId
+        staff.diligenceManager.diligenceEnterpriseId,
+        ""
       );
 
       const userSecret = process.env.TOKEN_USER_SECRET;
@@ -857,18 +867,34 @@ const loginUser = async (loginPayload) => {
       message: `User with ${loginPayload.email} signed in successfully.`,
     });
 
-    return {
-      message: "Login successful.",
-      data: {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        token: token,
-        role: user.role,
-        enterpriseId: user.diligenceEnterpriseId,
-      },
-    };
+    if (user.role === "Manager") {
+      return {
+        message: "Login successful.",
+        data: {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          token: token,
+          role: user.role,
+          enterpriseId: user.diligenceEnterpriseId,
+          managerId: user.managerId,
+        },
+      };
+    } else {
+      return {
+        message: "Login successful.",
+        data: {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          token: token,
+          role: user.role,
+          enterpriseId: user.diligenceEnterpriseId,
+        },
+      };
+    }
   } catch (error) {
     throw error;
   }
