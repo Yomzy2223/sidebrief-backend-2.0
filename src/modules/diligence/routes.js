@@ -9,6 +9,7 @@ const {
   validateRequestCredentials,
   validateEnterpriseCredentials,
   validateManagerCredentials,
+  validateUpdateDiligenceRequest,
 } = require("../../utils/validation/diligence");
 const { staffAuth } = require("../../middleware/auth");
 const router = express.Router();
@@ -53,6 +54,7 @@ const {
   GetANigerianBank,
   CreateNigerianBank,
   DeleteNigerianBank,
+  UpdateDiligenceRequest,
 } = require("./controller");
 
 //NIGERIAN BANKS
@@ -120,6 +122,11 @@ router.post(
 router.post("/request", validator(validateRequestCredentials), CreateRequest);
 router.get("/request", GetAllDiligenceRequests);
 router.get("/request/:requestId", GetRequest);
+router.put(
+  "/request/:requestId",
+  validator(validateUpdateDiligenceRequest),
+  UpdateDiligenceRequest
+);
 router.put("/request/verify/:requestId", VerifyRequest);
 router.put("/request/update/:requestId", UpdateRequest);
 router.delete("/request/:requestId", DeleteRequest);

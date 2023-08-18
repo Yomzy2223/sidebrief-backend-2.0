@@ -4021,3 +4021,26 @@ Note: Lines with ? are optional.
  occurred when POST /diligence/request was called
 info: Label: 17-Aug-2023 17:48:21: request with the name Femi enterprise created successfully by oluwolesayo10@gmail.com
 error: Label: 17-Aug-2023 17:49:50: Enterprise with this ID not found. with error Error: Enterprise with this ID not found. occurred when POST /diligence/request was called
+info: Label: 18-Aug-2023 10:47:20: Request with the name TEssting STA, updated successfully
+info: Label: 18-Aug-2023 10:48:14: Request with the name Testing Update, updated successfully
+error: Label: 18-Aug-2023 10:53:58: Completed request cannot be updated  with error Error: Completed request cannot be updated  occurred when PUT /diligence/request/209c0591-e50f-4bcd-88ba-6be1cbd2bc8f was called
+info: Label: 18-Aug-2023 10:55:34: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 18-Aug-2023 10:56:10: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 10:56:45: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 10:57:45: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 10:58:13: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 10:58:53: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:04:54: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:10:11: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:12:52: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:16:23: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:16:42: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:16:56: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:19:20: Invalid or expired staff token. with error Error: Invalid or expired staff token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:20:27: Invalid or expired staff token. with error Error: Invalid or expired staff token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:21:10: Invalid or expired staff token. with error Error: Invalid or expired staff token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:22:37: Invalid or expired staff token. with error Error: Invalid or expired staff token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:25:37: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:26:02: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:28:48: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:29:17: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called

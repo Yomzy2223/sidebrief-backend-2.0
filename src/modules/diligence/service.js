@@ -994,7 +994,6 @@ const createRequest = async (requestPayload) => {
       data: request,
     };
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -1038,6 +1037,43 @@ const getDiligenceRequest = async (requestId) => {
       message: "Diligence request fetched successfully",
       data: diligenceRequest,
       statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//update diligence request
+const updateDiligenceRequest = async (requestId, requestPayload) => {
+  //add the new request to the table
+
+  try {
+    const request = await prisma.diligenceRequest.findUnique({
+      where: { id: requestId },
+    });
+    if (!request) {
+      throw new BadRequest("Request with this ID does not exist");
+    }
+    if (request.status === "Completed") {
+      throw new BadRequest("Completed request cannot be updated ");
+    }
+    const updateRequest = await prisma.diligenceRequest.update({
+      where: { id: requestId },
+      data: requestPayload,
+    });
+
+    if (!updateRequest) {
+      throw new BadRequest("Error occured while updating this Request");
+    }
+
+    logger.info({
+      message: `Request with the name ${request.name}, updated successfully`,
+    });
+
+    return {
+      message: "Request updated successfully",
+      statusCode: 200,
+      data: updateRequest,
     };
   } catch (error) {
     throw error;
@@ -1109,7 +1145,7 @@ const verifyRequest = async (requestId) => {
   }
 };
 
-//update request document
+//update request status
 const updateRequest = async (requestId) => {
   //add the new request to the table
 
@@ -1346,6 +1382,7 @@ module.exports = {
   createRequest,
   getAllDiligenceRequests,
   verifyRequest,
+  updateDiligenceRequest,
   updateRequest,
   getDiligenceRequest,
   deleteRequest,
