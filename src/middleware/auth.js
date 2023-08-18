@@ -14,7 +14,7 @@ const userAuth = async (req, res, next) => {
     const token = reqToken.split(" ")[1];
     const userSecret = process.env.TOKEN_USER_SECRET;
     const user = await verifyUserToken(token, userSecret);
-    if (user.error) {
+    if (!user) {
       return res.status(user.statusCode).json({ error: user.error });
     }
     if (!user) {
@@ -37,9 +37,7 @@ const staffAuth = async (req, res, next) => {
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
 
     const staff = await verifyUserToken(token, staffSecret);
-    if (staff.error) {
-      return res.status(staff.statusCode).json({ error: staff.error });
-    }
+
     if (!staff) {
       throw new Unauthorized("Invalid or expired staff token.");
     }

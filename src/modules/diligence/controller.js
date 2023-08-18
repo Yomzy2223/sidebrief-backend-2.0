@@ -38,6 +38,7 @@ const {
   getNigerianBank,
   getManager,
   deleteNigerianBank,
+  updateDiligenceRequest,
 } = require("./service");
 const { default: axios } = require("axios");
 
@@ -534,6 +535,31 @@ exports.DeleteRequest = async (req, res, next) => {
     return res
       .status(diligenceRequest.statusCode)
       .json({ message: diligenceRequest.message });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//update a request
+exports.UpdateDiligenceRequest = async (req, res, next) => {
+  try {
+    //check if there is id
+    // send the id to the update service
+    //return response to the client
+
+    const id = req.params.requestId;
+    const requestPayload = req.body;
+
+    const values = {
+      name: requestPayload.name,
+      registrationNumber: requestPayload.registrationNumber,
+    };
+
+    const update = await updateDiligenceRequest(id, values);
+
+    return res
+      .status(update.statusCode)
+      .json({ message: update.message, data: update.data });
   } catch (error) {
     next(error);
   }

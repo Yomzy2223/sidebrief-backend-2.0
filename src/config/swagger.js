@@ -307,6 +307,22 @@ const options = {
           },
         },
 
+        //UPDATE DILIGENCE REQUEST
+        UpdateDiligenceRequest: {
+          type: "object",
+          require: ["name", "registrationNumber"],
+          properties: {
+            name: {
+              type: "string",
+              description: "The name of the business",
+            },
+            registrationNumber: {
+              type: "string",
+              description: "The reistration number of the business",
+            },
+          },
+        },
+
         //DILIGENCE DOCUMENT
         DiligenceDocument: {
           type: "object",
@@ -1910,6 +1926,41 @@ const options = {
               description: "Diligence request is fetched",
               schema: {
                 $ref: "#/components/schemas/DiligenceRequest",
+              },
+            },
+          },
+        },
+
+        put: {
+          summary: "Update diligence request with give ID",
+          tags: ["Diligence Request"],
+          parameters: [
+            {
+              name: "requestId",
+              in: "path",
+              required: true,
+              description: "ID of Diligence request  to be found",
+              type: "string",
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UpdateDiligenceRequest", //
+                },
+              },
+            },
+          },
+
+          responses: {
+            200: {
+              description: "Diligence request  is updated",
+              schema: {
+                $ref: "#/components/schemas/UpdateDiligenceRequest",
               },
             },
           },

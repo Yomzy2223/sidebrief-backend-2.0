@@ -3951,3 +3951,131 @@ info: Label: 17-Aug-2023 13:33:10: BAMIDELE stilll created successfully
 info: Label: 17-Aug-2023 13:33:42: Diligence user with headyman123@sidebrief.com created successfully
 info: Label: 17-Aug-2023 13:33:45: checking created successfully, [object Object]
 info: Label: 17-Aug-2023 13:41:56: BAMIDELE tewerw created successfully
+error: Label: 17-Aug-2023 17:23:59: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+error: Label: 17-Aug-2023 17:24:27: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+error: Label: 17-Aug-2023 17:24:38: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+error: Label: 17-Aug-2023 17:24:40: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+info: Label: 17-Aug-2023 17:24:59: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 17-Aug-2023 17:27:10: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:31:14: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:32:42: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:33:15: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:33:28: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:33:30: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 17-Aug-2023 17:43:17: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:972:57
+
+  969   throw new BadRequest("User with this email not registered");
+  970 }
+  971 
+→ 972 const enterprise = await prisma.diligenceEnterprise.findUnique({
+        where: {
+      ?   id?: String,
+      ?   name?: String,
+      ?   adminEmail?: String
+        }
+      })
+
+Argument where of type DiligenceEnterpriseWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/request was called
+error: Label: 17-Aug-2023 17:44:15: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:972:57
+
+  969   throw new BadRequest("User with this email not registered");
+  970 }
+  971 
+→ 972 const enterprise = await prisma.diligenceEnterprise.findUnique({
+        where: {
+      ?   id?: String,
+      ?   name?: String,
+      ?   adminEmail?: String
+        }
+      })
+
+Argument where of type DiligenceEnterpriseWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/request was called
+error: Label: 17-Aug-2023 17:47:43: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:973:62
+
+  970 }
+  971 
+  972 console.log(requestPayload);
+→ 973 const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
+        where: {
+      ?   id?: String,
+      ?   name?: String,
+      ?   adminEmail?: String
+        }
+      })
+
+Argument where of type DiligenceEnterpriseWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/request was called
+info: Label: 17-Aug-2023 17:48:21: request with the name Femi enterprise created successfully by oluwolesayo10@gmail.com
+error: Label: 17-Aug-2023 17:49:50: Enterprise with this ID not found. with error Error: Enterprise with this ID not found. occurred when POST /diligence/request was called
+info: Label: 18-Aug-2023 10:47:20: Request with the name TEssting STA, updated successfully
+info: Label: 18-Aug-2023 10:48:14: Request with the name Testing Update, updated successfully
+error: Label: 18-Aug-2023 10:53:58: Completed request cannot be updated  with error Error: Completed request cannot be updated  occurred when PUT /diligence/request/209c0591-e50f-4bcd-88ba-6be1cbd2bc8f was called
+info: Label: 18-Aug-2023 10:55:34: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 18-Aug-2023 10:56:10: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 10:56:45: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 10:57:45: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 10:58:13: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 10:58:53: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:04:54: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:10:11: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:12:52: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:16:23: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:16:42: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:16:56: Error occured with error JsonWebTokenError: invalid signature occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:19:20: Invalid or expired staff token. with error Error: Invalid or expired staff token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:20:27: Invalid or expired staff token. with error Error: Invalid or expired staff token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:21:10: Invalid or expired staff token. with error Error: Invalid or expired staff token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:22:37: Invalid or expired staff token. with error Error: Invalid or expired staff token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:25:37: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:26:02: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:28:48: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:29:17: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+error: Label: 18-Aug-2023 11:34:52: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:235:62
+
+  232   throw new BadRequest("Enterprise with this ID not found.");
+  233 }
+  234 
+→ 235 const diligence = await prisma.diligenceEnterprise.delete(
+Foreign key constraint failed on the field: `DiligenceUser_diligenceEnterpriseId_fkey (index)` occurred when DELETE /diligence/enterprise/e573ade8-234b-4c19-8e02-d823121da642 was called
+error: Label: 18-Aug-2023 11:35:50: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:235:62
+
+  232   throw new BadRequest("Enterprise with this ID not found.");
+  233 }
+  234 
+→ 235 const diligence = await prisma.diligenceEnterprise.delete(
+Foreign key constraint failed on the field: `DiligenceUser_diligenceEnterpriseId_fkey (index)` occurred when DELETE /diligence/enterprise/e573ade8-234b-4c19-8e02-d823121da642 was called
+error: Label: 18-Aug-2023 11:37:36: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.delete()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:235:62
+
+  232   throw new BadRequest("Enterprise with this ID not found.");
+  233 }
+  234 
+→ 235 const diligence = await prisma.diligenceEnterprise.delete(
+Foreign key constraint failed on the field: `DiligenceUser_diligenceEnterpriseId_fkey (index)` occurred when DELETE /diligence/enterprise/e573ade8-234b-4c19-8e02-d823121da642 was called
+error: Label: 18-Aug-2023 13:14:19: Authorization token is missing. with error Error: Authorization token is missing. occurred when DELETE /diligence/enterprise/3d5a6fda-cc19-4c60-ab8c-78667c79c97a was called
+info: Label: 18-Aug-2023 13:20:48: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 18-Aug-2023 13:21:40: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.delete()` invocation:
+
+
+Foreign key constraint failed on the field: `DiligenceUser_diligenceEnterpriseId_fkey (index)` occurred when DELETE /diligence/enterprise/d516b778-4dbe-4e11-aa2f-2610110d9213 was called
+info: Label: 18-Aug-2023 13:30:12: Wema Bank enterprise deleted successfully

@@ -6,7 +6,7 @@ const validate = new Validator();
 const enterpriseSchema = {
   name: { type: "string", min: 3, max: 50 },
   address: { type: "string", min: 6, max: 200 },
-  adminEmail: { type: "string", min: 6, max: 100 },
+  adminEmail: { type: "email", min: 6, max: 100 },
 };
 
 const validateEnterpriseCredentials = validate.compile(enterpriseSchema);
@@ -66,10 +66,20 @@ const diligenceRequestSchema = {
   name: { type: "string", min: 3, max: 50 },
   registrationNumber: { type: "string", min: 3, max: 50 },
   status: { type: "string", min: 3, max: 50 },
-  email: { type: "string", min: 3, max: 100 },
+  email: { type: "email", min: 3, max: 100 },
 };
 
 const validateDiligenceRequest = validate.compile(diligenceRequestSchema);
+
+//request
+const updateDiligenceRequestSchema = {
+  name: { type: "string", min: 3, max: 50 },
+  registrationNumber: { type: "string", min: 3, max: 50 },
+};
+
+const validateUpdateDiligenceRequest = validate.compile(
+  updateDiligenceRequestSchema
+);
 
 //document registration
 const diligenceDocumentSchema = {
@@ -91,4 +101,5 @@ module.exports = {
   validateManagerCredentials,
   validateUserAcccountCredentials,
   validateRequestCredentials,
+  validateUpdateDiligenceRequest,
 };
