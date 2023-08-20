@@ -4088,3 +4088,36 @@ info: Label: 18-Aug-2023 15:48:35: diligence staff with stringg@gmail.com create
 info: Label: 18-Aug-2023 15:49:42: User with oluwolesayo10@gmail.com signed in successfully.
 info: Label: 18-Aug-2023 15:50:02: User with string@gmail.com signed in successfully.
 info: Label: 18-Aug-2023 15:50:39: User with oluwolesayo10@gmail.com signed in successfully.
+error: Label: 20-Aug-2023 09:20:51: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called
+info: Label: 20-Aug-2023 09:21:16: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 20-Aug-2023 09:21:28: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called
+info: Label: 20-Aug-2023 09:21:50: Testing created successfully
+info: Label: 20-Aug-2023 09:22:52: Testing enterprise deleted successfully
+error: Label: 20-Aug-2023 09:25:29: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+error: Label: 20-Aug-2023 09:27:31: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called
+error: Label: 20-Aug-2023 09:28:13: staff not found!. with error Error: staff not found!. occurred when POST /staffs/login was called
+info: Label: 20-Aug-2023 09:28:21: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 20-Aug-2023 09:28:43: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+error: Label: 20-Aug-2023 09:31:42: Error occured with error Error: 
+Invalid `prisma.DiligenceEnterprise.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:156:56
+
+  153   throw new BadRequest("Email already exists");
+  154 }
+  155 
+→ 156 const diligence = await prisma.DiligenceEnterprise.create(
+Unique constraint failed on the fields: (`name`) occurred when POST /diligence/enterprise was called
+error: Label: 20-Aug-2023 09:32:15: Error occured with error Error: 
+Invalid `prisma.DiligenceEnterprise.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:156:56
+
+  153   throw new BadRequest("Email already exists");
+  154 }
+  155 
+→ 156 const diligence = await prisma.DiligenceEnterprise.create(
+Unique constraint failed on the fields: (`name`) occurred when POST /diligence/enterprise was called
+error: Label: 20-Aug-2023 10:10:03: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+info: Label: 20-Aug-2023 10:10:44: Testing enterprise deleted successfully
+info: Label: 20-Aug-2023 10:10:50: Testing created successfully
+error: Label: 20-Aug-2023 10:11:09: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+info: Label: 20-Aug-2023 10:11:18: Testing si created successfully
