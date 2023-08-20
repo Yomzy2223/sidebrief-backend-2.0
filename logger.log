@@ -4121,3 +4121,12 @@ info: Label: 20-Aug-2023 10:10:44: Testing enterprise deleted successfully
 info: Label: 20-Aug-2023 10:10:50: Testing created successfully
 error: Label: 20-Aug-2023 10:11:09: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
 info: Label: 20-Aug-2023 10:11:18: Testing si created successfully
+error: Label: 20-Aug-2023 11:17:36: Unexpected string in JSON at position 95 with error SyntaxError: Unexpected string in JSON at position 95 occurred when POST /diligence/request was called
+error: Label: 20-Aug-2023 11:17:54: Enterprise with this ID not found. with error Error: Enterprise with this ID not found. occurred when POST /diligence/request was called
+info: Label: 20-Aug-2023 11:18:17: request with the name string created successfully by akinyemi@sidebrief.com
+info: Label: 20-Aug-2023 11:27:16: request with the name string created successfully by akinyemi@sidebrief.com
+info: Label: 20-Aug-2023 11:47:04: request with the name string created successfully by akinyemi@sidebrief.com
+info: Label: 20-Aug-2023 11:49:30: Request with the name string, verified successfully
+error: Label: 20-Aug-2023 11:49:30: Error occured with error ReferenceError: requestPayload is not defined occurred when PUT /diligence/request/verify/1a6518ab-1dc3-4e9f-9ff8-d0c06890ad93 was called
+info: Label: 20-Aug-2023 11:50:38: Request with the name string, verified successfully
+info: Label: 20-Aug-2023 11:55:35: request with the name string created successfully by akinyemi@sidebrief.com

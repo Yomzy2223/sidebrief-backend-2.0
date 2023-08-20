@@ -159,12 +159,13 @@ const createEnterprise = async (enterprisePayload) => {
     }
     logger.info({ message: `${enterprisePayload.name} created successfully` });
 
-    const regUrl = `${process.env.BASE_URL}`;
+    const regUrl = `${process.env.BASE_URL}/auth/signup`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
       name: diligence.name,
       url: regUrl,
+      role: "Enterprise",
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -175,7 +176,7 @@ const createEnterprise = async (enterprisePayload) => {
       payload,
       recipientEmail,
       senderEmail,
-      "../view/welcomeBank.ejs"
+      "../view/diligence/diligence.ejs"
     );
 
     return {
@@ -384,12 +385,13 @@ const createManager = async (adminId, managerPayload) => {
       message: `manager with ${managerPayload.managerEmail} added  successfully`,
     });
 
-    const regUrl = `${process.env.BASE_URL}`;
+    const regUrl = `${process.env.BASE_URL}/auth/signup`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
       name: managerPayload.managerEmail,
       url: regUrl,
+      role: "Manager",
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -400,7 +402,7 @@ const createManager = async (adminId, managerPayload) => {
       payload,
       recipientEmail,
       senderEmail,
-      "../view/welcomeBank.ejs"
+      "../view/diligence/diligence.ejs"
     );
 
     return {
@@ -587,12 +589,13 @@ const createStaff = async (managerId, email) => {
       message: `diligence staff with ${email} created successfully`,
     });
 
-    const regUrl = `${process.env.BASE_URL}/diligence`;
+    const regUrl = `${process.env.BASE_URL}/auth/signup`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
       name: email,
       url: regUrl,
+      role: "Staff",
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -603,7 +606,7 @@ const createStaff = async (managerId, email) => {
       payload,
       recipientEmail,
       senderEmail,
-      "../view/welcomeBank.ejs"
+      "../view/diligence/diligence.ejs"
     );
 
     return {
@@ -1014,6 +1017,43 @@ const createRequest = async (requestPayload) => {
       message: `request with the name ${requestPayload.name} created successfully by ${requestPayload.createdBy}`,
     });
 
+    const subject = "Request created successfully.";
+
+    payload = {
+      name: checkUser.firstName,
+      businessName: requestPayload.name,
+      regNo: requestPayload.registrationNumber,
+      status: requestPayload.status,
+    };
+
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = requestPayload.createdBy;
+    //send email
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/diligence/diligenceRequest.ejs"
+    );
+
+    //send staff email
+    staffPayload = {
+      enterpriseName: checkEnterprise.name,
+      businessName: requestPayload.name,
+      regNo: requestPayload.registrationNumber,
+    };
+
+    const staffEmail =
+      "aw@sidebrief.com, sales@sidebrief.com, compliance@sidebrief.com";
+    EmailSender(
+      subject,
+      staffPayload,
+      staffEmail,
+      senderEmail,
+      "../view/diligence/staffRequestCreate.ejs"
+    );
+
     return {
       statusCode: 200,
       message: "Request created successfully!",
@@ -1162,6 +1202,25 @@ const verifyRequest = async (requestId) => {
       message: `Request with the name ${request.name}, verified successfully`,
     });
 
+    const subject = "Request verified successfully.";
+
+    payload = {
+      businessName: updateRequest.name,
+      regNo: updateRequest.registrationNumber,
+      status: "Verified",
+    };
+
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = updateRequest.createdBy;
+    //send email
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/diligence/verifiedRequest.ejs"
+    );
+
     return {
       message: "Request verified successfully",
       statusCode: 200,
@@ -1242,6 +1301,25 @@ const saveRequestDocument = async (requestId, documentPayload) => {
       where: { id: requestId },
       data: { status: "Completed" },
     });
+
+    const subject = "Request completed successfully.";
+
+    payload = {
+      businessName: updateRequest.name,
+      regNo: updateRequest.registrationNumber,
+      status: "Completed",
+    };
+
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = updateRequest.createdBy;
+    //send email
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/diligence/completedDiligenceRequest.ejs"
+    );
 
     return {
       message: "Document created successfully",
