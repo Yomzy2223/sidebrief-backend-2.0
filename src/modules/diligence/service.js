@@ -1045,7 +1045,10 @@ const createRequest = async (requestPayload) => {
     };
 
     const staffEmail =
-      "aw@sidebrief.com, sales@sidebrief.com, compliance@sidebrief.com";
+      process.env.NODE_ENV === "production"
+        ? "aw@sidebrief.com, sales@sidebrief.com, compliance@sidebrief.com"
+        : "dev@sidebrief.com";
+
     EmailSender(
       subject,
       staffPayload,
