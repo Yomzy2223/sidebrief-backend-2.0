@@ -745,7 +745,7 @@ exports.GetStaffAndRequest = async (req, res, next) => {
       .status(result.statusCode)
       .json({ message: result.message, data: result.data });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
@@ -754,11 +754,11 @@ exports.GetManagerRequests = async (req, res, next) => {
     const body = req.body;
 
     const result = await getBranchRequest(body);
-    console.log(result);
+
     return res
       .status(result.statusCode)
       .json({ message: result.message, data: result.data });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
