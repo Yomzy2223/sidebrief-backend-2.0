@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient, Prisma } = require("@prisma/client");
 const logger = require("../../config/logger");
 const { BadRequest } = require("../../utils/requestErrors");
 const prisma = new PrismaClient();
@@ -1447,6 +1447,88 @@ const updateRequestDocument = async (documentId, updatePayload) => {
   }
 };
 
+const getStaffAndRequest = async (managerId) => {
+  try {
+    const result = await prisma.$queryRaw`
+SELECT 
+u."firstName" AS firstName,
+u."lastName" AS lastName,
+    s."email",
+    s."createdAt",
+    COUNT(r.name) AS num_requests
+
+FROM 
+"DiligenceStaff" s
+
+INNER JOIN 
+"DiligenceUser" u ON s."email" = u."email"
+LEFT JOIN
+"DiligenceRequest" r ON s."email" = r."createdBy"
+WHERE
+s."diligenceManagerId" = ${managerId}
+GROUP BY u."firstName", u."lastName",
+s."email",
+s."createdAt";
+`;
+
+    if (!result) {
+      throw new BadRequest(
+        "Error occured while fetching all requests by staffs"
+      );
+    }
+
+    const modifiedResult = result.map((item) => ({
+      firstname: item.firstname,
+      lastname: item.lastname,
+      email: item.email,
+      createdAt: item.createdAt,
+      num_requests: Number(item.num_requests),
+    }));
+
+    return {
+      statusCode: 200,
+      message: "Data fetched successfully",
+      data: modifiedResult,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getBranchRequest = async (body) => {
+  try {
+    // Retrieve staff emails
+    const staffEmails = await prisma.diligenceStaff.findMany({
+      where: {
+        diligenceManagerId: body.managerId,
+      },
+      select: {
+        email: true,
+      },
+    });
+
+    // Extract staff emails from the result
+    const staffEmailList = staffEmails.map((staff) => staff.email);
+    // Retrieve requests for manager and staff
+    const requests = await prisma.diligenceRequest.findMany({
+      where: {
+        OR: [
+          { createdBy: body.managerEmail },
+          { createdBy: { in: staffEmailList } },
+        ],
+      },
+    });
+
+    return {
+      statusCode: 200,
+      message: "Data fetched successfully",
+      data: requests,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   //enterprise
   createEnterprise,
@@ -1498,4 +1580,7 @@ module.exports = {
   updateRequestDocument,
   getDocument,
   getAllDocuments,
+
+  getStaffAndRequest,
+  getBranchRequest,
 };

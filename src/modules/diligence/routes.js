@@ -55,6 +55,8 @@ const {
   CreateNigerianBank,
   DeleteNigerianBank,
   UpdateDiligenceRequest,
+  GetStaffAndRequest,
+  GetManagerRequests,
 } = require("./controller");
 
 //NIGERIAN BANKS
@@ -149,5 +151,8 @@ router.put(
 router.delete("/document/:documentId", staffAuth, DeleteDocument);
 
 router.get("/test", Test);
+
+router.get("/staffRequest/:managerId", GetStaffAndRequest);
+router.post("/managerRequest", GetManagerRequests);
 
 module.exports = router;

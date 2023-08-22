@@ -4130,3 +4130,11 @@ info: Label: 20-Aug-2023 11:49:30: Request with the name string, verified succes
 error: Label: 20-Aug-2023 11:49:30: Error occured with error ReferenceError: requestPayload is not defined occurred when PUT /diligence/request/verify/1a6518ab-1dc3-4e9f-9ff8-d0c06890ad93 was called
 info: Label: 20-Aug-2023 11:50:38: Request with the name string, verified successfully
 info: Label: 20-Aug-2023 11:55:35: request with the name string created successfully by akinyemi@sidebrief.com
+info: Label: 20-Aug-2023 12:01:36: request with the name string created successfully by akinyemi@sidebrief.com
+error: Label: 22-Aug-2023 14:04:18: User with this email not registered with error Error: User with this email not registered occurred when POST /diligence/request was called
+info: Label: 22-Aug-2023 14:05:02: User with oluwolesayo20@gmail.com signed in successfully.
+info: Label: 22-Aug-2023 14:06:16: request with the name QUERYTEST created successfully by oluwolesayo20@gmail.com
+info: Label: 22-Aug-2023 14:13:19: request with the name QUERYTESTO created successfully by oluwolesayo20@gmail.com
+error: Label: 22-Aug-2023 16:17:14: Enterprise with this ID not found. with error Error: Enterprise with this ID not found. occurred when POST /diligence/request was called
+error: Label: 22-Aug-2023 16:17:35: Unexpected string in JSON at position 145 with error SyntaxError: Unexpected string in JSON at position 145 occurred when POST /diligence/request was called
+info: Label: 22-Aug-2023 16:17:51: request with the name string T created successfully by sayo@gmail.com

@@ -39,6 +39,8 @@ const {
   getManager,
   deleteNigerianBank,
   updateDiligenceRequest,
+  getStaffAndRequest,
+  getBranchRequest,
 } = require("./service");
 const { default: axios } = require("axios");
 
@@ -729,6 +731,33 @@ exports.Test = async (req, res, next) => {
     });
 
     return res.status(200).json({ data: save });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.GetStaffAndRequest = async (req, res, next) => {
+  try {
+    const managerId = req.params.managerId;
+    const result = await getStaffAndRequest(managerId);
+
+    return res
+      .status(result.statusCode)
+      .json({ message: result.message, data: result.data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.GetManagerRequests = async (req, res, next) => {
+  try {
+    const body = req.body;
+
+    const result = await getBranchRequest(body);
+    console.log(result);
+    return res
+      .status(result.statusCode)
+      .json({ message: result.message, data: result.data });
   } catch (error) {
     console.log(error);
   }

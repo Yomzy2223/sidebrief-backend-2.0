@@ -307,6 +307,22 @@ const options = {
           },
         },
 
+        //DILIGENCE BRANCH REQUEST
+        DiligenceBranchRequest: {
+          type: "object",
+          require: ["managerId", "managerEmail"],
+          properties: {
+            managerId: {
+              type: "string",
+              description: "The ID of the manager",
+            },
+            managerEmail: {
+              type: "string",
+              description: "The email of the manager",
+            },
+          },
+        },
+
         //UPDATE DILIGENCE REQUEST
         UpdateDiligenceRequest: {
           type: "object",
@@ -1487,8 +1503,31 @@ const options = {
       "/diligence/staffs/{managerId}": {
         get: {
           tags: ["Diligence Staff"],
-          summary: "Create a diligence staff",
-          summary: "Get all diligence manager",
+          summary: "Get all diligence manager's staffs",
+          parameters: [
+            {
+              name: "managerId",
+              in: "path",
+              required: true,
+              description: "Manager ID",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/DiligenceStaff",
+              },
+            },
+          },
+        },
+      },
+
+      "/diligence/staffRequest/{managerId}": {
+        get: {
+          tags: ["Diligence Staff"],
+          summary: "Get all requests by all staffs",
           parameters: [
             {
               name: "managerId",
@@ -1902,6 +1941,36 @@ const options = {
               description: "Request to be updated",
               schema: {
                 $ref: "#/components/schemas/DiligenceRequest",
+              },
+            },
+          },
+        },
+      },
+
+      "/diligence/managerRequest": {
+        //get diligence requests of a branch
+        post: {
+          tags: ["Diligence Request"],
+          description: "get diligence request of a branch",
+          summary: "get a diligence request of a branch ",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/DiligenceBranchRequest", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Request to be updated",
+              schema: {
+                $ref: "#/components/schemas/DiligenceBranchRequest",
               },
             },
           },
