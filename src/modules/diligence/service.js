@@ -804,7 +804,7 @@ const createAccount = async (accountPayload) => {
         accountPayload,
         "Staff",
         staff.diligenceManager.diligenceEnterpriseId,
-        ""
+        staff.diligenceManagerId
       );
 
       const userSecret = process.env.TOKEN_USER_SECRET;
@@ -821,6 +821,7 @@ const createAccount = async (accountPayload) => {
           token: token,
           role: create.role,
           enterpriseId: create.diligenceEnterpriseId,
+          managerId: staff.diligenceManagerId,
         },
       };
     }
@@ -863,7 +864,7 @@ const loginUser = async (loginPayload) => {
       message: `User with ${loginPayload.email} signed in successfully.`,
     });
 
-    if (user.role === "Manager") {
+    if (user.role === "Enterprise") {
       return {
         message: "Login successful.",
         data: {
@@ -874,7 +875,6 @@ const loginUser = async (loginPayload) => {
           token: token,
           role: user.role,
           enterpriseId: user.diligenceEnterpriseId,
-          managerId: user.managerId,
         },
       };
     } else {
@@ -888,6 +888,7 @@ const loginUser = async (loginPayload) => {
           token: token,
           role: user.role,
           enterpriseId: user.diligenceEnterpriseId,
+          managerId: user.managerId,
         },
       };
     }
