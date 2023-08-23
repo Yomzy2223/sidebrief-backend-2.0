@@ -4265,3 +4265,173 @@ Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1
 
 Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/user/login was called
 info: Label: 22-Aug-2023 21:26:09: User with oluwolesayo7@gmail.com signed in successfully.
+info: Label: 23-Aug-2023 19:59:07: User with oluwolesayo20@gmail.com signed in successfully.
+info: Label: 23-Aug-2023 19:59:36: staff with this email oluwolesayo20@gmail.com, deleted successfully
+error: Label: 23-Aug-2023 20:36:38: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:844:45
+
+  841 //   //return the user to the user controller
+  842 
+  843 try {
+→ 844   const user = await prisma.diligenceUser.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/user/login was called
+error: Label: 23-Aug-2023 20:37:08: Error occured with error ReferenceError: accountPayload is not defined occurred when POST /diligence/user/login was called
+error: Label: 23-Aug-2023 20:37:53: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:844:45
+
+  841 //   //return the user to the user controller
+  842 
+  843 try {
+→ 844   const user = await prisma.diligenceUser.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/user/login was called
+error: Label: 23-Aug-2023 20:38:13: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:844:45
+
+  841 //   //return the user to the user controller
+  842 
+  843 try {
+→ 844   const user = await prisma.diligenceUser.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/user/login was called
+error: Label: 23-Aug-2023 20:38:36: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:844:45
+
+  841 //   //return the user to the user controller
+  842 
+  843 try {
+→ 844   const user = await prisma.diligenceUser.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/user/login was called
+error: Label: 23-Aug-2023 20:39:08: User not found with error Error: User not found occurred when POST /diligence/user/login was called
+error: Label: 23-Aug-2023 20:49:27: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:724:50
+
+  721 //create diligence user
+  722 const createAccount = async (accountPayload) => {
+  723   try {
+→ 724     const checkUser = await prisma.diligenceUser.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/user was called
+error: Label: 23-Aug-2023 20:49:44: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:289:67
+
+  286 //  get the diligence enterprise list from the table
+  287 //  return the diligence enterprise list to the diligence enterprise controller
+  288 try {
+→ 289   const diligenceEnterprises = await prisma.diligenceEnterprise.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/enterprise was called
+error: Label: 23-Aug-2023 20:49:53: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:289:67
+
+  286 //  get the diligence enterprise list from the table
+  287 //  return the diligence enterprise list to the diligence enterprise controller
+  288 try {
+→ 289   const diligenceEnterprises = await prisma.diligenceEnterprise.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/enterprise was called
+error: Label: 23-Aug-2023 20:50:06: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:289:67
+
+  286 //  get the diligence enterprise list from the table
+  287 //  return the diligence enterprise list to the diligence enterprise controller
+  288 try {
+→ 289   const diligenceEnterprises = await prisma.diligenceEnterprise.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/enterprise was called
+info: Label: 23-Aug-2023 20:52:30: User with oluwolesayo9@gmail.com signed in successfully.
+error: Label: 23-Aug-2023 20:52:30: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:900:53
+
+  897     },
+  898   };
+  899 } else {
+→ 900   const manager = await prisma.diligenceManager.findUnique({
+          where: {
+            id: null
+                ~~~~
+          }
+        })
+
+Argument id for where.id must not be null. Please use undefined instead.
+
+ occurred when POST /diligence/user/login was called
+info: Label: 23-Aug-2023 20:52:41: User with oluwolesayo9@gmail.com signed in successfully.
+error: Label: 23-Aug-2023 20:52:41: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:900:53
+
+  897     },
+  898   };
+  899 } else {
+→ 900   const manager = await prisma.diligenceManager.findUnique({
+          where: {
+            id: null
+                ~~~~
+          }
+        })
+
+Argument id for where.id must not be null. Please use undefined instead.
+
+ occurred when POST /diligence/user/login was called
+info: Label: 23-Aug-2023 20:54:33: User with oluwolesayo9@gmail.com signed in successfully.
+error: Label: 23-Aug-2023 20:54:33: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:901:53
+
+  898   };
+  899 } else {
+  900   console.log("dsfs", user);
+→ 901   const manager = await prisma.diligenceManager.findUnique({
+          where: {
+            id: null
+                ~~~~
+          }
+        })
+
+Argument id for where.id must not be null. Please use undefined instead.
+
+ occurred when POST /diligence/user/login was called
+error: Label: 23-Aug-2023 20:57:00: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:724:50
+
+  721 //create diligence user
+  722 const createAccount = async (accountPayload) => {
+  723   try {
+→ 724     const checkUser = await prisma.diligenceUser.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/user was called
+error: Label: 23-Aug-2023 20:57:20: Error occured with error Error: 
+Invalid `prisma.diligenceEnterprise.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:289:67
+
+  286 //  get the diligence enterprise list from the table
+  287 //  return the diligence enterprise list to the diligence enterprise controller
+  288 try {
+→ 289   const diligenceEnterprises = await prisma.diligenceEnterprise.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/enterprise was called
+info: Label: 23-Aug-2023 20:58:44: User with test@gmail.com signed in successfully.
+info: Label: 23-Aug-2023 20:59:30: User with test@gmail.com signed in successfully.

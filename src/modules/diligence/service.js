@@ -794,7 +794,7 @@ const createAccount = async (accountPayload) => {
           token: token,
           role: create.role,
           enterpriseId: create.diligenceEnterpriseId,
-          managerId: create.managerId,
+          managerId: manager.id,
         },
       };
     }
@@ -806,6 +806,9 @@ const createAccount = async (accountPayload) => {
         staff.diligenceManager.diligenceEnterpriseId,
         staff.diligenceManagerId
       );
+      const manager = await prisma.diligenceManager.findUnique({
+        where: { id: staff.diligenceManagerId },
+      });
 
       const userSecret = process.env.TOKEN_USER_SECRET;
       const token = generateToken({ id: create.id }, userSecret, "14d");
@@ -821,7 +824,8 @@ const createAccount = async (accountPayload) => {
           token: token,
           role: create.role,
           enterpriseId: create.diligenceEnterpriseId,
-          managerId: staff.diligenceManagerId,
+          managerId: manager.id,
+          managerEmail: manager.managerEmail,
         },
       };
     }
@@ -847,6 +851,23 @@ const loginUser = async (loginPayload) => {
 
     if (!user) {
       throw new BadRequest("Diligence user not found!.");
+    }
+
+    const enterprise = await prisma.diligenceEnterprise.findUnique({
+      where: { adminEmail: loginPayload.email },
+    });
+    const manager = await prisma.diligenceManager.findUnique({
+      where: { managerEmail: loginPayload.email },
+    });
+    const staff = await prisma.diligenceStaff.findUnique({
+      where: { email: loginPayload.email },
+      include: {
+        diligenceManager: true,
+      },
+    });
+
+    if (!enterprise && !manager && !staff) {
+      throw new BadRequest("User not found");
     }
 
     let checkPassword = await matchChecker(
@@ -878,6 +899,10 @@ const loginUser = async (loginPayload) => {
         },
       };
     } else {
+      const manager = await prisma.diligenceManager.findUnique({
+        where: { id: user.managerId },
+      });
+
       return {
         message: "Login successful.",
         data: {
@@ -888,7 +913,8 @@ const loginUser = async (loginPayload) => {
           token: token,
           role: user.role,
           enterpriseId: user.diligenceEnterpriseId,
-          managerId: user.managerId,
+          managerId: manager.id,
+          managerEmail: manager.managerEmail,
         },
       };
     }
