@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient, Prisma } = require("@prisma/client");
 const logger = require("../../config/logger");
 const { BadRequest } = require("../../utils/requestErrors");
 const prisma = new PrismaClient();
@@ -35,9 +35,7 @@ const getAllBanks = async () => {
   //  get the bank list from the table
   //  return the bank list to the country controller
   try {
-    const banks = await prisma.nigerianBank.findMany({
-      where: { isDeprecated: false },
-    });
+    const banks = await prisma.nigerianBank.findMany({});
     if (!banks) {
       throw new BadRequest("Banks not found!.");
     }
@@ -115,9 +113,8 @@ const deleteNigerianBank = async (bankId) => {
       throw new BadRequest("Bank with this ID not found.");
     }
 
-    const bank = await prisma.nigerianBank.update({
+    const bank = await prisma.nigerianBank.delete({
       where: { id: bankId },
-      data: { isDeprecated: true },
     });
 
     if (!bank) {
@@ -162,12 +159,13 @@ const createEnterprise = async (enterprisePayload) => {
     }
     logger.info({ message: `${enterprisePayload.name} created successfully` });
 
-    const regUrl = `${process.env.BASE_URL}`;
+    const regUrl = `${process.env.BASE_URL}/auth/signup`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
       name: diligence.name,
       url: regUrl,
+      role: "Enterprise",
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -178,7 +176,7 @@ const createEnterprise = async (enterprisePayload) => {
       payload,
       recipientEmail,
       senderEmail,
-      "../view/welcomeBank.ejs"
+      "../view/diligence/diligence.ejs"
     );
 
     return {
@@ -235,9 +233,8 @@ const deleteEnterprise = async (enterpriseId) => {
       throw new BadRequest("Enterprise with this ID not found.");
     }
 
-    const diligence = await prisma.diligenceEnterprise.update({
+    const diligence = await prisma.diligenceEnterprise.delete({
       where: { id: enterpriseId },
-      data: { isDeprecated: true },
     });
 
     if (!diligence) {
@@ -290,7 +287,6 @@ const getAllDiligenceEnterprises = async () => {
   //  return the diligence enterprise list to the diligence enterprise controller
   try {
     const diligenceEnterprises = await prisma.diligenceEnterprise.findMany({
-      where: { isDeprecated: false },
       include: {
         diligenceManager: {
           include: {
@@ -389,12 +385,13 @@ const createManager = async (adminId, managerPayload) => {
       message: `manager with ${managerPayload.managerEmail} added  successfully`,
     });
 
-    const regUrl = `${process.env.BASE_URL}`;
+    const regUrl = `${process.env.BASE_URL}/auth/signup`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
       name: managerPayload.managerEmail,
       url: regUrl,
+      role: "Manager",
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -405,7 +402,7 @@ const createManager = async (adminId, managerPayload) => {
       payload,
       recipientEmail,
       senderEmail,
-      "../view/welcomeBank.ejs"
+      "../view/diligence/diligence.ejs"
     );
 
     return {
@@ -424,7 +421,7 @@ const getAllDiligenceManagers = async (enterpriseId) => {
   //  return the diligence managers list to the diligence managers controller
   try {
     const managers = await prisma.diligenceManager.findMany({
-      where: { diligenceEnterpriseId: enterpriseId, isDeprecated: false },
+      where: { diligenceEnterpriseId: enterpriseId },
     });
     if (!managers) {
       throw new BadRequest(" managers not found!.");
@@ -529,9 +526,8 @@ const deleteManager = async (managerId) => {
       throw new BadRequest("Manager not found.");
     }
 
-    const diligence = await prisma.diligenceManager.update({
+    const diligence = await prisma.diligenceManager.delete({
       where: { id: managerId },
-      data: { isDeprecated: true },
     });
 
     if (!diligence) {
@@ -593,12 +589,13 @@ const createStaff = async (managerId, email) => {
       message: `diligence staff with ${email} created successfully`,
     });
 
-    const regUrl = `${process.env.BASE_URL}/diligence`;
+    const regUrl = `${process.env.BASE_URL}/auth/signup`;
     const subject = "Welcome to Sidebrief.";
 
     payload = {
       name: email,
       url: regUrl,
+      role: "Staff",
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -609,7 +606,7 @@ const createStaff = async (managerId, email) => {
       payload,
       recipientEmail,
       senderEmail,
-      "../view/welcomeBank.ejs"
+      "../view/diligence/diligence.ejs"
     );
 
     return {
@@ -628,7 +625,7 @@ const getAllDiligenceStaffs = async (managerId) => {
   //  return the diligence Staffs list to the diligence managers controller
   try {
     const diligenceStaffs = await prisma.diligenceStaff.findMany({
-      where: { diligenceManagerId: managerId, isDeprecated: false },
+      where: { diligenceManagerId: managerId },
     });
     if (!diligenceStaffs) {
       throw new BadRequest("Diligence Staffs not found!.");
@@ -674,9 +671,8 @@ const deleteStaff = async (staffId) => {
       throw new BadRequest("Staff not found.");
     }
 
-    const diligence = await prisma.diligenceStaff.update({
+    const diligence = await prisma.diligenceStaff.delete({
       where: { id: staffId },
-      data: { isDeprecated: true },
     });
 
     if (!diligence) {
@@ -697,12 +693,18 @@ const deleteStaff = async (staffId) => {
 
 // DILIGENCE USER
 //add diligence user helper
-const createDiligenceUser = async (accountPayload, role, enterpriseId) => {
+const createDiligenceUser = async (
+  accountPayload,
+  role,
+  enterpriseId,
+  managerId
+) => {
   try {
     const value = {
       ...accountPayload,
       role: `${role}`,
       diligenceEnterpriseId: enterpriseId,
+      managerId: managerId,
     };
     const user = await prisma.diligenceUser.create({ data: value });
 
@@ -748,7 +750,8 @@ const createAccount = async (accountPayload) => {
       let create = await createDiligenceUser(
         accountPayload,
         "Admin",
-        enterprise.id
+        enterprise.id,
+        ""
       );
 
       const userSecret = process.env.TOKEN_USER_SECRET;
@@ -773,7 +776,8 @@ const createAccount = async (accountPayload) => {
       let create = await createDiligenceUser(
         accountPayload,
         "Manager",
-        manager.diligenceEnterpriseId
+        manager.diligenceEnterpriseId,
+        manager.id
       );
 
       const userSecret = process.env.TOKEN_USER_SECRET;
@@ -790,6 +794,7 @@ const createAccount = async (accountPayload) => {
           token: token,
           role: create.role,
           enterpriseId: create.diligenceEnterpriseId,
+          managerId: manager.id,
         },
       };
     }
@@ -798,8 +803,12 @@ const createAccount = async (accountPayload) => {
       let create = await createDiligenceUser(
         accountPayload,
         "Staff",
-        staff.diligenceManager.diligenceEnterpriseId
+        staff.diligenceManager.diligenceEnterpriseId,
+        staff.diligenceManagerId
       );
+      const manager = await prisma.diligenceManager.findUnique({
+        where: { id: staff.diligenceManagerId },
+      });
 
       const userSecret = process.env.TOKEN_USER_SECRET;
       const token = generateToken({ id: create.id }, userSecret, "14d");
@@ -815,6 +824,8 @@ const createAccount = async (accountPayload) => {
           token: token,
           role: create.role,
           enterpriseId: create.diligenceEnterpriseId,
+          managerId: manager.id,
+          managerEmail: manager.managerEmail,
         },
       };
     }
@@ -842,6 +853,23 @@ const loginUser = async (loginPayload) => {
       throw new BadRequest("Diligence user not found!.");
     }
 
+    const enterprise = await prisma.diligenceEnterprise.findUnique({
+      where: { adminEmail: loginPayload.email },
+    });
+    const manager = await prisma.diligenceManager.findUnique({
+      where: { managerEmail: loginPayload.email },
+    });
+    const staff = await prisma.diligenceStaff.findUnique({
+      where: { email: loginPayload.email },
+      include: {
+        diligenceManager: true,
+      },
+    });
+
+    if (!enterprise && !manager && !staff) {
+      throw new BadRequest("User not found");
+    }
+
     let checkPassword = await matchChecker(
       loginPayload.password,
       user.password
@@ -857,18 +885,39 @@ const loginUser = async (loginPayload) => {
       message: `User with ${loginPayload.email} signed in successfully.`,
     });
 
-    return {
-      message: "Login successful.",
-      data: {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        token: token,
-        role: user.role,
-        enterpriseId: user.diligenceEnterpriseId,
-      },
-    };
+    if (user.role === "Admin") {
+      return {
+        message: "Login successful.",
+        data: {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          token: token,
+          role: user.role,
+          enterpriseId: user.diligenceEnterpriseId,
+        },
+      };
+    } else {
+      const manager = await prisma.diligenceManager.findUnique({
+        where: { id: user.managerId },
+      });
+
+      return {
+        message: "Login successful.",
+        data: {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          token: token,
+          role: user.role,
+          enterpriseId: user.diligenceEnterpriseId,
+          managerId: manager.id,
+          managerEmail: manager.managerEmail,
+        },
+      };
+    }
   } catch (error) {
     throw error;
   }
@@ -915,7 +964,7 @@ const forgotPassword = async (email) => {
       payload,
       recipientEmail,
       senderEmail,
-      "../view/welcomeUser.ejs"
+      "../view/resetLink.ejs"
     );
 
     return {
@@ -995,6 +1044,46 @@ const createRequest = async (requestPayload) => {
       message: `request with the name ${requestPayload.name} created successfully by ${requestPayload.createdBy}`,
     });
 
+    const subject = "Request created successfully.";
+
+    payload = {
+      name: checkUser.firstName,
+      businessName: requestPayload.name,
+      regNo: requestPayload.registrationNumber,
+      status: requestPayload.status,
+    };
+
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = requestPayload.createdBy;
+    //send email
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/diligence/diligenceRequest.ejs"
+    );
+
+    //send staff email
+    staffPayload = {
+      enterpriseName: checkEnterprise.name,
+      businessName: requestPayload.name,
+      regNo: requestPayload.registrationNumber,
+    };
+
+    const staffEmail =
+      process.env.NODE_ENV === "production"
+        ? "aw@sidebrief.com, sales@sidebrief.com, compliance@sidebrief.com"
+        : "dev@sidebrief.com";
+
+    EmailSender(
+      subject,
+      staffPayload,
+      staffEmail,
+      senderEmail,
+      "../view/diligence/staffRequestCreate.ejs"
+    );
+
     return {
       statusCode: 200,
       message: "Request created successfully!",
@@ -1011,7 +1100,6 @@ const getAllDiligenceRequests = async () => {
   //  return the diligence requests list to the diligence requests controller
   try {
     const diligenceRequests = await prisma.diligenceRequest.findMany({
-      where: { isDeprecated: false },
       include: {
         diligenceRequestDocument: true,
       },
@@ -1099,9 +1187,8 @@ const deleteRequest = async (requestId) => {
       throw new BadRequest("Request not found.");
     }
 
-    const request = await prisma.diligenceRequest.update({
+    const request = await prisma.diligenceRequest.delete({
       where: { id: requestId },
-      data: { isDeprecated: true },
     });
 
     if (!request) {
@@ -1144,6 +1231,25 @@ const verifyRequest = async (requestId) => {
     logger.info({
       message: `Request with the name ${request.name}, verified successfully`,
     });
+
+    const subject = "Request verified successfully.";
+
+    payload = {
+      businessName: updateRequest.name,
+      regNo: updateRequest.registrationNumber,
+      status: "Verified",
+    };
+
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = updateRequest.createdBy;
+    //send email
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/diligence/verifiedRequest.ejs"
+    );
 
     return {
       message: "Request verified successfully",
@@ -1226,6 +1332,25 @@ const saveRequestDocument = async (requestId, documentPayload) => {
       data: { status: "Completed" },
     });
 
+    const subject = "Request completed successfully.";
+
+    payload = {
+      businessName: updateRequest.name,
+      regNo: updateRequest.registrationNumber,
+      status: "Completed",
+    };
+
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = updateRequest.createdBy;
+    //send email
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/diligence/completedDiligenceRequest.ejs"
+    );
+
     return {
       message: "Document created successfully",
       statusCode: 200,
@@ -1251,9 +1376,8 @@ const removeRequestDocument = async (id) => {
       throw new BadRequest("Document does not exist");
     }
 
-    const deleteRequestDocument = await prisma.diligenceRequestDocument.update({
+    const deleteRequestDocument = await prisma.diligenceRequestDocument.delete({
       where: { id: id },
-      data: { isDeprecated: true },
     });
     if (!deleteRequestDocument) {
       throw new BadRequest("Document not found");
@@ -1299,7 +1423,7 @@ const getAllDocuments = async (requestId) => {
     }
 
     const checkDocument = await prisma.diligenceRequestDocument.findMany({
-      where: { diligenceRequestId: requestId, isDeprecated: false },
+      where: { diligenceRequestId: requestId },
     });
     if (!checkDocument) {
       throw new BadRequest("Documents with this id does not exist");
@@ -1344,6 +1468,88 @@ const updateRequestDocument = async (documentId, updatePayload) => {
       statusCode: 200,
       message: "Document updated successfully",
       data: updateRequestDocument,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getStaffAndRequest = async (managerId) => {
+  try {
+    const result = await prisma.$queryRaw`
+SELECT 
+u."firstName" AS firstName,
+u."lastName" AS lastName,
+    s."email",
+    s."createdAt",
+    COUNT(r.name) AS num_requests
+
+FROM 
+"DiligenceStaff" s
+
+INNER JOIN 
+"DiligenceUser" u ON s."email" = u."email"
+LEFT JOIN
+"DiligenceRequest" r ON s."email" = r."createdBy"
+WHERE
+s."diligenceManagerId" = ${managerId}
+GROUP BY u."firstName", u."lastName",
+s."email",
+s."createdAt";
+`;
+
+    if (!result) {
+      throw new BadRequest(
+        "Error occured while fetching all requests by staffs"
+      );
+    }
+
+    const modifiedResult = result.map((item) => ({
+      firstname: item.firstname,
+      lastname: item.lastname,
+      email: item.email,
+      createdAt: item.createdAt,
+      num_requests: Number(item.num_requests),
+    }));
+
+    return {
+      statusCode: 200,
+      message: "Data fetched successfully",
+      data: modifiedResult,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getBranchRequest = async (body) => {
+  try {
+    // Retrieve staff emails
+    const staffEmails = await prisma.diligenceStaff.findMany({
+      where: {
+        diligenceManagerId: body.managerId,
+      },
+      select: {
+        email: true,
+      },
+    });
+
+    // Extract staff emails from the result
+    const staffEmailList = staffEmails.map((staff) => staff.email);
+    // Retrieve requests for manager and staff
+    const requests = await prisma.diligenceRequest.findMany({
+      where: {
+        OR: [
+          { createdBy: body.managerEmail },
+          { createdBy: { in: staffEmailList } },
+        ],
+      },
+    });
+
+    return {
+      statusCode: 200,
+      message: "Data fetched successfully",
+      data: requests,
     };
   } catch (error) {
     throw error;
@@ -1401,4 +1607,7 @@ module.exports = {
   updateRequestDocument,
   getDocument,
   getAllDocuments,
+
+  getStaffAndRequest,
+  getBranchRequest,
 };
