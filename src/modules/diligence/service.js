@@ -885,7 +885,7 @@ const loginUser = async (loginPayload) => {
       message: `User with ${loginPayload.email} signed in successfully.`,
     });
 
-    if (user.role === "Enterprise") {
+    if (user.role === "Admin") {
       return {
         message: "Login successful.",
         data: {

@@ -4435,3 +4435,8 @@ Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1
 Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/enterprise was called
 info: Label: 23-Aug-2023 20:58:44: User with test@gmail.com signed in successfully.
 info: Label: 23-Aug-2023 20:59:30: User with test@gmail.com signed in successfully.
+info: Label: 24-Aug-2023 09:08:50: User with sayo@firstbank.com signed in successfully.
+error: Label: 24-Aug-2023 09:08:50: Error occured with error TypeError: Cannot read properties of null (reading 'id') occurred when POST /diligence/user/login was called
+info: Label: 24-Aug-2023 09:09:47: User with sayo@firstbank.com signed in successfully.
+error: Label: 24-Aug-2023 09:09:47: Error occured with error TypeError: Cannot read properties of null (reading 'id') occurred when POST /diligence/user/login was called
+info: Label: 24-Aug-2023 09:11:20: User with sayo@firstbank.com signed in successfully.
