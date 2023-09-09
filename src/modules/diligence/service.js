@@ -8,6 +8,12 @@ const { matchChecker } = require("../../common/hash");
 
 //DILIGENCE PRODUCT SERVICES
 
+const UserRoles = {
+  ADMIN: "Admin",
+  MANAGER: "Manager",
+  STAFF: "Staff",
+};
+
 //NIGERIAN BANKS
 //create diligence enterprise
 const createNigerianBank = async (bankPayload) => {
@@ -281,6 +287,26 @@ const getEnterprise = async (id) => {
   }
 };
 
+//get an enterprise details
+const getEnterpriseDetails = async (id) => {
+  try {
+    const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
+      where: { id: id },
+    });
+    if (!checkEnterprise) {
+      throw new BadRequest("Enterprise with this id does not exist");
+    }
+
+    return {
+      statusCode: 200,
+      message: "Enterprise fetched successfully",
+      data: checkEnterprise,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 //get all diligence enterprises service
 const getAllDiligenceEnterprises = async () => {
   //  get the diligence enterprise list from the table
@@ -351,7 +377,7 @@ const createManager = async (adminId, managerPayload) => {
       throw new BadRequest("Enterprise admin with this ID not found.");
     }
 
-    if (checkEnterpriseAdmin.role !== "Admin") {
+    if (checkEnterpriseAdmin.role !== UserRoles.ADMIN) {
       throw new BadRequest("Enterprise admin with this ID not found.");
     }
 
@@ -391,7 +417,7 @@ const createManager = async (adminId, managerPayload) => {
     payload = {
       name: managerPayload.managerEmail,
       url: regUrl,
-      role: "Manager",
+      role: UserRoles.MANAGER,
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -557,7 +583,7 @@ const createStaff = async (managerId, email) => {
       throw new BadRequest("Manager not found.");
     }
 
-    if (checkEnterpriseManager.role !== "Manager") {
+    if (checkEnterpriseManager.role !== UserRoles.MANAGER) {
       throw new BadRequest("The user with this ID is not a manager.");
     }
 
@@ -595,7 +621,7 @@ const createStaff = async (managerId, email) => {
     payload = {
       name: email,
       url: regUrl,
-      role: "Staff",
+      role: UserRoles.STAFF,
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -749,7 +775,7 @@ const createAccount = async (accountPayload) => {
     if (enterprise) {
       let create = await createDiligenceUser(
         accountPayload,
-        "Admin",
+        UserRoles.ADMIN,
         enterprise.id,
         ""
       );
@@ -775,7 +801,7 @@ const createAccount = async (accountPayload) => {
     if (manager) {
       let create = await createDiligenceUser(
         accountPayload,
-        "Manager",
+        UserRoles.MANAGER,
         manager.diligenceEnterpriseId,
         manager.id
       );
@@ -802,7 +828,7 @@ const createAccount = async (accountPayload) => {
     if (staff) {
       let create = await createDiligenceUser(
         accountPayload,
-        "Staff",
+        UserRoles.STAFF,
         staff.diligenceManager.diligenceEnterpriseId,
         staff.diligenceManagerId
       );
@@ -885,7 +911,7 @@ const loginUser = async (loginPayload) => {
       message: `User with ${loginPayload.email} signed in successfully.`,
     });
 
-    if (user.role === "Admin") {
+    if (user.role === UserRoles.ADMIN) {
       return {
         message: "Login successful.",
         data: {
@@ -1564,6 +1590,7 @@ module.exports = {
   getAllDiligenceEnterprises,
   getEnterprise,
   getEnterpriseByAdminEmail,
+  getEnterpriseDetails,
 
   //manager
   createManager,

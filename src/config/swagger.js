@@ -1308,6 +1308,42 @@ const options = {
         },
       },
 
+      "/diligence/enterprise-details/{enterpriseId}": {
+        get: {
+          summary: "Get an enterprise details with given ID",
+          tags: ["Diligence Enterprise"],
+          parameters: [
+            {
+              name: "enterpriseId",
+              in: "path",
+              required: true,
+              description: "ID of enterprise details to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Diligence Enterprise is fetched",
+              schema: {
+                $ref: "#/components/schemas/DiligenceEnterprise",
+              },
+            },
+            401: {
+              description: "Unauthorized - User not authorized",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+            400: {
+              description: "Not found",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+          },
+        },
+      },
+
       "/diligence/enterpriseByEmail/{adminEmail}": {
         get: {
           summary: "Get an enterprise with given enterprise admin email",

@@ -41,6 +41,7 @@ const {
   updateDiligenceRequest,
   getStaffAndRequest,
   getBranchRequest,
+  getEnterpriseDetails,
 } = require("./service");
 const { default: axios } = require("axios");
 
@@ -163,6 +164,20 @@ exports.GetSingleEnterprise = async (req, res, next) => {
   try {
     const enterpriseId = req.params.enterpriseId;
     const enterprise = await getEnterprise(enterpriseId);
+
+    return res
+      .status(enterprise.statusCode)
+      .json({ message: enterprise.message, data: enterprise.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get single enterprise details
+exports.GetSingleEnterpriseDetails = async (req, res, next) => {
+  try {
+    const enterpriseId = req.params.enterpriseId;
+    const enterprise = await getEnterpriseDetails(enterpriseId);
 
     return res
       .status(enterprise.statusCode)

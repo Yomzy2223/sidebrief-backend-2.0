@@ -57,6 +57,7 @@ const {
   UpdateDiligenceRequest,
   GetStaffAndRequest,
   GetManagerRequests,
+  GetSingleEnterpriseDetails,
 } = require("./controller");
 
 //NIGERIAN BANKS
@@ -75,6 +76,7 @@ router.post(
 );
 router.get("/enterprise", GetAllDiligenceEnterprises);
 router.get("/enterprise/:enterpriseId", GetSingleEnterprise);
+router.get("/enterprise-details/:enterpriseId", GetSingleEnterpriseDetails);
 router.get("/enterpriseByEmail/:adminEmail", GetSingleEnterpriseByAdminEmail);
 router.put(
   "/enterprise/:enterpriseId",
