@@ -27,9 +27,17 @@ class Forbidden extends CustomError {
   }
 }
 
+// General not found error
+class NotFound extends CustomError {
+  constructor(message = "Not Found") {
+    super(message, 404);
+  }
+}
+
 module.exports = {
   CustomError,
   BadRequest,
   Unauthorized,
   Forbidden,
+  NotFound,
 };

@@ -1320,6 +1320,57 @@ const updateRequest = async (requestId) => {
   }
 };
 
+//verify multiple request document
+const verifyMultipleRequest = async (requestList) => {
+  try {
+    const request = await prisma.diligenceRequest.findMany({
+      where: {
+        OR: [{ id: { in: requestList } }],
+      },
+    });
+    if (!request) {
+      throw new BadRequest("Request does not exist");
+    }
+
+    const updateRequest = await prisma.diligenceRequest.updateMany({
+      where: {
+        OR: [{ id: { in: requestList } }],
+      },
+      data: { status: "Verified" },
+    });
+
+    if (!updateRequest) {
+      throw new BadRequest("Error occured while verifying these requests");
+    }
+
+    // const subject = "Request verified successfully.";
+
+    // payload = {
+    //   businessName: updateRequest.name,
+    //   regNo: updateRequest.registrationNumber,
+    //   status: "Verified",
+    // };
+
+    // const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    // const recipientEmail = updateRequest.createdBy;
+    // //send email
+    // EmailSender(
+    //   subject,
+    //   payload,
+    //   recipientEmail,
+    //   senderEmail,
+    //   "../view/diligence/verifiedRequest.ejs"
+    // );
+
+    return {
+      message: "Requests verified successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 //save request document
 const saveRequestDocument = async (requestId, documentPayload) => {
   //add the new document to the table
@@ -1627,6 +1678,7 @@ module.exports = {
   updateRequest,
   getDiligenceRequest,
   deleteRequest,
+  verifyMultipleRequest,
 
   //Request Document
   saveRequestDocument,

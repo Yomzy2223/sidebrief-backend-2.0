@@ -42,6 +42,7 @@ const {
   getStaffAndRequest,
   getBranchRequest,
   getEnterpriseDetails,
+  verifyMultipleRequest,
 } = require("./service");
 const { default: axios } = require("axios");
 
@@ -609,6 +610,23 @@ exports.VerifyRequest = async (req, res, next) => {
     const id = req.params.requestId;
 
     const verify = await verifyRequest(id);
+
+    return res.status(verify.statusCode).json({ message: verify.message });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//verify multiple requests
+exports.VerifyMultipleRequest = async (req, res, next) => {
+  try {
+    //get the list from the client
+    //send the list to the verify service
+    //return response to the client
+
+    const list = req.body;
+
+    const verify = await verifyMultipleRequest(list);
 
     return res.status(verify.statusCode).json({ message: verify.message });
   } catch (error) {

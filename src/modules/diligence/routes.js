@@ -58,6 +58,7 @@ const {
   GetStaffAndRequest,
   GetManagerRequests,
   GetSingleEnterpriseDetails,
+  VerifyMultipleRequest,
 } = require("./controller");
 
 //NIGERIAN BANKS
@@ -132,6 +133,7 @@ router.put(
   UpdateDiligenceRequest
 );
 router.put("/request/verify/:requestId", VerifyRequest);
+router.put("/request/verify/many", VerifyMultipleRequest);
 router.put("/request/update/:requestId", UpdateRequest);
 router.delete("/request/:requestId", DeleteRequest);
 
