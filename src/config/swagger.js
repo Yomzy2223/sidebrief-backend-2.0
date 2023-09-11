@@ -202,7 +202,14 @@ const options = {
         //DILIGENCE ENTERPRISE
         DiligenceEnterprise: {
           type: "object",
-          require: ["name", "address", "adminEmail", "logo", "color"],
+          require: [
+            "name",
+            "address",
+            "adminEmail",
+            "logo",
+            "color",
+            "backDrop",
+          ],
           properties: {
             name: {
               type: "string",
@@ -223,6 +230,10 @@ const options = {
             color: {
               type: "string",
               description: "The primary color of the enterprise",
+            },
+            backdrop: {
+              type: "string",
+              description: "The backDrop of the enterprise",
             },
           },
         },
@@ -395,6 +406,18 @@ const options = {
             color: {
               type: "string",
               description: "The color of the bank",
+            },
+          },
+        },
+
+        //UPDATE MANY REQUEST
+        UpdateManyRequest: {
+          type: "object",
+          require: ["requestIds"],
+          properties: {
+            requestIds: {
+              type: "array",
+              description: "The request IDs of the request to be verified",
             },
           },
         },
@@ -2138,6 +2161,34 @@ const options = {
               description: "Diligence request  is updated",
               schema: {
                 $ref: "#/components/schemas/DiligenceRequest",
+              },
+            },
+          },
+        },
+      },
+
+      "/diligence/requests/update": {
+        put: {
+          summary: "Update all diligence request with give IDs",
+          tags: ["Diligence Request"],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UpdateManyRequest", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Diligence request  is updated",
+              schema: {
+                $ref: "#/components/schemas/UpdateManyRequest",
               },
             },
           },

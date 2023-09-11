@@ -10,6 +10,7 @@ const {
   validateEnterpriseCredentials,
   validateManagerCredentials,
   validateUpdateDiligenceRequest,
+  validateUpdateManyDiligenceRequest,
 } = require("../../utils/validation/diligence");
 const { staffAuth } = require("../../middleware/auth");
 const router = express.Router();
@@ -133,8 +134,12 @@ router.put(
   UpdateDiligenceRequest
 );
 router.put("/request/verify/:requestId", VerifyRequest);
-router.put("/request/verify/many", VerifyMultipleRequest);
-router.put("/request/update/:requestId", UpdateRequest);
+router.put(
+  "/requests/update",
+  validator(validateUpdateManyDiligenceRequest),
+  VerifyMultipleRequest
+);
+router.put("/request/update/:requestId", staffAuth, UpdateRequest);
 router.delete("/request/:requestId", DeleteRequest);
 
 //REQUEST DOCUMENT

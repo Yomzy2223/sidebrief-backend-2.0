@@ -147,6 +147,7 @@ exports.CreateEnterprise = async (req, res, next) => {
       adminEmail: enterprisePayload.adminEmail,
       color: enterprisePayload.color,
       logo: enterprisePayload.logo,
+      backdrop: enterprisePayload.backdrop,
     };
 
     const diligenceEnterprise = await createEnterprise(values);
@@ -606,7 +607,6 @@ exports.VerifyRequest = async (req, res, next) => {
     //check if there is id
     // send the id to the verify service
     //return response to the client
-
     const id = req.params.requestId;
 
     const verify = await verifyRequest(id);
@@ -624,9 +624,9 @@ exports.VerifyMultipleRequest = async (req, res, next) => {
     //send the list to the verify service
     //return response to the client
 
-    const list = req.body;
+    const { requestIds } = req.body;
 
-    const verify = await verifyMultipleRequest(list);
+    const verify = await verifyMultipleRequest(requestIds);
 
     return res.status(verify.statusCode).json({ message: verify.message });
   } catch (error) {

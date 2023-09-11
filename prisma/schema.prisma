@@ -175,6 +175,7 @@ model DiligenceEnterprise {
       adminEmail String @unique
       color String?
       logo String?
+      backdrop String?
       isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())

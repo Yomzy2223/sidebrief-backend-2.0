@@ -1,6 +1,6 @@
 const { PrismaClient, Prisma } = require("@prisma/client");
 const logger = require("../../config/logger");
-const { BadRequest } = require("../../utils/requestErrors");
+const { BadRequest, NotFound } = require("../../utils/requestErrors");
 const prisma = new PrismaClient();
 const EmailSender = require("../../services/emailEngine");
 const { generateToken } = require("../../common/token");
@@ -12,6 +12,12 @@ const UserRoles = {
   ADMIN: "Admin",
   MANAGER: "Manager",
   STAFF: "Staff",
+};
+
+const RequestStatus = {
+  UNVERIFIED: "Unverified",
+  VERIFIED: "Verified",
+  INPROGRESS: "In progress",
 };
 
 //NIGERIAN BANKS
@@ -43,7 +49,7 @@ const getAllBanks = async () => {
   try {
     const banks = await prisma.nigerianBank.findMany({});
     if (!banks) {
-      throw new BadRequest("Banks not found!.");
+      throw new NotFound("Banks not found!.");
     }
 
     return {
@@ -84,7 +90,7 @@ const udpateNigerianBank = async (bankId, bankPayload) => {
     });
 
     if (!checkBank) {
-      throw new BadRequest("Bank not found.");
+      throw new NotFound("Bank not found.");
     }
 
     const bank = await prisma.nigerianBank.update({
@@ -116,7 +122,7 @@ const deleteNigerianBank = async (bankId) => {
     });
 
     if (!checkBank) {
-      throw new BadRequest("Bank with this ID not found.");
+      throw new NotFound("Bank with this ID not found.");
     }
 
     const bank = await prisma.nigerianBank.delete({
@@ -154,6 +160,22 @@ const createEnterprise = async (enterprisePayload) => {
 
     if (checkEnterpriseEmail) {
       throw new BadRequest("Email already exists");
+    }
+
+    const checkManager = await prisma.diligenceManager.findUnique({
+      where: { managerEmail: enterprisePayload.adminEmail },
+    });
+
+    if (checkManager) {
+      throw new BadRequest(" Email already exists as a manager");
+    }
+
+    const checkStaff = await prisma.diligenceStaff.findUnique({
+      where: { email: enterprisePayload.adminEmail },
+    });
+
+    if (checkStaff) {
+      throw new BadRequest("Email already exists as a staff");
     }
 
     const diligence = await prisma.DiligenceEnterprise.create({
@@ -203,7 +225,7 @@ const udpateEnterprise = async (enterpriseId, enterprisePayload) => {
     });
 
     if (!checkEnterprise) {
-      throw new BadRequest("Enterprise with this id not found.");
+      throw new NotFound("Enterprise with this id not found.");
     }
 
     const diligence = await prisma.DiligenceEnterprise.update({
@@ -236,7 +258,7 @@ const deleteEnterprise = async (enterpriseId) => {
     });
 
     if (!checkEnterprise) {
-      throw new BadRequest("Enterprise with this ID not found.");
+      throw new NotFound("Enterprise with this ID not found.");
     }
 
     const diligence = await prisma.diligenceEnterprise.delete({
@@ -323,7 +345,7 @@ const getAllDiligenceEnterprises = async () => {
       },
     });
     if (!diligenceEnterprises) {
-      throw new BadRequest("Diligence enterprises not found!.");
+      throw new NotFound("Diligence enterprises not found!.");
     }
 
     return {
@@ -374,11 +396,11 @@ const createManager = async (adminId, managerPayload) => {
     });
 
     if (!checkEnterpriseAdmin) {
-      throw new BadRequest("Enterprise admin with this ID not found.");
+      throw new NotFound("Enterprise admin with this ID not found.");
     }
 
     if (checkEnterpriseAdmin.role !== UserRoles.ADMIN) {
-      throw new BadRequest("Enterprise admin with this ID not found.");
+      throw new NotFound("Enterprise admin with this ID not found.");
     }
 
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
@@ -398,6 +420,22 @@ const createManager = async (adminId, managerPayload) => {
 
     if (checkManagerEmail) {
       throw new BadRequest("Manager this email already exists");
+    }
+
+    const checkAdmin = await prisma.diligenceEnterprise.findUnique({
+      where: { adminEmail: managerPayload.managerEmail },
+    });
+
+    if (checkAdmin) {
+      throw new BadRequest("Email already exists as an admin");
+    }
+
+    const checkStaff = await prisma.diligenceStaff.findUnique({
+      where: { email: managerPayload.managerEmail },
+    });
+
+    if (checkStaff) {
+      throw new BadRequest("Email already exists as a staff");
     }
 
     const manager = await prisma.diligenceManager.create({
@@ -450,7 +488,7 @@ const getAllDiligenceManagers = async (enterpriseId) => {
       where: { diligenceEnterpriseId: enterpriseId },
     });
     if (!managers) {
-      throw new BadRequest(" managers not found!.");
+      throw new NotFound(" managers not found!.");
     }
 
     const enterprise = await prisma.diligenceEnterprise.findUnique({
@@ -516,7 +554,7 @@ const udpateManager = async (managerId, managerPayload) => {
     });
 
     if (!checkManager) {
-      throw new BadRequest("Manager with this ID not found.");
+      throw new NotFound("Manager with this ID not found.");
     }
 
     const manager = await prisma.diligenceManager.update({
@@ -549,7 +587,7 @@ const deleteManager = async (managerId) => {
     });
 
     if (!checkManager) {
-      throw new BadRequest("Manager not found.");
+      throw new NotFound("Manager not found.");
     }
 
     const diligence = await prisma.diligenceManager.delete({
@@ -580,7 +618,7 @@ const createStaff = async (managerId, email) => {
       where: { id: managerId },
     });
     if (!checkEnterpriseManager) {
-      throw new BadRequest("Manager not found.");
+      throw new NotFound("Manager not found.");
     }
 
     if (checkEnterpriseManager.role !== UserRoles.MANAGER) {
@@ -602,6 +640,22 @@ const createStaff = async (managerId, email) => {
 
     if (checkStaff) {
       throw new BadRequest("Staff with this email already exists");
+    }
+
+    const checkBranch = await prisma.diligenceManager.findUnique({
+      where: { managerEmail: email },
+    });
+
+    if (checkBranch) {
+      throw new BadRequest(" Email already exists as a manager");
+    }
+
+    const checkAdmin = await prisma.diligenceEnterprise.findUnique({
+      where: { adminEmail: email },
+    });
+
+    if (checkAdmin) {
+      throw new BadRequest("Email already exists as an admin");
     }
 
     const diligenceStaff = await prisma.diligenceStaff.create({
@@ -654,7 +708,7 @@ const getAllDiligenceStaffs = async (managerId) => {
       where: { diligenceManagerId: managerId },
     });
     if (!diligenceStaffs) {
-      throw new BadRequest("Diligence Staffs not found!.");
+      throw new NotFound("Diligence Staffs not found!.");
     }
 
     return {
@@ -694,7 +748,7 @@ const deleteStaff = async (staffId) => {
     });
 
     if (!checkStaff) {
-      throw new BadRequest("Staff not found.");
+      throw new NotFound("Staff not found.");
     }
 
     const diligence = await prisma.diligenceStaff.delete({
@@ -876,7 +930,7 @@ const loginUser = async (loginPayload) => {
     });
 
     if (!user) {
-      throw new BadRequest("Diligence user not found!.");
+      throw new NotFound("Diligence user not found!.");
     }
 
     const enterprise = await prisma.diligenceEnterprise.findUnique({
@@ -893,7 +947,7 @@ const loginUser = async (loginPayload) => {
     });
 
     if (!enterprise && !manager && !staff) {
-      throw new BadRequest("User not found");
+      throw new NotFound("User not found");
     }
 
     let checkPassword = await matchChecker(
@@ -962,7 +1016,7 @@ const forgotPassword = async (email) => {
     });
 
     if (!user) {
-      throw new BadRequest("User not found!.");
+      throw new NotFound("User not found!.");
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
@@ -1015,7 +1069,7 @@ const changePassword = async (changePayload) => {
     });
 
     if (!user) {
-      throw new BadRequest("diligence User not found!.");
+      throw new NotFound("diligence User not found!.");
     }
 
     let checkToken = await matchChecker(changePayload.token, user.resetToken);
@@ -1056,7 +1110,7 @@ const createRequest = async (requestPayload) => {
     });
 
     if (!checkEnterprise) {
-      throw new BadRequest("Enterprise with this ID not found.");
+      throw new NotFound("Enterprise with this ID not found.");
     }
 
     const request = await prisma.diligenceRequest.create({
@@ -1131,7 +1185,7 @@ const getAllDiligenceRequests = async () => {
       },
     });
     if (!diligenceRequests) {
-      throw new BadRequest("Diligence requests not found!.");
+      throw new NotFound("Diligence requests not found!.");
     }
 
     return {
@@ -1153,7 +1207,7 @@ const getDiligenceRequest = async (requestId) => {
       where: { id: requestId },
     });
     if (!diligenceRequest) {
-      throw new BadRequest("Diligence requests not found!.");
+      throw new NotFound("Diligence requests not found!.");
     }
     return {
       message: "Diligence request fetched successfully",
@@ -1210,7 +1264,7 @@ const deleteRequest = async (requestId) => {
     });
 
     if (!checkRequest) {
-      throw new BadRequest("Request not found.");
+      throw new NotFound("Request not found.");
     }
 
     const request = await prisma.diligenceRequest.delete({
@@ -1236,7 +1290,6 @@ const deleteRequest = async (requestId) => {
 //verify request document
 const verifyRequest = async (requestId) => {
   //add the new request to the table
-
   try {
     const request = await prisma.diligenceRequest.findUnique({
       where: { id: requestId },
@@ -1247,7 +1300,7 @@ const verifyRequest = async (requestId) => {
 
     const updateRequest = await prisma.diligenceRequest.update({
       where: { id: requestId },
-      data: { status: "Verified" },
+      data: { status: RequestStatus.VERIFIED },
     });
 
     if (!updateRequest) {
@@ -1263,7 +1316,7 @@ const verifyRequest = async (requestId) => {
     payload = {
       businessName: updateRequest.name,
       regNo: updateRequest.registrationNumber,
-      status: "Verified",
+      status: RequestStatus.VERIFIED,
     };
 
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -1300,7 +1353,7 @@ const updateRequest = async (requestId) => {
 
     const updateRequest = await prisma.diligenceRequest.update({
       where: { id: requestId },
-      data: { status: "In progress" },
+      data: { status: RequestStatus.INPROGRESS },
     });
 
     if (!updateRequest) {
@@ -1323,47 +1376,19 @@ const updateRequest = async (requestId) => {
 //verify multiple request document
 const verifyMultipleRequest = async (requestList) => {
   try {
-    const request = await prisma.diligenceRequest.findMany({
-      where: {
-        OR: [{ id: { in: requestList } }],
-      },
-    });
-    if (!request) {
-      throw new BadRequest("Request does not exist");
-    }
-
     const updateRequest = await prisma.diligenceRequest.updateMany({
       where: {
-        OR: [{ id: { in: requestList } }],
+        id: { in: requestList },
       },
-      data: { status: "Verified" },
+      data: { status: RequestStatus.VERIFIED },
     });
 
     if (!updateRequest) {
       throw new BadRequest("Error occured while verifying these requests");
     }
 
-    // const subject = "Request verified successfully.";
-
-    // payload = {
-    //   businessName: updateRequest.name,
-    //   regNo: updateRequest.registrationNumber,
-    //   status: "Verified",
-    // };
-
-    // const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
-    // const recipientEmail = updateRequest.createdBy;
-    // //send email
-    // EmailSender(
-    //   subject,
-    //   payload,
-    //   recipientEmail,
-    //   senderEmail,
-    //   "../view/diligence/verifiedRequest.ejs"
-    // );
-
     return {
-      message: "Requests verified successfully",
+      message: ` ${updateRequest.count} request(s) updated successfully.`,
       statusCode: 200,
     };
   } catch (error) {
@@ -1457,7 +1482,7 @@ const removeRequestDocument = async (id) => {
       where: { id: id },
     });
     if (!deleteRequestDocument) {
-      throw new BadRequest("Document not found");
+      throw new NotFound("Document not found");
     }
 
     return {

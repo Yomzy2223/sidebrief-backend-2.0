@@ -14,6 +14,8 @@ const validateEnterpriseCredentials = validate.compile(enterpriseSchema);
 //manager
 const userManagerSchema = {
   managerEmail: { type: "email", min: 3, max: 255 },
+  location: { type: "string", min: 3, max: 300 },
+  name: { type: "string", min: 3, max: 50 },
 };
 
 const validateManagerCredentials = validate.compile(userManagerSchema);
@@ -81,6 +83,15 @@ const validateUpdateDiligenceRequest = validate.compile(
   updateDiligenceRequestSchema
 );
 
+//many request
+const updateManyDiligenceRequestSchema = {
+  requestIds: { type: "array", items: "string", min: 1 },
+};
+
+const validateUpdateManyDiligenceRequest = validate.compile(
+  updateManyDiligenceRequestSchema
+);
+
 //document registration
 const diligenceDocumentSchema = {
   name: { type: "string", min: 3, max: 100 },
@@ -102,4 +113,5 @@ module.exports = {
   validateUserAcccountCredentials,
   validateRequestCredentials,
   validateUpdateDiligenceRequest,
+  validateUpdateManyDiligenceRequest,
 };
