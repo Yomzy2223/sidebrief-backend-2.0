@@ -157,7 +157,6 @@ exports.CreateEnterprise = async (req, res, next) => {
       data: diligenceEnterprise.data,
     });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -785,9 +784,9 @@ exports.GetStaffAndRequest = async (req, res, next) => {
 
 exports.GetManagerRequests = async (req, res, next) => {
   try {
-    const body = req.body;
+    const managerId = req.params.managerId;
 
-    const result = await getBranchRequest(body);
+    const result = await getBranchRequest(managerId);
 
     return res
       .status(result.statusCode)

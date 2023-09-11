@@ -162,6 +162,6 @@ router.delete("/document/:documentId", staffAuth, DeleteDocument);
 router.get("/test", Test);
 
 router.get("/staffRequest/:managerId", GetStaffAndRequest);
-router.post("/managerRequest", GetManagerRequests);
+router.get("/managerRequest/:managerId", GetManagerRequests);
 
 module.exports = router;

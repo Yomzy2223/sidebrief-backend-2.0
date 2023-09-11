@@ -4876,3 +4876,350 @@ Argument where of type DiligenceUserWhereUniqueInput needs at least one argument
 
 Note: Lines with ? are optional.
  occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:28:44: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:28:56: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:28:58: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:28:59: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:29:01: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:29:02: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:29:03: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:30:38: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:32:02: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1622:51
+
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+  1621     console.log("Getting branch request", managerId);
+→ 1622     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:32:21: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1622:51
+
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+  1621     console.log("Getting branch request", managerId);
+→ 1622     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+               id: {
+                 managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+               }
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             }
+           })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:32:58: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:51
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const Manager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:33:29: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:51
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const Manager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:33:31: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:51
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const Manager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:33:31: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:51
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const Manager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:34:45: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:56
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const checkManager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:34:47: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:56
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const checkManager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:35:11: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:56
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const checkManager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:35:41: Error occured with error TypeError: Cannot read properties of undefined (reading 'statusCode') occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called

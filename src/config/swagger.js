@@ -2006,24 +2006,20 @@ const options = {
         },
       },
 
-      "/diligence/managerRequest": {
+      "/diligence/managerRequest/{requestId}": {
         //get diligence requests of a branch
-        post: {
+        get: {
+          summary: "Get all diligence requests of a branch",
           tags: ["Diligence Request"],
-          description: "get diligence request of a branch",
-          summary: "get a diligence request of a branch ",
-
-          requestBody: {
-            // expected request body
-            content: {
-              // content-type
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/DiligenceBranchRequest", //
-                },
-              },
+          parameters: [
+            {
+              name: "requestId",
+              in: "path",
+              required: true,
+              description: "ID of branch to be fetched",
+              type: "string",
             },
-          },
+          ],
           produces: ["application/json"],
           responses: {
             200: {

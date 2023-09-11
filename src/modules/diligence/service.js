@@ -1616,12 +1616,19 @@ s."createdAt";
   }
 };
 
-const getBranchRequest = async (body) => {
+const getBranchRequest = async (managerId) => {
   try {
+    const checkManager = await prisma.diligenceManager.findUnique({
+      where: { id: managerId },
+    });
+    if (!checkManager) {
+      throw new BadRequest("Manager with this id does not exist");
+    }
+
     // Retrieve staff emails
     const staffEmails = await prisma.diligenceStaff.findMany({
       where: {
-        diligenceManagerId: body.managerId,
+        diligenceManagerId: checkManager.id,
       },
       select: {
         email: true,
@@ -1634,7 +1641,7 @@ const getBranchRequest = async (body) => {
     const requests = await prisma.diligenceRequest.findMany({
       where: {
         OR: [
-          { createdBy: body.managerEmail },
+          { createdBy: checkManager.managerEmail },
           { createdBy: { in: staffEmailList } },
         ],
       },
