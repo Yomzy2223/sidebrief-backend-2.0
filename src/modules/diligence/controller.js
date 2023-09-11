@@ -157,6 +157,7 @@ exports.CreateEnterprise = async (req, res, next) => {
       data: diligenceEnterprise.data,
     });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };

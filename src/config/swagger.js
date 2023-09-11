@@ -114,11 +114,11 @@ const options = {
           type: "object",
           require: ["email", "password"],
           properties: {
-            email: {
+            token: {
               type: "string",
-              description: "The email of the user",
+              description: "The token sent to the user email",
             },
-            email: {
+            password: {
               type: "string",
               description: "The new password of the user",
             },

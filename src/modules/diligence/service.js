@@ -1022,11 +1022,9 @@ const forgotPassword = async (email) => {
     const userSecret = process.env.TOKEN_USER_SECRET;
     const userToken = await generateToken({ email: email }, userSecret, "30m");
 
-    const cryptedToken = await hasher(userToken, 12);
-
     const updatedUser = await prisma.diligenceUser.update({
       where: { id: user.id },
-      data: { resetToken: cryptedToken },
+      data: { resetToken: userToken },
     });
 
     const url = `${process.env.BASE_URL}/auth/new-password/${userToken}`;
@@ -1064,24 +1062,18 @@ const changePassword = async (changePayload) => {
   // save the new password and update reset token to null
 
   try {
-    const user = await prisma.diligenceUser.findUnique({
-      where: { email: changePayload.email },
+    const user = await prisma.diligenceUser.findMany({
+      where: { resetToken: changePayload.token },
     });
 
-    if (!user) {
-      throw new NotFound("diligence User not found!.");
-    }
-
-    let checkToken = await matchChecker(changePayload.token, user.resetToken);
-
-    if (!checkToken) {
-      throw new BadRequest("Invalid token");
+    if (user.length === 0) {
+      throw new BadRequest("Invalid token or user not found");
     }
 
     const cryptedPassword = await hasher(changePayload.password, 12);
 
     const updateUser = await prisma.diligenceUser.update({
-      where: { id: user.id },
+      where: { id: user[0].id },
       data: { resetToken: null, password: cryptedPassword },
     });
 

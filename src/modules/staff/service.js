@@ -236,25 +236,18 @@ const forgotPassword = async (resetPayload) => {
 
 // change password service
 const changePassword = async (changePayload) => {
-  // take the email, resetToken and password from the controller
-  // check that the email is registered to a staff account
   // compare the token with the one saved in the database
   // save the new password and update reset token to null
 
   try {
     const staff = await prisma.staff.findUnique({
-      where: { email: changePayload.email },
+      where: { email: changePayload.token },
     });
 
     if (!staff) {
-      throw new BadRequest("Staff not found");
+      throw new BadRequest("Invalid token or Staff not found");
     }
 
-    let checkToken = await matchChecker(changePayload.token, staff.resetToken);
-
-    if (!checkToken) {
-      throw new BadRequest("Invalid token");
-    }
     const cryptedPassword = await hasher(changePayload.password, 12);
 
     const updateStaff = await prisma.staff.update({
@@ -267,6 +260,7 @@ const changePassword = async (changePayload) => {
       statusCode: 200,
     };
   } catch (error) {
+    console.log("sdds", error);
     throw error;
   }
 };

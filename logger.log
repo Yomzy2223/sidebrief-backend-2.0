@@ -4689,3 +4689,190 @@ type DiligenceEnterpriseCreateInput {
 info: Label: 11-Sep-2023 10:50:19: Fix created successfully
 error: Label: 11-Sep-2023 10:54:58: Enterprise with this id does not exist with error Error: Enterprise with this id does not exist occurred when GET /diligence/enterprise/58bf942e-4bf9-4ca7-96d1-dfe71183174b was called
 error: Label: 11-Sep-2023 10:55:55: Enterprise with this ID not found. with error Error: Enterprise with this ID not found. occurred when DELETE /diligence/enterprise/58bf942e-4bf9-4ca7-96d1-dfe71183174b was called
+error: Label: 11-Sep-2023 13:42:06: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called
+info: Label: 11-Sep-2023 13:42:39: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 11-Sep-2023 13:43:07: Error occured with error Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.js:45:43
+
+  42   throw new Unauthorized("Invalid or expired staff token.");
+  43 }
+  44 
+→ 45 const checkStaff = await prisma.staff.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/enterprise was called
+error: Label: 11-Sep-2023 13:43:23: Error occured with error Error: 
+Invalid `prisma.DiligenceEnterprise.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:149:62
+
+  146 //create diligence enterprise
+  147 const createEnterprise = async (enterprisePayload) => {
+  148   try {
+→ 149     const checkEnterprise = await prisma.DiligenceEnterprise.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/enterprise was called
+error: Label: 11-Sep-2023 13:43:55: Email already exists with error Error: Email already exists occurred when POST /diligence/enterprise was called
+info: Label: 11-Sep-2023 13:44:10: stringt created successfully
+error: Label: 11-Sep-2023 13:44:30: Email already exists with error Error: Email already exists occurred when POST /diligence/enterprise was called
+error: Label: 11-Sep-2023 13:45:38: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1067:45
+
+  1064 // save the new password and update reset token to null
+  1065 
+  1066 try {
+→ 1067   const user = await prisma.diligenceUser.findUnique({
+           where: {
+             resetToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFraW55ZW1pQHNpZGVicmllZi5jb20iLCJpYXQiOjE2OTQ0MzYyOTYsImV4cCI6MTY5NDQzODA5Nn0.cBTEffPUYW78h_VB93Jhg-oFkRTLj6uxhJhEzTylqB8'
+             ~~~~~~~~~~
+           }
+         })
+
+Unknown arg `resetToken` in where.resetToken for type DiligenceUserWhereUniqueInput. Available args:
+
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:46:16: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1067:45
+
+  1064 // save the new password and update reset token to null
+  1065 
+  1066 try {
+→ 1067   const user = await prisma.diligenceUser.findUnique({
+           where: {
+             resetToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFraW55ZW1pQHNpZGVicmllZi5jb20iLCJpYXQiOjE2OTQ0MzYyOTYsImV4cCI6MTY5NDQzODA5Nn0.cBTEffPUYW78h_VB93Jhg-oFkRTLj6uxhJhEzTylqB8'
+             ~~~~~~~~~~
+           }
+         })
+
+Unknown arg `resetToken` in where.resetToken for type DiligenceUserWhereUniqueInput. Available args:
+
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:50:27: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1065:45
+
+  1062 // save the new password and update reset token to null
+  1063 
+  1064 try {
+→ 1065   const user = await prisma.diligenceUser.findUnique({
+           where: {
+             resetToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFraW55ZW1pQHNpZGVicmllZi5jb20iLCJpYXQiOjE2OTQ0MzY1OTcsImV4cCI6MTY5NDQzODM5N30.PSvrlpCFbdaxRkyTbEzkNKc6lipWOfZ1RO_WawwhGEc'
+             ~~~~~~~~~~
+           }
+         })
+
+Unknown arg `resetToken` in where.resetToken for type DiligenceUserWhereUniqueInput. Available args:
+
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:55:40: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:56:04: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:57:28: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:58:14: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:59:41: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:00:47: Error occured with error ReferenceError: user is not defined occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:01:24: Error occured with error Error: 
+Invalid `prisma.diligenceUser.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1075:51
+
+  1072 
+  1073 const cryptedPassword = await hasher(changePayload.password, 12);
+  1074 
+→ 1075 const updateUser = await prisma.diligenceUser.update({
+         where: {
+       ?   id?: String,
+       ?   email?: String
+         },
+         data: {
+           resetToken: null,
+           password: '$2a$12$CAJqXRLF4H/n4wHUwpDEnunmFgnqsWKWFPySGQYlKdHQdWg9.iMb2'
+         }
+       })
+
+Argument where of type DiligenceUserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:02:23: Error occured with error Error: 
+Invalid `prisma.diligenceUser.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1075:51
+
+  1072 
+  1073 const cryptedPassword = await hasher(changePayload.password, 12);
+  1074 
+→ 1075 const updateUser = await prisma.diligenceUser.update({
+         where: {
+       ?   id?: String,
+       ?   email?: String
+         },
+         data: {
+           resetToken: null,
+           password: '$2a$12$VjCqrDOJMWxz7Z0DX358BeO7C.o7pA1GOcNNS4sNO3HdxYuMEyUTu'
+         }
+       })
+
+Argument where of type DiligenceUserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:04:17: Error occured with error Error: 
+Invalid `prisma.diligenceUser.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1075:51
+
+  1072 
+  1073 const cryptedPassword = await hasher(changePayload.password, 12);
+  1074 
+→ 1075 const updateUser = await prisma.diligenceUser.update({
+         where: {
+       ?   id?: String,
+       ?   email?: String
+         },
+         data: {
+           resetToken: null,
+           password: '$2a$12$7UZ0omWEYRvF2sNevDXJ1.kZK3rPFPW2TPyPmMLKskQgg8JY1/fmy'
+         }
+       })
+
+Argument where of type DiligenceUserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:04:47: Error occured with error Error: 
+Invalid `prisma.diligenceUser.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1075:51
+
+  1072 
+  1073 const cryptedPassword = await hasher(changePayload.password, 12);
+  1074 console.log("id", user.id);
+→ 1075 const updateUser = await prisma.diligenceUser.update({
+         where: {
+       ?   id?: String,
+       ?   email?: String
+         },
+         data: {
+           resetToken: null,
+           password: '$2a$12$d/ZqlustHweVNACStaCfROzMMf1IyZGNE7hMqcJDdAudclo65EgGe'
+         }
+       })
+
+Argument where of type DiligenceUserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/user/resetPassword was called

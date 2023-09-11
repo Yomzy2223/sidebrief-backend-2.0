@@ -56,7 +56,6 @@ const validateEmail = validate.compile(emailSchema);
 
 //user password rest
 const resetSchema = {
-  email: { type: "email", min: 3, max: 255 },
   password: { type: "string", min: 6, max: 12 },
   token: { type: "string", min: 6, max: 500 },
 };
