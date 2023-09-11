@@ -2006,14 +2006,14 @@ const options = {
         },
       },
 
-      "/diligence/managerRequest/{requestId}": {
+      "/diligence/managerRequest/{managerId}": {
         //get diligence requests of a branch
         get: {
           summary: "Get all diligence requests of a branch",
           tags: ["Diligence Request"],
           parameters: [
             {
-              name: "requestId",
+              name: "managerId",
               in: "path",
               required: true,
               description: "ID of branch to be fetched",
