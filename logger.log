@@ -5223,3 +5223,135 @@ on prisma.findUniqueDiligenceManager. Provided Json, expected String.
 
  occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
 error: Label: 11-Sep-2023 14:35:41: Error occured with error TypeError: Cannot read properties of undefined (reading 'statusCode') occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+info: Label: 11-Sep-2023 16:15:41: User with akinyemi@sidebrief.com signed in successfully.
+error: Label: 11-Sep-2023 16:17:27: Enterprise admin with this ID not found. with error Error: Enterprise admin with this ID not found. occurred when POST /diligence/manager/642aced7-4a76-4620-9d61-afe593cf981d was called
+info: Label: 11-Sep-2023 16:18:02: manager with manager@gmail.com added  successfully
+info: Label: 11-Sep-2023 16:20:32: User with manager@gmail.com signed in successfully.
+info: Label: 11-Sep-2023 16:21:14: diligence staff with staff@gmail.com created successfully
+info: Label: 11-Sep-2023 16:21:31: request with the name Request A created successfully by manager@gmail.com
+info: Label: 11-Sep-2023 16:22:10: request with the name Request B created successfully by staff@gmail.com
+error: Label: 11-Sep-2023 16:25:17: Manager with this id does not exist with error Error: Manager with this id does not exist occurred when GET /diligence/managerRequest/acb4855c-d14f-4aee-a8cb-a8417a90c0f7 was called
+error: Label: 11-Sep-2023 22:10:52: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 22:11:25: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column r.diligenceManagerId does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 22:13:39: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 22:32:44: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 11:08:49: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 11:13:44: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 11:17:54: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:04:20: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:05:37: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:07:51: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42601`. Message: `db error: ERROR: syntax error at or near "FROM"` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:14:09: Error occured with error Error: 
+Invalid `prisma.diligenceStaff.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1573:48
+
+  1570 
+  1571 const getStaffAndRequest = async (managerId) => {
+  1572   try {
+→ 1573     const result = await prisma.diligenceStaff.findMany({
+             where: {
+               diligenceManagerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             },
+             select: {
+           ?   email?: true,
+           ?   createdAt?: true,
+               user: {
+               ~~~~
+                 select: {
+                   firstName: true,
+                   lastName: true
+                 }
+               },
+               requests: {
+               ~~~~~~~~
+                 select: {
+                   name: true
+                 },
+                 count: true
+               },
+           ?   id?: true,
+           ?   isDeprecated?: true,
+           ?   updatedAt?: true,
+           ?   diligenceManagerId?: true,
+           ?   diligenceManager?: true
+             }
+           })
+
+
+Unknown field `user` for select statement on model DiligenceStaff. Available options are listed in green. Did you mean `id`?
+Unknown field `requests` for select statement on model DiligenceStaff. Available options are listed in green.
+ occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:18:34: Error occured with error Error: 
+Invalid `prisma.diligenceStaff.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1573:59
+
+  1570 
+  1571 const getStaffAndRequest = async (managerId) => {
+  1572   try {
+→ 1573     const staffWithRequests = await prisma.diligenceStaff.findMany({
+             where: {
+               diligenceManagerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             },
+             include: {
+               diligenceUser: true,
+               ~~~~~~~~~~~~~
+               diligenceRequest: {
+               ~~~~~~~~~~~~~~~~
+                 select: {
+                   id: true
+                 }
+               },
+           ?   diligenceManager?: true
+             }
+           })
+
+
+Unknown field `diligenceUser` for include statement on model DiligenceStaff. Available options are listed in green. Did you mean `diligenceManager`?
+Unknown field `diligenceRequest` for include statement on model DiligenceStaff. Available options are listed in green. Did you mean `diligenceManager`?
+ occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called

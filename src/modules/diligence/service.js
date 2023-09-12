@@ -1571,26 +1571,25 @@ const updateRequestDocument = async (documentId, updatePayload) => {
 const getStaffAndRequest = async (managerId) => {
   try {
     const result = await prisma.$queryRaw`
-SELECT 
-u."firstName" AS firstName,
-u."lastName" AS lastName,
-    s."email",
-    s."createdAt",
-    COUNT(r.name) AS num_requests
-
-FROM 
-"DiligenceStaff" s
-
-INNER JOIN 
-"DiligenceUser" u ON s."email" = u."email"
+SELECT
+    "DiligenceUser"."firstName" AS firstname,
+    "DiligenceUser"."lastName" AS lastname,
+    "DiligenceStaff"."email",
+    "DiligenceStaff"."createdAt",
+    COUNT("DiligenceRequest"."id") AS num_requests
+FROM
+    "DiligenceStaff"
 LEFT JOIN
-"DiligenceRequest" r ON s."email" = r."createdBy"
+    "DiligenceUser" ON "DiligenceStaff"."email" = "DiligenceUser"."email"
+LEFT JOIN
+    "DiligenceRequest" ON "DiligenceStaff"."email" = "DiligenceRequest"."createdBy"
 WHERE
-s."diligenceManagerId" = ${managerId}
-GROUP BY u."firstName", u."lastName",
-s."email",
-s."createdAt";
-`;
+    "DiligenceStaff"."diligenceManagerId" = ${managerId}
+GROUP BY
+    "DiligenceUser"."firstName",
+    "DiligenceUser"."lastName",
+    "DiligenceStaff"."email",
+    "DiligenceStaff"."createdAt";`;
 
     if (!result) {
       throw new BadRequest(
@@ -1612,6 +1611,7 @@ s."createdAt";
       data: modifiedResult,
     };
   } catch (error) {
+    console.log("sdfs", error);
     throw error;
   }
 };
