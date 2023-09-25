@@ -5355,3 +5355,5 @@ Invalid `prisma.diligenceStaff.findMany()` invocation in
 Unknown field `diligenceUser` for include statement on model DiligenceStaff. Available options are listed in green. Did you mean `diligenceManager`?
 Unknown field `diligenceRequest` for include statement on model DiligenceStaff. Available options are listed in green. Did you mean `diligenceManager`?
  occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 13:55:07: Unexpected string in JSON at position 153 with error SyntaxError: Unexpected string in JSON at position 153 occurred when POST /diligence/request was called
+info: Label: 12-Sep-2023 13:55:16: request with the name Request Test created successfully by eunice@sidebrief.com
