@@ -10,6 +10,7 @@ const {
   validateEnterpriseCredentials,
   validateManagerCredentials,
   validateUpdateDiligenceRequest,
+  validateUpdateManyDiligenceRequest,
 } = require("../../utils/validation/diligence");
 const { staffAuth } = require("../../middleware/auth");
 const router = express.Router();
@@ -57,6 +58,8 @@ const {
   UpdateDiligenceRequest,
   GetStaffAndRequest,
   GetManagerRequests,
+  GetSingleEnterpriseDetails,
+  VerifyMultipleRequest,
 } = require("./controller");
 
 //NIGERIAN BANKS
@@ -75,6 +78,7 @@ router.post(
 );
 router.get("/enterprise", GetAllDiligenceEnterprises);
 router.get("/enterprise/:enterpriseId", GetSingleEnterprise);
+router.get("/enterprise-details/:enterpriseId", GetSingleEnterpriseDetails);
 router.get("/enterpriseByEmail/:adminEmail", GetSingleEnterpriseByAdminEmail);
 router.put(
   "/enterprise/:enterpriseId",
@@ -130,7 +134,12 @@ router.put(
   UpdateDiligenceRequest
 );
 router.put("/request/verify/:requestId", VerifyRequest);
-router.put("/request/update/:requestId", UpdateRequest);
+router.put(
+  "/requests/update",
+  validator(validateUpdateManyDiligenceRequest),
+  VerifyMultipleRequest
+);
+router.put("/request/update/:requestId", staffAuth, UpdateRequest);
 router.delete("/request/:requestId", DeleteRequest);
 
 //REQUEST DOCUMENT
@@ -153,6 +162,6 @@ router.delete("/document/:documentId", staffAuth, DeleteDocument);
 router.get("/test", Test);
 
 router.get("/staffRequest/:managerId", GetStaffAndRequest);
-router.post("/managerRequest", GetManagerRequests);
+router.get("/managerRequest/:managerId", GetManagerRequests);
 
 module.exports = router;

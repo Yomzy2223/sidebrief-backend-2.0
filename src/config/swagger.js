@@ -114,11 +114,11 @@ const options = {
           type: "object",
           require: ["email", "password"],
           properties: {
-            email: {
+            token: {
               type: "string",
-              description: "The email of the user",
+              description: "The token sent to the user email",
             },
-            email: {
+            password: {
               type: "string",
               description: "The new password of the user",
             },
@@ -202,7 +202,14 @@ const options = {
         //DILIGENCE ENTERPRISE
         DiligenceEnterprise: {
           type: "object",
-          require: ["name", "address", "adminEmail", "logo", "color"],
+          require: [
+            "name",
+            "address",
+            "adminEmail",
+            "logo",
+            "color",
+            "backDrop",
+          ],
           properties: {
             name: {
               type: "string",
@@ -223,6 +230,10 @@ const options = {
             color: {
               type: "string",
               description: "The primary color of the enterprise",
+            },
+            backdrop: {
+              type: "string",
+              description: "The backDrop of the enterprise",
             },
           },
         },
@@ -395,6 +406,18 @@ const options = {
             color: {
               type: "string",
               description: "The color of the bank",
+            },
+          },
+        },
+
+        //UPDATE MANY REQUEST
+        UpdateManyRequest: {
+          type: "object",
+          require: ["requestIds"],
+          properties: {
+            requestIds: {
+              type: "array",
+              description: "The request IDs of the request to be verified",
             },
           },
         },
@@ -1308,6 +1331,42 @@ const options = {
         },
       },
 
+      "/diligence/enterprise-details/{enterpriseId}": {
+        get: {
+          summary: "Get an enterprise details with given ID",
+          tags: ["Diligence Enterprise"],
+          parameters: [
+            {
+              name: "enterpriseId",
+              in: "path",
+              required: true,
+              description: "ID of enterprise details to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Diligence Enterprise is fetched",
+              schema: {
+                $ref: "#/components/schemas/DiligenceEnterprise",
+              },
+            },
+            401: {
+              description: "Unauthorized - User not authorized",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+            400: {
+              description: "Not found",
+              schema: {
+                $ref: "#/components/schemas/Error",
+              },
+            },
+          },
+        },
+      },
+
       "/diligence/enterpriseByEmail/{adminEmail}": {
         get: {
           summary: "Get an enterprise with given enterprise admin email",
@@ -1947,24 +2006,20 @@ const options = {
         },
       },
 
-      "/diligence/managerRequest": {
+      "/diligence/managerRequest/{managerId}": {
         //get diligence requests of a branch
-        post: {
+        get: {
+          summary: "Get all diligence requests of a branch",
           tags: ["Diligence Request"],
-          description: "get diligence request of a branch",
-          summary: "get a diligence request of a branch ",
-
-          requestBody: {
-            // expected request body
-            content: {
-              // content-type
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/DiligenceBranchRequest", //
-                },
-              },
+          parameters: [
+            {
+              name: "managerId",
+              in: "path",
+              required: true,
+              description: "ID of branch to be fetched",
+              type: "string",
             },
-          },
+          ],
           produces: ["application/json"],
           responses: {
             200: {
@@ -2102,6 +2157,34 @@ const options = {
               description: "Diligence request  is updated",
               schema: {
                 $ref: "#/components/schemas/DiligenceRequest",
+              },
+            },
+          },
+        },
+      },
+
+      "/diligence/requests/update": {
+        put: {
+          summary: "Update all diligence request with give IDs",
+          tags: ["Diligence Request"],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UpdateManyRequest", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Diligence request  is updated",
+              schema: {
+                $ref: "#/components/schemas/UpdateManyRequest",
               },
             },
           },

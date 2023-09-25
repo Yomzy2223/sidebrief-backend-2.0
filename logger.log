@@ -4440,3 +4440,918 @@ error: Label: 24-Aug-2023 09:08:50: Error occured with error TypeError: Cannot r
 info: Label: 24-Aug-2023 09:09:47: User with sayo@firstbank.com signed in successfully.
 error: Label: 24-Aug-2023 09:09:47: Error occured with error TypeError: Cannot read properties of null (reading 'id') occurred when POST /diligence/user/login was called
 info: Label: 24-Aug-2023 09:11:20: User with sayo@firstbank.com signed in successfully.
+error: Label: 11-Sep-2023 09:12:25: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:16:33: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:17:19: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:19:27: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:20:21: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:23:41: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:25:41: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:32:29: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:33:42: Request does not exist yy with error Error: Request does not exist yy occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:35:13: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:35:51: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:36:32: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:37:36: Request does not exist with error Error: Request does not exist occurred when PUT /diligence/request/verify/many was called
+error: Label: 11-Sep-2023 09:41:19: Error occured with error Error: 
+Invalid `prisma.diligenceRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1374:51
+
+  1371 const verifyMultipleRequest = async (requestList) => {
+  1372   try {
+  1373     console.log("sdfsdf", requestList);
+→ 1374     const request = await prisma.diligenceRequest.findMany({
+             where: {
+               OR: [
+                 {
+                   id: {
+                     in: {
+                       requestIds: [
+                         'd36c394c-20a6-41c7-84b1-5526c501fb16',
+                         'aaef22e9-33ab-407e-9cff-14c0c494ac97',
+                         'eaef61b2-0c84-457a-bbc0-49c3bf6f1e0e'
+                       ]
+                     }
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                   }
+                 }
+               ]
+             }
+           })
+
+Argument in: Got invalid value 
+{
+  requestIds: [
+    'd36c394c-20a6-41c7-84b1-5526c501fb16',
+    'aaef22e9-33ab-407e-9cff-14c0c494ac97',
+    'eaef61b2-0c84-457a-bbc0-49c3bf6f1e0e'
+  ]
+}
+on prisma.findManyDiligenceRequest. Provided Json, expected String or String.
+
+ occurred when PUT /diligence/adeleke was called
+error: Label: 11-Sep-2023 09:44:14: Error occured with error Error: 
+Invalid `prisma.diligenceRequest.updateMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1382:57
+
+  1379 //   throw new BadRequest("Request does not exist yceee");
+  1380 // }
+  1381 
+→ 1382 const updateRequest = await prisma.diligenceRequest.updateMany({
+         where: {
+           OR: [
+             {
+               id: {
+                 in: {
+                   requestIds: [
+                     'd36c394c-20a6-41c7-84b1-5526c501fb16',
+                     'aaef22e9-33ab-407e-9cff-14c0c494ac97',
+                     'eaef61b2-0c84-457a-bbc0-49c3bf6f1e0e'
+                   ]
+                 }
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               }
+             }
+           ]
+         },
+         data: {
+           status: 'Verified'
+         }
+       })
+
+Argument in: Got invalid value 
+{
+  requestIds: [
+    'd36c394c-20a6-41c7-84b1-5526c501fb16',
+    'aaef22e9-33ab-407e-9cff-14c0c494ac97',
+    'eaef61b2-0c84-457a-bbc0-49c3bf6f1e0e'
+  ]
+}
+on prisma.updateManyDiligenceRequest. Provided Json, expected String or String.
+
+ occurred when PUT /diligence/adeleke was called
+error: Label: 11-Sep-2023 09:49:59: Error occured with error Error: 
+Invalid `prisma.diligenceRequest.updateMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1382:57
+
+  1379 //   throw new BadRequest("Request does not exist yceee");
+  1380 // }
+  1381 
+→ 1382 const updateRequest = await prisma.diligenceRequest.updateMany({
+         where: {
+           id: {
+             in: {
+               requestIds: [
+                 'd36c394c-20a6-41c7-84b1-5526c501fb16',
+                 'aaef22e9-33ab-407e-9cff-14c0c494ac97',
+                 'eaef61b2-0c84-457a-bbc0-49c3bf6f1e0e'
+               ]
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         },
+         data: {
+           status: 'Verified'
+         }
+       })
+
+Argument in: Got invalid value 
+{
+  requestIds: [
+    'd36c394c-20a6-41c7-84b1-5526c501fb16',
+    'aaef22e9-33ab-407e-9cff-14c0c494ac97',
+    'eaef61b2-0c84-457a-bbc0-49c3bf6f1e0e'
+  ]
+}
+on prisma.updateManyDiligenceRequest. Provided Json, expected String or String.
+
+ occurred when PUT /diligence/adeleke was called
+error: Label: 11-Sep-2023 09:52:58: Error occured with error TypeError: requestList.map is not a function occurred when PUT /diligence/adeleke was called
+error: Label: 11-Sep-2023 09:53:20: Error occured with error Error: 
+Invalid `prisma.diligenceRequest.updateMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1382:57
+
+  1379 //   throw new BadRequest("Request does not exist yceee");
+  1380 // }
+  1381 
+→ 1382 const updateRequest = await prisma.diligenceRequest.updateMany({
+         where: {
+           id: {
+             in: [
+               {
+                 id: 'd36c394c-20a6-41c7-84b1-5526c501fb16'
+               },
+               {
+                 id: 'aaef22e9-33ab-407e-9cff-14c0c494ac97'
+               },
+               {
+                 id: 'eaef61b2-0c84-457a-bbc0-49c3bf6f1e0e'
+               }
+             ]
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         },
+         data: {
+           status: 'Verified'
+         }
+       })
+
+Argument in: Got invalid value 
+[
+  {
+    id: 'd36c394c-20a6-41c7-84b1-5526c501fb16'
+  },
+  {
+    id: 'aaef22e9-33ab-407e-9cff-14c0c494ac97'
+  },
+  {
+    id: 'eaef61b2-0c84-457a-bbc0-49c3bf6f1e0e'
+  }
+]
+on prisma.updateManyDiligenceRequest. Provided List<Json>, expected List<String> or List<String>.
+
+ occurred when PUT /diligence/adeleke was called
+info: Label: 11-Sep-2023 10:46:58: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 11-Sep-2023 10:47:52: Error occured with error Error: 
+Invalid `prisma.DiligenceEnterprise.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:181:56
+
+  178   throw new BadRequest("Email already exists as a staff");
+  179 }
+  180 
+→ 181 const diligence = await prisma.DiligenceEnterprise.create({
+        data: {
+          name: 'Fix',
+          address: 'fixxsssss',
+          adminEmail: 'string@@fix.com',
+          color: 'string',
+          logo: 'string',
+          backDrop: 'string'
+          ~~~~~~~~
+        }
+      })
+
+Unknown arg `backDrop` in data.backDrop for type DiligenceEnterpriseCreateInput. Did you mean `backdrop`? Available args:
+type DiligenceEnterpriseCreateInput {
+  id?: String
+  name: String
+  address: String
+  adminEmail: String
+  color?: String | Null
+  logo?: String | Null
+  backdrop?: String | Null
+  isDeprecated?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  diligenceManager?: DiligenceManagerCreateNestedManyWithoutDiligenceEnterpriseInput
+  diligenceRequest?: DiligenceRequestCreateNestedManyWithoutDiligenceEnterpriseInput
+  diligenceUser?: DiligenceUserCreateNestedManyWithoutDiligenceEnterpriseInput
+}
+
+ occurred when POST /diligence/enterprise was called
+error: Label: 11-Sep-2023 10:49:10: Error occured with error Error: 
+Invalid `prisma.DiligenceEnterprise.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:181:56
+
+  178   throw new BadRequest("Email already exists as a staff");
+  179 }
+  180 
+→ 181 const diligence = await prisma.DiligenceEnterprise.create({
+        data: {
+          name: 'Fix',
+          address: 'fixxsssss',
+          adminEmail: 'string@@fix.com',
+          color: 'string',
+          logo: 'string',
+          backDrop: 'string'
+          ~~~~~~~~
+        }
+      })
+
+Unknown arg `backDrop` in data.backDrop for type DiligenceEnterpriseCreateInput. Did you mean `backdrop`? Available args:
+type DiligenceEnterpriseCreateInput {
+  id?: String
+  name: String
+  address: String
+  adminEmail: String
+  color?: String | Null
+  logo?: String | Null
+  backdrop?: String | Null
+  isDeprecated?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  diligenceManager?: DiligenceManagerCreateNestedManyWithoutDiligenceEnterpriseInput
+  diligenceRequest?: DiligenceRequestCreateNestedManyWithoutDiligenceEnterpriseInput
+  diligenceUser?: DiligenceUserCreateNestedManyWithoutDiligenceEnterpriseInput
+}
+
+ occurred when POST /diligence/enterprise was called
+info: Label: 11-Sep-2023 10:50:19: Fix created successfully
+error: Label: 11-Sep-2023 10:54:58: Enterprise with this id does not exist with error Error: Enterprise with this id does not exist occurred when GET /diligence/enterprise/58bf942e-4bf9-4ca7-96d1-dfe71183174b was called
+error: Label: 11-Sep-2023 10:55:55: Enterprise with this ID not found. with error Error: Enterprise with this ID not found. occurred when DELETE /diligence/enterprise/58bf942e-4bf9-4ca7-96d1-dfe71183174b was called
+error: Label: 11-Sep-2023 13:42:06: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called
+info: Label: 11-Sep-2023 13:42:39: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 11-Sep-2023 13:43:07: Error occured with error Error: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.js:45:43
+
+  42   throw new Unauthorized("Invalid or expired staff token.");
+  43 }
+  44 
+→ 45 const checkStaff = await prisma.staff.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/enterprise was called
+error: Label: 11-Sep-2023 13:43:23: Error occured with error Error: 
+Invalid `prisma.DiligenceEnterprise.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:149:62
+
+  146 //create diligence enterprise
+  147 const createEnterprise = async (enterprisePayload) => {
+  148   try {
+→ 149     const checkEnterprise = await prisma.DiligenceEnterprise.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /diligence/enterprise was called
+error: Label: 11-Sep-2023 13:43:55: Email already exists with error Error: Email already exists occurred when POST /diligence/enterprise was called
+info: Label: 11-Sep-2023 13:44:10: stringt created successfully
+error: Label: 11-Sep-2023 13:44:30: Email already exists with error Error: Email already exists occurred when POST /diligence/enterprise was called
+error: Label: 11-Sep-2023 13:45:38: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1067:45
+
+  1064 // save the new password and update reset token to null
+  1065 
+  1066 try {
+→ 1067   const user = await prisma.diligenceUser.findUnique({
+           where: {
+             resetToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFraW55ZW1pQHNpZGVicmllZi5jb20iLCJpYXQiOjE2OTQ0MzYyOTYsImV4cCI6MTY5NDQzODA5Nn0.cBTEffPUYW78h_VB93Jhg-oFkRTLj6uxhJhEzTylqB8'
+             ~~~~~~~~~~
+           }
+         })
+
+Unknown arg `resetToken` in where.resetToken for type DiligenceUserWhereUniqueInput. Available args:
+
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:46:16: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1067:45
+
+  1064 // save the new password and update reset token to null
+  1065 
+  1066 try {
+→ 1067   const user = await prisma.diligenceUser.findUnique({
+           where: {
+             resetToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFraW55ZW1pQHNpZGVicmllZi5jb20iLCJpYXQiOjE2OTQ0MzYyOTYsImV4cCI6MTY5NDQzODA5Nn0.cBTEffPUYW78h_VB93Jhg-oFkRTLj6uxhJhEzTylqB8'
+             ~~~~~~~~~~
+           }
+         })
+
+Unknown arg `resetToken` in where.resetToken for type DiligenceUserWhereUniqueInput. Available args:
+
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:50:27: Error occured with error Error: 
+Invalid `prisma.diligenceUser.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1065:45
+
+  1062 // save the new password and update reset token to null
+  1063 
+  1064 try {
+→ 1065   const user = await prisma.diligenceUser.findUnique({
+           where: {
+             resetToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFraW55ZW1pQHNpZGVicmllZi5jb20iLCJpYXQiOjE2OTQ0MzY1OTcsImV4cCI6MTY5NDQzODM5N30.PSvrlpCFbdaxRkyTbEzkNKc6lipWOfZ1RO_WawwhGEc'
+             ~~~~~~~~~~
+           }
+         })
+
+Unknown arg `resetToken` in where.resetToken for type DiligenceUserWhereUniqueInput. Available args:
+
+type DiligenceUserWhereUniqueInput {
+  id?: String
+  email?: String
+}
+
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:55:40: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:56:04: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:57:28: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:58:14: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 13:59:41: Invalid token or staff not found with error Error: Invalid token or staff not found occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:00:47: Error occured with error ReferenceError: user is not defined occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:01:24: Error occured with error Error: 
+Invalid `prisma.diligenceUser.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1075:51
+
+  1072 
+  1073 const cryptedPassword = await hasher(changePayload.password, 12);
+  1074 
+→ 1075 const updateUser = await prisma.diligenceUser.update({
+         where: {
+       ?   id?: String,
+       ?   email?: String
+         },
+         data: {
+           resetToken: null,
+           password: '$2a$12$CAJqXRLF4H/n4wHUwpDEnunmFgnqsWKWFPySGQYlKdHQdWg9.iMb2'
+         }
+       })
+
+Argument where of type DiligenceUserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:02:23: Error occured with error Error: 
+Invalid `prisma.diligenceUser.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1075:51
+
+  1072 
+  1073 const cryptedPassword = await hasher(changePayload.password, 12);
+  1074 
+→ 1075 const updateUser = await prisma.diligenceUser.update({
+         where: {
+       ?   id?: String,
+       ?   email?: String
+         },
+         data: {
+           resetToken: null,
+           password: '$2a$12$VjCqrDOJMWxz7Z0DX358BeO7C.o7pA1GOcNNS4sNO3HdxYuMEyUTu'
+         }
+       })
+
+Argument where of type DiligenceUserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:04:17: Error occured with error Error: 
+Invalid `prisma.diligenceUser.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1075:51
+
+  1072 
+  1073 const cryptedPassword = await hasher(changePayload.password, 12);
+  1074 
+→ 1075 const updateUser = await prisma.diligenceUser.update({
+         where: {
+       ?   id?: String,
+       ?   email?: String
+         },
+         data: {
+           resetToken: null,
+           password: '$2a$12$7UZ0omWEYRvF2sNevDXJ1.kZK3rPFPW2TPyPmMLKskQgg8JY1/fmy'
+         }
+       })
+
+Argument where of type DiligenceUserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:04:47: Error occured with error Error: 
+Invalid `prisma.diligenceUser.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1075:51
+
+  1072 
+  1073 const cryptedPassword = await hasher(changePayload.password, 12);
+  1074 console.log("id", user.id);
+→ 1075 const updateUser = await prisma.diligenceUser.update({
+         where: {
+       ?   id?: String,
+       ?   email?: String
+         },
+         data: {
+           resetToken: null,
+           password: '$2a$12$d/ZqlustHweVNACStaCfROzMMf1IyZGNE7hMqcJDdAudclo65EgGe'
+         }
+       })
+
+Argument where of type DiligenceUserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /diligence/user/resetPassword was called
+error: Label: 11-Sep-2023 14:28:44: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:28:56: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:28:58: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:28:59: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:29:01: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:29:02: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:29:03: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:30:38: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1621:51
+
+  1618 
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+→ 1621     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:32:02: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1622:51
+
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+  1621     console.log("Getting branch request", managerId);
+→ 1622     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+           ?   id?: String,
+           ?   managerEmail?: String
+             }
+           })
+
+Argument where of type DiligenceManagerWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:32:21: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1622:51
+
+  1619 const getBranchRequest = async (managerId) => {
+  1620   try {
+  1621     console.log("Getting branch request", managerId);
+→ 1622     const Manager = await prisma.diligenceManager.findUnique({
+             where: {
+               id: {
+                 managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+               }
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             }
+           })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:32:58: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:51
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const Manager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:33:29: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:51
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const Manager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:33:31: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:51
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const Manager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:33:31: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:51
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const Manager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:34:45: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:56
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const checkManager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:34:47: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:56
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const checkManager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:35:11: Error occured with error Error: 
+Invalid `prisma.diligenceManager.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1623:56
+
+  1620 try {
+  1621   console.log("Getting branch request", managerId);
+  1622 
+→ 1623   const checkManager = await prisma.diligenceManager.findUnique({
+           where: {
+             id: {
+               managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             }
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           }
+         })
+
+Argument id: Got invalid value 
+{
+  managerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+}
+on prisma.findUniqueDiligenceManager. Provided Json, expected String.
+
+ occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 14:35:41: Error occured with error TypeError: Cannot read properties of undefined (reading 'statusCode') occurred when GET /diligence/managerRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+info: Label: 11-Sep-2023 16:15:41: User with akinyemi@sidebrief.com signed in successfully.
+error: Label: 11-Sep-2023 16:17:27: Enterprise admin with this ID not found. with error Error: Enterprise admin with this ID not found. occurred when POST /diligence/manager/642aced7-4a76-4620-9d61-afe593cf981d was called
+info: Label: 11-Sep-2023 16:18:02: manager with manager@gmail.com added  successfully
+info: Label: 11-Sep-2023 16:20:32: User with manager@gmail.com signed in successfully.
+info: Label: 11-Sep-2023 16:21:14: diligence staff with staff@gmail.com created successfully
+info: Label: 11-Sep-2023 16:21:31: request with the name Request A created successfully by manager@gmail.com
+info: Label: 11-Sep-2023 16:22:10: request with the name Request B created successfully by staff@gmail.com
+error: Label: 11-Sep-2023 16:25:17: Manager with this id does not exist with error Error: Manager with this id does not exist occurred when GET /diligence/managerRequest/acb4855c-d14f-4aee-a8cb-a8417a90c0f7 was called
+error: Label: 11-Sep-2023 22:10:52: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 22:11:25: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column r.diligenceManagerId does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 22:13:39: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 11-Sep-2023 22:32:44: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 11:08:49: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 11:13:44: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 11:17:54: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:04:20: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:05:37: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column sl.createdat does not exist` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:07:51: Error occured with error Error: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Raw query failed. Code: `42601`. Message: `db error: ERROR: syntax error at or near "FROM"` occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:14:09: Error occured with error Error: 
+Invalid `prisma.diligenceStaff.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1573:48
+
+  1570 
+  1571 const getStaffAndRequest = async (managerId) => {
+  1572   try {
+→ 1573     const result = await prisma.diligenceStaff.findMany({
+             where: {
+               diligenceManagerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             },
+             select: {
+           ?   email?: true,
+           ?   createdAt?: true,
+               user: {
+               ~~~~
+                 select: {
+                   firstName: true,
+                   lastName: true
+                 }
+               },
+               requests: {
+               ~~~~~~~~
+                 select: {
+                   name: true
+                 },
+                 count: true
+               },
+           ?   id?: true,
+           ?   isDeprecated?: true,
+           ?   updatedAt?: true,
+           ?   diligenceManagerId?: true,
+           ?   diligenceManager?: true
+             }
+           })
+
+
+Unknown field `user` for select statement on model DiligenceStaff. Available options are listed in green. Did you mean `id`?
+Unknown field `requests` for select statement on model DiligenceStaff. Available options are listed in green.
+ occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
+error: Label: 12-Sep-2023 12:18:34: Error occured with error Error: 
+Invalid `prisma.diligenceStaff.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/diligence/service.js:1573:59
+
+  1570 
+  1571 const getStaffAndRequest = async (managerId) => {
+  1572   try {
+→ 1573     const staffWithRequests = await prisma.diligenceStaff.findMany({
+             where: {
+               diligenceManagerId: '28ab3f8b-8eaf-410d-a505-40effb56e4dc'
+             },
+             include: {
+               diligenceUser: true,
+               ~~~~~~~~~~~~~
+               diligenceRequest: {
+               ~~~~~~~~~~~~~~~~
+                 select: {
+                   id: true
+                 }
+               },
+           ?   diligenceManager?: true
+             }
+           })
+
+
+Unknown field `diligenceUser` for include statement on model DiligenceStaff. Available options are listed in green. Did you mean `diligenceManager`?
+Unknown field `diligenceRequest` for include statement on model DiligenceStaff. Available options are listed in green. Did you mean `diligenceManager`?
+ occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called

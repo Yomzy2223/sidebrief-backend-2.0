@@ -41,6 +41,8 @@ const {
   updateDiligenceRequest,
   getStaffAndRequest,
   getBranchRequest,
+  getEnterpriseDetails,
+  verifyMultipleRequest,
 } = require("./service");
 const { default: axios } = require("axios");
 
@@ -145,6 +147,7 @@ exports.CreateEnterprise = async (req, res, next) => {
       adminEmail: enterprisePayload.adminEmail,
       color: enterprisePayload.color,
       logo: enterprisePayload.logo,
+      backdrop: enterprisePayload.backdrop,
     };
 
     const diligenceEnterprise = await createEnterprise(values);
@@ -163,6 +166,20 @@ exports.GetSingleEnterprise = async (req, res, next) => {
   try {
     const enterpriseId = req.params.enterpriseId;
     const enterprise = await getEnterprise(enterpriseId);
+
+    return res
+      .status(enterprise.statusCode)
+      .json({ message: enterprise.message, data: enterprise.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get single enterprise details
+exports.GetSingleEnterpriseDetails = async (req, res, next) => {
+  try {
+    const enterpriseId = req.params.enterpriseId;
+    const enterprise = await getEnterpriseDetails(enterpriseId);
 
     return res
       .status(enterprise.statusCode)
@@ -590,10 +607,26 @@ exports.VerifyRequest = async (req, res, next) => {
     //check if there is id
     // send the id to the verify service
     //return response to the client
-
     const id = req.params.requestId;
 
     const verify = await verifyRequest(id);
+
+    return res.status(verify.statusCode).json({ message: verify.message });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//verify multiple requests
+exports.VerifyMultipleRequest = async (req, res, next) => {
+  try {
+    //get the list from the client
+    //send the list to the verify service
+    //return response to the client
+
+    const { requestIds } = req.body;
+
+    const verify = await verifyMultipleRequest(requestIds);
 
     return res.status(verify.statusCode).json({ message: verify.message });
   } catch (error) {
@@ -751,9 +784,9 @@ exports.GetStaffAndRequest = async (req, res, next) => {
 
 exports.GetManagerRequests = async (req, res, next) => {
   try {
-    const body = req.body;
+    const managerId = req.params.managerId;
 
-    const result = await getBranchRequest(body);
+    const result = await getBranchRequest(managerId);
 
     return res
       .status(result.statusCode)
