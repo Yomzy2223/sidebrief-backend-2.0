@@ -95,7 +95,6 @@ const validateUpdateManyDiligenceRequest = validate.compile(
 const diligenceDocumentSchema = {
   name: { type: "string", min: 3, max: 100 },
   type: { type: "string", min: 3, max: 50 },
-  description: { type: "string", min: 3, max: 255 },
   link: { type: "string", min: 3, max: 255 },
 };
 

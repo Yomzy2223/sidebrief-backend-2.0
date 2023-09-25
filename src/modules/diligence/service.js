@@ -1611,7 +1611,6 @@ GROUP BY
       data: modifiedResult,
     };
   } catch (error) {
-    console.log("sdfs", error);
     throw error;
   }
 };
