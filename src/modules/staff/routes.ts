@@ -33,4 +33,4 @@ router.post(
 );
 router.delete("/:id", StaffRemover);
 
-module.exports = router;
+export default router;

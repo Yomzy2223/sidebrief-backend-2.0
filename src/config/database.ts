@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from "@prisma/client";
 
 const connectDb = async () => {
   console.log("Checking database connection...");
@@ -13,4 +13,4 @@ const connectDb = async () => {
   }
 };
 
-module.exports = connectDb;
+export default connectDb;

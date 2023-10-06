@@ -1,13 +1,18 @@
-const {
+import { Response, Request, NextFunction } from "express";
+import {
   saveBank,
   getAllBanks,
   getBank,
   removeBank,
   updateBank,
-} = require("./service");
+} from "./service";
 
 // create a new bank
-exports.CreateBank = async (req, res, next) => {
+exports.CreateBank = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the validated payload from the the request body
     // send the validated payload to addBank service
@@ -33,7 +38,11 @@ exports.CreateBank = async (req, res, next) => {
 };
 
 //get all banks
-exports.GetAllBanks = async (req, res, next) => {
+exports.GetAllBanks = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the bank list
     // return response to the client
@@ -49,7 +58,7 @@ exports.GetAllBanks = async (req, res, next) => {
 };
 
 //get a bank with id
-exports.GetBank = async (req, res, next) => {
+exports.GetBank = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // check if there is id
     // pass the id to the service
@@ -68,7 +77,11 @@ exports.GetBank = async (req, res, next) => {
 };
 
 //update a bank
-exports.UpdateBank = async (req, res, next) => {
+exports.UpdateBank = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //get the payload
     // validate the payload
@@ -94,7 +107,11 @@ exports.UpdateBank = async (req, res, next) => {
 };
 
 //delete a bank
-exports.DeleteBank = async (req, res) => {
+exports.DeleteBank = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //check if there is id
     // send the id to the delete service

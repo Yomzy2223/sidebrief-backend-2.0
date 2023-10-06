@@ -1,6 +1,7 @@
-const logger = require("../config/logger");
+import { Request, Response } from "express";
+import logger from "../config/logger";
 
-const ErrorHandler = (err, req, res, next) => {
+const ErrorHandler = (err: any, req: Request, res: Response) => {
   const errStatus = err?.statusCode || 500;
 
   const errMessage = errStatus === 500 ? "Error occured" : err?.message;
@@ -14,4 +15,4 @@ const ErrorHandler = (err, req, res, next) => {
   });
 };
 
-module.exports = ErrorHandler;
+export default ErrorHandler;

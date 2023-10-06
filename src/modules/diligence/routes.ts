@@ -164,4 +164,4 @@ router.get("/test", Test);
 router.get("/staffRequest/:managerId", GetStaffAndRequest);
 router.get("/managerRequest/:managerId", GetManagerRequests);
 
-module.exports = router;
+export default router;

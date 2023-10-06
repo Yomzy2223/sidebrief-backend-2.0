@@ -18,4 +18,4 @@ router.get("/:id", userAuth, GetBank);
 router.put("/:id", staffAuth, validator(validateBank), UpdateBank);
 router.delete("/:id", staffAuth, DeleteBank);
 
-module.exports = router;
+export default router;

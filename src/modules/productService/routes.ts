@@ -28,4 +28,4 @@ router.put(
 );
 router.delete("/:id", staffAuth, ServiceCategoryRemover);
 
-module.exports = router;
+export default router;

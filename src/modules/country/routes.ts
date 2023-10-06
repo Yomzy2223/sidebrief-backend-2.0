@@ -18,4 +18,4 @@ router.get("/:id", GetCountry);
 router.put("/:id", staffAuth, validator(validateCountry), UpdateCountry);
 router.delete("/:id", staffAuth, DeleteCountry);
 
-module.exports = router;
+export default router;

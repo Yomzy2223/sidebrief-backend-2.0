@@ -48,4 +48,4 @@ router.put(
   validator(validateUserUpdateCredentials),
   ControllerProfileModifier
 );
-module.exports = router;
+export default router;

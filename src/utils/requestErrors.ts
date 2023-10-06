@@ -1,8 +1,10 @@
 // General custom error
 class CustomError extends Error {
-  constructor(message, statusCode) {
+  statusCode: number;
+  constructor(message: string, statusCode: number) {
     super(message);
     this.statusCode = statusCode;
+    Object.setPrototypeOf(this, CustomError.prototype);
   }
 }
 
@@ -10,6 +12,7 @@ class CustomError extends Error {
 class BadRequest extends CustomError {
   constructor(message = "Bad Request") {
     super(message, 400);
+    Object.setPrototypeOf(this, BadRequest.prototype);
   }
 }
 
@@ -17,6 +20,7 @@ class BadRequest extends CustomError {
 class Unauthorized extends CustomError {
   constructor(message = "Unauthorized") {
     super(message, 401);
+    Object.setPrototypeOf(this, Unauthorized.prototype);
   }
 }
 
@@ -24,6 +28,7 @@ class Unauthorized extends CustomError {
 class Forbidden extends CustomError {
   constructor(message = "Forbidden") {
     super(message, 403);
+    Object.setPrototypeOf(this, Forbidden.prototype);
   }
 }
 
@@ -31,13 +36,8 @@ class Forbidden extends CustomError {
 class NotFound extends CustomError {
   constructor(message = "Not Found") {
     super(message, 404);
+    Object.setPrototypeOf(this, NotFound.prototype);
   }
 }
 
-module.exports = {
-  CustomError,
-  BadRequest,
-  Unauthorized,
-  Forbidden,
-  NotFound,
-};
+export { CustomError, BadRequest, Unauthorized, Forbidden, NotFound };

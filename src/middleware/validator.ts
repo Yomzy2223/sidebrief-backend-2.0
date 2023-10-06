@@ -1,5 +1,7 @@
-const validator = (schema) => {
-  return (req, res, next) => {
+import { Request, Response, NextFunction } from "express";
+
+const validator = (schema: any) => {
+  return (req: Request, res: Response, next: NextFunction) => {
     const isValidPayload = schema(req.body);
     if (isValidPayload === true) {
       next();
@@ -9,4 +11,4 @@ const validator = (schema) => {
   };
 };
 
-module.exports = validator;
+export default validator;

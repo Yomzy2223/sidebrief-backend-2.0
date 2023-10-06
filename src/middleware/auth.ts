@@ -1,10 +1,11 @@
-const { PrismaClient } = require("@prisma/client");
-const { verifyUserToken } = require("../common/token");
-const { Unauthorized } = require("../utils/requestErrors");
+import { Request, Response, NextFunction } from "express";
+import { PrismaClient } from "@prisma/client";
+import { verifyUserToken } from "../common/token";
+import { Unauthorized } from "../utils/requestErrors";
 const prisma = new PrismaClient();
 
 //IN PROGRESS
-const userAuth = async (req, res, next) => {
+const userAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const reqToken = req.headers.authorization;
     if (!reqToken) {
@@ -27,7 +28,7 @@ const userAuth = async (req, res, next) => {
   }
 };
 
-const staffAuth = async (req, res, next) => {
+const staffAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const reqToken = req.headers.authorization;
     if (!reqToken) {
@@ -56,7 +57,7 @@ const staffAuth = async (req, res, next) => {
   }
 };
 
-const partnerAuth = async (req, res, next) => {
+const partnerAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const reqToken = req.headers.authorization;
     if (!reqToken) {
@@ -93,7 +94,11 @@ const partnerAuth = async (req, res, next) => {
   }
 };
 
-const ResellerrAuth = async (req, res, next) => {
+const ResellerrAuth = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const reqToken = req.headers.authorization;
     if (!reqToken) {

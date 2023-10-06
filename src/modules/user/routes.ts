@@ -69,4 +69,4 @@ router.put(
 );
 router.delete("/:id", staffAuth, UserRemover);
 
-module.exports = router;
+export default router;

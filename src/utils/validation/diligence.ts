@@ -100,7 +100,7 @@ const diligenceDocumentSchema = {
 
 const validateDiligenceDocument = validate.compile(diligenceDocumentSchema);
 
-module.exports = {
+export {
   validateEmail,
   validateResetCredentials,
   validateDiligenceRequest,

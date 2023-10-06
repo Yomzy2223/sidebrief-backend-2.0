@@ -1,13 +1,13 @@
-const nodemailer = require("nodemailer");
-const path = require("path");
-const ejs = require("ejs");
+import nodemailer from "nodemailer";
+import path from "path";
+import ejs from "ejs";
 
 const EmailSender = async (
-  subject,
-  payload,
-  recipientEmail,
-  senderEmail,
-  template
+  subject: string,
+  payload: any,
+  recipientEmail: string,
+  senderEmail: string,
+  template: any
 ) => {
   try {
     //creating transporter
@@ -35,7 +35,7 @@ const EmailSender = async (
     };
 
     //send email
-    transporter.sendMail(mailOptions(), (error, info) => {
+    transporter.sendMail(mailOptions(), (error: any, info: any) => {
       if (error) {
         console.log(error);
       } else {
@@ -48,4 +48,4 @@ const EmailSender = async (
   }
 };
 
-module.exports = EmailSender;
+export default EmailSender;
