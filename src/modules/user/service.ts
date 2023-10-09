@@ -1,3 +1,11 @@
+import {
+  UserResponseProps,
+  UserPayload,
+  UserResponse,
+  UserLogin,
+  ForgotPassword,
+} from "./entities";
+
 const { PrismaClient } = require("@prisma/client");
 const logger = require("../../config/logger");
 const { hasher, matchChecker } = require("../../common/hash");
@@ -9,7 +17,9 @@ const prisma = new PrismaClient();
 //IN PROGRESS
 
 //create user service
-const saveUser = async (userPayload) => {
+const saveUser = async (
+  userPayload: UserPayload
+): Promise<UserResponseProps> => {
   try {
     const checkUser = await prisma.user.findUnique({
       where: { email: userPayload.email },
@@ -34,12 +44,13 @@ const saveUser = async (userPayload) => {
     const url = `${process.env.BASE_URL}/user/activate/${emailVerificationToken}`;
     //send user email
     const subject = "Welcome to Sidebrief.";
-    payload = {
+    const payload = {
       name: userPayload.firstName,
       url: url,
     };
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
     const recipientEmail = userPayload.email;
+
     EmailSender(
       subject,
       payload,
@@ -52,7 +63,7 @@ const saveUser = async (userPayload) => {
       message: `${userPayload.firstName} ${userPayload.lastName} created an account successfully with ${userPayload.email}.`,
     });
 
-    return {
+    const response: UserResponseProps = {
       message: "User created successfully",
       data: {
         id: user.id,
@@ -67,13 +78,15 @@ const saveUser = async (userPayload) => {
       },
       statusCode: 200,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get a user service
-const getUser = async (id) => {
+const getUser = async (id: string): Promise<UserResponseProps> => {
   //   //check if the user exists
   //   //return the user to the user controller
 
@@ -86,7 +99,7 @@ const getUser = async (id) => {
     const userSecret = process.env.TOKEN_USER_SECRET;
     const token = generateToken({ id: user.id }, userSecret, "14d");
 
-    return {
+    const response: UserResponseProps = {
       message: "User fetched successfully",
       data: {
         id: user.id,
@@ -102,13 +115,14 @@ const getUser = async (id) => {
       },
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all users service
-const getAllUsers = async () => {
+const getAllUsers = async (): Promise<UserResponseProps> => {
   //   //return the users list to the user controller
 
   try {
@@ -118,18 +132,21 @@ const getAllUsers = async () => {
       throw new BadRequest("User not found!.");
     }
 
-    return {
+    const response: UserResponseProps = {
       message: "Users fetched successfully",
       data: users,
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //sign in service
-const loginUser = async (loginPayload) => {
+const loginUser = async (
+  loginPayload: UserLogin
+): Promise<UserResponseProps> => {
   // take the login payload  from the controller
   //   //check if the user exists with the email address
   //   //return the user to the user controller
@@ -158,7 +175,7 @@ const loginUser = async (loginPayload) => {
       message: `User with ${loginPayload.email} signed in successfully.`,
     });
 
-    return {
+    const response: UserResponseProps = {
       message: "Login successfully",
       data: {
         id: user.id,
@@ -172,14 +189,17 @@ const loginUser = async (loginPayload) => {
         verified: user.verified,
         referral: user.referral,
       },
+      statusCode: 200,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 // verify user account service
-const verifyAccount = async (verifyPayload) => {
+const verifyAccount = async (verifyPayload: string) => {
   try {
     const userSecret = process.env.TOKEN_USER_SECRET;
     const user = await verifyUserToken(verifyPayload, userSecret);
@@ -197,18 +217,18 @@ const verifyAccount = async (verifyPayload) => {
       where: { id: checkUser.id },
       data: { verified: true },
     });
-
-    return {
+    const response = {
       message: "Your account is now verified.",
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 // forgot password service
-const forgotPassword = async (resetPayload) => {
+const forgotPassword = async (forgotPayload: ForgotPassword) => {
   try {
     // take the email from the controller
     // check that the email is registered to a user account
@@ -216,7 +236,7 @@ const forgotPassword = async (resetPayload) => {
     // save and send the reset token the user
 
     const user = await prisma.user.findUnique({
-      where: { email: resetPayload.email },
+      where: { email: forgotPayload.email },
     });
 
     if (!user) {
@@ -224,7 +244,7 @@ const forgotPassword = async (resetPayload) => {
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const userToken = await generateToken(resetPayload, userSecret, "30m");
+    const userToken = await generateToken(forgotPayload, userSecret, "30m");
 
     const cryptedToken = await hasher(userToken, 12);
 
@@ -237,7 +257,7 @@ const forgotPassword = async (resetPayload) => {
 
     //send user email
     const subject = "Reset Password.";
-    payload = {
+    const payload = {
       name: user.firstName,
       url: url,
     };
@@ -261,7 +281,7 @@ const forgotPassword = async (resetPayload) => {
 };
 
 // change password service
-const changePassword = async (changePayload) => {
+const changePassword = async (changePayload: any) => {
   // take the email, resetToken and password from the controller
   // check that the email is registered to a user account
   // compare the token with the one saved in the database
@@ -299,7 +319,7 @@ const changePassword = async (changePayload) => {
 };
 
 // delete account
-const deleteUser = async (id) => {
+const deleteUser = async (id: string) => {
   try {
     const user = await prisma.user.findUnique({ where: { id: id } });
     if (!user) {
@@ -323,7 +343,7 @@ const deleteUser = async (id) => {
 };
 
 // update profile service
-const updateProfile = async (updatePayload, id) => {
+const updateProfile = async (updatePayload: any, id: string) => {
   try {
     const user = await prisma.user.findUnique({ where: { id: id } });
     if (!user) {
@@ -349,7 +369,7 @@ const updateProfile = async (updatePayload, id) => {
 
 // IN PROGRESS
 // auth with google
-const authWithGoogle = async (profile) => {
+const authWithGoogle = async (profile: any) => {
   try {
     const cryptedPassword = await hasher(process.env.GOOGLE_USER_PASSWORD, 12);
 
@@ -380,7 +400,7 @@ const authWithGoogle = async (profile) => {
     const url = `${process.env.BASE_URL}/user/activate/${emailVerificationToken}`;
     //send user email
     const subject = "Welcome to Sidebrief.";
-    payload = {
+    const payload = {
       name: newUser.firstName,
       url: url,
     };
@@ -425,7 +445,7 @@ const authWithGoogle = async (profile) => {
   }
 };
 
-const authLogin = async () => {
+const authLogin = async (profile: any) => {
   let user = await prisma.user.findUnique({
     where: { email: profile.emails[0].value.toLowerCase() },
   });
@@ -459,7 +479,7 @@ const authLogin = async () => {
   };
 };
 
-module.exports = {
+export {
   saveUser,
   getUser,
   getAllUsers,

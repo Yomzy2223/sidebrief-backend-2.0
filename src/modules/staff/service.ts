@@ -1,15 +1,24 @@
-const { PrismaClient } = require("@prisma/client");
-const logger = require("../../config/logger");
-const { hasher, matchChecker } = require("../../common/hash");
-const { generateToken, verifyUserToken } = require("../../common/token");
-const EmailSender = require("../../services/emailEngine");
-const { BadRequest } = require("../../utils/requestErrors");
+import {
+  ChangePasswordPayload,
+  StaffLogin,
+  StaffPayload,
+  StaffResponseProps,
+} from "./entities";
+
+import { PrismaClient } from "@prisma/client";
+import logger from "../../config/logger";
+import { hasher, matchChecker } from "../../common/hash";
+import { generateToken, verifyUserToken } from "../../common/token";
+import EmailSender from "../../services/emailEngine";
+import { BadRequest } from "../../utils/requestErrors";
 const prisma = new PrismaClient();
 
 //IN PROGRESS
 
 //create staff service
-const saveStaff = async (staffPayload) => {
+const saveStaff = async (
+  staffPayload: StaffPayload
+): Promise<StaffResponseProps> => {
   try {
     const checkStaff = await prisma.staff.findUnique({
       where: { email: staffPayload.email },
@@ -35,7 +44,7 @@ const saveStaff = async (staffPayload) => {
     const url = `${process.env.BASE_URL}/staff/activate/${emailVerificationToken}`;
     //send staff email
     const subject = "Welcome to Sidebrief.";
-    payload = {
+    const payload = {
       name: staffPayload.firstName,
       url: url,
     };
@@ -56,7 +65,7 @@ const saveStaff = async (staffPayload) => {
     const staffTokenSecret = process.env.TOKEN_STAFF_SECRET;
     const token = generateToken({ id: staff.id }, staffTokenSecret, "14d");
 
-    return {
+    const response: StaffResponseProps = {
       message: "Staff created successfully",
       data: {
         id: staff.id,
@@ -70,13 +79,14 @@ const saveStaff = async (staffPayload) => {
       },
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get a staff service
-const getStaff = async (id) => {
+const getStaff = async (id: string): Promise<StaffResponseProps> => {
   //   //check if the staff exists
   //   //return the staff to the staff controller
 
@@ -96,13 +106,16 @@ const getStaff = async (id) => {
         picture: staff.picture,
         verified: staff.verified,
       },
+      statusCode: 200,
     };
   } catch (error) {
     throw error;
   }
 };
 //sign in service
-const loginStaff = async (loginPayload) => {
+const loginStaff = async (
+  loginPayload: StaffLogin
+): Promise<StaffResponseProps> => {
   // take the login payload  from the controller
   //   //check if the staff exists with the email address
   //   //return the staff to the staff controller
@@ -131,7 +144,7 @@ const loginStaff = async (loginPayload) => {
       message: `staff with ${loginPayload.email} signed in successfully.`,
     });
 
-    return {
+    const response: StaffResponseProps = {
       message: "Login successfully",
       data: {
         id: staff.id,
@@ -143,14 +156,17 @@ const loginStaff = async (loginPayload) => {
         token: token,
         verified: staff.verified,
       },
+      statusCode: 200,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 // verify staff account service
-const verifyStaffAccount = async (verifyPayload) => {
+const verifyStaffAccount = async (verifyPayload: string) => {
   try {
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
     const staff = await verifyUserToken(verifyPayload, staffSecret);
@@ -182,7 +198,7 @@ const verifyStaffAccount = async (verifyPayload) => {
 };
 
 // forgot password service
-const forgotPassword = async (resetPayload) => {
+const forgotPassword = async (email: string) => {
   try {
     // take the email from the controller
     // check that the email is registered to a staff account
@@ -190,7 +206,7 @@ const forgotPassword = async (resetPayload) => {
     // save and send the reset token the staff
 
     const staff = await prisma.staff.findUnique({
-      where: { email: resetPayload.email },
+      where: { email: email },
     });
 
     if (!staff) {
@@ -198,7 +214,7 @@ const forgotPassword = async (resetPayload) => {
     }
 
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
-    const staffToken = await generateToken(resetPayload, staffSecret, "30m");
+    const staffToken = await generateToken(email, staffSecret, "30m");
 
     const cryptedToken = await await hasher(staffToken, 12);
 
@@ -211,7 +227,7 @@ const forgotPassword = async (resetPayload) => {
 
     //send staff email
     const subject = "Reset Password.";
-    payload = {
+    const payload = {
       name: staff.firstName,
       url: url,
     };
@@ -235,7 +251,7 @@ const forgotPassword = async (resetPayload) => {
 };
 
 // change password service
-const changePassword = async (changePayload) => {
+const changePassword = async (changePayload: ChangePasswordPayload) => {
   // compare the token with the one saved in the database
   // save the new password and update reset token to null
 
@@ -260,13 +276,12 @@ const changePassword = async (changePayload) => {
       statusCode: 200,
     };
   } catch (error) {
-    console.log("sdds", error);
     throw error;
   }
 };
 
 // delete staff account
-const deleteStaff = async (id) => {
+const deleteStaff = async (id: string) => {
   try {
     const staff = await prisma.staff.findUnique({ where: { id: id } });
     if (!staff) {
@@ -290,7 +305,7 @@ const deleteStaff = async (id) => {
   }
 };
 
-module.exports = {
+export {
   saveStaff,
   getStaff,
   loginStaff,

@@ -1,28 +1,53 @@
-const { PrismaClient, Prisma } = require("@prisma/client");
-const logger = require("../../config/logger");
-const { BadRequest, NotFound } = require("../../utils/requestErrors");
+import { PrismaClient, Prisma } from "@prisma/client";
+import logger from "../../config/logger";
+import { BadRequest, NotFound, Unauthorized } from "../../utils/requestErrors";
 const prisma = new PrismaClient();
-const EmailSender = require("../../services/emailEngine");
-const { generateToken } = require("../../common/token");
-const { matchChecker } = require("../../common/hash");
+import EmailSender from "../../services/emailEngine";
+import { generateToken } from "../../common/token";
+import { hasher, matchChecker } from "../../common/hash";
+import {
+  CreateEnterprisePayload,
+  EnterpriseResponse,
+  CreateNigerianBankPayload,
+  CreateNigerianBankResponse,
+  UpdateEnterprisePayload,
+  ManagerPayload,
+  ManagerResponse,
+  UpdateManagerData,
+  StaffResponse,
+  CreateUserPayload,
+  LoginUserPayload,
+  UserResponse,
+  ResetPasswordPayload,
+  RequestPayload,
+  RequestResponse,
+  UpdateRequestPayload,
+  RequestDocumentPayload,
+  RequestDocumentResponse,
+  StaffRequestResponse,
+  StaffRequestData,
+  UpdateRequestDocumentPayload,
+} from "./entities";
 
 //DILIGENCE PRODUCT SERVICES
 
-const UserRoles = {
-  ADMIN: "Admin",
-  MANAGER: "Manager",
-  STAFF: "Staff",
-};
+enum UserRoles {
+  ADMIN = "Admin",
+  MANAGER = "Manager",
+  STAFF = "Staff",
+}
 
-const RequestStatus = {
-  UNVERIFIED: "Unverified",
-  VERIFIED: "Verified",
-  INPROGRESS: "In progress",
-};
+enum RequestStatus {
+  UNVERIFIED = "Unverified",
+  VERIFIED = "Verified",
+  INPROGRESS = "In progress",
+}
 
 //NIGERIAN BANKS
 //create diligence enterprise
-const createNigerianBank = async (bankPayload) => {
+const createNigerianBank = async (
+  bankPayload: CreateNigerianBankPayload
+): Promise<CreateNigerianBankResponse> => {
   try {
     const bank = await prisma.nigerianBank.create({
       data: bankPayload,
@@ -31,39 +56,46 @@ const createNigerianBank = async (bankPayload) => {
     if (!bank) {
       throw new BadRequest("Error occured while creating this Nigerian bank");
     }
-
-    return {
+    const response: CreateNigerianBankResponse = {
       statusCode: 200,
       message: "Ngerian Bank created successfully!",
       data: bank,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all banks service
-const getAllBanks = async () => {
+const getAllBanks = async (): Promise<CreateNigerianBankResponse> => {
   //  get the bank list from the table
   //  return the bank list to the country controller
   try {
     const banks = await prisma.nigerianBank.findMany({});
-    if (!banks) {
-      throw new NotFound("Banks not found!.");
-    }
+    if (!banks)
+      return {
+        message: "No record found.",
+        data: [],
+        statusCode: 200,
+      };
 
-    return {
+    const response: CreateNigerianBankResponse = {
       message: "Nigerian banks fetched successfully",
       data: banks,
       statusCode: 200,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get a nigerian bank
-const getNigerianBank = async (id) => {
+const getNigerianBank = async (
+  id: string
+): Promise<CreateNigerianBankResponse> => {
   try {
     const checkBank = await prisma.nigerianBank.findUnique({
       where: { id: id },
@@ -72,18 +104,23 @@ const getNigerianBank = async (id) => {
       throw new BadRequest("Nigerian Bank with this id does not exist");
     }
 
-    return {
+    const response: CreateNigerianBankResponse = {
       statusCode: 200,
       message: "Bank fetched successfully",
       data: checkBank,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //update nigerian bank
-const udpateNigerianBank = async (bankId, bankPayload) => {
+const udpateNigerianBank = async (
+  bankId: string,
+  color: string
+): Promise<CreateNigerianBankResponse> => {
   try {
     const checkBank = await prisma.nigerianBank.findUnique({
       where: { id: bankId },
@@ -96,7 +133,7 @@ const udpateNigerianBank = async (bankId, bankPayload) => {
     const bank = await prisma.nigerianBank.update({
       where: { id: bankId },
       data: {
-        color: bankPayload.color,
+        color: color,
       },
     });
 
@@ -104,18 +141,20 @@ const udpateNigerianBank = async (bankId, bankPayload) => {
       throw new BadRequest("Error occured while updating bank");
     }
 
-    return {
+    const response: CreateNigerianBankResponse = {
       statusCode: 200,
       message: "Bank updated successfully!",
       data: bank,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //delete nigerian bank
-const deleteNigerianBank = async (bankId) => {
+const deleteNigerianBank = async (bankId: string) => {
   try {
     const checkBank = await prisma.nigerianBank.findUnique({
       where: { id: bankId },
@@ -144,9 +183,11 @@ const deleteNigerianBank = async (bankId) => {
 
 //ENTERPRISE
 //create diligence enterprise
-const createEnterprise = async (enterprisePayload) => {
+const createEnterprise = async (
+  enterprisePayload: CreateEnterprisePayload
+): Promise<EnterpriseResponse> => {
   try {
-    const checkEnterprise = await prisma.DiligenceEnterprise.findUnique({
+    const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { name: enterprisePayload.name },
     });
 
@@ -154,7 +195,7 @@ const createEnterprise = async (enterprisePayload) => {
       throw new BadRequest("Enterprise with this name already exists");
     }
 
-    const checkEnterpriseEmail = await prisma.DiligenceEnterprise.findUnique({
+    const checkEnterpriseEmail = await prisma.diligenceEnterprise.findUnique({
       where: { adminEmail: enterprisePayload.adminEmail },
     });
 
@@ -178,7 +219,7 @@ const createEnterprise = async (enterprisePayload) => {
       throw new BadRequest("Email already exists as a staff");
     }
 
-    const diligence = await prisma.DiligenceEnterprise.create({
+    const diligence = await prisma.diligenceEnterprise.create({
       data: enterprisePayload,
     });
 
@@ -190,7 +231,7 @@ const createEnterprise = async (enterprisePayload) => {
     const regUrl = `${process.env.BASE_URL}/auth/signup`;
     const subject = "Welcome to Sidebrief.";
 
-    payload = {
+    const payload = {
       name: diligence.name,
       url: regUrl,
       role: "Enterprise",
@@ -207,20 +248,24 @@ const createEnterprise = async (enterprisePayload) => {
       "../view/diligence/diligence.ejs"
     );
 
-    return {
+    const response: EnterpriseResponse = {
       statusCode: 200,
       message: "Enterprise created successfully!",
       data: diligence,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //update diligence enterprise
-const udpateEnterprise = async (enterpriseId, enterprisePayload) => {
+const udpateEnterprise = async (
+  enterpriseId: string,
+  enterprisePayload: UpdateEnterprisePayload
+): Promise<EnterpriseResponse> => {
   try {
-    const checkEnterprise = await prisma.DiligenceEnterprise.findUnique({
+    const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { id: enterpriseId },
     });
 
@@ -228,7 +273,7 @@ const udpateEnterprise = async (enterpriseId, enterprisePayload) => {
       throw new NotFound("Enterprise with this id not found.");
     }
 
-    const diligence = await prisma.DiligenceEnterprise.update({
+    const diligence = await prisma.diligenceEnterprise.update({
       where: { id: enterpriseId },
       data: enterprisePayload,
     });
@@ -240,18 +285,19 @@ const udpateEnterprise = async (enterpriseId, enterprisePayload) => {
       message: `${enterprisePayload.name} enterprise updated successfully`,
     });
 
-    return {
+    const response: EnterpriseResponse = {
       statusCode: 200,
       message: "Enterprise updated successfully!",
       data: diligence,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //delete diligence enterprise
-const deleteEnterprise = async (enterpriseId) => {
+const deleteEnterprise = async (enterpriseId: string) => {
   try {
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { id: enterpriseId },
@@ -282,7 +328,7 @@ const deleteEnterprise = async (enterpriseId) => {
 };
 
 //get an enterprise
-const getEnterprise = async (id) => {
+const getEnterprise = async (id: string) => {
   try {
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { id: id },
@@ -310,7 +356,9 @@ const getEnterprise = async (id) => {
 };
 
 //get an enterprise details
-const getEnterpriseDetails = async (id) => {
+const getEnterpriseDetails = async (
+  id: string
+): Promise<EnterpriseResponse> => {
   try {
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { id: id },
@@ -319,11 +367,13 @@ const getEnterpriseDetails = async (id) => {
       throw new BadRequest("Enterprise with this id does not exist");
     }
 
-    return {
+    const response: EnterpriseResponse = {
       statusCode: 200,
       message: "Enterprise fetched successfully",
       data: checkEnterprise,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
@@ -359,7 +409,7 @@ const getAllDiligenceEnterprises = async () => {
 };
 
 //get an enterprise by admin email
-const getEnterpriseByAdminEmail = async (adminEmail) => {
+const getEnterpriseByAdminEmail = async (adminEmail: string) => {
   try {
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { adminEmail: adminEmail },
@@ -389,23 +439,29 @@ const getEnterpriseByAdminEmail = async (adminEmail) => {
 
 //MANAGER
 //create diligence manager
-const createManager = async (adminId, managerPayload) => {
+const createManager = async (
+  adminId: string,
+  managerPayload: ManagerPayload
+): Promise<ManagerResponse> => {
   try {
     const checkEnterpriseAdmin = await prisma.diligenceUser.findUnique({
       where: { id: adminId },
     });
 
     if (!checkEnterpriseAdmin) {
-      throw new NotFound("Enterprise admin with this ID not found.");
+      throw new NotFound("Enterprise admin with this ID is not a user");
     }
 
     if (checkEnterpriseAdmin.role !== UserRoles.ADMIN) {
-      throw new NotFound("Enterprise admin with this ID not found.");
+      throw new Unauthorized("Only an enterprise admin is permitted.");
     }
 
     const checkEnterprise = await prisma.diligenceEnterprise.findUnique({
       where: { adminEmail: checkEnterpriseAdmin.email },
     });
+    if (!checkEnterprise) {
+      throw new NotFound("Enterprise admin with this ID not found.");
+    }
 
     const values = {
       name: managerPayload.name,
@@ -452,7 +508,7 @@ const createManager = async (adminId, managerPayload) => {
     const regUrl = `${process.env.BASE_URL}/auth/signup`;
     const subject = "Welcome to Sidebrief.";
 
-    payload = {
+    const payload = {
       name: managerPayload.managerEmail,
       url: regUrl,
       role: UserRoles.MANAGER,
@@ -469,18 +525,21 @@ const createManager = async (adminId, managerPayload) => {
       "../view/diligence/diligence.ejs"
     );
 
-    return {
+    const response: ManagerResponse = {
       statusCode: 200,
       message: "Manager created successfully!",
       data: manager,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all diligence managers service
-const getAllDiligenceManagers = async (enterpriseId) => {
+const getAllDiligenceManagers = async (
+  enterpriseId: string
+): Promise<ManagerResponse> => {
   //  get the diligence managers list from the table
   //  return the diligence managers list to the diligence managers controller
   try {
@@ -495,18 +554,20 @@ const getAllDiligenceManagers = async (enterpriseId) => {
       where: { id: enterpriseId },
     });
 
-    return {
-      message: `${enterprise.name}'s Managers fetched successfully`,
+    const response: ManagerResponse = {
+      message: `${enterprise?.name}'s Managers fetched successfully`,
       data: managers,
       statusCode: 200,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get manager by Id
-const getManager = async (id) => {
+const getManager = async (id: string): Promise<ManagerResponse> => {
   try {
     const checkManager = await prisma.diligenceManager.findUnique({
       where: { id: id },
@@ -515,18 +576,21 @@ const getManager = async (id) => {
       throw new BadRequest("Manager with this id does not exist");
     }
 
-    return {
+    const response: ManagerResponse = {
       statusCode: 200,
       message: "Manager fetched successfully",
       data: checkManager,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get an enterprise by admin email
-const getManagerByManagerEmail = async (managerEmail) => {
+const getManagerByManagerEmail = async (
+  managerEmail: string
+): Promise<ManagerResponse> => {
   try {
     const checkManager = await prisma.diligenceManager.findUnique({
       where: { managerEmail: managerEmail },
@@ -536,18 +600,22 @@ const getManagerByManagerEmail = async (managerEmail) => {
       throw new BadRequest("Manager with this email does not exist");
     }
 
-    return {
+    const response: ManagerResponse = {
       statusCode: 200,
       message: "Manager fetched successfully",
       data: checkManager,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //update diligence manager
-const udpateManager = async (managerId, managerPayload) => {
+const udpateManager = async (
+  managerId: string,
+  managerPayload: UpdateManagerData
+): Promise<ManagerResponse> => {
   try {
     const checkManager = await prisma.diligenceManager.findUnique({
       where: { id: managerId },
@@ -569,18 +637,19 @@ const udpateManager = async (managerId, managerPayload) => {
       message: `Manager with ${managerPayload.managerEmail} updated successfully`,
     });
 
-    return {
+    const response: ManagerResponse = {
       statusCode: 200,
       message: "Manager updated successfully!",
       data: manager,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //delete diligence manager
-const deleteManager = async (managerId) => {
+const deleteManager = async (managerId: string) => {
   try {
     const checkManager = await prisma.diligenceManager.findUnique({
       where: { id: managerId },
@@ -612,7 +681,10 @@ const deleteManager = async (managerId) => {
 
 //STAFF
 //create diligence staff
-const createStaff = async (managerId, email) => {
+const createStaff = async (
+  managerId: string,
+  email: string
+): Promise<StaffResponse> => {
   try {
     const checkEnterpriseManager = await prisma.diligenceUser.findUnique({
       where: { id: managerId },
@@ -622,12 +694,18 @@ const createStaff = async (managerId, email) => {
     }
 
     if (checkEnterpriseManager.role !== UserRoles.MANAGER) {
-      throw new BadRequest("The user with this ID is not a manager.");
+      throw new Unauthorized(
+        "Only manager is permitted to perform this operation."
+      );
     }
 
     const checkManager = await prisma.diligenceManager.findUnique({
       where: { managerEmail: checkEnterpriseManager.email },
     });
+
+    if (!checkManager) {
+      throw new NotFound("Manager not found.");
+    }
 
     const values = {
       email: email,
@@ -672,7 +750,7 @@ const createStaff = async (managerId, email) => {
     const regUrl = `${process.env.BASE_URL}/auth/signup`;
     const subject = "Welcome to Sidebrief.";
 
-    payload = {
+    const payload = {
       name: email,
       url: regUrl,
       role: UserRoles.STAFF,
@@ -689,18 +767,21 @@ const createStaff = async (managerId, email) => {
       "../view/diligence/diligence.ejs"
     );
 
-    return {
+    const response: StaffResponse = {
       statusCode: 200,
       message: "Staff created successfully!",
       data: diligenceStaff,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all diligence Staffs service
-const getAllDiligenceStaffs = async (managerId) => {
+const getAllDiligenceStaffs = async (
+  managerId: string
+): Promise<StaffResponse> => {
   //  get the diligence Staffs list from the table
   //  return the diligence Staffs list to the diligence managers controller
   try {
@@ -711,17 +792,18 @@ const getAllDiligenceStaffs = async (managerId) => {
       throw new NotFound("Diligence Staffs not found!.");
     }
 
-    return {
+    const response: StaffResponse = {
       message: "Diligence Staffs fetched successfully",
       data: diligenceStaffs,
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
-const getStaff = async (id) => {
+const getStaff = async (id: string): Promise<StaffResponse> => {
   try {
     const checkStaff = await prisma.diligenceStaff.findUnique({
       where: { id: id },
@@ -730,18 +812,19 @@ const getStaff = async (id) => {
       throw new BadRequest("Staff with this id does not exist");
     }
 
-    return {
+    const response: StaffResponse = {
       statusCode: 200,
       message: "Staff fetched successfully",
       data: checkStaff,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //delete diligence staff
-const deleteStaff = async (staffId) => {
+const deleteStaff = async (staffId: string) => {
   try {
     const checkStaff = await prisma.diligenceStaff.findUnique({
       where: { id: staffId },
@@ -774,10 +857,10 @@ const deleteStaff = async (staffId) => {
 // DILIGENCE USER
 //add diligence user helper
 const createDiligenceUser = async (
-  accountPayload,
-  role,
-  enterpriseId,
-  managerId
+  accountPayload: CreateUserPayload,
+  role: string,
+  enterpriseId: string,
+  managerId: string
 ) => {
   try {
     const value = {
@@ -799,7 +882,9 @@ const createDiligenceUser = async (
 };
 
 //create diligence user
-const createAccount = async (accountPayload) => {
+const createAccount = async (
+  accountPayload: CreateUserPayload
+): Promise<UserResponse> => {
   try {
     const checkUser = await prisma.diligenceUser.findUnique({
       where: { email: accountPayload.email },
@@ -837,7 +922,11 @@ const createAccount = async (accountPayload) => {
       const userSecret = process.env.TOKEN_USER_SECRET;
       const token = generateToken({ id: create.id }, userSecret, "14d");
 
-      return {
+      logger.info({
+        message: `Diligence user with ${accountPayload.email} created successfully`,
+      });
+
+      const response: UserResponse = {
         statusCode: 200,
         message: `User created successfully!`,
         data: {
@@ -850,6 +939,7 @@ const createAccount = async (accountPayload) => {
           enterpriseId: create.diligenceEnterpriseId,
         },
       };
+      return response;
     }
 
     if (manager) {
@@ -863,7 +953,11 @@ const createAccount = async (accountPayload) => {
       const userSecret = process.env.TOKEN_USER_SECRET;
       const token = generateToken({ id: create.id }, userSecret, "14d");
 
-      return {
+      logger.info({
+        message: `Diligence user with ${accountPayload.email} created successfully`,
+      });
+
+      const response: UserResponse = {
         statusCode: 200,
         message: `User created successfully!`,
         data: {
@@ -877,6 +971,7 @@ const createAccount = async (accountPayload) => {
           managerId: manager.id,
         },
       };
+      return response;
     }
 
     if (staff) {
@@ -893,7 +988,11 @@ const createAccount = async (accountPayload) => {
       const userSecret = process.env.TOKEN_USER_SECRET;
       const token = generateToken({ id: create.id }, userSecret, "14d");
 
-      return {
+      logger.info({
+        message: `Diligence user with ${accountPayload.email} created successfully`,
+      });
+
+      const response: UserResponse = {
         statusCode: 200,
         message: `User created successfully!`,
         data: {
@@ -904,22 +1003,24 @@ const createAccount = async (accountPayload) => {
           token: token,
           role: create.role,
           enterpriseId: create.diligenceEnterpriseId,
-          managerId: manager.id,
-          managerEmail: manager.managerEmail,
+          managerId: manager?.id,
+          managerEmail: manager?.managerEmail,
         },
       };
+
+      return response;
     }
 
-    logger.info({
-      message: `Diligence user with ${accountPayload.email} created successfully`,
-    });
+    throw new BadRequest("Error occured.!");
   } catch (error) {
     throw error;
   }
 };
 
 //sign in service
-const loginUser = async (loginPayload) => {
+const loginUser = async (
+  loginPayload: LoginUserPayload
+): Promise<UserResponse> => {
   // take the login payload  from the controller
   //   //check if the user exists with the email address
   //   //return the user to the user controller
@@ -966,8 +1067,9 @@ const loginUser = async (loginPayload) => {
     });
 
     if (user.role === UserRoles.ADMIN) {
-      return {
+      const response: UserResponse = {
         message: "Login successful.",
+        statusCode: 200,
         data: {
           id: user.id,
           firstName: user.firstName,
@@ -978,13 +1080,15 @@ const loginUser = async (loginPayload) => {
           enterpriseId: user.diligenceEnterpriseId,
         },
       };
+      return response;
     } else {
       const manager = await prisma.diligenceManager.findUnique({
-        where: { id: user.managerId },
+        where: { id: user?.managerId as string },
       });
 
-      return {
+      const response: UserResponse = {
         message: "Login successful.",
+        statusCode: 200,
         data: {
           id: user.id,
           firstName: user.firstName,
@@ -993,10 +1097,12 @@ const loginUser = async (loginPayload) => {
           token: token,
           role: user.role,
           enterpriseId: user.diligenceEnterpriseId,
-          managerId: manager.id,
-          managerEmail: manager.managerEmail,
+          managerId: manager?.id,
+          managerEmail: manager?.managerEmail,
         },
       };
+
+      return response;
     }
   } catch (error) {
     throw error;
@@ -1004,7 +1110,7 @@ const loginUser = async (loginPayload) => {
 };
 
 // forgot password service
-const forgotPassword = async (email) => {
+const forgotPassword = async (email: string) => {
   try {
     // take the email from the controller
     // check that the email is registered to a user account
@@ -1031,7 +1137,7 @@ const forgotPassword = async (email) => {
 
     //send user email
     const subject = "Reset Password.";
-    payload = {
+    const payload = {
       name: user.firstName,
       url: url,
     };
@@ -1055,7 +1161,7 @@ const forgotPassword = async (email) => {
 };
 
 // change password service
-const changePassword = async (changePayload) => {
+const changePassword = async (changePayload: ResetPasswordPayload) => {
   // take the email, resetToken and password from the controller
   // check that the email is registered to a user account
   // compare the token with the one saved in the database
@@ -1087,7 +1193,9 @@ const changePassword = async (changePayload) => {
 };
 
 //create diligence request
-const createRequest = async (requestPayload) => {
+const createRequest = async (
+  requestPayload: RequestPayload
+): Promise<RequestResponse> => {
   try {
     const checkUser = await prisma.diligenceUser.findUnique({
       where: { email: requestPayload.createdBy },
@@ -1118,7 +1226,7 @@ const createRequest = async (requestPayload) => {
 
     const subject = "Request created successfully.";
 
-    payload = {
+    const payload = {
       name: checkUser.firstName,
       businessName: requestPayload.name,
       regNo: requestPayload.registrationNumber,
@@ -1137,7 +1245,7 @@ const createRequest = async (requestPayload) => {
     );
 
     //send staff email
-    staffPayload = {
+    const staffPayload = {
       enterpriseName: checkEnterprise.name,
       businessName: requestPayload.name,
       regNo: requestPayload.registrationNumber,
@@ -1156,18 +1264,20 @@ const createRequest = async (requestPayload) => {
       "../view/diligence/staffRequestCreate.ejs"
     );
 
-    return {
+    const response: RequestResponse = {
       statusCode: 200,
       message: "Request created successfully!",
       data: request,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all diligence requests service
-const getAllDiligenceRequests = async () => {
+const getAllDiligenceRequests = async (): Promise<RequestResponse> => {
   //  get the diligence requests list from the table
   //  return the diligence requests list to the diligence requests controller
   try {
@@ -1180,18 +1290,22 @@ const getAllDiligenceRequests = async () => {
       throw new NotFound("Diligence requests not found!.");
     }
 
-    return {
+    const response: RequestResponse = {
       message: "Diligence requests fetched successfully",
       data: diligenceRequests,
       statusCode: 200,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get a diligence request service
-const getDiligenceRequest = async (requestId) => {
+const getDiligenceRequest = async (
+  requestId: string
+): Promise<RequestResponse> => {
   //  get the diligence request  from the table
   //  return the diligence request lis to the diligence requests controller
   try {
@@ -1201,18 +1315,22 @@ const getDiligenceRequest = async (requestId) => {
     if (!diligenceRequest) {
       throw new NotFound("Diligence requests not found!.");
     }
-    return {
+    const response: RequestResponse = {
       message: "Diligence request fetched successfully",
       data: diligenceRequest,
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //update diligence request
-const updateDiligenceRequest = async (requestId, requestPayload) => {
+const updateDiligenceRequest = async (
+  requestId: string,
+  requestPayload: UpdateRequestPayload
+): Promise<RequestResponse> => {
   //add the new request to the table
 
   try {
@@ -1238,18 +1356,20 @@ const updateDiligenceRequest = async (requestId, requestPayload) => {
       message: `Request with the name ${request.name}, updated successfully`,
     });
 
-    return {
+    const response: RequestResponse = {
       message: "Request updated successfully",
       statusCode: 200,
       data: updateRequest,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //delete diligence request
-const deleteRequest = async (requestId) => {
+const deleteRequest = async (requestId: string) => {
   try {
     const checkRequest = await prisma.diligenceRequest.findUnique({
       where: { id: requestId },
@@ -1280,7 +1400,7 @@ const deleteRequest = async (requestId) => {
 };
 
 //verify request document
-const verifyRequest = async (requestId) => {
+const verifyRequest = async (requestId: string) => {
   //add the new request to the table
   try {
     const request = await prisma.diligenceRequest.findUnique({
@@ -1305,7 +1425,7 @@ const verifyRequest = async (requestId) => {
 
     const subject = "Request verified successfully.";
 
-    payload = {
+    const payload = {
       businessName: updateRequest.name,
       regNo: updateRequest.registrationNumber,
       status: RequestStatus.VERIFIED,
@@ -1332,7 +1452,7 @@ const verifyRequest = async (requestId) => {
 };
 
 //update request status
-const updateRequest = async (requestId) => {
+const updateRequest = async (requestId: string) => {
   //add the new request to the table
 
   try {
@@ -1366,7 +1486,7 @@ const updateRequest = async (requestId) => {
 };
 
 //verify multiple request document
-const verifyMultipleRequest = async (requestList) => {
+const verifyMultipleRequest = async (requestList: string[]) => {
   try {
     const updateRequest = await prisma.diligenceRequest.updateMany({
       where: {
@@ -1389,7 +1509,10 @@ const verifyMultipleRequest = async (requestList) => {
 };
 
 //save request document
-const saveRequestDocument = async (requestId, documentPayload) => {
+const saveRequestDocument = async (
+  requestId: string,
+  documentPayload: RequestDocumentPayload
+): Promise<RequestDocumentResponse> => {
   //add the new document to the table
 
   try {
@@ -1428,7 +1551,7 @@ const saveRequestDocument = async (requestId, documentPayload) => {
 
     const subject = "Request completed successfully.";
 
-    payload = {
+    const payload = {
       businessName: updateRequest.name,
       regNo: updateRequest.registrationNumber,
       status: "Completed",
@@ -1445,18 +1568,19 @@ const saveRequestDocument = async (requestId, documentPayload) => {
       "../view/diligence/completedDiligenceRequest.ejs"
     );
 
-    return {
+    const response: RequestDocumentResponse = {
       message: "Document created successfully",
       statusCode: 200,
       data: document,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //remove a request document
-const removeRequestDocument = async (id) => {
+const removeRequestDocument = async (id: string) => {
   //take id from the request controller
   //check if the request exists
   //remove the request from the record
@@ -1487,7 +1611,9 @@ const removeRequestDocument = async (id) => {
 };
 
 //get a document
-const getDocument = async (documentId) => {
+const getDocument = async (
+  documentId: string
+): Promise<RequestDocumentResponse> => {
   try {
     const checkDocument = await prisma.diligenceRequestDocument.findUnique({
       where: { id: documentId },
@@ -1496,18 +1622,22 @@ const getDocument = async (documentId) => {
       throw new BadRequest("Document with this id does not exist");
     }
 
-    return {
+    const response: RequestDocumentResponse = {
       statusCode: 200,
       message: "Document fetched successfully",
       data: checkDocument,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all documents
-const getAllDocuments = async (requestId) => {
+const getAllDocuments = async (
+  requestId: string
+): Promise<RequestDocumentResponse> => {
   try {
     const checkRequest = await prisma.diligenceRequest.findUnique({
       where: { id: requestId },
@@ -1533,7 +1663,10 @@ const getAllDocuments = async (requestId) => {
 };
 
 //update a request document
-const updateRequestDocument = async (documentId, updatePayload) => {
+const updateRequestDocument = async (
+  documentId: string,
+  updatePayload: UpdateRequestDocumentPayload
+): Promise<RequestDocumentResponse> => {
   //take id from the request controller
   //check if the request exists
   //update the document from the record
@@ -1558,19 +1691,21 @@ const updateRequestDocument = async (documentId, updatePayload) => {
       throw new BadRequest("Error occured while updating document");
     }
 
-    return {
+    const response: RequestDocumentResponse = {
       statusCode: 200,
       message: "Document updated successfully",
       data: updateRequestDocument,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
-const getStaffAndRequest = async (managerId) => {
+const getStaffAndRequest = async (managerId: string) => {
   try {
-    const result = await prisma.$queryRaw`
+    const result: StaffRequestData[] = await prisma.$queryRaw`
 SELECT
     "DiligenceUser"."firstName" AS firstname,
     "DiligenceUser"."lastName" AS lastname,
@@ -1597,7 +1732,7 @@ GROUP BY
       );
     }
 
-    const modifiedResult = result.map((item) => ({
+    const modifiedResult = result.map((item: StaffRequestData) => ({
       firstname: item.firstname,
       lastname: item.lastname,
       email: item.email,
@@ -1605,17 +1740,20 @@ GROUP BY
       num_requests: Number(item.num_requests),
     }));
 
-    return {
+    const response: StaffRequestResponse = {
       statusCode: 200,
       message: "Data fetched successfully",
       data: modifiedResult,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
-const getBranchRequest = async (managerId) => {
+const getBranchRequest = async (
+  managerId: string
+): Promise<RequestResponse> => {
   try {
     const checkManager = await prisma.diligenceManager.findUnique({
       where: { id: managerId },
@@ -1646,17 +1784,18 @@ const getBranchRequest = async (managerId) => {
       },
     });
 
-    return {
+    const response: RequestResponse = {
       statusCode: 200,
       message: "Data fetched successfully",
       data: requests,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
-module.exports = {
+export {
   //enterprise
   createEnterprise,
   deleteEnterprise,
@@ -1709,7 +1848,6 @@ module.exports = {
   updateRequestDocument,
   getDocument,
   getAllDocuments,
-
   getStaffAndRequest,
   getBranchRequest,
 };

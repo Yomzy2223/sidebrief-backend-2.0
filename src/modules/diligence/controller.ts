@@ -1,8 +1,9 @@
-const { hasher } = require("../../common/hash");
-const { PrismaClient } = require("@prisma/client");
+import { Request, Response, NextFunction } from "express";
+import { hasher } from "../../common/hash";
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-const {
+import {
   getAllBanks,
   createStaff,
   getAllDiligenceStaffs,
@@ -16,6 +17,7 @@ const {
   updateRequest,
   forgotPassword,
   changePassword,
+  createNigerianBank,
   getStaff,
   getDiligenceRequest,
   deleteRequest,
@@ -43,25 +45,42 @@ const {
   getBranchRequest,
   getEnterpriseDetails,
   verifyMultipleRequest,
-} = require("./service");
-const { default: axios } = require("axios");
+} from "./service";
+import { default as axios } from "axios";
+import {
+  CreateEnterprisePayload,
+  CreateNigerianBankPayload,
+  CreateNigerianBankResponse,
+  ManagerPayload,
+  RequestDocumentPayload,
+  RequestPayload,
+  UpdateEnterprisePayload,
+  UpdateRequestDocumentPayload,
+  UpdateRequestPayload,
+} from "./entities";
 
 //DILIGENCE PRODUCT CONTROLLERS
 
 //NIGERIAN BANKS
 //create a nigerian bank
-exports.CreateNigerianBank = async (req, res, next) => {
+exports.CreateNigerianBank = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const nigerianBankPayload = req.body;
 
-    const values = {
+    const values: CreateNigerianBankPayload = {
       name: nigerianBankPayload.name,
       slug: nigerianBankPayload.slug,
       color: nigerianBankPayload.color,
       logo: nigerianBankPayload.logo,
     };
 
-    const nigerianBank = await createNigerianBank(values);
+    const nigerianBank: CreateNigerianBankResponse = await createNigerianBank(
+      values
+    );
 
     return res.status(nigerianBank.statusCode).json({
       message: nigerianBank.message,
@@ -73,7 +92,11 @@ exports.CreateNigerianBank = async (req, res, next) => {
 };
 
 //get all banks
-exports.GetAllNigerianBanks = async (req, res, next) => {
+exports.GetAllNigerianBanks = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the banks list
     // return response to the client
@@ -88,11 +111,15 @@ exports.GetAllNigerianBanks = async (req, res, next) => {
 };
 
 //get a Nigerian bank
-exports.GetANigerianBank = async (req, res, next) => {
+exports.GetANigerianBank = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the bank
     // return response to the client
-    const bankId = req.params.bankId;
+    const bankId: string = req.params.bankId;
     const bank = await getNigerianBank(bankId);
     return res
       .status(bank.statusCode)
@@ -103,16 +130,16 @@ exports.GetANigerianBank = async (req, res, next) => {
 };
 
 //update Nigerian bank
-exports.UpdateNigerianBank = async (req, res, next) => {
+exports.UpdateNigerianBank = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const bankId = req.params.bankId;
-    const bankPayload = req.body;
+    const bankId: string = req.params.bankId;
+    const { color } = req.body;
 
-    const values = {
-      color: bankPayload.color,
-    };
-
-    const bank = await udpateNigerianBank(bankId, values);
+    const bank = await udpateNigerianBank(bankId, color);
 
     return res
       .status(bank.statusCode)
@@ -123,9 +150,13 @@ exports.UpdateNigerianBank = async (req, res, next) => {
 };
 
 //delete Nigerian Bank
-exports.DeleteNigerianBank = async (req, res, next) => {
+exports.DeleteNigerianBank = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const bankId = req.params.bankId;
+    const bankId: string = req.params.bankId;
 
     const bank = await deleteNigerianBank(bankId);
 
@@ -137,7 +168,11 @@ exports.DeleteNigerianBank = async (req, res, next) => {
 
 //ENTERPRISE
 //create diligence enterprise
-exports.CreateEnterprise = async (req, res, next) => {
+exports.CreateEnterprise = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const enterprisePayload = req.body;
 
@@ -162,7 +197,11 @@ exports.CreateEnterprise = async (req, res, next) => {
 };
 
 // get single enterprise
-exports.GetSingleEnterprise = async (req, res, next) => {
+exports.GetSingleEnterprise = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const enterpriseId = req.params.enterpriseId;
     const enterprise = await getEnterprise(enterpriseId);
@@ -176,9 +215,13 @@ exports.GetSingleEnterprise = async (req, res, next) => {
 };
 
 // get single enterprise details
-exports.GetSingleEnterpriseDetails = async (req, res, next) => {
+exports.GetSingleEnterpriseDetails = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const enterpriseId = req.params.enterpriseId;
+    const enterpriseId: string = req.params.enterpriseId;
     const enterprise = await getEnterpriseDetails(enterpriseId);
 
     return res
@@ -190,17 +233,21 @@ exports.GetSingleEnterpriseDetails = async (req, res, next) => {
 };
 
 //update diligence enterprise
-exports.UpdateEnterprise = async (req, res, next) => {
+exports.UpdateEnterprise = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const enterpriseId = req.params.enterpriseId;
+    const enterpriseId: string = req.params.enterpriseId;
     const enterprisePayload = req.body;
 
-    const values = {
+    const values: UpdateEnterprisePayload = {
       name: enterprisePayload.name,
       address: enterprisePayload.address,
-      adminEmail: enterprisePayload.adminEmail,
       color: enterprisePayload.color,
       logo: enterprisePayload.logo,
+      backdrop: enterprisePayload.backdrop,
     };
 
     const diligenceEnterprise = await udpateEnterprise(enterpriseId, values);
@@ -215,9 +262,13 @@ exports.UpdateEnterprise = async (req, res, next) => {
 };
 
 //delete diligence enterprise
-exports.DeleteEnterprise = async (req, res, next) => {
+exports.DeleteEnterprise = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const enterpriseId = req.params.enterpriseId;
+    const enterpriseId: string = req.params.enterpriseId;
 
     const diligenceEnterprise = await deleteEnterprise(enterpriseId);
 
@@ -230,9 +281,13 @@ exports.DeleteEnterprise = async (req, res, next) => {
 };
 
 // get single enterprise
-exports.GetSingleEnterprise = async (req, res, next) => {
+exports.GetSingleEnterprise = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const enterpriseId = req.params.enterpriseId;
+    const enterpriseId: string = req.params.enterpriseId;
     const enterprise = await getEnterprise(enterpriseId);
 
     return res
@@ -244,7 +299,11 @@ exports.GetSingleEnterprise = async (req, res, next) => {
 };
 
 //get all enterprises
-exports.GetAllDiligenceEnterprises = async (req, res, next) => {
+exports.GetAllDiligenceEnterprises = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the diligence enterprises list
     // return response to the client
@@ -260,9 +319,13 @@ exports.GetAllDiligenceEnterprises = async (req, res, next) => {
 };
 
 //get a single enterprise with admin email address
-exports.GetSingleEnterpriseByAdminEmail = async (req, res, next) => {
+exports.GetSingleEnterpriseByAdminEmail = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const adminEmail = req.params.adminEmail;
+    const adminEmail: string = req.params.adminEmail;
     const enterprise = await getEnterpriseByAdminEmail(adminEmail);
 
     return res
@@ -275,10 +338,14 @@ exports.GetSingleEnterpriseByAdminEmail = async (req, res, next) => {
 
 //MANAGER
 //create diligence manager
-exports.CreateManager = async (req, res, next) => {
+exports.CreateManager = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const adminId = req.params.adminId;
-    const managerPayload = req.body;
+    const adminId: string = req.params.adminId;
+    const managerPayload: ManagerPayload = req.body;
 
     const manager = await createManager(adminId, managerPayload);
 
@@ -291,11 +358,15 @@ exports.CreateManager = async (req, res, next) => {
 };
 
 //get all managers
-exports.GetAllDiligenceManagers = async (req, res, next) => {
+exports.GetAllDiligenceManagers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the diligence branches list
     // return response to the client
-    const enterpriseId = req.params.enterpriseId;
+    const enterpriseId: string = req.params.enterpriseId;
     const managers = await getAllDiligenceManagers(enterpriseId);
 
     return res.status(managers.statusCode).json({
@@ -308,9 +379,13 @@ exports.GetAllDiligenceManagers = async (req, res, next) => {
 };
 
 //get single manager
-exports.GetSingleManager = async (req, res, next) => {
+exports.GetSingleManager = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const managerId = req.params.managerId;
+    const managerId: string = req.params.managerId;
     const manager = await getManager(managerId);
 
     return res
@@ -322,9 +397,13 @@ exports.GetSingleManager = async (req, res, next) => {
 };
 
 //get a single manager with email address
-exports.GetSingleManagerByManagerEmail = async (req, res, next) => {
+exports.GetSingleManagerByManagerEmail = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const managerEmail = req.params.managerEmail;
+    const managerEmail: string = req.params.managerEmail;
     const manager = await getManagerByManagerEmail(managerEmail);
 
     return res
@@ -336,9 +415,13 @@ exports.GetSingleManagerByManagerEmail = async (req, res, next) => {
 };
 
 //update diligence manager
-exports.UpdateManager = async (req, res, next) => {
+exports.UpdateManager = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const managerId = req.params.managerId;
+    const managerId: string = req.params.managerId;
     const managerPayload = req.body;
 
     const values = {
@@ -358,9 +441,13 @@ exports.UpdateManager = async (req, res, next) => {
 };
 
 //delete diligence branch
-exports.DeleteManager = async (req, res, next) => {
+exports.DeleteManager = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const managerId = req.params.managerId;
+    const managerId: string = req.params.managerId;
 
     const manager = await deleteManager(managerId);
 
@@ -372,9 +459,13 @@ exports.DeleteManager = async (req, res, next) => {
 
 //STAFF
 //create diligence staff
-exports.CreateStaff = async (req, res, next) => {
+exports.CreateStaff = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const managerId = req.params.managerId;
+    const managerId: string = req.params.managerId;
     const { email } = req.body;
 
     const diligenceStaff = await createStaff(managerId, email);
@@ -388,11 +479,15 @@ exports.CreateStaff = async (req, res, next) => {
 };
 
 //get all staffs
-exports.GetAllDiligenceStaffs = async (req, res, next) => {
+exports.GetAllDiligenceStaffs = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the diligence staffs list
     // return response to the client
-    const managerId = req.params.managerId;
+    const managerId: string = req.params.managerId;
     const diligenceStaffs = await getAllDiligenceStaffs(managerId);
 
     return res.status(diligenceStaffs.statusCode).json({
@@ -405,9 +500,13 @@ exports.GetAllDiligenceStaffs = async (req, res, next) => {
 };
 
 //get single staff
-exports.GetSingleStaff = async (req, res, next) => {
+exports.GetSingleStaff = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const staffId = req.params.staffId;
+    const staffId: string = req.params.staffId;
     const staff = await getStaff(staffId);
 
     return res
@@ -419,9 +518,13 @@ exports.GetSingleStaff = async (req, res, next) => {
 };
 
 //delete diligence staff
-exports.DeleteStaff = async (req, res, next) => {
+exports.DeleteStaff = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const staffId = req.params.staffId;
+    const staffId: string = req.params.staffId;
 
     const diligenceStaff = await deleteStaff(staffId);
 
@@ -434,7 +537,11 @@ exports.DeleteStaff = async (req, res, next) => {
 };
 
 //create diligence user
-exports.CreateAccount = async (req, res, next) => {
+exports.CreateAccount = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const accountPayload = req.body;
 
@@ -457,8 +564,8 @@ exports.CreateAccount = async (req, res, next) => {
   }
 };
 
-// login user
-exports.UserLogin = async (req, res, next) => {
+// login usergyuiyugydqqdipqddtwduwdyyuyyiwwitdgwqjdopwquyd8ftrttd9w77ruyff56wyuydywydo
+exports.UserLogin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // get the login payload
     // validate the payload
@@ -476,7 +583,11 @@ exports.UserLogin = async (req, res, next) => {
 };
 
 //send diligence user a reset link
-exports.UserPasswordResetLink = async (req, res, next) => {
+exports.UserPasswordResetLink = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { email } = req.body;
 
@@ -489,7 +600,11 @@ exports.UserPasswordResetLink = async (req, res, next) => {
 };
 
 //reset diligence user password
-exports.UserPasswordReset = async (req, res, next) => {
+exports.UserPasswordReset = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the login payload
     // validate the payload
@@ -497,7 +612,7 @@ exports.UserPasswordReset = async (req, res, next) => {
 
     // return the response to the client
 
-    const loginPayload = req.body;
+    const { loginPayload } = req.body;
     const userPass = await changePassword(loginPayload);
 
     return res.status(userPass.statusCode).json({ message: userPass.message });
@@ -507,11 +622,15 @@ exports.UserPasswordReset = async (req, res, next) => {
 };
 
 //create diligence request
-exports.CreateRequest = async (req, res, next) => {
+exports.CreateRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const requestPayload = req.body;
 
-    const values = {
+    const values: RequestPayload = {
       name: requestPayload.name,
       registrationNumber: requestPayload.registrationNumber,
       status: "Unverified",
@@ -530,9 +649,13 @@ exports.CreateRequest = async (req, res, next) => {
 };
 
 //get a diligence request
-exports.GetRequest = async (req, res, next) => {
+exports.GetRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const requestId = req.params.requestId;
+    const requestId: string = req.params.requestId;
 
     const diligenceRequest = await getDiligenceRequest(requestId);
 
@@ -545,9 +668,13 @@ exports.GetRequest = async (req, res, next) => {
 };
 
 //delete a diligence request
-exports.DeleteRequest = async (req, res, next) => {
+exports.DeleteRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const requestId = req.params.requestId;
+    const requestId: string = req.params.requestId;
 
     const diligenceRequest = await deleteRequest(requestId);
 
@@ -560,16 +687,20 @@ exports.DeleteRequest = async (req, res, next) => {
 };
 
 //update a request
-exports.UpdateDiligenceRequest = async (req, res, next) => {
+exports.UpdateDiligenceRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //check if there is id
     // send the id to the update service
     //return response to the client
 
-    const id = req.params.requestId;
+    const id: string = req.params.requestId;
     const requestPayload = req.body;
 
-    const values = {
+    const values: UpdateRequestPayload = {
       name: requestPayload.name,
       registrationNumber: requestPayload.registrationNumber,
     };
@@ -585,7 +716,11 @@ exports.UpdateDiligenceRequest = async (req, res, next) => {
 };
 
 //get all requests
-exports.GetAllDiligenceRequests = async (req, res, next) => {
+exports.GetAllDiligenceRequests = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the diligence requests list
     // return response to the client
@@ -602,12 +737,16 @@ exports.GetAllDiligenceRequests = async (req, res, next) => {
 };
 
 //verify a request
-exports.VerifyRequest = async (req, res, next) => {
+exports.VerifyRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //check if there is id
     // send the id to the verify service
     //return response to the client
-    const id = req.params.requestId;
+    const id: string = req.params.requestId;
 
     const verify = await verifyRequest(id);
 
@@ -618,7 +757,11 @@ exports.VerifyRequest = async (req, res, next) => {
 };
 
 //verify multiple requests
-exports.VerifyMultipleRequest = async (req, res, next) => {
+exports.VerifyMultipleRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //get the list from the client
     //send the list to the verify service
@@ -635,13 +778,17 @@ exports.VerifyMultipleRequest = async (req, res, next) => {
 };
 
 //update a request
-exports.UpdateRequest = async (req, res, next) => {
+exports.UpdateRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //check if there is id
     // send the id to the update service
     //return response to the client
 
-    const id = req.params.requestId;
+    const id: string = req.params.requestId;
 
     const update = await updateRequest(id);
 
@@ -651,12 +798,16 @@ exports.UpdateRequest = async (req, res, next) => {
   }
 };
 //add diligence document
-exports.AddRequestDocument = async (req, res, next) => {
+exports.AddRequestDocument = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const documentPayload = req.body;
     const requestId = req.params.requestId;
 
-    const values = {
+    const values: RequestDocumentPayload = {
       name: documentPayload.name,
       type: documentPayload.type,
       description: documentPayload.description,
@@ -665,23 +816,27 @@ exports.AddRequestDocument = async (req, res, next) => {
     };
 
     const document = await saveRequestDocument(requestId, values);
-    if (document.error) {
-      return res.status(document.statusCode).json({ error: document.error });
-    }
-    return res.status(200).json(document);
+
+    return res
+      .status(document.statusCode)
+      .json({ message: document.message, data: document.data });
   } catch (error) {
     next(error);
   }
 };
 
 //delete a document
-exports.DeleteDocument = async (req, res, next) => {
+exports.DeleteDocument = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //check if there is id
     // send the id to the delete service
     //return response to the client
 
-    const id = req.params.documentId;
+    const id: string = req.params.documentId;
 
     const deleteDocument = await removeRequestDocument(id);
 
@@ -694,15 +849,19 @@ exports.DeleteDocument = async (req, res, next) => {
 };
 
 //update a document
-exports.UpdateDocument = async (req, res, next) => {
+exports.UpdateDocument = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //check if there is id
     // send the id to the delete service
     //return response to the client
-    const documentId = req.params.documentId;
+    const documentId: string = req.params.documentId;
     const documentPayload = req.body;
 
-    const values = {
+    const values: UpdateRequestDocumentPayload = {
       name: documentPayload.name,
       type: documentPayload.type,
       description: documentPayload.description,
@@ -720,9 +879,13 @@ exports.UpdateDocument = async (req, res, next) => {
 };
 
 // get single document
-exports.GetDocument = async (req, res, next) => {
+exports.GetDocument = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const documentId = req.params.documentId;
+    const documentId: string = req.params.documentId;
     const document = await getDocument(documentId);
 
     return res
@@ -734,9 +897,13 @@ exports.GetDocument = async (req, res, next) => {
 };
 
 // get all documents
-exports.GetAllDocuments = async (req, res, next) => {
+exports.GetAllDocuments = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const requestId = req.params.requestId;
+    const requestId: string = req.params.requestId;
     const document = await getAllDocuments(requestId);
 
     return res
@@ -747,12 +914,12 @@ exports.GetAllDocuments = async (req, res, next) => {
   }
 };
 
-exports.Test = async (req, res, next) => {
+exports.Test = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const url = "https://nigerianbanks.xyz";
     const response = await axios.get(url);
 
-    const newList = response.data.map((data) => ({
+    const newList = response.data.map((data: any) => ({
       name: data.name,
       slug: data.slug,
       logo: data.logo,
@@ -769,9 +936,13 @@ exports.Test = async (req, res, next) => {
   }
 };
 
-exports.GetStaffAndRequest = async (req, res, next) => {
+exports.GetStaffAndRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const managerId = req.params.managerId;
+    const managerId: string = req.params.managerId;
     const result = await getStaffAndRequest(managerId);
 
     return res
@@ -782,9 +953,13 @@ exports.GetStaffAndRequest = async (req, res, next) => {
   }
 };
 
-exports.GetManagerRequests = async (req, res, next) => {
+exports.GetManagerRequests = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const managerId = req.params.managerId;
+    const managerId: string = req.params.managerId;
 
     const result = await getBranchRequest(managerId);
 

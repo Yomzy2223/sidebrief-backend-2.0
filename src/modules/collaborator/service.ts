@@ -1,15 +1,25 @@
-const { PrismaClient } = require("@prisma/client");
-const logger = require("../../config/logger");
-const { hasher, matchChecker } = require("../../common/hash");
-const { generateToken, verifyUserToken } = require("../../common/token");
-const EmailSender = require("../../services/emailEngine");
+import { PrismaClient } from "@prisma/client";
+import logger from "../../config/logger";
+import { hasher, matchChecker } from "../../common/hash";
+import { generateToken, verifyUserToken } from "../../common/token";
+import EmailSender from "../../services/emailEngine";
 const prisma = new PrismaClient();
-const { BadRequest } = require("../../utils/requestErrors");
+import { BadRequest } from "../../utils/requestErrors";
+import {
+  CollaboratorDocumentProps,
+  CollaboratorDocumentResponseProps,
+  CollaboratorPayload,
+  CreateCollaboratorResponseProps,
+  LoginProps,
+} from "./entities";
+import { response } from "express";
 
 //IN PROGRESS
 
 //create collaborator service
-const saveCollaborator = async (collaboratorPayload) => {
+const saveCollaborator = async (
+  collaboratorPayload: CollaboratorPayload
+): Promise<CreateCollaboratorResponseProps> => {
   try {
     const checkCollaborator = await prisma.collaborator.findUnique({
       where: { email: collaboratorPayload.email },
@@ -37,7 +47,8 @@ const saveCollaborator = async (collaboratorPayload) => {
     const url = `${process.env.BASE_URL}/collaborator/activate/${emailVerificationToken}`;
     //send collaborator email
     const subject = "Welcome to Sidebrief.";
-    payload = {
+
+    const payload = {
       name: collaboratorPayload.firstName,
       url: url,
     };
@@ -55,7 +66,7 @@ const saveCollaborator = async (collaboratorPayload) => {
       message: `${collaboratorPayload.firstName} ${collaboratorPayload.lastName} created an account successfully with ${collaboratorPayload.email}.`,
     });
 
-    return {
+    const response: CreateCollaboratorResponseProps = {
       message: "collaborator created successfully",
       data: {
         id: collaborator.id,
@@ -65,17 +76,19 @@ const saveCollaborator = async (collaboratorPayload) => {
         phone: collaborator.phone,
         picture: collaborator.picture,
         verified: collaborator.verified,
-        verified: collaborator.isPartner,
+        isPartner: collaborator.isPartner,
       },
       statusCode: 200,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get a collaborator service
-const getCollaborator = async (id) => {
+const getCollaborator = async (id: string) => {
   //   //check if the collaborator exists
   //   //return the collaborator to the collaborator controller
 
@@ -104,7 +117,7 @@ const getCollaborator = async (id) => {
   }
 };
 //sign in service
-const loginCollaborator = async (collaboratorPayload) => {
+const loginCollaborator = async (collaboratorPayload: LoginProps) => {
   // take the login payload  from the controller
   //   //check if the collaborator exists with the email address
   //   //return the collaborator to the collaborator controller
@@ -192,7 +205,7 @@ const verifyCollaboratorAccount = async (collaboratorPayload) => {
 };
 
 // forgot password service
-const forgotPassword = async (resetPayload) => {
+const forgotPassword = async (email: string) => {
   try {
     // take the email from the controller
     // check that the email is registered to a collaborator account
@@ -200,7 +213,7 @@ const forgotPassword = async (resetPayload) => {
     // save and send the reset token the collaborator
 
     const collaborator = await prisma.collaborator.findUnique({
-      where: { email: resetPayload.email },
+      where: { email: email },
     });
 
     if (!collaborator) {
@@ -209,7 +222,7 @@ const forgotPassword = async (resetPayload) => {
 
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
     const collaboratorToken = await generateToken(
-      resetPayload,
+      email,
       collaboratorSecret,
       "30m"
     );
@@ -225,7 +238,7 @@ const forgotPassword = async (resetPayload) => {
 
     //send collaborator email
     const subject = "Reset Password.";
-    payload = {
+    const payload = {
       name: collaborator.firstName,
       url: url,
     };
@@ -238,11 +251,11 @@ const forgotPassword = async (resetPayload) => {
       senderEmail,
       "../view/welcomeStaff.ejs"
     );
-
-    return {
+    const response = {
       message: "Email reset code has been sent to your email",
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
@@ -313,7 +326,7 @@ const updateProfile = async (updatePayload, id) => {
 };
 
 // delete collaborator account
-const deleteCollaborator = async (id) => {
+const deleteCollaborator = async (id: string) => {
   try {
     const collaborator = await prisma.collaborator.findUnique({
       where: { id: id },
@@ -324,7 +337,6 @@ const deleteCollaborator = async (id) => {
     const deleteCollaborator = await prisma.collaborator.delete({
       where: { id: collaborator.id },
     });
-
 
     if (!deleteCollaborator) {
       throw new BadRequest("Error occured while deleting collaborator");
@@ -339,7 +351,10 @@ const deleteCollaborator = async (id) => {
 };
 
 //save collaborator documents
-const saveDocument = async (documentPayload, id) => {
+const saveDocument = async (
+  documentPayload: CollaboratorDocumentProps,
+  id: string
+): Promise<CollaboratorDocumentResponseProps> => {
   //   //add the new document to the table
 
   try {
@@ -361,18 +376,19 @@ const saveDocument = async (documentPayload, id) => {
     logger.info({
       message: `${documentPayload.name} created successfully`,
     });
-    return {
+    const response: CollaboratorDocumentResponseProps = {
       message: "Document created successfully",
       statusCode: 200,
       data: document,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get a collaborator service
-const getDocumentByCollaboratorId = async (id) => {
+const getDocumentByCollaboratorId = async (id: string) => {
   //   //check if the collaborator exists
   //   //return the collaborator document to the doument controller
 
@@ -399,7 +415,7 @@ const getDocumentByCollaboratorId = async (id) => {
   }
 };
 
-module.exports = {
+export {
   saveCollaborator,
   getCollaborator,
   loginCollaborator,

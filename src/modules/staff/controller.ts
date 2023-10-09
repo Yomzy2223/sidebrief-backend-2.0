@@ -1,5 +1,6 @@
-const { hasher } = require("../../common/hash");
-const {
+import { Request, Response, NextFunction } from "express";
+import { hasher } from "../../common/hash";
+import {
   getStaff,
   loginStaff,
   saveStaff,
@@ -7,13 +8,17 @@ const {
   forgotPassword,
   changePassword,
   deleteStaff,
-} = require("./service");
+} from "./service";
 
 //IN PROGRESS
 // collect payload from the request body
 // pass the payload to the service
 // return response to client
-exports.StaffRegisration = async (req, res, next) => {
+exports.StaffRegisration = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const staffPayload = req.body;
     const cryptedPassword = await hasher(staffPayload.password, 12);
@@ -36,13 +41,17 @@ exports.StaffRegisration = async (req, res, next) => {
 };
 
 //get a staff with id
-exports.StaffProfileFetcher = async (req, res, next) => {
+exports.StaffProfileFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // check if there is id
     // pass the id to the service
     // return staff to client
 
-    const id = req.params.id;
+    const id: string = req.params.id;
     const staff = await getStaff(id);
 
     return res.status(200).json(staff);
@@ -51,7 +60,11 @@ exports.StaffProfileFetcher = async (req, res, next) => {
   }
 };
 
-exports.StaffLogin = async (req, res, next) => {
+exports.StaffLogin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the validated login payload
     // pass the validated payload to login service
@@ -67,9 +80,13 @@ exports.StaffLogin = async (req, res, next) => {
   }
 };
 
-exports.StaffVerification = async (req, res, next) => {
+exports.StaffVerification = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const verifyPayload = req.params.token;
+    const verifyPayload: string = req.params.token;
 
     const verify = await verifyStaffAccount(verifyPayload);
     return res.status(verify.statusCode).json({ message: verify.message });
@@ -78,9 +95,13 @@ exports.StaffVerification = async (req, res, next) => {
   }
 };
 
-exports.StaffPasswordResetLink = async (req, res, next) => {
+exports.StaffPasswordResetLink = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const email = req.body;
+    const { email } = req.body;
 
     const reset = await forgotPassword(email);
 
@@ -90,7 +111,11 @@ exports.StaffPasswordResetLink = async (req, res, next) => {
   }
 };
 
-exports.StaffPasswordReset = async (req, res, next) => {
+exports.StaffPasswordReset = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the login payload
     // validate the payload
@@ -109,13 +134,17 @@ exports.StaffPasswordReset = async (req, res, next) => {
 };
 
 //get a staff with id
-exports.StaffRemover = async (req, res, next) => {
+exports.StaffRemover = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // check if there is id
     // pass the id to the service
     // return staff to client
 
-    const id = req.params.id;
+    const id: string = req.params.id;
 
     const staff = await deleteStaff(id);
 

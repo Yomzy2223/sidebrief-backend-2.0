@@ -1,11 +1,6 @@
-const { hasher } = require("../../common/hash");
-const {
-  validateUserCredentials,
-  validateCollaborator,
-  validateResetCredentials,
-  validateDocument,
-} = require("../../utils/validation");
-const {
+import { Request, Response, NextFunction } from "express";
+import { hasher } from "../../common/hash";
+import {
   getCollaborator,
   loginCollaborator,
   saveCollaborator,
@@ -16,13 +11,18 @@ const {
   saveDocument,
   getDocumentByCollaboratorId,
   deleteCollaborator,
-} = require("./service");
+} from "./service";
+import { CollaboratorDocumentProps } from "./entities";
 
 //IN PROGRESS
 // collect payload from the request body
 // pass the payload to the service
 // return response to client
-exports.CollaboratorRegisration = async (req, res, next) => {
+exports.CollaboratorRegisration = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const collaboratorPayload = req.body;
 
@@ -46,7 +46,11 @@ exports.CollaboratorRegisration = async (req, res, next) => {
 };
 
 //get a collaborator with id
-exports.CollectorProfileFetcher = async (req, res, next) => {
+exports.CollectorProfileFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // check if there is id
     // pass the id to the service
@@ -61,7 +65,11 @@ exports.CollectorProfileFetcher = async (req, res, next) => {
   }
 };
 
-exports.CollaboratorLogin = async (req, res, next) => {
+exports.CollaboratorLogin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the login payload
     // validate the payload
@@ -79,7 +87,11 @@ exports.CollaboratorLogin = async (req, res, next) => {
   }
 };
 
-exports.CollaboratorVerification = async (req, res, next) => {
+exports.CollaboratorVerification = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const verifyPayload = req.params.token;
 
@@ -91,7 +103,11 @@ exports.CollaboratorVerification = async (req, res, next) => {
   }
 };
 
-exports.CollaboratorPasswordResetLink = async (req, res, next) => {
+exports.CollaboratorPasswordResetLink = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const email = req.body;
     // check that email is not empty
@@ -104,7 +120,11 @@ exports.CollaboratorPasswordResetLink = async (req, res, next) => {
   }
 };
 
-exports.CollaboratorPasswordReset = async (req, res, next) => {
+exports.CollaboratorPasswordReset = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the login payload
     // validate the payload
@@ -125,7 +145,11 @@ exports.CollaboratorPasswordReset = async (req, res, next) => {
 };
 
 //delete a collaborator with id
-exports.CollaboratorRemover = async (req, res, next) => {
+exports.CollaboratorRemover = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // check if there is id
     // pass the id to the service
@@ -143,7 +167,11 @@ exports.CollaboratorRemover = async (req, res, next) => {
 };
 
 // IN PROGRESS
-exports.ControllerProfileModifier = async (req, res, next) => {
+exports.ControllerProfileModifier = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the updatePayload and the user id
     // validate the payload
@@ -164,26 +192,35 @@ exports.ControllerProfileModifier = async (req, res, next) => {
   }
 };
 
-exports.CollaboratorDocument = async (req, res, next) => {
+exports.CollaboratorDocument = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const documentPayload = req.body;
-  const id = req.params.collaboratorId;
+  const id: string = req.params.collaboratorId;
 
-  const values = {
+  const values: CollaboratorDocumentProps = {
     name: documentPayload.name,
     type: documentPayload.type,
     description: documentPayload.description,
+    link: documentPayload.link,
     collaboratorId: id,
   };
 
   const document = await saveDocument(values, id);
-  if (document.error) {
-    return res.status(document.statusCode).json({ error: document.error });
-  }
-  return res.status(200).json(document);
+
+  return res
+    .status(document.statusCode)
+    .json({ message: document.message, data: document.data });
 };
 
 //get collaborator documents with id
-exports.CollectorDocumentsFetcher = async (req, res, next) => {
+exports.CollectorDocumentsFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // check if there is id
     // pass the id to the service

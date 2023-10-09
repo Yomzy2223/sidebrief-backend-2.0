@@ -1,23 +1,28 @@
-const { hasher } = require("../../common/hash");
-const { validateResetCredentials } = require("../../utils/validation");
-const {
+import { Request, Response, NextFunction } from "express";
+
+import { hasher } from "../../common/hash";
+import {
   saveUser,
   getUser,
   loginUser,
   getAllUsers,
   verifyAccount,
-  sendResetPasswordCode,
   forgotPassword,
   changePassword,
   updateProfile,
   deleteUser,
-} = require("./service");
+} from "./service";
+import { UserPayload } from "./entities";
 
-exports.UserRegisration = async (req, res, next) => {
+exports.UserRegisration = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const userPayload = req.body;
     const cryptedPassword = await hasher(userPayload.password, 12);
-    const values = {
+    const values: UserPayload = {
       firstName: userPayload.firstName,
       lastName: userPayload.lastName,
       username: userPayload.username,
@@ -39,7 +44,11 @@ exports.UserRegisration = async (req, res, next) => {
 };
 
 //get a user with id
-exports.UserFetcher = async (req, res, next) => {
+exports.UserFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // check if there is id
     // pass the id to the service
@@ -57,7 +66,11 @@ exports.UserFetcher = async (req, res, next) => {
 };
 
 //get all users controller
-exports.UsersFetcher = async (req, res, next) => {
+exports.UsersFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // call the getAllUsers service
     // return user to client
@@ -72,7 +85,11 @@ exports.UsersFetcher = async (req, res, next) => {
   }
 };
 
-exports.UserGrantor = async (req, res, next) => {
+exports.UserGrantor = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the login payload
     // validate the payload
@@ -90,9 +107,13 @@ exports.UserGrantor = async (req, res, next) => {
   }
 };
 
-exports.UserVerification = async (req, res, next) => {
+exports.UserVerification = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const verifyPayload = req.params.token;
+    const verifyPayload: string = req.params.token;
 
     const verify = await verifyAccount(verifyPayload);
 
@@ -102,7 +123,11 @@ exports.UserVerification = async (req, res, next) => {
   }
 };
 
-exports.UserPasswordResetLink = async (req, res, next) => {
+exports.UserPasswordResetLink = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const email = req.body;
 
@@ -114,7 +139,11 @@ exports.UserPasswordResetLink = async (req, res, next) => {
   }
 };
 
-exports.UserPasswordReset = async (req, res, next) => {
+exports.UserPasswordReset = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the login payload
     // validate the payload
@@ -132,7 +161,11 @@ exports.UserPasswordReset = async (req, res, next) => {
 };
 
 //get a user with id
-exports.UserRemover = async (req, res, next) => {
+exports.UserRemover = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // check if there is id
     // pass the id to the service
@@ -149,7 +182,11 @@ exports.UserRemover = async (req, res, next) => {
 };
 
 // IN PROGRESS
-exports.UserProfileModifier = async (req, res, next) => {
+exports.UserProfileModifier = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the updatePayload and the user id
     // validate the payload
