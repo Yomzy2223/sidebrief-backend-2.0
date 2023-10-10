@@ -1,14 +1,18 @@
-const { validateServiceCategory } = require("../../utils/validation");
-const {
+import { Request, Response, NextFunction } from "express";
+import {
   saveServiceCategory,
   getAllServiceCategory,
   getServiceCategory,
   updateServiceCategory,
   removeServiceCategory,
-} = require("./service");
+} from "./service";
 
 // create a new service category
-exports.ServiceCategoryCreator = async (req, res, next) => {
+const ServiceCategoryCreator = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the validated payload from the the request body
     // send the validated payload to addServiceCategory service
@@ -28,7 +32,11 @@ exports.ServiceCategoryCreator = async (req, res, next) => {
 };
 
 //get all service categories
-exports.ServiceCategoriesFetcher = async (req, res, next) => {
+const ServiceCategoriesFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the service category list
     // return response to the client
@@ -42,13 +50,17 @@ exports.ServiceCategoriesFetcher = async (req, res, next) => {
 };
 
 //get a service category with id
-exports.ServiceCategoryFetcher = async (req, res, next) => {
+const ServiceCategoryFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // check if there is id
     // pass the id to the service
     // return service category to client
 
-    const id = req.params.id;
+    const id: string = req.params.id;
     const category = await getServiceCategory(id);
 
     return res.status(category.statusCode).json(category);
@@ -58,14 +70,18 @@ exports.ServiceCategoryFetcher = async (req, res, next) => {
 };
 
 //update a service category
-exports.ServiceCategoryModifier = async (req, res, next) => {
+const ServiceCategoryModifier = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //get the payload
     // validate the payload
     // send the payload to the service
     // return response
 
-    const id = req.params.id;
+    const id: string = req.params.id;
     const serviceCategoryPayload = req.body;
     const values = {
       name: serviceCategoryPayload.name,
@@ -80,17 +96,29 @@ exports.ServiceCategoryModifier = async (req, res, next) => {
 };
 
 //delete a service category
-exports.ServiceCategoryRemover = async (req, res, next) => {
+const ServiceCategoryRemover = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //check if there is id
     // send the id to the delete service
     //return response to the client
 
-    const id = req.params.id;
+    const id: string = req.params.id;
     const deleteCategory = await removeServiceCategory(id);
 
     return res.status(deleteCategory.statusCode).json(deleteCategory.message);
   } catch (error) {
     next(error);
   }
+};
+
+export {
+  ServiceCategoryCreator,
+  ServiceCategoriesFetcher,
+  ServiceCategoryFetcher,
+  ServiceCategoryModifier,
+  ServiceCategoryRemover,
 };

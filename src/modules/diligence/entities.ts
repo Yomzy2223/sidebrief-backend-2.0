@@ -7,6 +7,7 @@ export interface CreateNigerianBankPayload {
 }
 
 export interface NigerianBankData {
+  id: string;
   name: string;
   slug: string;
   color: string | null;
@@ -40,6 +41,7 @@ export interface EnterpriseResponse {
   statusCode: number;
   message: string;
   data: {
+    id: string;
     name: string;
     address: string;
     adminEmail: string;
@@ -58,6 +60,7 @@ export interface ManagerPayload {
 }
 
 export interface ManagerData {
+  id: string;
   name: string | null;
   location: string | null;
   managerEmail: string;
@@ -77,6 +80,7 @@ export interface ManagerResponse {
 }
 
 export interface StaffData {
+  id: string;
   email: string;
 }
 
@@ -138,6 +142,7 @@ export interface RequestPayload {
 }
 
 export interface RequestData {
+  id: string;
   name: string;
   registrationNumber: string;
   status: string;

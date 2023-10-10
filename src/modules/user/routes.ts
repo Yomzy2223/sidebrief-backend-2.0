@@ -1,5 +1,5 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   UserRegisration,
   UserFetcher,
   UserGrantor,
@@ -9,18 +9,18 @@ const {
   UserPasswordReset,
   UserProfileModifier,
   UserRemover,
-} = require("./controller");
-const validator = require("../../middleware/validator");
-const {
+} from "./controller";
+import validator from "../../middleware/validator";
+import {
   validateUserCredentials,
   validateUser,
   validateResetCredentials,
   validateUserUpdateCredentials,
   validateEmail,
-} = require("../../utils/validation");
+} from "../../utils/validation";
 const router = express.Router();
-const passport = require("passport");
-const { staffAuth, userAuth } = require("../../middleware/auth");
+import passport from "passport";
+import { staffAuth, userAuth } from "../../middleware/auth";
 // OAuth routes
 // router.get(
 //   "/auth/google",

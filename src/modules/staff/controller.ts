@@ -14,7 +14,7 @@ import {
 // collect payload from the request body
 // pass the payload to the service
 // return response to client
-exports.StaffRegisration = async (
+const StaffRegisration = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -41,7 +41,7 @@ exports.StaffRegisration = async (
 };
 
 //get a staff with id
-exports.StaffProfileFetcher = async (
+const StaffProfileFetcher = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -60,11 +60,7 @@ exports.StaffProfileFetcher = async (
   }
 };
 
-exports.StaffLogin = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const StaffLogin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // get the validated login payload
     // pass the validated payload to login service
@@ -80,7 +76,7 @@ exports.StaffLogin = async (
   }
 };
 
-exports.StaffVerification = async (
+const StaffVerification = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -95,7 +91,7 @@ exports.StaffVerification = async (
   }
 };
 
-exports.StaffPasswordResetLink = async (
+const StaffPasswordResetLink = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -111,7 +107,7 @@ exports.StaffPasswordResetLink = async (
   }
 };
 
-exports.StaffPasswordReset = async (
+const StaffPasswordReset = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -134,7 +130,7 @@ exports.StaffPasswordReset = async (
 };
 
 //get a staff with id
-exports.StaffRemover = async (
+const StaffRemover = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -152,4 +148,14 @@ exports.StaffRemover = async (
   } catch (error) {
     next(error);
   }
+};
+
+export {
+  StaffLogin,
+  StaffProfileFetcher,
+  StaffRegisration,
+  StaffPasswordReset,
+  StaffPasswordResetLink,
+  StaffVerification,
+  StaffRemover,
 };

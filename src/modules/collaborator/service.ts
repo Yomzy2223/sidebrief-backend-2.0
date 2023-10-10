@@ -40,7 +40,7 @@ const saveCollaborator = async (
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
     const emailVerificationToken = generateToken(
       { id: collaborator.id },
-      collaboratorSecret,
+      collaboratorSecret as string,
       "30m"
     );
 
@@ -143,7 +143,7 @@ const loginCollaborator = async (collaboratorPayload: LoginProps) => {
     const collaboraorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
     const token = generateToken(
       { id: collaborator.id },
-      collaboraorSecret,
+      collaboraorSecret as string,
       "14d"
     );
     logger.info({
@@ -170,12 +170,12 @@ const loginCollaborator = async (collaboratorPayload: LoginProps) => {
 };
 
 // verify collaborator account service
-const verifyCollaboratorAccount = async (collaboratorPayload) => {
+const verifyCollaboratorAccount = async (collaboratorPayload: any) => {
   try {
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
     const collaborator = await verifyUserToken(
       collaboratorPayload,
-      collaboratorSecret
+      collaboratorSecret as string
     );
 
     const checkCollaborator = await prisma.collaborator.findUnique({
@@ -223,7 +223,7 @@ const forgotPassword = async (email: string) => {
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
     const collaboratorToken = await generateToken(
       email,
-      collaboratorSecret,
+      collaboratorSecret as string,
       "30m"
     );
 
@@ -262,7 +262,7 @@ const forgotPassword = async (email: string) => {
 };
 
 // change password service
-const changePassword = async (changePayload) => {
+const changePassword = async (changePayload: any) => {
   // take the email, resetToken and password from the controller
   // check that the email is registered to a collaborator account
   // compare the token with the one saved in the database
@@ -301,7 +301,7 @@ const changePassword = async (changePayload) => {
 };
 
 // update profile service
-const updateProfile = async (updatePayload, id) => {
+const updateProfile = async (updatePayload: any, id: string) => {
   try {
     const collaborator = await prisma.user.findUnique({ where: { id: id } });
     if (!collaborator) {

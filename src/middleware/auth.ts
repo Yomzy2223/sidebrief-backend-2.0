@@ -14,10 +14,7 @@ const userAuth = async (req: Request, res: Response, next: NextFunction) => {
 
     const token = reqToken.split(" ")[1];
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const user = await verifyUserToken(token, userSecret);
-    if (!user) {
-      return res.status(user.statusCode).json({ error: user.error });
-    }
+    const user = await verifyUserToken(token, userSecret as string);
     if (!user) {
       throw new Unauthorized("Invalid or expired user token.");
     }
@@ -37,11 +34,13 @@ const staffAuth = async (req: Request, res: Response, next: NextFunction) => {
     const token = reqToken.split(" ")[1];
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
 
-    const staff = await verifyUserToken(token, staffSecret);
+    const staff = await verifyUserToken(token, staffSecret as string);
 
     if (!staff) {
       throw new Unauthorized("Invalid or expired staff token.");
     }
+
+    console.log("checking", staff);
 
     const checkStaff = await prisma.staff.findUnique({
       where: { id: staff.id },
@@ -66,10 +65,8 @@ const partnerAuth = async (req: Request, res: Response, next: NextFunction) => {
     const token = reqToken.split(" ")[1];
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
 
-    const partner = await verifyUserToken(token, collaboratorSecret);
-    if (partner.error) {
-      return res.status(partner.statusCode).json({ error: partner.error });
-    }
+    const partner = await verifyUserToken(token, collaboratorSecret as string);
+
     if (!partner) {
       throw new Unauthorized("Invalid or expired partner token.");
     }
@@ -107,10 +104,8 @@ const ResellerrAuth = async (
     const token = reqToken.split(" ")[1];
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
 
-    const reseller = await verifyUserToken(token, collaboratorSecret);
-    if (reseller.error) {
-      return res.status(reseller.statusCode).json({ error: reseller.error });
-    }
+    const reseller = await verifyUserToken(token, collaboratorSecret as string);
+
     if (!reseller) {
       throw new Unauthorized("Invalid or expired reseller token.");
     }
@@ -132,9 +127,4 @@ const ResellerrAuth = async (
   }
 };
 
-module.exports = {
-  userAuth,
-  staffAuth,
-  partnerAuth,
-  ResellerrAuth,
-};
+export { userAuth, staffAuth, partnerAuth, ResellerrAuth };

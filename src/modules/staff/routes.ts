@@ -1,5 +1,5 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   StaffLogin,
   StaffProfileFetcher,
   StaffRegisration,
@@ -7,14 +7,14 @@ const {
   StaffPasswordResetLink,
   StaffVerification,
   StaffRemover,
-} = require("./controller");
-const validator = require("../../middleware/validator");
-const {
+} from "./controller";
+import validator from "../../middleware/validator";
+import {
   validateStaff,
   validateUserCredentials,
   validateResetCredentials,
   validateEmail,
-} = require("../../utils/validation");
+} from "../../utils/validation";
 const router = express.Router();
 
 router.post("/", validator(validateStaff), StaffRegisration);

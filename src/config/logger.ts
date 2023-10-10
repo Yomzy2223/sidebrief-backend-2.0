@@ -1,5 +1,5 @@
-const winston = require("winston");
-const WinstonCloudwatch = require("winston-cloudwatch");
+import winston from "winston";
+import WinstonCloudwatch from "winston-cloudwatch";
 
 const stagingLogConfiguration = {
   transports: [
@@ -15,7 +15,7 @@ const stagingLogConfiguration = {
       format: "DD-MMM-YYYY HH:mm:ss",
     }),
     winston.format.printf(
-      (info) =>
+      (info: any) =>
         `${info.level}: ${info.label}: ${[info.timestamp]}: ${info.message}`
     )
   ),
@@ -29,8 +29,8 @@ const productionLogConfiguration = {
       awsRegion: process.env.CLOUDWATCH_AWS_REGION,
       awsOptions: {
         credentials: {
-          accessKeyId: process.env.AWS_ACCESS_KEY,
-          secretAccessKey: process.env.AWS_KEY_SECRET,
+          accessKeyId: process.env.AWS_ACCESS_KEY as string,
+          secretAccessKey: process.env.AWS_KEY_SECRET as string,
         },
         region: process.env.CLOUDWATCH_AWS_REGION,
       },

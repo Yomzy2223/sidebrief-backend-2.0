@@ -46,6 +46,6 @@ export interface CollaboratorDocumentDataProps {
   name: string;
   type: string;
   description: string;
-  //   link: string;
+  link?: string;
   collaboratorId: string;
 }

@@ -63,7 +63,7 @@ import {
 
 //NIGERIAN BANKS
 //create a nigerian bank
-exports.CreateNigerianBank = async (
+const CreateNigerianBank = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -92,7 +92,7 @@ exports.CreateNigerianBank = async (
 };
 
 //get all banks
-exports.GetAllNigerianBanks = async (
+const GetAllNigerianBanks = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -111,7 +111,7 @@ exports.GetAllNigerianBanks = async (
 };
 
 //get a Nigerian bank
-exports.GetANigerianBank = async (
+const GetANigerianBank = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -130,7 +130,7 @@ exports.GetANigerianBank = async (
 };
 
 //update Nigerian bank
-exports.UpdateNigerianBank = async (
+const UpdateNigerianBank = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -150,7 +150,7 @@ exports.UpdateNigerianBank = async (
 };
 
 //delete Nigerian Bank
-exports.DeleteNigerianBank = async (
+const DeleteNigerianBank = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -168,7 +168,7 @@ exports.DeleteNigerianBank = async (
 
 //ENTERPRISE
 //create diligence enterprise
-exports.CreateEnterprise = async (
+const CreateEnterprise = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -196,26 +196,8 @@ exports.CreateEnterprise = async (
   }
 };
 
-// get single enterprise
-exports.GetSingleEnterprise = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const enterpriseId = req.params.enterpriseId;
-    const enterprise = await getEnterprise(enterpriseId);
-
-    return res
-      .status(enterprise.statusCode)
-      .json({ message: enterprise.message, data: enterprise.data });
-  } catch (error) {
-    next(error);
-  }
-};
-
 // get single enterprise details
-exports.GetSingleEnterpriseDetails = async (
+const GetSingleEnterpriseDetails = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -233,7 +215,7 @@ exports.GetSingleEnterpriseDetails = async (
 };
 
 //update diligence enterprise
-exports.UpdateEnterprise = async (
+const UpdateEnterprise = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -262,7 +244,7 @@ exports.UpdateEnterprise = async (
 };
 
 //delete diligence enterprise
-exports.DeleteEnterprise = async (
+const DeleteEnterprise = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -281,7 +263,7 @@ exports.DeleteEnterprise = async (
 };
 
 // get single enterprise
-exports.GetSingleEnterprise = async (
+const GetSingleEnterprise = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -299,7 +281,7 @@ exports.GetSingleEnterprise = async (
 };
 
 //get all enterprises
-exports.GetAllDiligenceEnterprises = async (
+const GetAllDiligenceEnterprises = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -319,7 +301,7 @@ exports.GetAllDiligenceEnterprises = async (
 };
 
 //get a single enterprise with admin email address
-exports.GetSingleEnterpriseByAdminEmail = async (
+const GetSingleEnterpriseByAdminEmail = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -338,7 +320,7 @@ exports.GetSingleEnterpriseByAdminEmail = async (
 
 //MANAGER
 //create diligence manager
-exports.CreateManager = async (
+const CreateManager = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -358,7 +340,7 @@ exports.CreateManager = async (
 };
 
 //get all managers
-exports.GetAllDiligenceManagers = async (
+const GetAllDiligenceManagers = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -379,7 +361,7 @@ exports.GetAllDiligenceManagers = async (
 };
 
 //get single manager
-exports.GetSingleManager = async (
+const GetSingleManager = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -397,7 +379,7 @@ exports.GetSingleManager = async (
 };
 
 //get a single manager with email address
-exports.GetSingleManagerByManagerEmail = async (
+const GetSingleManagerByManagerEmail = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -415,7 +397,7 @@ exports.GetSingleManagerByManagerEmail = async (
 };
 
 //update diligence manager
-exports.UpdateManager = async (
+const UpdateManager = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -441,7 +423,7 @@ exports.UpdateManager = async (
 };
 
 //delete diligence branch
-exports.DeleteManager = async (
+const DeleteManager = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -459,11 +441,7 @@ exports.DeleteManager = async (
 
 //STAFF
 //create diligence staff
-exports.CreateStaff = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const CreateStaff = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const managerId: string = req.params.managerId;
     const { email } = req.body;
@@ -479,7 +457,7 @@ exports.CreateStaff = async (
 };
 
 //get all staffs
-exports.GetAllDiligenceStaffs = async (
+const GetAllDiligenceStaffs = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -500,7 +478,7 @@ exports.GetAllDiligenceStaffs = async (
 };
 
 //get single staff
-exports.GetSingleStaff = async (
+const GetSingleStaff = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -518,11 +496,7 @@ exports.GetSingleStaff = async (
 };
 
 //delete diligence staff
-exports.DeleteStaff = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const DeleteStaff = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const staffId: string = req.params.staffId;
 
@@ -537,7 +511,7 @@ exports.DeleteStaff = async (
 };
 
 //create diligence user
-exports.CreateAccount = async (
+const CreateAccount = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -565,7 +539,7 @@ exports.CreateAccount = async (
 };
 
 // login usergyuiyugydqqdipqddtwduwdyyuyyiwwitdgwqjdopwquyd8ftrttd9w77ruyff56wyuydywydo
-exports.UserLogin = async (req: Request, res: Response, next: NextFunction) => {
+const UserLogin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // get the login payload
     // validate the payload
@@ -583,7 +557,7 @@ exports.UserLogin = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //send diligence user a reset link
-exports.UserPasswordResetLink = async (
+const UserPasswordResetLink = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -600,7 +574,7 @@ exports.UserPasswordResetLink = async (
 };
 
 //reset diligence user password
-exports.UserPasswordReset = async (
+const UserPasswordReset = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -622,7 +596,7 @@ exports.UserPasswordReset = async (
 };
 
 //create diligence request
-exports.CreateRequest = async (
+const CreateRequest = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -649,11 +623,7 @@ exports.CreateRequest = async (
 };
 
 //get a diligence request
-exports.GetRequest = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const GetRequest = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const requestId: string = req.params.requestId;
 
@@ -668,7 +638,7 @@ exports.GetRequest = async (
 };
 
 //delete a diligence request
-exports.DeleteRequest = async (
+const DeleteRequest = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -687,7 +657,7 @@ exports.DeleteRequest = async (
 };
 
 //update a request
-exports.UpdateDiligenceRequest = async (
+const UpdateDiligenceRequest = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -716,7 +686,7 @@ exports.UpdateDiligenceRequest = async (
 };
 
 //get all requests
-exports.GetAllDiligenceRequests = async (
+const GetAllDiligenceRequests = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -737,7 +707,7 @@ exports.GetAllDiligenceRequests = async (
 };
 
 //verify a request
-exports.VerifyRequest = async (
+const VerifyRequest = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -757,7 +727,7 @@ exports.VerifyRequest = async (
 };
 
 //verify multiple requests
-exports.VerifyMultipleRequest = async (
+const VerifyMultipleRequest = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -778,7 +748,7 @@ exports.VerifyMultipleRequest = async (
 };
 
 //update a request
-exports.UpdateRequest = async (
+const UpdateRequest = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -798,7 +768,7 @@ exports.UpdateRequest = async (
   }
 };
 //add diligence document
-exports.AddRequestDocument = async (
+const AddRequestDocument = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -826,7 +796,7 @@ exports.AddRequestDocument = async (
 };
 
 //delete a document
-exports.DeleteDocument = async (
+const DeleteDocument = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -849,7 +819,7 @@ exports.DeleteDocument = async (
 };
 
 //update a document
-exports.UpdateDocument = async (
+const UpdateDocument = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -879,11 +849,7 @@ exports.UpdateDocument = async (
 };
 
 // get single document
-exports.GetDocument = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const GetDocument = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const documentId: string = req.params.documentId;
     const document = await getDocument(documentId);
@@ -897,7 +863,7 @@ exports.GetDocument = async (
 };
 
 // get all documents
-exports.GetAllDocuments = async (
+const GetAllDocuments = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -914,7 +880,7 @@ exports.GetAllDocuments = async (
   }
 };
 
-exports.Test = async (req: Request, res: Response, next: NextFunction) => {
+const Test = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const url = "https://nigerianbanks.xyz";
     const response = await axios.get(url);
@@ -936,7 +902,7 @@ exports.Test = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-exports.GetStaffAndRequest = async (
+const GetStaffAndRequest = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -953,7 +919,7 @@ exports.GetStaffAndRequest = async (
   }
 };
 
-exports.GetManagerRequests = async (
+const GetManagerRequests = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -969,4 +935,51 @@ exports.GetManagerRequests = async (
   } catch (error) {
     next(error);
   }
+};
+
+export {
+  GetAllNigerianBanks,
+  CreateAccount,
+  CreateStaff,
+  UserLogin,
+  CreateRequest,
+  VerifyRequest,
+  UpdateRequest,
+  AddRequestDocument,
+  DeleteDocument,
+  GetAllDiligenceStaffs,
+  GetAllDiligenceRequests,
+  UserPasswordResetLink,
+  UserPasswordReset,
+  Test,
+  GetSingleStaff,
+  DeleteRequest,
+  GetRequest,
+  DeleteStaff,
+  UpdateNigerianBank,
+  GetDocument,
+  UpdateDocument,
+  GetAllDocuments,
+  //enterprise
+  CreateEnterprise,
+  GetAllDiligenceEnterprises,
+  GetSingleEnterprise,
+  GetSingleEnterpriseByAdminEmail,
+  UpdateEnterprise,
+  DeleteEnterprise,
+  //manager
+  CreateManager,
+  GetAllDiligenceManagers,
+  GetSingleManager,
+  UpdateManager,
+  DeleteManager,
+  GetSingleManagerByManagerEmail,
+  GetANigerianBank,
+  CreateNigerianBank,
+  DeleteNigerianBank,
+  UpdateDiligenceRequest,
+  GetStaffAndRequest,
+  GetManagerRequests,
+  GetSingleEnterpriseDetails,
+  VerifyMultipleRequest,
 };

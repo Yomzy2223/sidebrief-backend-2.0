@@ -1,6 +1,6 @@
-const express = require("express");
-const validator = require("../../middleware/validator");
-const {
+import express from "express";
+import validator from "../../middleware/validator";
+import {
   validateDiligenceDocument,
   validateEmail,
   validateResetCredentials,
@@ -11,11 +11,11 @@ const {
   validateManagerCredentials,
   validateUpdateDiligenceRequest,
   validateUpdateManyDiligenceRequest,
-} = require("../../utils/validation/diligence");
-const { staffAuth } = require("../../middleware/auth");
+} from "../../utils/validation/diligence";
+import { staffAuth } from "../../middleware/auth";
 const router = express.Router();
 
-const {
+import {
   GetAllNigerianBanks,
   CreateAccount,
   CreateStaff,
@@ -60,7 +60,7 @@ const {
   GetManagerRequests,
   GetSingleEnterpriseDetails,
   VerifyMultipleRequest,
-} = require("./controller");
+} from "./controller";
 
 //NIGERIAN BANKS
 router.post("/nigerianBank", staffAuth, CreateNigerianBank);

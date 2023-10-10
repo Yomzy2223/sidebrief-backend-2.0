@@ -1,16 +1,16 @@
-const express = require("express");
-const { userAuth, staffAuth } = require("../../middleware/auth");
-const validator = require("../../middleware/validator");
-const { validateBank } = require("../../utils/validation");
+import express from "express";
+import { userAuth, staffAuth } from "../../middleware/auth";
+import validator from "../../middleware/validator";
+import { validateBank } from "../../utils/validation";
 const router = express.Router();
 
-const {
+import {
   DeleteBank,
   UpdateBank,
   GetAllBanks,
   GetBank,
   CreateBank,
-} = require("./controller");
+} from "./controller";
 
 router.post("/", staffAuth, validator(validateBank), CreateBank);
 router.get("/", GetAllBanks);

@@ -2,6 +2,12 @@ import nodemailer from "nodemailer";
 import path from "path";
 import ejs from "ejs";
 
+interface MailOptions {
+  from: string;
+  to: string;
+  subject: string;
+  html: string | any;
+}
 const EmailSender = async (
   subject: string,
   payload: any,
@@ -12,7 +18,7 @@ const EmailSender = async (
   try {
     //creating transporter
     const transporter = nodemailer.createTransport({
-      port: process.env.MAIL_PORT, // true for 465, false for other ports
+      port: parseInt(process.env.MAIL_PORT as string, 10), // true for 465, false for other ports
       host: process.env.MAIL_HOST,
       auth: {
         user: process.env.MAIL_USER,
@@ -25,7 +31,7 @@ const EmailSender = async (
 
     const data = await ejs.renderFile(requiredPath, payload);
 
-    const mailOptions = () => {
+    const mailOptions = (): MailOptions => {
       return {
         from: senderEmail,
         to: recipientEmail,

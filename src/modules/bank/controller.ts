@@ -8,11 +8,7 @@ import {
 } from "./service";
 
 // create a new bank
-exports.CreateBank = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const CreateBank = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // get the validated payload from the the request body
     // send the validated payload to addBank service
@@ -38,11 +34,7 @@ exports.CreateBank = async (
 };
 
 //get all banks
-exports.GetAllBanks = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const GetAllBanks = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // get the bank list
     // return response to the client
@@ -58,7 +50,7 @@ exports.GetAllBanks = async (
 };
 
 //get a bank with id
-exports.GetBank = async (req: Request, res: Response, next: NextFunction) => {
+const GetBank = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // check if there is id
     // pass the id to the service
@@ -77,11 +69,7 @@ exports.GetBank = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //update a bank
-exports.UpdateBank = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const UpdateBank = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //get the payload
     // validate the payload
@@ -107,11 +95,7 @@ exports.UpdateBank = async (
 };
 
 //delete a bank
-exports.DeleteBank = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const DeleteBank = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //check if there is id
     // send the id to the delete service
@@ -128,3 +112,5 @@ exports.DeleteBank = async (
     next(error);
   }
 };
+
+export { DeleteBank, UpdateBank, GetAllBanks, GetBank, CreateBank };

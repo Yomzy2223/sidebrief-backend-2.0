@@ -1,16 +1,16 @@
-const express = require("express");
-const { userAuth, staffAuth } = require("../../middleware/auth");
-const validator = require("../../middleware/validator");
-const { validateServiceCategory } = require("../../utils/validation");
+import express from "express";
+import { userAuth, staffAuth } from "../../middleware/auth";
+import validator from "../../middleware/validator";
+import { validateServiceCategory } from "../../utils/validation";
 const router = express.Router();
 
-const {
+import {
   ServiceCategoryCreator,
   ServiceCategoriesFetcher,
   ServiceCategoryFetcher,
   ServiceCategoryModifier,
   ServiceCategoryRemover,
-} = require("./controller");
+} from "./controller";
 
 router.post(
   "/",

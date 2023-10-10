@@ -1,10 +1,13 @@
-const { PrismaClient } = require("@prisma/client");
-const logger = require("../../config/logger");
-const { BadRequest } = require("../../utils/requestErrors");
+import { PrismaClient } from "@prisma/client";
+import logger from "../../config/logger";
+import { BadRequest } from "../../utils/requestErrors";
+import { CountryPayload, CountryResponse } from "./entities";
 const prisma = new PrismaClient();
 
 //create country service
-const saveCountry = async (countryPayload) => {
+const saveCountry = async (
+  countryPayload: CountryPayload
+): Promise<CountryResponse> => {
   //   //add the new country to the table
 
   try {
@@ -24,18 +27,19 @@ const saveCountry = async (countryPayload) => {
     logger.info({
       message: `${countryPayload.name} created successfully`,
     });
-    return {
+    const response: CountryResponse = {
       message: "Country created successfully",
       statusCode: 200,
       data: country,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all country service
-const getAllCountries = async () => {
+const getAllCountries = async (): Promise<CountryResponse> => {
   //  get the country list from the table
   //  return the country list to the country controller
   try {
@@ -47,18 +51,20 @@ const getAllCountries = async () => {
         data: [],
       };
     }
-    return {
+    const response: CountryResponse = {
       message: "Countries fetched successfully",
       data: countries,
       statusCode: 200,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get a country service
-const getCountry = async (id) => {
+const getCountry = async (id: string): Promise<CountryResponse> => {
   //   //check if the country exists
   //   //return the country to the country controller
 
@@ -71,18 +77,19 @@ const getCountry = async (id) => {
     if (!country) {
       throw new BadRequest("Country not found!.");
     }
-    return {
+    const response = {
       message: "Country fetched successfully",
       data: country,
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //update a country service
-const updateCountry = async (id, countryPayload) => {
+const updateCountry = async (id: string, countryPayload: CountryPayload) => {
   // take both id and country payload from the country controller
   //  check if the country exists
   //  update the country
@@ -121,7 +128,7 @@ const updateCountry = async (id, countryPayload) => {
 };
 
 //remove a country service
-const removeCountry = async (id) => {
+const removeCountry = async (id: string) => {
   //take id from the country controller
   //check if the country exists
   //remove the country from the record
@@ -146,7 +153,7 @@ const removeCountry = async (id) => {
   }
 };
 
-module.exports = {
+export {
   saveCountry,
   getAllCountries,
   getCountry,

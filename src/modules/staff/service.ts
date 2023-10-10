@@ -37,7 +37,7 @@ const saveStaff = async (
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
     const emailVerificationToken = generateToken(
       { id: staff.id },
-      staffSecret,
+      staffSecret as string,
       "30m"
     );
 
@@ -63,7 +63,11 @@ const saveStaff = async (
     });
 
     const staffTokenSecret = process.env.TOKEN_STAFF_SECRET;
-    const token = generateToken({ id: staff.id }, staffTokenSecret, "14d");
+    const token = generateToken(
+      { id: staff.id },
+      staffTokenSecret as string,
+      "14d"
+    );
 
     const response: StaffResponseProps = {
       message: "Staff created successfully",
@@ -139,7 +143,7 @@ const loginStaff = async (
     }
 
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
-    const token = generateToken({ id: staff.id }, staffSecret, "14d");
+    const token = generateToken({ id: staff.id }, staffSecret as string, "14d");
     logger.info({
       message: `staff with ${loginPayload.email} signed in successfully.`,
     });
@@ -169,7 +173,7 @@ const loginStaff = async (
 const verifyStaffAccount = async (verifyPayload: string) => {
   try {
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
-    const staff = await verifyUserToken(verifyPayload, staffSecret);
+    const staff = await verifyUserToken(verifyPayload, staffSecret as string);
 
     const checkStaff = await prisma.staff.findUnique({
       where: { id: staff.id },
@@ -214,7 +218,7 @@ const forgotPassword = async (email: string) => {
     }
 
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
-    const staffToken = await generateToken(email, staffSecret, "30m");
+    const staffToken = await generateToken(email, staffSecret as string, "30m");
 
     const cryptedToken = await await hasher(staffToken, 12);
 

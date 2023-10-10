@@ -920,7 +920,11 @@ const createAccount = async (
       );
 
       const userSecret = process.env.TOKEN_USER_SECRET;
-      const token = generateToken({ id: create.id }, userSecret, "14d");
+      const token = generateToken(
+        { id: create.id },
+        userSecret as string,
+        "14d"
+      );
 
       logger.info({
         message: `Diligence user with ${accountPayload.email} created successfully`,
@@ -951,7 +955,11 @@ const createAccount = async (
       );
 
       const userSecret = process.env.TOKEN_USER_SECRET;
-      const token = generateToken({ id: create.id }, userSecret, "14d");
+      const token = generateToken(
+        { id: create.id },
+        userSecret as string,
+        "14d"
+      );
 
       logger.info({
         message: `Diligence user with ${accountPayload.email} created successfully`,
@@ -986,7 +994,11 @@ const createAccount = async (
       });
 
       const userSecret = process.env.TOKEN_USER_SECRET;
-      const token = generateToken({ id: create.id }, userSecret, "14d");
+      const token = generateToken(
+        { id: create.id },
+        userSecret as string,
+        "14d"
+      );
 
       logger.info({
         message: `Diligence user with ${accountPayload.email} created successfully`,
@@ -1061,7 +1073,7 @@ const loginUser = async (
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const token = generateToken({ id: user.id }, userSecret, "14d");
+    const token = generateToken({ id: user.id }, userSecret as string, "14d");
     logger.info({
       message: `User with ${loginPayload.email} signed in successfully.`,
     });
@@ -1126,7 +1138,11 @@ const forgotPassword = async (email: string) => {
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const userToken = await generateToken({ email: email }, userSecret, "30m");
+    const userToken = await generateToken(
+      { email: email },
+      userSecret as string,
+      "30m"
+    );
 
     const updatedUser = await prisma.diligenceUser.update({
       where: { id: user.id },

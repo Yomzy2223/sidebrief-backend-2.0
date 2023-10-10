@@ -14,7 +14,7 @@ import {
 } from "./service";
 import { UserPayload } from "./entities";
 
-exports.UserRegisration = async (
+const UserRegisration = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -44,11 +44,7 @@ exports.UserRegisration = async (
 };
 
 //get a user with id
-exports.UserFetcher = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const UserFetcher = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // check if there is id
     // pass the id to the service
@@ -66,7 +62,7 @@ exports.UserFetcher = async (
 };
 
 //get all users controller
-exports.UsersFetcher = async (
+const UsersFetcher = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -85,11 +81,7 @@ exports.UsersFetcher = async (
   }
 };
 
-exports.UserGrantor = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const UserGrantor = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // get the login payload
     // validate the payload
@@ -107,7 +99,7 @@ exports.UserGrantor = async (
   }
 };
 
-exports.UserVerification = async (
+const UserVerification = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -123,7 +115,7 @@ exports.UserVerification = async (
   }
 };
 
-exports.UserPasswordResetLink = async (
+const UserPasswordResetLink = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -139,7 +131,7 @@ exports.UserPasswordResetLink = async (
   }
 };
 
-exports.UserPasswordReset = async (
+const UserPasswordReset = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -161,11 +153,7 @@ exports.UserPasswordReset = async (
 };
 
 //get a user with id
-exports.UserRemover = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const UserRemover = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // check if there is id
     // pass the id to the service
@@ -182,7 +170,7 @@ exports.UserRemover = async (
 };
 
 // IN PROGRESS
-exports.UserProfileModifier = async (
+const UserProfileModifier = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -205,4 +193,16 @@ exports.UserProfileModifier = async (
   } catch (error) {
     next(error);
   }
+};
+
+export {
+  UserRegisration,
+  UserFetcher,
+  UserGrantor,
+  UsersFetcher,
+  UserVerification,
+  UserPasswordResetLink,
+  UserPasswordReset,
+  UserProfileModifier,
+  UserRemover,
 };

@@ -1,20 +1,27 @@
-const {
+import { Request, Response, NextFunction } from "express";
+import { CountryPayload } from "./entities";
+import {
   saveCountry,
   getAllCountries,
   getCountry,
   updateCountry,
   removeCountry,
-} = require("./service");
+} from "./service";
 
 // create a new country
-exports.CreateCountry = async (req, res, next) => {
+const CreateCountry = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the validated payload from the the request body
     // send the validated payload to addCountry service
     // return response to the client
 
     const countryPayload = req.body;
-    const values = {
+
+    const values: CountryPayload = {
       name: countryPayload.name.toLowerCase(),
       iso: countryPayload.iso,
       flagUrl: countryPayload.flagUrl,
@@ -29,7 +36,11 @@ exports.CreateCountry = async (req, res, next) => {
 };
 
 //get all countries
-exports.GetCountries = async (req, res, next) => {
+const GetCountries = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     // get the country list
     // return response to the client
@@ -45,13 +56,13 @@ exports.GetCountries = async (req, res, next) => {
 };
 
 //get a country with id
-exports.GetCountry = async (req, res, next) => {
+const GetCountry = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // check if there is id
     // pass the id to the service
     // return country to client
 
-    const id = req.params.id;
+    const id: string = req.params.id;
 
     const country = await getCountry(id);
 
@@ -64,16 +75,21 @@ exports.GetCountry = async (req, res, next) => {
 };
 
 //update a country
-exports.UpdateCountry = async (req, res, next) => {
+const UpdateCountry = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //get the payload
     // validate the payload
     // send the payload to the service
     // return response
 
-    const id = req.params.id;
+    const id: string = req.params.id;
     const countryPayload = req.body;
-    const values = {
+
+    const values: CountryPayload = {
       name: countryPayload.name.toLowerCase(),
       iso: countryPayload.iso,
       flagUrl: countryPayload.flagUrl,
@@ -89,13 +105,17 @@ exports.UpdateCountry = async (req, res, next) => {
 };
 
 //delete a country
-exports.DeleteCountry = async (req, res, next) => {
+const DeleteCountry = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     //check if there is id
     // send the id to the delete service
     //return response to the client
 
-    const id = req.params.id;
+    const id: string = req.params.id;
 
     const deleteCountry = await removeCountry(id);
 
@@ -105,4 +125,12 @@ exports.DeleteCountry = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+export {
+  CreateCountry,
+  UpdateCountry,
+  GetCountry,
+  DeleteCountry,
+  GetCountries,
 };

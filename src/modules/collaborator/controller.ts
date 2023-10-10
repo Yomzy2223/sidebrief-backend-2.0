@@ -18,7 +18,7 @@ import { CollaboratorDocumentProps } from "./entities";
 // collect payload from the request body
 // pass the payload to the service
 // return response to client
-exports.CollaboratorRegisration = async (
+const CollaboratorRegisration = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -46,7 +46,7 @@ exports.CollaboratorRegisration = async (
 };
 
 //get a collaborator with id
-exports.CollectorProfileFetcher = async (
+const CollectorProfileFetcher = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -65,7 +65,7 @@ exports.CollectorProfileFetcher = async (
   }
 };
 
-exports.CollaboratorLogin = async (
+const CollaboratorLogin = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -87,7 +87,7 @@ exports.CollaboratorLogin = async (
   }
 };
 
-exports.CollaboratorVerification = async (
+const CollaboratorVerification = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -103,7 +103,7 @@ exports.CollaboratorVerification = async (
   }
 };
 
-exports.CollaboratorPasswordResetLink = async (
+const CollaboratorPasswordResetLink = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -120,7 +120,7 @@ exports.CollaboratorPasswordResetLink = async (
   }
 };
 
-exports.CollaboratorPasswordReset = async (
+const CollaboratorPasswordReset = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -145,7 +145,7 @@ exports.CollaboratorPasswordReset = async (
 };
 
 //delete a collaborator with id
-exports.CollaboratorRemover = async (
+const CollaboratorRemover = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -167,7 +167,7 @@ exports.CollaboratorRemover = async (
 };
 
 // IN PROGRESS
-exports.ControllerProfileModifier = async (
+const ControllerProfileModifier = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -192,7 +192,7 @@ exports.ControllerProfileModifier = async (
   }
 };
 
-exports.CollaboratorDocument = async (
+const CollaboratorDocument = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -216,7 +216,7 @@ exports.CollaboratorDocument = async (
 };
 
 //get collaborator documents with id
-exports.CollectorDocumentsFetcher = async (
+const CollectorDocumentsFetcher = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -233,4 +233,17 @@ exports.CollectorDocumentsFetcher = async (
   } catch (error) {
     next(error);
   }
+};
+
+export {
+  CollaboratorLogin,
+  CollectorProfileFetcher,
+  CollaboratorRegisration,
+  CollaboratorPasswordReset,
+  CollaboratorPasswordResetLink,
+  CollaboratorVerification,
+  CollaboratorRemover,
+  CollaboratorDocument,
+  CollectorDocumentsFetcher,
+  ControllerProfileModifier,
 };

@@ -102,7 +102,7 @@ const emailSchema = {
 
 const validateEmail = validate.compile(emailSchema);
 
-module.exports = {
+export {
   validateUser,
   validateUserCredentials,
   validateStaff,

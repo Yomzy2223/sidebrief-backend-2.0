@@ -1,5 +1,5 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   CollaboratorLogin,
   CollectorProfileFetcher,
   CollaboratorRegisration,
@@ -10,16 +10,16 @@ const {
   CollaboratorDocument,
   CollectorDocumentsFetcher,
   ControllerProfileModifier,
-} = require("./controller");
-const validator = require("../../middleware/validator");
-const {
+} from "./controller";
+import validator from "../../middleware/validator";
+import {
   validateCollaborator,
   validateUserCredentials,
   validateResetCredentials,
   validateDocument,
   validateEmail,
   validateUserUpdateCredentials,
-} = require("../../utils/validation");
+} from "../../utils/validation";
 const router = express.Router();
 
 router.post("/", validator(validateCollaborator), CollaboratorRegisration);

@@ -1,10 +1,14 @@
-const { PrismaClient } = require("@prisma/client");
-const logger = require("../../config/logger");
+import { ServiceCategoryPayload, ServiceCategoryResponse } from "./entities";
+
+import { PrismaClient } from "@prisma/client";
+import logger from "../../config/logger";
 const prisma = new PrismaClient();
-const { BadRequest } = require("../../utils/requestErrors");
+import { BadRequest } from "../../utils/requestErrors";
 
 //create service category service
-const saveServiceCategory = async (serviceCategoryPayload) => {
+const saveServiceCategory = async (
+  serviceCategoryPayload: ServiceCategoryPayload
+): Promise<ServiceCategoryResponse> => {
   //   //add the new service category to the table
 
   try {
@@ -27,18 +31,19 @@ const saveServiceCategory = async (serviceCategoryPayload) => {
     logger.info({
       message: `${serviceCategoryPayload.name} service category created successfully`,
     });
-    return {
+    const response: ServiceCategoryResponse = {
       message: "Service category created successfully",
       data: category,
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all service category service
-const getAllServiceCategory = async () => {
+const getAllServiceCategory = async (): Promise<ServiceCategoryResponse> => {
   //  get the service category list from the table
   //  return the service category list to the service category controller
   try {
@@ -50,18 +55,22 @@ const getAllServiceCategory = async () => {
         data: [],
       };
     }
-    return {
+    const response: ServiceCategoryResponse = {
       message: "Service category fetched successfully",
       data: category,
       statusCode: 200,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get a service category service
-const getServiceCategory = async (id) => {
+const getServiceCategory = async (
+  id: string
+): Promise<ServiceCategoryResponse> => {
   //   //check if the service category exists
   //   //return the service category to the service category controller
 
@@ -74,18 +83,22 @@ const getServiceCategory = async (id) => {
     if (!category) {
       throw new BadRequest("Service category not found!.");
     }
-    return {
+    const response: ServiceCategoryResponse = {
       message: "Service category fetched successfully",
       data: category,
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //update a service category service
-const updateServiceCategory = async (id, serviceCategoryPayload) => {
+const updateServiceCategory = async (
+  id: string,
+  serviceCategoryPayload: ServiceCategoryPayload
+) => {
   // take both id and service category payload from the service category controller
   //  check if the service category exists
   //  update the service category
@@ -122,7 +135,7 @@ const updateServiceCategory = async (id, serviceCategoryPayload) => {
 };
 
 //remove a service category service
-const removeServiceCategory = async (id) => {
+const removeServiceCategory = async (id: string) => {
   //take id from the service category controller
   //check if the service category exists
   //remove the service category from the record
@@ -147,7 +160,7 @@ const removeServiceCategory = async (id) => {
   }
 };
 
-module.exports = {
+export {
   saveServiceCategory,
   getAllServiceCategory,
   getServiceCategory,

@@ -1,16 +1,16 @@
-const express = require("express");
-const { userAuth, staffAuth } = require("../../middleware/auth");
-const validator = require("../../middleware/validator");
-const { validateCountry } = require("../../utils/validation");
+import express from "express";
+import { userAuth, staffAuth } from "../../middleware/auth";
+import validator from "../../middleware/validator";
+import { validateCountry } from "../../utils/validation";
 const router = express.Router();
 
-const {
+import {
   CreateCountry,
   UpdateCountry,
   GetCountry,
   DeleteCountry,
   GetCountries,
-} = require("./controller");
+} from "./controller";
 
 router.post("/", staffAuth, validator(validateCountry), CreateCountry);
 router.get("/", GetCountries);
