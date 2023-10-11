@@ -52,7 +52,7 @@ import { staffAuth, userAuth } from "../../middleware/auth";
 
 router.post("/", validator(validateUser), UserRegisration);
 router.post("/login", validator(validateUserCredentials), UserGrantor);
-router.get("/:id", UserFetcher);
+router.get("/:id", userAuth, UserFetcher);
 router.get("/", UsersFetcher);
 router.post("/verification/:token", UserVerification);
 router.post("/forgotpassword", validator(validateEmail), UserPasswordResetLink);

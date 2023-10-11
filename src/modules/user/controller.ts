@@ -35,10 +35,13 @@ const UserRegisration = async (
 
     const user = await saveUser(values);
 
+    console.log("user", user);
+
     return res
       .status(user.statusCode)
       .json({ message: user.message, data: user.data });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };

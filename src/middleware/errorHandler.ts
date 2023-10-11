@@ -1,7 +1,12 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import logger from "../config/logger";
 
-const ErrorHandler = (err: any, req: Request, res: Response) => {
+const ErrorHandler = (
+  err: any,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const errStatus = err?.statusCode || 500;
 
   const errMessage = errStatus === 500 ? "Error occured" : err?.message;

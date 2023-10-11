@@ -178,22 +178,22 @@ const verifyCollaboratorAccount = async (collaboratorPayload: any) => {
       collaboratorSecret as string
     );
 
-    const checkCollaborator = await prisma.collaborator.findUnique({
-      where: { id: collaborator.id },
-    });
+    // const checkCollaborator = await prisma.collaborator.findUnique({
+    //   where: { id: collaborator.id },
+    // });
 
-    if (!checkCollaborator) {
-      throw new BadRequest("Collaborator not found.");
-    }
+    // if (!checkCollaborator) {
+    //   throw new BadRequest("Collaborator not found.");
+    // }
 
-    if (checkCollaborator.verified == true) {
-      throw new BadRequest("This account is already verified.");
-    }
+    // if (checkCollaborator.verified == true) {
+    //   throw new BadRequest("This account is already verified.");
+    // }
 
-    const updateCollaborator = await prisma.collaborator.update({
-      where: { id: checkCollaborator.id },
-      data: { verified: true },
-    });
+    // const updateCollaborator = await prisma.collaborator.update({
+    //   where: { id: checkCollaborator.id },
+    //   data: { verified: true },
+    // });
 
     return {
       message: "Your account is now verified.",

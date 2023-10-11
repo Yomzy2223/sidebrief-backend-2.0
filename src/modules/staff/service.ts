@@ -175,27 +175,27 @@ const verifyStaffAccount = async (verifyPayload: string) => {
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
     const staff = await verifyUserToken(verifyPayload, staffSecret as string);
 
-    const checkStaff = await prisma.staff.findUnique({
-      where: { id: staff.id },
-    });
+    // const checkStaff = await prisma.staff.findUnique({
+    //   where: { id: staff.id as string },
+    // });
 
-    if (!checkStaff) {
-      throw new BadRequest("Staff not found");
-    }
+    // if (!checkStaff) {
+    //   throw new BadRequest("Staff not found");
+    // }
 
-    if (checkStaff.verified == true) {
-      throw new BadRequest("This account is already verified.");
-    }
+    // if (checkStaff.verified == true) {
+    //   throw new BadRequest("This account is already verified.");
+    // }
 
-    const updateStaff = await prisma.staff.update({
-      where: { id: checkStaff.id },
-      data: { verified: true },
-    });
+    // const updateStaff = await prisma.staff.update({
+    //   where: { id: checkStaff.id },
+    //   data: { verified: true },
+    // });
 
-    return {
-      message: "Your account is now verified.",
-      statusCode: 200,
-    };
+    // return {
+    //   message: "Your account is now verified.",
+    //   statusCode: 200,
+    // };
   } catch (error) {
     throw error;
   }

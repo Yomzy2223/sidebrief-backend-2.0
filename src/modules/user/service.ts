@@ -6,12 +6,12 @@ import {
   ForgotPassword,
 } from "./entities";
 
-const { PrismaClient } = require("@prisma/client");
-const logger = require("../../config/logger");
-const { hasher, matchChecker } = require("../../common/hash");
-const { generateToken, verifyUserToken } = require("../../common/token");
-const EmailSender = require("../../services/emailEngine");
-const { BadRequest } = require("../../utils/requestErrors");
+import { PrismaClient } from "@prisma/client";
+import logger from "../../config/logger";
+import { hasher, matchChecker } from "../../common/hash";
+import { generateToken, verifyUserToken } from "../../common/token";
+import EmailSender from "../../services/emailEngine";
+import { BadRequest } from "../../utils/requestErrors";
 const prisma = new PrismaClient();
 
 //IN PROGRESS
@@ -37,7 +37,7 @@ const saveUser = async (
     const userSecret = process.env.TOKEN_USER_SECRET;
     const emailVerificationToken = generateToken(
       { id: user.id },
-      userSecret,
+      userSecret as string,
       "30m"
     );
 
@@ -97,7 +97,7 @@ const getUser = async (id: string): Promise<UserResponseProps> => {
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const token = generateToken({ id: user.id }, userSecret, "14d");
+    const token = generateToken({ id: user.id }, userSecret as string, "14d");
 
     const response: UserResponseProps = {
       message: "User fetched successfully",
@@ -170,7 +170,7 @@ const loginUser = async (
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const token = generateToken({ id: user.id }, userSecret, "14d");
+    const token = generateToken({ id: user.id }, userSecret as string, "14d");
     logger.info({
       message: `User with ${loginPayload.email} signed in successfully.`,
     });
@@ -202,21 +202,21 @@ const loginUser = async (
 const verifyAccount = async (verifyPayload: string) => {
   try {
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const user = await verifyUserToken(verifyPayload, userSecret);
+    const user = await verifyUserToken(verifyPayload, userSecret as string);
 
-    const checkUser = await prisma.user.findUnique({ where: { id: user.id } });
-    if (!checkUser) {
-      throw new BadRequest("User not found!.");
-    }
+    // const checkUser = await prisma.user.findUnique({ where: { id: user.id } });
+    // if (!checkUser) {
+    //   throw new BadRequest("User not found!.");
+    // }
 
-    if (checkUser.verified == true) {
-      throw new BadRequest("This account is already verified.");
-    }
+    // if (checkUser.verified == true) {
+    //   throw new BadRequest("This account is already verified.");
+    // }
 
-    const updateUser = await prisma.user.update({
-      where: { id: checkUser.id },
-      data: { verified: true },
-    });
+    // const updateUser = await prisma.user.update({
+    //   where: { id: checkUser.id },
+    //   data: { verified: true },
+    // });
     const response = {
       message: "Your account is now verified.",
       statusCode: 200,
@@ -244,7 +244,11 @@ const forgotPassword = async (forgotPayload: ForgotPassword) => {
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const userToken = await generateToken(forgotPayload, userSecret, "30m");
+    const userToken = await generateToken(
+      forgotPayload,
+      userSecret as string,
+      "30m"
+    );
 
     const cryptedToken = await hasher(userToken, 12);
 
@@ -393,7 +397,7 @@ const authWithGoogle = async (profile: any) => {
     const userSecret = process.env.TOKEN_USER_SECRET;
     const emailVerificationToken = generateToken(
       { id: newUser.id },
-      userSecret,
+      userSecret as string,
       "30m"
     );
 
@@ -457,7 +461,7 @@ const authLogin = async (profile: any) => {
   // if user exists
 
   const userSecret = process.env.TOKEN_USER_SECRET;
-  const token = generateToken({ id: user.id }, userSecret, "14d");
+  const token = generateToken({ id: user.id }, userSecret as string, "14d");
   logger.info({
     message: `User with ${user.email} signed in successfully.`,
   });

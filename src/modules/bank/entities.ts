@@ -12,11 +12,11 @@ interface CreateBankResponseProps {
 }
 
 interface CreateBankDataProps {
-  id: number;
+  id: string;
   name: string;
   code: string;
   url: string;
-  message: string;
+  image: string;
 }
 
 export { BankPayload, CreateBankResponseProps, CreateBankDataProps };

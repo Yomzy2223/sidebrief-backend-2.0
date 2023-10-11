@@ -11,7 +11,7 @@ export interface UserPayload {
 export interface UserResponseProps {
   message: string;
   statusCode: number;
-  data: UserResponse;
+  data: UserResponse | UserResponse[];
 }
 
 export interface UserResponse {
@@ -20,7 +20,7 @@ export interface UserResponse {
   lastName: string;
   username: string;
   email: string;
-  picture: string;
+  picture: string | null;
   phone: string;
   token?: string;
   verified: boolean;

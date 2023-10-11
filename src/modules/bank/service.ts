@@ -1,7 +1,7 @@
 import { BankPayload, CreateBankResponseProps } from "./entities";
-const { PrismaClient } = require("@prisma/client");
-const logger = require("../../config/logger");
-const { BadRequest } = require("../../utils/requestErrors");
+import { PrismaClient } from "@prisma/client";
+import logger from "../../config/logger";
+import { BadRequest } from "../../utils/requestErrors";
 const prisma = new PrismaClient();
 
 //create bank service

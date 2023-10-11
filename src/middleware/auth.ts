@@ -2,7 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import { verifyUserToken } from "../common/token";
 import { Unauthorized } from "../utils/requestErrors";
+import { JwtPayload } from "jsonwebtoken";
 const prisma = new PrismaClient();
+
+interface JwtResponse {
+  id: string;
+  iat: any;
+  exp: any;
+}
 
 //IN PROGRESS
 const userAuth = async (req: Request, res: Response, next: NextFunction) => {
@@ -18,6 +25,7 @@ const userAuth = async (req: Request, res: Response, next: NextFunction) => {
     if (!user) {
       throw new Unauthorized("Invalid or expired user token.");
     }
+    console.log("sdfs", user);
     req.user = user;
     next();
   } catch (error) {
@@ -34,7 +42,10 @@ const staffAuth = async (req: Request, res: Response, next: NextFunction) => {
     const token = reqToken.split(" ")[1];
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
 
-    const staff = await verifyUserToken(token, staffSecret as string);
+    const staff = (await verifyUserToken(
+      token,
+      staffSecret as string
+    )) as JwtResponse;
 
     if (!staff) {
       throw new Unauthorized("Invalid or expired staff token.");
@@ -65,7 +76,10 @@ const partnerAuth = async (req: Request, res: Response, next: NextFunction) => {
     const token = reqToken.split(" ")[1];
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
 
-    const partner = await verifyUserToken(token, collaboratorSecret as string);
+    const partner = (await verifyUserToken(
+      token,
+      collaboratorSecret as string
+    )) as JwtResponse;
 
     if (!partner) {
       throw new Unauthorized("Invalid or expired partner token.");
@@ -104,7 +118,10 @@ const ResellerrAuth = async (
     const token = reqToken.split(" ")[1];
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
 
-    const reseller = await verifyUserToken(token, collaboratorSecret as string);
+    const reseller = (await verifyUserToken(
+      token,
+      collaboratorSecret as string
+    )) as JwtResponse;
 
     if (!reseller) {
       throw new Unauthorized("Invalid or expired reseller token.");
@@ -127,4 +144,4 @@ const ResellerrAuth = async (
   }
 };
 
-export { userAuth, staffAuth, partnerAuth, ResellerrAuth };
+export { userAuth, staffAuth };
