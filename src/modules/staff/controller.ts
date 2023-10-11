@@ -84,8 +84,8 @@ const StaffVerification = async (
   try {
     const verifyPayload: string = req.params.token;
 
-    // const verify = await verifyStaffAccount(verifyPayload);
-    // return res.status(verify.statusCode).json({ message: verify.message });
+    const verify = await verifyStaffAccount(verifyPayload);
+    return res.status(verify.statusCode).json({ message: verify.message });
   } catch (error) {
     next(error);
   }

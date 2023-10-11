@@ -13,6 +13,7 @@ import {
   LoginProps,
 } from "./entities";
 import { response } from "express";
+import { JwtResponse } from "../../common/entities";
 
 //IN PROGRESS
 
@@ -173,27 +174,27 @@ const loginCollaborator = async (collaboratorPayload: LoginProps) => {
 const verifyCollaboratorAccount = async (collaboratorPayload: any) => {
   try {
     const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
-    const collaborator = await verifyUserToken(
+    const collaborator = (await verifyUserToken(
       collaboratorPayload,
       collaboratorSecret as string
-    );
+    )) as JwtResponse;
 
-    // const checkCollaborator = await prisma.collaborator.findUnique({
-    //   where: { id: collaborator.id },
-    // });
+    const checkCollaborator = await prisma.collaborator.findUnique({
+      where: { id: collaborator.id },
+    });
 
-    // if (!checkCollaborator) {
-    //   throw new BadRequest("Collaborator not found.");
-    // }
+    if (!checkCollaborator) {
+      throw new BadRequest("Collaborator not found.");
+    }
 
-    // if (checkCollaborator.verified == true) {
-    //   throw new BadRequest("This account is already verified.");
-    // }
+    if (checkCollaborator.verified == true) {
+      throw new BadRequest("This account is already verified.");
+    }
 
-    // const updateCollaborator = await prisma.collaborator.update({
-    //   where: { id: checkCollaborator.id },
-    //   data: { verified: true },
-    // });
+    const updateCollaborator = await prisma.collaborator.update({
+      where: { id: checkCollaborator.id },
+      data: { verified: true },
+    });
 
     return {
       message: "Your account is now verified.",

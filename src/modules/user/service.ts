@@ -1,7 +1,6 @@
 import {
   UserResponseProps,
   UserPayload,
-  UserResponse,
   UserLogin,
   ForgotPassword,
 } from "./entities";
@@ -12,6 +11,7 @@ import { hasher, matchChecker } from "../../common/hash";
 import { generateToken, verifyUserToken } from "../../common/token";
 import EmailSender from "../../services/emailEngine";
 import { BadRequest } from "../../utils/requestErrors";
+import { JwtResponse } from "../../common/entities";
 const prisma = new PrismaClient();
 
 //IN PROGRESS
@@ -227,21 +227,24 @@ const loginUser = async (
 const verifyAccount = async (verifyPayload: string) => {
   try {
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const user = await verifyUserToken(verifyPayload, userSecret as string);
+    const user = (await verifyUserToken(
+      verifyPayload,
+      userSecret as string
+    )) as JwtResponse;
 
-    // const checkUser = await prisma.user.findUnique({ where: { id: user.id } });
-    // if (!checkUser) {
-    //   throw new BadRequest("User not found!.");
-    // }
+    const checkUser = await prisma.user.findUnique({ where: { id: user.id } });
+    if (!checkUser) {
+      throw new BadRequest("User not found!.");
+    }
 
-    // if (checkUser.verified == true) {
-    //   throw new BadRequest("This account is already verified.");
-    // }
+    if (checkUser.verified == true) {
+      throw new BadRequest("This account is already verified.");
+    }
 
-    // const updateUser = await prisma.user.update({
-    //   where: { id: checkUser.id },
-    //   data: { verified: true },
-    // });
+    const updateUser = await prisma.user.update({
+      where: { id: checkUser.id },
+      data: { verified: true },
+    });
     const response = {
       message: "Your account is now verified.",
       statusCode: 200,

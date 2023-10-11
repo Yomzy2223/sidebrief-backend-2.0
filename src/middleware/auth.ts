@@ -2,14 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import { verifyUserToken } from "../common/token";
 import { Unauthorized } from "../utils/requestErrors";
-import { JwtPayload } from "jsonwebtoken";
-const prisma = new PrismaClient();
+import { JwtResponse } from "../common/entities";
 
-interface JwtResponse {
-  id: string;
-  iat: any;
-  exp: any;
-}
+const prisma = new PrismaClient();
 
 //IN PROGRESS
 const userAuth = async (req: Request, res: Response, next: NextFunction) => {
@@ -25,7 +20,6 @@ const userAuth = async (req: Request, res: Response, next: NextFunction) => {
     if (!user) {
       throw new Unauthorized("Invalid or expired user token.");
     }
-    console.log("sdfs", user);
     req.user = user;
     next();
   } catch (error) {
@@ -50,8 +44,6 @@ const staffAuth = async (req: Request, res: Response, next: NextFunction) => {
     if (!staff) {
       throw new Unauthorized("Invalid or expired staff token.");
     }
-
-    console.log("checking", staff);
 
     const checkStaff = await prisma.staff.findUnique({
       where: { id: staff.id },

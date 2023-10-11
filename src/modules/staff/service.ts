@@ -11,6 +11,7 @@ import { hasher, matchChecker } from "../../common/hash";
 import { generateToken, verifyUserToken } from "../../common/token";
 import EmailSender from "../../services/emailEngine";
 import { BadRequest } from "../../utils/requestErrors";
+import { JwtResponse } from "../../common/entities";
 const prisma = new PrismaClient();
 
 //IN PROGRESS
@@ -195,29 +196,32 @@ const loginStaff = async (
 const verifyStaffAccount = async (verifyPayload: string) => {
   try {
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
-    const staff = await verifyUserToken(verifyPayload, staffSecret as string);
+    const staff = (await verifyUserToken(
+      verifyPayload,
+      staffSecret as string
+    )) as JwtResponse;
 
-    // const checkStaff = await prisma.staff.findUnique({
-    //   where: { id: staff.id as string },
-    // });
+    const checkStaff = await prisma.staff.findUnique({
+      where: { id: staff.id as string },
+    });
 
-    // if (!checkStaff) {
-    //   throw new BadRequest("Staff not found");
-    // }
+    if (!checkStaff) {
+      throw new BadRequest("Staff not found");
+    }
 
-    // if (checkStaff.verified == true) {
-    //   throw new BadRequest("This account is already verified.");
-    // }
+    if (checkStaff.verified == true) {
+      throw new BadRequest("This account is already verified.");
+    }
 
-    // const updateStaff = await prisma.staff.update({
-    //   where: { id: checkStaff.id },
-    //   data: { verified: true },
-    // });
+    const updateStaff = await prisma.staff.update({
+      where: { id: checkStaff.id },
+      data: { verified: true },
+    });
 
-    // return {
-    //   message: "Your account is now verified.",
-    //   statusCode: 200,
-    // };
+    return {
+      message: "Your account is now verified.",
+      statusCode: 200,
+    };
   } catch (error) {
     throw error;
   }

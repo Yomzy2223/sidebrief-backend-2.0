@@ -897,9 +897,7 @@ const Test = async (req: Request, res: Response, next: NextFunction) => {
     });
 
     return res.status(200).json({ data: save });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 const GetStaffAndRequest = async (
