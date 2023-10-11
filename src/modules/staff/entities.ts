@@ -18,6 +18,8 @@ export interface StaffResponseProps {
     phone: string;
     picture: string | null;
     token?: string;
+    refreshToken?: string;
+    tokenExpiresIn?: number;
     verified: boolean;
   };
 }

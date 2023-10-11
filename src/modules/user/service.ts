@@ -63,6 +63,17 @@ const saveUser = async (
       message: `${userPayload.firstName} ${userPayload.lastName} created an account successfully with ${userPayload.email}.`,
     });
 
+    const token = generateToken({ id: user.id }, userSecret as string, "14d");
+
+    const refreshToken = generateToken(
+      { id: user.id },
+      userSecret as string,
+      "2h"
+    );
+
+    const currentTime = Date.now();
+    const expirationTime = currentTime + 30 * 60 * 1000;
+
     const response: UserResponseProps = {
       message: "User created successfully",
       data: {
@@ -72,6 +83,9 @@ const saveUser = async (
         username: user.username,
         email: user.email,
         phone: user.phone,
+        token: token,
+        tokenExpiresIn: expirationTime,
+        refreshToken: refreshToken,
         picture: user.picture,
         verified: user.verified,
         referral: user.referral,
@@ -99,6 +113,15 @@ const getUser = async (id: string): Promise<UserResponseProps> => {
     const userSecret = process.env.TOKEN_USER_SECRET;
     const token = generateToken({ id: user.id }, userSecret as string, "14d");
 
+    const refreshToken = generateToken(
+      { id: user.id },
+      userSecret as string,
+      "2h"
+    );
+
+    const currentTime = Date.now();
+    const expirationTime = currentTime + 30 * 60 * 1000;
+
     const response: UserResponseProps = {
       message: "User fetched successfully",
       data: {
@@ -109,6 +132,8 @@ const getUser = async (id: string): Promise<UserResponseProps> => {
         email: user.email,
         phone: user.phone,
         token: token,
+        tokenExpiresIn: expirationTime,
+        refreshToken: refreshToken,
         picture: user.picture,
         verified: user.verified,
         referral: user.referral,

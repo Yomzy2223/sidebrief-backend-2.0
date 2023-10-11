@@ -23,6 +23,8 @@ export interface UserResponse {
   picture: string | null;
   phone: string;
   token?: string;
+  refreshToken?: string;
+  tokenExpiresIn?: number;
   verified: boolean;
   referral: string;
 }

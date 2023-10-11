@@ -69,6 +69,15 @@ const saveStaff = async (
       "14d"
     );
 
+    const refreshToken = generateToken(
+      { id: staff.id },
+      staffTokenSecret as string,
+      "2h"
+    );
+
+    const currentTime = Date.now();
+    const expirationTime = currentTime + 30 * 60 * 1000;
+
     const response: StaffResponseProps = {
       message: "Staff created successfully",
       data: {
@@ -79,6 +88,8 @@ const saveStaff = async (
         phone: staff.phone,
         picture: staff.picture,
         token: token,
+        tokenExpiresIn: expirationTime,
+        refreshToken: refreshToken,
         verified: staff.verified,
       },
       statusCode: 200,
@@ -144,6 +155,15 @@ const loginStaff = async (
 
     const staffSecret = process.env.TOKEN_STAFF_SECRET;
     const token = generateToken({ id: staff.id }, staffSecret as string, "14d");
+    const refreshToken = generateToken(
+      { id: staff.id },
+      staffSecret as string,
+      "2h"
+    );
+
+    const currentTime = Date.now();
+    const expirationTime = currentTime + 30 * 60 * 1000;
+
     logger.info({
       message: `staff with ${loginPayload.email} signed in successfully.`,
     });
@@ -158,6 +178,8 @@ const loginStaff = async (
         phone: staff.phone,
         picture: staff.picture,
         token: token,
+        tokenExpiresIn: expirationTime,
+        refreshToken: refreshToken,
         verified: staff.verified,
       },
       statusCode: 200,
