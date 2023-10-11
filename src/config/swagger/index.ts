@@ -1,4 +1,6 @@
-const options = {
+import { OpenAPIDefinition } from "./entities";
+
+const options: OpenAPIDefinition = {
   definition: {
     openapi: "3.1.0",
     info: {
