@@ -1,14 +1,14 @@
-const { PrismaClient } = require("@prisma/client");
-const request = require("supertest");
-const app = require("../../app");
+import { PrismaClient } from "@prisma/client";
+import request from "supertest";
+import app from "../../app";
 const prisma = new PrismaClient();
 
-describe("Testing all bank endpoints", () => {
+describe("Testing all country endpoints", () => {
   let staffToken = "";
   let userToken = "";
 
   beforeAll(async () => {
-    await prisma.bank.delete({
+    await prisma.country.delete({
       where: {
         name: "test",
       },
@@ -21,6 +21,7 @@ describe("Testing all bank endpoints", () => {
 
     const StaffRes = await request(app).post("/staffs/login").send(loginData);
     expect(StaffRes.body.message).toBe("Login successfully");
+
     staffToken = StaffRes.body.data.token;
 
     const userLoginData = {
@@ -36,67 +37,70 @@ describe("Testing all bank endpoints", () => {
   });
 
   const data = {
-    name: "test",
-    code: "this is a test bank",
-    url: "https://test.com",
-    image: "https://test.com",
+    name: "Test",
+    iso: "TEST",
+    flagUrl: "test.com",
+    code: "234",
+    currency: "TEST",
   };
 
-  it("should create a new bank", async () => {
+  it("should create a new country", async () => {
     const res = await request(app)
-      .post("/banks")
+      .post("/countries")
       .set("Authorization", `Bearer ${staffToken}`)
       .send(data);
     expect(res.statusCode).toBe(200);
-    expect(res.body.message).toBe("Bank created successfully");
+    expect(res.body.message).toBe("Country created successfully");
     expect(res.body.data.name).toBe("test");
   });
 
-  it("should return all banks", async () => {
-    const res = await request(app).get("/banks");
+  it("should return all countries", async () => {
+    const res = await request(app).get("/countries");
     expect(res.statusCode).toBe(200);
     expect(res.body.data.length).toBeGreaterThan(0);
   });
 
-  const bankId = "bd8b1a56-d3a8-4716-a763-3ebe135715c7";
+  const countryId = "bc134f97-12b5-4e2f-9f3c-9231807dfa26";
   it("should return a 200", async () => {
     const res = await request(app)
-      .get(`/banks/${bankId}`)
+      .get(`/countries/${countryId}`)
       .set("Authorization", `Bearer ${userToken}`);
     expect(res.statusCode).toBe(200);
   });
 
-  const w_bankId = "8aa2882e-78bd-4c88-9968-474bbc6a6545";
+  const w_countryId = "8aa2882e-78bd-4c88-9968-474bbc6a6545";
   it("should return a 400", async () => {
     const res = await request(app)
-      .get(`/banks/${w_bankId}`)
+      .get(`/countries/${w_countryId}`)
       .set("Authorization", `Bearer ${userToken}`);
     expect(res.statusCode).toBe(400);
   });
 
-  it("should update a bank", async () => {
+  it("should update a country", async () => {
     const res = await request(app)
-      .put(`/banks/${bankId}`)
+      .put(`/countries/${countryId}`)
       .set("Authorization", `Bearer ${staffToken}`)
       .send({
-        name: "Sterling Bank",
-        code: "23333",
-        url: "sterling.com",
-        image: "cloudinary.com",
+        name: "Kenya",
+        iso: "KEN",
+        flagUrl: "kenya.com",
+        code: "233",
+        currency: "KEN",
       });
     expect(res.statusCode).toBe(200);
-    expect(res.body.message).toBe("Bank updated successfully");
+    expect(res.body.message).toBe("Country updated successfully");
   });
 
   it("should return 400 ", async () => {
     const res = await request(app)
-      .put("/banks/dbc5b4f4-5b81-46f6-a1b4-2bea6646a45c")
+      .put("/countries/dbc5b4f4-5b81-46f6-a1b4-2bea6646a45c")
       .set("Authorization", `Bearer ${staffToken}`)
       .send({
-        name: "test",
-        code: "this is a test bank",
-        url: "https://test.com",
-        image: "https://test.com",
+        name: "Test",
+        iso: "TEST",
+        flagUrl: "test.com",
+        code: "234",
+        currency: "TEST",
       });
 
     expect(res.statusCode).toBe(400);
