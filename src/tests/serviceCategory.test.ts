@@ -1,6 +1,6 @@
-const { PrismaClient } = require("@prisma/client");
-const request = require("supertest");
-const app = require("../../app");
+import { PrismaClient } from "@prisma/client";
+import request from "supertest";
+import app from "../../app";
 const prisma = new PrismaClient();
 
 describe("Testing all service endpoints", () => {
