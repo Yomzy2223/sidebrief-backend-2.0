@@ -5369,3 +5369,6 @@ error: Label: 11-Oct-2023 10:43:37: Error occured with error TypeError: EmailSen
 info: Label: 11-Oct-2023 10:49:05: Bamidele Akinyemi created an account successfully with akinyemibamidele2202@gmail.com.
 info: Label: 11-Oct-2023 10:52:37: User with akinyemibamidele2202@gmail.com signed in successfully.
 error: Label: 11-Oct-2023 10:54:42: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users/279d1873-4905-49b1-8f49-a6206ae895d4 was called
+info: Label: 14-Oct-2023 12:22:15: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 14-Oct-2023 12:22:48: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
+info: Label: 14-Oct-2023 12:23:01: Testu created successfully
