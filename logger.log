@@ -5357,3 +5357,15 @@ Unknown field `diligenceRequest` for include statement on model DiligenceStaff. 
  occurred when GET /diligence/staffRequest/28ab3f8b-8eaf-410d-a505-40effb56e4dc was called
 error: Label: 12-Sep-2023 13:55:07: Unexpected string in JSON at position 153 with error SyntaxError: Unexpected string in JSON at position 153 occurred when POST /diligence/request was called
 info: Label: 12-Sep-2023 13:55:16: request with the name Request Test created successfully by eunice@sidebrief.com
+error: Label: 11-Oct-2023 10:07:45: Error occured with error [object Object] occurred when undefined undefined was called
+error: Label: 11-Oct-2023 10:08:36: Error occured with error [object Object] occurred when undefined undefined was called
+error: Label: 11-Oct-2023 10:09:31: Error occured with error [object Object] occurred when undefined undefined was called
+error: Label: 11-Oct-2023 10:13:18: Error occured with error [object Object] occurred when undefined undefined was called
+error: Label: 11-Oct-2023 10:37:15: Error occured with error [object Object] occurred when undefined undefined was called
+error: Label: 11-Oct-2023 10:41:59: Error occured with error TypeError: EmailSender is not a function occurred when POST /users was called
+error: Label: 11-Oct-2023 10:42:42: User with this email already exists with error Error: User with this email already exists occurred when POST /users was called
+error: Label: 11-Oct-2023 10:42:56: Error occured with error TypeError: EmailSender is not a function occurred when POST /users was called
+error: Label: 11-Oct-2023 10:43:37: Error occured with error TypeError: EmailSender is not a function occurred when POST /users was called
+info: Label: 11-Oct-2023 10:49:05: Bamidele Akinyemi created an account successfully with akinyemibamidele2202@gmail.com.
+info: Label: 11-Oct-2023 10:52:37: User with akinyemibamidele2202@gmail.com signed in successfully.
+error: Label: 11-Oct-2023 10:54:42: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users/279d1873-4905-49b1-8f49-a6206ae895d4 was called
