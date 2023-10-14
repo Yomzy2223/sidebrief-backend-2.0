@@ -9,4 +9,4 @@ server.listen(port, async () => {
   console.log(`server's running on port ${port}`);
 });
 
-module.exports = server;
+export default server;
