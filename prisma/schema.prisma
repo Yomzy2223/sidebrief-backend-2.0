@@ -12,22 +12,22 @@ datasource db {
 
 
 
-model User {
-      id String @id @default(uuid())
-      firstName String 
-      lastName String
-      username String
-      email String @unique
-      password String
-      phone String
-      picture String?
-      verified Boolean
-      referral String
-      resetToken String?
-      isDeprecated Boolean   @default(false)
-      createdAt DateTime @default(now())
-      updatedAt DateTime @default(now())
-}
+// model User {
+//       id String @id @default(uuid())
+//       firstName String 
+//       lastName String
+//       username String
+//       email String @unique
+//       password String
+//       phone String
+//       picture String?
+//       verified Boolean
+//       referral String
+//       resetToken String?
+//       isDeprecated Boolean   @default(false)
+//       createdAt DateTime @default(now())
+//       updatedAt DateTime @default(now())
+// }
 
 
 model Staff {
@@ -219,3 +219,175 @@ model NigerianBank {
 }
 
 
+
+model Account {
+      id String @id @default(uuid())
+      userId String
+      type String
+      provider String
+      scope String
+      user User @relation(fields: [userId], references: [id])
+}
+
+
+model User {
+      id String @id @default(uuid())
+      firstName String 
+      lastName String
+      username String
+      email String @unique
+      password String
+      phone String
+      picture String?
+      isVerified Boolean
+      referral String
+      country String
+      resetToken String?
+      isPartner Boolean
+      isStaff Boolean
+      isPhoneRegistered Boolean
+      isPhoneVerified Boolean
+      isIdentificationRegistered Boolean
+      isIdentificationVerified Boolean
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      teamMember TeamMember[]
+      partnerPermission String[]
+      staffPermission String[]
+      userPermission  String[]
+      account Account[]
+}
+
+model UserDocument {
+      id String @id @default(uuid())
+      name String
+      type String
+      description String
+      userId String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+model Service {
+      id String @id @default(uuid())
+      name String @unique
+      description String
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      Entity Entity[]
+}
+model Entity {
+      id String @id @default(uuid())
+      name String
+      type String
+      code String
+      description String
+      country String
+      price String
+      timeline String
+      hasShares Boolean
+      numberOfShares String
+      requiredDocuments String[]
+      hasAgent Boolean
+      hasOwner Boolean
+      hasController Boolean
+      controllerIsCalled String
+      OwnerIsCalled String
+      agentIsCalled String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      service Service @relation(fields: [serviceId], references: [id])
+      serviceId String
+      Launch Launch[]
+}
+model Launch {
+      id String @id @default(uuid())
+      name String
+      country String
+      address String
+      paid Boolean
+      email String
+      description String
+      objective String[]
+      Team Team[]
+      createdBy String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      entity Entity @relation(fields: [entityId], references: [id])
+      entityId String
+      Payment Payment[]
+}
+model Claim {
+      id String @id @default(uuid())
+      value String
+      userId String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+model Team {
+      id String @id @default(uuid())
+      name String
+      slug String
+      userId String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      launch Launch @relation(fields: [launchId], references: [id])
+      launchId String
+      invitation Invitation[]
+teamMember TeamMember[]
+}
+
+model TeamMember {
+      id String @id @default(uuid())
+      isLaunchMember Boolean
+      isLaunchController Boolean
+      isLaunchOwner Boolean
+      launchOwnership Int
+      teamId String
+      userId String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      team Team @relation(fields: [teamId], references: [id])
+      user User @relation(fields: [userId], references: [id])
+     
+}
+
+model Invitation {
+      id String @id @default(uuid())
+      teamId String
+      email String
+      token String
+      expireIn DateTime
+      invitedBy String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      team Team @relation(fields: [teamId], references: [id])
+   
+}
+model Payment  {
+      id String @id @default(uuid())
+      provider String
+      transactionId String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      launch Launch @relation(fields: [launchId], references: [id])
+      launchId String
+}
+
+model Parter {
+      id String @id @default(uuid())
+      isVerified Boolean
+      verificationDocument String[]
+      serviceScore Int
+      paymentsMade Int
+      paymentsDue Int
+      paymentDetails String[]
+      countrySupported String[]
+      serviceSupported String[]
+      servicesAssigned String[]
+      servicesCompleted String[]
+      servicesDeclined String[]
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
