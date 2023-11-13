@@ -25,12 +25,12 @@ const UserRegisration = async (
     const values: UserPayload = {
       firstName: userPayload.firstName,
       lastName: userPayload.lastName,
-      username: userPayload.username,
       email: userPayload.email.toLowerCase(),
       password: cryptedPassword,
-      phone: userPayload.phone,
-      verified: false,
       referral: userPayload.referral,
+      partnerPermission: [],
+      staffPermission: [],
+      userPermission: [],
     };
 
     const user = await saveUser(values);
