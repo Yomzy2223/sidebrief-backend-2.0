@@ -12,24 +12,6 @@ datasource db {
 
 
 
-// model User {
-//       id String @id @default(uuid())
-//       firstName String 
-//       lastName String
-//       username String
-//       email String @unique
-//       password String
-//       phone String
-//       picture String?
-//       verified Boolean
-//       referral String
-//       resetToken String?
-//       isDeprecated Boolean   @default(false)
-//       createdAt DateTime @default(now())
-//       updatedAt DateTime @default(now())
-// }
-
-
 model Staff {
       id String @id @default(uuid())
       firstName String 
@@ -234,29 +216,29 @@ model User {
       id String @id @default(uuid())
       firstName String 
       lastName String
-      username String
+      username String?
       email String @unique
       password String
-      phone String
+      phone String?
       picture String?
-      isVerified Boolean
+      isVerified Boolean @default(false)
       referral String
-      country String
+      country String?
       resetToken String?
-      isPartner Boolean
-      isStaff Boolean
-      isPhoneRegistered Boolean
-      isPhoneVerified Boolean
-      isIdentificationRegistered Boolean
-      isIdentificationVerified Boolean
-      isDeprecated Boolean   @default(false)
-      createdAt DateTime @default(now())
-      updatedAt DateTime @default(now())
+      isPartner Boolean @default(false)
+      isStaff Boolean @default(false)
+      isPhoneRegistered Boolean @default(false)
+      isPhoneVerified Boolean @default(false)
+      isIdentificationRegistered Boolean @default(false)
+      isIdentificationVerified Boolean @default(false)
       teamMember TeamMember[]
       partnerPermission String[]
       staffPermission String[]
       userPermission  String[]
       account Account[]
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
 }
 
 model UserDocument {

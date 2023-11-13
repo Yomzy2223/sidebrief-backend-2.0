@@ -87,7 +87,7 @@ const saveUser = async (
         tokenExpiresIn: expirationTime,
         refreshToken: refreshToken,
         picture: user.picture,
-        verified: user.verified,
+        isVerified: user.isVerified,
         referral: user.referral,
       },
       statusCode: 200,
@@ -135,7 +135,7 @@ const getUser = async (id: string): Promise<UserResponseProps> => {
         tokenExpiresIn: expirationTime,
         refreshToken: refreshToken,
         picture: user.picture,
-        verified: user.verified,
+        isVerified: user.isVerified,
         referral: user.referral,
       },
       statusCode: 200,
@@ -211,7 +211,7 @@ const loginUser = async (
         token: token,
         phone: user.phone,
         picture: user.picture,
-        verified: user.verified,
+        isVerified: user.isVerified,
         referral: user.referral,
       },
       statusCode: 200,
@@ -237,13 +237,13 @@ const verifyAccount = async (verifyPayload: string) => {
       throw new BadRequest("User not found!.");
     }
 
-    if (checkUser.verified == true) {
+    if (checkUser.isVerified == true) {
       throw new BadRequest("This account is already verified.");
     }
 
     const updateUser = await prisma.user.update({
       where: { id: checkUser.id },
-      data: { verified: true },
+      data: { isVerified: true },
     });
     const response = {
       message: "Your account is now verified.",
@@ -460,7 +460,7 @@ const authWithGoogle = async (profile: any) => {
         email: newUser.email,
         phone: newUser.phone,
         picture: newUser.picture,
-        verified: newUser.verified,
+        isVerified: newUser.isVerified,
         referral: newUser.referral,
       },
       statusCode: 200,
@@ -505,7 +505,7 @@ const authLogin = async (profile: any) => {
       token: token,
       phone: user.phone,
       picture: user.picture,
-      verified: user.verified,
+      isVerified: user.isVerified,
       referral: user.referral,
     },
   };
