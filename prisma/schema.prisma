@@ -89,14 +89,7 @@ model Bank {
       updatedAt DateTime @default(now())
 }
 
-model ServiceCategory {
-      id String @id @default(uuid())
-      name String @unique
-      description String
-      isDeprecated Boolean   @default(false)
-      createdAt DateTime @default(now())
-      updatedAt DateTime @default(now())
-}
+
 
 model Notification {
       id String @id @default(uuid())
@@ -250,16 +243,17 @@ model UserDocument {
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
-model Service {
+model ServiceCategory {
       id String @id @default(uuid())
       name String @unique
       description String
       isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      Entity Entity[]
+      services Service[]
 }
-model Entity {
+
+model Service {
       id String @id @default(uuid())
       name String
       type String
@@ -268,6 +262,7 @@ model Entity {
       country String
       price String
       timeline String
+      feature String[]
       hasShares Boolean
       numberOfShares String
       requiredDocuments String[]
@@ -279,11 +274,35 @@ model Entity {
       agentIsCalled String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      service Service @relation(fields: [serviceId], references: [id])
-      serviceId String
-      Launch Launch[]
+      category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
+      serviceCategoryId String
+      products Product[]
+      templates ServiceTemplate[]
+      forms ServiceForm[]
 }
-model Launch {
+model ServiceTemplate {
+  id String @id @default(uuid())
+  name String
+  type String
+  description String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  service Service @relation(fields: [serviceId], references: [id])
+  serviceId String
+}
+model ServiceForm {  
+  id String @id @default(uuid())
+  question String
+  name String
+  required Boolean
+  options String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  service Service @relation(fields: [serviceId], references: [id])
+  serviceId String
+}
+
+model Product {
       id String @id @default(uuid())
       name String
       country String
@@ -296,10 +315,22 @@ model Launch {
       createdBy String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      entity Entity @relation(fields: [entityId], references: [id])
-      entityId String
+      service Service @relation(fields: [serviceId], references: [id])
+      serviceId String
       Payment Payment[]
+      productQA ProductQA[]
 }
+model ProductQA {  
+  id String @id @default(uuid())
+  question String
+  answer String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  products Product @relation(fields: [productId], references: [id])
+  productId String
+}
+
+
 model Claim {
       id String @id @default(uuid())
       value String
@@ -314,8 +345,8 @@ model Team {
       userId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      launch Launch @relation(fields: [launchId], references: [id])
-      launchId String
+      product Product @relation(fields: [productId], references: [id])
+      productId String
       invitation Invitation[]
 teamMember TeamMember[]
 }
@@ -332,7 +363,6 @@ model TeamMember {
       updatedAt DateTime @default(now())
       team Team @relation(fields: [teamId], references: [id])
       user User @relation(fields: [userId], references: [id])
-     
 }
 
 model Invitation {
@@ -353,8 +383,8 @@ model Payment  {
       transactionId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      launch Launch @relation(fields: [launchId], references: [id])
-      launchId String
+      products Product @relation(fields: [productId], references: [id])
+      productId String
 }
 
 model Parter {

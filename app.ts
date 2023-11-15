@@ -22,6 +22,9 @@ import ErrorHandler from "./src/middleware/errorHandler";
 
 // require("./src/modules/user/googleAuth")(passport);
 
+import googlePassport from "./src/modules/user/googleAuth";
+googlePassport(passport);
+
 const app = express();
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
 app.use(express.json());
