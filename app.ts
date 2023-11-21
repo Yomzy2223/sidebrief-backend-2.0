@@ -9,7 +9,7 @@ import bankRoutes from "./src/modules/bank/routes";
 import countryRoutes from "./src/modules/country/routes";
 import staffRoutes from "./src/modules/staff/routes";
 import diligenceRoutes from "./src/modules/diligence/routes";
-import serviceRoutes from "./src/modules/productService/routes";
+import serviceRoutes from "./src/modules/serviceCategory/routes";
 import collaboratorRoutes from "./src/modules/collaborator/routes";
 // const connectDb = require("./src/config/database");
 import logger from "./src/config/logger";

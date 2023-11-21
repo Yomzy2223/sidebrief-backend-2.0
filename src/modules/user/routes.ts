@@ -29,26 +29,35 @@ router.get(
 
 router.get(
   "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/auth" }),
+  passport.authenticate("google-signup", {
+    failureRedirect: "/",
+    failureFlash: true,
+  }),
   (req, res) => {
-    // Redirect or perform any additional logic after successful authentication
-    res.status(200).json({ data: req.user });
+    try {
+      console.log("testing", req.user);
+
+      // Redirect or perform any additional logic after successful authentication
+      res.status(200).json({ data: req.user });
+    } catch (error) {
+      console.log(error, "checkk");
+    }
   }
 );
 
-router.get(
-  "/auth/google/signin",
-  passport.authenticate("google-signin", { scope: ["profile", "email"] })
-);
+// router.get(
+//   "/auth/google/signin",
+//   passport.authenticate("google-signin", { scope: ["profile", "email"] })
+// );
 
-router.get(
-  "/auth/login/google/callback",
-  passport.authenticate("google", { failureRedirect: "/auth" }),
-  (req, res) => {
-    // Redirect or perform any additional logic after successful authentication
-    res.status(200).json({ data: req.user });
-  }
-);
+// router.get(
+//   "/auth/login/google/callback",
+//   passport.authenticate("google", { failureRedirect: "/auth" }),
+//   (req, res) => {
+//     // Redirect or perform any additional logic after successful authentication
+//     res.status(200).json({ data: req.user });
+//   }
+// );
 
 router.post("/", validator(validateUser), UserRegisration);
 router.post("/login", validator(validateUserCredentials), UserGrantor);

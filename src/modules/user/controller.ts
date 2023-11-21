@@ -13,18 +13,15 @@ import {
   deleteUser,
 } from "./service";
 import { UserPayload } from "./entities";
-
 const UserRegisration = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const userPayload = req.body;
+    const userPayload: UserPayload = req.body;
     const cryptedPassword = await hasher(userPayload.password, 12);
-    const values: UserPayload = {
-      firstName: userPayload.firstName,
-      lastName: userPayload.lastName,
+    const userValues = {
       email: userPayload.email.toLowerCase(),
       password: cryptedPassword,
       referral: userPayload.referral,
@@ -33,7 +30,7 @@ const UserRegisration = async (
       userPermission: [],
     };
 
-    const user = await saveUser(values);
+    const user = await saveUser(userValues);
 
     return res
       .status(user.statusCode)
