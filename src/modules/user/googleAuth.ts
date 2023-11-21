@@ -12,28 +12,12 @@ const googlePassport = (passport: any) => {
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: process.env.GOOGLE_CALL_BACK_URL,
       },
+
       async (accessToken: any, refreshToken: any, profile: any, done: any) => {
+        console.log("chccccccc", profile);
         try {
           const response = await authWithGoogle(profile);
-          return done(null, response);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    )
-  );
-
-  passport.use(
-    "google-signin",
-    new GoogleStrategy(
-      {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: process.env.GOOGLE_LOGIN_CALL_BACK_URL,
-      },
-      async (accessToken: any, refreshToken: any, profile: any, done: any) => {
-        try {
-          const response = await authLogin(profile);
+          console.log("ressponse", response);
           return done(null, response);
         } catch (error) {
           console.log(error);
@@ -44,6 +28,10 @@ const googlePassport = (passport: any) => {
 
   passport.serializeUser((user: any, done: any) => {
     done(null, user);
+  });
+
+  passport.deserializeUser((obj: any, done: any) => {
+    done(null, obj);
   });
 };
 

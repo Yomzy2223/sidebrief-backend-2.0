@@ -5372,3 +5372,141 @@ error: Label: 11-Oct-2023 10:54:42: Authorization token is missing. with error E
 info: Label: 14-Oct-2023 12:22:15: staff with akinyemibamidele2@gmail.com signed in successfully.
 error: Label: 14-Oct-2023 12:22:48: Enterprise with this name already exists with error Error: Enterprise with this name already exists occurred when POST /diligence/enterprise was called
 info: Label: 14-Oct-2023 12:23:01: Testu created successfully
+error: Label: 15-Nov-2023 11:40:02: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXmj_aILLDtYV-5SrtrYehcUJgdUP6_wtkUd81NN_XjqVm9medUsQuTURbHFI5FjAw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=0&hd=sidebrief.com&prompt=none was called
+info: Label: 15-Nov-2023 11:43:08: Testing the server
+error: Label: 15-Nov-2023 11:43:23: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXmtMfEAgIWjK29rqrTJiziGuAOrlqC0jMKQgoNWt88G7xiqbkp0GYmLzOjrUOGeFw&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&authuser=0&hd=sidebrief.com&prompt=none was called
+error: Label: 15-Nov-2023 11:44:01: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXk-iAqmW_NAMd13b4QW3aVyR1juK3sWI_fqfY-VqHQ7ehodHs_DDBJV_Sz3KhC6TA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&hd=sidebrief.com&prompt=none was called
+error: Label: 15-Nov-2023 11:44:32: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback was called
+error: Label: 15-Nov-2023 11:55:26: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXlfYXZQ9uFhPdeUt3dI78mviSg1_Ffvyu_QLFQJj82JIJ8rlnbVRJDSBVeFI11frA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 12:03:15: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXkkg391Ffp-1s9cdXgnRDrki4UqGd83cfMQCD5jZ-leIWJoetVC3toK0FFfCDMUKA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&hd=sidebrief.com&prompt=consent was called
+error: Label: 15-Nov-2023 12:03:35: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXn4o74tEI_rVjgPQtMj37GTox31v6pxbh56kHiI5LESMDGWPGmTFnGVIcIJKXHhew&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&hd=sidebrief.com&prompt=consent was called
+error: Label: 15-Nov-2023 12:18:13: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXkYPprwCLfPSlrr81nKmNPpKrPYra6lLaxkGQ3SLRwnRC8zh4SlOVJvlSE7j17Wzw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&hd=sidebrief.com&prompt=consent was called
+error: Label: 15-Nov-2023 16:16:00: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXnlrXog_CE0ZQ4mvM0NYcp32t9EnPz79fGcVnEBe5MQae3KU7RYLAi-4kisOUVsgA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 16:17:10: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXlmMWbH4uCGgbLCOVSpKTJJWosHjJkvrbE52sNzbzXUoZ-AHSL2QgSzzEyW6eN1-A&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 16:17:27: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXkm9Azr1YHii-ie40vEnQ6wP0tmajCR963-_xiSSuPT0jgKTDo8LXblaXSXI-QeuA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 16:19:17: Error occured with error TokenError: Bad Request occurred when GET /users/auth/google/callback?code=4%2F0AfJohXnW_IBbTBWBDCjSTDLllUbtLD5or28gupX65g6-HbVfTgxAWU47QB-QGmLzGk_VAA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 16:20:00: Error occured with error TokenError: Bad Request occurred when GET /users/auth/google/callback?code=4%2F0AfJohXn8_czhhq3eWdTqgIMBXVYv9frRZwZO2rOzGAh1_OGMXewhUkwpyEx3B6qvsdhUNA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 16:20:15: Error occured with error TokenError: Bad Request occurred when GET /users/auth/google/callback?code=4%2F0AfJohXlUXxDpc475-Aqs-p5ruruvCzOvyCQVYL6KAdjJ-elKvVUH-3GFUGGgiwUgSDXANA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 16:21:17: Error occured with error TokenError: Bad Request occurred when GET /users/auth/google/callback?code=4%2F0AfJohXlQ5wNdg_F2Qg1W2beM9BMsbTLN8--WnemwoAtSGpS7nt0O87tbCGUyI9BOnlXhwA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 16:23:22: Error occured with error TokenError: Bad Request occurred when GET /users/auth/google/callback?code=4%2F0AfJohXmNnL5Pz4tAC8a2rGqLoFv9D86RVtG8kdCKjtsvelB5_Nkm8lfZJtWc6hX25QLD1Q&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 16:41:55: Error occured with error TokenError: Bad Request occurred when GET /users/auth/google/callback?code=4%2F0AfJohXlzdAS7SnM6cU42qjVgvt_f64bJWgJCKBF-n8gU7EO0KwOwOgHlTUADnBr9q0IaJQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 18:47:05: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXk32cEEA5SmedewBppYFaiBhjHUIwrNGMpGVJdC_yqg9dHleWMktDR4Z9Z13rdP5w&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&hd=sidebrief.com&prompt=consent was called
+error: Label: 15-Nov-2023 18:49:35: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXlwMaQWfwp4mXYwDcbRvp7K3La7Yo0KokewwptM6_7HAdGAmx0VPfsfGcC0WjuLEw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&hd=sidebrief.com&prompt=consent was called
+error: Label: 15-Nov-2023 18:49:43: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:49:52: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:49:57: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:49:58: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:50:00: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:50:36: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:50:43: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:50:49: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:51:00: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:51:09: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google was called
+error: Label: 15-Nov-2023 18:52:05: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXmptgf0WYtMeBT0CB-JAMPPS7ythe9b3EaUCO2YM9Dz2NxBSD5SLMnYkUL55-OeZA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent was called
+error: Label: 15-Nov-2023 18:54:24: Error occured with error Error: Unknown authentication strategy "google" occurred when GET /users/auth/google/callback?code=4%2F0AfJohXnAJW8xA3y-YeiVwapGsN7fVEhROqfggxQyVS9XVJCZdJduLLLaUacVBWZ0KwwunA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&hd=sidebrief.com&prompt=consent was called
+error: Label: 15-Nov-2023 18:57:03: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:420:39
+
+  417   picture: profile.photos[0].value,
+  418 };
+  419 
+→ 420 const newUser = await prisma.user.create({
+        data: {
+          firstName: 'Bamidele',
+          lastName: 'Akinyemi',
+          username: 'Akinyemi',
+          email: 'akinyemi@sidebrief.com',
+          password: '$2a$12$IGII4uzlv3enf0YRI8TopuOay/iSgfEODfB1dwhgmZVtojUzx79TW',
+          phone: '00000000',
+          verified: false,
+          ~~~~~~~~
+          referral: 'google',
+          picture: 'https://lh3.googleusercontent.com/a/ACg8ocIOEPdAP4UZn4RLDwc4lZ0v1h3SubBAk8VOw0wpzBOKbQ=s96-c'
+        }
+      })
+
+Unknown arg `verified` in data.verified for type UserCreateInput. Did you mean `isVerified`? Available args:
+type UserCreateInput {
+  id?: String
+  firstName: String
+  lastName: String
+  username?: String | Null
+  email: String
+  password: String
+  phone?: String | Null
+  picture?: String | Null
+  isVerified?: Boolean
+  referral: String
+  country?: String | Null
+  resetToken?: String | Null
+  isPartner?: Boolean
+  isStaff?: Boolean
+  isPhoneRegistered?: Boolean
+  isPhoneVerified?: Boolean
+  isIdentificationRegistered?: Boolean
+  isIdentificationVerified?: Boolean
+  partnerPermission?: UserCreatepartnerPermissionInput | List<String>
+  staffPermission?: UserCreatestaffPermissionInput | List<String>
+  userPermission?: UserCreateuserPermissionInput | List<String>
+  isDeprecated?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  teamMember?: TeamMemberCreateNestedManyWithoutUserInput
+  account?: AccountCreateNestedManyWithoutUserInput
+}
+
+
+error: Label: 15-Nov-2023 19:01:09: error occured while updating this user profile with error message: Error: 
+Invalid `prisma.user.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:420:39
+
+  417   picture: profile.photos[0].value,
+  418 };
+  419 
+→ 420 const newUser = await prisma.user.create({
+        data: {
+          firstName: 'Bamidele',
+          lastName: 'Akinyemi',
+          username: 'Akinyemi',
+          email: 'akinyemi@sidebrief.com',
+          password: '$2a$12$r3z4tsQcX/We3.B9.CU7nuFYZxpFEoWAT2Kb45286p0IQoQVZOku2',
+          phone: '00000000',
+          verified: false,
+          ~~~~~~~~
+          referral: 'google',
+          picture: 'https://lh3.googleusercontent.com/a/ACg8ocIOEPdAP4UZn4RLDwc4lZ0v1h3SubBAk8VOw0wpzBOKbQ=s96-c'
+        }
+      })
+
+Unknown arg `verified` in data.verified for type UserCreateInput. Did you mean `isVerified`? Available args:
+type UserCreateInput {
+  id?: String
+  firstName: String
+  lastName: String
+  username?: String | Null
+  email: String
+  password: String
+  phone?: String | Null
+  picture?: String | Null
+  isVerified?: Boolean
+  referral: String
+  country?: String | Null
+  resetToken?: String | Null
+  isPartner?: Boolean
+  isStaff?: Boolean
+  isPhoneRegistered?: Boolean
+  isPhoneVerified?: Boolean
+  isIdentificationRegistered?: Boolean
+  isIdentificationVerified?: Boolean
+  partnerPermission?: UserCreatepartnerPermissionInput | List<String>
+  staffPermission?: UserCreatestaffPermissionInput | List<String>
+  userPermission?: UserCreateuserPermissionInput | List<String>
+  isDeprecated?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  teamMember?: TeamMemberCreateNestedManyWithoutUserInput
+  account?: AccountCreateNestedManyWithoutUserInput
+}
+
+

@@ -1,12 +1,7 @@
 export interface UserPayload {
-  firstName: string;
-  lastName: string;
   email: string;
   password: string;
   referral: string;
-  partnerPermission: [];
-  staffPermission: [];
-  userPermission: [];
 }
 export interface UserResponseProps {
   message: string;
