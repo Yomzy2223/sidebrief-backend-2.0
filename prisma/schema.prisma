@@ -276,15 +276,15 @@ model Service {
       timeline String
       feature String[]
       categoryForm String[]
-      hasShares Boolean
+      hasShares Boolean  @default(false)
       numberOfShares String
       requiredDocuments String[]
-      hasAgent Boolean
-      hasOwner Boolean
-      hasController Boolean
-      controllerIsCalled String
-      OwnerIsCalled String
-      agentIsCalled String
+      hasAgent Boolean  @default(false)
+      hasOwner Boolean  @default(false)
+      hasController Boolean  @default(false)
+      controllerIsCalled String?
+      OwnerIsCalled String?
+      agentIsCalled String?
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])

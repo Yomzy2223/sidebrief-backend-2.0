@@ -1,1 +1,36 @@
-export interface ProductServicePayload {}
+export interface ProductServicePayload {
+  name: string;
+  type: string;
+  code: string;
+  description: string;
+  country: string;
+  price: string;
+  timeline: string;
+  feature: string[];
+  requiredDocuments: string[];
+  categoryForm: string[];
+  numberOfShares: string;
+  serviceCategoryId: string;
+}
+
+export interface ProductServiceData {
+  id: string;
+  name: string;
+  type: string;
+  code: string;
+  description: string;
+  country: string;
+  price: string;
+  timeline: string;
+  feature: string[];
+  requiredDocuments: string[];
+  categoryForm: string[];
+  numberOfShares: string;
+  serviceCategoryId: string;
+}
+
+export interface ProductServiceResponse {
+  statusCode: number;
+  message: string;
+  data: ProductServiceData | ProductServiceData[];
+}
