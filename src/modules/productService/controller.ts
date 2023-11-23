@@ -96,36 +96,36 @@ const ProductServiceByCategoryFetcher = async (
   }
 };
 
-// update an existing product service
-// const ProductServiceModifier = async (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ) => {
-//   try {
-//     const id: string = req.params.id;
-//     const productServicePayload = req.body;
-//     const values = {
-//       name: productServicePayload.name.toLowerCase(),
-//       type: productServicePayload.type,
-//       code: productServicePayload.code,
-//       description: productServicePayload.description,
-//       country: productServicePayload.country,
-//       price: productServicePayload.price,
-//       timeline: productServicePayload.timeline,
-//       feature: productServicePayload.feature,
-//       requiredDocuments: productServicePayload.requiredDocuments,
-//       categoryForm: productServicePayload.categoryForm,
-//       numberOfShares: productServicePayload.numberOfShares,
-//       serviceCategoryId: productServicePayload.serviceCategoryId,
-//     };
+//update an existing product service
+const ProductServiceModifier = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const id: string = req.params.id;
+    const productServicePayload = req.body;
+    const values = {
+      name: productServicePayload.name.toLowerCase(),
+      type: productServicePayload.type,
+      code: productServicePayload.code,
+      description: productServicePayload.description,
+      country: productServicePayload.country,
+      price: productServicePayload.price,
+      timeline: productServicePayload.timeline,
+      feature: productServicePayload.feature,
+      requiredDocuments: productServicePayload.requiredDocuments,
+      categoryForm: productServicePayload.categoryForm,
+      numberOfShares: productServicePayload.numberOfShares,
+      serviceCategoryId: productServicePayload.serviceCategoryId,
+    };
 
-//     const updateservice = await updateProductService(values, id);
-//     return res.status(updateservice.statusCode).json(updateservice);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+    const updateservice = await updateProductService(id, values);
+    return res.status(updateservice.statusCode).json(updateservice);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // delete an exisiting product service
 const ProductServiceRemover = async (
@@ -142,14 +142,16 @@ const ProductServiceRemover = async (
     const deleteService = await removeProductService(id);
 
     return res.status(deleteService.statusCode).json(deleteService.message);
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 };
 
 export {
   ProductServiceCreator,
   ProductServiceByCategoryFetcher,
   ProductServiceFetcher,
-  //ProductServiceModifier,
+  ProductServiceModifier,
   ProductServiceRemover,
   ProductServicesFetcher,
 };

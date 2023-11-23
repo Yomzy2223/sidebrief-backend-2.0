@@ -4,7 +4,7 @@ const router = express.Router();
 import {
   ProductServiceByCategoryFetcher,
   ProductServiceCreator,
-  // ProductServiceModifier,
+  ProductServiceModifier,
   ProductServiceRemover,
   ProductServiceFetcher,
   ProductServicesFetcher,
@@ -14,7 +14,7 @@ router.post("/", ProductServiceCreator);
 router.get("/", ProductServicesFetcher);
 router.get("/:id", ProductServiceFetcher);
 router.get("/:serviceCategoryId", ProductServiceByCategoryFetcher);
-//router.put("/:id", ProductServiceModifier);
+router.put("/:id", ProductServiceModifier);
 router.delete("/:id", ProductServiceRemover);
 
 export default router;

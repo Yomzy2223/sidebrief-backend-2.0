@@ -34,3 +34,24 @@ export interface ProductServiceResponse {
   message: string;
   data: ProductServiceData | ProductServiceData[];
 }
+
+export interface ServiceFormPayload {
+  question: string;
+  type: string;
+  options: string[];
+  serviceId: string;
+}
+
+export interface ServiceFormData {
+  id: string;
+  question: string;
+  type: string;
+  options: string[];
+  serviceId: string;
+}
+
+export interface ServiceFormResponse {
+  statusCode: number;
+  message: string;
+  data: ServiceFormData | ServiceFormData[];
+}

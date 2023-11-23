@@ -1,4 +1,9 @@
-import { ProductServicePayload, ProductServiceResponse } from "./entities";
+import {
+  ProductServicePayload,
+  ProductServiceResponse,
+  ServiceFormPayload,
+  ServiceFormResponse,
+} from "./entities";
 
 import { PrismaClient } from "@prisma/client";
 import logger from "../../config/logger";
@@ -13,7 +18,7 @@ const saveProductService = async (
 ): Promise<ProductServiceResponse> => {
   // add new product service to the table
   try {
-    const checkService = await prisma.serviceCategory.findUnique({
+    const checkService = await prisma.service.findUnique({
       where: { id: serviceCategoryId },
     });
     if (!checkService) {
@@ -195,6 +200,194 @@ const removeProductService = async (id: string) => {
   }
 };
 
+// create a service form for product service
+
+const saveServiceForm = async (
+  serviceFormPayload: ServiceFormPayload,
+  serviceId: string
+): Promise<ServiceFormResponse> => {
+  // add new service form to the table
+  try {
+    const checkService = await prisma.serviceForm.findUnique({
+      where: { id: serviceId },
+    });
+    if (!checkService) {
+      throw new BadRequest("Service does not exist");
+    }
+    const serviceForm = await prisma.serviceForm.create({
+      data: serviceFormPayload,
+    });
+    if (!serviceForm) {
+      throw new BadRequest("Error occured while creating this service form");
+    }
+
+    //logger.info({
+    //  message: `${serviceFormPayload.name} product service category created successfully`,
+    //  });
+
+    const response: ServiceFormResponse = {
+      message: "Product service form created successfully",
+      data: serviceForm,
+      statusCode: 201,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// get all service form
+
+const getAllServiceForm = async (): Promise<ServiceFormResponse> => {
+  //  get the service form  list from the table
+  //  return the service form list to the  service form controller
+  try {
+    const serviceForm = await prisma.serviceForm.findMany({});
+    if (!serviceForm) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ServiceFormResponse = {
+      message: "Service form fetched successfully",
+      data: serviceForm,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// get a service form
+const getServiceForm = async (id: string): Promise<ServiceFormResponse> => {
+  // check if the service form for the product service exist
+  // return the service form to the service form controller
+
+  try {
+    const serviceForm = await prisma.serviceForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!serviceForm) {
+      throw new BadRequest("Service form not found!.");
+    }
+
+    const response: ServiceFormResponse = {
+      message: "Service form fetched successfully",
+      data: serviceForm,
+      statusCode: 200,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// get service form by service id
+
+const getServiceFormByService = async (
+  serviceId: string
+): Promise<ServiceFormResponse> => {
+  // check if the service form for the particular service exist
+  // return the service form to the service controller
+
+  try {
+    const serviceForm = await prisma.serviceForm.findUnique({
+      where: {
+        id: serviceId,
+      },
+    });
+
+    if (!serviceForm) {
+      throw new BadRequest("Service form not found!.");
+    }
+
+    const response: ServiceFormResponse = {
+      message: "Service form fetched successfully",
+      data: serviceForm,
+      statusCode: 200,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// update service form
+const updateServiceForm = async (
+  id: string,
+  serviceFormPayload: ServiceFormPayload
+) => {
+  // take both id and service form payload from the service form category controller
+  //  check if the service form exists
+  //  update the service form
+  //  return the service form to the service form controller
+
+  try {
+    const checkServiceForm = await prisma.serviceForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!checkServiceForm) {
+      throw new BadRequest("Service form not found!");
+    }
+
+    const updateServiceForm = await prisma.serviceForm.update({
+      where: {
+        id: id,
+      },
+      data: serviceFormPayload,
+    });
+
+    if (!updateServiceForm) {
+      throw new BadRequest("Error occurred while updating Service form!.");
+    }
+
+    return {
+      message: "Service form updated successfully!.",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+// remove service form
+
+const removeServiceForm = async (id: string) => {
+  //take id from the service form controller
+  //check if the service form exists
+  //remove the service form from the record
+  //return response to the service form controller
+
+  try {
+    const deleteServiceForm = await prisma.serviceForm.delete({
+      where: {
+        id: id,
+      },
+    });
+    if (!deleteServiceForm) {
+      throw new BadRequest("Service form not found!");
+    }
+
+    return {
+      message: "Service form deleted successfully",
+      statusCode: 204,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   getAllProductService,
   getProductServiceByServiceCategory,
@@ -202,4 +395,10 @@ export {
   saveProductService,
   updateProductService,
   removeProductService,
+  saveServiceForm,
+  getAllServiceForm,
+  getServiceForm,
+  getServiceFormByService,
+  removeServiceForm,
+  updateServiceForm,
 };
