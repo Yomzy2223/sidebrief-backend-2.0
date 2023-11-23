@@ -13,7 +13,7 @@ export interface UserResponseProps {
 export interface UserResponse {
   id: string;
   fullName: string;
-  userName: string | null;
+  userName?: string | null;
   email: string;
   phone: string | null;
   picture: string | null;
