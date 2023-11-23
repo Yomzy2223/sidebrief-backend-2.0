@@ -1,4 +1,9 @@
-import { ServiceCategoryPayload, ServiceCategoryResponse } from "./entities";
+import {
+  ServiceCategoryFormPayload,
+  ServiceCategoryFormResponse,
+  ServiceCategoryPayload,
+  ServiceCategoryResponse,
+} from "./entities";
 
 import { PrismaClient } from "@prisma/client";
 import logger from "../../config/logger";
@@ -162,9 +167,9 @@ const removeServiceCategory = async (id: string) => {
 
 //create service category service
 const saveServiceCategoryForm = async (
-  serviceCategoryPayload: ServiceCategoryPayload,
+  serviceCategoryPayload: ServiceCategoryFormPayload,
   serviceCategoryId: string
-): Promise<ServiceCategoryResponse> => {
+): Promise<ServiceCategoryFormResponse> => {
   //   //add the new service category to the table
 
   try {
@@ -187,7 +192,7 @@ const saveServiceCategoryForm = async (
     logger.info({
       message: `service category form created successfully`,
     });
-    const response: ServiceCategoryResponse = {
+    const response: ServiceCategoryFormResponse = {
       message: "Service category form created successfully",
       data: categoryForm,
       statusCode: 200,
@@ -201,7 +206,7 @@ const saveServiceCategoryForm = async (
 //get all service category service
 const getAllServiceCategoryForm = async (
   serviceCategoryId: string
-): Promise<ServiceCategoryResponse> => {
+): Promise<ServiceCategoryFormResponse> => {
   //  get the service category list from the table
   //  return the service category list to the service category controller
   try {
@@ -217,7 +222,7 @@ const getAllServiceCategoryForm = async (
         data: [],
       };
     }
-    const response: ServiceCategoryResponse = {
+    const response: ServiceCategoryFormResponse = {
       message: "Service category form fetched successfully",
       data: category,
       statusCode: 200,

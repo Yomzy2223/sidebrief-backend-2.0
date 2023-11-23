@@ -13,3 +13,24 @@ export interface ServiceCategoryResponse {
   message: string;
   data: ServiceCategoryData | ServiceCategoryData[];
 }
+
+export interface ServiceCategoryFormPayload {
+  question: string;
+  type: string;
+  options: string[];
+  serviceCategoryId: string;
+}
+
+export interface ServiceCategoryFormData {
+  id: string;
+  question: string;
+  type: string;
+  options: string[];
+  serviceCategoryId: string;
+}
+
+export interface ServiceCategoryFormResponse {
+  statusCode: number;
+  message: string;
+  data: ServiceCategoryFormData | ServiceCategoryFormData[];
+}

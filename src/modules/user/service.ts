@@ -45,7 +45,7 @@ const saveUser = async (
     //send user email
     const subject = "Welcome to Sidebrief.";
     const payload = {
-      name: userPayload.firstName,
+      name: userPayload.fullName.slice(0, userPayload.fullName.indexOf("")),
       url: url,
     };
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -60,7 +60,7 @@ const saveUser = async (
     );
 
     logger.info({
-      message: `${userPayload.firstName} ${userPayload.lastName} created an account successfully with ${userPayload.email}.`,
+      message: `${userPayload.fullName} created an account successfully with ${userPayload.email}.`,
     });
 
     const token = generateToken({ id: user.id }, userSecret as string, "14d");
@@ -78,9 +78,8 @@ const saveUser = async (
       message: "User created successfully",
       data: {
         id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        username: user.username,
+        fullName: user.fullName,
+        userName: user.username,
         email: user.email,
         phone: user.phone,
         token: token,
@@ -111,29 +110,15 @@ const getUser = async (id: string): Promise<UserResponseProps> => {
     }
 
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const token = generateToken({ id: user.id }, userSecret as string, "14d");
-
-    const refreshToken = generateToken(
-      { id: user.id },
-      userSecret as string,
-      "2h"
-    );
-
-    const currentTime = Date.now();
-    const expirationTime = currentTime + 30 * 60 * 1000;
 
     const response: UserResponseProps = {
       message: "User fetched successfully",
       data: {
         id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        username: user.username,
+        fullName: user.fullName,
+        userName: user.username,
         email: user.email,
         phone: user.phone,
-        token: token,
-        tokenExpiresIn: expirationTime,
-        refreshToken: refreshToken,
         picture: user.picture,
         isVerified: user.isVerified,
         referral: user.referral,
@@ -196,6 +181,16 @@ const loginUser = async (
 
     const userSecret = process.env.TOKEN_USER_SECRET;
     const token = generateToken({ id: user.id }, userSecret as string, "14d");
+
+    const refreshToken = generateToken(
+      { id: user.id },
+      userSecret as string,
+      "2h"
+    );
+
+    const currentTime = Date.now();
+    const expirationTime = currentTime + 30 * 60 * 1000;
+
     logger.info({
       message: `User with ${loginPayload.email} signed in successfully.`,
     });
@@ -204,12 +199,13 @@ const loginUser = async (
       message: "Login successfully",
       data: {
         id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        username: user.username,
+        fullName: user.fullName,
+        userName: user.username,
         email: user.email,
-        token: token,
         phone: user.phone,
+        token: token,
+        tokenExpiresIn: expirationTime,
+        refreshToken: refreshToken,
         picture: user.picture,
         isVerified: user.isVerified,
         referral: user.referral,

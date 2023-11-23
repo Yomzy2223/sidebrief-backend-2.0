@@ -8,6 +8,7 @@ import {
   saveServiceCategoryForm,
   getAllServiceCategoryForm,
 } from "./service";
+import { ServiceCategoryFormPayload } from "./entities";
 
 // create a new service category
 const ServiceCategoryCreator = async (
@@ -131,10 +132,10 @@ const ServiceCategoryFormCreator = async (
 
     const serviceCategoryId = req.params.serviceCategoryId;
     const serviceCategoryPayload = req.body;
-    const values = {
+    const values: ServiceCategoryFormPayload = {
       question: serviceCategoryPayload.name.toLowerCase(),
       type: serviceCategoryPayload.type,
-      option: serviceCategoryPayload.description,
+      options: serviceCategoryPayload.description,
       serviceCategoryId: serviceCategoryId,
     };
     const category = await saveServiceCategoryForm(values, serviceCategoryId);
