@@ -5510,3 +5510,261 @@ type UserCreateInput {
 }
 
 
+info: Label: 23-Nov-2023 14:12:30: Testing the server
+error: Label: 23-Nov-2023 14:19:25: Error occured with error TypeError: Cannot read properties of undefined (reading 'toLowerCase') occurred when POST /products was called
+error: Label: 23-Nov-2023 14:19:53: Error occured with error TypeError: Cannot read properties of undefined (reading 'toLowerCase') occurred when POST /products was called
+error: Label: 23-Nov-2023 14:20:28: Error occured with error TypeError: Cannot read properties of undefined (reading 'toLowerCase') occurred when POST /products was called
+error: Label: 23-Nov-2023 14:23:22: Error occured with error TypeError: Cannot read properties of undefined (reading 'toLowerCase') occurred when POST /products/thf was called
+error: Label: 23-Nov-2023 14:24:02: Product service not found!. with error Error: Product service not found!. occurred when GET /products/thf was called
+error: Label: 23-Nov-2023 14:26:16: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:187:54
+
+  184 //return response to the product service  controller
+  185 
+  186 try {
+→ 187   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/thf was called
+error: Label: 23-Nov-2023 14:27:35: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:187:54
+
+  184 //return response to the product service  controller
+  185 
+  186 try {
+→ 187   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/thf was called
+error: Label: 23-Nov-2023 14:27:47: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:187:54
+
+  184 //return response to the product service  controller
+  185 
+  186 try {
+→ 187   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/1 was called
+error: Label: 23-Nov-2023 14:27:57: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:187:54
+
+  184 //return response to the product service  controller
+  185 
+  186 try {
+→ 187   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/54fkksmdf was called
+error: Label: 23-Nov-2023 14:28:04: Error occured with error TypeError: Cannot read properties of undefined (reading 'toLowerCase') occurred when PUT /products/54fkksmdf was called
+error: Label: 23-Nov-2023 14:28:13: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:187:54
+
+  184 //return response to the product service  controller
+  185 
+  186 try {
+→ 187   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/54fkksmdf was called
+error: Label: 23-Nov-2023 14:34:16: Error occured with error TypeError: Cannot read properties of undefined (reading 'toLowerCase') occurred when POST /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 14:35:10: Error occured with error TypeError: Cannot read properties of undefined (reading 'toLowerCase') occurred when POST /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 14:37:44: Error occured with error TypeError: Cannot read properties of undefined (reading 'toLowerCase') occurred when POST /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 14:38:40: Unexpected token } in JSON at position 299 with error SyntaxError: Unexpected token } in JSON at position 299 occurred when POST /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 14:38:52: Service does not exist with error Error: Service does not exist occurred when POST /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 14:41:15: Error occured with error Error: 
+Invalid `prisma.service.create()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:28:42
+
+  25 //  if (!checkService) {
+  26 //   throw new BadRequest("Service does not exist");
+  27 // }
+→ 28 const service = await prisma.service.create(
+Foreign key constraint failed on the field: `Service_serviceCategoryId_fkey (index)` occurred when POST /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 14:42:42: Service does not exist with error Error: Service does not exist occurred when POST /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 14:43:53: Error occured with error Error: 
+Invalid `prisma.service.create()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:28:42
+
+  25 if (!checkService) {
+  26   throw new BadRequest("Service does not exist");
+  27 }
+→ 28 const service = await prisma.service.create(
+Foreign key constraint failed on the field: `Service_serviceCategoryId_fkey (index)` occurred when POST /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 14:45:32: Error occured with error Error: 
+Invalid `prisma.service.create()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:28:42
+
+  25 if (!checkService) {
+  26   throw new BadRequest("Service does not exist");
+  27 }
+→ 28 const service = await prisma.service.create(
+Foreign key constraint failed on the field: `Service_serviceCategoryId_fkey (index)` occurred when POST /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 14:48:54: Product service not found!. with error Error: Product service not found!. occurred when GET /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+info: Label: 23-Nov-2023 17:42:13: $ product service category created successfully
+error: Label: 23-Nov-2023 17:44:22: Product service not found!. with error Error: Product service not found!. occurred when GET /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 17:53:31: Product service not found!. with error Error: Product service not found!. occurred when GET /products/fb6c0f28-ff5d-426c-a7de-0879e19ef1a6 was called
+error: Label: 23-Nov-2023 17:56:43: Product service not found!. with error Error: Product service not found!. occurred when GET /products/category/ was called
+error: Label: 23-Nov-2023 17:58:40: Service does not exist with error Error: Service does not exist occurred when POST /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77a was called
+error: Label: 23-Nov-2023 18:00:57: Service does not exist with error Error: Service does not exist occurred when POST /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77a was called
+error: Label: 23-Nov-2023 18:03:24: Product service not found! with error Error: Product service not found! occurred when PUT /products/fhfhhssd was called
+error: Label: 23-Nov-2023 18:04:11: Product service not  s found! with error Error: Product service not  s found! occurred when PUT /products/fhfhhssd was called
+error: Label: 23-Nov-2023 18:06:37: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:190:54
+
+  187 //return response to the product service  controller
+  188 
+  189 try {
+→ 190   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77a was called
+error: Label: 23-Nov-2023 18:06:56: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:190:54
+
+  187 //return response to the product service  controller
+  188 
+  189 try {
+→ 190   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77a was called
+error: Label: 23-Nov-2023 18:06:58: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:190:54
+
+  187 //return response to the product service  controller
+  188 
+  189 try {
+→ 190   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77a was called
+error: Label: 23-Nov-2023 18:29:26: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:190:54
+
+  187 //return response to the product service  controller
+  188 
+  189 try {
+→ 190   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77a was called
+error: Label: 23-Nov-2023 18:35:08: Error occured with error Error: 
+Invalid `prisma.service.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:190:54
+
+  187 //return response to the product service  controller
+  188 
+  189 try {
+→ 190   const deleteService = await prisma.service.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77a was called
+error: Label: 23-Nov-2023 18:37:44: Product service not found! with error Error: Product service not found! occurred when DELETE /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77a was called
+error: Label: 23-Nov-2023 18:38:57: Product service not found! with error Error: Product service not found! occurred when DELETE /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77 was called
+info: Label: 23-Nov-2023 18:39:42: $ product service category created successfully
+error: Label: 23-Nov-2023 18:40:01: Product service not found!. with error Error: Product service not found!. occurred when GET /products/d3a09e84-f3d1-4d98-8be9-e84dca9ba77a was called
+info: Label: 23-Nov-2023 18:43:09: $ product service category created successfully
+error: Label: 23-Nov-2023 18:50:44: Error occured with error Error: 
+Invalid `prisma.service.findUnique()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:223:47
+
+  220 ): Promise<ServiceFormResponse> => {
+  221   // add new service form to the table
+  222   try {
+→ 223     const checkService = await prisma.service.findUnique({
+            where: {
+          ?   id?: String
+            }
+          })
+
+Argument where of type ServiceWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /products/forms/79d38fff-1521-47eb-b3ed-860fcff650c8 was called
+error: Label: 23-Nov-2023 18:52:46: Error occured with error Error: 
+Invalid `prisma.service.findUnique()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:223:47
+
+  220 ): Promise<ServiceFormResponse> => {
+  221   // add new service form to the table
+  222   try {
+→ 223     const checkService = await prisma.service.findUnique({
+            where: {
+          ?   id?: String
+            }
+          })
+
+Argument where of type ServiceWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /products/forms/79d38fff-1521-47eb-b3ed-860fcff650c8 was called
+error: Label: 23-Nov-2023 18:56:36: Error occured with error Error: 
+Invalid `prisma.serviceForm.create()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:230:50
+
+  227 // if (!checkService) {
+  228 //   throw new BadRequest("Service does not exist");
+  229 // }
+→ 230 const serviceForm = await prisma.serviceForm.create({
+        data: {
+          question: 'What is your business name?',
+          type: 'name',
+          options: [
+            'empty',
+            'null'
+          ],
+          serviceId: undefined,
+      +   service: {
+      +     create?: ServiceCreateWithoutFormsInput | ServiceUncheckedCreateWithoutFormsInput,
+      +     connectOrCreate?: ServiceCreateOrConnectWithoutFormsInput,
+      +     connect?: ServiceWhereUniqueInput
+      +   },
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Argument service for data.service is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /products/forms/79d38fff-1521-47eb-b3ed-860fcff650c8 was called
+error: Label: 23-Nov-2023 19:02:33: Error occured with error Error: 
+Invalid `prisma.service.findUnique()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:223:47
+
+  220 ): Promise<ServiceFormResponse> => {
+  221   // add new service form to the table
+  222   try {
+→ 223     const checkService = await prisma.service.findUnique({
+            where: {
+          ?   id?: String
+            }
+          })
+
+Argument where of type ServiceWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /products/forms/79d38fff-1521-47eb-b3ed-860fcff650c8 was called
+error: Label: 23-Nov-2023 19:04:25: Error occured with error Error: 
+Invalid `prisma.service.findUnique()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:223:47
+
+  220 ): Promise<ServiceFormResponse> => {
+  221   // add new service form to the table
+  222   try {
+→ 223     const checkService = await prisma.service.findUnique({
+            where: {
+          ?   id?: String
+            }
+          })
+
+Argument where of type ServiceWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /products/forms/79d38fff-1521-47eb-b3ed-860fcff650c8 was called
+error: Label: 23-Nov-2023 19:04:53: Error occured with error TypeError: Cannot read properties of undefined (reading 'toLowerCase') occurred when POST /products/forms/ was called
+error: Label: 23-Nov-2023 19:04:58: Product service not found!. with error Error: Product service not found!. occurred when GET /products/forms/ was called
+error: Label: 23-Nov-2023 19:05:36: Product service not found!. with error Error: Product service not found!. occurred when GET /products/forms/ was called
+error: Label: 23-Nov-2023 19:06:52: Product service not found!. with error Error: Product service not found!. occurred when GET /products/forms was called
+error: Label: 23-Nov-2023 19:08:35: Product service not found!. with error Error: Product service not found!. occurred when GET /products/forms was called
+error: Label: 23-Nov-2023 19:09:00: Service form not found!. with error Error: Service form not found!. occurred when GET /products/forms/79d38fff-1521-47eb-b3ed-860fcff650c8 was called
+error: Label: 23-Nov-2023 19:09:18: Error occured with error Error: 
+Invalid `prisma.serviceForm.delete()` invocation in
+C:\Users\HP\SideBrief v2\sidebrief-backend-2.0\src\modules\productService\service.ts:387:62
+
+  384 //return response to the service form controller
+  385 
+  386 try {
+→ 387   const deleteServiceForm = await prisma.serviceForm.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist. occurred when DELETE /products/forms/79d38fff-1521-47eb-b3ed-860fcff650c8 was called

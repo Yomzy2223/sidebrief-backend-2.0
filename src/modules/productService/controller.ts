@@ -39,7 +39,7 @@ const ProductServiceCreator = async (
       requiredDocuments: productServicePayload.requiredDocuments,
       categoryForm: productServicePayload.categoryForm,
       numberOfShares: productServicePayload.numberOfShares,
-      serviceCategoryId: productServicePayload.serviceCategoryId,
+      serviceCategoryId: serviceCategoryId,
     };
 
     const service = await saveProductService(values, serviceCategoryId);
@@ -170,12 +170,13 @@ const ServiceFormCreator = async (
       question: serviceFormPayload.question,
       type: serviceFormPayload.type,
       options: serviceFormPayload.options,
-      serviceId: serviceFormPayload.serviceId,
+      serviceId: serviceId,
     };
 
     const service = await saveServiceForm(values, serviceId);
     return res.status(service.statusCode).json(service);
   } catch (error) {
+    console.log("err", error);
     next(error);
   }
 };
@@ -190,6 +191,7 @@ const ServiceFormsFetcher = async (
     const service = await getAllServiceForm();
     return res.status(service.statusCode).json(service);
   } catch (error) {
+    console.log("dd", error);
     next(error);
   }
 };

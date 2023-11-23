@@ -18,9 +18,10 @@ const saveProductService = async (
 ): Promise<ProductServiceResponse> => {
   // add new product service to the table
   try {
-    const checkService = await prisma.service.findUnique({
+    const checkService = await prisma.serviceCategory.findUnique({
       where: { id: serviceCategoryId },
     });
+    console.log("n", checkService);
     if (!checkService) {
       throw new BadRequest("Service does not exist");
     }
@@ -32,7 +33,7 @@ const saveProductService = async (
     }
 
     logger.info({
-      message: `${productServicePayload.name} product service category created successfully`,
+      message: `$ product service category created successfully`,
     });
 
     const response: ProductServiceResponse = {
@@ -43,6 +44,7 @@ const saveProductService = async (
 
     return response;
   } catch (error) {
+    console.log("nn", error);
     throw error;
   }
 };
@@ -76,7 +78,7 @@ const getAllProductService = async (): Promise<ProductServiceResponse> => {
 // get product service by service category
 
 const getProductServiceByServiceCategory = async (
-  ServiceCategoryId: string
+  serviceCategoryId: string
 ): Promise<ProductServiceResponse> => {
   // check if the product service for the service category exist
   // return the product service to the product service controller
@@ -84,13 +86,16 @@ const getProductServiceByServiceCategory = async (
   try {
     const service = await prisma.service.findMany({
       where: {
-        id: ServiceCategoryId,
+        serviceCategoryId: serviceCategoryId,
       },
     });
 
     if (!service) {
-      throw new BadRequest("Product service not found!.");
+      throw new BadRequest(
+        "Product service for this service category not found!."
+      );
     }
+    console.log("new", service);
 
     const response: ProductServiceResponse = {
       message: "Product service fetched successfully",
@@ -148,9 +153,9 @@ const updateProductService = async (
         id: id,
       },
     });
-
+    console.log("check", checkService);
     if (!checkService) {
-      throw new BadRequest("Product service not found!");
+      throw new BadRequest("Product service not  s found!");
     }
 
     const updateService = await prisma.service.update({
@@ -182,18 +187,25 @@ const removeProductService = async (id: string) => {
   //return response to the product service  controller
 
   try {
+    const checkService = await prisma.service.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!checkService) {
+      throw new BadRequest("Product service not found!");
+    }
+
     const deleteService = await prisma.service.delete({
       where: {
         id: id,
       },
     });
-    if (!deleteService) {
-      throw new BadRequest("Product service not found!");
-    }
 
     return {
       message: "Product service deleted successfully",
-      statusCode: 204,
+      statusCode: 200,
     };
   } catch (error) {
     throw error;
@@ -208,9 +220,10 @@ const saveServiceForm = async (
 ): Promise<ServiceFormResponse> => {
   // add new service form to the table
   try {
-    const checkService = await prisma.serviceForm.findUnique({
+    const checkService = await prisma.service.findUnique({
       where: { id: serviceId },
     });
+    console.log("what", checkService);
     if (!checkService) {
       throw new BadRequest("Service does not exist");
     }
@@ -221,12 +234,12 @@ const saveServiceForm = async (
       throw new BadRequest("Error occured while creating this service form");
     }
 
-    //logger.info({
-    //  message: `${serviceFormPayload.name} product service category created successfully`,
-    //  });
+    logger.info({
+      message: `Service form created successfully`,
+    });
 
     const response: ServiceFormResponse = {
-      message: "Product service form created successfully",
+      message: "Service form created successfully",
       data: serviceForm,
       statusCode: 201,
     };
@@ -244,6 +257,7 @@ const getAllServiceForm = async (): Promise<ServiceFormResponse> => {
   //  return the service form list to the  service form controller
   try {
     const serviceForm = await prisma.serviceForm.findMany({});
+    console.log("jj", serviceForm);
     if (!serviceForm) {
       return {
         message: "Empty Data",
@@ -301,7 +315,7 @@ const getServiceFormByService = async (
   try {
     const serviceForm = await prisma.serviceForm.findMany({
       where: {
-        id: serviceId,
+        serviceId: serviceId,
       },
     });
 
