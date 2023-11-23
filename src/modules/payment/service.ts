@@ -2,7 +2,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 import logger from "../../config/logger";
 import { BadRequest, NotFound, Unauthorized } from "../../utils/requestErrors";
 const prisma = new PrismaClient();
-import { FormPayload, PaymentPayload, ProductPayload } from "./entities";
+import { PaymentPayload } from "./entities";
 
 // PRODUCT SERVICES
 

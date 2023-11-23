@@ -286,7 +286,7 @@ const forgotPassword = async (forgotPayload: ForgotPassword) => {
     //send user email
     const subject = "Reset Password.";
     const payload = {
-      name: user.firstName,
+      name: user.fullName,
       url: url,
     };
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -402,8 +402,7 @@ const authWithGoogle = async (profile: any) => {
     const cryptedPassword = await hasher(process.env.GOOGLE_USER_PASSWORD, 12);
 
     const values = {
-      firstName: profile.name.givenName,
-      lastName: profile.name.familyName,
+      fullName: profile.name.givenName + profile.name.familyName,
       username: profile.name.familyName,
       email: profile.emails[0].value.toLowerCase(),
       password: cryptedPassword,
@@ -429,7 +428,7 @@ const authWithGoogle = async (profile: any) => {
     //send user email
     const subject = "Welcome to Sidebrief.";
     const payload = {
-      name: newUser.firstName,
+      name: newUser.fullName,
       url: url,
     };
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
@@ -443,15 +442,14 @@ const authWithGoogle = async (profile: any) => {
     );
 
     logger.info({
-      message: `${newUser.firstName} created an account successfully with ${newUser.email}.`,
+      message: `${newUser.fullName} created an account successfully with ${newUser.email}.`,
     });
 
     return {
       message: "User created successfully",
       data: {
         id: newUser.id,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
+        fullName: newUser.fullName,
         username: newUser.username,
         email: newUser.email,
         phone: newUser.phone,
@@ -494,8 +492,7 @@ const authLogin = async (profile: any) => {
     message: "Login successfully",
     data: {
       id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      fullName: user.fullName,
       username: user.username,
       email: user.email,
       token: token,
