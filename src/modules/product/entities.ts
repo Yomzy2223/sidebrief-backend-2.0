@@ -1,6 +1,9 @@
 export interface ProductPayload {
-  createdBy: string;
-  objective: string[];
-  businessName: string[];
+  userId: string;
   country: string;
+}
+export interface FormPayload {
+  question: string;
+  answer: any[];
+  isGeneral: boolean;
 }

@@ -22,6 +22,7 @@ const UserRegisration = async (
     const userPayload: UserPayload = req.body;
     const cryptedPassword = await hasher(userPayload.password, 12);
     const userValues = {
+      fullName: userPayload.fullName,
       email: userPayload.email.toLowerCase(),
       password: cryptedPassword,
       referral: userPayload.referral,

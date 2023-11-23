@@ -82,7 +82,7 @@ const getProductServiceByServiceCategory = async (
   // return the product service to the product service controller
 
   try {
-    const service = await prisma.service.findUnique({
+    const service = await prisma.service.findMany({
       where: {
         id: ServiceCategoryId,
       },
@@ -299,7 +299,7 @@ const getServiceFormByService = async (
   // return the service form to the service controller
 
   try {
-    const serviceForm = await prisma.serviceForm.findUnique({
+    const serviceForm = await prisma.serviceForm.findMany({
       where: {
         id: serviceId,
       },

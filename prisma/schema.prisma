@@ -207,15 +207,14 @@ model Account {
 
 model User {
       id String @id @default(uuid())
-      firstName String?
-      lastName String?
+      fullName String
       username String?
       email String @unique
       password String
       phone String?
       picture String?
       isVerified Boolean @default(false)
-      referral String?
+      referral String
       country String?
       resetToken String?
       isPartner Boolean @default(false)
@@ -229,6 +228,7 @@ model User {
       staffPermission String[]
       userPermission  String[]
       account Account[]
+      product Product[]
       isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
@@ -276,12 +276,12 @@ model Service {
       timeline String
       feature String[]
       categoryForm String[]
-      hasShares Boolean  @default(false)
+      hasShares Boolean @default(false)
       numberOfShares String
       requiredDocuments String[]
-      hasAgent Boolean  @default(false)
-      hasOwner Boolean  @default(false)
-      hasController Boolean  @default(false)
+      hasAgent Boolean @default(false)
+      hasOwner Boolean @default(false)
+      hasController Boolean @default(false)
       controllerIsCalled String?
       OwnerIsCalled String?
       agentIsCalled String?
@@ -313,22 +313,17 @@ model ServiceForm {
   service Service @relation(fields: [serviceId], references: [id])
   serviceId String
 }
-
 model Product {
       id String @id @default(uuid())
       country String
-      address String?
       paid Boolean @default(false)
-      email String?
-      description String?
-      objective String[]
-      businessNames String[]
       Team Team[]
-      createdBy String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       service Service? @relation(fields: [serviceId], references: [id])
-      serviceId String?
+      user User? @relation(fields: [userId], references: [id])
+      serviceId String
+      userId String
       Payment Payment[]
       productQA ProductQA[]
 }
@@ -336,6 +331,7 @@ model ProductQA {
   id String @id @default(uuid())
   question String
   answer String
+  isGeneral Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   products Product @relation(fields: [productId], references: [id])

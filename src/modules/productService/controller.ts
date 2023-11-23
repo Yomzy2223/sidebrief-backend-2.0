@@ -6,6 +6,12 @@ import {
   saveProductService,
   updateProductService,
   removeProductService,
+  saveServiceForm,
+  getAllServiceForm,
+  getServiceForm,
+  getServiceFormByService,
+  removeServiceForm,
+  updateServiceForm,
 } from "./service";
 
 // create a new product service
@@ -77,7 +83,7 @@ const ProductServiceFetcher = async (
   }
 };
 
-//get a product service with service category id
+//get a product service by service category id
 const ProductServiceByCategoryFetcher = async (
   req: Request,
   res: Response,
@@ -147,6 +153,133 @@ const ProductServiceRemover = async (
   }
 };
 
+// create a new service form
+const ServiceFormCreator = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the validated payload from the the request body
+    // get the service id from req.params
+    // send the validated payload to saveServiceForm service
+    // return response to the client
+    const serviceId = req.params.serviceCategoryId;
+    const serviceFormPayload = req.body;
+    const values = {
+      question: serviceFormPayload.question,
+      type: serviceFormPayload.type,
+      options: serviceFormPayload.options,
+      serviceId: serviceFormPayload.serviceId,
+    };
+
+    const service = await saveServiceForm(values, serviceId);
+    return res.status(service.statusCode).json(service);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get all service form
+const ServiceFormsFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const service = await getAllServiceForm();
+    return res.status(service.statusCode).json(service);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get a service form with id
+const ServiceFormFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // check if there is id
+    // pass the id to the service
+    // return service form  to client
+
+    const id: string = req.params.id;
+    const service = await getServiceForm(id);
+
+    return res.status(service.statusCode).json(service);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get a service form by service id
+const ServiceFormByServiceFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // pass the service id to the service
+    // return the service form to client
+
+    const serviceId = req.params.serviceId;
+    const service = await getServiceFormByService(serviceId);
+
+    return res.status(service.statusCode).json(service);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// update an existing service form
+const ServiceFormModifier = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the validated payload from the the request body
+    // get the id from req.params
+    // send the validated payload to saveServiceForm service
+    // return response to the client
+    const id: string = req.params.id;
+    const serviceFormPayload = req.body;
+    const values = {
+      question: serviceFormPayload.question,
+      type: serviceFormPayload.type,
+      options: serviceFormPayload.options,
+      serviceId: serviceFormPayload.serviceId,
+    };
+
+    const service = await updateServiceForm(id, values);
+    return res.status(service.statusCode).json(service);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// delete an exisiting service form
+const ServiceFormRemover = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    //check if there is id
+    // send the id to the delete service
+    //return response to the client
+
+    const id: string = req.params.id;
+    const deleteService = await removeServiceForm(id);
+
+    return res.status(deleteService.statusCode).json(deleteService.message);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   ProductServiceCreator,
   ProductServiceByCategoryFetcher,
@@ -154,4 +287,10 @@ export {
   ProductServiceModifier,
   ProductServiceRemover,
   ProductServicesFetcher,
+  ServiceFormCreator,
+  ServiceFormByServiceFetcher,
+  ServiceFormFetcher,
+  ServiceFormModifier,
+  ServiceFormRemover,
+  ServiceFormsFetcher,
 };

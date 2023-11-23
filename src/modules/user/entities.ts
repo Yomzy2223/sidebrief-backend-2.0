@@ -1,4 +1,5 @@
 export interface UserPayload {
+  fullName: string;
   email: string;
   password: string;
   referral: string;
@@ -11,17 +12,16 @@ export interface UserResponseProps {
 
 export interface UserResponse {
   id: string;
-  firstName: string;
-  lastName: string;
-  username: string | null;
+  fullName: string;
+  userName: string | null;
   email: string;
-  picture: string | null;
   phone: string | null;
+  picture: string | null;
   token?: string;
   refreshToken?: string;
   tokenExpiresIn?: number;
   isVerified: boolean;
-  referral: string;
+  referral: string | null;
 }
 
 export interface UserLogin {
