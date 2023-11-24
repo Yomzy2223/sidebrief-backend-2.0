@@ -64,7 +64,7 @@ const getAllProductService = async (): Promise<ProductServiceResponse> => {
       };
     }
     const response: ProductServiceResponse = {
-      message: "Product service fetched successfully",
+      message: "Product services fetched successfully",
       data: service,
       statusCode: 200,
     };
@@ -155,7 +155,7 @@ const updateProductService = async (
     });
     console.log("check", checkService);
     if (!checkService) {
-      throw new BadRequest("Product service not  s found!");
+      throw new BadRequest("Product service not found!");
     }
 
     const updateService = await prisma.service.update({
@@ -170,7 +170,7 @@ const updateProductService = async (
     }
 
     return {
-      message: "Product service updated successfully!.",
+      message: "Product service updated successfully",
       statusCode: 200,
     };
   } catch (error) {
@@ -265,7 +265,7 @@ const getAllServiceForm = async (): Promise<ServiceFormResponse> => {
       };
     }
     const response: ServiceFormResponse = {
-      message: "Service form fetched successfully",
+      message: "Service forms fetched successfully",
       data: service,
       statusCode: 200,
     };
@@ -319,7 +319,7 @@ const getServiceFormByService = async (
     });
 
     if (!serviceForm) {
-      throw new BadRequest("Service form not found!.");
+      throw new BadRequest("Service form not found!");
     }
 
     const response: ServiceFormResponse = {

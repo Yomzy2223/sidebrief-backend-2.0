@@ -72,6 +72,38 @@ interface StaffLogin {
   };
 }
 
+// Product Service Interface
+interface ProductServices {
+  type: string;
+  require: string[];
+  properties: {
+    name: Props;
+    type: Props;
+    code: Props;
+    description: Props;
+    country: Props;
+    price: Props;
+    timeline: Props;
+    feature: Props;
+    requiredDocuments: Props;
+    categoryForm: Props;
+    numberOfShares: Props;
+    serviceCategoryId: Props;
+  };
+}
+
+// Service Form Interface
+interface ServiceForms {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
+    type: Props;
+    options: Props;
+    serviceId: Props;
+  };
+}
+
 //Banks
 interface Banks {
   type: string;
@@ -226,6 +258,10 @@ interface ComponentDefinition {
     //Staffs
     Staffs: Staffs;
     StaffLogin: StaffLogin;
+
+    //ProductServices
+    ProductServices: ProductServices;
+    ServiceForms: ServiceForms;
 
     //Banks
     Banks: Banks;

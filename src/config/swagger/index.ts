@@ -177,6 +177,115 @@ const options: OpenAPIDefinition = {
           },
         },
 
+        //PRODUCT SERVICES
+        ProductServices: {
+          type: "object",
+          require: [
+            "name",
+            "type",
+            "code",
+            "description",
+            "country",
+            "price",
+            "timeline",
+            "feature",
+            "requiredDocuments",
+            "categoryForm",
+            "numberOfShares",
+            "serviceCategoryId",
+          ],
+          properties: {
+            name: {
+              type: "string",
+              description: "The name of the product service",
+              required: true,
+            },
+            type: {
+              type: "string",
+              description: "The type of the product service",
+              required: true,
+            },
+            code: {
+              type: "string",
+              description: "The code of the product service",
+              required: true,
+            },
+            description: {
+              type: "string",
+              description: "The description of the product service",
+              required: true,
+            },
+            country: {
+              type: "string",
+              description: "The country of the product service",
+              required: true,
+            },
+            price: {
+              type: "string",
+              description: "The price of the product service ",
+              required: true,
+            },
+            timeline: {
+              type: "string",
+              description: "The timeline for the product service ",
+              required: true,
+            },
+            feature: {
+              type: "array",
+              description: "The features of the product service ",
+              required: true,
+            },
+            requiredDocuments: {
+              type: "array",
+              description: "The required documents for the product service ",
+              required: true,
+            },
+            categoryForm: {
+              type: "array",
+              description: "The category form for the product service ",
+              required: true,
+            },
+            numberOfShares: {
+              type: "string",
+              description: "The number of shares for the product service ",
+              required: true,
+            },
+            serviceCategoryId: {
+              type: "string",
+              description: "The Id of the category of the product service ",
+              required: true,
+            },
+          },
+        },
+
+        ServiceForms: {
+          type: "object",
+          require: ["question", "type", "options", "serviceId"],
+          properties: {
+            question: {
+              type: "string",
+              description: "The question required",
+              required: true,
+            },
+            type: {
+              type: "string",
+              description: "The type of the service form",
+              required: true,
+            },
+            options: {
+              type: "string",
+              description: "The options of the service form",
+              required: true,
+            },
+            serviceId: {
+              type: "string",
+              description:
+                "The Id of the product service for the service form ",
+              required: true,
+            },
+          },
+        },
+
         //BANK
         Banks: {
           type: "object",
@@ -872,6 +981,355 @@ const options: OpenAPIDefinition = {
               description: "Staff is updated",
               schema: {
                 $ref: "#/components/schemas/Staffs",
+              },
+            },
+          },
+        },
+      },
+
+      // Product service
+      "/products/{serviceCategoryId}": {
+        post: {
+          tags: ["ProductServices"],
+          summary: "Create a new product service with service category ID",
+          parameters: [
+            {
+              name: "serviceCategoryId",
+              in: "path",
+              required: true,
+              description: "ID of service category for the product service",
+              type: "string",
+            },
+            {
+              name: "productServices",
+              in: "body",
+              description: "properties of the product service",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ProductServices", //
+                },
+              },
+            },
+          },
+
+          produces: ["application/json"],
+          responses: {
+            201: {
+              description: "Product service created successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/products": {
+        get: {
+          tags: ["ProductServices"],
+          summary: "Get all product services ",
+          responses: {
+            200: {
+              description: "Product services gotten successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/products/category/{serviceCategoryId}": {
+        get: {
+          summary: "Get all product service with service category ID",
+          tags: ["ProductServices"],
+          parameters: [
+            {
+              name: "serviceCategoryId",
+              in: "path",
+              required: true,
+              description: "ID of service category of the product service",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Product service fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/products/{id}": {
+        get: {
+          summary: "Get a product service with given ID",
+          tags: ["ProductServices"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the product service",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Product service fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete a product service with given ID",
+          tags: ["ProductServices"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the product service to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Product service deleted successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+
+        put: {
+          tags: ["ProductServices"],
+          summary: "Update an existing product service with given ID",
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of product service",
+              type: "string",
+            },
+            {
+              name: "productServices",
+              in: "body",
+              description: " new properties of the product service",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ProductServices", //
+                },
+              },
+            },
+          },
+
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Product service updated successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/products/forms/{serviceId}": {
+        post: {
+          tags: ["ProductServices"],
+          summary: "Create a new service form with service ID",
+          parameters: [
+            {
+              name: "serviceId",
+              in: "path",
+              required: true,
+              description: "ID of service for the service form",
+              type: "string",
+            },
+            {
+              name: "serviceForms",
+              in: "body",
+              description: "properties of the service form",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceForms", //
+                },
+              },
+            },
+          },
+
+          produces: ["application/json"],
+          responses: {
+            201: {
+              description: "Service form created successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+      },
+
+      "/products/forms/{id}": {
+        get: {
+          summary: "Get a product service with given ID",
+          tags: ["ProductServices"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the service form",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+        delete: {
+          summary: "Delete a service form with given ID",
+          tags: ["ProductServices"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the service form to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form deleted successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+        put: {
+          tags: ["ProductServices"],
+          summary: "Update an existing service form with given ID",
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the service form",
+              type: "string",
+            },
+            {
+              name: "serviceForms",
+              in: "body",
+              description: "properties of the service form",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceForms", //
+                },
+              },
+            },
+          },
+
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Service form updated successfully!",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+      },
+
+      "/products/forms/all": {
+        get: {
+          tags: ["ProductServices"],
+          summary: "Get all service forms ",
+          responses: {
+            200: {
+              description: "Service forms gotten successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+      },
+
+      "/products/forms/service/{serviceId}": {
+        get: {
+          summary: "Get all service forms with service ID",
+          tags: ["ProductServices"],
+          parameters: [
+            {
+              name: "serviceId",
+              in: "path",
+              required: true,
+              description: "ID of service of the service form",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
               },
             },
           },
