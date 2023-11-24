@@ -7,8 +7,12 @@ import {
   removeServiceCategory,
   saveServiceCategoryForm,
   getAllServiceCategoryForm,
+  updateServiceCategoryForm,
 } from "./service";
-import { ServiceCategoryFormPayload } from "./entities";
+import {
+  ServiceCategoryFormPayload,
+  UpdateServiceCategoryFormPayload,
+} from "./entities";
 
 // create a new service category
 const ServiceCategoryCreator = async (
@@ -133,9 +137,9 @@ const ServiceCategoryFormCreator = async (
     const serviceCategoryId = req.params.serviceCategoryId;
     const serviceCategoryPayload = req.body;
     const values: ServiceCategoryFormPayload = {
-      question: serviceCategoryPayload.name.toLowerCase(),
+      question: serviceCategoryPayload.question,
       type: serviceCategoryPayload.type,
-      options: serviceCategoryPayload.description,
+      options: serviceCategoryPayload.options,
       serviceCategoryId: serviceCategoryId,
     };
     const category = await saveServiceCategoryForm(values, serviceCategoryId);
@@ -164,6 +168,36 @@ const ServiceCategoryFormFetcher = async (
   }
 };
 
+// create a new service category
+const ServiceCategoryFormModifier = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the validated payload from the the request body
+    // get the service category id from the the request params
+    // send the validated payload and the category id to saveServiceCategoryForm service
+    // return response to the client
+
+    const serviceCategoryFormId = req.params.serviceCategoryFormId;
+    const serviceCategoryPayload: UpdateServiceCategoryFormPayload = req.body;
+    const values = {
+      question: serviceCategoryPayload.question,
+      type: serviceCategoryPayload.type,
+      options: serviceCategoryPayload.options,
+    };
+    const category = await updateServiceCategoryForm(
+      values,
+      serviceCategoryFormId
+    );
+
+    return res.status(category.statusCode).json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   ServiceCategoryCreator,
   ServiceCategoriesFetcher,
@@ -172,4 +206,6 @@ export {
   ServiceCategoryRemover,
   ServiceCategoryFormCreator,
   ServiceCategoryFormFetcher,
+  ServiceCategoryFormPayload,
+  ServiceCategoryFormModifier,
 };

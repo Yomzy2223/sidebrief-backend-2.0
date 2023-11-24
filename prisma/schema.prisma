@@ -316,13 +316,16 @@ model ServiceForm {
 model Product {
       id String @id @default(uuid())
       country String
+      email String?
+      address String?
       paid Boolean @default(false)
       Team Team[]
+      status Boolean @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       service Service? @relation(fields: [serviceId], references: [id])
-      user User? @relation(fields: [userId], references: [id])
-      serviceId String
+      user User @relation(fields: [userId], references: [id])
+      serviceId String?
       userId String
       Payment Payment[]
       productQA ProductQA[]
@@ -330,7 +333,7 @@ model Product {
 model ProductQA {  
   id String @id @default(uuid())
   question String
-  answer String
+  answer String[]
   isGeneral Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
@@ -390,6 +393,8 @@ model Payment  {
       id String @id @default(uuid())
       provider String
       transactionId String
+      status String
+      email String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       products Product @relation(fields: [productId], references: [id])

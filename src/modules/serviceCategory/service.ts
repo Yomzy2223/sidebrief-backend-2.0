@@ -3,6 +3,7 @@ import {
   ServiceCategoryFormResponse,
   ServiceCategoryPayload,
   ServiceCategoryResponse,
+  UpdateServiceCategoryFormPayload,
 } from "./entities";
 
 import { PrismaClient } from "@prisma/client";
@@ -234,6 +235,46 @@ const getAllServiceCategoryForm = async (
   }
 };
 
+//update a service category form service
+const updateServiceCategoryForm = async (
+  serviceCategoryPayload: UpdateServiceCategoryFormPayload,
+  id: string
+) => {
+  // take both id and service category payload from the service category controller
+  //  check if the service category exists
+  //  update the service category
+  //  return the service category to the service category controller
+
+  try {
+    const category = await prisma.serviceCategoryForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!category) {
+      throw new BadRequest("Service category Form not found!.");
+    }
+
+    const updateCategory = await prisma.serviceCategoryForm.update({
+      where: {
+        id: id,
+      },
+      data: serviceCategoryPayload,
+    });
+
+    if (!updateCategory) {
+      throw new BadRequest("Error occured while updating service category!.");
+    }
+
+    return {
+      message: "Service category updated successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   saveServiceCategory,
   getAllServiceCategory,
@@ -242,4 +283,5 @@ export {
   removeServiceCategory,
   saveServiceCategoryForm,
   getAllServiceCategoryForm,
+  updateServiceCategoryForm,
 };

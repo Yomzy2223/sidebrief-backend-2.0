@@ -10,6 +10,8 @@ import {
   ServiceCategoryFetcher,
   ServiceCategoryModifier,
   ServiceCategoryRemover,
+  ServiceCategoryFormCreator,
+  ServiceCategoryFormFetcher,
 } from "./controller";
 
 router.post(
@@ -28,4 +30,6 @@ router.put(
 );
 router.delete("/:id", staffAuth, ServiceCategoryRemover);
 
+router.post("/form", staffAuth, ServiceCategoryFormCreator);
+router.get("/forms", ServiceCategoryFormFetcher);
 export default router;
