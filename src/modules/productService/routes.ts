@@ -27,7 +27,7 @@ router.delete("/:id", ProductServiceRemover);
 // service form route
 router.post("/forms/:serviceId", ServiceFormCreator);
 router.put("/forms/:id", ServiceFormModifier);
-router.get("/forms", ServiceFormsFetcher);
+router.get("/forms/all", ServiceFormsFetcher);
 router.get("/forms/:id", ServiceFormFetcher);
 router.get("/forms/service/:serviceId", ServiceFormByServiceFetcher);
 router.delete("/forms/:id", ServiceFormRemover);

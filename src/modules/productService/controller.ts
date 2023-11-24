@@ -164,7 +164,7 @@ const ServiceFormCreator = async (
     // get the service id from req.params
     // send the validated payload to saveServiceForm service
     // return response to the client
-    const serviceId = req.params.serviceCategoryId;
+    const serviceId = req.params.serviceId;
     const serviceFormPayload = req.body;
     const values = {
       question: serviceFormPayload.question,
@@ -188,10 +188,9 @@ const ServiceFormsFetcher = async (
   next: NextFunction
 ) => {
   try {
-    const service = await getAllServiceForm();
-    return res.status(service.statusCode).json(service);
+    const serviceForm = await getAllServiceForm();
+    return res.status(serviceForm.statusCode).json(serviceForm);
   } catch (error) {
-    console.log("dd", error);
     next(error);
   }
 };

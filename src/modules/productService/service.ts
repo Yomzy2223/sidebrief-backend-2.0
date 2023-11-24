@@ -253,12 +253,11 @@ const saveServiceForm = async (
 // get all service form
 
 const getAllServiceForm = async (): Promise<ServiceFormResponse> => {
-  //  get the service form  list from the table
-  //  return the service form list to the  service form controller
+  //  get the  service form  list from the table
+  //  return the service form list to the service form controller
   try {
-    const serviceForm = await prisma.serviceForm.findMany({});
-    console.log("jj", serviceForm);
-    if (!serviceForm) {
+    const service = await prisma.serviceForm.findMany({});
+    if (!service) {
       return {
         message: "Empty Data",
         statusCode: 200,
@@ -267,7 +266,7 @@ const getAllServiceForm = async (): Promise<ServiceFormResponse> => {
     }
     const response: ServiceFormResponse = {
       message: "Service form fetched successfully",
-      data: serviceForm,
+      data: service,
       statusCode: 200,
     };
 
@@ -384,18 +383,25 @@ const removeServiceForm = async (id: string) => {
   //return response to the service form controller
 
   try {
+    const checkServiceForm = await prisma.serviceForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!checkServiceForm) {
+      throw new BadRequest("Service form not found!");
+    }
+
     const deleteServiceForm = await prisma.serviceForm.delete({
       where: {
         id: id,
       },
     });
-    if (!deleteServiceForm) {
-      throw new BadRequest("Service form not found!");
-    }
 
     return {
       message: "Service form deleted successfully",
-      statusCode: 204,
+      statusCode: 200,
     };
   } catch (error) {
     throw error;
