@@ -34,3 +34,9 @@ export interface ServiceCategoryFormResponse {
   message: string;
   data: ServiceCategoryFormData | ServiceCategoryFormData[];
 }
+
+export interface UpdateServiceCategoryFormPayload {
+  question: string;
+  type: string;
+  options: string[];
+}

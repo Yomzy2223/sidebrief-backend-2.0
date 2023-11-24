@@ -222,6 +222,18 @@ interface UpdateManyRequest {
     requestIds: Props;
   };
 }
+
+interface ServiceCategory {
+  type: string;
+  require: string[];
+  properties: {
+    firstName: Props;
+    lastName: Props;
+    email: Props;
+    password: Props;
+  };
+}
+
 interface Error {
   type: string;
   require: string[];
@@ -283,6 +295,9 @@ interface ComponentDefinition {
 
     // Error
     Error: Error;
+
+    //Service Category
+    ServiceCategory: ServiceCategory;
   };
   responses: {
     401: ResponseProps;

@@ -1,4 +1,5 @@
 import express from "express";
+import { staffAuth, userAuth } from "../../middleware/auth";
 const router = express.Router();
 
 import {
@@ -17,18 +18,22 @@ import {
 } from "./controller";
 
 // Product service route
-router.post("/:serviceCategoryId", ProductServiceCreator);
+router.post("/:serviceCategoryId", staffAuth, ProductServiceCreator);
 router.get("/", ProductServicesFetcher);
-router.get("/:id", ProductServiceFetcher);
-router.get("/category/:serviceCategoryId", ProductServiceByCategoryFetcher);
-router.put("/:id", ProductServiceModifier);
-router.delete("/:id", ProductServiceRemover);
+router.get("/:id", userAuth, ProductServiceFetcher);
+router.get(
+  "/category/:serviceCategoryId",
+  userAuth,
+  ProductServiceByCategoryFetcher
+);
+router.put("/:id", staffAuth, ProductServiceModifier);
+router.delete("/:id", staffAuth, ProductServiceRemover);
 
 // service form route
-router.post("/forms/:serviceId", ServiceFormCreator);
-router.put("/forms/:id", ServiceFormModifier);
+router.post("/forms/:serviceId", staffAuth, ServiceFormCreator);
+router.put("/forms/:id", staffAuth, ServiceFormModifier);
 router.get("/forms/all", ServiceFormsFetcher);
-router.get("/forms/:id", ServiceFormFetcher);
-router.get("/forms/service/:serviceId", ServiceFormByServiceFetcher);
-router.delete("/forms/:id", ServiceFormRemover);
+router.get("/forms/:id", userAuth, ServiceFormFetcher);
+router.get("/forms/service/:serviceId", userAuth, ServiceFormByServiceFetcher);
+router.delete("/forms/:id", staffAuth, ServiceFormRemover);
 export default router;

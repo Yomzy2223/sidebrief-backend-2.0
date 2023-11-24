@@ -258,6 +258,8 @@ const options: OpenAPIDefinition = {
           },
         },
 
+        // SERVICE FORMS
+
         ServiceForms: {
           type: "object",
           require: ["question", "type", "options", "serviceId"],
@@ -541,6 +543,54 @@ const options: OpenAPIDefinition = {
             error: {
               type: "string",
               description: "Bad request",
+            },
+          },
+        },
+
+        //SERVICE CATEGORY
+        ServiceCategory: {
+          type: "object",
+          require: ["firstName", "lastName", "email", "password"],
+          properties: {
+            firstName: {
+              type: "string",
+              description: "The first name of the user",
+            },
+            lastName: {
+              type: "string",
+              description: "The last name of the user",
+            },
+            email: {
+              type: "string",
+              description: "The email of the user",
+            },
+            password: {
+              type: "string",
+              description: "The password of the user",
+            },
+          },
+        },
+
+        //SERVICE CATEGORY FORM
+        ServiceCategoryForm: {
+          type: "object",
+          require: ["firstName", "lastName", "email", "password"],
+          properties: {
+            firstName: {
+              type: "string",
+              description: "The first name of the user",
+            },
+            lastName: {
+              type: "string",
+              description: "The last name of the user",
+            },
+            email: {
+              type: "string",
+              description: "The email of the user",
+            },
+            password: {
+              type: "string",
+              description: "The password of the user",
             },
           },
         },
