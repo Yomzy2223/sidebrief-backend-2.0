@@ -16,7 +16,7 @@ import {
 
 router.post(
   "/",
-  staffAuth,
+  // staffAuth,
   validator(validateServiceCategory),
   ServiceCategoryCreator
 );
@@ -31,5 +31,6 @@ router.put(
 router.delete("/:id", staffAuth, ServiceCategoryRemover);
 
 router.post("/form", staffAuth, ServiceCategoryFormCreator);
-router.get("/forms", ServiceCategoryFormFetcher);
+router.get("/forms/:id", ServiceCategoryFormFetcher);
+router.put("/form/:id", staffAuth, ServiceCategoryFormFetcher);
 export default router;

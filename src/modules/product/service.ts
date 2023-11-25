@@ -52,6 +52,35 @@ const initializeProduct = async (
   }
 };
 
+//get all products by userId service
+const getAllProductsByUserId = async (userId: string) => {
+  //  get the products list from the table
+  //  return the products list to the products controller
+  try {
+    const products = await prisma.product.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+    if (!products) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response = {
+      message: "User products fetched successfully",
+      data: products,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 //product info
 const createProductQA = async (
   productQAPayload: FormPayload,
@@ -152,4 +181,10 @@ const getAllProductQA = async (productId: string) => {
     throw error;
   }
 };
-export { initializeProduct, createProductQA, getAllProductQA, getAllServiceQA };
+export {
+  initializeProduct,
+  createProductQA,
+  getAllProductQA,
+  getAllServiceQA,
+  getAllProductsByUserId,
+};

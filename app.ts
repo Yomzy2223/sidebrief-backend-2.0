@@ -12,6 +12,7 @@ import diligenceRoutes from "./src/modules/diligence/routes";
 import serviceRoutes from "./src/modules/serviceCategory/routes";
 import collaboratorRoutes from "./src/modules/collaborator/routes";
 import productServiceRoutes from "./src/modules/productService/routes";
+import productRoutes from "./src/modules/product/routes";
 import paymentRoutes from "./src/modules/payment/routes";
 // const connectDb = require("./src/config/database");
 import logger from "./src/config/logger";
@@ -83,7 +84,10 @@ app.use("/countries", countryRoutes);
 //test
 app.use("/diligence", diligenceRoutes);
 //productService
-app.use("/products", productServiceRoutes);
+app.use("/service/product", productServiceRoutes);
+//product
+app.use("/products", productRoutes);
+
 //payment
 app.use("/payment", paymentRoutes);
 

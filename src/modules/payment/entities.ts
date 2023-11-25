@@ -1,5 +1,4 @@
 export interface PaymentPayload {
-  tx_ref?: string;
   email?: string;
   currency?: string;
   amount?: string;

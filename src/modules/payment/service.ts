@@ -32,20 +32,21 @@ const makePayment = async (transactionPayload: PaymentPayload) => {
         currency: "NGN",
       };
       const payload = {
-        tx_ref: transactionPayload.tx_ref,
+        tx_ref: transactionPayload.productId,
         amount: transactionPayload.amount,
         email: transactionPayload.email,
         currency: transactionPayload.currency,
       };
 
+      const token = process.env.FLW_SECRET_KEY as string;
+
       const options = {
         headers: {
-          Authorization:
-            "Bearer FLWSECK_TEST-be6119552f8099f57a27150ee0363eaf-X",
+          Authorization: `Bearer ${token}`,
         },
       };
 
-      const url = "https://api.flutterwave.com/v3/charges?type=bank_transfer";
+      const url = process.env.BANK_TRANSFER as string;
 
       const res: any = await axios
         .post(url, testPayload, options)
@@ -66,7 +67,7 @@ const makePayment = async (transactionPayload: PaymentPayload) => {
     // card payment
     if (transactionPayload.type === "Card") {
       const payload = {
-        tx_ref: transactionPayload.tx_ref,
+        tx_ref: transactionPayload.productId,
         amount: transactionPayload.amount,
         card_number: transactionPayload.card_number,
         cvv: transactionPayload.cvv,
@@ -80,14 +81,15 @@ const makePayment = async (transactionPayload: PaymentPayload) => {
         },
       };
 
+      const token = process.env.FLW_SECRET_KEY as string;
+
       const options = {
         headers: {
-          Authorization:
-            "Bearer FLWSECK_TEST-be6119552f8099f57a27150ee0363eaf-X",
+          Authorization: `Bearer ${token}`,
         },
       };
 
-      const url = "https://api.flutterwave.com/v3/charges?type=card";
+      const url = process.env.CARD as string;
 
       const res: any = await axios
         .post(url, payload, options)
@@ -107,7 +109,7 @@ const makePayment = async (transactionPayload: PaymentPayload) => {
     }
 
     // ussd payment
-    if (transactionPayload.type === "Card") {
+    if (transactionPayload.type === "USSD") {
       const test = {
         tx_ref: "MC-15852309v5050e8y",
         account_bank: "057",
@@ -117,21 +119,22 @@ const makePayment = async (transactionPayload: PaymentPayload) => {
       };
 
       const payload = {
-        tx_ref: transactionPayload.tx_ref,
+        tx_ref: transactionPayload.productId,
         amount: transactionPayload.amount,
         email: transactionPayload.email,
         currency: transactionPayload.currency,
         account_bank: transactionPayload.account_bank,
       };
 
+      const token = process.env.FLW_SECRET_KEY as string;
+
       const options = {
         headers: {
-          Authorization:
-            "Bearer FLWSECK_TEST-be6119552f8099f57a27150ee0363eaf-X",
+          Authorization: `Bearer ${token}`,
         },
       };
 
-      const url = "https://api.flutterwave.com/v3/charges?type=ussd";
+      const url = process.env.USSD as string;
 
       const res: any = await axios
         .post(url, payload, options)
@@ -157,9 +160,11 @@ const makePayment = async (transactionPayload: PaymentPayload) => {
 //verify payment
 const verifyPayment = async (payload: PaymentVerificationPayload) => {
   try {
+    const token = process.env.FLW_SECRET_KEY as string;
+
     const options = {
       headers: {
-        Authorization: "Bearer FLWSECK_TEST-be6119552f8099f57a27150ee0363eaf-X",
+        Authorization: `Bearer ${token}`,
       },
     };
 
@@ -246,13 +251,15 @@ const validateCharge = async (otpPayload: any) => {
       },
     };
 
+    const token = process.env.FLW_SECRET_KEY as string;
+
     const options = {
       headers: {
-        Authorization: "Bearer FLWSECK_TEST-be6119552f8099f57a27150ee0363eaf-X",
+        Authorization: `Bearer ${token}`,
       },
     };
 
-    const url = "https://api.flutterwave.com/v3/validate-charges";
+    const url = process.env.VALIDATE_CHARGE as string;
 
     const validateRes: any = await axios
       .post(url, payload, options)

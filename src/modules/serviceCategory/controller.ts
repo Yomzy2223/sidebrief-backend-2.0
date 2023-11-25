@@ -159,7 +159,7 @@ const ServiceCategoryFormFetcher = async (
   try {
     // get the service category list
     // return response to the client
-    const serviceCategoryId = req.params.serviceCategoryId;
+    const serviceCategoryId = req.params.id;
     const categories = await getAllServiceCategoryForm(serviceCategoryId);
 
     return res.status(categories.statusCode).json(categories);
@@ -180,7 +180,7 @@ const ServiceCategoryFormModifier = async (
     // send the validated payload and the category id to saveServiceCategoryForm service
     // return response to the client
 
-    const serviceCategoryFormId = req.params.serviceCategoryFormId;
+    const serviceCategoryFormId = req.params.id;
     const serviceCategoryPayload: UpdateServiceCategoryFormPayload = req.body;
     const values = {
       question: serviceCategoryPayload.question,

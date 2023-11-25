@@ -37,6 +37,26 @@ const CreateProduct = async (
   }
 };
 
+//get all products
+const GetAllProductsByUserId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the products list
+    // return response to the client
+    const userId = req.params.id;
+    const products = await getAllServiceQA(userId);
+
+    return res
+      .status(products.statusCode)
+      .json({ message: products.message, data: products.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const AddProductQA = async (
   req: Request,
   res: Response,
@@ -46,7 +66,7 @@ const AddProductQA = async (
     // get the payload and the id from the client
     // pass the payload to the service
     // return data back to client
-    const productId = req.params.productId;
+    const productId = req.params.id;
     const payload = req.body;
 
     const productQAPayload = {
@@ -74,7 +94,7 @@ const GetAllServicesQA = async (
   try {
     // get the service category list
     // return response to the client
-    const productId = req.params.productId;
+    const productId = req.params.id;
     const ServiceQA = await getAllServiceQA(productId);
 
     return res
@@ -94,7 +114,7 @@ const GetAllProductQA = async (
   try {
     // get the service category list
     // return response to the client
-    const productId = req.params.productId;
+    const productId = req.params.id;
     const productQA = await getAllProductQA(productId);
 
     return res
@@ -105,4 +125,10 @@ const GetAllProductQA = async (
   }
 };
 
-export { CreateProduct, AddProductQA, GetAllServicesQA, GetAllProductQA };
+export {
+  CreateProduct,
+  AddProductQA,
+  GetAllServicesQA,
+  GetAllProductQA,
+  GetAllProductsByUserId,
+};

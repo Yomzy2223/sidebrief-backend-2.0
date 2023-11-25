@@ -12,7 +12,6 @@ const MakePayment = async (req: Request, res: Response) => {
     const payload: PaymentPayload = req.body;
 
     const transactionPayload = {
-      tx_ref: payload.tx_ref,
       email: payload.email,
       currency: payload.currency,
       amount: payload.amount,
