@@ -3,7 +3,57 @@ import logger from "../../config/logger";
 import { BadRequest, NotFound, Unauthorized } from "../../utils/requestErrors";
 const prisma = new PrismaClient();
 import { FormPayload, ProductPayload } from "./entities";
+import EmailSender from "../../services/emailEngine";
 
+//CHRONE JOB
+const getUserIds = async () => {
+  try {
+    const timeNumber: number = 12;
+    // calculating 12 hours backward
+    const cutoffTime = new Date(Date.now() - timeNumber * 60 * 60 * 1000);
+    const checkProduct: any[] = await prisma.$queryRaw`
+    SELECT * FROM "Product" WHERE "createdAt" = ${cutoffTime} 
+    AND "status" = true
+  `;
+
+    const productIds: any[] = checkProduct.map((product: any) => {
+      product.userId;
+    });
+
+    return productIds;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const ScheduledJob = async () => {
+  //get the users to need to be notified
+  const userIds = await getUserIds();
+
+  for (const userId of userIds) {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    // send email notification
+    const subject = "Complete your activity.";
+
+    const payload = {
+      name: user?.fullName,
+    };
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = user?.email as string;
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/welcomeStaff.ejs"
+    );
+  }
+};
 // PRODUCT SERVICES
 
 //create product
@@ -186,5 +236,6 @@ export {
   createProductQA,
   getAllProductQA,
   getAllServiceQA,
+  ScheduledJob,
   getAllProductsByUserId,
 };
