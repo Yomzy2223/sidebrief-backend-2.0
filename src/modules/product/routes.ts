@@ -8,6 +8,7 @@ import {
   GetAllProductQA,
   GetAllProductsByUserId,
   GetAllServicesQA,
+  ProductSubmission,
 } from "./controller";
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.get("/:userId", GetAllProductsByUserId);
 router.post("/qa", AddProductQA);
 router.get("/service/qa", GetAllServicesQA);
 router.get("/qa", GetAllProductQA);
+router.post("/submission", ProductSubmission);
 
 export default router;

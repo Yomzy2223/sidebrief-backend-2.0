@@ -10,7 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
+enum ProductActivityStage {
+  START
+  PAYMENT
+  PRORIETOR
+  REVIEW
+}
 
 model Staff {
       id String @id @default(uuid())
@@ -320,7 +325,9 @@ model Product {
       address String?
       paid Boolean @default(false)
       Team Team[]
-      status Boolean @default(false)
+      completed Boolean @default(false)
+      status String @default("pending")
+      currentState ProductActivityStage @default(START)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       service Service? @relation(fields: [serviceId], references: [id])

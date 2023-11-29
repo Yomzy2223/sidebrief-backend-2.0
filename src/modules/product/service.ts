@@ -5,8 +5,15 @@ const prisma = new PrismaClient();
 import { FormPayload, ProductPayload } from "./entities";
 import EmailSender from "../../services/emailEngine";
 
+enum ProductStage {
+  START = "Unverified",
+  PAYMENT = "Verified",
+  DOCUMENT = "In progress",
+  SUBMISSION = "Completed",
+}
+
 //CHRONE JOB
-const getUserIds = async () => {
+const getProductData = async () => {
   try {
     const timeNumber: number = 12;
     // calculating 12 hours backward
@@ -16,11 +23,12 @@ const getUserIds = async () => {
     AND "status" = true
   `;
 
-    const productIds: any[] = checkProduct.map((product: any) => {
+    const productData: any[] = checkProduct.map((product: any) => {
       product.userId;
+      product.currentStage;
     });
 
-    return productIds;
+    return productData;
   } catch (error) {
     throw error;
   }
@@ -28,12 +36,12 @@ const getUserIds = async () => {
 
 const ScheduledJob = async () => {
   //get the users to need to be notified
-  const userIds = await getUserIds();
+  const productData = await getProductData();
 
-  for (const userId of userIds) {
+  for (const product of productData) {
     const user = await prisma.user.findUnique({
       where: {
-        id: userId,
+        id: product?.userId,
       },
     });
 
@@ -42,6 +50,7 @@ const ScheduledJob = async () => {
 
     const payload = {
       name: user?.fullName,
+      stage: product.currentStage,
     };
     const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
     const recipientEmail = user?.email as string;
@@ -231,6 +240,66 @@ const getAllProductQA = async (productId: string) => {
     throw error;
   }
 };
+
+//create product
+const submitProduct = async (productId: string) => {
+  try {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: productId,
+      },
+    });
+    if (!product) {
+      throw new NotFound("Product not found.");
+    }
+
+    const updateProduct = await prisma.product.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        completed: true,
+      },
+    });
+
+    if (!updateProduct) {
+      throw new BadRequest("Error occured while submiting product.");
+    }
+
+    const findUser = await prisma.user.findUnique({
+      where: {
+        id: updateProduct.userId,
+      },
+    });
+
+    //send staff email
+    const subject = "Your Product has been submitted successfully.";
+    const payload = {
+      name: findUser?.fullName,
+    };
+    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+    const recipientEmail = findUser?.email as string;
+    EmailSender(
+      subject,
+      payload,
+      recipientEmail,
+      senderEmail,
+      "../view/welcomeStaff.ejs"
+    );
+
+    logger.info({
+      message: "Product submitted successfully",
+    });
+
+    return {
+      message: "Product submitted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   initializeProduct,
   createProductQA,
@@ -238,4 +307,5 @@ export {
   getAllServiceQA,
   ScheduledJob,
   getAllProductsByUserId,
+  submitProduct,
 };
