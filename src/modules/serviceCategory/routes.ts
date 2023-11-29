@@ -1,7 +1,10 @@
 import express from "express";
 import { userAuth, staffAuth } from "../../middleware/auth";
 import validator from "../../middleware/validator";
-import { validateServiceCategory } from "../../utils/validation";
+import {
+  validateServiceCategory,
+  serviceFormCredentials,
+} from "../../utils/validation/serviceCategory";
 const router = express.Router();
 
 import {
@@ -12,6 +15,7 @@ import {
   ServiceCategoryRemover,
   ServiceCategoryFormCreator,
   ServiceCategoryFormFetcher,
+  ServiceCategoryFormModifier,
 } from "./controller";
 
 router.post(
@@ -30,7 +34,17 @@ router.put(
 );
 router.delete("/:id", staffAuth, ServiceCategoryRemover);
 
-router.post("/form", staffAuth, ServiceCategoryFormCreator);
+router.post(
+  "/form",
+  staffAuth,
+  validator(serviceFormCredentials),
+  ServiceCategoryFormCreator
+);
 router.get("/forms/:id", ServiceCategoryFormFetcher);
-router.put("/form/:id", staffAuth, ServiceCategoryFormFetcher);
+router.put(
+  "/form/:id",
+  staffAuth,
+  validator(serviceFormCredentials),
+  ServiceCategoryFormModifier
+);
 export default router;

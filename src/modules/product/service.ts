@@ -2,74 +2,94 @@ import { PrismaClient, Prisma } from "@prisma/client";
 import logger from "../../config/logger";
 import { BadRequest, NotFound, Unauthorized } from "../../utils/requestErrors";
 const prisma = new PrismaClient();
-import { FormPayload, ProductPayload } from "./entities";
+import {
+  FormPayload,
+  ProductData,
+  ProductPayload,
+  ProductQAResponse,
+  ProductResponse,
+  ProductWithoutDataResponse,
+} from "./entities";
 import EmailSender from "../../services/emailEngine";
 
-enum ProductStage {
-  START = "Unverified",
-  PAYMENT = "Verified",
-  DOCUMENT = "In progress",
-  SUBMISSION = "Completed",
-}
-
 //CHRONE JOB
-const getProductData = async () => {
+const getProductData = async (): Promise<ProductData[]> => {
   try {
     const timeNumber: number = 12;
     // calculating 12 hours backward
     const cutoffTime = new Date(Date.now() - timeNumber * 60 * 60 * 1000);
+
+    // get the list of uncompleted products using createdAt and completed fields
     const checkProduct: any[] = await prisma.$queryRaw`
     SELECT * FROM "Product" WHERE "createdAt" = ${cutoffTime} 
-    AND "status" = true
+    AND "completed" = false
   `;
 
-    const productData: any[] = checkProduct.map((product: any) => {
-      product.userId;
-      product.currentStage;
-    });
+    //map the list to return just the userId and the currentState of the product
+    const productData: ProductData[] = checkProduct?.map(
+      (product: ProductData) => {
+        return {
+          userId: product.userId,
+          currentStage: product.currentState,
+        };
+      }
+    );
 
     return productData;
   } catch (error) {
+    logger.error({
+      message: `Error with the info ${error} occured `,
+    });
     throw error;
   }
 };
 
 const ScheduledJob = async () => {
-  //get the users to need to be notified
-  const productData = await getProductData();
+  try {
+    //get the productData list
+    const productData = await getProductData();
 
-  for (const product of productData) {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: product?.userId,
-      },
+    //for each product in the product list
+    for (const product of productData) {
+      //get the user details using the userId
+      const user = await prisma.user.findUnique({
+        where: {
+          id: product?.userId,
+        },
+      });
+
+      // send email notification to the user
+      const subject = "Complete your activity.";
+
+      const payload = {
+        name: user?.fullName,
+        stage: product.currentState,
+      };
+      const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
+      const recipientEmail = user?.email as string;
+      EmailSender(
+        subject,
+        payload,
+        recipientEmail,
+        senderEmail,
+        "../view/welcomeStaff.ejs"
+      );
+    }
+  } catch (error) {
+    logger.error({
+      message: `Error with the info ${error} occured `,
     });
-
-    // send email notification
-    const subject = "Complete your activity.";
-
-    const payload = {
-      name: user?.fullName,
-      stage: product.currentStage,
-    };
-    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
-    const recipientEmail = user?.email as string;
-    EmailSender(
-      subject,
-      payload,
-      recipientEmail,
-      senderEmail,
-      "../view/welcomeStaff.ejs"
-    );
+    throw error;
   }
 };
+
 // PRODUCT SERVICES
 
 //create product
 const initializeProduct = async (
   productPayload: ProductPayload,
   productQAPayload: FormPayload
-) => {
+): Promise<ProductResponse> => {
   try {
     const product = await prisma.product.create({
       data: productPayload,
@@ -101,18 +121,21 @@ const initializeProduct = async (
       message: `${checkProduct?.userId} created a product successfully`,
     });
 
-    return {
+    const response: ProductResponse = {
       message: "Product created successfully",
       statusCode: 200,
       data: checkProduct,
     };
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all products by userId service
-const getAllProductsByUserId = async (userId: string) => {
+const getAllProductsByUserId = async (
+  userId: string
+): Promise<ProductResponse> => {
   //  get the products list from the table
   //  return the products list to the products controller
   try {
@@ -128,7 +151,7 @@ const getAllProductsByUserId = async (userId: string) => {
         data: [],
       };
     }
-    const response = {
+    const response: ProductResponse = {
       message: "User products fetched successfully",
       data: products,
       statusCode: 200,
@@ -144,7 +167,7 @@ const getAllProductsByUserId = async (userId: string) => {
 const createProductQA = async (
   productQAPayload: FormPayload,
   productId: string
-) => {
+): Promise<ProductQAResponse> => {
   try {
     const findProduct = await prisma.product.findUnique({
       where: {
@@ -171,20 +194,24 @@ const createProductQA = async (
       message: `more Q/A saved successfully for product with ${productId} `,
     });
 
-    return {
+    const response: ProductQAResponse = {
       message: "Product Q/A saved successfully",
       statusCode: 200,
       data: productQA,
     };
+
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
 //get all service QA service
-const getAllServiceQA = async (productId: string) => {
-  //  get the service category list from the table
-  //  return the service category list to the service category controller
+const getAllServiceQA = async (
+  productId: string
+): Promise<ProductQAResponse> => {
+  //  get the all the service QA
+  //  return the  list to the service QA controller
   try {
     const GeneralQA = await prisma.productQA.findMany({
       where: {
@@ -199,7 +226,7 @@ const getAllServiceQA = async (productId: string) => {
         data: [],
       };
     }
-    const response = {
+    const response: ProductQAResponse = {
       message: "Service QA fetched successfully",
       data: GeneralQA,
       statusCode: 200,
@@ -212,9 +239,11 @@ const getAllServiceQA = async (productId: string) => {
 };
 
 //get all service QA service
-const getAllProductQA = async (productId: string) => {
-  //  get the service category list from the table
-  //  return the service category list to the service category controller
+const getAllProductQA = async (
+  productId: string
+): Promise<ProductQAResponse> => {
+  //  get the all the product QA
+  //  return the  list to the product QA controller
   try {
     const GeneralQA = await prisma.productQA.findMany({
       where: {
@@ -229,7 +258,7 @@ const getAllProductQA = async (productId: string) => {
         data: [],
       };
     }
-    const response = {
+    const response: ProductQAResponse = {
       message: "Product QA fetched successfully",
       data: GeneralQA,
       statusCode: 200,
@@ -242,7 +271,9 @@ const getAllProductQA = async (productId: string) => {
 };
 
 //create product
-const submitProduct = async (productId: string) => {
+const submitProduct = async (
+  productId: string
+): Promise<ProductWithoutDataResponse> => {
   try {
     const product = await prisma.product.findUnique({
       where: {
@@ -290,11 +321,11 @@ const submitProduct = async (productId: string) => {
     logger.info({
       message: "Product submitted successfully",
     });
-
-    return {
+    const response: ProductWithoutDataResponse = {
       message: "Product submitted successfully",
       statusCode: 200,
     };
+    return response;
   } catch (error) {
     throw error;
   }

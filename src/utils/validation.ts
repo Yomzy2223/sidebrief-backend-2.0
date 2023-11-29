@@ -43,13 +43,6 @@ const bankSchema = {
 
 const validateBank = validate.compile(bankSchema);
 
-const serviceCategorySchema = {
-  name: { type: "string", min: 3, max: 50 },
-  description: { type: "string", min: 3, max: 255 },
-};
-
-const validateServiceCategory = validate.compile(serviceCategorySchema);
-
 //user password rest
 const resetSchema = {
   password: { type: "string", min: 6, max: 12 },
@@ -107,7 +100,6 @@ export {
   validateUserCredentials,
   validateStaff,
   validateBank,
-  validateServiceCategory,
   validateResetCredentials,
   validateUserUpdateCredentials,
   validateCollaborator,
