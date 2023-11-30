@@ -1,5 +1,10 @@
 import express from "express";
 import { staffAuth, userAuth } from "../../middleware/auth";
+import validator from "../../middleware/validator";
+import {
+  validateProductService,
+  validateServiceForm,
+} from "../../utils/launch";
 const router = express.Router();
 
 import {
@@ -18,7 +23,12 @@ import {
 } from "./controller";
 
 // Product service route
-router.post("/:serviceCategoryId", staffAuth, ProductServiceCreator);
+router.post(
+  "/:serviceCategoryId",
+  staffAuth,
+  validator(validateProductService),
+  ProductServiceCreator
+);
 router.get("/", ProductServicesFetcher);
 router.get("/:id", userAuth, ProductServiceFetcher);
 router.get(
@@ -26,12 +36,27 @@ router.get(
   userAuth,
   ProductServiceByCategoryFetcher
 );
-router.put("/:id", staffAuth, ProductServiceModifier);
+router.put(
+  "/:id",
+  staffAuth,
+  validator(validateProductService),
+  ProductServiceModifier
+);
 router.delete("/:id", staffAuth, ProductServiceRemover);
 
 // service form route
-router.post("/forms/:serviceId", staffAuth, ServiceFormCreator);
-router.put("/forms/:id", staffAuth, ServiceFormModifier);
+router.post(
+  "/forms/:serviceId",
+  // staffAuth,
+  validator(validateServiceForm),
+  ServiceFormCreator
+);
+router.put(
+  "/forms/:id",
+  //staffAuth,
+  validator(validateServiceForm),
+  ServiceFormModifier
+);
 router.get("/forms/all", ServiceFormsFetcher);
 router.get("/forms/:id", userAuth, ServiceFormFetcher);
 router.get("/forms/service/:serviceId", userAuth, ServiceFormByServiceFetcher);

@@ -3,8 +3,8 @@ import { userAuth, staffAuth } from "../../middleware/auth";
 import validator from "../../middleware/validator";
 import {
   validateServiceCategory,
-  serviceFormCredentials,
-} from "../../utils/validation/serviceCategory";
+  validateServiceCategoryForm,
+} from "../../utils/validation";
 const router = express.Router();
 
 import {
@@ -37,14 +37,14 @@ router.delete("/:id", staffAuth, ServiceCategoryRemover);
 router.post(
   "/form",
   staffAuth,
-  validator(serviceFormCredentials),
+  validator(validateServiceCategoryForm),
   ServiceCategoryFormCreator
 );
 router.get("/forms/:id", ServiceCategoryFormFetcher);
 router.put(
   "/form/:id",
   staffAuth,
-  validator(serviceFormCredentials),
-  ServiceCategoryFormModifier
+  validator(validateServiceCategoryForm),
+  ServiceCategoryFormFetcher
 );
 export default router;
