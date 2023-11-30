@@ -26,6 +26,7 @@ import ErrorHandler from "./src/middleware/errorHandler";
 // require("./src/modules/user/googleAuth")(passport);
 
 import googlePassport from "./src/modules/user/googleAuth";
+import { ScheduledJob } from "./src/modules/product/service";
 googlePassport(passport);
 
 const app = express();
@@ -49,6 +50,9 @@ interface SessionProps {
     secure: boolean;
   };
 }
+
+//run product crone job
+// ScheduledJob();
 
 const sessionOption: SessionProps = {
   secret: process.env.SESSION_SECRET,

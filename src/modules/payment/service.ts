@@ -20,6 +20,7 @@ const makePayment = async (transactionPayload: PaymentPayload) => {
       where: { id: transactionPayload.productId },
       data: {
         serviceId: transactionPayload.serviceId,
+        currentState: "PAYMENT",
       },
     });
 
@@ -294,6 +295,14 @@ const confirmPayment = async (confirmPaymentPayload: ConfirmPayload) => {
       AND "email" = ${confirmPaymentPayload.email}
     `;
 
+    const updateProduct = await prisma.product.update({
+      where: {
+        id: confirmPaymentPayload.productId,
+      },
+      data: {
+        paid: true,
+      },
+    });
     if (!query) {
       throw new NotFound("Error occured while fetching payment record");
     }

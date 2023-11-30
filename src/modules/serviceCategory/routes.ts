@@ -5,7 +5,6 @@ import {
   validateServiceCategory,
   validateServiceCategoryForm,
 } from "../../utils/validation";
-
 const router = express.Router();
 
 import {
@@ -16,6 +15,7 @@ import {
   ServiceCategoryRemover,
   ServiceCategoryFormCreator,
   ServiceCategoryFormFetcher,
+  ServiceCategoryFormModifier,
 } from "./controller";
 
 router.post(
