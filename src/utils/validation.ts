@@ -4,12 +4,9 @@ const validate = new Validator();
 
 //user registration
 const userSchema = {
-  firstName: { type: "string", min: 3, max: 255 },
-  lastName: { type: "string", min: 3, max: 255 },
-  username: { type: "string", min: 3, max: 20 },
+  fullName: { type: "string", min: 3, max: 255 },
   email: { type: "email", min: 3, max: 255 },
   password: { type: "string", min: 6, max: 12 },
-  phone: { type: "string", min: 6, max: 15 },
   referral: { type: "string", min: 3, max: 255 },
 };
 

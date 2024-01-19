@@ -42,15 +42,7 @@ const options: OpenAPIDefinition = {
         //User
         Users: {
           type: "object",
-          require: [
-            "firstName",
-            "lastName",
-            "username",
-            "email",
-            "password",
-            "phone",
-            "referral",
-          ],
+          require: ["fullName", "email", "password", "referral"],
           properties: {
             fullName: {
               type: "string",

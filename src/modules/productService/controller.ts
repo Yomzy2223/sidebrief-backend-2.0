@@ -37,7 +37,6 @@ const ProductServiceCreator = async (
       timeline: productServicePayload.timeline,
       feature: productServicePayload.feature,
       requiredDocuments: productServicePayload.requiredDocuments,
-      categoryForm: productServicePayload.categoryForm,
       numberOfShares: productServicePayload.numberOfShares,
       serviceCategoryId: serviceCategoryId,
     };
@@ -121,7 +120,6 @@ const ProductServiceModifier = async (
       timeline: productServicePayload.timeline,
       feature: productServicePayload.feature,
       requiredDocuments: productServicePayload.requiredDocuments,
-      categoryForm: productServicePayload.categoryForm,
       numberOfShares: productServicePayload.numberOfShares,
       serviceCategoryId: productServicePayload.serviceCategoryId,
     };
