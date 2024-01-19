@@ -50,6 +50,17 @@ const serviceCategorySchema = {
 
 const validateServiceCategory = validate.compile(serviceCategorySchema);
 
+// service category form
+
+const serviceCategoryFormSchema = {
+  question: { type: "string", min: 3, max: 255 },
+  type: { type: "string", min: 3, max: 50 },
+  options: { type: "array", items: "string", min: 3 },
+  serviceCategoryId: { type: "string", min: 6, max: 50 },
+};
+
+const validateServiceCategoryForm = validate.compile(serviceCategoryFormSchema);
+
 //user password rest
 const resetSchema = {
   password: { type: "string", min: 6, max: 12 },
@@ -108,6 +119,7 @@ export {
   validateStaff,
   validateBank,
   validateServiceCategory,
+  validateServiceCategoryForm,
   validateResetCredentials,
   validateUserUpdateCredentials,
   validateCollaborator,

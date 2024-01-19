@@ -14,12 +14,9 @@ interface User {
   type: string;
   require: string[];
   properties: {
-    firstName: Props;
-    lastName: Props;
-    username: Props;
+    fullName: Props;
     email: Props;
     password: Props;
-    phone: Props;
     referral: Props;
   };
 }
@@ -69,6 +66,38 @@ interface StaffLogin {
   properties: {
     email: Props;
     password: Props;
+  };
+}
+
+// Product Service Interface
+interface ProductServices {
+  type: string;
+  require: string[];
+  properties: {
+    name: Props;
+    type: Props;
+    code: Props;
+    description: Props;
+    country: Props;
+    price: Props;
+    timeline: Props;
+    feature: Props;
+    requiredDocuments: Props;
+    categoryForm: Props;
+    numberOfShares: Props;
+    serviceCategoryId: Props;
+  };
+}
+
+// Service Form Interface
+interface ServiceForms {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
+    type: Props;
+    options: Props;
+    serviceId: Props;
   };
 }
 
@@ -190,6 +219,84 @@ interface UpdateManyRequest {
     requestIds: Props;
   };
 }
+
+interface ServiceCategory {
+  type: string;
+  require: string[];
+  properties: {
+    name: Props;
+    description: Props;
+  };
+}
+interface ServiceCategoryForm {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
+    type: Props;
+    options: Props;
+  };
+}
+
+interface CreateProduct {
+  type: string;
+  require: string[];
+  properties: {
+    userId: Props;
+    country: Props;
+    question: Props;
+    answer: Props;
+  };
+}
+interface AddProductQA {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
+    answer: Props;
+  };
+}
+
+export interface PaymentInitialization {
+  type: string;
+  require: string[];
+  properties: {
+    email: Props;
+    currency: Props;
+    amount: Props;
+    card_number: Props;
+    card_pin: Props;
+    cvv: Props;
+    expiry_month: Props;
+    expiry_year: Props;
+    account_bank: Props;
+    type: Props;
+    productId: Props;
+    serviceId: Props;
+  };
+}
+
+export interface PaymentConfirmation {
+  type: string;
+  require: string[];
+  properties: {
+    email?: Props;
+    productId?: Props;
+  };
+}
+
+export interface ValidateOTP {
+  type: string;
+  require: string[];
+  properties: {
+    flw_ref?: Props;
+    email?: Props;
+    otp?: Props;
+    amount?: Props;
+    currency?: Props;
+  };
+}
+
 interface Error {
   type: string;
   require: string[];
@@ -227,6 +334,10 @@ interface ComponentDefinition {
     Staffs: Staffs;
     StaffLogin: StaffLogin;
 
+    //ProductServices
+    ProductServices: ProductServices;
+    ServiceForms: ServiceForms;
+
     //Banks
     Banks: Banks;
 
@@ -245,8 +356,19 @@ interface ComponentDefinition {
     CreateNigerianBank: CreateNigerianBank;
     UpdateNigerianBank: UpdateNigerianBank;
 
+    //Payment
+    PaymentInitialization: PaymentInitialization;
+    ValidateOTP: ValidateOTP;
+    PaymentConfirmation: PaymentConfirmation;
+
     // Error
     Error: Error;
+
+    //Service Category
+    ServiceCategory: ServiceCategory;
+    ServiceCategoryForm: ServiceCategoryForm;
+    CreateProduct: CreateProduct;
+    AddProductQA: AddProductQA;
   };
   responses: {
     401: ResponseProps;
