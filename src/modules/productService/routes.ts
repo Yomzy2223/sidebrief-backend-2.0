@@ -4,7 +4,7 @@ import validator from "../../middleware/validator";
 import {
   validateProductService,
   validateServiceForm,
-} from "../../utils/launch";
+} from "../../utils/validation/productService";
 const router = express.Router();
 
 import {

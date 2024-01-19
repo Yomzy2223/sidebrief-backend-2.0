@@ -8,7 +8,6 @@ export interface ProductServicePayload {
   timeline: string;
   feature: string[];
   requiredDocuments: string[];
-  categoryForm: string[];
   numberOfShares: string;
   serviceCategoryId: string;
 }
@@ -24,7 +23,6 @@ export interface ProductServiceData {
   timeline: string;
   feature: string[];
   requiredDocuments: string[];
-  categoryForm: string[];
   numberOfShares: string;
   serviceCategoryId: string;
 }

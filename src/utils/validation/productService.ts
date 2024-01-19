@@ -14,7 +14,6 @@ const productServiceSchema = {
   timeline: { type: "string", min: 3, max: 50 },
   feature: { type: "array", items: "string", min: 3 },
   requiredDocuments: { type: "array", items: "string", min: 3 },
-  categoryForm: { type: "array", items: "string", min: 3 },
   numberOfShares: { type: "string", min: 1, max: 10 },
   serviceCategoryId: { type: "string", min: 6, max: 50 },
 };
