@@ -255,6 +255,7 @@ const createEnterprise = async (
     };
     return response;
   } catch (error) {
+    console.log("sdfsdfsdfsd", error);
     throw error;
   }
 };

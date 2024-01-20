@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../prisma/generated/client2";
 import { verifyUserToken } from "../common/token";
 import { Unauthorized } from "../utils/requestErrors";
 import { JwtResponse } from "../common/entities";

@@ -1,5 +1,5 @@
 import { BankPayload, CreateBankResponseProps } from "./entities";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 import { BadRequest } from "../../utils/requestErrors";
 const prisma = new PrismaClient();
