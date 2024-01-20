@@ -6,7 +6,7 @@ import {
   UpdateServiceCategoryFormPayload,
 } from "./entities";
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 const prisma = new PrismaClient();
 import { BadRequest } from "../../utils/requestErrors";

@@ -5969,3 +5969,161 @@ info: Label: 24-Nov-2023 10:19:49: Service form created successfully
 error: Label: 24-Nov-2023 10:20:12: Service form not found!. with error Error: Service form not found!. occurred when GET /products/forms/al was called
 error: Label: 24-Nov-2023 10:20:20: Service form not found!. with error Error: Service form not found!. occurred when GET /products/forms/jshjhkdjkhakj was called
 info: Label: 19-Jan-2024 13:41:12: John Dow created an account successfully with testbam@gmail.com.
+error: Label: 20-Jan-2024 15:33:50: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:24:41
+
+  21   userPayload: UserPayload
+  22 ): Promise<UserResponseProps> => {
+  23   try {
+→ 24     const checkUser = await prisma.user.findUnique(
+The column `User.fullName` does not exist in the current database. occurred when POST /users was called
+info: Label: 20-Jan-2024 15:36:06: John Doe created an account successfully with string@gmail.com.
+error: Label: 20-Jan-2024 15:38:49: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.ts:24:43
+
+  21   staffPayload: StaffPayload
+  22 ): Promise<StaffResponseProps> => {
+  23   try {
+→ 24     const checkStaff = await prisma.staff.findUnique(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = "postgresql"
+10 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1 occurred when POST /staffs was called
+info: Label: 20-Jan-2024 15:40:08: string string created an account successfully with string@gmail.com.
+error: Label: 20-Jan-2024 15:41:21: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:48:43
+
+  45   throw new Unauthorized("Invalid or expired staff token.");
+  46 }
+  47 
+→ 48 const checkStaff = await prisma.staff.findUnique(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = "postgresql"
+10 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1 occurred when POST /diligence/enterprise was called
+error: Label: 20-Jan-2024 15:45:20: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:48:43
+
+  45   throw new Unauthorized("Invalid or expired staff token.");
+  46 }
+  47 
+→ 48 const checkStaff = await prisma.staff.findUnique(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = "postgresql"
+10 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1 occurred when POST /diligence/enterprise was called
+error: Label: 20-Jan-2024 15:45:34: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:48:43
+
+  45   throw new Unauthorized("Invalid or expired staff token.");
+  46 }
+  47 
+→ 48 const checkStaff = await prisma.staff.findUnique(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = "postgresql"
+10 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1 occurred when POST /diligence/enterprise was called
+error: Label: 20-Jan-2024 15:48:58: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /diligence/enterprise was called
+info: Label: 20-Jan-2024 15:49:17: staff with string@gmail.com signed in successfully.
+error: Label: 20-Jan-2024 15:49:35: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:48:43
+
+  45   throw new Unauthorized("Invalid or expired staff token.");
+  46 }
+  47 
+→ 48 const checkStaff = await prisma.staff.findUnique(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = "postgresql"
+10 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1 occurred when POST /diligence/enterprise was called
+error: Label: 20-Jan-2024 15:53:33: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:48:43
+
+  45   throw new Unauthorized("Invalid or expired staff token.");
+  46 }
+  47 
+→ 48 const checkStaff = await prisma.staff.findUnique(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = "postgresql"
+10 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1 occurred when POST /diligence/enterprise was called
+error: Label: 20-Jan-2024 15:53:34: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:48:43
+
+  45   throw new Unauthorized("Invalid or expired staff token.");
+  46 }
+  47 
+→ 48 const checkStaff = await prisma.staff.findUnique(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = "postgresql"
+10 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1 occurred when POST /diligence/enterprise was called
+error: Label: 20-Jan-2024 15:53:35: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:48:43
+
+  45   throw new Unauthorized("Invalid or expired staff token.");
+  46 }
+  47 
+→ 48 const checkStaff = await prisma.staff.findUnique(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = "postgresql"
+10 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1 occurred when POST /diligence/enterprise was called
+error: Label: 20-Jan-2024 15:53:36: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:48:43
+
+  45   throw new Unauthorized("Invalid or expired staff token.");
+  46 }
+  47 
+→ 48 const checkStaff = await prisma.staff.findUnique(
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = "postgresql"
+10 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1 occurred when POST /diligence/enterprise was called
+info: Label: 20-Jan-2024 15:54:42: string created successfully

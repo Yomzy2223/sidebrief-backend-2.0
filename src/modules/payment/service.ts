@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+
+import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 import { Request } from "express";
 import { BadRequest, NotFound, Unauthorized } from "../../utils/requestErrors";
