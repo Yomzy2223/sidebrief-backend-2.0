@@ -5969,3 +5969,13 @@ info: Label: 24-Nov-2023 10:19:49: Service form created successfully
 error: Label: 24-Nov-2023 10:20:12: Service form not found!. with error Error: Service form not found!. occurred when GET /products/forms/al was called
 error: Label: 24-Nov-2023 10:20:20: Service form not found!. with error Error: Service form not found!. occurred when GET /products/forms/jshjhkdjkhakj was called
 info: Label: 19-Jan-2024 13:41:12: John Dow created an account successfully with testbam@gmail.com.
+error: Label: 20-Jan-2024 15:33:50: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:24:41
+
+  21   userPayload: UserPayload
+  22 ): Promise<UserResponseProps> => {
+  23   try {
+→ 24     const checkUser = await prisma.user.findUnique(
+The column `User.fullName` does not exist in the current database. occurred when POST /users was called
+info: Label: 20-Jan-2024 15:36:06: John Doe created an account successfully with string@gmail.com.

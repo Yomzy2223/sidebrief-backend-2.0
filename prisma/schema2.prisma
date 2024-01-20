@@ -1,0 +1,334 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output = "./generated/client2"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("MAIN_DATABASE_URL")
+}
+
+enum ProductActivityStage {
+  START
+  PAYMENT
+  PRORIETOR
+  REVIEW
+}
+
+model Staff {
+      id String @id @default(uuid())
+      firstName String 
+      lastName String
+      email String @unique
+      password String
+      phone String
+      verified Boolean
+      picture String?
+      resetToken String?
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+
+model Collaborator {
+      id String @id @default(uuid())
+      firstName String 
+      lastName String
+      email String @unique
+      password String
+      phone String
+      picture String?
+      verified Boolean
+      isPartner Boolean
+      resetToken String?
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      collaboratorDocument CollaboratorDocument[]
+}
+
+model CollaboratorDocument {
+      id String @id @default(uuid())
+      name String @unique
+      type String
+      description String
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      collaborator Collaborator @relation(fields: [collaboratorId], references: [id])
+      collaboratorId String
+}
+model Reward {
+      id String @id @default(uuid())
+      name String @unique
+      url String
+      descrition String 
+      image String
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+
+model Country {
+      id String @id @default(uuid())
+      name String @unique
+      iso String
+      currency String
+      code String
+      flagUrl String
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+
+model Bank {
+      id String @id @default(uuid())
+      name String @unique
+      code String
+      url String
+      image String
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+
+
+
+model Notification {
+      id String @id @default(uuid())
+      title String
+      body String
+      readStatus Boolean
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+
+
+model Account {
+      id String @id @default(uuid())
+      userId String
+      type String
+      provider String
+      scope String
+      user User @relation(fields: [userId], references: [id])
+}
+
+
+model User {
+      id String @id @default(uuid())
+      fullName String
+      username String?
+      email String @unique
+      password String
+      phone String?
+      picture String?
+      isVerified Boolean @default(false)
+      referral String
+      country String?
+      resetToken String?
+      isPartner Boolean @default(false)
+      isStaff Boolean @default(false)
+      isPhoneRegistered Boolean @default(false)
+      isPhoneVerified Boolean @default(false)
+      isIdentificationRegistered Boolean @default(false)
+      isIdentificationVerified Boolean @default(false)
+      teamMember TeamMember[]
+      partnerPermission String[]
+      staffPermission String[]
+      userPermission  String[]
+      account Account[]
+      product Product[]
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+
+model UserDocument {
+      id String @id @default(uuid())
+      name String
+      type String
+      description String
+      userId String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+model ServiceCategory {
+      id String @id @default(uuid())
+      name String @unique
+      description String
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      services Service[]
+      form ServiceCategoryForm[]
+}
+
+model ServiceCategoryForm {  
+  id String @id @default(uuid())
+  question String
+  type String
+  options String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
+  serviceCategoryId String
+}
+
+model Service {
+      id String @id @default(uuid())
+      name String
+      type String
+      code String
+      description String
+      country String
+      price String
+      timeline String
+      feature String[]
+      categoryForm String[]
+      hasShares Boolean @default(false)
+      numberOfShares String
+      requiredDocuments String[]
+      hasAgent Boolean @default(false)
+      hasOwner Boolean @default(false)
+      hasController Boolean @default(false)
+      controllerIsCalled String?
+      OwnerIsCalled String?
+      agentIsCalled String?
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
+      serviceCategoryId String
+      products Product[]
+      templates ServiceTemplate[]
+      forms ServiceForm[]
+}
+model ServiceTemplate {
+  id String @id @default(uuid())
+  name String
+  type String
+  description String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  service Service @relation(fields: [serviceId], references: [id])
+  serviceId String
+}
+model ServiceForm {  
+  id String @id @default(uuid())
+  question String
+  type String
+  options String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  service Service @relation(fields: [serviceId], references: [id])
+  serviceId String
+}
+model Product {
+      id String @id @default(uuid())
+      country String
+      email String?
+      address String?
+      paid Boolean @default(false)
+      Team Team[]
+      completed Boolean @default(false)
+      status String @default("pending")
+      currentState ProductActivityStage @default(START)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      service Service? @relation(fields: [serviceId], references: [id])
+      user User @relation(fields: [userId], references: [id])
+      serviceId String?
+      userId String
+      Payment Payment[]
+      productQA ProductQA[]
+}
+model ProductQA {  
+  id String @id @default(uuid())
+  question String
+  answer String[]
+  isGeneral Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  products Product @relation(fields: [productId], references: [id])
+  productId String
+}
+
+
+
+model Claim {
+      id String @id @default(uuid())
+      value String
+      userId String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
+model Team {
+      id String @id @default(uuid())
+      name String
+      slug String
+      userId String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      product Product @relation(fields: [productId], references: [id])
+      productId String
+      invitation Invitation[]
+teamMember TeamMember[]
+}
+
+model TeamMember {
+      id String @id @default(uuid())
+      isLaunchMember Boolean
+      isLaunchController Boolean
+      isLaunchOwner Boolean
+      launchOwnership Int
+      teamId String
+      userId String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      team Team @relation(fields: [teamId], references: [id])
+      user User @relation(fields: [userId], references: [id])
+}
+
+model Invitation {
+      id String @id @default(uuid())
+      teamId String
+      email String
+      token String
+      expireIn DateTime
+      invitedBy String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      team Team @relation(fields: [teamId], references: [id])
+   
+}
+model Payment  {
+      id String @id @default(uuid())
+      provider String
+      transactionId String
+      status String
+      email String
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      products Product @relation(fields: [productId], references: [id])
+      productId String
+}
+
+model Parter {
+      id String @id @default(uuid())
+      isVerified Boolean
+      verificationDocument String[]
+      serviceScore Int
+      paymentsMade Int
+      paymentsDue Int
+      paymentDetails String[]
+      countrySupported String[]
+      serviceSupported String[]
+      servicesAssigned String[]
+      servicesCompleted String[]
+      servicesDeclined String[]
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+}
