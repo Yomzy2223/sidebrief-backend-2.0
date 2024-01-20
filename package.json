@@ -11,7 +11,7 @@
     "test": "jest --forceExit --detectOpenHandles --runInBand",
     "prisma": "npx prisma generate --schema prisma/schema1.prisma --watch && npx prisma generate --schema prisma/schema2.prisma --watch ",
     "dev": "npx prisma migrate dev --schema prisma/schema1.prisma & npx prisma migrate dev --schema prisma/schema2.prisma && npm run build && node dist/index.js",
-    "start": "npm run "
+    "start": "npm run dev"
   },
   "author": "",
   "license": "ISC",
