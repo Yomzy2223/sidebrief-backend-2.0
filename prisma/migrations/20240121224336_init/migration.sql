@@ -170,7 +170,7 @@ CREATE TABLE "Account" (
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
-    "firstName" TEXT NOT NULL,
+    "fullName" TEXT NOT NULL,
     "username" TEXT,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,

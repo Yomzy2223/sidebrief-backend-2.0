@@ -6127,3 +6127,6 @@ error: Environment variable not found: DATABASE_URL.
 
 Validation Error Count: 1 occurred when POST /diligence/enterprise was called
 info: Label: 20-Jan-2024 15:54:42: string created successfully
+info: Label: 22-Jan-2024 08:44:47: string created an account successfully with damola@gmail.com.
+error: Label: 22-Jan-2024 08:44:50: User with this email already exists with error Error: User with this email already exists occurred when POST /users was called
+error: Label: 22-Jan-2024 08:44:56: User with this email already exists with error Error: User with this email already exists occurred when POST /users was called
