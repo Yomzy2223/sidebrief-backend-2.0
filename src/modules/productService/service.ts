@@ -5,7 +5,6 @@ import {
   ServiceFormResponse,
 } from "./entities";
 
-
 import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 const prisma = new PrismaClient();
@@ -45,7 +44,6 @@ const saveProductService = async (
 
     return response;
   } catch (error) {
-    console.log("nn", error);
     throw error;
   }
 };
