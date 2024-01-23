@@ -8,7 +8,8 @@ const googlePassport = (passport: any) => {
     "google-signup",
     new GoogleStrategy(
       {
-        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientID:
+          "52697745344-6179jfeeam85r03m1ls84p818hicuqvj.apps.googleusercontent.com",
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: process.env.GOOGLE_CALL_BACK_URL,
       },
