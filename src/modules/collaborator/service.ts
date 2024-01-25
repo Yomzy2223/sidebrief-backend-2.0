@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 import { hasher, matchChecker } from "../../common/hash";
 import { generateToken, verifyUserToken } from "../../common/token";

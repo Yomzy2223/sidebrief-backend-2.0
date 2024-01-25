@@ -42,27 +42,11 @@ const options: OpenAPIDefinition = {
         //User
         Users: {
           type: "object",
-          require: [
-            "firstName",
-            "lastName",
-            "username",
-            "email",
-            "password",
-            "phone",
-            "referral",
-          ],
+          require: ["fullName", "email", "password", "referral"],
           properties: {
-            firstName: {
+            fullName: {
               type: "string",
-              description: "The first name of the user",
-            },
-            lastName: {
-              type: "string",
-              description: "The last name of the user",
-            },
-            username: {
-              type: "string",
-              description: "The username of the user",
+              description: "The full name of the user",
             },
             email: {
               type: "string",
@@ -71,10 +55,6 @@ const options: OpenAPIDefinition = {
             password: {
               type: "string",
               description: "The password of the user",
-            },
-            phone: {
-              type: "string",
-              description: "The phone number of the user",
             },
             referral: {
               type: "string",
@@ -172,6 +152,117 @@ const options: OpenAPIDefinition = {
             password: {
               type: "string",
               description: "The password of the staff",
+              required: true,
+            },
+          },
+        },
+
+        //PRODUCT SERVICES
+        ProductServices: {
+          type: "object",
+          require: [
+            "name",
+            "type",
+            "code",
+            "description",
+            "country",
+            "price",
+            "timeline",
+            "feature",
+            "requiredDocuments",
+            "categoryForm",
+            "numberOfShares",
+            "serviceCategoryId",
+          ],
+          properties: {
+            name: {
+              type: "string",
+              description: "The name of the product service",
+              required: true,
+            },
+            type: {
+              type: "string",
+              description: "The type of the product service",
+              required: true,
+            },
+            code: {
+              type: "string",
+              description: "The code of the product service",
+              required: true,
+            },
+            description: {
+              type: "string",
+              description: "The description of the product service",
+              required: true,
+            },
+            country: {
+              type: "string",
+              description: "The country of the product service",
+              required: true,
+            },
+            price: {
+              type: "string",
+              description: "The price of the product service ",
+              required: true,
+            },
+            timeline: {
+              type: "string",
+              description: "The timeline for the product service ",
+              required: true,
+            },
+            feature: {
+              type: "array",
+              description: "The features of the product service ",
+              required: true,
+            },
+            requiredDocuments: {
+              type: "array",
+              description: "The required documents for the product service ",
+              required: true,
+            },
+            categoryForm: {
+              type: "array",
+              description: "The category form for the product service ",
+              required: true,
+            },
+            numberOfShares: {
+              type: "string",
+              description: "The number of shares for the product service ",
+              required: true,
+            },
+            serviceCategoryId: {
+              type: "string",
+              description: "The Id of the category of the product service ",
+              required: true,
+            },
+          },
+        },
+
+        // SERVICE FORMS
+
+        ServiceForms: {
+          type: "object",
+          require: ["question", "type", "options", "serviceId"],
+          properties: {
+            question: {
+              type: "string",
+              description: "The question required",
+              required: true,
+            },
+            type: {
+              type: "string",
+              description: "The type of the service form",
+              required: true,
+            },
+            options: {
+              type: "string",
+              description: "The options of the service form",
+              required: true,
+            },
+            serviceId: {
+              type: "string",
+              description:
+                "The Id of the product service for the service form ",
               required: true,
             },
           },
@@ -435,7 +526,183 @@ const options: OpenAPIDefinition = {
             },
           },
         },
+
+        //SERVICE CATEGORY
+        ServiceCategory: {
+          type: "object",
+          require: ["name", "description"],
+          properties: {
+            name: {
+              type: "string",
+              description: "The name of the service",
+            },
+            description: {
+              type: "string",
+              description: "The description of the service",
+            },
+          },
+        },
+
+        //SERVICE CATEGORY FORM
+        ServiceCategoryForm: {
+          type: "object",
+          require: ["firstName", "lastName", "email", "password"],
+          properties: {
+            question: {
+              type: "string",
+              description: "The first name of the user",
+            },
+            type: {
+              type: "string",
+              description: "The type of the answer to be sent",
+            },
+            options: {
+              type: "array",
+              description: "The options of the question",
+            },
+          },
+        },
+
+        //PRODUCT
+        CreateProduct: {
+          type: "object",
+          require: ["userId", "country", "question", "answer"],
+          properties: {
+            userId: {
+              type: "string",
+              description: "The id of the user",
+            },
+            country: {
+              type: "string",
+              description:
+                "The country where the user wants the business to be registered",
+            },
+            question: {
+              type: "string",
+              description: "The question of the service selected",
+            },
+            answer: {
+              type: "array",
+              description: "The answer of the question",
+            },
+          },
+        },
+
+        AddProductQA: {
+          type: "object",
+          require: ["question", "answer"],
+          properties: {
+            question: {
+              type: "string",
+              description: "The question of the service selected",
+            },
+            answer: {
+              type: "array",
+              description: "The answer of the question",
+            },
+          },
+        },
+
+        //Payment
+        PaymentInitialization: {
+          type: "object",
+          require: ["question", "answer"],
+          properties: {
+            email: {
+              type: "string",
+              description: "The question of the service selected",
+            },
+            currency: {
+              type: "string",
+              description: "The currency",
+            },
+            amount: {
+              type: "string",
+              description: "The amount",
+            },
+            card_number: {
+              type: "string",
+              description: "The number of the card",
+            },
+            card_pin: {
+              type: "string",
+              description: "The pin of the card",
+            },
+            cvv: {
+              type: "string",
+              description: "The cvv of the card",
+            },
+            expiry_month: {
+              type: "string",
+              description: "The expiry month of the card",
+            },
+            expiry_year: {
+              type: "string",
+              description: "The expiry date of the card",
+            },
+
+            account_bank: {
+              type: "string",
+              description: "The account bank",
+            },
+            type: {
+              type: "string",
+              description: "The type of the payment (Transfer, Card, USSD)",
+            },
+            productId: {
+              type: "string",
+              description: "The id of the product",
+            },
+            serviceId: {
+              type: "string",
+              description: "The id of the serivce",
+            },
+          },
+        },
+
+        ValidateOTP: {
+          type: "object",
+          require: ["question", "answer"],
+          properties: {
+            flw_ref: {
+              type: "string",
+              description: "The flutterwave reference",
+            },
+            email: {
+              type: "string",
+              description: "The email of the user",
+            },
+            otp: {
+              type: "string",
+              description: "The otp sent to the user",
+            },
+            amount: {
+              type: "string",
+              description: "The amount of the payment",
+            },
+            currency: {
+              type: "string",
+              description: "The currency of the payment",
+            },
+          },
+        },
+
+        PaymentConfirmation: {
+          type: "object",
+          require: ["email", "productId"],
+          properties: {
+            email: {
+              type: "string",
+              description: "The question of the service selected",
+            },
+            productId: {
+              type: "string",
+              description: "The answer of the question",
+            },
+          },
+        },
       },
+
       responses: {
         401: {
           description: "Unauthorized - User not authorized",
@@ -487,6 +754,22 @@ const options: OpenAPIDefinition = {
       {
         name: "Diligence User",
         description: "The diligence user management API",
+      },
+      {
+        name: "Service",
+        description: "The service management API",
+      },
+      {
+        name: "Service Product",
+        description: "The service product management API",
+      },
+      {
+        name: "Product",
+        description: "The product management API",
+      },
+      {
+        name: "Payment",
+        description: "The payment management API",
       },
     ],
     paths: {
@@ -878,6 +1161,1009 @@ const options: OpenAPIDefinition = {
         },
       },
 
+      // Product service
+      "/service/product/{serviceCategoryId}": {
+        post: {
+          tags: ["Service Product"],
+          summary: "Create a new product service with service category ID",
+          parameters: [
+            {
+              name: "serviceCategoryId",
+              in: "path",
+              required: true,
+              description: "ID of service category for the product service",
+              type: "string",
+            },
+            {
+              name: "productServices",
+              in: "body",
+              description: "properties of the product service",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ProductServices", //
+                },
+              },
+            },
+          },
+
+          produces: ["application/json"],
+          responses: {
+            201: {
+              description: "Product service created successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product": {
+        get: {
+          tags: ["Service Product"],
+          summary: "Get all product services ",
+          responses: {
+            200: {
+              description: "Product services gotten successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product/category/{serviceCategoryId}": {
+        get: {
+          summary: "Get all product service with service category ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "serviceCategoryId",
+              in: "path",
+              required: true,
+              description: "ID of service category of the product service",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Product service fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product/{id}": {
+        get: {
+          summary: "Get a product service with given ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the product service",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Product service fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete a product service with given ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the product service to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Product service deleted successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+
+        put: {
+          tags: ["Service Product"],
+          summary: "Update an existing product service with given ID",
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of product service",
+              type: "string",
+            },
+            {
+              name: "productServices",
+              in: "body",
+              description: " new properties of the product service",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ProductServices", //
+                },
+              },
+            },
+          },
+
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Product service updated successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product/forms/{serviceId}": {
+        post: {
+          tags: ["Service Product"],
+          summary: "Create a new service form with service ID",
+          parameters: [
+            {
+              name: "serviceId",
+              in: "path",
+              required: true,
+              description: "ID of service for the service form",
+              type: "string",
+            },
+            {
+              name: "serviceForms",
+              in: "body",
+              description: "properties of the service form",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceForms", //
+                },
+              },
+            },
+          },
+
+          produces: ["application/json"],
+          responses: {
+            201: {
+              description: "Service form created successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product/forms/{id}": {
+        get: {
+          summary: "Get a product service with given ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the service form",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+        delete: {
+          summary: "Delete a service form with given ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the service form to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form deleted successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+        put: {
+          tags: ["Service Product"],
+          summary: "Update an existing service form with given ID",
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of the service form",
+              type: "string",
+            },
+            {
+              name: "serviceForms",
+              in: "body",
+              description: "properties of the service form",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          ],
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceForms", //
+                },
+              },
+            },
+          },
+
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Service form updated successfully!",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product/forms/all": {
+        get: {
+          tags: ["Service Product"],
+          summary: "Get all service forms ",
+          responses: {
+            200: {
+              description: "Service forms gotten successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product/forms/service/{serviceId}": {
+        get: {
+          summary: "Get all service forms with service ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "serviceId",
+              in: "path",
+              required: true,
+              description: "ID of service of the service form",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+      },
+      //Services
+      "/services": {
+        post: {
+          tags: ["Service"],
+          summary: "Create a new service",
+          description: "Create new service in system",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceCategory", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New service is created",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategory",
+              },
+            },
+          },
+        },
+
+        get: {
+          tags: ["Service"],
+          summary: "Get all services in system",
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategory",
+              },
+            },
+          },
+        },
+      },
+
+      "/services/{id}": {
+        get: {
+          summary: "Get a service with given ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service is fetched",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategory",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete service with given ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service is deleted",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategory",
+              },
+            },
+          },
+        },
+
+        put: {
+          summary: "Update a service with give ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service to be updated",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceCategory", //
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Service is updated",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategory",
+              },
+            },
+          },
+        },
+      },
+
+      "/services/form": {
+        post: {
+          tags: ["Service"],
+          summary: "Create a new service form",
+          description: "Create new service form in system",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceCategoryForm", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New service form is created",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategoryForm",
+              },
+            },
+          },
+        },
+
+        // get: {
+        //   tags: ["Service"],
+        //   summary: "Get all service forms in system",
+        //   responses: {
+        //     200: {
+        //       description: "OK",
+        //       schema: {
+        //         $ref: "#/components/schemas/ServiceCategoryForm",
+        //       },
+        //     },
+        //   },
+        // },
+      },
+      "/services/forms/{id}": {
+        get: {
+          summary: "Get all service forms with given ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service form to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form is fetched",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategoryForm",
+              },
+            },
+          },
+        },
+      },
+
+      "/services/form/{id}": {
+        get: {
+          summary: "Get a service form with given ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service form to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form is fetched",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategoryForm",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete a service form with given ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service form to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form is deleted",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategoryForm",
+              },
+            },
+          },
+        },
+
+        put: {
+          summary: "Update a service form with give ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service form to be updated",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceCategoryForm", //
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Service form is updated",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategoryForm",
+              },
+            },
+          },
+        },
+      },
+
+      //Product
+      "/products": {
+        post: {
+          tags: ["Product"],
+          summary: "Create a new product for a user",
+          description: "Create new product in system",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/CreateProduct", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New user product is created",
+              schema: {
+                $ref: "#/components/schemas/CreateProduct",
+              },
+            },
+          },
+        },
+
+        // get: {
+        //   tags: ["Product"],
+        //   summary: "Get all users products in system",
+        //   responses: {
+        //     200: {
+        //       description: "OK",
+        //       schema: {
+        //         $ref: "#/components/schemas/CreateProduct",
+        //       },
+        //     },
+        //   },
+        // },
+      },
+
+      "/products/{userId}": {
+        get: {
+          tags: ["Product"],
+          summary: "Get all users products in system",
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of user to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "user products list is fetched",
+              schema: {
+                $ref: "#/components/schemas/CreateProduct",
+              },
+            },
+          },
+        },
+      },
+
+      // "/products/{productId}": {
+      //   get: {
+      //     tags: ["Product"],
+      //     summary: "Get a product of a user in system",
+      //     parameters: [
+      //       {
+      //         name: "productId",
+      //         in: "path",
+      //         required: true,
+      //         description: "ID of product to be fetched",
+      //         type: "string",
+      //       },
+      //     ],
+      //     responses: {
+      //       200: {
+      //         description: "Product is fetched",
+      //         schema: {
+      //           $ref: "#/components/schemas/CreateProduct",
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
+
+      "/products/qa": {
+        post: {
+          tags: ["Product"],
+          summary: "Save a user product QA",
+          description: "Save user product QA in system",
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of product",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/AddProductQA", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New user product is created",
+              schema: {
+                $ref: "#/components/schemas/AddProductQA",
+              },
+            },
+          },
+        },
+
+        get: {
+          tags: ["Product"],
+          summary: "Get all users products QA in system",
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/AddProductQA",
+              },
+            },
+          },
+        },
+      },
+
+      "/products/qa/{id}": {
+        get: {
+          summary: "Get a user product QA with given ID",
+          tags: ["Product"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of product to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Product QA is fetched",
+              schema: {
+                $ref: "#/components/schemas/AddProductQA",
+              },
+            },
+          },
+        },
+
+        // delete: {
+        //   summary: "Delete bank with given ID",
+        //   tags: ["Banks"],
+        //   parameters: [
+        //     {
+        //       name: "id",
+        //       in: "path",
+        //       required: true,
+        //       description: "ID of bank to be deleted",
+        //       type: "string",
+        //     },
+        //   ],
+        //   responses: {
+        //     200: {
+        //       description: "Bank is deleted",
+        //       schema: {
+        //         $ref: "#/components/schemas/Banks",
+        //       },
+        //     },
+        //   },
+        // },
+
+        // put: {
+        //   summary: "Update bank with give ID",
+        //   tags: ["Banks"],
+        //   parameters: [
+        //     {
+        //       name: "id",
+        //       in: "path",
+        //       required: true,
+        //       description: "ID of bank to be updated",
+        //       type: "string",
+        //     },
+        //   ],
+        //   requestBody: {
+        //     // expected request body
+        //     content: {
+        //       // content-type
+        //       "application/json": {
+        //         schema: {
+        //           $ref: "#/components/schemas/Banks", //
+        //         },
+        //       },
+        //     },
+        //   },
+        //   responses: {
+        //     200: {
+        //       description: "Bank is updated",
+        //       schema: {
+        //         $ref: "#/components/schemas/Banks",
+        //       },
+        //     },
+        //   },
+        // },
+      },
+
+      "/products/service/qa/{id}": {
+        get: {
+          summary: "Get a service QA of a user product with a given ID",
+          tags: ["Banks"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of product to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Product service QA is fetched",
+              schema: {
+                $ref: "#/components/schemas/AddProductQA",
+              },
+            },
+          },
+        },
+
+        // delete: {
+        //   summary: "Delete product service with given ID",
+        //   tags: ["Banks"],
+        //   parameters: [
+        //     {
+        //       name: "id",
+        //       in: "path",
+        //       required: true,
+        //       description: "ID of product ser to be deleted",
+        //       type: "string",
+        //     },
+        //   ],
+        //   responses: {
+        //     200: {
+        //       description: "Bank is deleted",
+        //       schema: {
+        //         $ref: "#/components/schemas/Banks",
+        //       },
+        //     },
+        //   },
+        // },
+
+        // put: {
+        //   summary: "Update bank with give ID",
+        //   tags: ["Banks"],
+        //   parameters: [
+        //     {
+        //       name: "id",
+        //       in: "path",
+        //       required: true,
+        //       description: "ID of bank to be updated",
+        //       type: "string",
+        //     },
+        //   ],
+        //   requestBody: {
+        //     // expected request body
+        //     content: {
+        //       // content-type
+        //       "application/json": {
+        //         schema: {
+        //           $ref: "#/components/schemas/Banks", //
+        //         },
+        //       },
+        //     },
+        //   },
+        //   responses: {
+        //     200: {
+        //       description: "Bank is updated",
+        //       schema: {
+        //         $ref: "#/components/schemas/Banks",
+        //       },
+        //     },
+        //   },
+        // },
+      },
+
+      //payments
+      //make payment
+      "/payment": {
+        post: {
+          tags: ["Payment"],
+          summary: "Initialize payment",
+          description: "Initialize payment",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/PaymentInitialization", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "payment initialized successfully",
+              schema: {
+                $ref: "#/components/schemas/PaymentInitialization",
+              },
+            },
+          },
+        },
+      },
+
+      "/payment/otp-validation": {
+        post: {
+          tags: ["Payment"],
+          summary: "Validate flutterwave OTP",
+          description: "validate flutterwave OTP wneh making payment with card",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ValidateOTP", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "otp validated successfully",
+              schema: {
+                $ref: "#/components/schemas/ValidateOTP",
+              },
+            },
+          },
+        },
+      },
+
+      "/payment/confirmation": {
+        post: {
+          tags: ["Payment"],
+          summary: "Confirm flutterwave payment",
+          description: "Confirm flutterwave payment",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/PaymentConfirmation", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "payment successfully",
+              schema: {
+                $ref: "#/components/schemas/PaymentConfirmation",
+              },
+            },
+          },
+        },
+      },
+
+      //Banks
       "/banks": {
         post: {
           tags: ["Banks"],
@@ -2199,6 +3485,10 @@ const options: OpenAPIDefinition = {
     "../modules/bank/routes.js",
     "../modules/staff/routes.js",
     "../modules/diligence/routes.js",
+    "../modules/productService/routes.js",
+    "../modules/serviceCategory/routes.js",
+    "../modules/payment/routes.js",
+    "../modules/product/routes.js",
   ],
 };
 

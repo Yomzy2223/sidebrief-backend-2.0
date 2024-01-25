@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { hasher } from "../../common/hash";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+// import { PrismaClient } from "@prisma/client";
+// const prisma = new PrismaClient();
 
 import {
   getAllBanks,
@@ -184,7 +184,7 @@ const CreateEnterprise = async (
       logo: enterprisePayload.logo,
       backdrop: enterprisePayload.backdrop,
     };
-
+    console.log("palo", values);
     const diligenceEnterprise = await createEnterprise(values);
 
     return res.status(diligenceEnterprise.statusCode).json({
@@ -192,6 +192,7 @@ const CreateEnterprise = async (
       data: diligenceEnterprise.data,
     });
   } catch (error) {
+    console.log("valid error", error);
     next(error);
   }
 };
@@ -891,12 +892,12 @@ const Test = async (req: Request, res: Response, next: NextFunction) => {
       logo: data.logo,
     }));
 
-    const save = await prisma.nigerianBank.createMany({
-      data: newList,
-      skipDuplicates: true,
-    });
+    // const save = await prisma.nigerianBank.createMany({
+    //   data: newList,
+    //   skipDuplicates: true,
+    // });
 
-    return res.status(200).json({ data: save });
+    return res.status(200).json({ data: "" });
   } catch (error) {}
 };
 

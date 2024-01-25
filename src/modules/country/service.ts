@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 import { BadRequest } from "../../utils/requestErrors";
 import { CountryPayload, CountryResponse } from "./entities";

@@ -9,8 +9,11 @@ import bankRoutes from "./src/modules/bank/routes";
 import countryRoutes from "./src/modules/country/routes";
 import staffRoutes from "./src/modules/staff/routes";
 import diligenceRoutes from "./src/modules/diligence/routes";
-import serviceRoutes from "./src/modules/productService/routes";
+import serviceRoutes from "./src/modules/serviceCategory/routes";
 import collaboratorRoutes from "./src/modules/collaborator/routes";
+import productServiceRoutes from "./src/modules/productService/routes";
+import productRoutes from "./src/modules/product/routes";
+import paymentRoutes from "./src/modules/payment/routes";
 // const connectDb = require("./src/config/database");
 import logger from "./src/config/logger";
 import swaggerJSDoc from "swagger-jsdoc";
@@ -21,6 +24,10 @@ import passport from "passport";
 import ErrorHandler from "./src/middleware/errorHandler";
 
 // require("./src/modules/user/googleAuth")(passport);
+
+import googlePassport from "./src/modules/user/googleAuth";
+import { ScheduledJob } from "./src/modules/product/service";
+googlePassport(passport);
 
 const app = express();
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
@@ -43,6 +50,9 @@ interface SessionProps {
     secure: boolean;
   };
 }
+
+//run product crone job
+// ScheduledJob();
 
 const sessionOption: SessionProps = {
   secret: process.env.SESSION_SECRET,
@@ -77,6 +87,13 @@ app.use("/banks", bankRoutes);
 app.use("/countries", countryRoutes);
 //test
 app.use("/diligence", diligenceRoutes);
+//productService
+app.use("/service/product", productServiceRoutes);
+//product
+app.use("/products", productRoutes);
+
+//payment
+app.use("/payment", paymentRoutes);
 
 const specs = swaggerJSDoc(options);
 app.use(
