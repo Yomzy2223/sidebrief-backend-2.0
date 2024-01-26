@@ -20,30 +20,30 @@ import {
 
 router.post(
   "/",
-  // staffAuth,
+  //
   validator(validateServiceCategory),
   ServiceCategoryCreator
 );
 router.get("/", ServiceCategoriesFetcher);
-router.get("/:id", userAuth, ServiceCategoryFetcher);
+router.get("/:id", ServiceCategoryFetcher);
 router.put(
   "/:id",
-  staffAuth,
+
   validator(validateServiceCategory),
   ServiceCategoryModifier
 );
-router.delete("/:id", staffAuth, ServiceCategoryRemover);
+router.delete("/:id", ServiceCategoryRemover);
 
 router.post(
-  "/form",
-  staffAuth,
+  "/form/:serviceCategoryId",
+
   validator(validateServiceCategoryForm),
   ServiceCategoryFormCreator
 );
 router.get("/forms/:id", ServiceCategoryFormFetcher);
 router.put(
   "/form/:id",
-  staffAuth,
+
   validator(validateServiceCategoryForm),
   ServiceCategoryFormFetcher
 );

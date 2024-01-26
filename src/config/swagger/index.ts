@@ -31,11 +31,13 @@ const options: OpenAPIDefinition = {
           type: "oauth2",
           flows: {},
         },
-        BearerAuth: {
-          type: "apiKey",
+        bearerAuth: {
+          type: "http",
           name: "Authorization",
+          scheme: "bearer",
           in: "header",
           description: "Bearer token (Bearer + token)",
+          bearerFormat: "JWT",
         },
       },
       schemas: {
@@ -169,10 +171,7 @@ const options: OpenAPIDefinition = {
             "price",
             "timeline",
             "feature",
-            "requiredDocuments",
-            "categoryForm",
             "numberOfShares",
-            "serviceCategoryId",
           ],
           properties: {
             name: {
@@ -215,24 +214,10 @@ const options: OpenAPIDefinition = {
               description: "The features of the product service ",
               required: true,
             },
-            requiredDocuments: {
-              type: "array",
-              description: "The required documents for the product service ",
-              required: true,
-            },
-            categoryForm: {
-              type: "array",
-              description: "The category form for the product service ",
-              required: true,
-            },
+
             numberOfShares: {
               type: "string",
               description: "The number of shares for the product service ",
-              required: true,
-            },
-            serviceCategoryId: {
-              type: "string",
-              description: "The Id of the category of the product service ",
               required: true,
             },
           },
@@ -288,6 +273,34 @@ const options: OpenAPIDefinition = {
             image: {
               type: "string",
               description: "The bank image of the bank",
+            },
+          },
+        },
+
+        //COUNTRY
+        Country: {
+          type: "object",
+          require: ["iso", "name", "flagUrl", "code", "currency"],
+          properties: {
+            name: {
+              type: "string",
+              description: "The country name of the country",
+            },
+            code: {
+              type: "string",
+              description: "The country code of the country",
+            },
+            flagUrl: {
+              type: "string",
+              description: "The flag url of the country",
+            },
+            image: {
+              type: "string",
+              description: "The image of the country",
+            },
+            currency: {
+              type: "string",
+              description: "The currency of the country",
             },
           },
         },
@@ -714,6 +727,9 @@ const options: OpenAPIDefinition = {
         },
       },
     },
+    security: {
+      bearerAuth: [],
+    },
     tags: [
       {
         name: "Users",
@@ -726,6 +742,10 @@ const options: OpenAPIDefinition = {
       {
         name: "Banks",
         description: "The banks management API",
+      },
+      {
+        name: "Country",
+        description: "The Country management API",
       },
       {
         name: "Nigerian Banks",
@@ -1337,13 +1357,13 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/service/product/forms/{serviceId}": {
+      "/service/product/forms/{productId}": {
         post: {
           tags: ["Service Product"],
           summary: "Create a new service form with service ID",
           parameters: [
             {
-              name: "serviceId",
+              name: "productId",
               in: "path",
               required: true,
               description: "ID of service for the service form",
@@ -1631,12 +1651,20 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/services/form": {
+      "/services/form/{serviceCategoryId}": {
         post: {
           tags: ["Service"],
           summary: "Create a new service form",
           description: "Create new service form in system",
-
+          parameters: [
+            {
+              name: "serviceCategoryId",
+              in: "path",
+              required: true,
+              description: "ID of service form to be fetched",
+              type: "string",
+            },
+          ],
           requestBody: {
             // expected request body
             content: {
@@ -2279,6 +2307,128 @@ const options: OpenAPIDefinition = {
               description: "Bank is updated",
               schema: {
                 $ref: "#/components/schemas/Banks",
+              },
+            },
+          },
+        },
+      },
+
+      //countries
+      "/countries": {
+        post: {
+          tags: ["Country"],
+          summary: "Create a new country",
+          description: "Create new country in system",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Country", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New country is created",
+              schema: {
+                $ref: "#/components/schemas/Country",
+              },
+            },
+          },
+        },
+
+        get: {
+          tags: ["Country"],
+          summary: "Get all country in system",
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/Country",
+              },
+            },
+          },
+        },
+      },
+
+      "/countries/{id}": {
+        get: {
+          summary: "Get a country with given ID",
+          tags: ["Country"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of country to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Country is fetched",
+              schema: {
+                $ref: "#/components/schemas/Country",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete country with given ID",
+          tags: ["Country"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of country to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Country is deleted",
+              schema: {
+                $ref: "#/components/schemas/Country",
+              },
+            },
+          },
+        },
+
+        put: {
+          summary: "Update country with give ID",
+          tags: ["Country"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of country to be updated",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Country", //
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Country is updated",
+              schema: {
+                $ref: "#/components/schemas/Country",
               },
             },
           },
@@ -3483,6 +3633,7 @@ const options: OpenAPIDefinition = {
   apis: [
     "../modules/user/routes.js",
     "../modules/bank/routes.js",
+    "../modules/country/routes.js",
     "../modules/staff/routes.js",
     "../modules/diligence/routes.js",
     "../modules/productService/routes.js",

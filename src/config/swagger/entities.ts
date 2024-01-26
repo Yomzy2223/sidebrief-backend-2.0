@@ -82,10 +82,7 @@ interface ProductServices {
     price: Props;
     timeline: Props;
     feature: Props;
-    requiredDocuments: Props;
-    categoryForm: Props;
     numberOfShares: Props;
-    serviceCategoryId: Props;
   };
 }
 
@@ -100,6 +97,15 @@ interface ServiceForms {
     serviceId: Props;
   };
 }
+interface ProductServiceForms {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
+    type: Props;
+    options: Props;
+  };
+}
 
 //Banks
 interface Banks {
@@ -110,6 +116,18 @@ interface Banks {
     code: Props;
     url: Props;
     image: Props;
+  };
+}
+
+interface Country {
+  type: string;
+  require: string[];
+  properties: {
+    name: Props;
+    code: Props;
+    flagUrl: Props;
+    image: Props;
+    currency: Props;
   };
 }
 
@@ -316,11 +334,13 @@ interface ComponentDefinition {
       type: string;
       flows: {};
     };
-    BearerAuth: {
+    bearerAuth: {
       type: string;
       name: string;
+      scheme: string;
       in: string;
       description: string;
+      bearerFormat: string;
     };
   };
   schemas: {
@@ -340,7 +360,7 @@ interface ComponentDefinition {
 
     //Banks
     Banks: Banks;
-
+    Country: Country;
     //Diligence
     DiligenceEnterprise: DiligenceEnterprise;
     DiligenceManager: DiligenceManager;
@@ -397,6 +417,9 @@ export interface OpenAPIDefinition {
     schemas: string[];
     servers: ServerDefinition[];
     components: ComponentDefinition;
+    security: {
+      bearerAuth: any;
+    };
     tags: TagDefinition[];
     paths: any;
   };

@@ -19,17 +19,17 @@ const router = express.Router();
 router.post(
   "/",
   validator(initializeProductCredentials),
-  userAuth,
+
   CreateProduct
 );
-router.get("/:userId", userAuth, GetAllProductsByUserId);
-router.post("/qa", validator(producQACredentials), userAuth, AddProductQA);
-router.get("/service/qa", userAuth, GetAllServicesQA);
-router.get("/qa", userAuth, GetAllProductQA);
+router.get("/:userId", GetAllProductsByUserId);
+router.post("/qa", validator(producQACredentials), AddProductQA);
+router.get("/service/qa", GetAllServicesQA);
+router.get("/qa", GetAllProductQA);
 router.post(
   "/submission",
   validator(submitProductCredentials),
-  userAuth,
+
   ProductSubmission
 );
 
