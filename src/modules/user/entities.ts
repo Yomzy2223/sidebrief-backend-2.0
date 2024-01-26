@@ -3,6 +3,8 @@ export interface UserPayload {
   email: string;
   password: string;
   referral: string;
+  isPartner: boolean;
+  isStaff: boolean;
 }
 export interface UserResponseProps {
   message: string;
@@ -20,8 +22,10 @@ export interface UserResponse {
   token?: string;
   refreshToken?: string;
   tokenExpiresIn?: number;
-  isVerified: boolean;
-  referral: string | null;
+  isVerified?: boolean;
+  referral?: string | null;
+  isPartner?: boolean;
+  isStaff?: boolean;
 }
 
 export interface UserLogin {

@@ -19,6 +19,7 @@ export interface ServiceCategoryFormPayload {
   type: string;
   options: string[];
   serviceCategoryId: string;
+  compulsory: boolean;
 }
 
 export interface ServiceCategoryFormData {

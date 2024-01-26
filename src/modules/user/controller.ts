@@ -26,6 +26,8 @@ const UserRegisration = async (
       email: userPayload.email.toLowerCase(),
       password: cryptedPassword,
       referral: userPayload.referral,
+      isPartner: userPayload.isPartner,
+      isStaff: userPayload.isStaff,
       partnerPermission: [],
       staffPermission: [],
       userPermission: [],

@@ -284,6 +284,7 @@ export type ServiceCategoryFormPayload<ExtArgs extends $Extensions.Args = $Exten
     question: string
     type: string
     options: string[]
+    compulsory: boolean
     createdAt: Date
     updatedAt: Date
     serviceCategoryId: string
@@ -317,7 +318,6 @@ export type ServicePayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     categoryForm: string[]
     hasShares: boolean
     numberOfShares: string
-    requiredDocuments: string[]
     hasAgent: boolean
     hasOwner: boolean
     hasController: boolean
@@ -368,6 +368,7 @@ export type ServiceFormPayload<ExtArgs extends $Extensions.Args = $Extensions.De
     question: string
     type: string
     options: string[]
+    compulsory: boolean
     createdAt: Date
     updatedAt: Date
     serviceId: string
@@ -13927,6 +13928,7 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     serviceCategoryId: string | null
@@ -13936,6 +13938,7 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     serviceCategoryId: string | null
@@ -13946,6 +13949,7 @@ export namespace Prisma {
     question: number
     type: number
     options: number
+    compulsory: number
     createdAt: number
     updatedAt: number
     serviceCategoryId: number
@@ -13957,6 +13961,7 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    compulsory?: true
     createdAt?: true
     updatedAt?: true
     serviceCategoryId?: true
@@ -13966,6 +13971,7 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    compulsory?: true
     createdAt?: true
     updatedAt?: true
     serviceCategoryId?: true
@@ -13976,6 +13982,7 @@ export namespace Prisma {
     question?: true
     type?: true
     options?: true
+    compulsory?: true
     createdAt?: true
     updatedAt?: true
     serviceCategoryId?: true
@@ -14060,6 +14067,7 @@ export namespace Prisma {
     question: string
     type: string
     options: string[]
+    compulsory: boolean
     createdAt: Date
     updatedAt: Date
     serviceCategoryId: string
@@ -14087,6 +14095,7 @@ export namespace Prisma {
     question?: boolean
     type?: boolean
     options?: boolean
+    compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     serviceCategoryId?: boolean
@@ -14098,6 +14107,7 @@ export namespace Prisma {
     question?: boolean
     type?: boolean
     options?: boolean
+    compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     serviceCategoryId?: boolean
@@ -14918,7 +14928,6 @@ export namespace Prisma {
     categoryForm: number
     hasShares: number
     numberOfShares: number
-    requiredDocuments: number
     hasAgent: number
     hasOwner: number
     hasController: number
@@ -14989,7 +14998,6 @@ export namespace Prisma {
     categoryForm?: true
     hasShares?: true
     numberOfShares?: true
-    requiredDocuments?: true
     hasAgent?: true
     hasOwner?: true
     hasController?: true
@@ -15088,7 +15096,6 @@ export namespace Prisma {
     categoryForm: string[]
     hasShares: boolean
     numberOfShares: string
-    requiredDocuments: string[]
     hasAgent: boolean
     hasOwner: boolean
     hasController: boolean
@@ -15130,7 +15137,6 @@ export namespace Prisma {
     categoryForm?: boolean
     hasShares?: boolean
     numberOfShares?: boolean
-    requiredDocuments?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -15160,7 +15166,6 @@ export namespace Prisma {
     categoryForm?: boolean
     hasShares?: boolean
     numberOfShares?: boolean
-    requiredDocuments?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -16949,6 +16954,7 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     serviceId: string | null
@@ -16958,6 +16964,7 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     serviceId: string | null
@@ -16968,6 +16975,7 @@ export namespace Prisma {
     question: number
     type: number
     options: number
+    compulsory: number
     createdAt: number
     updatedAt: number
     serviceId: number
@@ -16979,6 +16987,7 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    compulsory?: true
     createdAt?: true
     updatedAt?: true
     serviceId?: true
@@ -16988,6 +16997,7 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    compulsory?: true
     createdAt?: true
     updatedAt?: true
     serviceId?: true
@@ -16998,6 +17008,7 @@ export namespace Prisma {
     question?: true
     type?: true
     options?: true
+    compulsory?: true
     createdAt?: true
     updatedAt?: true
     serviceId?: true
@@ -17082,6 +17093,7 @@ export namespace Prisma {
     question: string
     type: string
     options: string[]
+    compulsory: boolean
     createdAt: Date
     updatedAt: Date
     serviceId: string
@@ -17109,6 +17121,7 @@ export namespace Prisma {
     question?: boolean
     type?: boolean
     options?: boolean
+    compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     serviceId?: boolean
@@ -17120,6 +17133,7 @@ export namespace Prisma {
     question?: boolean
     type?: boolean
     options?: boolean
+    compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     serviceId?: boolean
@@ -25814,6 +25828,7 @@ export namespace Prisma {
     question: 'question',
     type: 'type',
     options: 'options',
+    compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     serviceCategoryId: 'serviceCategoryId'
@@ -25835,7 +25850,6 @@ export namespace Prisma {
     categoryForm: 'categoryForm',
     hasShares: 'hasShares',
     numberOfShares: 'numberOfShares',
-    requiredDocuments: 'requiredDocuments',
     hasAgent: 'hasAgent',
     hasOwner: 'hasOwner',
     hasController: 'hasController',
@@ -25868,6 +25882,7 @@ export namespace Prisma {
     question: 'question',
     type: 'type',
     options: 'options',
+    compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     serviceId: 'serviceId'
@@ -26754,6 +26769,7 @@ export namespace Prisma {
     question?: StringFilter | string
     type?: StringFilter | string
     options?: StringNullableListFilter
+    compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     serviceCategoryId?: StringFilter | string
@@ -26765,6 +26781,7 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     options?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceCategoryId?: SortOrder
@@ -26780,6 +26797,7 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     options?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceCategoryId?: SortOrder
@@ -26796,6 +26814,7 @@ export namespace Prisma {
     question?: StringWithAggregatesFilter | string
     type?: StringWithAggregatesFilter | string
     options?: StringNullableListFilter
+    compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     serviceCategoryId?: StringWithAggregatesFilter | string
@@ -26817,7 +26836,6 @@ export namespace Prisma {
     categoryForm?: StringNullableListFilter
     hasShares?: BoolFilter | boolean
     numberOfShares?: StringFilter | string
-    requiredDocuments?: StringNullableListFilter
     hasAgent?: BoolFilter | boolean
     hasOwner?: BoolFilter | boolean
     hasController?: BoolFilter | boolean
@@ -26846,7 +26864,6 @@ export namespace Prisma {
     categoryForm?: SortOrder
     hasShares?: SortOrder
     numberOfShares?: SortOrder
-    requiredDocuments?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
     hasController?: SortOrder
@@ -26879,7 +26896,6 @@ export namespace Prisma {
     categoryForm?: SortOrder
     hasShares?: SortOrder
     numberOfShares?: SortOrder
-    requiredDocuments?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
     hasController?: SortOrder
@@ -26910,7 +26926,6 @@ export namespace Prisma {
     categoryForm?: StringNullableListFilter
     hasShares?: BoolWithAggregatesFilter | boolean
     numberOfShares?: StringWithAggregatesFilter | string
-    requiredDocuments?: StringNullableListFilter
     hasAgent?: BoolWithAggregatesFilter | boolean
     hasOwner?: BoolWithAggregatesFilter | boolean
     hasController?: BoolWithAggregatesFilter | boolean
@@ -26985,6 +27000,7 @@ export namespace Prisma {
     question?: StringFilter | string
     type?: StringFilter | string
     options?: StringNullableListFilter
+    compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     serviceId?: StringFilter | string
@@ -26996,6 +27012,7 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     options?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -27011,6 +27028,7 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     options?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -27027,6 +27045,7 @@ export namespace Prisma {
     question?: StringWithAggregatesFilter | string
     type?: StringWithAggregatesFilter | string
     options?: StringNullableListFilter
+    compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     serviceId?: StringWithAggregatesFilter | string
@@ -28542,6 +28561,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     category: ServiceCategoryCreateNestedOneWithoutFormInput
@@ -28552,6 +28572,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceCategoryId: string
@@ -28562,6 +28583,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: ServiceCategoryUpdateOneRequiredWithoutFormNestedInput
@@ -28572,6 +28594,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
@@ -28582,6 +28605,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceCategoryId: string
@@ -28592,6 +28616,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28601,6 +28626,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
@@ -28619,7 +28645,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -28647,7 +28672,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -28675,7 +28699,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -28703,7 +28726,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -28731,7 +28753,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -28756,7 +28777,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -28780,7 +28800,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -28866,6 +28885,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     service: ServiceCreateNestedOneWithoutFormsInput
@@ -28876,6 +28896,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceId: string
@@ -28886,6 +28907,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneRequiredWithoutFormsNestedInput
@@ -28896,6 +28918,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: StringFieldUpdateOperationsInput | string
@@ -28906,6 +28929,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceId: string
@@ -28916,6 +28940,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28925,6 +28950,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: StringFieldUpdateOperationsInput | string
@@ -30208,6 +30234,7 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     options?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceCategoryId?: SortOrder
@@ -30217,6 +30244,7 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceCategoryId?: SortOrder
@@ -30226,6 +30254,7 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceCategoryId?: SortOrder
@@ -30264,7 +30293,6 @@ export namespace Prisma {
     categoryForm?: SortOrder
     hasShares?: SortOrder
     numberOfShares?: SortOrder
-    requiredDocuments?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
     hasController?: SortOrder
@@ -30360,6 +30388,7 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     options?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -30369,6 +30398,7 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -30378,6 +30408,7 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -31117,10 +31148,6 @@ export namespace Prisma {
     set: Enumerable<string>
   }
 
-  export type ServiceCreaterequiredDocumentsInput = {
-    set: Enumerable<string>
-  }
-
   export type ServiceCategoryCreateNestedOneWithoutServicesInput = {
     create?: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
     connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput
@@ -31175,11 +31202,6 @@ export namespace Prisma {
   }
 
   export type ServiceUpdatecategoryFormInput = {
-    set?: Enumerable<string>
-    push?: string | Enumerable<string>
-  }
-
-  export type ServiceUpdaterequiredDocumentsInput = {
     set?: Enumerable<string>
     push?: string | Enumerable<string>
   }
@@ -32348,7 +32370,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -32375,7 +32396,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -32404,6 +32424,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32413,6 +32434,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32459,7 +32481,6 @@ export namespace Prisma {
     categoryForm?: StringNullableListFilter
     hasShares?: BoolFilter | boolean
     numberOfShares?: StringFilter | string
-    requiredDocuments?: StringNullableListFilter
     hasAgent?: BoolFilter | boolean
     hasOwner?: BoolFilter | boolean
     hasController?: BoolFilter | boolean
@@ -32495,6 +32516,7 @@ export namespace Prisma {
     question?: StringFilter | string
     type?: StringFilter | string
     options?: StringNullableListFilter
+    compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     serviceCategoryId?: StringFilter | string
@@ -32652,6 +32674,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32661,6 +32684,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32769,6 +32793,7 @@ export namespace Prisma {
     question?: StringFilter | string
     type?: StringFilter | string
     options?: StringNullableListFilter
+    compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     serviceId?: StringFilter | string
@@ -32787,7 +32812,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -32814,7 +32838,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -32851,7 +32874,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -32878,7 +32900,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -32905,7 +32926,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -32932,7 +32952,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -32969,7 +32988,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -32996,7 +33014,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -33055,7 +33072,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -33082,7 +33098,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -33267,7 +33282,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -33294,7 +33308,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -34187,7 +34200,6 @@ export namespace Prisma {
     categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
     numberOfShares: string
-    requiredDocuments?: ServiceCreaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -34203,6 +34215,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -34220,7 +34233,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -34247,7 +34259,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -34274,7 +34285,6 @@ export namespace Prisma {
     categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     numberOfShares?: StringFieldUpdateOperationsInput | string
-    requiredDocuments?: ServiceUpdaterequiredDocumentsInput | Enumerable<string>
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -34290,6 +34300,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34299,6 +34310,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34308,6 +34320,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34340,6 +34353,7 @@ export namespace Prisma {
     question: string
     type: string
     options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -34424,6 +34438,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34433,6 +34448,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34442,6 +34458,7 @@ export namespace Prisma {
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

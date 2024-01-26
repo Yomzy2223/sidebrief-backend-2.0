@@ -44,7 +44,14 @@ const options: OpenAPIDefinition = {
         //User
         Users: {
           type: "object",
-          require: ["fullName", "email", "password", "referral"],
+          require: [
+            "fullName",
+            "email",
+            "password",
+            "referral",
+            "isPartner",
+            "isStaff",
+          ],
           properties: {
             fullName: {
               type: "string",
@@ -61,6 +68,14 @@ const options: OpenAPIDefinition = {
             referral: {
               type: "string",
               description: "The referral of the user",
+            },
+            isPartner: {
+              type: "boolean",
+              description: "user as a partner ",
+            },
+            isStaff: {
+              type: "boolean",
+              description: "user as a staff",
             },
           },
         },
@@ -227,7 +242,7 @@ const options: OpenAPIDefinition = {
 
         ServiceForms: {
           type: "object",
-          require: ["question", "type", "options", "serviceId"],
+          require: ["question", "type", "options"],
           properties: {
             question: {
               type: "string",
@@ -237,18 +252,14 @@ const options: OpenAPIDefinition = {
             type: {
               type: "string",
               description: "The type of the service form",
-              required: true,
+            },
+            compulsory: {
+              type: "boolean",
+              description: "The status of the service form",
             },
             options: {
               type: "string",
               description: "The options of the service form",
-              required: true,
-            },
-            serviceId: {
-              type: "string",
-              description:
-                "The Id of the product service for the service form ",
-              required: true,
             },
           },
         },
@@ -559,7 +570,7 @@ const options: OpenAPIDefinition = {
         //SERVICE CATEGORY FORM
         ServiceCategoryForm: {
           type: "object",
-          require: ["firstName", "lastName", "email", "password"],
+          require: ["firstName", "lastName", "email", "password", "compulsory"],
           properties: {
             question: {
               type: "string",
@@ -568,6 +579,10 @@ const options: OpenAPIDefinition = {
             type: {
               type: "string",
               description: "The type of the answer to be sent",
+            },
+            compulsory: {
+              type: "boolean",
+              description: "compulsory field",
             },
             options: {
               type: "array",
@@ -579,24 +594,15 @@ const options: OpenAPIDefinition = {
         //PRODUCT
         CreateProduct: {
           type: "object",
-          require: ["userId", "country", "question", "answer"],
+          require: ["userId", "form", "question", "answer"],
           properties: {
             userId: {
               type: "string",
               description: "The id of the user",
             },
-            country: {
-              type: "string",
-              description:
-                "The country where the user wants the business to be registered",
-            },
-            question: {
-              type: "string",
-              description: "The question of the service selected",
-            },
-            answer: {
+            form: {
               type: "array",
-              description: "The answer of the question",
+              description: "The question of the service selected",
             },
           },
         },
@@ -735,10 +741,10 @@ const options: OpenAPIDefinition = {
         name: "Users",
         description: "The users management API",
       },
-      {
-        name: "Staffs",
-        description: "The staffs management API",
-      },
+      // {
+      //   name: "Staffs",
+      //   description: "The staffs management API",
+      // },
       {
         name: "Banks",
         description: "The banks management API",
@@ -827,6 +833,33 @@ const options: OpenAPIDefinition = {
           responses: {
             200: {
               description: "OK",
+              schema: {
+                $ref: "#/components/schemas/Users",
+              },
+            },
+          },
+        },
+      },
+
+      "/users/verification/{token}": {
+        post: {
+          tags: ["Users"],
+          summary: "Verify new user",
+          description: "Verify new user",
+          parameters: [
+            {
+              name: "token",
+              in: "path",
+              required: true,
+              description: "token sent to the user's email",
+              type: "string",
+            },
+          ],
+
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New user is created",
               schema: {
                 $ref: "#/components/schemas/Users",
               },
@@ -1021,165 +1054,165 @@ const options: OpenAPIDefinition = {
       },
 
       //SIDEBRIEF STAFF
-      "/staffs": {
-        post: {
-          tags: ["Staffs"],
-          summary: "Create a new staff",
-          description: "Create new staff in system",
+      // "/staffs": {
+      //   post: {
+      //     tags: ["Staffs"],
+      //     summary: "Create a new staff",
+      //     description: "Create new staff in system",
 
-          requestBody: {
-            // expected request body
-            content: {
-              // content-type
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/Staffs", //
-                },
-              },
-            },
-          },
+      //     requestBody: {
+      //       // expected request body
+      //       content: {
+      //         // content-type
+      //         "application/json": {
+      //           schema: {
+      //             $ref: "#/components/schemas/Staffs", //
+      //           },
+      //         },
+      //       },
+      //     },
 
-          produces: ["application/json"],
-          responses: {
-            200: {
-              description: "New staff is created",
-              schema: {
-                $ref: "#/components/schemas/Staffs",
-              },
-            },
-          },
-        },
+      //     produces: ["application/json"],
+      //     responses: {
+      //       200: {
+      //         description: "New staff is created",
+      //         schema: {
+      //           $ref: "#/components/schemas/Staffs",
+      //         },
+      //       },
+      //     },
+      //   },
 
-        get: {
-          tags: ["Staffs"],
-          summary: "Get all staffs in system",
-          responses: {
-            200: {
-              description: "OK",
-              schema: {
-                $ref: "#/components/schemas/Staffs",
-              },
-            },
-          },
-        },
-      },
+      //   get: {
+      //     tags: ["Staffs"],
+      //     summary: "Get all staffs in system",
+      //     responses: {
+      //       200: {
+      //         description: "OK",
+      //         schema: {
+      //           $ref: "#/components/schemas/Staffs",
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
 
-      "/staffs/login": {
-        post: {
-          tags: ["Staffs"],
-          summary: "Sign in staff",
-          description: "Allow registered staff into system",
+      // "/staffs/login": {
+      //   post: {
+      //     tags: ["Staffs"],
+      //     summary: "Sign in staff",
+      //     description: "Allow registered staff into system",
 
-          requestBody: {
-            // expected request body
-            content: {
-              // content-type
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/StaffLogin", //
-                },
-              },
-            },
-          },
+      //     requestBody: {
+      //       // expected request body
+      //       content: {
+      //         // content-type
+      //         "application/json": {
+      //           schema: {
+      //             $ref: "#/components/schemas/StaffLogin", //
+      //           },
+      //         },
+      //       },
+      //     },
 
-          produces: ["application/json"],
-          responses: {
-            200: {
-              description: " staff signed in successfully",
-              schema: {
-                $ref: "#/components/schemas/StaffLogin",
-              },
-            },
-          },
-        },
-      },
+      //     produces: ["application/json"],
+      //     responses: {
+      //       200: {
+      //         description: " staff signed in successfully",
+      //         schema: {
+      //           $ref: "#/components/schemas/StaffLogin",
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
 
-      "/staffs/{id}": {
-        get: {
-          summary: "Get a staff with given ID",
-          tags: ["Staffs"],
-          parameters: [
-            {
-              name: "id",
-              in: "path",
-              required: true,
-              description: "ID of staff to be fetched",
-              type: "string",
-            },
-          ],
-          responses: {
-            200: {
-              description: "Staff is fetched",
-              schema: {
-                $ref: "#/components/schemas/Staffs",
-              },
-            },
-          },
-        },
+      // "/staffs/{id}": {
+      //   get: {
+      //     summary: "Get a staff with given ID",
+      //     tags: ["Staffs"],
+      //     parameters: [
+      //       {
+      //         name: "id",
+      //         in: "path",
+      //         required: true,
+      //         description: "ID of staff to be fetched",
+      //         type: "string",
+      //       },
+      //     ],
+      //     responses: {
+      //       200: {
+      //         description: "Staff is fetched",
+      //         schema: {
+      //           $ref: "#/components/schemas/Staffs",
+      //         },
+      //       },
+      //     },
+      //   },
 
-        delete: {
-          summary: "Delete staff with given ID",
-          tags: ["Staffs"],
-          parameters: [
-            {
-              name: "id",
-              in: "path",
-              required: true,
-              description: "ID of staff to be deleted",
-              type: "string",
-            },
-          ],
-          responses: {
-            200: {
-              description: "Staff is deleted",
-              schema: {
-                $ref: "#/components/schemas/Staffs",
-              },
-            },
-          },
-        },
+      //   delete: {
+      //     summary: "Delete staff with given ID",
+      //     tags: ["Staffs"],
+      //     parameters: [
+      //       {
+      //         name: "id",
+      //         in: "path",
+      //         required: true,
+      //         description: "ID of staff to be deleted",
+      //         type: "string",
+      //       },
+      //     ],
+      //     responses: {
+      //       200: {
+      //         description: "Staff is deleted",
+      //         schema: {
+      //           $ref: "#/components/schemas/Staffs",
+      //         },
+      //       },
+      //     },
+      //   },
 
-        put: {
-          summary: "Update staff with give ID",
-          tags: ["Staffs"],
-          parameters: [
-            {
-              name: "id",
-              in: "path",
-              required: true,
-              description: "ID of staff to be updated",
-              type: "string",
-            },
-            {
-              name: "staff",
-              in: "body",
-              description: "Staff with new values of properties",
-              schema: {
-                $ref: "#/components/schemas/Staffs",
-              },
-            },
-          ],
-          requestBody: {
-            // expected request body
-            content: {
-              // content-type
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/Staffs", //
-                },
-              },
-            },
-          },
-          responses: {
-            200: {
-              description: "Staff is updated",
-              schema: {
-                $ref: "#/components/schemas/Staffs",
-              },
-            },
-          },
-        },
-      },
+      //   put: {
+      //     summary: "Update staff with give ID",
+      //     tags: ["Staffs"],
+      //     parameters: [
+      //       {
+      //         name: "id",
+      //         in: "path",
+      //         required: true,
+      //         description: "ID of staff to be updated",
+      //         type: "string",
+      //       },
+      //       {
+      //         name: "staff",
+      //         in: "body",
+      //         description: "Staff with new values of properties",
+      //         schema: {
+      //           $ref: "#/components/schemas/Staffs",
+      //         },
+      //       },
+      //     ],
+      //     requestBody: {
+      //       // expected request body
+      //       content: {
+      //         // content-type
+      //         "application/json": {
+      //           schema: {
+      //             $ref: "#/components/schemas/Staffs", //
+      //           },
+      //         },
+      //       },
+      //     },
+      //     responses: {
+      //       200: {
+      //         description: "Staff is updated",
+      //         schema: {
+      //           $ref: "#/components/schemas/Staffs",
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
 
       // Product service
       "/service/product/{serviceCategoryId}": {
@@ -1357,16 +1390,16 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/service/product/forms/{productId}": {
+      "/service/product/forms/{serviceId}": {
         post: {
           tags: ["Service Product"],
-          summary: "Create a new service form with service ID",
+          summary: "Create a new product service form with service ID",
           parameters: [
             {
-              name: "productId",
+              name: "serviceId",
               in: "path",
               required: true,
-              description: "ID of service for the service form",
+              description: "ID of product service for the service form",
               type: "string",
             },
             {

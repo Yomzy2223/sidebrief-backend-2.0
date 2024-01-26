@@ -140,6 +140,7 @@ const ServiceCategoryFormCreator = async (
       question: serviceCategoryPayload.question,
       type: serviceCategoryPayload.type,
       options: serviceCategoryPayload.options,
+      compulsory: serviceCategoryPayload.compulsory,
       serviceCategoryId: serviceCategoryId,
     };
     const category = await saveServiceCategoryForm(values, serviceCategoryId);

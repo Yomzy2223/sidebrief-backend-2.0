@@ -18,6 +18,8 @@ interface User {
     email: Props;
     password: Props;
     referral: Props;
+    isPartner: Props;
+    isStaff: Props;
   };
 }
 
@@ -94,7 +96,7 @@ interface ServiceForms {
     question: Props;
     type: Props;
     options: Props;
-    serviceId: Props;
+    compulsory: Props;
   };
 }
 interface ProductServiceForms {
@@ -252,6 +254,7 @@ interface ServiceCategoryForm {
   properties: {
     question: Props;
     type: Props;
+    compulsory: Props;
     options: Props;
   };
 }
@@ -261,9 +264,7 @@ interface CreateProduct {
   require: string[];
   properties: {
     userId: Props;
-    country: Props;
-    question: Props;
-    answer: Props;
+    form: Props;
   };
 }
 interface AddProductQA {

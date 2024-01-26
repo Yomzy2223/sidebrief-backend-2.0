@@ -36,7 +36,6 @@ const ProductServiceCreator = async (
       price: productServicePayload.price,
       timeline: productServicePayload.timeline,
       feature: productServicePayload.feature,
-      requiredDocuments: productServicePayload.requiredDocuments,
       numberOfShares: productServicePayload.numberOfShares,
       serviceCategoryId: serviceCategoryId,
     };
@@ -167,6 +166,7 @@ const ServiceFormCreator = async (
     const values = {
       question: serviceFormPayload.question,
       type: serviceFormPayload.type,
+      compulsory: serviceFormPayload.compulsory,
       options: serviceFormPayload.options,
       serviceId: serviceId,
     };
@@ -249,6 +249,7 @@ const ServiceFormModifier = async (
       question: serviceFormPayload.question,
       type: serviceFormPayload.type,
       options: serviceFormPayload.options,
+      compulsory: serviceFormPayload.compulsory,
       serviceId: serviceFormPayload.serviceId,
     };
 

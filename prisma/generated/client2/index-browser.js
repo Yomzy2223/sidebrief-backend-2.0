@@ -249,6 +249,7 @@ exports.Prisma.ServiceCategoryFormScalarFieldEnum = {
   question: 'question',
   type: 'type',
   options: 'options',
+  compulsory: 'compulsory',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   serviceCategoryId: 'serviceCategoryId'
@@ -267,7 +268,6 @@ exports.Prisma.ServiceScalarFieldEnum = {
   categoryForm: 'categoryForm',
   hasShares: 'hasShares',
   numberOfShares: 'numberOfShares',
-  requiredDocuments: 'requiredDocuments',
   hasAgent: 'hasAgent',
   hasOwner: 'hasOwner',
   hasController: 'hasController',
@@ -294,6 +294,7 @@ exports.Prisma.ServiceFormScalarFieldEnum = {
   question: 'question',
   type: 'type',
   options: 'options',
+  compulsory: 'compulsory',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   serviceId: 'serviceId'
