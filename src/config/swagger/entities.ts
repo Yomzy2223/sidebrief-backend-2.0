@@ -248,6 +248,15 @@ interface ServiceCategory {
     description: Props;
   };
 }
+interface ProductServiceId {
+  type: string;
+  require: string[];
+  properties: {
+    serviceId: Props;
+    productId: Props;
+  };
+}
+
 interface ServiceCategoryForm {
   type: string;
   require: string[];
@@ -264,15 +273,26 @@ interface CreateProduct {
   require: string[];
   properties: {
     userId: Props;
-    form: Props;
   };
 }
 interface AddProductQA {
   type: string;
   require: string[];
   properties: {
-    question: Props;
-    answer: Props;
+    form: {
+      type: string;
+      description: string;
+      items: {
+        type: string;
+        require: string[];
+        properties: {
+          question: Props;
+          answer: Props;
+          type: Props;
+          compulsory: Props;
+        };
+      };
+    };
   };
 }
 
@@ -372,6 +392,7 @@ interface ComponentDefinition {
     UpdateDiligenceRequest: UpdateDiligenceRequest;
     DiligenceDocument: DiligenceDocument;
     UpdateManyRequest: UpdateManyRequest;
+    ProductServiceId: ProductServiceId;
 
     //Bank
     CreateNigerianBank: CreateNigerianBank;

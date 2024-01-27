@@ -16,6 +16,7 @@ import {
   ServiceCategoryFormCreator,
   ServiceCategoryFormFetcher,
   ServiceCategoryFormModifier,
+  ServiceACategoryFormFetcher,
 } from "./controller";
 
 router.post(
@@ -40,7 +41,9 @@ router.post(
   validator(validateServiceCategoryForm),
   ServiceCategoryFormCreator
 );
-router.get("/forms/:id", ServiceCategoryFormFetcher);
+router.get("/forms/:serviceCategoryId", ServiceCategoryFormFetcher);
+router.get("/form/:id", ServiceACategoryFormFetcher);
+
 router.put(
   "/form/:id",
 

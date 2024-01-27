@@ -32,7 +32,7 @@ router.post(
 router.get("/", ProductServicesFetcher);
 router.get("/:id", ProductServiceFetcher);
 router.get(
-  "/category/:serviceCategoryId",
+  "/:serviceCategoryId",
 
   ProductServiceByCategoryFetcher
 );
@@ -46,19 +46,19 @@ router.delete("/:id", ProductServiceRemover);
 
 // service form route
 router.post(
-  "/forms/:serviceId",
+  "/form/:serviceId",
   //
   validator(validateServiceForm),
   ServiceFormCreator
 );
 router.put(
-  "/forms/:id",
+  "/form/:id",
   //
   validator(validateServiceForm),
   ServiceFormModifier
 );
-router.get("/forms/all", ServiceFormsFetcher);
-router.get("/forms/:id", ServiceFormFetcher);
-router.get("/forms/service/:serviceId", ServiceFormByServiceFetcher);
-router.delete("/forms/:id", ServiceFormRemover);
+router.get("/form/all", ServiceFormsFetcher);
+router.get("/form/:id", ServiceFormFetcher);
+router.get("/form/:serviceId", ServiceFormByServiceFetcher);
+router.delete("/form/:id", ServiceFormRemover);
 export default router;

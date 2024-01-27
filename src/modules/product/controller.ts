@@ -1,8 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import {
+  addServiceId,
   createProductQA,
   getAllProductQA,
   getAllServiceQA,
+  getProductById,
   initializeProduct,
   submitProduct,
 } from "./service";
@@ -17,22 +19,41 @@ const CreateProduct = async (
     // get the payload from the client
     // pass the payload to the service
     // return data back to client
-    const payload = req.body;
+    const userId = req.params.userId;
     const productPayload = {
-      userId: payload.userId,
-      country: payload.country,
-    };
-    const productQAPayload = {
-      question: payload.question,
-      answer: payload.answer,
-      isGeneral: true,
+      userId: userId,
     };
 
-    const user = await initializeProduct(productPayload, productQAPayload);
+    const user = await initializeProduct(productPayload);
 
     return res
       .status(user.statusCode)
       .json({ message: user.message, data: user.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//add service id
+const AddServiceId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the payload from the client
+    // pass the payload to the service
+    // return data back to client
+    const productPayload = {
+      serviceId: req.body.serviceId,
+      productId: req.body.productId,
+    };
+
+    const product = await addServiceId(productPayload);
+
+    return res
+      .status(product.statusCode)
+      .json({ message: product.message, data: product.data });
   } catch (error) {
     next(error);
   }
@@ -47,12 +68,32 @@ const GetAllProductsByUserId = async (
   try {
     // get the products list
     // return response to the client
-    const userId = req.params.id;
+    const userId = req.params.userId;
     const products = await getAllServiceQA(userId);
 
     return res
       .status(products.statusCode)
       .json({ message: products.message, data: products.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get a product
+const GetProductById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the product date
+    // return response to the client
+    const id = req.params.id;
+    const product = await getProductById(id);
+
+    return res
+      .status(product.statusCode)
+      .json({ message: product.message, data: product.data });
   } catch (error) {
     next(error);
   }
@@ -67,20 +108,18 @@ const AddProductQA = async (
     // get the payload and the id from the client
     // pass the payload to the service
     // return data back to client
-    const productId = req.params.id;
+    const productId = req.params.productId;
     const payload = req.body;
 
     const productQAPayload = {
-      question: payload.question,
-      answer: payload.answer,
-      isGeneral: false,
+      form: payload.form,
     };
 
-    const user = await createProductQA(productQAPayload, productId);
+    const product = await createProductQA(productQAPayload, productId);
 
     return res
-      .status(user.statusCode)
-      .json({ message: user.message, data: user.data });
+      .status(product.statusCode)
+      .json({ message: product.message, data: product.data });
   } catch (error) {
     next(error);
   }
@@ -95,7 +134,7 @@ const GetAllServicesQA = async (
   try {
     // get the service category list
     // return response to the client
-    const productId = req.params.id;
+    const productId = req.params.productId;
     const ServiceQA = await getAllServiceQA(productId);
 
     return res
@@ -115,7 +154,7 @@ const GetAllProductQA = async (
   try {
     // get the service category list
     // return response to the client
-    const productId = req.params.id;
+    const productId = req.params.productId;
     const productQA = await getAllProductQA(productId);
 
     return res
@@ -153,4 +192,6 @@ export {
   GetAllProductQA,
   GetAllProductsByUserId,
   ProductSubmission,
+  AddServiceId,
+  GetProductById,
 };

@@ -1,13 +1,21 @@
 export interface ProductPayload {
   userId: string;
-  country: string;
 }
 export interface FormPayload {
-  question: string;
-  answer: any[];
-  isGeneral: boolean;
+  form: FormData[];
 }
 
+export interface FormData {
+  question: string;
+  answer: string;
+  type: string;
+  compulsory: boolean;
+}
+
+export interface UpdateProductServiceIdPayload {
+  serviceId: string;
+  productId: string;
+}
 export interface ProductData {
   id?: string;
   country?: string;

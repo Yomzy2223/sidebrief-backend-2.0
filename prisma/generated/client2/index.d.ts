@@ -392,7 +392,6 @@ export type ProductPayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
   }
   scalars: $Extensions.GetResult<{
     id: string
-    country: string
     email: string | null
     address: string | null
     paid: boolean
@@ -421,7 +420,8 @@ export type ProductQAPayload<ExtArgs extends $Extensions.Args = $Extensions.Defa
     id: string
     question: string
     answer: string[]
-    isGeneral: boolean
+    type: string
+    compulsory: boolean
     createdAt: Date
     updatedAt: Date
     productId: string
@@ -17899,7 +17899,6 @@ export namespace Prisma {
 
   export type ProductMinAggregateOutputType = {
     id: string | null
-    country: string | null
     email: string | null
     address: string | null
     paid: boolean | null
@@ -17914,7 +17913,6 @@ export namespace Prisma {
 
   export type ProductMaxAggregateOutputType = {
     id: string | null
-    country: string | null
     email: string | null
     address: string | null
     paid: boolean | null
@@ -17929,7 +17927,6 @@ export namespace Prisma {
 
   export type ProductCountAggregateOutputType = {
     id: number
-    country: number
     email: number
     address: number
     paid: number
@@ -17946,7 +17943,6 @@ export namespace Prisma {
 
   export type ProductMinAggregateInputType = {
     id?: true
-    country?: true
     email?: true
     address?: true
     paid?: true
@@ -17961,7 +17957,6 @@ export namespace Prisma {
 
   export type ProductMaxAggregateInputType = {
     id?: true
-    country?: true
     email?: true
     address?: true
     paid?: true
@@ -17976,7 +17971,6 @@ export namespace Prisma {
 
   export type ProductCountAggregateInputType = {
     id?: true
-    country?: true
     email?: true
     address?: true
     paid?: true
@@ -18065,7 +18059,6 @@ export namespace Prisma {
 
   export type ProductGroupByOutputType = {
     id: string
-    country: string
     email: string | null
     address: string | null
     paid: boolean
@@ -18097,7 +18090,6 @@ export namespace Prisma {
 
   export type ProductSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    country?: boolean
     email?: boolean
     address?: boolean
     paid?: boolean
@@ -18118,7 +18110,6 @@ export namespace Prisma {
 
   export type ProductSelectScalar = {
     id?: boolean
-    country?: boolean
     email?: boolean
     address?: boolean
     paid?: boolean
@@ -18968,7 +18959,8 @@ export namespace Prisma {
   export type ProductQAMinAggregateOutputType = {
     id: string | null
     question: string | null
-    isGeneral: boolean | null
+    type: string | null
+    compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     productId: string | null
@@ -18977,7 +18969,8 @@ export namespace Prisma {
   export type ProductQAMaxAggregateOutputType = {
     id: string | null
     question: string | null
-    isGeneral: boolean | null
+    type: string | null
+    compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     productId: string | null
@@ -18987,7 +18980,8 @@ export namespace Prisma {
     id: number
     question: number
     answer: number
-    isGeneral: number
+    type: number
+    compulsory: number
     createdAt: number
     updatedAt: number
     productId: number
@@ -18998,7 +18992,8 @@ export namespace Prisma {
   export type ProductQAMinAggregateInputType = {
     id?: true
     question?: true
-    isGeneral?: true
+    type?: true
+    compulsory?: true
     createdAt?: true
     updatedAt?: true
     productId?: true
@@ -19007,7 +19002,8 @@ export namespace Prisma {
   export type ProductQAMaxAggregateInputType = {
     id?: true
     question?: true
-    isGeneral?: true
+    type?: true
+    compulsory?: true
     createdAt?: true
     updatedAt?: true
     productId?: true
@@ -19017,7 +19013,8 @@ export namespace Prisma {
     id?: true
     question?: true
     answer?: true
-    isGeneral?: true
+    type?: true
+    compulsory?: true
     createdAt?: true
     updatedAt?: true
     productId?: true
@@ -19101,7 +19098,8 @@ export namespace Prisma {
     id: string
     question: string
     answer: string[]
-    isGeneral: boolean
+    type: string
+    compulsory: boolean
     createdAt: Date
     updatedAt: Date
     productId: string
@@ -19128,7 +19126,8 @@ export namespace Prisma {
     id?: boolean
     question?: boolean
     answer?: boolean
-    isGeneral?: boolean
+    type?: boolean
+    compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     productId?: boolean
@@ -19139,7 +19138,8 @@ export namespace Prisma {
     id?: boolean
     question?: boolean
     answer?: boolean
-    isGeneral?: boolean
+    type?: boolean
+    compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     productId?: boolean
@@ -25893,7 +25893,6 @@ export namespace Prisma {
 
   export const ProductScalarFieldEnum: {
     id: 'id',
-    country: 'country',
     email: 'email',
     address: 'address',
     paid: 'paid',
@@ -25913,7 +25912,8 @@ export namespace Prisma {
     id: 'id',
     question: 'question',
     answer: 'answer',
-    isGeneral: 'isGeneral',
+    type: 'type',
+    compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     productId: 'productId'
@@ -27056,7 +27056,6 @@ export namespace Prisma {
     OR?: Enumerable<ProductWhereInput>
     NOT?: Enumerable<ProductWhereInput>
     id?: StringFilter | string
-    country?: StringFilter | string
     email?: StringNullableFilter | string | null
     address?: StringNullableFilter | string | null
     paid?: BoolFilter | boolean
@@ -27076,7 +27075,6 @@ export namespace Prisma {
 
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
-    country?: SortOrder
     email?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     paid?: SortOrder
@@ -27100,7 +27098,6 @@ export namespace Prisma {
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
-    country?: SortOrder
     email?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     paid?: SortOrder
@@ -27121,7 +27118,6 @@ export namespace Prisma {
     OR?: Enumerable<ProductScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ProductScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    country?: StringWithAggregatesFilter | string
     email?: StringNullableWithAggregatesFilter | string | null
     address?: StringNullableWithAggregatesFilter | string | null
     paid?: BoolWithAggregatesFilter | boolean
@@ -27141,7 +27137,8 @@ export namespace Prisma {
     id?: StringFilter | string
     question?: StringFilter | string
     answer?: StringNullableListFilter
-    isGeneral?: BoolFilter | boolean
+    type?: StringFilter | string
+    compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     productId?: StringFilter | string
@@ -27152,7 +27149,8 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     answer?: SortOrder
-    isGeneral?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     productId?: SortOrder
@@ -27167,7 +27165,8 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     answer?: SortOrder
-    isGeneral?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     productId?: SortOrder
@@ -27183,7 +27182,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter | string
     question?: StringWithAggregatesFilter | string
     answer?: StringNullableListFilter
-    isGeneral?: BoolWithAggregatesFilter | boolean
+    type?: StringWithAggregatesFilter | string
+    compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     productId?: StringWithAggregatesFilter | string
@@ -28958,7 +28958,6 @@ export namespace Prisma {
 
   export type ProductCreateInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -28976,7 +28975,6 @@ export namespace Prisma {
 
   export type ProductUncheckedCreateInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -28994,7 +28992,6 @@ export namespace Prisma {
 
   export type ProductUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -29012,7 +29009,6 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -29030,7 +29026,6 @@ export namespace Prisma {
 
   export type ProductCreateManyInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -29045,7 +29040,6 @@ export namespace Prisma {
 
   export type ProductUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -29058,7 +29052,6 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -29075,7 +29068,8 @@ export namespace Prisma {
     id?: string
     question: string
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    isGeneral: boolean
+    type: string
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     products: ProductCreateNestedOneWithoutProductQAInput
@@ -29085,7 +29079,8 @@ export namespace Prisma {
     id?: string
     question: string
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    isGeneral: boolean
+    type: string
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     productId: string
@@ -29095,7 +29090,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     question?: StringFieldUpdateOperationsInput | string
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    isGeneral?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateOneRequiredWithoutProductQANestedInput
@@ -29105,7 +29101,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     question?: StringFieldUpdateOperationsInput | string
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    isGeneral?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productId?: StringFieldUpdateOperationsInput | string
@@ -29115,7 +29112,8 @@ export namespace Prisma {
     id?: string
     question: string
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    isGeneral: boolean
+    type: string
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     productId: string
@@ -29125,7 +29123,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     question?: StringFieldUpdateOperationsInput | string
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    isGeneral?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -29134,7 +29133,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     question?: StringFieldUpdateOperationsInput | string
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    isGeneral?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productId?: StringFieldUpdateOperationsInput | string
@@ -30453,7 +30453,6 @@ export namespace Prisma {
 
   export type ProductCountOrderByAggregateInput = {
     id?: SortOrder
-    country?: SortOrder
     email?: SortOrder
     address?: SortOrder
     paid?: SortOrder
@@ -30468,7 +30467,6 @@ export namespace Prisma {
 
   export type ProductMaxOrderByAggregateInput = {
     id?: SortOrder
-    country?: SortOrder
     email?: SortOrder
     address?: SortOrder
     paid?: SortOrder
@@ -30483,7 +30481,6 @@ export namespace Prisma {
 
   export type ProductMinOrderByAggregateInput = {
     id?: SortOrder
-    country?: SortOrder
     email?: SortOrder
     address?: SortOrder
     paid?: SortOrder
@@ -30515,7 +30512,8 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     answer?: SortOrder
-    isGeneral?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     productId?: SortOrder
@@ -30524,7 +30522,8 @@ export namespace Prisma {
   export type ProductQAMaxOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
-    isGeneral?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     productId?: SortOrder
@@ -30533,7 +30532,8 @@ export namespace Prisma {
   export type ProductQAMinOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
-    isGeneral?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     productId?: SortOrder
@@ -32223,7 +32223,6 @@ export namespace Prisma {
 
   export type ProductCreateWithoutUserInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -32240,7 +32239,6 @@ export namespace Prisma {
 
   export type ProductUncheckedCreateWithoutUserInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -32344,7 +32342,6 @@ export namespace Prisma {
     OR?: Enumerable<ProductScalarWhereInput>
     NOT?: Enumerable<ProductScalarWhereInput>
     id?: StringFilter | string
-    country?: StringFilter | string
     email?: StringNullableFilter | string | null
     address?: StringNullableFilter | string | null
     paid?: BoolFilter | boolean
@@ -32599,7 +32596,6 @@ export namespace Prisma {
 
   export type ProductCreateWithoutServiceInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -32616,7 +32612,6 @@ export namespace Prisma {
 
   export type ProductUncheckedCreateWithoutServiceInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -33211,7 +33206,8 @@ export namespace Prisma {
     id?: string
     question: string
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    isGeneral: boolean
+    type: string
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33220,7 +33216,8 @@ export namespace Prisma {
     id?: string
     question: string
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    isGeneral: boolean
+    type: string
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33435,7 +33432,8 @@ export namespace Prisma {
     id?: StringFilter | string
     question?: StringFilter | string
     answer?: StringNullableListFilter
-    isGeneral?: BoolFilter | boolean
+    type?: StringFilter | string
+    compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     productId?: StringFilter | string
@@ -33443,7 +33441,6 @@ export namespace Prisma {
 
   export type ProductCreateWithoutProductQAInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -33460,7 +33457,6 @@ export namespace Prisma {
 
   export type ProductUncheckedCreateWithoutProductQAInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -33487,7 +33483,6 @@ export namespace Prisma {
 
   export type ProductUpdateWithoutProductQAInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -33504,7 +33499,6 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateWithoutProductQAInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -33521,7 +33515,6 @@ export namespace Prisma {
 
   export type ProductCreateWithoutTeamInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -33538,7 +33531,6 @@ export namespace Prisma {
 
   export type ProductUncheckedCreateWithoutTeamInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -33627,7 +33619,6 @@ export namespace Prisma {
 
   export type ProductUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -33644,7 +33635,6 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -33937,7 +33927,6 @@ export namespace Prisma {
 
   export type ProductCreateWithoutPaymentInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -33954,7 +33943,6 @@ export namespace Prisma {
 
   export type ProductUncheckedCreateWithoutPaymentInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -33981,7 +33969,6 @@ export namespace Prisma {
 
   export type ProductUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -33998,7 +33985,6 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -34073,7 +34059,6 @@ export namespace Prisma {
 
   export type ProductCreateManyUserInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -34141,7 +34126,6 @@ export namespace Prisma {
 
   export type ProductUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -34158,7 +34142,6 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -34175,7 +34158,6 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateManyWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -34327,7 +34309,6 @@ export namespace Prisma {
 
   export type ProductCreateManyServiceInput = {
     id?: string
-    country: string
     email?: string | null
     address?: string | null
     paid?: boolean
@@ -34360,7 +34341,6 @@ export namespace Prisma {
 
   export type ProductUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -34377,7 +34357,6 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -34394,7 +34373,6 @@ export namespace Prisma {
 
   export type ProductUncheckedUpdateManyWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     paid?: BoolFieldUpdateOperationsInput | boolean
@@ -34486,7 +34464,8 @@ export namespace Prisma {
     id?: string
     question: string
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    isGeneral: boolean
+    type: string
+    compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -34556,7 +34535,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     question?: StringFieldUpdateOperationsInput | string
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    isGeneral?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34565,7 +34545,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     question?: StringFieldUpdateOperationsInput | string
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    isGeneral?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34574,7 +34555,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     question?: StringFieldUpdateOperationsInput | string
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    isGeneral?: BoolFieldUpdateOperationsInput | boolean
+    type?: StringFieldUpdateOperationsInput | string
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

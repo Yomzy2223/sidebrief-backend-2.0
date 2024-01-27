@@ -40,4 +40,5 @@ export interface UpdateServiceCategoryFormPayload {
   question: string;
   type: string;
   options: string[];
+  compulsory: boolean;
 }

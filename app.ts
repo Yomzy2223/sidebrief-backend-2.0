@@ -90,7 +90,7 @@ app.use("/diligence", diligenceRoutes);
 //productService
 app.use("/service/product", productServiceRoutes);
 //product
-app.use("/products", productRoutes);
+app.use("/product", productRoutes);
 
 //payment
 app.use("/payment", paymentRoutes);

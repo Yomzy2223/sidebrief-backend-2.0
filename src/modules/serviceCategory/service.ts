@@ -235,6 +235,32 @@ const getAllServiceCategoryForm = async (
   }
 };
 
+const getServiceCategoryForm = async (
+  id: string
+): Promise<ServiceCategoryFormResponse> => {
+  //  get the service category list from the table
+  //  return the service category list to the service category controller
+  try {
+    const category = await prisma.serviceCategoryForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!category) {
+      throw new BadRequest("Service category form not found!.");
+    }
+    const response: ServiceCategoryFormResponse = {
+      message: "Service category form fetched successfully",
+      data: category,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 //update a service category form service
 const updateServiceCategoryForm = async (
   serviceCategoryPayload: UpdateServiceCategoryFormPayload,
@@ -282,6 +308,7 @@ export {
   updateServiceCategory,
   removeServiceCategory,
   saveServiceCategoryForm,
+  getServiceCategoryForm,
   getAllServiceCategoryForm,
   updateServiceCategoryForm,
 };

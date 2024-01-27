@@ -242,7 +242,7 @@ const options: OpenAPIDefinition = {
 
         ServiceForms: {
           type: "object",
-          require: ["question", "type", "options"],
+          require: ["question", "type", "options", "compulsory"],
           properties: {
             question: {
               type: "string",
@@ -258,7 +258,7 @@ const options: OpenAPIDefinition = {
               description: "The status of the service form",
             },
             options: {
-              type: "string",
+              type: "array",
               description: "The options of the service form",
             },
           },
@@ -594,30 +594,44 @@ const options: OpenAPIDefinition = {
         //PRODUCT
         CreateProduct: {
           type: "object",
-          require: ["userId", "form", "question", "answer"],
+          require: ["userId"],
           properties: {
             userId: {
               type: "string",
               description: "The id of the user",
-            },
-            form: {
-              type: "array",
-              description: "The question of the service selected",
             },
           },
         },
 
         AddProductQA: {
           type: "object",
-          require: ["question", "answer"],
+          require: ["form"],
           properties: {
-            question: {
-              type: "string",
-              description: "The question of the service selected",
-            },
-            answer: {
+            form: {
               type: "array",
-              description: "The answer of the question",
+              description: "The question of the service selected",
+              items: {
+                type: "object",
+                require: ["question", "answer", "type", "compulsory"],
+                properties: {
+                  question: {
+                    type: "string",
+                    description: "the form question",
+                  },
+                  answer: {
+                    type: "string",
+                    description: "answer to the question",
+                  },
+                  type: {
+                    type: "string",
+                    description: "type of the answer to be provided",
+                  },
+                  compulsory: {
+                    type: "boolean",
+                    description: "compulsory question",
+                  },
+                },
+              },
             },
           },
         },
@@ -675,6 +689,21 @@ const options: OpenAPIDefinition = {
             serviceId: {
               type: "string",
               description: "The id of the serivce",
+            },
+          },
+        },
+
+        ProductServiceId: {
+          type: "object",
+          require: ["serviceId", "productId"],
+          properties: {
+            serviceId: {
+              type: "string",
+              description: "The service to be added",
+            },
+            productId: {
+              type: "string",
+              description: "The id of the product",
             },
           },
         },
@@ -1259,24 +1288,7 @@ const options: OpenAPIDefinition = {
             },
           },
         },
-      },
 
-      "/service/product": {
-        get: {
-          tags: ["Service Product"],
-          summary: "Get all product services ",
-          responses: {
-            200: {
-              description: "Product services gotten successfully",
-              schema: {
-                $ref: "#/components/schemas/ProductServices",
-              },
-            },
-          },
-        },
-      },
-
-      "/service/product/category/{serviceCategoryId}": {
         get: {
           summary: "Get all product service with service category ID",
           tags: ["Service Product"],
@@ -1292,6 +1304,21 @@ const options: OpenAPIDefinition = {
           responses: {
             200: {
               description: "Product service fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product": {
+        get: {
+          tags: ["Service Product"],
+          summary: "Get all product services ",
+          responses: {
+            200: {
+              description: "Product services gotten successfully",
               schema: {
                 $ref: "#/components/schemas/ProductServices",
               },
@@ -1390,7 +1417,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/service/product/forms/{serviceId}": {
+      "/service/product/form/{serviceId}": {
         post: {
           tags: ["Service Product"],
           summary: "Create a new product service form with service ID",
@@ -1434,9 +1461,31 @@ const options: OpenAPIDefinition = {
             },
           },
         },
+
+        get: {
+          summary: "Get all service forms with service ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "serviceId",
+              in: "path",
+              required: true,
+              description: "ID of service of the service form",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
       },
 
-      "/service/product/forms/{id}": {
+      "/service/product/form/{id}": {
         get: {
           summary: "Get a product service with given ID",
           tags: ["Service Product"],
@@ -1524,7 +1573,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/service/product/forms/all": {
+      "/service/product/form/all": {
         get: {
           tags: ["Service Product"],
           summary: "Get all service forms ",
@@ -1539,29 +1588,6 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/service/product/forms/service/{serviceId}": {
-        get: {
-          summary: "Get all service forms with service ID",
-          tags: ["Service Product"],
-          parameters: [
-            {
-              name: "serviceId",
-              in: "path",
-              required: true,
-              description: "ID of service of the service form",
-              type: "string",
-            },
-          ],
-          responses: {
-            200: {
-              description: "Service form fetched successfully",
-              schema: {
-                $ref: "#/components/schemas/ServiceForms",
-              },
-            },
-          },
-        },
-      },
       //Services
       "/services": {
         post: {
@@ -1733,16 +1759,16 @@ const options: OpenAPIDefinition = {
         //   },
         // },
       },
-      "/services/forms/{id}": {
+      "/services/forms/{serviceCategoryId}": {
         get: {
-          summary: "Get all service forms with given ID",
+          summary: "Get all service forms under a service category",
           tags: ["Service"],
           parameters: [
             {
-              name: "id",
+              name: "serviceCategoryId",
               in: "path",
               required: true,
-              description: "ID of service form to be fetched",
+              description: "service category ID to be fetched",
               type: "string",
             },
           ],
@@ -1903,38 +1929,38 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      // "/products/{productId}": {
-      //   get: {
-      //     tags: ["Product"],
-      //     summary: "Get a product of a user in system",
-      //     parameters: [
-      //       {
-      //         name: "productId",
-      //         in: "path",
-      //         required: true,
-      //         description: "ID of product to be fetched",
-      //         type: "string",
-      //       },
-      //     ],
-      //     responses: {
-      //       200: {
-      //         description: "Product is fetched",
-      //         schema: {
-      //           $ref: "#/components/schemas/CreateProduct",
-      //         },
-      //       },
-      //     },
-      //   },
-      // },
+      "/product/{id}": {
+        get: {
+          tags: ["Product"],
+          summary: "Get a product by product ID",
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of product to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Product is fetched",
+              schema: {
+                $ref: "#/components/schemas/CreateProduct",
+              },
+            },
+          },
+        },
+      },
 
-      "/products/qa": {
+      "/product/form/{productId}": {
         post: {
           tags: ["Product"],
           summary: "Save a user product QA",
           description: "Save user product QA in system",
           parameters: [
             {
-              name: "id",
+              name: "productId",
               in: "path",
               required: true,
               description: "ID of product",
@@ -1966,6 +1992,15 @@ const options: OpenAPIDefinition = {
         get: {
           tags: ["Product"],
           summary: "Get all users products QA in system",
+          parameters: [
+            {
+              name: "productId",
+              in: "path",
+              required: true,
+              description: "ID of product",
+              type: "string",
+            },
+          ],
           responses: {
             200: {
               description: "OK",
@@ -1977,7 +2012,63 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/products/qa/{id}": {
+      "/product/serviceId": {
+        post: {
+          tags: ["Product"],
+          summary: "Add service ID to the product",
+          description: "Add service ID to the product",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ProductServiceId", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New user product is created",
+              schema: {
+                $ref: "#/components/schemas/ProductServiceId",
+              },
+            },
+          },
+        },
+      },
+
+      "/product/submission/{productId}": {
+        post: {
+          tags: ["Product"],
+          summary: "Submit a new product",
+          description: "Submit a new product",
+          parameters: [
+            {
+              name: "productId",
+              in: "path",
+              required: true,
+              description: "ID of product",
+              type: "string",
+            },
+          ],
+
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New user product is submitted successfully",
+              schema: {
+                $ref: "#/components/schemas/AddProductQA",
+              },
+            },
+          },
+        },
+      },
+
+      "/product/form/{id}": {
         get: {
           summary: "Get a user product QA with given ID",
           tags: ["Product"],
@@ -2057,28 +2148,27 @@ const options: OpenAPIDefinition = {
       },
 
       "/products/service/qa/{id}": {
-        get: {
-          summary: "Get a service QA of a user product with a given ID",
-          tags: ["Banks"],
-          parameters: [
-            {
-              name: "id",
-              in: "path",
-              required: true,
-              description: "ID of product to be fetched",
-              type: "string",
-            },
-          ],
-          responses: {
-            200: {
-              description: "Product service QA is fetched",
-              schema: {
-                $ref: "#/components/schemas/AddProductQA",
-              },
-            },
-          },
-        },
-
+        // get: {
+        //   summary: "Get a service QA of a user product with a given ID",
+        //   tags: ["Banks"],
+        //   parameters: [
+        //     {
+        //       name: "id",
+        //       in: "path",
+        //       required: true,
+        //       description: "ID of product to be fetched",
+        //       type: "string",
+        //     },
+        //   ],
+        //   responses: {
+        //     200: {
+        //       description: "Product service QA is fetched",
+        //       schema: {
+        //         $ref: "#/components/schemas/AddProductQA",
+        //       },
+        //     },
+        //   },
+        // },
         // delete: {
         //   summary: "Delete product service with given ID",
         //   tags: ["Banks"],
@@ -2100,7 +2190,6 @@ const options: OpenAPIDefinition = {
         //     },
         //   },
         // },
-
         // put: {
         //   summary: "Update bank with give ID",
         //   tags: ["Banks"],

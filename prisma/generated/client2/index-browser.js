@@ -302,7 +302,6 @@ exports.Prisma.ServiceFormScalarFieldEnum = {
 
 exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
-  country: 'country',
   email: 'email',
   address: 'address',
   paid: 'paid',
@@ -319,7 +318,8 @@ exports.Prisma.ProductQAScalarFieldEnum = {
   id: 'id',
   question: 'question',
   answer: 'answer',
-  isGeneral: 'isGeneral',
+  type: 'type',
+  compulsory: 'compulsory',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   productId: 'productId'

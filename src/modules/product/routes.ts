@@ -8,10 +8,12 @@ import {
 } from "../../utils/validation/product";
 import {
   AddProductQA,
+  AddServiceId,
   CreateProduct,
   GetAllProductQA,
   GetAllProductsByUserId,
   GetAllServicesQA,
+  GetProductById,
   ProductSubmission,
 } from "./controller";
 const router = express.Router();
@@ -23,11 +25,14 @@ router.post(
   CreateProduct
 );
 router.get("/:userId", GetAllProductsByUserId);
-router.post("/qa", validator(producQACredentials), AddProductQA);
-router.get("/service/qa", GetAllServicesQA);
-router.get("/qa", GetAllProductQA);
+router.get("/:id", GetProductById);
+
+router.post("/serviceId", AddServiceId);
+router.post("/form/:productId", validator(producQACredentials), AddProductQA);
+// router.get("/form/:productId", GetAllServicesQA);
+router.get("/form/:productId", GetAllProductQA);
 router.post(
-  "/submission",
+  "/submission/:productId",
   validator(submitProductCredentials),
 
   ProductSubmission

@@ -3,12 +3,14 @@ import logger from "../../config/logger";
 import { BadRequest, NotFound, Unauthorized } from "../../utils/requestErrors";
 const prisma = new PrismaClient();
 import {
+  FormData,
   FormPayload,
   ProductData,
   ProductPayload,
   ProductQAResponse,
   ProductResponse,
   ProductWithoutDataResponse,
+  UpdateProductServiceIdPayload,
 } from "./entities";
 import EmailSender from "../../services/emailEngine";
 
@@ -87,8 +89,7 @@ const ScheduledJob = async () => {
 
 //create product
 const initializeProduct = async (
-  productPayload: ProductPayload,
-  productQAPayload: FormPayload
+  productPayload: ProductPayload
 ): Promise<ProductResponse> => {
   try {
     const product = await prisma.product.create({
@@ -96,18 +97,6 @@ const initializeProduct = async (
     });
     if (!product) {
       throw new BadRequest("Error occured while creating this Product");
-    }
-
-    const productForm = {
-      ...productQAPayload,
-      productId: product.id,
-    };
-    const productQA = await prisma.productQA.create({
-      data: productForm,
-    });
-
-    if (!productQA) {
-      throw new BadRequest("Error occured while creating this Product Form");
     }
 
     const checkProduct = await prisma.product.findUnique({
@@ -123,6 +112,48 @@ const initializeProduct = async (
 
     const response: ProductResponse = {
       message: "Product created successfully",
+      statusCode: 200,
+      data: checkProduct,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//add service ID
+const addServiceId = async (
+  productPayload: UpdateProductServiceIdPayload
+): Promise<ProductResponse> => {
+  try {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: productPayload?.productId,
+      },
+    });
+
+    const updateProduct = await prisma.product.update({
+      where: { id: product?.id },
+      data: { serviceId: productPayload?.serviceId },
+    });
+
+    if (!updateProduct) {
+      throw new BadRequest("Error occured while updating this product");
+    }
+
+    const checkProduct = await prisma.product.findUnique({
+      where: { id: product?.id },
+      include: {
+        productQA: true,
+      },
+    });
+
+    logger.info({
+      message: `${checkProduct?.userId} added a service ID successfully`,
+    });
+
+    const response: ProductResponse = {
+      message: "Service ID added successfully",
       statusCode: 200,
       data: checkProduct,
     };
@@ -163,6 +194,31 @@ const getAllProductsByUserId = async (
   }
 };
 
+//get a product by product ID
+const getProductById = async (id: string): Promise<ProductResponse> => {
+  //  get the product date from the table
+  //  return the product date to the products controller
+  try {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!product) {
+      throw new BadRequest("Product date not found!.");
+    }
+    const response: ProductResponse = {
+      message: "Product fetched successfully",
+      data: product,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 //product info
 const createProductQA = async (
   productQAPayload: FormPayload,
@@ -178,12 +234,17 @@ const createProductQA = async (
       throw new NotFound("User product not found");
     }
 
-    const productForm = {
-      ...productQAPayload,
-      productId: productId,
-    };
-    const productQA = await prisma.productQA.create({
+    const productForm = productQAPayload.form.map((data: FormData) => ({
+      question: data.question,
+      answer: data.answer,
+      type: data.type,
+      compulsory: data.compulsory,
+      productId: findProduct.id,
+    }));
+
+    const productQA = await prisma.productQA.createMany({
       data: productForm,
+      skipDuplicates: true,
     });
 
     if (!productQA) {
@@ -191,13 +252,19 @@ const createProductQA = async (
     }
 
     logger.info({
-      message: `more Q/A saved successfully for product with ${productId} `,
+      message: `Form saved successfully for product with ${productId} `,
     });
 
+    const productForms = await prisma.productQA.findMany({});
+
+    if (!productForms) {
+      throw new NotFound("Error occured while getting products");
+    }
+
     const response: ProductQAResponse = {
-      message: "Product Q/A saved successfully",
+      message: "Product form saved successfully",
       statusCode: 200,
-      data: productQA,
+      data: productForms,
     };
 
     return response;
@@ -216,7 +283,6 @@ const getAllServiceQA = async (
     const GeneralQA = await prisma.productQA.findMany({
       where: {
         productId: productId,
-        isGeneral: true,
       },
     });
     if (!GeneralQA) {
@@ -248,7 +314,6 @@ const getAllProductQA = async (
     const GeneralQA = await prisma.productQA.findMany({
       where: {
         productId: productId,
-        isGeneral: false,
       },
     });
     if (!GeneralQA) {
@@ -339,4 +404,6 @@ export {
   ScheduledJob,
   getAllProductsByUserId,
   submitProduct,
+  addServiceId,
+  getProductById,
 };

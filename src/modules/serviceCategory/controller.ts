@@ -8,6 +8,7 @@ import {
   saveServiceCategoryForm,
   getAllServiceCategoryForm,
   updateServiceCategoryForm,
+  getServiceCategoryForm,
 } from "./service";
 import {
   ServiceCategoryFormPayload,
@@ -151,7 +152,7 @@ const ServiceCategoryFormCreator = async (
   }
 };
 
-//get all service categories
+//get all service category forms
 const ServiceCategoryFormFetcher = async (
   req: Request,
   res: Response,
@@ -160,7 +161,7 @@ const ServiceCategoryFormFetcher = async (
   try {
     // get the service category list
     // return response to the client
-    const serviceCategoryId = req.params.id;
+    const serviceCategoryId = req.params.serviceCategoryId;
     const categories = await getAllServiceCategoryForm(serviceCategoryId);
 
     return res.status(categories.statusCode).json(categories);
@@ -187,11 +188,32 @@ const ServiceCategoryFormModifier = async (
       question: serviceCategoryPayload.question,
       type: serviceCategoryPayload.type,
       options: serviceCategoryPayload.options,
+      compulsory: serviceCategoryPayload.compulsory,
     };
     const category = await updateServiceCategoryForm(
       values,
       serviceCategoryFormId
     );
+
+    return res.status(category.statusCode).json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get a service category form with id
+const ServiceACategoryFormFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // check if there is id
+    // pass the id to the service
+    // return service category form to client
+
+    const id: string = req.params.id;
+    const category = await getServiceCategoryForm(id);
 
     return res.status(category.statusCode).json(category);
   } catch (error) {
@@ -209,4 +231,5 @@ export {
   ServiceCategoryFormFetcher,
   ServiceCategoryFormPayload,
   ServiceCategoryFormModifier,
+  ServiceACategoryFormFetcher,
 };
