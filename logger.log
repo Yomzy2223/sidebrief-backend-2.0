@@ -6275,3 +6275,286 @@ error: Label: 29-Jan-2024 10:39:53: Authentification error, please check your to
 info: Label: 29-Jan-2024 10:40:36: User with akinyemibamidele2@gmail.com signed in successfully.
 info: Label: 29-Jan-2024 10:41:17: User with akinyemibamidele2@gmail.com signed in successfully.
 error: Label: 29-Jan-2024 10:42:14: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+info: Label: 29-Jan-2024 11:26:53: compliance service category created successfully
+info: Label: 29-Jan-2024 11:34:25: $ product service category created successfully
+error: Label: 29-Jan-2024 11:37:48: Error occured with error Error: 
+Invalid `prisma.serviceForm.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:233:50
+
+  230   throw new BadRequest("Service does not exist");
+  231 }
+  232 
+→ 233 const serviceForm = await prisma.serviceForm.create({
+        data: {
+          question: 'what is your role',
+          type: 'string',
+          compulsory: true,
+          options: [],
+          serviceId: '737ec9ac-6644-493e-a690-ecdb2221b09a',
+          fileName: 'string',
+          ~~~~~~~~
+          fileDescription: 'string',
+          ~~~~~~~~~~~~~~~
+          fileLink: 'string',
+          ~~~~~~~~
+          fileType: 'string'
+          ~~~~~~~~
+        }
+      })
+
+Unknown arg `fileName` in data.fileName for type ServiceFormUncheckedCreateInput. Available args:
+
+type ServiceFormUncheckedCreateInput {
+  id?: String
+  question: String
+  type: String
+  options?: ServiceFormCreateoptionsInput | List<String>
+  compulsory?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  serviceId: String
+  serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
+}
+Unknown arg `fileDescription` in data.fileDescription for type ServiceFormUncheckedCreateInput. Available args:
+
+type ServiceFormUncheckedCreateInput {
+  id?: String
+  question: String
+  type: String
+  options?: ServiceFormCreateoptionsInput | List<String>
+  compulsory?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  serviceId: String
+  serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
+}
+Unknown arg `fileLink` in data.fileLink for type ServiceFormUncheckedCreateInput. Available args:
+
+type ServiceFormUncheckedCreateInput {
+  id?: String
+  question: String
+  type: String
+  options?: ServiceFormCreateoptionsInput | List<String>
+  compulsory?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  serviceId: String
+  serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
+}
+Unknown arg `fileType` in data.fileType for type ServiceFormUncheckedCreateInput. Did you mean `type`? Available args:
+type ServiceFormUncheckedCreateInput {
+  id?: String
+  question: String
+  type: String
+  options?: ServiceFormCreateoptionsInput | List<String>
+  compulsory?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  serviceId: String
+  serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
+}
+
+ occurred when POST /service/product/form/737ec9ac-6644-493e-a690-ecdb2221b09a was called
+error: Label: 29-Jan-2024 11:52:56: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /service/product/form/737ec9ac-6644-493e-a690-ecdb2221b09a was called
+error: Label: 29-Jan-2024 11:53:26: User not found!. with error Error: User not found!. occurred when POST /users/login was called
+info: Label: 29-Jan-2024 11:58:11: Bamidele Akinyemi created an account successfully with akinyemibamidele@gmail.com.
+error: Label: 29-Jan-2024 12:02:02: Service does not exist with error Error: Service does not exist occurred when POST /service/product/form/737ec9ac-6644-493e-a690-ecdb2221b09a was called
+info: Label: 29-Jan-2024 12:02:50: compliance service category created successfully
+error: Label: 29-Jan-2024 12:03:56: Unexpected token 
+ in JSON at position 104 with error SyntaxError: Unexpected token 
+ in JSON at position 104 occurred when POST /service/product/950ac24d-b0f9-443f-8510-fde562c8b0d8 was called
+info: Label: 29-Jan-2024 12:04:20: $ product service category created successfully
+info: Label: 29-Jan-2024 12:04:46: Service form created successfully
+error: Label: 29-Jan-2024 12:11:43: User is not authorized. with error Error: User is not authorized. occurred when POST /product was called
+info: Label: 29-Jan-2024 12:12:35: Bamidele User created an account successfully with akinyemi@sidebrief.com.
+error: Label: 29-Jan-2024 12:12:56:  User not found. with error Error:  User not found. occurred when POST /product was called
+error: Label: 29-Jan-2024 12:13:57:  User not found. with error Error:  User not found. occurred when POST /product was called
+info: Label: 29-Jan-2024 12:15:45: 59141925-c04a-4e19-8283-b7b68ebf72c8 created a product successfully
+error: Label: 29-Jan-2024 12:17:51: Error occured with error Error: 
+Invalid `prisma.productQA.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/product/service.ts:262:60
+
+  259   fileLink: productQAPayload.form[0].file.link,
+  260   fileType: productQAPayload.form[0].file.type,
+  261 };
+→ 262 const createProductFormData = await prisma.productQA.create({
+        data: {
+          question: 'what is your country',
+          answer: [
+            'Nigeria'
+          ],
+          type: 'person',
+          compulsory: true,
+          isGeneral: true,
+          productId: '1b19b431-e378-495d-a748-f5a202cf9435',
+          fileName: 'string',
+          ~~~~~~~~
+          fileDescription: 'string',
+          ~~~~~~~~~~~~~~~
+          fileLink: 'string',
+          ~~~~~~~~
+          fileType: 'string'
+          ~~~~~~~~
+        }
+      })
+
+Unknown arg `fileName` in data.fileName for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileDescription` in data.fileDescription for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileLink` in data.fileLink for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileType` in data.fileType for type ProductQAUncheckedCreateInput. Did you mean `type`? Available args:
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+
+ occurred when POST /product/form/1b19b431-e378-495d-a748-f5a202cf9435 was called
+error: Label: 29-Jan-2024 12:18:37: Error occured with error Error: 
+Invalid `prisma.productQA.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/product/service.ts:262:60
+
+  259   fileLink: productQAPayload.form[0].file.link,
+  260   fileType: productQAPayload.form[0].file.type,
+  261 };
+→ 262 const createProductFormData = await prisma.productQA.create({
+        data: {
+          question: 'what is your country',
+          answer: [
+            'Nigeria'
+          ],
+          type: 'person',
+          compulsory: true,
+          isGeneral: true,
+          productId: '1b19b431-e378-495d-a748-f5a202cf9435',
+          fileName: 'string',
+          ~~~~~~~~
+          fileDescription: 'string',
+          ~~~~~~~~~~~~~~~
+          fileLink: 'string',
+          ~~~~~~~~
+          fileType: 'string'
+          ~~~~~~~~
+        }
+      })
+
+Unknown arg `fileName` in data.fileName for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileDescription` in data.fileDescription for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileLink` in data.fileLink for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileType` in data.fileType for type ProductQAUncheckedCreateInput. Did you mean `type`? Available args:
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+
+ occurred when POST /product/form/1b19b431-e378-495d-a748-f5a202cf9435 was called
+error: Label: 29-Jan-2024 12:22:20: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.user.findFirst()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:26:41
+
+  23 if (!user) {
+  24   throw new Unauthorized("Invalid or expired user token.");
+  25 }
+→ 26 const checkUser = await prisma.user.findFirst(
+The table `public.User` does not exist in the current database. occurred when GET /product/%7BuserId%7D was called
+error: Label: 29-Jan-2024 12:23:41: User is not authorized. with error Error: User is not authorized. occurred when GET /product/%7BuserId%7D was called
+info: Label: 29-Jan-2024 12:27:37: Bamidele User created an account successfully with akinyemi@sidebrief.com.
+error: Label: 29-Jan-2024 12:28:27: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /services was called
+info: Label: 29-Jan-2024 12:29:04: Bamidele User created an account successfully with akinyemi2@sidebrief.com.
+info: Label: 29-Jan-2024 12:29:32: compliance service category created successfully
+info: Label: 29-Jan-2024 12:30:02: $ product service category created successfully
+info: Label: 29-Jan-2024 12:30:45: User with akinyemi@sidebrief.com signed in successfully.
+info: Label: 29-Jan-2024 12:32:00: 288f5b4e-b60a-4cc8-8f59-2766a9a4f158 created a product successfully
+info: Label: 29-Jan-2024 12:41:42: Form saved successfully for product with 5d6df9e0-0f41-49ec-896e-f511b74f7798 

@@ -13,7 +13,7 @@ const productServiceSchema = {
   price: { type: "string", min: 3, max: 50 },
   timeline: { type: "string", min: 3, max: 50 },
   feature: { type: "array", items: "string", min: 1 },
-  numberOfShares: { type: "string", min: 1, max: 10 },
+  numberOfShares: { type: "string", min: 1, max: 100 },
 };
 
 const validateProductService = validate.compile(productServiceSchema);

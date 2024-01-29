@@ -295,6 +295,10 @@ exports.Prisma.ServiceFormScalarFieldEnum = {
   type: 'type',
   options: 'options',
   compulsory: 'compulsory',
+  fileName: 'fileName',
+  fileDescription: 'fileDescription',
+  fileType: 'fileType',
+  fileLink: 'fileLink',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   serviceId: 'serviceId'
@@ -334,6 +338,10 @@ exports.Prisma.ProductQAScalarFieldEnum = {
   type: 'type',
   compulsory: 'compulsory',
   isGeneral: 'isGeneral',
+  fileName: 'fileName',
+  fileDescription: 'fileDescription',
+  fileType: 'fileType',
+  fileLink: 'fileLink',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   productId: 'productId'
@@ -342,7 +350,7 @@ exports.Prisma.ProductQAScalarFieldEnum = {
 exports.Prisma.ProductQASubFormScalarFieldEnum = {
   id: 'id',
   question: 'question',
-  options: 'options',
+  answer: 'answer',
   type: 'type',
   compulsory: 'compulsory',
   productQAId: 'productQAId'

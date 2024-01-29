@@ -1400,14 +1400,6 @@ const options: OpenAPIDefinition = {
               description: "ID of service category for the product service",
               type: "string",
             },
-            {
-              name: "productServices",
-              in: "body",
-              description: "properties of the product service",
-              schema: {
-                $ref: "#/components/schemas/ProductServices",
-              },
-            },
           ],
 
           requestBody: {
@@ -1572,14 +1564,6 @@ const options: OpenAPIDefinition = {
               required: true,
               description: "ID of product service for the service form",
               type: "string",
-            },
-            {
-              name: "serviceForms",
-              in: "body",
-              description: "properties of the service form",
-              schema: {
-                $ref: "#/components/schemas/ServiceForms",
-              },
             },
           ],
 
@@ -2007,7 +1991,7 @@ const options: OpenAPIDefinition = {
       },
 
       //Product
-      "/products": {
+      "/product": {
         post: {
           tags: ["Product"],
           summary: "Create a new product for a user",
@@ -2049,7 +2033,7 @@ const options: OpenAPIDefinition = {
         // },
       },
 
-      "/products/{userId}": {
+      "/product/{userId}": {
         get: {
           tags: ["Product"],
           summary: "Get all users products in system",

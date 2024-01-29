@@ -42,28 +42,20 @@ const userAuth = async (req: Request, res: Response, next: NextFunction) => {
 
 const staffAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log("header", req.headers);
     const reqToken = req.headers.authorization;
-    console.log("token", reqToken);
     if (!reqToken) {
       throw new Unauthorized("Authorization token is missing.");
     }
     const token = reqToken.split(" ")[1];
-    console.log("token filt", token);
     const userSecret = process.env.TOKEN_USER_SECRET;
 
     const staff = (await verifyUserToken(
       token,
       userSecret as string
     )) as JwtResponse;
-    console.log(staff);
     if (!staff) {
       throw new Unauthorized("Invalid or expired staff token.");
     }
-
-    // const checkStaff = await prisma.$queryRaw`
-    // SELECT * FROM "user" WHERE id = ${staff.id} AND "isStaff" = true`;
-    // console.log("essss", checkStaff);
 
     const checkStaff = await prisma.user.findFirst({
       where: {
@@ -71,7 +63,6 @@ const staffAuth = async (req: Request, res: Response, next: NextFunction) => {
         isStaff: true,
       },
     });
-    console.log("checkstaff", checkStaff);
     if (!checkStaff) {
       throw new Unauthorized("Staff is not authorized.");
     }

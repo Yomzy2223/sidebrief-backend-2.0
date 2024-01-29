@@ -222,6 +222,10 @@ model ServiceForm {
   type String
   options String[]
   compulsory Boolean @default(false)
+  fileName String
+  fileDescription String
+  fileType String
+  fileLink String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   service Service @relation(fields: [serviceId], references: [id])
@@ -267,6 +271,10 @@ model ProductQA {
   type String
   compulsory Boolean @default(false)
   isGeneral Boolean @default(false)
+  fileName String
+  fileDescription String
+  fileType String
+  fileLink String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   products Product @relation(fields: [productId], references: [id])
@@ -278,7 +286,7 @@ model ProductQA {
 model ProductQASubForm {
   id String @id @default(uuid())
   question String
-  options String[]
+  answer String[]
   type String
   compulsory Boolean @default(false)
   productQA ProductQA @relation(fields: [productQAId], references: [id])

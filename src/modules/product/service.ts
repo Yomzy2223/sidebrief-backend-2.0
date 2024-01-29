@@ -93,6 +93,17 @@ const initializeProduct = async (
   productPayload: ProductPayload
 ): Promise<ProductResponse> => {
   try {
+    const user = await prisma.user.findFirst({
+      where: {
+        id: productPayload.userId,
+        isStaff: false,
+        isPartner: false,
+      },
+    });
+    if (!user) {
+      throw new NotFound(" User not found.");
+    }
+
     const product = await prisma.product.create({
       data: productPayload,
     });

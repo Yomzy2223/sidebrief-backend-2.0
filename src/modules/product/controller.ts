@@ -8,6 +8,7 @@ import {
   initializeProduct,
   submitProduct,
   getAllProductQAByQuestion,
+  getAllProductsByUserId,
 } from "./service";
 
 //get a user with id
@@ -20,9 +21,9 @@ const CreateProduct = async (
     // get the payload from the client
     // pass the payload to the service
     // return data back to client
-    const userId = req.params.userId;
+
     const productPayload = {
-      userId: userId,
+      userId: req.body.userId,
     };
 
     const user = await initializeProduct(productPayload);
@@ -70,12 +71,17 @@ const GetAllProductsByUserId = async (
     // get the products list
     // return response to the client
     const userId = req.params.userId;
-    const products = await getAllServiceQA(userId);
+    const products = await getAllProductsByUserId(userId);
 
     return res
       .status(products.statusCode)
-      .json({ message: products.message, data: products.data });
+      .json({
+        message: products.message,
+        data: products.data,
+        statusCode: products.statusCode,
+      });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -94,7 +100,11 @@ const GetProductById = async (
 
     return res
       .status(product.statusCode)
-      .json({ message: product.message, data: product.data });
+      .json({
+        message: product.message,
+        data: product.data,
+        statusCode: product.statusCode,
+      });
   } catch (error) {
     next(error);
   }
@@ -122,6 +132,7 @@ const AddProductQA = async (
       .status(product.statusCode)
       .json({ message: product.message, data: product.data });
   } catch (error) {
+    console.log("error", error);
     next(error);
   }
 };
