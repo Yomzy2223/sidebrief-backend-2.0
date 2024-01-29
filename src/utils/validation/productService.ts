@@ -12,10 +12,8 @@ const productServiceSchema = {
   country: { type: "string", min: 3, max: 50 },
   price: { type: "string", min: 3, max: 50 },
   timeline: { type: "string", min: 3, max: 50 },
-  feature: { type: "array", items: "string", min: 3 },
-  requiredDocuments: { type: "array", items: "string", min: 3 },
+  feature: { type: "array", items: "string", min: 1 },
   numberOfShares: { type: "string", min: 1, max: 10 },
-  serviceCategoryId: { type: "string", min: 6, max: 50 },
 };
 
 const validateProductService = validate.compile(productServiceSchema);

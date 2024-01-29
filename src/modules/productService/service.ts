@@ -1,14 +1,17 @@
 import {
+  FormData,
   ProductServicePayload,
   ProductServiceResponse,
   ServiceFormPayload,
   ServiceFormResponse,
+  SubFormPayload,
+  UpdateServiceFormPayload,
 } from "./entities";
 
 import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 const prisma = new PrismaClient();
-import { BadRequest } from "../../utils/requestErrors";
+import { BadRequest, NotFound } from "../../utils/requestErrors";
 
 // create a service for product service
 
@@ -215,22 +218,61 @@ const removeProductService = async (id: string) => {
 
 const saveServiceForm = async (
   serviceFormPayload: ServiceFormPayload,
-  serviceId: string
+  serviceId: string,
+  subForm: SubFormPayload
 ): Promise<ServiceFormResponse> => {
   // add new service form to the table
   try {
     const checkService = await prisma.service.findUnique({
       where: { id: serviceId },
     });
-    console.log("what", checkService);
     if (!checkService) {
       throw new BadRequest("Service does not exist");
     }
+
     const serviceForm = await prisma.serviceForm.create({
       data: serviceFormPayload,
     });
     if (!serviceForm) {
       throw new BadRequest("Error occured while creating this service form");
+    }
+
+    if (subForm?.subForm) {
+      const subServiceForm = subForm.form.map((data: FormData) => ({
+        question: data.question,
+        options: data.options,
+        type: data.type,
+        compulsory: data.compulsory,
+        serviceFormId: serviceForm.id,
+        fileName: data.file.name,
+        fileDescription: data.file.description,
+        fileLink: data.file.link,
+        fileType: data.file.type,
+      }));
+
+      const productQA = await prisma.serviceSubForm.createMany({
+        data: subServiceForm,
+        skipDuplicates: true,
+      });
+
+      if (!productQA) {
+        throw new BadRequest(
+          "Error occured while creating this service Sub Form"
+        );
+      }
+    }
+
+    const serviceForms = await prisma.serviceForm.findUnique({
+      where: {
+        id: serviceForm.id,
+      },
+      include: {
+        serviceSubForm: true,
+      },
+    });
+
+    if (!serviceForms) {
+      throw new NotFound("Error occured while getting service form");
     }
 
     logger.info({
@@ -239,7 +281,7 @@ const saveServiceForm = async (
 
     const response: ServiceFormResponse = {
       message: "Service form created successfully",
-      data: serviceForm,
+      data: serviceForms,
       statusCode: 201,
     };
 
@@ -335,7 +377,8 @@ const getServiceFormByService = async (
 // update service form
 const updateServiceForm = async (
   id: string,
-  serviceFormPayload: ServiceFormPayload
+  serviceFormPayload: UpdateServiceFormPayload,
+  subForm: SubFormPayload
 ) => {
   // take both id and service form payload from the service form category controller
   //  check if the service form exists
@@ -353,17 +396,44 @@ const updateServiceForm = async (
       throw new BadRequest("Service form not found!");
     }
 
+    const data = {
+      ...serviceFormPayload,
+      serviceId: checkServiceForm.serviceId,
+    };
+
     const updateServiceForm = await prisma.serviceForm.update({
       where: {
         id: id,
       },
-      data: serviceFormPayload,
+      data: data,
     });
 
     if (!updateServiceForm) {
       throw new BadRequest("Error occurred while updating Service form!.");
     }
 
+    if (subForm.subForm) {
+      const subServiceForm = subForm.form.map((data: FormData) => ({
+        question: data.question,
+        options: data.options,
+        type: data.type,
+        compulsory: data.compulsory,
+        fileName: data.file.name,
+        fileDescription: data.file.description,
+        fileLink: data.file.link,
+        fileType: data.file.type,
+      }));
+
+      const productQA = await prisma.serviceSubForm.updateMany({
+        data: subServiceForm,
+      });
+
+      if (!productQA) {
+        throw new BadRequest(
+          "Error occured while updating this service Sub Form"
+        );
+      }
+    }
     return {
       message: "Service form updated successfully!.",
       statusCode: 200,

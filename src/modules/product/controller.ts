@@ -7,6 +7,7 @@ import {
   getProductById,
   initializeProduct,
   submitProduct,
+  getAllProductQAByQuestion,
 } from "./service";
 
 //get a user with id
@@ -165,6 +166,29 @@ const GetAllProductQA = async (
   }
 };
 
+const GetAllProductQAByQuestion = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the service category list
+    // return response to the client
+    const data = req.body;
+    const values = {
+      question: data.question,
+      productId: data.productId,
+    };
+    const productQA = await getAllProductQAByQuestion(values);
+
+    return res
+      .status(productQA.statusCode)
+      .json({ message: productQA.message, data: productQA.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Submit Product
 const ProductSubmission = async (
   req: Request,
@@ -194,4 +218,5 @@ export {
   ProductSubmission,
   AddServiceId,
   GetProductById,
+  GetAllProductQAByQuestion,
 };

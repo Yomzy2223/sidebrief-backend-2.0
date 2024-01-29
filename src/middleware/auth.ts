@@ -16,11 +16,24 @@ const userAuth = async (req: Request, res: Response, next: NextFunction) => {
 
     const token = reqToken.split(" ")[1];
     const userSecret = process.env.TOKEN_USER_SECRET;
-    const user = await verifyUserToken(token, userSecret as string);
+    const user = (await verifyUserToken(
+      token,
+      userSecret as string
+    )) as JwtResponse;
     if (!user) {
       throw new Unauthorized("Invalid or expired user token.");
     }
-    req.user = user;
+    const checkUser = await prisma.user.findFirst({
+      where: {
+        id: user.id,
+        isStaff: false,
+        isPartner: false,
+      },
+    });
+    if (!checkUser) {
+      throw new Unauthorized("User is not authorized.");
+    }
+    req.user = checkUser;
     next();
   } catch (error) {
     next(error);
@@ -29,26 +42,36 @@ const userAuth = async (req: Request, res: Response, next: NextFunction) => {
 
 const staffAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    console.log("header", req.headers);
     const reqToken = req.headers.authorization;
+    console.log("token", reqToken);
     if (!reqToken) {
       throw new Unauthorized("Authorization token is missing.");
     }
     const token = reqToken.split(" ")[1];
-    const staffSecret = process.env.TOKEN_STAFF_SECRET;
+    console.log("token filt", token);
+    const userSecret = process.env.TOKEN_USER_SECRET;
 
     const staff = (await verifyUserToken(
       token,
-      staffSecret as string
+      userSecret as string
     )) as JwtResponse;
-
+    console.log(staff);
     if (!staff) {
       throw new Unauthorized("Invalid or expired staff token.");
     }
 
-    const checkStaff = await prisma.staff.findUnique({
-      where: { id: staff.id },
-    });
+    // const checkStaff = await prisma.$queryRaw`
+    // SELECT * FROM "user" WHERE id = ${staff.id} AND "isStaff" = true`;
+    // console.log("essss", checkStaff);
 
+    const checkStaff = await prisma.user.findFirst({
+      where: {
+        id: staff.id,
+        isStaff: true,
+      },
+    });
+    console.log("checkstaff", checkStaff);
     if (!checkStaff) {
       throw new Unauthorized("Staff is not authorized.");
     }

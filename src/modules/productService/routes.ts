@@ -25,7 +25,7 @@ import {
 // Product service route
 router.post(
   "/:serviceCategoryId",
-
+  staffAuth,
   validator(validateProductService),
   ProductServiceCreator
 );
@@ -38,27 +38,27 @@ router.get(
 );
 router.put(
   "/:id",
-
+  staffAuth,
   validator(validateProductService),
   ProductServiceModifier
 );
-router.delete("/:id", ProductServiceRemover);
+router.delete("/:id", staffAuth, ProductServiceRemover);
 
 // service form route
 router.post(
   "/form/:serviceId",
-  //
-  validator(validateServiceForm),
+  staffAuth,
+  // validator(validateServiceForm),
   ServiceFormCreator
 );
 router.put(
   "/form/:id",
-  //
-  validator(validateServiceForm),
+  staffAuth,
+  // validator(validateServiceForm),
   ServiceFormModifier
 );
 router.get("/form/all", ServiceFormsFetcher);
 router.get("/form/:id", ServiceFormFetcher);
 router.get("/form/:serviceId", ServiceFormByServiceFetcher);
-router.delete("/form/:id", ServiceFormRemover);
+router.delete("/form/:id", staffAuth, ServiceFormRemover);
 export default router;

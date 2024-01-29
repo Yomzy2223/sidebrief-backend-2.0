@@ -32,7 +32,7 @@ const options: OpenAPIDefinition = {
           flows: {},
         },
         bearerAuth: {
-          type: "http",
+          type: "apiKey",
           name: "Authorization",
           scheme: "bearer",
           in: "header",
@@ -242,24 +242,95 @@ const options: OpenAPIDefinition = {
 
         ServiceForms: {
           type: "object",
-          require: ["question", "type", "options", "compulsory"],
           properties: {
             question: {
               type: "string",
-              description: "The question required",
-              required: true,
+              description: "the form question",
             },
             type: {
               type: "string",
-              description: "The type of the service form",
-            },
-            compulsory: {
-              type: "boolean",
-              description: "The status of the service form",
+              description: "type of the question",
             },
             options: {
               type: "array",
-              description: "The options of the service form",
+              description: "options of the question",
+            },
+            compulsory: {
+              type: "boolean",
+              description: "status of the question",
+            },
+            file: {
+              type: "object",
+              description: "The file section",
+              properties: {
+                name: {
+                  type: "string",
+                  description: "Name of the file",
+                },
+                description: {
+                  type: "string",
+                  description: "Description of the file",
+                },
+                link: {
+                  type: "string",
+                  description: "Link to the file",
+                },
+                type: {
+                  type: "string",
+                  description: "Type of the file",
+                },
+              },
+            },
+            subForm: {
+              type: "boolean",
+              description: "flag to add subform",
+            },
+            form: {
+              type: "array",
+              description: "The question of the service selected",
+              items: {
+                type: "object",
+                properties: {
+                  question: {
+                    type: "string",
+                    description: "the form question",
+                  },
+                  type: {
+                    type: "string",
+                    description: "type of the question",
+                  },
+                  options: {
+                    type: "array",
+                    description: "options of the question",
+                  },
+                  compulsory: {
+                    type: "boolean",
+                    description: "status of the question",
+                  },
+                  file: {
+                    type: "object",
+                    description: "The file section",
+                    properties: {
+                      name: {
+                        type: "string",
+                        description: "Name of the file",
+                      },
+                      description: {
+                        type: "string",
+                        description: "Description of the file",
+                      },
+                      link: {
+                        type: "string",
+                        description: "Link to the file",
+                      },
+                      type: {
+                        type: "string",
+                        description: "Type of the file",
+                      },
+                    },
+                  },
+                },
+              },
             },
           },
         },
@@ -567,6 +638,20 @@ const options: OpenAPIDefinition = {
           },
         },
 
+        GetProductQAByQuestion: {
+          type: "object",
+          require: ["question", "productId"],
+          properties: {
+            question: {
+              type: "string",
+              description: "The question of the product form",
+            },
+            productId: {
+              type: "string",
+              description: "The user product id",
+            },
+          },
+        },
         //SERVICE CATEGORY FORM
         ServiceCategoryForm: {
           type: "object",
@@ -619,7 +704,7 @@ const options: OpenAPIDefinition = {
                     description: "the form question",
                   },
                   answer: {
-                    type: "string",
+                    type: "array",
                     description: "answer to the question",
                   },
                   type: {
@@ -629,6 +714,63 @@ const options: OpenAPIDefinition = {
                   compulsory: {
                     type: "boolean",
                     description: "compulsory question",
+                  },
+                  isGeneral: {
+                    type: "boolean",
+                    description: "is a general question?",
+                  },
+                  subForm: {
+                    type: "boolean",
+                    description: "flag to add subform",
+                  },
+                  profile: {
+                    type: "array",
+                    description: "The question of the profile selected",
+                    items: {
+                      type: "object",
+                      require: ["question", "answer", "type", "compulsory"],
+                      properties: {
+                        question: {
+                          type: "string",
+                          description: "the form question",
+                        },
+                        answer: {
+                          type: "array",
+                          description: "answer to the question",
+                        },
+                        type: {
+                          type: "string",
+                          description: "type of the answer to be provided",
+                        },
+                        compulsory: {
+                          type: "boolean",
+                          description: "compulsory question",
+                        },
+                      },
+                    },
+                  },
+                  file: {
+                    type: "object",
+                    description: "The question of the profile selected",
+                    properties: {
+                      name: {
+                        type: "string",
+                        description: "Name of the file",
+                      },
+                      description: {
+                        type: "string",
+                        description: "Description of the file",
+                      },
+                      link: {
+                        type: "string",
+                        description: "Link to the file",
+                      },
+                      type: {
+                        type: "string",
+                        description: "Type of the file",
+                      },
+                    },
+                    require: ["name", "description", "link", "type"],
                   },
                 },
               },
@@ -762,9 +904,11 @@ const options: OpenAPIDefinition = {
         },
       },
     },
-    security: {
-      bearerAuth: [],
-    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
     tags: [
       {
         name: "Users",
@@ -2012,6 +2156,31 @@ const options: OpenAPIDefinition = {
         },
       },
 
+      "/product/form/formByQuestion": {
+        get: {
+          tags: ["Product"],
+          summary: "Get all users products QA in system",
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/GetProductQAByQuestion", //
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/GetProductQAByQuestion",
+              },
+            },
+          },
+        },
+      },
       "/product/serviceId": {
         post: {
           tags: ["Product"],

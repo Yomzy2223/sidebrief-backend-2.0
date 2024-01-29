@@ -41,7 +41,7 @@ const bankSchema = {
 const validateBank = validate.compile(bankSchema);
 
 const serviceCategorySchema = {
-  name: { type: "string", min: 3, max: 50 },
+  name: { type: "string", min: 3, max: 100 },
   description: { type: "string", min: 3, max: 255 },
 };
 
@@ -51,9 +51,8 @@ const validateServiceCategory = validate.compile(serviceCategorySchema);
 
 const serviceCategoryFormSchema = {
   question: { type: "string", min: 3, max: 255 },
-  type: { type: "string", min: 3, max: 50 },
-  options: { type: "array", items: "string", min: 3 },
-  serviceCategoryId: { type: "string", min: 6, max: 50 },
+  type: { type: "string", min: 3, max: 100 },
+  options: { type: "array", items: "string", min: 1 },
 };
 
 const validateServiceCategoryForm = validate.compile(serviceCategoryFormSchema);

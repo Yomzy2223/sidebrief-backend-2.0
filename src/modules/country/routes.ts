@@ -12,10 +12,10 @@ import {
   GetCountries,
 } from "./controller";
 
-router.post("/", validator(validateCountry), CreateCountry);
+router.post("/", staffAuth, validator(validateCountry), CreateCountry);
 router.get("/", GetCountries);
-router.get("/:id", GetCountry);
-router.put("/:id", validator(validateCountry), UpdateCountry);
-router.delete("/:id", DeleteCountry);
+router.get("/:id", userAuth, GetCountry);
+router.put("/:id", staffAuth, validator(validateCountry), UpdateCountry);
+router.delete("/:id", staffAuth, DeleteCountry);
 
 export default router;

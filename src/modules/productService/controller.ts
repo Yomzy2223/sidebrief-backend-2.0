@@ -168,10 +168,17 @@ const ServiceFormCreator = async (
       type: serviceFormPayload.type,
       compulsory: serviceFormPayload.compulsory,
       options: serviceFormPayload.options,
-      serviceId: serviceId,
+      serviceId: serviceId as string,
+      fileName: serviceFormPayload.file.name,
+      fileDescription: serviceFormPayload.file.description,
+      fileLink: serviceFormPayload.file.link,
+      fileType: serviceFormPayload.file.type,
     };
-
-    const service = await saveServiceForm(values, serviceId);
+    const subForm = {
+      subForm: serviceFormPayload.subForm,
+      form: serviceFormPayload.form,
+    };
+    const service = await saveServiceForm(values, serviceId, subForm);
     return res.status(service.statusCode).json(service);
   } catch (error) {
     console.log("err", error);
@@ -248,12 +255,19 @@ const ServiceFormModifier = async (
     const values = {
       question: serviceFormPayload.question,
       type: serviceFormPayload.type,
-      options: serviceFormPayload.options,
       compulsory: serviceFormPayload.compulsory,
-      serviceId: serviceFormPayload.serviceId,
+      options: serviceFormPayload.options,
+      fileName: serviceFormPayload.file.name,
+      fileDescription: serviceFormPayload.file.description,
+      fileLink: serviceFormPayload.file.link,
+      fileType: serviceFormPayload.file.type,
+    };
+    const subForm = {
+      subForm: serviceFormPayload.subForm,
+      form: serviceFormPayload.form,
     };
 
-    const service = await updateServiceForm(id, values);
+    const service = await updateServiceForm(id, values, subForm);
     return res.status(service.statusCode).json(service);
   } catch (error) {
     next(error);

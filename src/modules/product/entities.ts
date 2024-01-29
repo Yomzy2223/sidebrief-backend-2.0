@@ -7,11 +7,27 @@ export interface FormPayload {
 
 export interface FormData {
   question: string;
-  answer: string;
+  answer: string[];
+  type: string;
+  compulsory: boolean;
+  isGeneral: boolean;
+  file: FileData;
+  subForm: boolean;
+  profile: ProfileData[];
+}
+export interface FileData {
+  name: string;
+  description: string;
+  link: string;
+  type: string;
+}
+
+export interface ProfileData {
+  question: string;
+  answer: string[];
   type: string;
   compulsory: boolean;
 }
-
 export interface UpdateProductServiceIdPayload {
   serviceId: string;
   productId: string;

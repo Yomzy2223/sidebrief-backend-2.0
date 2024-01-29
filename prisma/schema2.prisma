@@ -226,6 +226,21 @@ model ServiceForm {
   updatedAt DateTime @default(now())
   service Service @relation(fields: [serviceId], references: [id])
   serviceId String
+  serviceSubForm ServiceSubForm[]
+}
+model ServiceSubForm {
+  id String @id @default(uuid())
+  question String
+  options String[]
+  type String
+  compulsory Boolean @default(false)
+  fileName String
+  fileDescription String
+  fileType String
+  fileLink String
+  serviceForm ServiceForm @relation(fields: [serviceFormId], references: [id])
+  serviceFormId String
+
 }
 model Product {
       id String @id @default(uuid())
@@ -251,14 +266,25 @@ model ProductQA {
   answer String[]
   type String
   compulsory Boolean @default(false)
+  isGeneral Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   products Product @relation(fields: [productId], references: [id])
   productId String
+  productSubForm ProductQASubForm[]
 }
 
 
+model ProductQASubForm {
+  id String @id @default(uuid())
+  question String
+  options String[]
+  type String
+  compulsory Boolean @default(false)
+  productQA ProductQA @relation(fields: [productQAId], references: [id])
+  productQAId String
 
+}
 model Claim {
       id String @id @default(uuid())
       value String

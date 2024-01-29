@@ -10,6 +10,7 @@ import {
   ProductQAResponse,
   ProductResponse,
   ProductWithoutDataResponse,
+  ProfileData,
   UpdateProductServiceIdPayload,
 } from "./entities";
 import EmailSender from "../../services/emailEngine";
@@ -234,28 +235,84 @@ const createProductQA = async (
       throw new NotFound("User product not found");
     }
 
-    const productForm = productQAPayload.form.map((data: FormData) => ({
-      question: data.question,
-      answer: data.answer,
-      type: data.type,
-      compulsory: data.compulsory,
-      productId: findProduct.id,
-    }));
+    if (productQAPayload.form.length === 1) {
+      const data = {
+        question: productQAPayload.form[0].question,
+        answer: productQAPayload.form[0].answer,
+        type: productQAPayload.form[0].type,
+        compulsory: productQAPayload.form[0].compulsory,
+        isGeneral: productQAPayload.form[0].isGeneral,
+        productId: findProduct.id,
+        fileName: productQAPayload.form[0].file.name,
+        fileDescription: productQAPayload.form[0].file.description,
+        fileLink: productQAPayload.form[0].file.link,
+        fileType: productQAPayload.form[0].file.type,
+      };
+      const createProductFormData = await prisma.productQA.create({
+        data: data,
+      });
+      if (!createProductFormData) {
+        throw new BadRequest("Error occured while creating this Product Form");
+      }
 
-    const productQA = await prisma.productQA.createMany({
-      data: productForm,
-      skipDuplicates: true,
-    });
+      if (productQAPayload.form[0].subForm) {
+        const productForm = productQAPayload.form[0].profile.map(
+          (data: ProfileData) => ({
+            question: data.question,
+            answer: data.answer,
+            type: data.type,
+            compulsory: data.compulsory,
+            productQAId: createProductFormData.id,
+          })
+        );
 
-    if (!productQA) {
-      throw new BadRequest("Error occured while creating this Product Form");
+        const productQA = await prisma.productQASubForm.createMany({
+          data: productForm,
+          skipDuplicates: true,
+        });
+
+        if (!productQA) {
+          throw new BadRequest(
+            "Error occured while creating this Product Sub Form"
+          );
+        }
+      }
+    } else {
+      const productForm = productQAPayload.form.map((data: FormData) => ({
+        question: data.question,
+        answer: data.answer,
+        type: data.type,
+        isGeneral: data.isGeneral,
+        compulsory: data.compulsory,
+        productId: findProduct.id,
+        fileName: data.file.name,
+        fileDescription: data.file.description,
+        fileLink: data.file.link,
+        fileType: data.file.type,
+      }));
+
+      const productQA = await prisma.productQA.createMany({
+        data: productForm,
+        skipDuplicates: true,
+      });
+
+      if (!productQA) {
+        throw new BadRequest("Error occured while creating this Product Form");
+      }
     }
 
     logger.info({
       message: `Form saved successfully for product with ${productId} `,
     });
 
-    const productForms = await prisma.productQA.findMany({});
+    const productForms = await prisma.productQA.findMany({
+      where: {
+        productId: findProduct.id,
+      },
+      include: {
+        productSubForm: true,
+      },
+    });
 
     if (!productForms) {
       throw new NotFound("Error occured while getting products");
@@ -314,6 +371,41 @@ const getAllProductQA = async (
     const GeneralQA = await prisma.productQA.findMany({
       where: {
         productId: productId,
+      },
+    });
+    if (!GeneralQA) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ProductQAResponse = {
+      message: "Product QA fetched successfully",
+      data: GeneralQA,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+//get all service QA service
+const getAllProductQAByQuestion = async (
+  payload: any
+): Promise<ProductQAResponse> => {
+  //  get the all the product QA
+  //  return the  list to the product QA controller
+  try {
+    const GeneralQA = await prisma.productQA.findMany({
+      where: {
+        question: payload.question,
+        productId: payload.productId,
+        isGeneral: false,
+      },
+      include: {
+        productSubForm: true,
       },
     });
     if (!GeneralQA) {
@@ -406,4 +498,5 @@ export {
   submitProduct,
   addServiceId,
   getProductById,
+  getAllProductQAByQuestion,
 };

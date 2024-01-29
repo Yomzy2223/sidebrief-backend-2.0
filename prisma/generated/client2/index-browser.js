@@ -300,6 +300,19 @@ exports.Prisma.ServiceFormScalarFieldEnum = {
   serviceId: 'serviceId'
 };
 
+exports.Prisma.ServiceSubFormScalarFieldEnum = {
+  id: 'id',
+  question: 'question',
+  options: 'options',
+  type: 'type',
+  compulsory: 'compulsory',
+  fileName: 'fileName',
+  fileDescription: 'fileDescription',
+  fileType: 'fileType',
+  fileLink: 'fileLink',
+  serviceFormId: 'serviceFormId'
+};
+
 exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   email: 'email',
@@ -320,9 +333,19 @@ exports.Prisma.ProductQAScalarFieldEnum = {
   answer: 'answer',
   type: 'type',
   compulsory: 'compulsory',
+  isGeneral: 'isGeneral',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   productId: 'productId'
+};
+
+exports.Prisma.ProductQASubFormScalarFieldEnum = {
+  id: 'id',
+  question: 'question',
+  options: 'options',
+  type: 'type',
+  compulsory: 'compulsory',
+  productQAId: 'productQAId'
 };
 
 exports.Prisma.ClaimScalarFieldEnum = {
@@ -431,8 +454,10 @@ exports.Prisma.ModelName = {
   Service: 'Service',
   ServiceTemplate: 'ServiceTemplate',
   ServiceForm: 'ServiceForm',
+  ServiceSubForm: 'ServiceSubForm',
   Product: 'Product',
   ProductQA: 'ProductQA',
+  ProductQASubForm: 'ProductQASubForm',
   Claim: 'Claim',
   Team: 'Team',
   TeamMember: 'TeamMember',

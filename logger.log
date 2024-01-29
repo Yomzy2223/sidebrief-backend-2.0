@@ -6259,3 +6259,19 @@ error: Label: 26-Jan-2024 10:00:23: Authorization token is missing. with error E
 error: Label: 26-Jan-2024 10:24:52: Unexpected token } in JSON at position 74 with error SyntaxError: Unexpected token } in JSON at position 74 occurred when POST /users/login was called
 info: Label: 26-Jan-2024 10:27:44: User with akinyemibamidele2024@gmail.com signed in successfully.
 info: Label: 26-Jan-2024 14:24:40: Emmanuel Test created an account successfully with emma@gmail.com.
+info: Label: 29-Jan-2024 09:59:26: Bamidele created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 29-Jan-2024 10:02:18: User not found!. with error Error: User not found!. occurred when GET /users/ee382073-ae41-4df0-ad8e-f5243e97277d%20 was called
+error: Label: 29-Jan-2024 10:04:17: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:04:20: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:09:26: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:28:50: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:29:14: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:32:20: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:33:52: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:37:05: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:39:12: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:39:12: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:39:53: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+info: Label: 29-Jan-2024 10:40:36: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 29-Jan-2024 10:41:17: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 29-Jan-2024 10:42:14: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called

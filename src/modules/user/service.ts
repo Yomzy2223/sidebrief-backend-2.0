@@ -211,6 +211,8 @@ const loginUser = async (
         picture: user.picture,
         isVerified: user.isVerified,
         referral: user.referral,
+        isStaff: user.isStaff,
+        isPartner: user.isPartner,
       },
       statusCode: 200,
     };

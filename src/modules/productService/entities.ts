@@ -35,7 +35,40 @@ export interface ServiceFormPayload {
   question: string;
   type: string;
   options: string[];
+  compulsory: boolean;
   serviceId: string;
+  fileName: string;
+  fileDescription: string;
+  fileLink: string;
+  fileType: string;
+}
+
+export interface UpdateServiceFormPayload {
+  question: string;
+  type: string;
+  options: string[];
+  compulsory: boolean;
+  fileName: string;
+  fileDescription: string;
+  fileLink: string;
+  fileType: string;
+}
+
+export interface SubFormPayload {
+  subForm: boolean;
+  form: FormData[];
+}
+export interface FormData {
+  question: string;
+  options: string[];
+  type: string;
+  compulsory: boolean;
+  file: {
+    name: string;
+    description: string;
+    link: string;
+    type: string;
+  };
 }
 
 export interface ServiceFormData {

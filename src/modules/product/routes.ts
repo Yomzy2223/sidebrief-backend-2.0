@@ -4,6 +4,7 @@ import validator from "../../middleware/validator";
 import {
   initializeProductCredentials,
   producQACredentials,
+  producServiceIdCredentials,
   submitProductCredentials,
 } from "../../utils/validation/product";
 import {
@@ -15,27 +16,34 @@ import {
   GetAllServicesQA,
   GetProductById,
   ProductSubmission,
+  GetAllProductQAByQuestion,
 } from "./controller";
 const router = express.Router();
 
 router.post(
   "/",
+  userAuth,
   validator(initializeProductCredentials),
-
   CreateProduct
 );
-router.get("/:userId", GetAllProductsByUserId);
+router.get("/:userId", userAuth, GetAllProductsByUserId);
 router.get("/:id", GetProductById);
 
-router.post("/serviceId", AddServiceId);
-router.post("/form/:productId", validator(producQACredentials), AddProductQA);
+router.post(
+  "/serviceId",
+  validator(producServiceIdCredentials),
+  userAuth,
+  AddServiceId
+);
+router.post(
+  "/form/:productId",
+  userAuth,
+  // validator(producQACredentials),
+  AddProductQA
+);
 // router.get("/form/:productId", GetAllServicesQA);
 router.get("/form/:productId", GetAllProductQA);
-router.post(
-  "/submission/:productId",
-  validator(submitProductCredentials),
-
-  ProductSubmission
-);
+router.get("/formByQuestion", GetAllProductQAByQuestion);
+router.post("/submission/:productId", userAuth, ProductSubmission);
 
 export default router;

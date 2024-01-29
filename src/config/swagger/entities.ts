@@ -91,12 +91,45 @@ interface ProductServices {
 // Service Form Interface
 interface ServiceForms {
   type: string;
-  require: string[];
   properties: {
     question: Props;
     type: Props;
     options: Props;
     compulsory: Props;
+    file: {
+      type: string;
+      description: string;
+      properties: {
+        name: Props;
+        description: Props;
+        link: Props;
+        type: Props;
+      };
+    };
+    subForm: Props;
+    form: {
+      type: string;
+      description: string;
+      items: {
+        type: string;
+        properties: {
+          question: Props;
+          options: Props;
+          type: Props;
+          compulsory: Props;
+          file: {
+            type: string;
+            description: string;
+            properties: {
+              name: Props;
+              description: Props;
+              link: Props;
+              type: Props;
+            };
+          };
+        };
+      };
+    };
   };
 }
 interface ProductServiceForms {
@@ -275,6 +308,14 @@ interface CreateProduct {
     userId: Props;
   };
 }
+interface GetProductQAByQuestion {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
+    productId: Props;
+  };
+}
 interface AddProductQA {
   type: string;
   require: string[];
@@ -290,6 +331,33 @@ interface AddProductQA {
           answer: Props;
           type: Props;
           compulsory: Props;
+          isGeneral: Props;
+          subForm: Props;
+          profile: {
+            type: string;
+            description: string;
+            items: {
+              type: string;
+              require: string[];
+              properties: {
+                question: Props;
+                answer: Props;
+                type: Props;
+                compulsory: Props;
+              };
+            };
+          };
+          file: {
+            type: string;
+            description: string;
+            require: string[];
+            properties: {
+              name: Props;
+              description: Props;
+              link: Props;
+              type: Props;
+            };
+          };
         };
       };
     };
@@ -411,6 +479,7 @@ interface ComponentDefinition {
     ServiceCategoryForm: ServiceCategoryForm;
     CreateProduct: CreateProduct;
     AddProductQA: AddProductQA;
+    GetProductQAByQuestion: GetProductQAByQuestion;
   };
   responses: {
     401: ResponseProps;
@@ -439,9 +508,11 @@ export interface OpenAPIDefinition {
     schemas: string[];
     servers: ServerDefinition[];
     components: ComponentDefinition;
-    security: {
-      bearerAuth: any;
-    };
+    security: [
+      {
+        bearerAuth: any;
+      }
+    ];
     tags: TagDefinition[];
     paths: any;
   };
