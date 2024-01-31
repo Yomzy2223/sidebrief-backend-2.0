@@ -6567,3 +6567,6 @@ error: Label: 31-Jan-2024 11:04:58: Invalid credentials! with error Error: Inval
 info: Label: 31-Jan-2024 11:06:59: User with akinyemibamidele2@gmail.com signed in successfully.
 error: Label: 31-Jan-2024 11:07:39: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google/login was called
 error: Label: 31-Jan-2024 11:24:15: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users/3c706ce0-32ac-4185-a0c3-71f8dfcffb2a was called
+info: Label: 31-Jan-2024 14:13:26: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 31-Jan-2024 14:13:42: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 31-Jan-2024 14:13:52: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google was called

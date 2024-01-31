@@ -110,7 +110,53 @@ const saveUserWithGoogle = async (
       where: { email: userPayload.email },
     });
     if (checkUser) {
-      throw new BadRequest("User with this email already exists");
+      let checkGoogleId = userPayload.googleId === checkUser.googleId;
+
+      if (!checkGoogleId) {
+        throw new BadRequest("Invalid credentials!");
+      }
+
+      const userSecret = process.env.TOKEN_USER_SECRET;
+      const token = generateToken(
+        { id: checkUser.id },
+        userSecret as string,
+        "14d"
+      );
+
+      const refreshToken = generateToken(
+        { id: checkUser.id },
+        userSecret as string,
+        "2h"
+      );
+
+      const currentTime = Date.now();
+      const expirationTime = currentTime + 30 * 60 * 1000;
+
+      logger.info({
+        message: `User with ${userPayload.email} signed in successfully.`,
+      });
+
+      const response: UserResponseProps = {
+        message: "Login successfully",
+        data: {
+          id: checkUser.id,
+          fullName: checkUser.fullName,
+          userName: checkUser.username,
+          email: checkUser.email,
+          phone: checkUser.phone,
+          token: token,
+          tokenExpiresIn: expirationTime,
+          refreshToken: refreshToken,
+          picture: checkUser.picture,
+          isVerified: checkUser.isVerified,
+          referral: checkUser.referral,
+          isStaff: checkUser.isStaff,
+          isPartner: checkUser.isPartner,
+        },
+        statusCode: 200,
+      };
+
+      return response;
     }
 
     const user = await prisma.user.create({ data: userPayload });

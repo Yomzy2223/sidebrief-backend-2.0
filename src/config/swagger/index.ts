@@ -1237,34 +1237,34 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/users/google/login": {
-        post: {
-          tags: ["Users"],
-          summary: "Sign in user into system with google ",
-          description: "Login into system with google ",
+      // "/users/google/login": {
+      //   post: {
+      //     tags: ["Users"],
+      //     summary: "Sign in user into system with google ",
+      //     description: "Login into system with google ",
 
-          requestBody: {
-            // expected request body
-            content: {
-              // content-type
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/UserLoginWithGoogle", //
-                },
-              },
-            },
-          },
-          produces: ["application/json"],
-          responses: {
-            200: {
-              description: "User successfully logged in",
-              schema: {
-                $ref: "#/components/schemas/UserLoginWithGoogle",
-              },
-            },
-          },
-        },
-      },
+      //     requestBody: {
+      //       // expected request body
+      //       content: {
+      //         // content-type
+      //         "application/json": {
+      //           schema: {
+      //             $ref: "#/components/schemas/UserLoginWithGoogle", //
+      //           },
+      //         },
+      //       },
+      //     },
+      //     produces: ["application/json"],
+      //     responses: {
+      //       200: {
+      //         description: "User successfully logged in",
+      //         schema: {
+      //           $ref: "#/components/schemas/UserLoginWithGoogle",
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
 
       "/users/forgotpassword": {
         post: {

@@ -34,11 +34,6 @@ router.post(
   validator(validateUserWithGoogle),
   UserRegisrationWithGoogle
 );
-router.post(
-  "/google/login",
-  validator(validateUserWithGoogleCredentials),
-  UserGrantorWithGoogle
-);
 
 router.get("/:id", userAuth, UserFetcher);
 router.get("/", staffAuth, UsersFetcher);
