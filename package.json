@@ -10,8 +10,8 @@
     "build": "tsc -p tsconfig.json",
     "test": "jest --forceExit --detectOpenHandles --runInBand",
     "prisma": "npx prisma generate --schema prisma/schema1.prisma && npx prisma generate --schema prisma/schema2.prisma",
-    "dep": "npx prisma migrate dev --schema prisma/schema2.prisma && npx prisma migrate dev --schema prisma/schema1.prisma && npm run build && node dist/index.js",
-    "dev": "npm run prisma && npx prisma migrate dev --schema prisma/schema2.prisma --name main && npx prisma migrate dev --schema prisma/schema1.prisma --name main && npm run build && cp -r prisma dist/ && node dist/index.js",
+    "deploy": "npm run prisma && npx prisma migrate dev --schema prisma/schema2.prisma --name main && npx prisma migrate dev --schema prisma/schema1.prisma --name main && npm run build && cp -r prisma dist/ && node dist/index.js",
+    "dev": "npm run prisma && npx prisma migrate deploy --schema prisma/schema2.prisma && npx prisma migrate deploy --schema prisma/schema1.prisma && npm run build && cp -r prisma dist/ && node dist/index.js",
     "start": "npm run dev"
   },
   "author": "",
