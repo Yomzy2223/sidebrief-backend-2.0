@@ -96,6 +96,57 @@ const options: OpenAPIDefinition = {
           },
         },
 
+        //User with google
+        UserWithGoogle: {
+          type: "object",
+          require: [
+            "fullName",
+            "email",
+            "password",
+            "referral",
+            "isPartner",
+            "isStaff",
+          ],
+          properties: {
+            fullName: {
+              type: "string",
+              description: "The full name of the user",
+            },
+            email: {
+              type: "string",
+              description: "The email of the user",
+            },
+            googleId: {
+              type: "string",
+              description: "The id of the user",
+            },
+            isPartner: {
+              type: "boolean",
+              description: "user as a partner ",
+            },
+            isStaff: {
+              type: "boolean",
+              description: "user as a staff",
+            },
+          },
+        },
+
+        //user login with google
+        UserLoginWithGoogle: {
+          type: "object",
+          require: ["email", "password"],
+          properties: {
+            email: {
+              type: "string",
+              description: "The email of the user",
+            },
+            googleId: {
+              type: "string",
+              description: "The id of the user",
+            },
+          },
+        },
+
         //ForgotPassword
         UserForgot: {
           type: "object",
@@ -1014,6 +1065,35 @@ const options: OpenAPIDefinition = {
         },
       },
 
+      "/users/google": {
+        post: {
+          tags: ["Users"],
+          summary: "Create new user with google in system",
+          description: "Create new with google user in system",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserWithGoogle", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New user is created",
+              schema: {
+                $ref: "#/components/schemas/UserWithGoogle",
+              },
+            },
+          },
+        },
+      },
+
       "/users/verification/{token}": {
         post: {
           tags: ["Users"],
@@ -1151,6 +1231,35 @@ const options: OpenAPIDefinition = {
               description: "User successfully logged in",
               schema: {
                 $ref: "#/components/schemas/Users",
+              },
+            },
+          },
+        },
+      },
+
+      "/users/google/login": {
+        post: {
+          tags: ["Users"],
+          summary: "Sign in user into system with google ",
+          description: "Login into system with google ",
+
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserLoginWithGoogle", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "User successfully logged in",
+              schema: {
+                $ref: "#/components/schemas/UserLoginWithGoogle",
               },
             },
           },
@@ -1874,20 +1983,6 @@ const options: OpenAPIDefinition = {
           },
         },
 
-        // get: {
-        //   tags: ["Service"],
-        //   summary: "Get all service forms in system",
-        //   responses: {
-        //     200: {
-        //       description: "OK",
-        //       schema: {
-        //         $ref: "#/components/schemas/ServiceCategoryForm",
-        //       },
-        //     },
-        //   },
-        // },
-      },
-      "/services/forms/{serviceCategoryId}": {
         get: {
           summary: "Get all service forms under a service category",
           tags: ["Service"],

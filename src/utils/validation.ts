@@ -12,6 +12,15 @@ const userSchema = {
 
 const validateUser = validate.compile(userSchema);
 
+//with google
+const userWithGoogleSchema = {
+  fullName: { type: "string", min: 3, max: 255 },
+  email: { type: "email", min: 3, max: 255 },
+  googleId: { type: "string", min: 3, max: 255 },
+};
+
+const validateUserWithGoogle = validate.compile(userWithGoogleSchema);
+
 //user login
 const loginSchema = {
   email: { type: "email", min: 3, max: 255 },
@@ -19,6 +28,16 @@ const loginSchema = {
 };
 
 const validateUserCredentials = validate.compile(loginSchema);
+
+//with google
+const loginWithGoogleSchema = {
+  email: { type: "email", min: 3, max: 255 },
+  googleId: { type: "string", min: 3, max: 255 },
+};
+
+const validateUserWithGoogleCredentials = validate.compile(
+  loginWithGoogleSchema
+);
 
 //staff registration
 const staffSchema = {
@@ -122,4 +141,6 @@ export {
   validateDocument,
   validateCountry,
   validateEmail,
+  validateUserWithGoogle,
+  validateUserWithGoogleCredentials,
 };

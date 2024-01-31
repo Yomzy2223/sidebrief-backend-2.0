@@ -6558,3 +6558,12 @@ info: Label: 29-Jan-2024 12:30:02: $ product service category created successful
 info: Label: 29-Jan-2024 12:30:45: User with akinyemi@sidebrief.com signed in successfully.
 info: Label: 29-Jan-2024 12:32:00: 288f5b4e-b60a-4cc8-8f59-2766a9a4f158 created a product successfully
 info: Label: 29-Jan-2024 12:41:42: Form saved successfully for product with 5d6df9e0-0f41-49ec-896e-f511b74f7798 
+error: Label: 31-Jan-2024 10:22:32: Error occured with error Error: Unknown authentication strategy "google-signup" occurred when GET /users/auth/google was called
+info: Label: 31-Jan-2024 10:58:52: Bamidele created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-Jan-2024 10:59:14: Error occured with error Error: Illegal arguments: undefined, object occurred when POST /users/google/login was called
+error: Label: 31-Jan-2024 10:59:46: Error occured with error Error: Illegal arguments: undefined, object occurred when POST /users/google/login was called
+error: Label: 31-Jan-2024 11:02:00: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google/login was called
+error: Label: 31-Jan-2024 11:04:58: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google/login was called
+info: Label: 31-Jan-2024 11:06:59: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 31-Jan-2024 11:07:39: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google/login was called
+error: Label: 31-Jan-2024 11:24:15: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users/3c706ce0-32ac-4185-a0c3-71f8dfcffb2a was called

@@ -6,8 +6,15 @@ import { JwtResponse } from "../common/entities";
 
 const prisma = new PrismaClient();
 
+interface MyUserRequest extends Request {
+  user?: any;
+}
 //IN PROGRESS
-const userAuth = async (req: Request, res: Response, next: NextFunction) => {
+const userAuth = async (
+  req: MyUserRequest,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const reqToken = req.headers.authorization;
     if (!reqToken) {
@@ -40,7 +47,11 @@ const userAuth = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const staffAuth = async (req: Request, res: Response, next: NextFunction) => {
+const staffAuth = async (
+  req: MyUserRequest,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const reqToken = req.headers.authorization;
     if (!reqToken) {
@@ -67,83 +78,6 @@ const staffAuth = async (req: Request, res: Response, next: NextFunction) => {
       throw new Unauthorized("Staff is not authorized.");
     }
     req.user = checkStaff;
-    next();
-  } catch (error) {
-    next(error);
-  }
-};
-
-const partnerAuth = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const reqToken = req.headers.authorization;
-    if (!reqToken) {
-      throw new Unauthorized("Authorization token is missing.");
-    }
-    const token = reqToken.split(" ")[1];
-    const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
-
-    const partner = (await verifyUserToken(
-      token,
-      collaboratorSecret as string
-    )) as JwtResponse;
-
-    if (!partner) {
-      throw new Unauthorized("Invalid or expired partner token.");
-    }
-
-    const checkPartner = await prisma.collaborator.findUnique({
-      where: { id: partner.id },
-    });
-    if (!checkPartner) {
-      throw new Unauthorized("Partner is not authorized.");
-    }
-
-    if (checkPartner.isPartner === false) {
-      return {
-        error: "Partner is not authorized.",
-        statusCode: 403,
-      };
-    }
-    req.user = checkPartner;
-    next();
-  } catch (error) {
-    next(error);
-  }
-};
-
-const ResellerrAuth = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const reqToken = req.headers.authorization;
-    if (!reqToken) {
-      throw new Unauthorized("Authorization token is missing.");
-    }
-    const token = reqToken.split(" ")[1];
-    const collaboratorSecret = process.env.TOKEN_COLLABORATOR_SECRET;
-
-    const reseller = (await verifyUserToken(
-      token,
-      collaboratorSecret as string
-    )) as JwtResponse;
-
-    if (!reseller) {
-      throw new Unauthorized("Invalid or expired reseller token.");
-    }
-
-    const checkReseller = await prisma.collaborator.findUnique({
-      where: { id: reseller.id },
-    });
-    if (!checkReseller) {
-      throw new Unauthorized("Reseller is not authorized.");
-    }
-
-    if (checkReseller.isPartner === true) {
-      throw new Unauthorized("Reseller is not authorized.");
-    }
-    req.user = checkReseller;
     next();
   } catch (error) {
     next(error);

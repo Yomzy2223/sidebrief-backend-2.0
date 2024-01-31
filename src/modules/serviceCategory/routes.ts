@@ -41,7 +41,7 @@ router.post(
   validator(validateServiceCategoryForm),
   ServiceCategoryFormCreator
 );
-router.get("/forms/:serviceCategoryId", ServiceCategoryFormFetcher);
+router.get("/form/:serviceCategoryId", ServiceCategoryFormFetcher);
 router.get("/form/:id", ServiceACategoryFormFetcher);
 
 router.put(

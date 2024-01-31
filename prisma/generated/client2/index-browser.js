@@ -205,6 +205,7 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   email: 'email',
   password: 'password',
+  googleId: 'googleId',
   phone: 'phone',
   picture: 'picture',
   isVerified: 'isVerified',

@@ -204,11 +204,12 @@ export type UserPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultAr
     fullName: string
     username: string | null
     email: string
-    password: string
+    password: string | null
+    googleId: string | null
     phone: string | null
     picture: string | null
     isVerified: boolean
-    referral: string
+    referral: string | null
     country: string | null
     resetToken: string | null
     isPartner: boolean
@@ -11185,6 +11186,7 @@ export namespace Prisma {
     username: string | null
     email: string | null
     password: string | null
+    googleId: string | null
     phone: string | null
     picture: string | null
     isVerified: boolean | null
@@ -11208,6 +11210,7 @@ export namespace Prisma {
     username: string | null
     email: string | null
     password: string | null
+    googleId: string | null
     phone: string | null
     picture: string | null
     isVerified: boolean | null
@@ -11231,6 +11234,7 @@ export namespace Prisma {
     username: number
     email: number
     password: number
+    googleId: number
     phone: number
     picture: number
     isVerified: number
@@ -11259,6 +11263,7 @@ export namespace Prisma {
     username?: true
     email?: true
     password?: true
+    googleId?: true
     phone?: true
     picture?: true
     isVerified?: true
@@ -11282,6 +11287,7 @@ export namespace Prisma {
     username?: true
     email?: true
     password?: true
+    googleId?: true
     phone?: true
     picture?: true
     isVerified?: true
@@ -11305,6 +11311,7 @@ export namespace Prisma {
     username?: true
     email?: true
     password?: true
+    googleId?: true
     phone?: true
     picture?: true
     isVerified?: true
@@ -11404,11 +11411,12 @@ export namespace Prisma {
     fullName: string
     username: string | null
     email: string
-    password: string
+    password: string | null
+    googleId: string | null
     phone: string | null
     picture: string | null
     isVerified: boolean
-    referral: string
+    referral: string | null
     country: string | null
     resetToken: string | null
     isPartner: boolean
@@ -11448,6 +11456,7 @@ export namespace Prisma {
     username?: boolean
     email?: boolean
     password?: boolean
+    googleId?: boolean
     phone?: boolean
     picture?: boolean
     isVerified?: boolean
@@ -11478,6 +11487,7 @@ export namespace Prisma {
     username?: boolean
     email?: boolean
     password?: boolean
+    googleId?: boolean
     phone?: boolean
     picture?: boolean
     isVerified?: boolean
@@ -28083,6 +28093,7 @@ export namespace Prisma {
     username: 'username',
     email: 'email',
     password: 'password',
+    googleId: 'googleId',
     phone: 'phone',
     picture: 'picture',
     isVerified: 'isVerified',
@@ -28883,11 +28894,12 @@ export namespace Prisma {
     fullName?: StringFilter | string
     username?: StringNullableFilter | string | null
     email?: StringFilter | string
-    password?: StringFilter | string
+    password?: StringNullableFilter | string | null
+    googleId?: StringNullableFilter | string | null
     phone?: StringNullableFilter | string | null
     picture?: StringNullableFilter | string | null
     isVerified?: BoolFilter | boolean
-    referral?: StringFilter | string
+    referral?: StringNullableFilter | string | null
     country?: StringNullableFilter | string | null
     resetToken?: StringNullableFilter | string | null
     isPartner?: BoolFilter | boolean
@@ -28912,11 +28924,12 @@ export namespace Prisma {
     fullName?: SortOrder
     username?: SortOrderInput | SortOrder
     email?: SortOrder
-    password?: SortOrder
+    password?: SortOrderInput | SortOrder
+    googleId?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     picture?: SortOrderInput | SortOrder
     isVerified?: SortOrder
-    referral?: SortOrder
+    referral?: SortOrderInput | SortOrder
     country?: SortOrderInput | SortOrder
     resetToken?: SortOrderInput | SortOrder
     isPartner?: SortOrder
@@ -28946,11 +28959,12 @@ export namespace Prisma {
     fullName?: SortOrder
     username?: SortOrderInput | SortOrder
     email?: SortOrder
-    password?: SortOrder
+    password?: SortOrderInput | SortOrder
+    googleId?: SortOrderInput | SortOrder
     phone?: SortOrderInput | SortOrder
     picture?: SortOrderInput | SortOrder
     isVerified?: SortOrder
-    referral?: SortOrder
+    referral?: SortOrderInput | SortOrder
     country?: SortOrderInput | SortOrder
     resetToken?: SortOrderInput | SortOrder
     isPartner?: SortOrder
@@ -28978,11 +28992,12 @@ export namespace Prisma {
     fullName?: StringWithAggregatesFilter | string
     username?: StringNullableWithAggregatesFilter | string | null
     email?: StringWithAggregatesFilter | string
-    password?: StringWithAggregatesFilter | string
+    password?: StringNullableWithAggregatesFilter | string | null
+    googleId?: StringNullableWithAggregatesFilter | string | null
     phone?: StringNullableWithAggregatesFilter | string | null
     picture?: StringNullableWithAggregatesFilter | string | null
     isVerified?: BoolWithAggregatesFilter | boolean
-    referral?: StringWithAggregatesFilter | string
+    referral?: StringNullableWithAggregatesFilter | string | null
     country?: StringNullableWithAggregatesFilter | string | null
     resetToken?: StringNullableWithAggregatesFilter | string | null
     isPartner?: BoolWithAggregatesFilter | boolean
@@ -30729,11 +30744,12 @@ export namespace Prisma {
     fullName: string
     username?: string | null
     email: string
-    password: string
+    password?: string | null
+    googleId?: string | null
     phone?: string | null
     picture?: string | null
     isVerified?: boolean
-    referral: string
+    referral?: string | null
     country?: string | null
     resetToken?: string | null
     isPartner?: boolean
@@ -30758,11 +30774,12 @@ export namespace Prisma {
     fullName: string
     username?: string | null
     email: string
-    password: string
+    password?: string | null
+    googleId?: string | null
     phone?: string | null
     picture?: string | null
     isVerified?: boolean
-    referral: string
+    referral?: string | null
     country?: string | null
     resetToken?: string | null
     isPartner?: boolean
@@ -30787,11 +30804,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean
@@ -30816,11 +30834,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean
@@ -30845,11 +30864,12 @@ export namespace Prisma {
     fullName: string
     username?: string | null
     email: string
-    password: string
+    password?: string | null
+    googleId?: string | null
     phone?: string | null
     picture?: string | null
     isVerified?: boolean
-    referral: string
+    referral?: string | null
     country?: string | null
     resetToken?: string | null
     isPartner?: boolean
@@ -30871,11 +30891,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean
@@ -30897,11 +30918,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean
@@ -32807,6 +32829,7 @@ export namespace Prisma {
     username?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    googleId?: SortOrder
     phone?: SortOrder
     picture?: SortOrder
     isVerified?: SortOrder
@@ -32833,6 +32856,7 @@ export namespace Prisma {
     username?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    googleId?: SortOrder
     phone?: SortOrder
     picture?: SortOrder
     isVerified?: SortOrder
@@ -32856,6 +32880,7 @@ export namespace Prisma {
     username?: SortOrder
     email?: SortOrder
     password?: SortOrder
+    googleId?: SortOrder
     phone?: SortOrder
     picture?: SortOrder
     isVerified?: SortOrder
@@ -35023,11 +35048,12 @@ export namespace Prisma {
     fullName: string
     username?: string | null
     email: string
-    password: string
+    password?: string | null
+    googleId?: string | null
     phone?: string | null
     picture?: string | null
     isVerified?: boolean
-    referral: string
+    referral?: string | null
     country?: string | null
     resetToken?: string | null
     isPartner?: boolean
@@ -35051,11 +35077,12 @@ export namespace Prisma {
     fullName: string
     username?: string | null
     email: string
-    password: string
+    password?: string | null
+    googleId?: string | null
     phone?: string | null
     picture?: string | null
     isVerified?: boolean
-    referral: string
+    referral?: string | null
     country?: string | null
     resetToken?: string | null
     isPartner?: boolean
@@ -35089,11 +35116,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean
@@ -35117,11 +35145,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean
@@ -36241,11 +36270,12 @@ export namespace Prisma {
     fullName: string
     username?: string | null
     email: string
-    password: string
+    password?: string | null
+    googleId?: string | null
     phone?: string | null
     picture?: string | null
     isVerified?: boolean
-    referral: string
+    referral?: string | null
     country?: string | null
     resetToken?: string | null
     isPartner?: boolean
@@ -36269,11 +36299,12 @@ export namespace Prisma {
     fullName: string
     username?: string | null
     email: string
-    password: string
+    password?: string | null
+    googleId?: string | null
     phone?: string | null
     picture?: string | null
     isVerified?: boolean
-    referral: string
+    referral?: string | null
     country?: string | null
     resetToken?: string | null
     isPartner?: boolean
@@ -36465,11 +36496,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean
@@ -36493,11 +36525,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean
@@ -36997,11 +37030,12 @@ export namespace Prisma {
     fullName: string
     username?: string | null
     email: string
-    password: string
+    password?: string | null
+    googleId?: string | null
     phone?: string | null
     picture?: string | null
     isVerified?: boolean
-    referral: string
+    referral?: string | null
     country?: string | null
     resetToken?: string | null
     isPartner?: boolean
@@ -37025,11 +37059,12 @@ export namespace Prisma {
     fullName: string
     username?: string | null
     email: string
-    password: string
+    password?: string | null
+    googleId?: string | null
     phone?: string | null
     picture?: string | null
     isVerified?: boolean
-    referral: string
+    referral?: string | null
     country?: string | null
     resetToken?: string | null
     isPartner?: boolean
@@ -37090,11 +37125,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean
@@ -37118,11 +37154,12 @@ export namespace Prisma {
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     picture?: NullableStringFieldUpdateOperationsInput | string | null
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    referral?: StringFieldUpdateOperationsInput | string
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
     country?: NullableStringFieldUpdateOperationsInput | string | null
     resetToken?: NullableStringFieldUpdateOperationsInput | string | null
     isPartner?: BoolFieldUpdateOperationsInput | boolean

@@ -32,6 +32,27 @@ interface UserLogin {
   };
 }
 
+interface UsersWithGoogle {
+  type: string;
+  require: string[];
+  properties: {
+    fullName: Props;
+    email: Props;
+    googleId: Props;
+    isPartner: Props;
+    isStaff: Props;
+  };
+}
+
+interface UserLoginWithGoogle {
+  type: string;
+  require: string[];
+  properties: {
+    email: Props;
+    googleId: Props;
+  };
+}
+
 interface UserForgot {
   type: string;
   require: string[];
@@ -436,6 +457,8 @@ interface ComponentDefinition {
     // Users
     Users: User;
     UserLogin: UserLogin;
+    UserWithGoogle: UsersWithGoogle;
+    UserLoginWithGoogle: UserLoginWithGoogle;
     UserForgot: UserForgot;
     UserReset: UserReset;
 

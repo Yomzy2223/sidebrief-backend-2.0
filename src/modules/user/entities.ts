@@ -6,6 +6,14 @@ export interface UserPayload {
   isPartner: boolean;
   isStaff: boolean;
 }
+export interface UserWithGooglePayload {
+  fullName: string;
+  email: string;
+  googleId: string;
+  isPartner: boolean;
+  isStaff: boolean;
+}
+
 export interface UserResponseProps {
   message: string;
   statusCode: number;
@@ -33,6 +41,10 @@ export interface UserLogin {
   password: string;
 }
 
+export interface UserLoginWithGoogle {
+  email: string;
+  googleId: string;
+}
 export interface ForgotPassword {
   email: string;
 }

@@ -11,8 +11,10 @@ import {
   changePassword,
   updateProfile,
   deleteUser,
+  saveUserWithGoogle,
+  loginUserWithGoogle,
 } from "./service";
-import { UserPayload } from "./entities";
+import { UserPayload, UserWithGooglePayload } from "./entities";
 const UserRegisration = async (
   req: Request,
   res: Response,
@@ -34,6 +36,35 @@ const UserRegisration = async (
     };
 
     const user = await saveUser(userValues);
+
+    return res
+      .status(user.statusCode)
+      .json({ message: user.message, data: user.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//with google
+const UserRegisrationWithGoogle = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userPayload: UserWithGooglePayload = req.body;
+    const userValues = {
+      fullName: userPayload.fullName,
+      email: userPayload.email.toLowerCase(),
+      googleId: userPayload.googleId,
+      isPartner: userPayload.isPartner,
+      isStaff: userPayload.isStaff,
+      partnerPermission: [],
+      staffPermission: [],
+      userPermission: [],
+    };
+
+    const user = await saveUserWithGoogle(userValues);
 
     return res
       .status(user.statusCode)
@@ -92,6 +123,28 @@ const UserGrantor = async (req: Request, res: Response, next: NextFunction) => {
     const loginPayload = req.body;
 
     const user = await loginUser(loginPayload);
+
+    return res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const UserGrantorWithGoogle = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the login payload
+    // validate the payload
+    // pass wht payload to login service
+    // generate token
+    // return user and the token to client
+
+    const loginPayload = req.body;
+
+    const user = await loginUserWithGoogle(loginPayload);
 
     return res.status(200).json(user);
   } catch (error) {
@@ -197,8 +250,10 @@ const UserProfileModifier = async (
 
 export {
   UserRegisration,
+  UserRegisrationWithGoogle,
   UserFetcher,
   UserGrantor,
+  UserGrantorWithGoogle,
   UsersFetcher,
   UserVerification,
   UserPasswordResetLink,

@@ -20,14 +20,8 @@ import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import options from "./src/config/swagger";
 import session from "express-session";
-import passport from "passport";
 import ErrorHandler from "./src/middleware/errorHandler";
-
-// require("./src/modules/user/googleAuth")(passport);
-
-import googlePassport from "./src/modules/user/googleAuth";
 import { ScheduledJob } from "./src/modules/product/service";
-googlePassport(passport);
 
 const app = express();
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
@@ -62,9 +56,6 @@ const sessionOption: SessionProps = {
 };
 
 app.use(session(sessionOption));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(
   cors({
