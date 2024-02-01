@@ -10,7 +10,6 @@ import {
   UserProfileModifier,
   UserRemover,
   UserRegisrationWithGoogle,
-  UserGrantorWithGoogle,
 } from "./controller";
 import validator from "../../middleware/validator";
 import {

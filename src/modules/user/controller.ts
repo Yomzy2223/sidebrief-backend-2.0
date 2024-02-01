@@ -12,7 +12,6 @@ import {
   updateProfile,
   deleteUser,
   saveUserWithGoogle,
-  loginUserWithGoogle,
 } from "./service";
 import { UserPayload, UserWithGooglePayload } from "./entities";
 const UserRegisration = async (
@@ -130,28 +129,6 @@ const UserGrantor = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const UserGrantorWithGoogle = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    // get the login payload
-    // validate the payload
-    // pass wht payload to login service
-    // generate token
-    // return user and the token to client
-
-    const loginPayload = req.body;
-
-    const user = await loginUserWithGoogle(loginPayload);
-
-    return res.status(200).json(user);
-  } catch (error) {
-    next(error);
-  }
-};
-
 const UserVerification = async (
   req: Request,
   res: Response,
@@ -253,7 +230,6 @@ export {
   UserRegisrationWithGoogle,
   UserFetcher,
   UserGrantor,
-  UserGrantorWithGoogle,
   UsersFetcher,
   UserVerification,
   UserPasswordResetLink,

@@ -193,9 +193,9 @@ const ServiceCategoryFormModifier = async (
     const serviceCategoryFormId = req.params.id;
     const serviceCategoryPayload: UpdateServiceCategoryFormPayload = req.body;
     const values = {
-      question: serviceCategoryPayload.question,
+      title: serviceCategoryPayload.title,
       type: serviceCategoryPayload.type,
-      options: serviceCategoryPayload.options,
+      description: serviceCategoryPayload.description,
       compulsory: serviceCategoryPayload.compulsory,
     };
     const category = await updateServiceCategoryForm(

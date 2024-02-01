@@ -352,72 +352,6 @@ const loginUser = async (
   }
 };
 
-//with login
-const loginUserWithGoogle = async (
-  loginPayload: UserLoginWithGoogle
-): Promise<UserResponseProps> => {
-  // take the login payload  from the controller
-  //   //check if the user exists with the email address
-  //   //return the user to the user controller
-
-  try {
-    const user = await prisma.user.findUnique({
-      where: { email: loginPayload.email },
-    });
-
-    if (!user) {
-      throw new BadRequest("User not found!.");
-    }
-
-    let checkGoogleId = loginPayload.googleId === user.googleId;
-
-    if (!checkGoogleId) {
-      throw new BadRequest("Invalid credentials!");
-    }
-
-    const userSecret = process.env.TOKEN_USER_SECRET;
-    const token = generateToken({ id: user.id }, userSecret as string, "14d");
-
-    const refreshToken = generateToken(
-      { id: user.id },
-      userSecret as string,
-      "2h"
-    );
-
-    const currentTime = Date.now();
-    const expirationTime = currentTime + 30 * 60 * 1000;
-
-    logger.info({
-      message: `User with ${loginPayload.email} signed in successfully.`,
-    });
-
-    const response: UserResponseProps = {
-      message: "Login successfully",
-      data: {
-        id: user.id,
-        fullName: user.fullName,
-        userName: user.username,
-        email: user.email,
-        phone: user.phone,
-        token: token,
-        tokenExpiresIn: expirationTime,
-        refreshToken: refreshToken,
-        picture: user.picture,
-        isVerified: user.isVerified,
-        referral: user.referral,
-        isStaff: user.isStaff,
-        isPartner: user.isPartner,
-      },
-      statusCode: 200,
-    };
-
-    return response;
-  } catch (error) {
-    console.log("eerr", error);
-    throw error;
-  }
-};
-
 // verify user account service
 const verifyAccount = async (verifyPayload: string) => {
   try {
@@ -503,7 +437,7 @@ const forgotPassword = async (forgotPayload: ForgotPassword) => {
       statusCode: 200,
     };
   } catch (error) {
-    console.log(error)
+    console.log(error);
     throw error;
   }
 };
@@ -606,5 +540,4 @@ export {
   updateProfile,
   deleteUser,
   saveUserWithGoogle,
-  loginUserWithGoogle,
 };
