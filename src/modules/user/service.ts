@@ -300,13 +300,18 @@ const loginUser = async (
     if (!user) {
       throw new BadRequest("User not found!.");
     }
+    console.log(user.password);
 
-    let checkPassword = await matchChecker(
-      loginPayload.password,
-      user.password
-    );
+    if (user.password) {
+      let checkPassword = await matchChecker(
+        loginPayload.password,
+        user.password
+      );
 
-    if (!checkPassword) {
+      if (!checkPassword) {
+        throw new BadRequest("Invalid credentials!");
+      }
+    } else {
       throw new BadRequest("Invalid credentials!");
     }
 
@@ -348,6 +353,7 @@ const loginUser = async (
 
     return response;
   } catch (error) {
+    console.log("error", error);
     throw error;
   }
 };

@@ -116,6 +116,14 @@ const options: OpenAPIDefinition = {
               type: "string",
               description: "The email of the user",
             },
+            phone: {
+              type: "string",
+              description: "The phone of the user",
+            },
+            picture: {
+              type: "string",
+              description: "The picture of the user",
+            },
             googleId: {
               type: "string",
               description: "The id of the user",
@@ -2007,7 +2015,9 @@ const options: OpenAPIDefinition = {
             },
           },
         },
+      },
 
+      "/services/forms/{serviceCategoryId}": {
         get: {
           summary: "Get all service forms under a service category",
           tags: ["Service"],
@@ -2145,7 +2155,9 @@ const options: OpenAPIDefinition = {
             },
           },
         },
+      },
 
+      "/services/subforms/{formId}": {
         get: {
           summary: "Get all service sub forms under a service category",
           tags: ["Service"],

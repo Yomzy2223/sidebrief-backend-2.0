@@ -10,6 +10,8 @@ export interface UserWithGooglePayload {
   fullName: string;
   email: string;
   googleId: string;
+  picture: string;
+  phone: string;
   isPartner: boolean;
   isStaff: boolean;
 }

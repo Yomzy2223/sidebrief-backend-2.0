@@ -88,6 +88,14 @@ const getServiceCategory = async (
       where: {
         id: id,
       },
+      include: {
+        form: {
+          include: {
+            subForm: true,
+          },
+        },
+        services: true,
+      },
     });
     if (!category) {
       throw new BadRequest("Service category not found!.");
@@ -227,7 +235,7 @@ const getAllServiceCategoryForm = async (
       };
     }
     const response: ServiceCategoryFormResponse = {
-      message: "Service category form fetched successfully",
+      message: "Service category forms fetched successfully",
       data: category,
       statusCode: 200,
     };
@@ -248,7 +256,11 @@ const getServiceCategoryForm = async (
       where: {
         id: id,
       },
+      include: {
+        subForm: true,
+      },
     });
+
     if (!category) {
       throw new BadRequest("Service category form not found!.");
     }

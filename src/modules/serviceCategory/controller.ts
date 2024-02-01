@@ -222,8 +222,9 @@ const ServiceACategoryFormFetcher = async (
 
     const id: string = req.params.id;
     const category = await getServiceCategoryForm(id);
-
-    return res.status(category.statusCode).json(category);
+    return res
+      .status(category.statusCode)
+      .json({ message: category.message, data: category.data });
   } catch (error) {
     next(error);
   }

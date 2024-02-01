@@ -56,6 +56,8 @@ const UserRegisrationWithGoogle = async (
       fullName: userPayload.fullName,
       email: userPayload.email.toLowerCase(),
       googleId: userPayload.googleId,
+      picture: userPayload.picture,
+      phone: userPayload.phone,
       isPartner: userPayload.isPartner,
       isStaff: userPayload.isStaff,
       partnerPermission: [],

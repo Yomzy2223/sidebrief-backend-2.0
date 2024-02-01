@@ -38,6 +38,8 @@ interface UsersWithGoogle {
   properties: {
     fullName: Props;
     email: Props;
+    phone: Props;
+    picture: Props;
     googleId: Props;
     isPartner: Props;
     isStaff: Props;
