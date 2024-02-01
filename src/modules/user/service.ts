@@ -503,6 +503,7 @@ const forgotPassword = async (forgotPayload: ForgotPassword) => {
       statusCode: 200,
     };
   } catch (error) {
+    console.log(error)
     throw error;
   }
 };

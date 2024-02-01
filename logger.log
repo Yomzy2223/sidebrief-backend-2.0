@@ -6570,3 +6570,19 @@ error: Label: 31-Jan-2024 11:24:15: Authorization token is missing. with error E
 info: Label: 31-Jan-2024 14:13:26: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
 info: Label: 31-Jan-2024 14:13:42: User with akinyemibamidele2@gmail.com signed in successfully.
 error: Label: 31-Jan-2024 14:13:52: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google was called
+error: Label: 31-Jan-2024 19:24:03: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:461:36
+
+  458 // generate reset token string
+  459 // save and send the reset token the user
+  460 
+→ 461 const user = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /users/forgotpassword was called
+info: Label: 31-Jan-2024 20:10:32: Testing the server
+info: Label: 31-Jan-2024 20:13:48: Testing the server
+info: Label: 31-Jan-2024 20:14:24: Testing the server
+info: Label: 31-Jan-2024 20:15:11: Testing the server
+info: Label: 31-Jan-2024 20:15:11: Testing the server

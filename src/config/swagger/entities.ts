@@ -315,10 +315,21 @@ interface ServiceCategoryForm {
   type: string;
   require: string[];
   properties: {
-    question: Props;
+    title: Props;
+    description: Props;
     type: Props;
     compulsory: Props;
+  };
+}
+
+interface ServiceCategorySubForm {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
     options: Props;
+    type: Props;
+    compulsory: Props;
   };
 }
 
@@ -469,6 +480,7 @@ interface ComponentDefinition {
     //ProductServices
     ProductServices: ProductServices;
     ServiceForms: ServiceForms;
+    ServiceCategorySubForm: ServiceCategorySubForm;
 
     //Banks
     Banks: Banks;

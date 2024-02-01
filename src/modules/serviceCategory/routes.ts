@@ -17,6 +17,12 @@ import {
   ServiceCategoryFormFetcher,
   ServiceCategoryFormModifier,
   ServiceACategoryFormFetcher,
+  ServiceCategoryFormRemover,
+  ServiceCategorySubFormCreator,
+  ServiceCategorySubFormFetcher,
+  ServiceCategorySubFormModifier,
+  ServiceACategorySubFormFetcher,
+  ServiceCategorySubFormRemover,
 } from "./controller";
 
 router.post(
@@ -48,6 +54,24 @@ router.put(
   "/form/:id",
   staffAuth,
   validator(validateServiceCategoryForm),
-  ServiceCategoryFormFetcher
+  ServiceCategoryFormModifier
 );
+router.delete("/:id", staffAuth, ServiceCategoryFormRemover);
+
+router.post(
+  "/subform/:formId",
+  staffAuth,
+  validator(validateServiceCategoryForm),
+  ServiceCategorySubFormCreator
+);
+router.get("/subform/:formId", ServiceCategorySubFormFetcher);
+router.get("/subform/:id", ServiceACategorySubFormFetcher);
+
+router.put(
+  "/subform/:id",
+  staffAuth,
+  validator(validateServiceCategoryForm),
+  ServiceCategorySubFormModifier
+);
+router.delete("/:id", staffAuth, ServiceCategorySubFormRemover);
 export default router;

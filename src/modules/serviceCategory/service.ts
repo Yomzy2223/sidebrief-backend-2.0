@@ -3,7 +3,10 @@ import {
   ServiceCategoryFormResponse,
   ServiceCategoryPayload,
   ServiceCategoryResponse,
+  ServiceCategorySubFormPayload,
+  ServiceCategorySubFormResponse,
   UpdateServiceCategoryFormPayload,
+  UpdateServiceCategorySubFormPayload,
 } from "./entities";
 
 import { PrismaClient } from "../../../prisma/generated/client2";
@@ -301,6 +304,192 @@ const updateServiceCategoryForm = async (
   }
 };
 
+const removeServiceCategoryForm = async (id: string) => {
+  //take id from the service category controller
+  //check if the service category exists
+  //remove the service category from the record
+  //return response to the service category controller
+
+  try {
+    const deleteCategory = await prisma.serviceCategoryForm.delete({
+      where: {
+        id: id,
+      },
+    });
+    if (!deleteCategory) {
+      throw new BadRequest("Service category form not found!.");
+    }
+
+    return {
+      message: "Service category form deleted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//create service category service
+const saveServiceCategorySubForm = async (
+  serviceCategoryPayload: ServiceCategorySubFormPayload,
+  formId: string
+): Promise<ServiceCategorySubFormResponse> => {
+  //   //add the new service category to the table
+
+  try {
+    const checkService = await prisma.serviceCategoryForm.findUnique({
+      where: { id: formId },
+    });
+    if (!checkService) {
+      throw new BadRequest("Service form does not exist");
+    }
+
+    const categoryForm = await prisma.serviceCategorySubForm.create({
+      data: serviceCategoryPayload,
+    });
+    if (!categoryForm) {
+      throw new BadRequest(
+        "Error occured while creating this service category sub form"
+      );
+    }
+
+    logger.info({
+      message: `service category sub form created successfully`,
+    });
+    const response: ServiceCategorySubFormResponse = {
+      message: "Service category sub form created successfully",
+      data: categoryForm,
+      statusCode: 200,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//get all service category service
+const getAllServiceCategorySubForm = async (
+  formId: string
+): Promise<ServiceCategorySubFormResponse> => {
+  //  get the service category list from the table
+  //  return the service category list to the service category controller
+  try {
+    const category = await prisma.serviceCategorySubForm.findMany({
+      where: {
+        serviceCategoryId: formId,
+      },
+    });
+    if (!category) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ServiceCategorySubFormResponse = {
+      message: "Service category sub form fetched successfully",
+      data: category,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getServiceCategorySubForm = async (
+  id: string
+): Promise<ServiceCategorySubFormResponse> => {
+  //  get the service category list from the table
+  //  return the service category list to the service category controller
+  try {
+    const category = await prisma.serviceCategorySubForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!category) {
+      throw new BadRequest("Service category sub form not found!.");
+    }
+    const response: ServiceCategorySubFormResponse = {
+      message: "Service category sub form fetched successfully",
+      data: category,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//update a service category form service
+const updateServiceCategorySubForm = async (
+  serviceCategorySubFormPayload: UpdateServiceCategorySubFormPayload,
+  id: string
+) => {
+  // take both id and service category payload from the service category controller
+  //  check if the service category exists
+  //  update the service category
+  //  return the service category to the service category controller
+
+  try {
+    const category = await prisma.serviceCategorySubForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!category) {
+      throw new BadRequest("Service category sub form not found!.");
+    }
+
+    const updateCategory = await prisma.serviceCategorySubForm.update({
+      where: {
+        id: id,
+      },
+      data: serviceCategorySubFormPayload,
+    });
+
+    if (!updateCategory) {
+      throw new BadRequest(
+        "Error occured while updating service category sub form!."
+      );
+    }
+
+    return {
+      message: "Service category sub form updated successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const removeServiceCategorySubForm = async (id: string) => {
+  //take id from the service category controller
+  //check if the service category exists
+  //remove the service category from the record
+  //return response to the service category controller
+
+  try {
+    const deleteCategory = await prisma.serviceCategorySubForm.delete({
+      where: {
+        id: id,
+      },
+    });
+    if (!deleteCategory) {
+      throw new BadRequest("Service category sub form not found!.");
+    }
+
+    return {
+      message: "Service category sub form deleted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
 export {
   saveServiceCategory,
   getAllServiceCategory,
@@ -311,4 +500,10 @@ export {
   getServiceCategoryForm,
   getAllServiceCategoryForm,
   updateServiceCategoryForm,
+  removeServiceCategoryForm,
+  saveServiceCategorySubForm,
+  getServiceCategorySubForm,
+  getAllServiceCategorySubForm,
+  updateServiceCategorySubForm,
+  removeServiceCategorySubForm,
 };

@@ -706,23 +706,48 @@ const options: OpenAPIDefinition = {
         //SERVICE CATEGORY FORM
         ServiceCategoryForm: {
           type: "object",
-          require: ["firstName", "lastName", "email", "password", "compulsory"],
+          require: ["title", "type", "compulsory", "description"],
           properties: {
-            question: {
+            title: {
               type: "string",
-              description: "The first name of the user",
+              description: "The title of the form",
+            },
+            description: {
+              type: "string",
+              description: "The description of the question",
             },
             type: {
               type: "string",
               description: "The type of the answer to be sent",
             },
+
             compulsory: {
               type: "boolean",
               description: "compulsory field",
             },
+          },
+        },
+
+        ServiceCategorySubForm: {
+          type: "object",
+          require: ["question", "type", "compulsory", "options"],
+
+          properties: {
+            question: {
+              type: "string",
+              description: "the form question",
+            },
+            type: {
+              type: "string",
+              description: "type of the question",
+            },
             options: {
               type: "array",
-              description: "The options of the question",
+              description: "options of the question",
+            },
+            compulsory: {
+              type: "boolean",
+              description: "status of the question",
             },
           },
         },
@@ -2079,6 +2104,144 @@ const options: OpenAPIDefinition = {
               description: "Service form is updated",
               schema: {
                 $ref: "#/components/schemas/ServiceCategoryForm",
+              },
+            },
+          },
+        },
+      },
+
+      "/services/subform/{formId}": {
+        post: {
+          tags: ["Service"],
+          summary: "Create a new service sub form",
+          description: "Create new service sub form in system",
+          parameters: [
+            {
+              name: "formId",
+              in: "path",
+              required: true,
+              description: "ID of service sub form to be fetched",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceCategorySubForm", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New service sub form is created",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategorySubForm",
+              },
+            },
+          },
+        },
+
+        get: {
+          summary: "Get all service sub forms under a service category",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "formId",
+              in: "path",
+              required: true,
+              description: "service category ID to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service sub form is fetched",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategorySubForm",
+              },
+            },
+          },
+        },
+      },
+
+      "/services/subform/{id}": {
+        get: {
+          summary: "Get a service sub form with given ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service sub form to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service sub form is fetched",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategorySubForm",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete a service sub form with given ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service sub form to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service sub form is deleted",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategorySubForm",
+              },
+            },
+          },
+        },
+
+        put: {
+          summary: "Update a service sub form with give ID",
+          tags: ["Service"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service sub form to be updated",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceCategorySubForm", //
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Service sub form is updated",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategorySubForm",
               },
             },
           },
