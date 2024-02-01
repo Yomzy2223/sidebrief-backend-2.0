@@ -247,13 +247,24 @@ exports.Prisma.ServiceCategoryScalarFieldEnum = {
 
 exports.Prisma.ServiceCategoryFormScalarFieldEnum = {
   id: 'id',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  compulsory: 'compulsory',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  serviceCategoryId: 'serviceCategoryId'
+};
+
+exports.Prisma.ServiceCategorySubFormScalarFieldEnum = {
+  id: 'id',
   question: 'question',
   type: 'type',
   options: 'options',
   compulsory: 'compulsory',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  serviceCategoryId: 'serviceCategoryId'
+  formId: 'formId'
 };
 
 exports.Prisma.ServiceScalarFieldEnum = {
@@ -460,6 +471,7 @@ exports.Prisma.ModelName = {
   UserDocument: 'UserDocument',
   ServiceCategory: 'ServiceCategory',
   ServiceCategoryForm: 'ServiceCategoryForm',
+  ServiceCategorySubForm: 'ServiceCategorySubForm',
   Service: 'Service',
   ServiceTemplate: 'ServiceTemplate',
   ServiceForm: 'ServiceForm',

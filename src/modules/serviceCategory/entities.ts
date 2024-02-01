@@ -32,9 +32,9 @@ export interface ServiceCategorySubFormPayload {
 
 export interface ServiceCategoryFormData {
   id: string;
-  question: string;
+  title: string;
   type: string;
-  options: string[];
+  description: string;
   serviceCategoryId: string;
 }
 

@@ -376,7 +376,7 @@ const getAllServiceCategorySubForm = async (
   try {
     const category = await prisma.serviceCategorySubForm.findMany({
       where: {
-        serviceCategoryId: formId,
+        formId: formId,
       },
     });
     if (!category) {

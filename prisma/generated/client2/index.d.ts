@@ -279,12 +279,13 @@ export type ServiceCategoryFormPayload<ExtArgs extends $Extensions.Args = $Exten
   name: "ServiceCategoryForm"
   objects: {
     category: ServiceCategoryPayload<ExtArgs>
+    subForm: ServiceCategorySubFormPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
-    question: string
+    title: string
+    description: string
     type: string
-    options: string[]
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -298,6 +299,29 @@ export type ServiceCategoryFormPayload<ExtArgs extends $Extensions.Args = $Exten
  * 
  */
 export type ServiceCategoryForm = runtime.Types.DefaultSelection<ServiceCategoryFormPayload>
+export type ServiceCategorySubFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "ServiceCategorySubForm"
+  objects: {
+    category: ServiceCategoryFormPayload<ExtArgs>
+  }
+  scalars: $Extensions.GetResult<{
+    id: string
+    question: string
+    type: string
+    options: string[]
+    compulsory: boolean
+    createdAt: Date
+    updatedAt: Date
+    formId: string
+  }, ExtArgs["result"]["serviceCategorySubForm"]>
+  composites: {}
+}
+
+/**
+ * Model ServiceCategorySubForm
+ * 
+ */
+export type ServiceCategorySubForm = runtime.Types.DefaultSelection<ServiceCategorySubFormPayload>
 export type ServicePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
   name: "Service"
   objects: {
@@ -891,6 +915,16 @@ export class PrismaClient<
     * ```
     */
   get serviceCategoryForm(): Prisma.ServiceCategoryFormDelegate<GlobalReject, ExtArgs>;
+
+  /**
+   * `prisma.serviceCategorySubForm`: Exposes CRUD operations for the **ServiceCategorySubForm** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServiceCategorySubForms
+    * const serviceCategorySubForms = await prisma.serviceCategorySubForm.findMany()
+    * ```
+    */
+  get serviceCategorySubForm(): Prisma.ServiceCategorySubFormDelegate<GlobalReject, ExtArgs>;
 
   /**
    * `prisma.service`: Exposes CRUD operations for the **Service** model.
@@ -1516,6 +1550,7 @@ export namespace Prisma {
     UserDocument: 'UserDocument',
     ServiceCategory: 'ServiceCategory',
     ServiceCategoryForm: 'ServiceCategoryForm',
+    ServiceCategorySubForm: 'ServiceCategorySubForm',
     Service: 'Service',
     ServiceTemplate: 'ServiceTemplate',
     ServiceForm: 'ServiceForm',
@@ -1545,7 +1580,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'staff' | 'collaborator' | 'collaboratorDocument' | 'reward' | 'country' | 'bank' | 'notification' | 'account' | 'user' | 'userDocument' | 'serviceCategory' | 'serviceCategoryForm' | 'service' | 'serviceTemplate' | 'serviceForm' | 'serviceSubForm' | 'product' | 'productQA' | 'productQASubForm' | 'claim' | 'team' | 'teamMember' | 'invitation' | 'payment' | 'parter'
+      modelProps: 'staff' | 'collaborator' | 'collaboratorDocument' | 'reward' | 'country' | 'bank' | 'notification' | 'account' | 'user' | 'userDocument' | 'serviceCategory' | 'serviceCategoryForm' | 'serviceCategorySubForm' | 'service' | 'serviceTemplate' | 'serviceForm' | 'serviceSubForm' | 'product' | 'productQA' | 'productQASubForm' | 'claim' | 'team' | 'teamMember' | 'invitation' | 'payment' | 'parter'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -2326,6 +2361,71 @@ export namespace Prisma {
           count: {
             args: Prisma.ServiceCategoryFormCountArgs<ExtArgs>,
             result: $Utils.Optional<ServiceCategoryFormCountAggregateOutputType> | number
+          }
+        }
+      }
+      ServiceCategorySubForm: {
+        payload: ServiceCategorySubFormPayload<ExtArgs>
+        operations: {
+          findUnique: {
+            args: Prisma.ServiceCategorySubFormFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServiceCategorySubFormFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
+          }
+          findFirst: {
+            args: Prisma.ServiceCategorySubFormFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServiceCategorySubFormFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
+          }
+          findMany: {
+            args: Prisma.ServiceCategorySubFormFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>[]
+          }
+          create: {
+            args: Prisma.ServiceCategorySubFormCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
+          }
+          createMany: {
+            args: Prisma.ServiceCategorySubFormCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ServiceCategorySubFormDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
+          }
+          update: {
+            args: Prisma.ServiceCategorySubFormUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServiceCategorySubFormDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServiceCategorySubFormUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ServiceCategorySubFormUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
+          }
+          aggregate: {
+            args: Prisma.ServiceCategorySubFormAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateServiceCategorySubForm>
+          }
+          groupBy: {
+            args: Prisma.ServiceCategorySubFormGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ServiceCategorySubFormGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServiceCategorySubFormCountArgs<ExtArgs>,
+            result: $Utils.Optional<ServiceCategorySubFormCountAggregateOutputType> | number
           }
         }
       }
@@ -3481,6 +3581,41 @@ export namespace Prisma {
    */
   export type ServiceCategoryCountOutputTypeCountFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: ServiceCategoryFormWhereInput
+  }
+
+
+
+  /**
+   * Count Type ServiceCategoryFormCountOutputType
+   */
+
+
+  export type ServiceCategoryFormCountOutputType = {
+    subForm: number
+  }
+
+  export type ServiceCategoryFormCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    subForm?: boolean | ServiceCategoryFormCountOutputTypeCountSubFormArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * ServiceCategoryFormCountOutputType without action
+   */
+  export type ServiceCategoryFormCountOutputTypeArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategoryFormCountOutputType
+     */
+    select?: ServiceCategoryFormCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * ServiceCategoryFormCountOutputType without action
+   */
+  export type ServiceCategoryFormCountOutputTypeCountSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ServiceCategorySubFormWhereInput
   }
 
 
@@ -14215,7 +14350,8 @@ export namespace Prisma {
 
   export type ServiceCategoryFormMinAggregateOutputType = {
     id: string | null
-    question: string | null
+    title: string | null
+    description: string | null
     type: string | null
     compulsory: boolean | null
     createdAt: Date | null
@@ -14225,7 +14361,8 @@ export namespace Prisma {
 
   export type ServiceCategoryFormMaxAggregateOutputType = {
     id: string | null
-    question: string | null
+    title: string | null
+    description: string | null
     type: string | null
     compulsory: boolean | null
     createdAt: Date | null
@@ -14235,9 +14372,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCountAggregateOutputType = {
     id: number
-    question: number
+    title: number
+    description: number
     type: number
-    options: number
     compulsory: number
     createdAt: number
     updatedAt: number
@@ -14248,7 +14385,8 @@ export namespace Prisma {
 
   export type ServiceCategoryFormMinAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
+    description?: true
     type?: true
     compulsory?: true
     createdAt?: true
@@ -14258,7 +14396,8 @@ export namespace Prisma {
 
   export type ServiceCategoryFormMaxAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
+    description?: true
     type?: true
     compulsory?: true
     createdAt?: true
@@ -14268,9 +14407,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCountAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
+    description?: true
     type?: true
-    options?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -14353,9 +14492,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormGroupByOutputType = {
     id: string
-    question: string
+    title: string
+    description: string
     type: string
-    options: string[]
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -14381,21 +14520,23 @@ export namespace Prisma {
 
   export type ServiceCategoryFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    question?: boolean
+    title?: boolean
+    description?: boolean
     type?: boolean
-    options?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     serviceCategoryId?: boolean
     category?: boolean | ServiceCategoryArgs<ExtArgs>
+    subForm?: boolean | ServiceCategoryForm$subFormArgs<ExtArgs>
+    _count?: boolean | ServiceCategoryFormCountOutputTypeArgs<ExtArgs>
   }, ExtArgs["result"]["serviceCategoryForm"]>
 
   export type ServiceCategoryFormSelectScalar = {
     id?: boolean
-    question?: boolean
+    title?: boolean
+    description?: boolean
     type?: boolean
-    options?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -14404,6 +14545,8 @@ export namespace Prisma {
 
   export type ServiceCategoryFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     category?: boolean | ServiceCategoryArgs<ExtArgs>
+    subForm?: boolean | ServiceCategoryForm$subFormArgs<ExtArgs>
+    _count?: boolean | ServiceCategoryFormCountOutputTypeArgs<ExtArgs>
   }
 
 
@@ -14778,6 +14921,8 @@ export namespace Prisma {
 
     category<T extends ServiceCategoryArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
+    subForm<T extends ServiceCategoryForm$subFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryForm$subFormArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
+
     private get _document();
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -15134,6 +15279,27 @@ export namespace Prisma {
 
 
   /**
+   * ServiceCategoryForm.subForm
+   */
+  export type ServiceCategoryForm$subFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    where?: ServiceCategorySubFormWhereInput
+    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
+    cursor?: ServiceCategorySubFormWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<ServiceCategorySubFormScalarFieldEnum>
+  }
+
+
+  /**
    * ServiceCategoryForm without action
    */
   export type ServiceCategoryFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
@@ -15145,6 +15311,953 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: ServiceCategoryFormInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model ServiceCategorySubForm
+   */
+
+
+  export type AggregateServiceCategorySubForm = {
+    _count: ServiceCategorySubFormCountAggregateOutputType | null
+    _min: ServiceCategorySubFormMinAggregateOutputType | null
+    _max: ServiceCategorySubFormMaxAggregateOutputType | null
+  }
+
+  export type ServiceCategorySubFormMinAggregateOutputType = {
+    id: string | null
+    question: string | null
+    type: string | null
+    compulsory: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    formId: string | null
+  }
+
+  export type ServiceCategorySubFormMaxAggregateOutputType = {
+    id: string | null
+    question: string | null
+    type: string | null
+    compulsory: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    formId: string | null
+  }
+
+  export type ServiceCategorySubFormCountAggregateOutputType = {
+    id: number
+    question: number
+    type: number
+    options: number
+    compulsory: number
+    createdAt: number
+    updatedAt: number
+    formId: number
+    _all: number
+  }
+
+
+  export type ServiceCategorySubFormMinAggregateInputType = {
+    id?: true
+    question?: true
+    type?: true
+    compulsory?: true
+    createdAt?: true
+    updatedAt?: true
+    formId?: true
+  }
+
+  export type ServiceCategorySubFormMaxAggregateInputType = {
+    id?: true
+    question?: true
+    type?: true
+    compulsory?: true
+    createdAt?: true
+    updatedAt?: true
+    formId?: true
+  }
+
+  export type ServiceCategorySubFormCountAggregateInputType = {
+    id?: true
+    question?: true
+    type?: true
+    options?: true
+    compulsory?: true
+    createdAt?: true
+    updatedAt?: true
+    formId?: true
+    _all?: true
+  }
+
+  export type ServiceCategorySubFormAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceCategorySubForm to aggregate.
+     */
+    where?: ServiceCategorySubFormWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategorySubForms to fetch.
+     */
+    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServiceCategorySubFormWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategorySubForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategorySubForms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServiceCategorySubForms
+    **/
+    _count?: true | ServiceCategorySubFormCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServiceCategorySubFormMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServiceCategorySubFormMaxAggregateInputType
+  }
+
+  export type GetServiceCategorySubFormAggregateType<T extends ServiceCategorySubFormAggregateArgs> = {
+        [P in keyof T & keyof AggregateServiceCategorySubForm]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServiceCategorySubForm[P]>
+      : GetScalarType<T[P], AggregateServiceCategorySubForm[P]>
+  }
+
+
+
+
+  export type ServiceCategorySubFormGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ServiceCategorySubFormWhereInput
+    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithAggregationInput>
+    by: ServiceCategorySubFormScalarFieldEnum[]
+    having?: ServiceCategorySubFormScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServiceCategorySubFormCountAggregateInputType | true
+    _min?: ServiceCategorySubFormMinAggregateInputType
+    _max?: ServiceCategorySubFormMaxAggregateInputType
+  }
+
+
+  export type ServiceCategorySubFormGroupByOutputType = {
+    id: string
+    question: string
+    type: string
+    options: string[]
+    compulsory: boolean
+    createdAt: Date
+    updatedAt: Date
+    formId: string
+    _count: ServiceCategorySubFormCountAggregateOutputType | null
+    _min: ServiceCategorySubFormMinAggregateOutputType | null
+    _max: ServiceCategorySubFormMaxAggregateOutputType | null
+  }
+
+  type GetServiceCategorySubFormGroupByPayload<T extends ServiceCategorySubFormGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<ServiceCategorySubFormGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServiceCategorySubFormGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServiceCategorySubFormGroupByOutputType[P]>
+            : GetScalarType<T[P], ServiceCategorySubFormGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServiceCategorySubFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    question?: boolean
+    type?: boolean
+    options?: boolean
+    compulsory?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    formId?: boolean
+    category?: boolean | ServiceCategoryFormArgs<ExtArgs>
+  }, ExtArgs["result"]["serviceCategorySubForm"]>
+
+  export type ServiceCategorySubFormSelectScalar = {
+    id?: boolean
+    question?: boolean
+    type?: boolean
+    options?: boolean
+    compulsory?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    formId?: boolean
+  }
+
+  export type ServiceCategorySubFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    category?: boolean | ServiceCategoryFormArgs<ExtArgs>
+  }
+
+
+  type ServiceCategorySubFormGetPayload<S extends boolean | null | undefined | ServiceCategorySubFormArgs> = $Types.GetResult<ServiceCategorySubFormPayload, S>
+
+  type ServiceCategorySubFormCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<ServiceCategorySubFormFindManyArgs, 'select' | 'include'> & {
+      select?: ServiceCategorySubFormCountAggregateInputType | true
+    }
+
+  export interface ServiceCategorySubFormDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceCategorySubForm'], meta: { name: 'ServiceCategorySubForm' } }
+    /**
+     * Find zero or one ServiceCategorySubForm that matches the filter.
+     * @param {ServiceCategorySubFormFindUniqueArgs} args - Arguments to find a ServiceCategorySubForm
+     * @example
+     * // Get one ServiceCategorySubForm
+     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ServiceCategorySubFormFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, ServiceCategorySubFormFindUniqueArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ServiceCategorySubForm'> extends True ? Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
+
+    /**
+     * Find one ServiceCategorySubForm that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ServiceCategorySubFormFindUniqueOrThrowArgs} args - Arguments to find a ServiceCategorySubForm
+     * @example
+     * // Get one ServiceCategorySubForm
+     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ServiceCategorySubFormFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ServiceCategorySubFormFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find the first ServiceCategorySubForm that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategorySubFormFindFirstArgs} args - Arguments to find a ServiceCategorySubForm
+     * @example
+     * // Get one ServiceCategorySubForm
+     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ServiceCategorySubFormFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, ServiceCategorySubFormFindFirstArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ServiceCategorySubForm'> extends True ? Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
+
+    /**
+     * Find the first ServiceCategorySubForm that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategorySubFormFindFirstOrThrowArgs} args - Arguments to find a ServiceCategorySubForm
+     * @example
+     * // Get one ServiceCategorySubForm
+     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ServiceCategorySubFormFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ServiceCategorySubFormFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find zero or more ServiceCategorySubForms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategorySubFormFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServiceCategorySubForms
+     * const serviceCategorySubForms = await prisma.serviceCategorySubForm.findMany()
+     * 
+     * // Get first 10 ServiceCategorySubForms
+     * const serviceCategorySubForms = await prisma.serviceCategorySubForm.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serviceCategorySubFormWithIdOnly = await prisma.serviceCategorySubForm.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ServiceCategorySubFormFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ServiceCategorySubFormFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findMany', never>>
+
+    /**
+     * Create a ServiceCategorySubForm.
+     * @param {ServiceCategorySubFormCreateArgs} args - Arguments to create a ServiceCategorySubForm.
+     * @example
+     * // Create one ServiceCategorySubForm
+     * const ServiceCategorySubForm = await prisma.serviceCategorySubForm.create({
+     *   data: {
+     *     // ... data to create a ServiceCategorySubForm
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ServiceCategorySubFormCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ServiceCategorySubFormCreateArgs<ExtArgs>>
+    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
+
+    /**
+     * Create many ServiceCategorySubForms.
+     *     @param {ServiceCategorySubFormCreateManyArgs} args - Arguments to create many ServiceCategorySubForms.
+     *     @example
+     *     // Create many ServiceCategorySubForms
+     *     const serviceCategorySubForm = await prisma.serviceCategorySubForm.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ServiceCategorySubFormCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ServiceCategorySubFormCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ServiceCategorySubForm.
+     * @param {ServiceCategorySubFormDeleteArgs} args - Arguments to delete one ServiceCategorySubForm.
+     * @example
+     * // Delete one ServiceCategorySubForm
+     * const ServiceCategorySubForm = await prisma.serviceCategorySubForm.delete({
+     *   where: {
+     *     // ... filter to delete one ServiceCategorySubForm
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ServiceCategorySubFormDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ServiceCategorySubFormDeleteArgs<ExtArgs>>
+    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
+
+    /**
+     * Update one ServiceCategorySubForm.
+     * @param {ServiceCategorySubFormUpdateArgs} args - Arguments to update one ServiceCategorySubForm.
+     * @example
+     * // Update one ServiceCategorySubForm
+     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ServiceCategorySubFormUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ServiceCategorySubFormUpdateArgs<ExtArgs>>
+    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ServiceCategorySubForms.
+     * @param {ServiceCategorySubFormDeleteManyArgs} args - Arguments to filter ServiceCategorySubForms to delete.
+     * @example
+     * // Delete a few ServiceCategorySubForms
+     * const { count } = await prisma.serviceCategorySubForm.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ServiceCategorySubFormDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ServiceCategorySubFormDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServiceCategorySubForms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategorySubFormUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServiceCategorySubForms
+     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ServiceCategorySubFormUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ServiceCategorySubFormUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ServiceCategorySubForm.
+     * @param {ServiceCategorySubFormUpsertArgs} args - Arguments to update or create a ServiceCategorySubForm.
+     * @example
+     * // Update or create a ServiceCategorySubForm
+     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.upsert({
+     *   create: {
+     *     // ... data to create a ServiceCategorySubForm
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServiceCategorySubForm we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ServiceCategorySubFormUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ServiceCategorySubFormUpsertArgs<ExtArgs>>
+    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
+
+    /**
+     * Count the number of ServiceCategorySubForms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategorySubFormCountArgs} args - Arguments to filter ServiceCategorySubForms to count.
+     * @example
+     * // Count the number of ServiceCategorySubForms
+     * const count = await prisma.serviceCategorySubForm.count({
+     *   where: {
+     *     // ... the filter for the ServiceCategorySubForms we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServiceCategorySubFormCountArgs>(
+      args?: Subset<T, ServiceCategorySubFormCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServiceCategorySubFormCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServiceCategorySubForm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategorySubFormAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServiceCategorySubFormAggregateArgs>(args: Subset<T, ServiceCategorySubFormAggregateArgs>): Prisma.PrismaPromise<GetServiceCategorySubFormAggregateType<T>>
+
+    /**
+     * Group by ServiceCategorySubForm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServiceCategorySubFormGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServiceCategorySubFormGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServiceCategorySubFormGroupByArgs['orderBy'] }
+        : { orderBy?: ServiceCategorySubFormGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServiceCategorySubFormGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceCategorySubFormGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServiceCategorySubForm.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__ServiceCategorySubFormClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+    category<T extends ServiceCategoryFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryFormArgs<ExtArgs>>): Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * ServiceCategorySubForm base type for findUnique actions
+   */
+  export type ServiceCategorySubFormFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategorySubForm to fetch.
+     */
+    where: ServiceCategorySubFormWhereUniqueInput
+  }
+
+  /**
+   * ServiceCategorySubForm findUnique
+   */
+  export interface ServiceCategorySubFormFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceCategorySubFormFindUniqueArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * ServiceCategorySubForm findUniqueOrThrow
+   */
+  export type ServiceCategorySubFormFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategorySubForm to fetch.
+     */
+    where: ServiceCategorySubFormWhereUniqueInput
+  }
+
+
+  /**
+   * ServiceCategorySubForm base type for findFirst actions
+   */
+  export type ServiceCategorySubFormFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategorySubForm to fetch.
+     */
+    where?: ServiceCategorySubFormWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategorySubForms to fetch.
+     */
+    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceCategorySubForms.
+     */
+    cursor?: ServiceCategorySubFormWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategorySubForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategorySubForms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceCategorySubForms.
+     */
+    distinct?: Enumerable<ServiceCategorySubFormScalarFieldEnum>
+  }
+
+  /**
+   * ServiceCategorySubForm findFirst
+   */
+  export interface ServiceCategorySubFormFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceCategorySubFormFindFirstArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * ServiceCategorySubForm findFirstOrThrow
+   */
+  export type ServiceCategorySubFormFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategorySubForm to fetch.
+     */
+    where?: ServiceCategorySubFormWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategorySubForms to fetch.
+     */
+    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServiceCategorySubForms.
+     */
+    cursor?: ServiceCategorySubFormWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategorySubForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategorySubForms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServiceCategorySubForms.
+     */
+    distinct?: Enumerable<ServiceCategorySubFormScalarFieldEnum>
+  }
+
+
+  /**
+   * ServiceCategorySubForm findMany
+   */
+  export type ServiceCategorySubFormFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ServiceCategorySubForms to fetch.
+     */
+    where?: ServiceCategorySubFormWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServiceCategorySubForms to fetch.
+     */
+    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServiceCategorySubForms.
+     */
+    cursor?: ServiceCategorySubFormWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServiceCategorySubForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServiceCategorySubForms.
+     */
+    skip?: number
+    distinct?: Enumerable<ServiceCategorySubFormScalarFieldEnum>
+  }
+
+
+  /**
+   * ServiceCategorySubForm create
+   */
+  export type ServiceCategorySubFormCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ServiceCategorySubForm.
+     */
+    data: XOR<ServiceCategorySubFormCreateInput, ServiceCategorySubFormUncheckedCreateInput>
+  }
+
+
+  /**
+   * ServiceCategorySubForm createMany
+   */
+  export type ServiceCategorySubFormCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServiceCategorySubForms.
+     */
+    data: Enumerable<ServiceCategorySubFormCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * ServiceCategorySubForm update
+   */
+  export type ServiceCategorySubFormUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ServiceCategorySubForm.
+     */
+    data: XOR<ServiceCategorySubFormUpdateInput, ServiceCategorySubFormUncheckedUpdateInput>
+    /**
+     * Choose, which ServiceCategorySubForm to update.
+     */
+    where: ServiceCategorySubFormWhereUniqueInput
+  }
+
+
+  /**
+   * ServiceCategorySubForm updateMany
+   */
+  export type ServiceCategorySubFormUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServiceCategorySubForms.
+     */
+    data: XOR<ServiceCategorySubFormUpdateManyMutationInput, ServiceCategorySubFormUncheckedUpdateManyInput>
+    /**
+     * Filter which ServiceCategorySubForms to update
+     */
+    where?: ServiceCategorySubFormWhereInput
+  }
+
+
+  /**
+   * ServiceCategorySubForm upsert
+   */
+  export type ServiceCategorySubFormUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ServiceCategorySubForm to update in case it exists.
+     */
+    where: ServiceCategorySubFormWhereUniqueInput
+    /**
+     * In case the ServiceCategorySubForm found by the `where` argument doesn't exist, create a new ServiceCategorySubForm with this data.
+     */
+    create: XOR<ServiceCategorySubFormCreateInput, ServiceCategorySubFormUncheckedCreateInput>
+    /**
+     * In case the ServiceCategorySubForm was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServiceCategorySubFormUpdateInput, ServiceCategorySubFormUncheckedUpdateInput>
+  }
+
+
+  /**
+   * ServiceCategorySubForm delete
+   */
+  export type ServiceCategorySubFormDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
+    /**
+     * Filter which ServiceCategorySubForm to delete.
+     */
+    where: ServiceCategorySubFormWhereUniqueInput
+  }
+
+
+  /**
+   * ServiceCategorySubForm deleteMany
+   */
+  export type ServiceCategorySubFormDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServiceCategorySubForms to delete
+     */
+    where?: ServiceCategorySubFormWhereInput
+  }
+
+
+  /**
+   * ServiceCategorySubForm without action
+   */
+  export type ServiceCategorySubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceCategorySubForm
+     */
+    select?: ServiceCategorySubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ServiceCategorySubFormInclude<ExtArgs> | null
   }
 
 
@@ -28144,9 +29257,9 @@ export namespace Prisma {
 
   export const ServiceCategoryFormScalarFieldEnum: {
     id: 'id',
-    question: 'question',
+    title: 'title',
+    description: 'description',
     type: 'type',
-    options: 'options',
     compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -28154,6 +29267,20 @@ export namespace Prisma {
   };
 
   export type ServiceCategoryFormScalarFieldEnum = (typeof ServiceCategoryFormScalarFieldEnum)[keyof typeof ServiceCategoryFormScalarFieldEnum]
+
+
+  export const ServiceCategorySubFormScalarFieldEnum: {
+    id: 'id',
+    question: 'question',
+    type: 'type',
+    options: 'options',
+    compulsory: 'compulsory',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    formId: 'formId'
+  };
+
+  export type ServiceCategorySubFormScalarFieldEnum = (typeof ServiceCategorySubFormScalarFieldEnum)[keyof typeof ServiceCategorySubFormScalarFieldEnum]
 
 
   export const ServiceScalarFieldEnum: {
@@ -29126,26 +30253,28 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategoryFormWhereInput>
     NOT?: Enumerable<ServiceCategoryFormWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
+    title?: StringFilter | string
+    description?: StringFilter | string
     type?: StringFilter | string
-    options?: StringNullableListFilter
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     serviceCategoryId?: StringFilter | string
     category?: XOR<ServiceCategoryRelationFilter, ServiceCategoryWhereInput>
+    subForm?: ServiceCategorySubFormListRelationFilter
   }
 
   export type ServiceCategoryFormOrderByWithRelationInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     type?: SortOrder
-    options?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceCategoryId?: SortOrder
     category?: ServiceCategoryOrderByWithRelationInput
+    subForm?: ServiceCategorySubFormOrderByRelationAggregateInput
   }
 
   export type ServiceCategoryFormWhereUniqueInput = {
@@ -29154,9 +30283,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormOrderByWithAggregationInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     type?: SortOrder
-    options?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -29171,13 +30300,72 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategoryFormScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ServiceCategoryFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
+    title?: StringWithAggregatesFilter | string
+    description?: StringWithAggregatesFilter | string
+    type?: StringWithAggregatesFilter | string
+    compulsory?: BoolWithAggregatesFilter | boolean
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    serviceCategoryId?: StringWithAggregatesFilter | string
+  }
+
+  export type ServiceCategorySubFormWhereInput = {
+    AND?: Enumerable<ServiceCategorySubFormWhereInput>
+    OR?: Enumerable<ServiceCategorySubFormWhereInput>
+    NOT?: Enumerable<ServiceCategorySubFormWhereInput>
+    id?: StringFilter | string
+    question?: StringFilter | string
+    type?: StringFilter | string
+    options?: StringNullableListFilter
+    compulsory?: BoolFilter | boolean
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+    formId?: StringFilter | string
+    category?: XOR<ServiceCategoryFormRelationFilter, ServiceCategoryFormWhereInput>
+  }
+
+  export type ServiceCategorySubFormOrderByWithRelationInput = {
+    id?: SortOrder
+    question?: SortOrder
+    type?: SortOrder
+    options?: SortOrder
+    compulsory?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    formId?: SortOrder
+    category?: ServiceCategoryFormOrderByWithRelationInput
+  }
+
+  export type ServiceCategorySubFormWhereUniqueInput = {
+    id?: string
+  }
+
+  export type ServiceCategorySubFormOrderByWithAggregationInput = {
+    id?: SortOrder
+    question?: SortOrder
+    type?: SortOrder
+    options?: SortOrder
+    compulsory?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    formId?: SortOrder
+    _count?: ServiceCategorySubFormCountOrderByAggregateInput
+    _max?: ServiceCategorySubFormMaxOrderByAggregateInput
+    _min?: ServiceCategorySubFormMinOrderByAggregateInput
+  }
+
+  export type ServiceCategorySubFormScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ServiceCategorySubFormScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ServiceCategorySubFormScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ServiceCategorySubFormScalarWhereWithAggregatesInput>
+    id?: StringWithAggregatesFilter | string
     question?: StringWithAggregatesFilter | string
     type?: StringWithAggregatesFilter | string
     options?: StringNullableListFilter
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
-    serviceCategoryId?: StringWithAggregatesFilter | string
+    formId?: StringWithAggregatesFilter | string
   }
 
   export type ServiceWhereInput = {
@@ -31083,53 +32271,57 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateInput = {
     id?: string
-    question: string
+    title: string
+    description: string
     type: string
-    options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     category: ServiceCategoryCreateNestedOneWithoutFormInput
+    subForm?: ServiceCategorySubFormCreateNestedManyWithoutCategoryInput
   }
 
   export type ServiceCategoryFormUncheckedCreateInput = {
     id?: string
-    question: string
+    title: string
+    description: string
     type: string
-    options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceCategoryId: string
+    subForm?: ServiceCategorySubFormUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type ServiceCategoryFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: ServiceCategoryUpdateOneRequiredWithoutFormNestedInput
+    subForm?: ServiceCategorySubFormUpdateManyWithoutCategoryNestedInput
   }
 
   export type ServiceCategoryFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
+    subForm?: ServiceCategorySubFormUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type ServiceCategoryFormCreateManyInput = {
     id?: string
-    question: string
+    title: string
+    description: string
     type: string
-    options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31138,9 +32330,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31148,13 +32340,89 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceCategorySubFormCreateInput = {
+    id?: string
+    question: string
+    type: string
+    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: ServiceCategoryFormCreateNestedOneWithoutSubFormInput
+  }
+
+  export type ServiceCategorySubFormUncheckedCreateInput = {
+    id?: string
+    question: string
+    type: string
+    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    formId: string
+  }
+
+  export type ServiceCategorySubFormUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: ServiceCategoryFormUpdateOneRequiredWithoutSubFormNestedInput
+  }
+
+  export type ServiceCategorySubFormUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    formId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceCategorySubFormCreateManyInput = {
+    id?: string
+    question: string
+    type: string
+    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    formId: string
+  }
+
+  export type ServiceCategorySubFormUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceCategorySubFormUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    formId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceCreateInput = {
@@ -32980,11 +34248,21 @@ export namespace Prisma {
     isNot?: ServiceCategoryWhereInput | null
   }
 
+  export type ServiceCategorySubFormListRelationFilter = {
+    every?: ServiceCategorySubFormWhereInput
+    some?: ServiceCategorySubFormWhereInput
+    none?: ServiceCategorySubFormWhereInput
+  }
+
+  export type ServiceCategorySubFormOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ServiceCategoryFormCountOrderByAggregateInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     type?: SortOrder
-    options?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -32993,7 +34271,8 @@ export namespace Prisma {
 
   export type ServiceCategoryFormMaxOrderByAggregateInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     type?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
@@ -33003,12 +34282,49 @@ export namespace Prisma {
 
   export type ServiceCategoryFormMinOrderByAggregateInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     type?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceCategoryId?: SortOrder
+  }
+
+  export type ServiceCategoryFormRelationFilter = {
+    is?: ServiceCategoryFormWhereInput | null
+    isNot?: ServiceCategoryFormWhereInput | null
+  }
+
+  export type ServiceCategorySubFormCountOrderByAggregateInput = {
+    id?: SortOrder
+    question?: SortOrder
+    type?: SortOrder
+    options?: SortOrder
+    compulsory?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    formId?: SortOrder
+  }
+
+  export type ServiceCategorySubFormMaxOrderByAggregateInput = {
+    id?: SortOrder
+    question?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    formId?: SortOrder
+  }
+
+  export type ServiceCategorySubFormMinOrderByAggregateInput = {
+    id?: SortOrder
+    question?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    formId?: SortOrder
   }
 
   export type ServiceTemplateListRelationFilter = {
@@ -33987,19 +35303,24 @@ export namespace Prisma {
     deleteMany?: Enumerable<ServiceCategoryFormScalarWhereInput>
   }
 
-  export type ServiceCategoryFormCreateoptionsInput = {
-    set: Enumerable<string>
-  }
-
   export type ServiceCategoryCreateNestedOneWithoutFormInput = {
     create?: XOR<ServiceCategoryCreateWithoutFormInput, ServiceCategoryUncheckedCreateWithoutFormInput>
     connectOrCreate?: ServiceCategoryCreateOrConnectWithoutFormInput
     connect?: ServiceCategoryWhereUniqueInput
   }
 
-  export type ServiceCategoryFormUpdateoptionsInput = {
-    set?: Enumerable<string>
-    push?: string | Enumerable<string>
+  export type ServiceCategorySubFormCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<Enumerable<ServiceCategorySubFormCreateWithoutCategoryInput>, Enumerable<ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>>
+    connectOrCreate?: Enumerable<ServiceCategorySubFormCreateOrConnectWithoutCategoryInput>
+    createMany?: ServiceCategorySubFormCreateManyCategoryInputEnvelope
+    connect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
+  }
+
+  export type ServiceCategorySubFormUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<Enumerable<ServiceCategorySubFormCreateWithoutCategoryInput>, Enumerable<ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>>
+    connectOrCreate?: Enumerable<ServiceCategorySubFormCreateOrConnectWithoutCategoryInput>
+    createMany?: ServiceCategorySubFormCreateManyCategoryInputEnvelope
+    connect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
   }
 
   export type ServiceCategoryUpdateOneRequiredWithoutFormNestedInput = {
@@ -34008,6 +35329,57 @@ export namespace Prisma {
     upsert?: ServiceCategoryUpsertWithoutFormInput
     connect?: ServiceCategoryWhereUniqueInput
     update?: XOR<ServiceCategoryUpdateWithoutFormInput, ServiceCategoryUncheckedUpdateWithoutFormInput>
+  }
+
+  export type ServiceCategorySubFormUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<Enumerable<ServiceCategorySubFormCreateWithoutCategoryInput>, Enumerable<ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>>
+    connectOrCreate?: Enumerable<ServiceCategorySubFormCreateOrConnectWithoutCategoryInput>
+    upsert?: Enumerable<ServiceCategorySubFormUpsertWithWhereUniqueWithoutCategoryInput>
+    createMany?: ServiceCategorySubFormCreateManyCategoryInputEnvelope
+    set?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
+    disconnect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
+    delete?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
+    connect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
+    update?: Enumerable<ServiceCategorySubFormUpdateWithWhereUniqueWithoutCategoryInput>
+    updateMany?: Enumerable<ServiceCategorySubFormUpdateManyWithWhereWithoutCategoryInput>
+    deleteMany?: Enumerable<ServiceCategorySubFormScalarWhereInput>
+  }
+
+  export type ServiceCategorySubFormUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<Enumerable<ServiceCategorySubFormCreateWithoutCategoryInput>, Enumerable<ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>>
+    connectOrCreate?: Enumerable<ServiceCategorySubFormCreateOrConnectWithoutCategoryInput>
+    upsert?: Enumerable<ServiceCategorySubFormUpsertWithWhereUniqueWithoutCategoryInput>
+    createMany?: ServiceCategorySubFormCreateManyCategoryInputEnvelope
+    set?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
+    disconnect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
+    delete?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
+    connect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
+    update?: Enumerable<ServiceCategorySubFormUpdateWithWhereUniqueWithoutCategoryInput>
+    updateMany?: Enumerable<ServiceCategorySubFormUpdateManyWithWhereWithoutCategoryInput>
+    deleteMany?: Enumerable<ServiceCategorySubFormScalarWhereInput>
+  }
+
+  export type ServiceCategorySubFormCreateoptionsInput = {
+    set: Enumerable<string>
+  }
+
+  export type ServiceCategoryFormCreateNestedOneWithoutSubFormInput = {
+    create?: XOR<ServiceCategoryFormCreateWithoutSubFormInput, ServiceCategoryFormUncheckedCreateWithoutSubFormInput>
+    connectOrCreate?: ServiceCategoryFormCreateOrConnectWithoutSubFormInput
+    connect?: ServiceCategoryFormWhereUniqueInput
+  }
+
+  export type ServiceCategorySubFormUpdateoptionsInput = {
+    set?: Enumerable<string>
+    push?: string | Enumerable<string>
+  }
+
+  export type ServiceCategoryFormUpdateOneRequiredWithoutSubFormNestedInput = {
+    create?: XOR<ServiceCategoryFormCreateWithoutSubFormInput, ServiceCategoryFormUncheckedCreateWithoutSubFormInput>
+    connectOrCreate?: ServiceCategoryFormCreateOrConnectWithoutSubFormInput
+    upsert?: ServiceCategoryFormUpsertWithoutSubFormInput
+    connect?: ServiceCategoryFormWhereUniqueInput
+    update?: XOR<ServiceCategoryFormUpdateWithoutSubFormInput, ServiceCategoryFormUncheckedUpdateWithoutSubFormInput>
   }
 
   export type ServiceCreatefeatureInput = {
@@ -35422,22 +36794,24 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateWithoutCategoryInput = {
     id?: string
-    question: string
+    title: string
+    description: string
     type: string
-    options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    subForm?: ServiceCategorySubFormCreateNestedManyWithoutCategoryInput
   }
 
   export type ServiceCategoryFormUncheckedCreateWithoutCategoryInput = {
     id?: string
-    question: string
+    title: string
+    description: string
     type: string
-    options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    subForm?: ServiceCategorySubFormUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type ServiceCategoryFormCreateOrConnectWithoutCategoryInput = {
@@ -35514,9 +36888,9 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategoryFormScalarWhereInput>
     NOT?: Enumerable<ServiceCategoryFormScalarWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
+    title?: StringFilter | string
+    description?: StringFilter | string
     type?: StringFilter | string
-    options?: StringNullableListFilter
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -35548,6 +36922,36 @@ export namespace Prisma {
     create: XOR<ServiceCategoryCreateWithoutFormInput, ServiceCategoryUncheckedCreateWithoutFormInput>
   }
 
+  export type ServiceCategorySubFormCreateWithoutCategoryInput = {
+    id?: string
+    question: string
+    type: string
+    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ServiceCategorySubFormUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    question: string
+    type: string
+    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ServiceCategorySubFormCreateOrConnectWithoutCategoryInput = {
+    where: ServiceCategorySubFormWhereUniqueInput
+    create: XOR<ServiceCategorySubFormCreateWithoutCategoryInput, ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type ServiceCategorySubFormCreateManyCategoryInputEnvelope = {
+    data: Enumerable<ServiceCategorySubFormCreateManyCategoryInput>
+    skipDuplicates?: boolean
+  }
+
   export type ServiceCategoryUpsertWithoutFormInput = {
     update: XOR<ServiceCategoryUpdateWithoutFormInput, ServiceCategoryUncheckedUpdateWithoutFormInput>
     create: XOR<ServiceCategoryCreateWithoutFormInput, ServiceCategoryUncheckedCreateWithoutFormInput>
@@ -35571,6 +36975,90 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     services?: ServiceUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type ServiceCategorySubFormUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: ServiceCategorySubFormWhereUniqueInput
+    update: XOR<ServiceCategorySubFormUpdateWithoutCategoryInput, ServiceCategorySubFormUncheckedUpdateWithoutCategoryInput>
+    create: XOR<ServiceCategorySubFormCreateWithoutCategoryInput, ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type ServiceCategorySubFormUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: ServiceCategorySubFormWhereUniqueInput
+    data: XOR<ServiceCategorySubFormUpdateWithoutCategoryInput, ServiceCategorySubFormUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type ServiceCategorySubFormUpdateManyWithWhereWithoutCategoryInput = {
+    where: ServiceCategorySubFormScalarWhereInput
+    data: XOR<ServiceCategorySubFormUpdateManyMutationInput, ServiceCategorySubFormUncheckedUpdateManyWithoutSubFormInput>
+  }
+
+  export type ServiceCategorySubFormScalarWhereInput = {
+    AND?: Enumerable<ServiceCategorySubFormScalarWhereInput>
+    OR?: Enumerable<ServiceCategorySubFormScalarWhereInput>
+    NOT?: Enumerable<ServiceCategorySubFormScalarWhereInput>
+    id?: StringFilter | string
+    question?: StringFilter | string
+    type?: StringFilter | string
+    options?: StringNullableListFilter
+    compulsory?: BoolFilter | boolean
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+    formId?: StringFilter | string
+  }
+
+  export type ServiceCategoryFormCreateWithoutSubFormInput = {
+    id?: string
+    title: string
+    description: string
+    type: string
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: ServiceCategoryCreateNestedOneWithoutFormInput
+  }
+
+  export type ServiceCategoryFormUncheckedCreateWithoutSubFormInput = {
+    id?: string
+    title: string
+    description: string
+    type: string
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    serviceCategoryId: string
+  }
+
+  export type ServiceCategoryFormCreateOrConnectWithoutSubFormInput = {
+    where: ServiceCategoryFormWhereUniqueInput
+    create: XOR<ServiceCategoryFormCreateWithoutSubFormInput, ServiceCategoryFormUncheckedCreateWithoutSubFormInput>
+  }
+
+  export type ServiceCategoryFormUpsertWithoutSubFormInput = {
+    update: XOR<ServiceCategoryFormUpdateWithoutSubFormInput, ServiceCategoryFormUncheckedUpdateWithoutSubFormInput>
+    create: XOR<ServiceCategoryFormCreateWithoutSubFormInput, ServiceCategoryFormUncheckedCreateWithoutSubFormInput>
+  }
+
+  export type ServiceCategoryFormUpdateWithoutSubFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: ServiceCategoryUpdateOneRequiredWithoutFormNestedInput
+  }
+
+  export type ServiceCategoryFormUncheckedUpdateWithoutSubFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serviceCategoryId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceCategoryCreateWithoutServicesInput = {
@@ -37501,9 +38989,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateManyCategoryInput = {
     id?: string
-    question: string
+    title: string
+    description: string
     type: string
-    options?: ServiceCategoryFormCreateoptionsInput | Enumerable<string>
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -37586,29 +39074,71 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subForm?: ServiceCategorySubFormUpdateManyWithoutCategoryNestedInput
   }
 
   export type ServiceCategoryFormUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    subForm?: ServiceCategorySubFormUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type ServiceCategoryFormUncheckedUpdateManyWithoutFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceCategoryFormUncheckedUpdateManyWithoutFormInput = {
+  export type ServiceCategorySubFormCreateManyCategoryInput = {
+    id?: string
+    question: string
+    type: string
+    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ServiceCategorySubFormUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceCategoryFormUpdateoptionsInput | Enumerable<string>
+    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceCategorySubFormUncheckedUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceCategorySubFormUncheckedUpdateManyWithoutSubFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

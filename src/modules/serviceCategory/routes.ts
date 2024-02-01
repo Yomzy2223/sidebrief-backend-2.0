@@ -4,6 +4,7 @@ import validator from "../../middleware/validator";
 import {
   validateServiceCategory,
   validateServiceCategoryForm,
+  validateServiceCategorySubForm,
 } from "../../utils/validation";
 const router = express.Router();
 
@@ -61,7 +62,7 @@ router.delete("/:id", staffAuth, ServiceCategoryFormRemover);
 router.post(
   "/subform/:formId",
   staffAuth,
-  validator(validateServiceCategoryForm),
+  validator(validateServiceCategorySubForm),
   ServiceCategorySubFormCreator
 );
 router.get("/subform/:formId", ServiceCategorySubFormFetcher);
@@ -70,7 +71,7 @@ router.get("/subform/:id", ServiceACategorySubFormFetcher);
 router.put(
   "/subform/:id",
   staffAuth,
-  validator(validateServiceCategoryForm),
+  validator(validateServiceCategorySubForm),
   ServiceCategorySubFormModifier
 );
 router.delete("/:id", staffAuth, ServiceCategorySubFormRemover);

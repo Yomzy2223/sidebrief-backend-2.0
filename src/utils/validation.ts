@@ -69,12 +69,22 @@ const validateServiceCategory = validate.compile(serviceCategorySchema);
 // service category form
 
 const serviceCategoryFormSchema = {
+  title: { type: "string", min: 3, max: 255 },
+  description: { type: "string", min: 3, max: 255 },
+  type: { type: "string", min: 3, max: 2550 },
+};
+
+const validateServiceCategoryForm = validate.compile(serviceCategoryFormSchema);
+
+const serviceCategorySubFormSchema = {
   question: { type: "string", min: 3, max: 255 },
   type: { type: "string", min: 3, max: 100 },
   options: { type: "array", items: "string", min: 1 },
 };
 
-const validateServiceCategoryForm = validate.compile(serviceCategoryFormSchema);
+const validateServiceCategorySubForm = validate.compile(
+  serviceCategorySubFormSchema
+);
 
 //user password rest
 const resetSchema = {
@@ -143,4 +153,5 @@ export {
   validateEmail,
   validateUserWithGoogle,
   validateUserWithGoogleCredentials,
+  validateServiceCategorySubForm,
 };
