@@ -6595,3 +6595,6 @@ error: Label: 01-Feb-2024 15:04:00: Error occured with error Error: Illegal argu
 error: Label: 01-Feb-2024 15:08:15: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/login was called
 info: Label: 01-Feb-2024 15:08:33: User with string@gmail.com signed in successfully.
 error: Label: 01-Feb-2024 15:08:51: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/login was called
+info: Label: 02-Feb-2024 11:30:31: string created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 02-Feb-2024 11:34:24: string created an account successfully with akinyemi@sidebrief.com.
+info: Label: 02-Feb-2024 11:37:53: string created an account successfully with akindanemmy2161@gmail.com.

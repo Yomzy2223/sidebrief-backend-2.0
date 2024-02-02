@@ -127,7 +127,6 @@ const countrySchema = {
   iso: { type: "string", min: 3, max: 10 },
   currency: { type: "string", min: 3, max: 10 },
   code: { type: "string", min: 3, max: 10 },
-  flagUrl: { type: "string", min: 3, max: 255 },
 };
 
 const validateCountry = validate.compile(countrySchema);

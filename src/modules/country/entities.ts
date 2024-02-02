@@ -10,7 +10,6 @@ export interface CountryData {
   id: string;
   name: string;
   iso: string;
-  flagUrl: string;
   code: string;
   currency: string;
 }

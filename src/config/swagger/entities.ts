@@ -183,8 +183,7 @@ interface Country {
   properties: {
     name: Props;
     code: Props;
-    flagUrl: Props;
-    image: Props;
+    iso: Props;
     currency: Props;
   };
 }

@@ -431,13 +431,9 @@ const options: OpenAPIDefinition = {
               type: "string",
               description: "The country code of the country",
             },
-            flagUrl: {
+            iso: {
               type: "string",
-              description: "The flag url of the country",
-            },
-            image: {
-              type: "string",
-              description: "The image of the country",
+              description: "The iso of the country",
             },
             currency: {
               type: "string",
