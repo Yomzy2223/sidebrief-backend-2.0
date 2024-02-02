@@ -6598,3 +6598,78 @@ error: Label: 01-Feb-2024 15:08:51: Invalid credentials! with error Error: Inval
 info: Label: 02-Feb-2024 11:30:31: string created an account successfully with akinyemibamidele2@gmail.com.
 info: Label: 02-Feb-2024 11:34:24: string created an account successfully with akinyemi@sidebrief.com.
 info: Label: 02-Feb-2024 11:37:53: string created an account successfully with akindanemmy2161@gmail.com.
+error: Label: 02-Feb-2024 15:55:33: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:459:36
+
+  456 // save the new password and update reset token to null
+  457 
+  458 try {
+→ 459   const user = await prisma.user.findUnique({
+          where: {
+        ?   email?: String,
+        ?   id?: String
+          }
+        })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 15:56:06: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:459:36
+
+  456 // save the new password and update reset token to null
+  457 
+  458 try {
+→ 459   const user = await prisma.user.findUnique({
+          where: {
+        ?   email?: String,
+        ?   id?: String
+          }
+        })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 15:56:46: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:459:36
+
+  456 // save the new password and update reset token to null
+  457 
+  458 try {
+→ 459   const user = await prisma.user.findUnique({
+          where: {
+        ?   email?: String,
+        ?   id?: String
+          }
+        })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 15:58:16: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:460:36
+
+  457 
+  458 try {
+  459   console.log("rrrrrr", changePayload);
+→ 460   const user = await prisma.user.findUnique({
+          where: {
+        ?   email?: String,
+        ?   id?: String
+          }
+        })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 16:01:55: User not found!. with error Error: User not found!. occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 16:10:35: User not found!. with error Error: User not found!. occurred when POST /users/passwordreset was called
+info: Label: 02-Feb-2024 16:12:00: User with akinyemibamidele2@gmail.com signed in successfully.

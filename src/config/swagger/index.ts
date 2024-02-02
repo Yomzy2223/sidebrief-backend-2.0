@@ -1330,16 +1330,6 @@ const options: OpenAPIDefinition = {
           tags: ["Users"],
           summary: "Reset password",
           description: "reset password",
-          parameters: [
-            {
-              name: "user",
-              in: "body",
-              description: "reset password",
-              schema: {
-                $ref: "#/components/schemas/UserReset",
-              },
-            },
-          ],
           requestBody: {
             // expected request body
             content: {

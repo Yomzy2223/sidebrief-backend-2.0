@@ -413,11 +413,9 @@ const forgotPassword = async (forgotPayload: ForgotPassword) => {
       "30m"
     );
 
-    const cryptedToken = await hasher(userToken, 12);
-
     const updatedUser = await prisma.user.update({
       where: { id: user.id },
-      data: { resetToken: cryptedToken },
+      data: { resetToken: userToken },
     });
 
     const url = `${process.env.BASE_URL}/auth/reset-password/${userToken}`;
@@ -456,18 +454,12 @@ const changePassword = async (changePayload: any) => {
   // save the new password and update reset token to null
 
   try {
-    const user = await prisma.user.findUnique({
-      where: { email: changePayload.email },
+    const user = await prisma.user.findFirst({
+      where: { resetToken: changePayload.token },
     });
 
     if (!user) {
       throw new BadRequest("User not found!.");
-    }
-
-    let checkToken = await matchChecker(changePayload.token, user.resetToken);
-
-    if (!checkToken) {
-      throw new BadRequest("Invalid token");
     }
 
     const cryptedPassword = await hasher(changePayload.password, 12);
@@ -482,6 +474,7 @@ const changePassword = async (changePayload: any) => {
       statusCode: 200,
     };
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
