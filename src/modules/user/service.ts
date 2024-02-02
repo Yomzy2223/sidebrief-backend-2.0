@@ -420,7 +420,7 @@ const forgotPassword = async (forgotPayload: ForgotPassword) => {
       data: { resetToken: cryptedToken },
     });
 
-    const url = `${process.env.BASE_URL}/reset-password/${userToken}`;
+    const url = `${process.env.BASE_URL}/auth/reset-password/${userToken}`;
 
     //send user email
     const subject = "Reset Password.";
@@ -435,7 +435,7 @@ const forgotPassword = async (forgotPayload: ForgotPassword) => {
       payload,
       recipientEmail,
       senderEmail,
-      "../view/welcomeUser.ejs"
+      "../view/resetLink.ejs"
     );
 
     return {

@@ -124,7 +124,7 @@ const validateDocument = validate.compile(documentSchema);
 
 const countrySchema = {
   name: { type: "string", min: 3, max: 255 },
-  iso: { type: "string", min: 3, max: 10 },
+  iso: { type: "string", min: 2, max: 10 },
   currency: { type: "string", min: 3, max: 10 },
   code: { type: "string", min: 3, max: 10 },
 };
