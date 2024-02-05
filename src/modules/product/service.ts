@@ -248,16 +248,16 @@ const createProductQA = async (
 
     if (productQAPayload.form.length === 1) {
       const data = {
-        question: productQAPayload.form[0].question,
-        answer: productQAPayload.form[0].answer,
-        type: productQAPayload.form[0].type,
-        compulsory: productQAPayload.form[0].compulsory,
-        isGeneral: productQAPayload.form[0].isGeneral,
+        question: productQAPayload?.form[0]?.question,
+        answer: productQAPayload?.form[0]?.answer,
+        type: productQAPayload?.form[0]?.type,
+        compulsory: productQAPayload?.form[0]?.compulsory,
+        isGeneral: productQAPayload?.form[0]?.isGeneral,
         productId: findProduct.id,
-        fileName: productQAPayload.form[0].file.name,
-        fileDescription: productQAPayload.form[0].file.description,
-        fileLink: productQAPayload.form[0].file.link,
-        fileType: productQAPayload.form[0].file.type,
+        fileName: productQAPayload?.form[0]?.file?.name,
+        fileDescription: productQAPayload?.form[0]?.file?.description,
+        fileLink: productQAPayload?.form[0]?.file?.link,
+        fileType: productQAPayload?.form[0]?.file?.type,
       };
       const createProductFormData = await prisma.productQA.create({
         data: data,
@@ -290,16 +290,16 @@ const createProductQA = async (
       }
     } else {
       const productForm = productQAPayload.form.map((data: FormData) => ({
-        question: data.question,
-        answer: data.answer,
-        type: data.type,
-        isGeneral: data.isGeneral,
-        compulsory: data.compulsory,
+        question: data?.question,
+        answer: data?.answer,
+        type: data?.type,
+        isGeneral: data?.isGeneral,
+        compulsory: data?.compulsory,
         productId: findProduct.id,
-        fileName: data.file.name,
-        fileDescription: data.file.description,
-        fileLink: data.file.link,
-        fileType: data.file.type,
+        fileName: data?.file?.name,
+        fileDescription: data?.file?.description,
+        fileLink: data?.file?.link,
+        fileType: data?.file?.type,
       }));
 
       const productQA = await prisma.productQA.createMany({

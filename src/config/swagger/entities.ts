@@ -114,47 +114,15 @@ interface ProductServices {
 // Service Form Interface
 interface ServiceForms {
   type: string;
+  require: string[];
   properties: {
-    question: Props;
+    title: Props;
+    description: Props;
     type: Props;
-    options: Props;
     compulsory: Props;
-    file: {
-      type: string;
-      description: string;
-      properties: {
-        name: Props;
-        description: Props;
-        link: Props;
-        type: Props;
-      };
-    };
-    subForm: Props;
-    form: {
-      type: string;
-      description: string;
-      items: {
-        type: string;
-        properties: {
-          question: Props;
-          options: Props;
-          type: Props;
-          compulsory: Props;
-          file: {
-            type: string;
-            description: string;
-            properties: {
-              name: Props;
-              description: Props;
-              link: Props;
-              type: Props;
-            };
-          };
-        };
-      };
-    };
   };
 }
+
 interface ProductServiceForms {
   type: string;
   require: string[];
@@ -331,9 +299,27 @@ interface ServiceCategorySubForm {
     options: Props;
     type: Props;
     compulsory: Props;
+    fileName: Props;
+    fileDescription: Props;
+    fileLink: Props;
+    fileType: Props;
   };
 }
 
+interface ServiceSubForm {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
+    options: Props;
+    type: Props;
+    compulsory: Props;
+    fileName: Props;
+    fileDescription: Props;
+    fileLink: Props;
+    fileType: Props;
+  };
+}
 interface CreateProduct {
   type: string;
   require: string[];
@@ -497,7 +483,7 @@ interface ComponentDefinition {
     DiligenceDocument: DiligenceDocument;
     UpdateManyRequest: UpdateManyRequest;
     ProductServiceId: ProductServiceId;
-
+    ServiceSubForm: ServiceSubForm;
     //Bank
     CreateNigerianBank: CreateNigerianBank;
     UpdateNigerianBank: UpdateNigerianBank;

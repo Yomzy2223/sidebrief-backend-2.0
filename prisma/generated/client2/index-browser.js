@@ -261,6 +261,10 @@ exports.Prisma.ServiceCategorySubFormScalarFieldEnum = {
   question: 'question',
   type: 'type',
   options: 'options',
+  fileName: 'fileName',
+  fileDescription: 'fileDescription',
+  fileType: 'fileType',
+  fileLink: 'fileLink',
   compulsory: 'compulsory',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -303,14 +307,10 @@ exports.Prisma.ServiceTemplateScalarFieldEnum = {
 
 exports.Prisma.ServiceFormScalarFieldEnum = {
   id: 'id',
-  question: 'question',
+  title: 'title',
   type: 'type',
-  options: 'options',
+  description: 'description',
   compulsory: 'compulsory',
-  fileName: 'fileName',
-  fileDescription: 'fileDescription',
-  fileType: 'fileType',
-  fileLink: 'fileLink',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   serviceId: 'serviceId'
@@ -321,11 +321,13 @@ exports.Prisma.ServiceSubFormScalarFieldEnum = {
   question: 'question',
   options: 'options',
   type: 'type',
-  compulsory: 'compulsory',
   fileName: 'fileName',
   fileDescription: 'fileDescription',
   fileType: 'fileType',
   fileLink: 'fileLink',
+  compulsory: 'compulsory',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   serviceFormId: 'serviceFormId'
 };
 

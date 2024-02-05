@@ -20,6 +20,11 @@ import {
   ServiceFormModifier,
   ServiceFormRemover,
   ServiceFormsFetcher,
+  ServiceSubFormCreator,
+  ServiceSubFormFetcher,
+  ServiceASubFormFetcher,
+  ServiceSubFormModifier,
+  ServiceSubFormRemover,
 } from "./controller";
 
 // Product service route
@@ -32,7 +37,7 @@ router.post(
 router.get("/", ProductServicesFetcher);
 router.get("/:id", ProductServiceFetcher);
 router.get(
-  "/:serviceCategoryId",
+  "/allByServiceCategory/:serviceCategoryId",
 
   ProductServiceByCategoryFetcher
 );
@@ -59,6 +64,23 @@ router.put(
 );
 router.get("/form/all", ServiceFormsFetcher);
 router.get("/form/:id", ServiceFormFetcher);
-router.get("/form/:serviceId", ServiceFormByServiceFetcher);
+router.get("/formByService/:serviceId", ServiceFormByServiceFetcher);
 router.delete("/form/:id", staffAuth, ServiceFormRemover);
+
+router.post(
+  "/subform/:serviceFormId",
+  staffAuth,
+
+  ServiceSubFormCreator
+);
+router.get("/subforms/:serviceFormId", ServiceSubFormFetcher);
+router.get("/subform/:id", ServiceASubFormFetcher);
+
+router.put(
+  "/subform/:id",
+  staffAuth,
+
+  ServiceSubFormModifier
+);
+router.delete("/:id", staffAuth, ServiceSubFormRemover);
 export default router;

@@ -23,25 +23,29 @@ export interface ServiceCategoryFormPayload {
 }
 
 export interface ServiceCategorySubFormPayload {
-  question: string;
-  type: string;
-  options: string[];
+  question?: string;
+  type?: string;
+  options?: string[];
   formId: string;
-  compulsory: boolean;
+  compulsory?: boolean;
+  fileName?: string;
+  fileType?: string;
+  fileDescription?: string;
+  fileLink?: string;
 }
 
 export interface ServiceCategoryFormData {
   id: string;
-  title: string;
-  type: string;
-  description: string;
+  title: string | null;
+  type: string | null;
+  description: string | null;
   serviceCategoryId: string;
 }
 
 export interface ServiceCategorySubFormData {
   id: string;
-  question: string;
-  type: string;
+  question: string | null;
+  type: string | null;
   options: string[];
   formId: string;
 }
@@ -66,8 +70,12 @@ export interface UpdateServiceCategoryFormPayload {
 }
 
 export interface UpdateServiceCategorySubFormPayload {
-  question: string;
-  type: string;
-  options: string[];
-  compulsory: boolean;
+  question?: string;
+  type?: string;
+  options?: string[];
+  compulsory?: boolean;
+  fileName?: string;
+  fileType?: string;
+  fileDescription?: string;
+  fileLink?: string;
 }

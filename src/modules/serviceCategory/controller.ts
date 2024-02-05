@@ -265,10 +265,14 @@ const ServiceCategorySubFormCreator = async (
     const serviceCategoryPayload = req.body;
 
     const values: ServiceCategorySubFormPayload = {
-      question: serviceCategoryPayload.question,
-      type: serviceCategoryPayload.type,
-      options: serviceCategoryPayload.options,
-      compulsory: serviceCategoryPayload.compulsory,
+      question: serviceCategoryPayload?.question,
+      type: serviceCategoryPayload?.type,
+      options: serviceCategoryPayload?.options,
+      compulsory: serviceCategoryPayload?.compulsory,
+      fileName: serviceCategoryPayload?.fileName,
+      fileDescription: serviceCategoryPayload.fileDescription,
+      fileLink: serviceCategoryPayload?.fileLink,
+      fileType: serviceCategoryPayload?.fileType,
       formId: formId,
     };
     const category = await saveServiceCategorySubForm(values, formId);
@@ -313,10 +317,14 @@ const ServiceCategorySubFormModifier = async (
     const serviceCategoryPayload: UpdateServiceCategorySubFormPayload =
       req.body;
     const values = {
-      question: serviceCategoryPayload.question,
-      type: serviceCategoryPayload.type,
-      options: serviceCategoryPayload.options,
-      compulsory: serviceCategoryPayload.compulsory,
+      question: serviceCategoryPayload?.question,
+      type: serviceCategoryPayload?.type,
+      options: serviceCategoryPayload?.options,
+      compulsory: serviceCategoryPayload?.compulsory,
+      fileName: serviceCategoryPayload?.fileName,
+      fileDescription: serviceCategoryPayload.fileDescription,
+      fileLink: serviceCategoryPayload?.fileLink,
+      fileType: serviceCategoryPayload?.fileType,
     };
     const category = await updateServiceCategorySubForm(values, subFormId);
 

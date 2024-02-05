@@ -115,7 +115,7 @@ const getServiceCategory = async (
 const updateServiceCategory = async (
   id: string,
   serviceCategoryPayload: ServiceCategoryPayload
-) => {
+): Promise<ServiceCategoryResponse> => {
   // take both id and service category payload from the service category controller
   //  check if the service category exists
   //  update the service category
@@ -144,6 +144,7 @@ const updateServiceCategory = async (
 
     return {
       message: "Service category updated successfully",
+      data: updateCategory,
       statusCode: 200,
     };
   } catch (error) {
@@ -280,7 +281,7 @@ const getServiceCategoryForm = async (
 const updateServiceCategoryForm = async (
   serviceCategoryPayload: UpdateServiceCategoryFormPayload,
   id: string
-) => {
+): Promise<ServiceCategoryFormResponse> => {
   // take both id and service category payload from the service category controller
   //  check if the service category exists
   //  update the service category
@@ -309,6 +310,7 @@ const updateServiceCategoryForm = async (
 
     return {
       message: "Service category updated successfully",
+      data: updateCategory,
       statusCode: 200,
     };
   } catch (error) {
@@ -440,7 +442,7 @@ const getServiceCategorySubForm = async (
 const updateServiceCategorySubForm = async (
   serviceCategorySubFormPayload: UpdateServiceCategorySubFormPayload,
   id: string
-) => {
+): Promise<ServiceCategorySubFormResponse> => {
   // take both id and service category payload from the service category controller
   //  check if the service category exists
   //  update the service category
@@ -471,6 +473,7 @@ const updateServiceCategorySubForm = async (
 
     return {
       message: "Service category sub form updated successfully",
+      data: updateCategory,
       statusCode: 200,
     };
   } catch (error) {

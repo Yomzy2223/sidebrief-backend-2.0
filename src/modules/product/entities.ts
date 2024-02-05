@@ -57,8 +57,8 @@ export interface ProductWithoutDataResponse {
 }
 
 export interface ProductQAData {
-  id?: string;
-  question?: string;
+  id: string;
+  question: string | null;
   answer?: string[];
   isGeneral?: boolean;
   createdAt?: Date;

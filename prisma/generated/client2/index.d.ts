@@ -283,9 +283,9 @@ export type ServiceCategoryFormPayload<ExtArgs extends $Extensions.Args = $Exten
   }
   scalars: $Extensions.GetResult<{
     id: string
-    title: string
-    description: string
-    type: string
+    title: string | null
+    description: string | null
+    type: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -306,9 +306,13 @@ export type ServiceCategorySubFormPayload<ExtArgs extends $Extensions.Args = $Ex
   }
   scalars: $Extensions.GetResult<{
     id: string
-    question: string
-    type: string
+    question: string | null
+    type: string | null
     options: string[]
+    fileName: string | null
+    fileDescription: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -391,14 +395,10 @@ export type ServiceFormPayload<ExtArgs extends $Extensions.Args = $Extensions.De
   }
   scalars: $Extensions.GetResult<{
     id: string
-    question: string
-    type: string
-    options: string[]
+    title: string | null
+    type: string | null
+    description: string | null
     compulsory: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt: Date
     updatedAt: Date
     serviceId: string
@@ -418,14 +418,16 @@ export type ServiceSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
   }
   scalars: $Extensions.GetResult<{
     id: string
-    question: string
+    question: string | null
     options: string[]
-    type: string
+    type: string | null
+    fileName: string | null
+    fileDescription: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    createdAt: Date
+    updatedAt: Date
     serviceFormId: string
   }, ExtArgs["result"]["serviceSubForm"]>
   composites: {}
@@ -474,15 +476,15 @@ export type ProductQAPayload<ExtArgs extends $Extensions.Args = $Extensions.Defa
   }
   scalars: $Extensions.GetResult<{
     id: string
-    question: string
+    question: string | null
     answer: string[]
-    type: string
+    type: string | null
     compulsory: boolean
     isGeneral: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName: string | null
+    fileDescription: string | null
+    fileType: string | null
+    fileLink: string | null
     createdAt: Date
     updatedAt: Date
     productId: string
@@ -502,9 +504,9 @@ export type ProductQASubFormPayload<ExtArgs extends $Extensions.Args = $Extensio
   }
   scalars: $Extensions.GetResult<{
     id: string
-    question: string
+    question: string | null
     answer: string[]
-    type: string
+    type: string | null
     compulsory: boolean
     productQAId: string
   }, ExtArgs["result"]["productQASubForm"]>
@@ -14492,9 +14494,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormGroupByOutputType = {
     id: string
-    title: string
-    description: string
-    type: string
+    title: string | null
+    description: string | null
+    type: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -15330,6 +15332,10 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    fileName: string | null
+    fileDescription: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15340,6 +15346,10 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    fileName: string | null
+    fileDescription: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15351,6 +15361,10 @@ export namespace Prisma {
     question: number
     type: number
     options: number
+    fileName: number
+    fileDescription: number
+    fileType: number
+    fileLink: number
     compulsory: number
     createdAt: number
     updatedAt: number
@@ -15363,6 +15377,10 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    fileName?: true
+    fileDescription?: true
+    fileType?: true
+    fileLink?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -15373,6 +15391,10 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    fileName?: true
+    fileDescription?: true
+    fileType?: true
+    fileLink?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -15384,6 +15406,10 @@ export namespace Prisma {
     question?: true
     type?: true
     options?: true
+    fileName?: true
+    fileDescription?: true
+    fileType?: true
+    fileLink?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -15466,9 +15492,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormGroupByOutputType = {
     id: string
-    question: string
-    type: string
+    question: string | null
+    type: string | null
     options: string[]
+    fileName: string | null
+    fileDescription: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -15497,6 +15527,10 @@ export namespace Prisma {
     question?: boolean
     type?: boolean
     options?: boolean
+    fileName?: boolean
+    fileDescription?: boolean
+    fileType?: boolean
+    fileLink?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -15509,6 +15543,10 @@ export namespace Prisma {
     question?: boolean
     type?: boolean
     options?: boolean
+    fileName?: boolean
+    fileDescription?: boolean
+    fileType?: boolean
+    fileLink?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -18354,13 +18392,10 @@ export namespace Prisma {
 
   export type ServiceFormMinAggregateOutputType = {
     id: string | null
-    question: string | null
+    title: string | null
     type: string | null
+    description: string | null
     compulsory: boolean | null
-    fileName: string | null
-    fileDescription: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date | null
     updatedAt: Date | null
     serviceId: string | null
@@ -18368,13 +18403,10 @@ export namespace Prisma {
 
   export type ServiceFormMaxAggregateOutputType = {
     id: string | null
-    question: string | null
+    title: string | null
     type: string | null
+    description: string | null
     compulsory: boolean | null
-    fileName: string | null
-    fileDescription: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date | null
     updatedAt: Date | null
     serviceId: string | null
@@ -18382,14 +18414,10 @@ export namespace Prisma {
 
   export type ServiceFormCountAggregateOutputType = {
     id: number
-    question: number
+    title: number
     type: number
-    options: number
+    description: number
     compulsory: number
-    fileName: number
-    fileDescription: number
-    fileType: number
-    fileLink: number
     createdAt: number
     updatedAt: number
     serviceId: number
@@ -18399,13 +18427,10 @@ export namespace Prisma {
 
   export type ServiceFormMinAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
     type?: true
+    description?: true
     compulsory?: true
-    fileName?: true
-    fileDescription?: true
-    fileType?: true
-    fileLink?: true
     createdAt?: true
     updatedAt?: true
     serviceId?: true
@@ -18413,13 +18438,10 @@ export namespace Prisma {
 
   export type ServiceFormMaxAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
     type?: true
+    description?: true
     compulsory?: true
-    fileName?: true
-    fileDescription?: true
-    fileType?: true
-    fileLink?: true
     createdAt?: true
     updatedAt?: true
     serviceId?: true
@@ -18427,14 +18449,10 @@ export namespace Prisma {
 
   export type ServiceFormCountAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
     type?: true
-    options?: true
+    description?: true
     compulsory?: true
-    fileName?: true
-    fileDescription?: true
-    fileType?: true
-    fileLink?: true
     createdAt?: true
     updatedAt?: true
     serviceId?: true
@@ -18516,14 +18534,10 @@ export namespace Prisma {
 
   export type ServiceFormGroupByOutputType = {
     id: string
-    question: string
-    type: string
-    options: string[]
+    title: string | null
+    type: string | null
+    description: string | null
     compulsory: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt: Date
     updatedAt: Date
     serviceId: string
@@ -18548,14 +18562,10 @@ export namespace Prisma {
 
   export type ServiceFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    question?: boolean
+    title?: boolean
     type?: boolean
-    options?: boolean
+    description?: boolean
     compulsory?: boolean
-    fileName?: boolean
-    fileDescription?: boolean
-    fileType?: boolean
-    fileLink?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     serviceId?: boolean
@@ -18566,14 +18576,10 @@ export namespace Prisma {
 
   export type ServiceFormSelectScalar = {
     id?: boolean
-    question?: boolean
+    title?: boolean
     type?: boolean
-    options?: boolean
+    description?: boolean
     compulsory?: boolean
-    fileName?: boolean
-    fileDescription?: boolean
-    fileType?: boolean
-    fileLink?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     serviceId?: boolean
@@ -19366,11 +19372,13 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
-    compulsory: boolean | null
     fileName: string | null
     fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    compulsory: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
     serviceFormId: string | null
   }
 
@@ -19378,11 +19386,13 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
-    compulsory: boolean | null
     fileName: string | null
     fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    compulsory: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
     serviceFormId: string | null
   }
 
@@ -19391,11 +19401,13 @@ export namespace Prisma {
     question: number
     options: number
     type: number
-    compulsory: number
     fileName: number
     fileDescription: number
     fileType: number
     fileLink: number
+    compulsory: number
+    createdAt: number
+    updatedAt: number
     serviceFormId: number
     _all: number
   }
@@ -19405,11 +19417,13 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
-    compulsory?: true
     fileName?: true
     fileDescription?: true
     fileType?: true
     fileLink?: true
+    compulsory?: true
+    createdAt?: true
+    updatedAt?: true
     serviceFormId?: true
   }
 
@@ -19417,11 +19431,13 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
-    compulsory?: true
     fileName?: true
     fileDescription?: true
     fileType?: true
     fileLink?: true
+    compulsory?: true
+    createdAt?: true
+    updatedAt?: true
     serviceFormId?: true
   }
 
@@ -19430,11 +19446,13 @@ export namespace Prisma {
     question?: true
     options?: true
     type?: true
-    compulsory?: true
     fileName?: true
     fileDescription?: true
     fileType?: true
     fileLink?: true
+    compulsory?: true
+    createdAt?: true
+    updatedAt?: true
     serviceFormId?: true
     _all?: true
   }
@@ -19514,14 +19532,16 @@ export namespace Prisma {
 
   export type ServiceSubFormGroupByOutputType = {
     id: string
-    question: string
+    question: string | null
     options: string[]
-    type: string
+    type: string | null
+    fileName: string | null
+    fileDescription: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    createdAt: Date
+    updatedAt: Date
     serviceFormId: string
     _count: ServiceSubFormCountAggregateOutputType | null
     _min: ServiceSubFormMinAggregateOutputType | null
@@ -19547,11 +19567,13 @@ export namespace Prisma {
     question?: boolean
     options?: boolean
     type?: boolean
-    compulsory?: boolean
     fileName?: boolean
     fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
+    compulsory?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     serviceFormId?: boolean
     serviceForm?: boolean | ServiceFormArgs<ExtArgs>
   }, ExtArgs["result"]["serviceSubForm"]>
@@ -19561,11 +19583,13 @@ export namespace Prisma {
     question?: boolean
     options?: boolean
     type?: boolean
-    compulsory?: boolean
     fileName?: boolean
     fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
+    compulsory?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     serviceFormId?: boolean
   }
 
@@ -21556,15 +21580,15 @@ export namespace Prisma {
 
   export type ProductQAGroupByOutputType = {
     id: string
-    question: string
+    question: string | null
     answer: string[]
-    type: string
+    type: string | null
     compulsory: boolean
     isGeneral: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName: string | null
+    fileDescription: string | null
+    fileType: string | null
+    fileLink: string | null
     createdAt: Date
     updatedAt: Date
     productId: string
@@ -22533,9 +22557,9 @@ export namespace Prisma {
 
   export type ProductQASubFormGroupByOutputType = {
     id: string
-    question: string
+    question: string | null
     answer: string[]
-    type: string
+    type: string | null
     compulsory: boolean
     productQAId: string
     _count: ProductQASubFormCountAggregateOutputType | null
@@ -29274,6 +29298,10 @@ export namespace Prisma {
     question: 'question',
     type: 'type',
     options: 'options',
+    fileName: 'fileName',
+    fileDescription: 'fileDescription',
+    fileType: 'fileType',
+    fileLink: 'fileLink',
     compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -29325,14 +29353,10 @@ export namespace Prisma {
 
   export const ServiceFormScalarFieldEnum: {
     id: 'id',
-    question: 'question',
+    title: 'title',
     type: 'type',
-    options: 'options',
+    description: 'description',
     compulsory: 'compulsory',
-    fileName: 'fileName',
-    fileDescription: 'fileDescription',
-    fileType: 'fileType',
-    fileLink: 'fileLink',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     serviceId: 'serviceId'
@@ -29346,11 +29370,13 @@ export namespace Prisma {
     question: 'question',
     options: 'options',
     type: 'type',
-    compulsory: 'compulsory',
     fileName: 'fileName',
     fileDescription: 'fileDescription',
     fileType: 'fileType',
     fileLink: 'fileLink',
+    compulsory: 'compulsory',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
     serviceFormId: 'serviceFormId'
   };
 
@@ -30253,9 +30279,9 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategoryFormWhereInput>
     NOT?: Enumerable<ServiceCategoryFormWhereInput>
     id?: StringFilter | string
-    title?: StringFilter | string
-    description?: StringFilter | string
-    type?: StringFilter | string
+    title?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -30266,9 +30292,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    type?: SortOrder
+    title?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30283,9 +30309,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    type?: SortOrder
+    title?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30300,9 +30326,9 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategoryFormScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ServiceCategoryFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    title?: StringWithAggregatesFilter | string
-    description?: StringWithAggregatesFilter | string
-    type?: StringWithAggregatesFilter | string
+    title?: StringNullableWithAggregatesFilter | string | null
+    description?: StringNullableWithAggregatesFilter | string | null
+    type?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -30314,9 +30340,13 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategorySubFormWhereInput>
     NOT?: Enumerable<ServiceCategorySubFormWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
-    type?: StringFilter | string
+    question?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
     options?: StringNullableListFilter
+    fileName?: StringNullableFilter | string | null
+    fileDescription?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -30326,9 +30356,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormOrderByWithRelationInput = {
     id?: SortOrder
-    question?: SortOrder
-    type?: SortOrder
+    question?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
     options?: SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileDescription?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30342,9 +30376,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormOrderByWithAggregationInput = {
     id?: SortOrder
-    question?: SortOrder
-    type?: SortOrder
+    question?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
     options?: SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileDescription?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30359,9 +30397,13 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategorySubFormScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ServiceCategorySubFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    question?: StringWithAggregatesFilter | string
-    type?: StringWithAggregatesFilter | string
+    question?: StringNullableWithAggregatesFilter | string | null
+    type?: StringNullableWithAggregatesFilter | string | null
     options?: StringNullableListFilter
+    fileName?: StringNullableWithAggregatesFilter | string | null
+    fileDescription?: StringNullableWithAggregatesFilter | string | null
+    fileType?: StringNullableWithAggregatesFilter | string | null
+    fileLink?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -30545,14 +30587,10 @@ export namespace Prisma {
     OR?: Enumerable<ServiceFormWhereInput>
     NOT?: Enumerable<ServiceFormWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
-    type?: StringFilter | string
-    options?: StringNullableListFilter
+    title?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
-    fileName?: StringFilter | string
-    fileDescription?: StringFilter | string
-    fileType?: StringFilter | string
-    fileLink?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     serviceId?: StringFilter | string
@@ -30562,14 +30600,10 @@ export namespace Prisma {
 
   export type ServiceFormOrderByWithRelationInput = {
     id?: SortOrder
-    question?: SortOrder
-    type?: SortOrder
-    options?: SortOrder
+    title?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     compulsory?: SortOrder
-    fileName?: SortOrder
-    fileDescription?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -30583,14 +30617,10 @@ export namespace Prisma {
 
   export type ServiceFormOrderByWithAggregationInput = {
     id?: SortOrder
-    question?: SortOrder
-    type?: SortOrder
-    options?: SortOrder
+    title?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     compulsory?: SortOrder
-    fileName?: SortOrder
-    fileDescription?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -30604,14 +30634,10 @@ export namespace Prisma {
     OR?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    question?: StringWithAggregatesFilter | string
-    type?: StringWithAggregatesFilter | string
-    options?: StringNullableListFilter
+    title?: StringNullableWithAggregatesFilter | string | null
+    type?: StringNullableWithAggregatesFilter | string | null
+    description?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
-    fileName?: StringWithAggregatesFilter | string
-    fileDescription?: StringWithAggregatesFilter | string
-    fileType?: StringWithAggregatesFilter | string
-    fileLink?: StringWithAggregatesFilter | string
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     serviceId?: StringWithAggregatesFilter | string
@@ -30622,28 +30648,32 @@ export namespace Prisma {
     OR?: Enumerable<ServiceSubFormWhereInput>
     NOT?: Enumerable<ServiceSubFormWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
+    question?: StringNullableFilter | string | null
     options?: StringNullableListFilter
-    type?: StringFilter | string
+    type?: StringNullableFilter | string | null
+    fileName?: StringNullableFilter | string | null
+    fileDescription?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
-    fileName?: StringFilter | string
-    fileDescription?: StringFilter | string
-    fileType?: StringFilter | string
-    fileLink?: StringFilter | string
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
     serviceFormId?: StringFilter | string
     serviceForm?: XOR<ServiceFormRelationFilter, ServiceFormWhereInput>
   }
 
   export type ServiceSubFormOrderByWithRelationInput = {
     id?: SortOrder
-    question?: SortOrder
+    question?: SortOrderInput | SortOrder
     options?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileDescription?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     compulsory?: SortOrder
-    fileName?: SortOrder
-    fileDescription?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     serviceFormId?: SortOrder
     serviceForm?: ServiceFormOrderByWithRelationInput
   }
@@ -30654,14 +30684,16 @@ export namespace Prisma {
 
   export type ServiceSubFormOrderByWithAggregationInput = {
     id?: SortOrder
-    question?: SortOrder
+    question?: SortOrderInput | SortOrder
     options?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileDescription?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     compulsory?: SortOrder
-    fileName?: SortOrder
-    fileDescription?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     serviceFormId?: SortOrder
     _count?: ServiceSubFormCountOrderByAggregateInput
     _max?: ServiceSubFormMaxOrderByAggregateInput
@@ -30673,14 +30705,16 @@ export namespace Prisma {
     OR?: Enumerable<ServiceSubFormScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ServiceSubFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    question?: StringWithAggregatesFilter | string
+    question?: StringNullableWithAggregatesFilter | string | null
     options?: StringNullableListFilter
-    type?: StringWithAggregatesFilter | string
+    type?: StringNullableWithAggregatesFilter | string | null
+    fileName?: StringNullableWithAggregatesFilter | string | null
+    fileDescription?: StringNullableWithAggregatesFilter | string | null
+    fileType?: StringNullableWithAggregatesFilter | string | null
+    fileLink?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
-    fileName?: StringWithAggregatesFilter | string
-    fileDescription?: StringWithAggregatesFilter | string
-    fileType?: StringWithAggregatesFilter | string
-    fileLink?: StringWithAggregatesFilter | string
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
     serviceFormId?: StringWithAggregatesFilter | string
   }
 
@@ -30768,15 +30802,15 @@ export namespace Prisma {
     OR?: Enumerable<ProductQAWhereInput>
     NOT?: Enumerable<ProductQAWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
+    question?: StringNullableFilter | string | null
     answer?: StringNullableListFilter
-    type?: StringFilter | string
+    type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isGeneral?: BoolFilter | boolean
-    fileName?: StringFilter | string
-    fileDescription?: StringFilter | string
-    fileType?: StringFilter | string
-    fileLink?: StringFilter | string
+    fileName?: StringNullableFilter | string | null
+    fileDescription?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     productId?: StringFilter | string
@@ -30786,15 +30820,15 @@ export namespace Prisma {
 
   export type ProductQAOrderByWithRelationInput = {
     id?: SortOrder
-    question?: SortOrder
+    question?: SortOrderInput | SortOrder
     answer?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isGeneral?: SortOrder
-    fileName?: SortOrder
-    fileDescription?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileDescription?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     productId?: SortOrder
@@ -30808,15 +30842,15 @@ export namespace Prisma {
 
   export type ProductQAOrderByWithAggregationInput = {
     id?: SortOrder
-    question?: SortOrder
+    question?: SortOrderInput | SortOrder
     answer?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isGeneral?: SortOrder
-    fileName?: SortOrder
-    fileDescription?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileDescription?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     productId?: SortOrder
@@ -30830,15 +30864,15 @@ export namespace Prisma {
     OR?: Enumerable<ProductQAScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ProductQAScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    question?: StringWithAggregatesFilter | string
+    question?: StringNullableWithAggregatesFilter | string | null
     answer?: StringNullableListFilter
-    type?: StringWithAggregatesFilter | string
+    type?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     isGeneral?: BoolWithAggregatesFilter | boolean
-    fileName?: StringWithAggregatesFilter | string
-    fileDescription?: StringWithAggregatesFilter | string
-    fileType?: StringWithAggregatesFilter | string
-    fileLink?: StringWithAggregatesFilter | string
+    fileName?: StringNullableWithAggregatesFilter | string | null
+    fileDescription?: StringNullableWithAggregatesFilter | string | null
+    fileType?: StringNullableWithAggregatesFilter | string | null
+    fileLink?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     productId?: StringWithAggregatesFilter | string
@@ -30849,9 +30883,9 @@ export namespace Prisma {
     OR?: Enumerable<ProductQASubFormWhereInput>
     NOT?: Enumerable<ProductQASubFormWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
+    question?: StringNullableFilter | string | null
     answer?: StringNullableListFilter
-    type?: StringFilter | string
+    type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     productQAId?: StringFilter | string
     productQA?: XOR<ProductQARelationFilter, ProductQAWhereInput>
@@ -30859,9 +30893,9 @@ export namespace Prisma {
 
   export type ProductQASubFormOrderByWithRelationInput = {
     id?: SortOrder
-    question?: SortOrder
+    question?: SortOrderInput | SortOrder
     answer?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     productQAId?: SortOrder
     productQA?: ProductQAOrderByWithRelationInput
@@ -30873,9 +30907,9 @@ export namespace Prisma {
 
   export type ProductQASubFormOrderByWithAggregationInput = {
     id?: SortOrder
-    question?: SortOrder
+    question?: SortOrderInput | SortOrder
     answer?: SortOrder
-    type?: SortOrder
+    type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     productQAId?: SortOrder
     _count?: ProductQASubFormCountOrderByAggregateInput
@@ -30888,9 +30922,9 @@ export namespace Prisma {
     OR?: Enumerable<ProductQASubFormScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ProductQASubFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    question?: StringWithAggregatesFilter | string
+    question?: StringNullableWithAggregatesFilter | string | null
     answer?: StringNullableListFilter
-    type?: StringWithAggregatesFilter | string
+    type?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     productQAId?: StringWithAggregatesFilter | string
   }
@@ -32271,9 +32305,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateInput = {
     id?: string
-    title: string
-    description: string
-    type: string
+    title?: string | null
+    description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32283,9 +32317,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUncheckedCreateInput = {
     id?: string
-    title: string
-    description: string
-    type: string
+    title?: string | null
+    description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32295,9 +32329,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32307,9 +32341,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32319,9 +32353,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateManyInput = {
     id?: string
-    title: string
-    description: string
-    type: string
+    title?: string | null
+    description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32330,9 +32364,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32340,9 +32374,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32351,9 +32385,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormCreateInput = {
     id?: string
-    question: string
-    type: string
+    question?: string | null
+    type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32362,9 +32400,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormUncheckedCreateInput = {
     id?: string
-    question: string
-    type: string
+    question?: string | null
+    type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32373,9 +32415,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32384,9 +32430,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32395,9 +32445,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormCreateManyInput = {
     id?: string
-    question: string
-    type: string
+    question?: string | null
+    type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32406,9 +32460,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32416,9 +32474,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32675,14 +32737,10 @@ export namespace Prisma {
 
   export type ServiceFormCreateInput = {
     id?: string
-    question: string
-    type: string
-    options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    title?: string | null
+    type?: string | null
+    description?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt?: Date | string
     updatedAt?: Date | string
     service: ServiceCreateNestedOneWithoutFormsInput
@@ -32691,14 +32749,10 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedCreateInput = {
     id?: string
-    question: string
-    type: string
-    options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    title?: string | null
+    type?: string | null
+    description?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceId: string
@@ -32707,14 +32761,10 @@ export namespace Prisma {
 
   export type ServiceFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneRequiredWithoutFormsNestedInput
@@ -32723,14 +32773,10 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: StringFieldUpdateOperationsInput | string
@@ -32739,14 +32785,10 @@ export namespace Prisma {
 
   export type ServiceFormCreateManyInput = {
     id?: string
-    question: string
-    type: string
-    options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    title?: string | null
+    type?: string | null
+    description?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceId: string
@@ -32754,28 +32796,20 @@ export namespace Prisma {
 
   export type ServiceFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: StringFieldUpdateOperationsInput | string
@@ -32783,91 +32817,105 @@ export namespace Prisma {
 
   export type ServiceSubFormCreateInput = {
     id?: string
-    question: string
+    question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
-    type: string
+    type?: string | null
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     serviceForm: ServiceFormCreateNestedOneWithoutServiceSubFormInput
   }
 
   export type ServiceSubFormUncheckedCreateInput = {
     id?: string
-    question: string
+    question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
-    type: string
+    type?: string | null
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     serviceFormId: string
   }
 
   export type ServiceSubFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceForm?: ServiceFormUpdateOneRequiredWithoutServiceSubFormNestedInput
   }
 
   export type ServiceSubFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceFormId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceSubFormCreateManyInput = {
     id?: string
-    question: string
+    question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
-    type: string
+    type?: string | null
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     serviceFormId: string
   }
 
   export type ServiceSubFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceSubFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceFormId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -32981,15 +33029,15 @@ export namespace Prisma {
 
   export type ProductQACreateInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products: ProductCreateNestedOneWithoutProductQAInput
@@ -32998,15 +33046,15 @@ export namespace Prisma {
 
   export type ProductQAUncheckedCreateInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     productId: string
@@ -33015,15 +33063,15 @@ export namespace Prisma {
 
   export type ProductQAUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateOneRequiredWithoutProductQANestedInput
@@ -33032,15 +33080,15 @@ export namespace Prisma {
 
   export type ProductQAUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productId?: StringFieldUpdateOperationsInput | string
@@ -33049,15 +33097,15 @@ export namespace Prisma {
 
   export type ProductQACreateManyInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     productId: string
@@ -33065,30 +33113,30 @@ export namespace Prisma {
 
   export type ProductQAUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductQAUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productId?: StringFieldUpdateOperationsInput | string
@@ -33096,62 +33144,62 @@ export namespace Prisma {
 
   export type ProductQASubFormCreateInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     productQA: ProductQACreateNestedOneWithoutProductSubFormInput
   }
 
   export type ProductQASubFormUncheckedCreateInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     productQAId: string
   }
 
   export type ProductQASubFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     productQA?: ProductQAUpdateOneRequiredWithoutProductSubFormNestedInput
   }
 
   export type ProductQASubFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     productQAId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProductQASubFormCreateManyInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     productQAId: string
   }
 
   export type ProductQASubFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductQASubFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     productQAId?: StringFieldUpdateOperationsInput | string
   }
@@ -34301,6 +34349,10 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     options?: SortOrder
+    fileName?: SortOrder
+    fileDescription?: SortOrder
+    fileType?: SortOrder
+    fileLink?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34311,6 +34363,10 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    fileName?: SortOrder
+    fileDescription?: SortOrder
+    fileType?: SortOrder
+    fileLink?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34321,6 +34377,10 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    fileName?: SortOrder
+    fileDescription?: SortOrder
+    fileType?: SortOrder
+    fileLink?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34462,14 +34522,10 @@ export namespace Prisma {
 
   export type ServiceFormCountOrderByAggregateInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
     type?: SortOrder
-    options?: SortOrder
+    description?: SortOrder
     compulsory?: SortOrder
-    fileName?: SortOrder
-    fileDescription?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -34477,13 +34533,10 @@ export namespace Prisma {
 
   export type ServiceFormMaxOrderByAggregateInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
     type?: SortOrder
+    description?: SortOrder
     compulsory?: SortOrder
-    fileName?: SortOrder
-    fileDescription?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -34491,13 +34544,10 @@ export namespace Prisma {
 
   export type ServiceFormMinOrderByAggregateInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
     type?: SortOrder
+    description?: SortOrder
     compulsory?: SortOrder
-    fileName?: SortOrder
-    fileDescription?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
@@ -34513,11 +34563,13 @@ export namespace Prisma {
     question?: SortOrder
     options?: SortOrder
     type?: SortOrder
-    compulsory?: SortOrder
     fileName?: SortOrder
     fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    compulsory?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     serviceFormId?: SortOrder
   }
 
@@ -34525,11 +34577,13 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
-    compulsory?: SortOrder
     fileName?: SortOrder
     fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    compulsory?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     serviceFormId?: SortOrder
   }
 
@@ -34537,11 +34591,13 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
-    compulsory?: SortOrder
     fileName?: SortOrder
     fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    compulsory?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     serviceFormId?: SortOrder
   }
 
@@ -35554,10 +35610,6 @@ export namespace Prisma {
     update?: XOR<ServiceUpdateWithoutTemplatesInput, ServiceUncheckedUpdateWithoutTemplatesInput>
   }
 
-  export type ServiceFormCreateoptionsInput = {
-    set: Enumerable<string>
-  }
-
   export type ServiceCreateNestedOneWithoutFormsInput = {
     create?: XOR<ServiceCreateWithoutFormsInput, ServiceUncheckedCreateWithoutFormsInput>
     connectOrCreate?: ServiceCreateOrConnectWithoutFormsInput
@@ -35576,11 +35628,6 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<ServiceSubFormCreateOrConnectWithoutServiceFormInput>
     createMany?: ServiceSubFormCreateManyServiceFormInputEnvelope
     connect?: Enumerable<ServiceSubFormWhereUniqueInput>
-  }
-
-  export type ServiceFormUpdateoptionsInput = {
-    set?: Enumerable<string>
-    push?: string | Enumerable<string>
   }
 
   export type ServiceUpdateOneRequiredWithoutFormsNestedInput = {
@@ -36794,9 +36841,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateWithoutCategoryInput = {
     id?: string
-    title: string
-    description: string
-    type: string
+    title?: string | null
+    description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -36805,9 +36852,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUncheckedCreateWithoutCategoryInput = {
     id?: string
-    title: string
-    description: string
-    type: string
+    title?: string | null
+    description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -36888,9 +36935,9 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategoryFormScalarWhereInput>
     NOT?: Enumerable<ServiceCategoryFormScalarWhereInput>
     id?: StringFilter | string
-    title?: StringFilter | string
-    description?: StringFilter | string
-    type?: StringFilter | string
+    title?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -36924,9 +36971,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormCreateWithoutCategoryInput = {
     id?: string
-    question: string
-    type: string
+    question?: string | null
+    type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -36934,9 +36985,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormUncheckedCreateWithoutCategoryInput = {
     id?: string
-    question: string
-    type: string
+    question?: string | null
+    type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -36998,9 +37053,13 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategorySubFormScalarWhereInput>
     NOT?: Enumerable<ServiceCategorySubFormScalarWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
-    type?: StringFilter | string
+    question?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
     options?: StringNullableListFilter
+    fileName?: StringNullableFilter | string | null
+    fileDescription?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -37009,9 +37068,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateWithoutSubFormInput = {
     id?: string
-    title: string
-    description: string
-    type: string
+    title?: string | null
+    description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -37020,9 +37079,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUncheckedCreateWithoutSubFormInput = {
     id?: string
-    title: string
-    description: string
-    type: string
+    title?: string | null
+    description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -37041,9 +37100,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -37052,9 +37111,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUncheckedUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -37158,14 +37217,10 @@ export namespace Prisma {
 
   export type ServiceFormCreateWithoutServiceInput = {
     id?: string
-    question: string
-    type: string
-    options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    title?: string | null
+    type?: string | null
+    description?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceSubForm?: ServiceSubFormCreateNestedManyWithoutServiceFormInput
@@ -37173,14 +37228,10 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedCreateWithoutServiceInput = {
     id?: string
-    question: string
-    type: string
-    options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    title?: string | null
+    type?: string | null
+    description?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
@@ -37287,14 +37338,10 @@ export namespace Prisma {
     OR?: Enumerable<ServiceFormScalarWhereInput>
     NOT?: Enumerable<ServiceFormScalarWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
-    type?: StringFilter | string
-    options?: StringNullableListFilter
+    title?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
-    fileName?: StringFilter | string
-    fileDescription?: StringFilter | string
-    fileType?: StringFilter | string
-    fileLink?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     serviceId?: StringFilter | string
@@ -37473,26 +37520,30 @@ export namespace Prisma {
 
   export type ServiceSubFormCreateWithoutServiceFormInput = {
     id?: string
-    question: string
+    question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
-    type: string
+    type?: string | null
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ServiceSubFormUncheckedCreateWithoutServiceFormInput = {
     id?: string
-    question: string
+    question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
-    type: string
+    type?: string | null
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ServiceSubFormCreateOrConnectWithoutServiceFormInput = {
@@ -37583,27 +37634,25 @@ export namespace Prisma {
     OR?: Enumerable<ServiceSubFormScalarWhereInput>
     NOT?: Enumerable<ServiceSubFormScalarWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
+    question?: StringNullableFilter | string | null
     options?: StringNullableListFilter
-    type?: StringFilter | string
+    type?: StringNullableFilter | string | null
+    fileName?: StringNullableFilter | string | null
+    fileDescription?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
-    fileName?: StringFilter | string
-    fileDescription?: StringFilter | string
-    fileType?: StringFilter | string
-    fileLink?: StringFilter | string
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
     serviceFormId?: StringFilter | string
   }
 
   export type ServiceFormCreateWithoutServiceSubFormInput = {
     id?: string
-    question: string
-    type: string
-    options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    title?: string | null
+    type?: string | null
+    description?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt?: Date | string
     updatedAt?: Date | string
     service: ServiceCreateNestedOneWithoutFormsInput
@@ -37611,14 +37660,10 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedCreateWithoutServiceSubFormInput = {
     id?: string
-    question: string
-    type: string
-    options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    title?: string | null
+    type?: string | null
+    description?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceId: string
@@ -37636,14 +37681,10 @@ export namespace Prisma {
 
   export type ServiceFormUpdateWithoutServiceSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneRequiredWithoutFormsNestedInput
@@ -37651,14 +37692,10 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateWithoutServiceSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: StringFieldUpdateOperationsInput | string
@@ -37848,15 +37885,15 @@ export namespace Prisma {
 
   export type ProductQACreateWithoutProductsInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     productSubForm?: ProductQASubFormCreateNestedManyWithoutProductQAInput
@@ -37864,15 +37901,15 @@ export namespace Prisma {
 
   export type ProductQAUncheckedCreateWithoutProductsInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
@@ -38088,15 +38125,15 @@ export namespace Prisma {
     OR?: Enumerable<ProductQAScalarWhereInput>
     NOT?: Enumerable<ProductQAScalarWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
+    question?: StringNullableFilter | string | null
     answer?: StringNullableListFilter
-    type?: StringFilter | string
+    type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isGeneral?: BoolFilter | boolean
-    fileName?: StringFilter | string
-    fileDescription?: StringFilter | string
-    fileType?: StringFilter | string
-    fileLink?: StringFilter | string
+    fileName?: StringNullableFilter | string | null
+    fileDescription?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     productId?: StringFilter | string
@@ -38141,17 +38178,17 @@ export namespace Prisma {
 
   export type ProductQASubFormCreateWithoutProductQAInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
   }
 
   export type ProductQASubFormUncheckedCreateWithoutProductQAInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
   }
 
@@ -38223,24 +38260,24 @@ export namespace Prisma {
     OR?: Enumerable<ProductQASubFormScalarWhereInput>
     NOT?: Enumerable<ProductQASubFormScalarWhereInput>
     id?: StringFilter | string
-    question?: StringFilter | string
+    question?: StringNullableFilter | string | null
     answer?: StringNullableListFilter
-    type?: StringFilter | string
+    type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     productQAId?: StringFilter | string
   }
 
   export type ProductQACreateWithoutProductSubFormInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     products: ProductCreateNestedOneWithoutProductQAInput
@@ -38248,15 +38285,15 @@ export namespace Prisma {
 
   export type ProductQAUncheckedCreateWithoutProductSubFormInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     productId: string
@@ -38274,15 +38311,15 @@ export namespace Prisma {
 
   export type ProductQAUpdateWithoutProductSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     products?: ProductUpdateOneRequiredWithoutProductQANestedInput
@@ -38290,15 +38327,15 @@ export namespace Prisma {
 
   export type ProductQAUncheckedUpdateWithoutProductSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productId?: StringFieldUpdateOperationsInput | string
@@ -38989,9 +39026,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateManyCategoryInput = {
     id?: string
-    title: string
-    description: string
-    type: string
+    title?: string | null
+    description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -39074,9 +39111,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39085,9 +39122,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39096,9 +39133,9 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUncheckedUpdateManyWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39106,9 +39143,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormCreateManyCategoryInput = {
     id?: string
-    question: string
-    type: string
+    question?: string | null
+    type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -39116,9 +39157,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39126,9 +39171,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39136,9 +39185,13 @@ export namespace Prisma {
 
   export type ServiceCategorySubFormUncheckedUpdateManyWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39168,14 +39221,10 @@ export namespace Prisma {
 
   export type ServiceFormCreateManyServiceInput = {
     id?: string
-    question: string
-    type: string
-    options?: ServiceFormCreateoptionsInput | Enumerable<string>
+    title?: string | null
+    type?: string | null
+    description?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -39254,14 +39303,10 @@ export namespace Prisma {
 
   export type ServiceFormUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceSubForm?: ServiceSubFormUpdateManyWithoutServiceFormNestedInput
@@ -39269,14 +39314,10 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceSubForm?: ServiceSubFormUncheckedUpdateManyWithoutServiceFormNestedInput
@@ -39284,64 +39325,68 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateManyWithoutFormsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    options?: ServiceFormUpdateoptionsInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceSubFormCreateManyServiceFormInput = {
     id?: string
-    question: string
+    question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
-    type: string
+    type?: string | null
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ServiceSubFormUpdateWithoutServiceFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceSubFormUncheckedUpdateWithoutServiceFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceSubFormUncheckedUpdateManyWithoutServiceSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TeamCreateManyProductInput = {
@@ -39365,15 +39410,15 @@ export namespace Prisma {
 
   export type ProductQACreateManyProductsInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQACreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName: string
-    fileDescription: string
-    fileType: string
-    fileLink: string
+    fileName?: string | null
+    fileDescription?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -39441,15 +39486,15 @@ export namespace Prisma {
 
   export type ProductQAUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productSubForm?: ProductQASubFormUpdateManyWithoutProductQANestedInput
@@ -39457,15 +39502,15 @@ export namespace Prisma {
 
   export type ProductQAUncheckedUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productSubForm?: ProductQASubFormUncheckedUpdateManyWithoutProductQANestedInput
@@ -39473,48 +39518,48 @@ export namespace Prisma {
 
   export type ProductQAUncheckedUpdateManyWithoutProductQAInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQAUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: StringFieldUpdateOperationsInput | string
-    fileDescription?: StringFieldUpdateOperationsInput | string
-    fileType?: StringFieldUpdateOperationsInput | string
-    fileLink?: StringFieldUpdateOperationsInput | string
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductQASubFormCreateManyProductQAInput = {
     id?: string
-    question: string
+    question?: string | null
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
-    type: string
+    type?: string | null
     compulsory?: boolean
   }
 
   export type ProductQASubFormUpdateWithoutProductQAInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductQASubFormUncheckedUpdateWithoutProductQAInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductQASubFormUncheckedUpdateManyWithoutProductSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
-    type?: StringFieldUpdateOperationsInput | string
+    type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
   }
 

@@ -12,7 +12,13 @@ import {
   getServiceFormByService,
   removeServiceForm,
   updateServiceForm,
+  saveServiceSubForm,
+  getServiceSubForm,
+  getAllServiceSubForm,
+  updateServiceSubForm,
+  removeServiceSubForm,
 } from "./service";
+import { ServiceSubFormPayload, UpdateServiceSubFormPayload } from "./entities";
 
 // create a new product service
 const ProductServiceCreator = async (
@@ -164,21 +170,14 @@ const ServiceFormCreator = async (
     const serviceId = req.params.serviceId;
     const serviceFormPayload = req.body;
     const values = {
-      question: serviceFormPayload.question,
+      title: serviceFormPayload.question,
       type: serviceFormPayload.type,
+      description: serviceFormPayload.description,
       compulsory: serviceFormPayload.compulsory,
-      options: serviceFormPayload.options,
       serviceId: serviceId as string,
-      fileName: serviceFormPayload.file.name,
-      fileDescription: serviceFormPayload.file.description,
-      fileLink: serviceFormPayload.file.link,
-      fileType: serviceFormPayload.file.type,
     };
-    const subForm = {
-      subForm: serviceFormPayload.subForm,
-      form: serviceFormPayload.form,
-    };
-    const service = await saveServiceForm(values, serviceId, subForm);
+
+    const service = await saveServiceForm(values, serviceId);
     return res.status(service.statusCode).json(service);
   } catch (error) {
     console.log("err", error);
@@ -193,7 +192,8 @@ const ServiceFormsFetcher = async (
   next: NextFunction
 ) => {
   try {
-    const serviceForm = await getAllServiceForm();
+    const serviceId = req.params.serviceId;
+    const serviceForm = await getAllServiceForm(serviceId);
     return res.status(serviceForm.statusCode).json(serviceForm);
   } catch (error) {
     next(error);
@@ -256,11 +256,7 @@ const ServiceFormModifier = async (
       question: serviceFormPayload.question,
       type: serviceFormPayload.type,
       compulsory: serviceFormPayload.compulsory,
-      options: serviceFormPayload.options,
-      fileName: serviceFormPayload.file.name,
-      fileDescription: serviceFormPayload.file.description,
-      fileLink: serviceFormPayload.file.link,
-      fileType: serviceFormPayload.file.type,
+      description: serviceFormPayload.description,
     };
     const subForm = {
       subForm: serviceFormPayload.subForm,
@@ -294,6 +290,127 @@ const ServiceFormRemover = async (
   }
 };
 
+const ServiceSubFormCreator = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the validated payload from the the request body
+    // get the service category id from the the request params
+    // send the validated payload and the category id to saveServiceCategoryForm service
+    // return response to the client
+
+    const serviceFormId = req.params.serviceFormId;
+    const serviceCategoryPayload = req.body;
+
+    const values: ServiceSubFormPayload = {
+      question: serviceCategoryPayload?.question,
+      type: serviceCategoryPayload?.type,
+      options: serviceCategoryPayload?.options,
+      compulsory: serviceCategoryPayload?.compulsory,
+      fileName: serviceCategoryPayload?.fileName,
+      fileDescription: serviceCategoryPayload.fileDescription,
+      fileLink: serviceCategoryPayload?.fileLink,
+      fileType: serviceCategoryPayload?.fileType,
+      serviceFormId: serviceFormId,
+    };
+    const service = await saveServiceSubForm(values, serviceFormId);
+
+    return res.status(service.statusCode).json(service);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get all service category forms
+const ServiceSubFormFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the service category list
+    // return response to the client
+    const serviceFormId = req.params.serviceFormId;
+    const categories = await getAllServiceSubForm(serviceFormId);
+
+    return res.status(categories.statusCode).json(categories);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// create a new service category
+const ServiceSubFormModifier = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the validated payload from the the request body
+    // get the service category id from the the request params
+    // send the validated payload and the category id to saveServiceCategoryForm service
+    // return response to the client
+
+    const subFormId = req.params.id;
+    const serviceCategoryPayload: UpdateServiceSubFormPayload = req.body;
+    const values = {
+      question: serviceCategoryPayload?.question,
+      type: serviceCategoryPayload?.type,
+      options: serviceCategoryPayload?.options,
+      compulsory: serviceCategoryPayload?.compulsory,
+      fileName: serviceCategoryPayload?.fileName,
+      fileDescription: serviceCategoryPayload.fileDescription,
+      fileLink: serviceCategoryPayload?.fileLink,
+      fileType: serviceCategoryPayload?.fileType,
+    };
+    const category = await updateServiceSubForm(values, subFormId);
+
+    return res.status(category.statusCode).json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get a service category form with id
+const ServiceASubFormFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // check if there is id
+    // pass the id to the service
+    // return service category form to client
+
+    const id: string = req.params.id;
+    const category = await getServiceSubForm(id);
+
+    return res.status(category.statusCode).json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const ServiceSubFormRemover = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    //check if there is id
+    // send the id to the delete service
+    //return response to the client
+
+    const id: string = req.params.id;
+    const deleteCategory = await removeServiceSubForm(id);
+
+    return res.status(deleteCategory.statusCode).json(deleteCategory.message);
+  } catch (error) {
+    next(error);
+  }
+};
 export {
   ProductServiceCreator,
   ProductServiceByCategoryFetcher,
@@ -307,4 +424,9 @@ export {
   ServiceFormModifier,
   ServiceFormRemover,
   ServiceFormsFetcher,
+  ServiceSubFormCreator,
+  ServiceSubFormFetcher,
+  ServiceASubFormFetcher,
+  ServiceSubFormModifier,
+  ServiceSubFormRemover,
 };

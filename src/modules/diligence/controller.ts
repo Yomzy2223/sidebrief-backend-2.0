@@ -192,7 +192,6 @@ const CreateEnterprise = async (
       data: diligenceEnterprise.data,
     });
   } catch (error) {
-    console.log("valid error", error);
     next(error);
   }
 };

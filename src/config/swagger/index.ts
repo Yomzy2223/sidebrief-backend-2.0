@@ -301,95 +301,23 @@ const options: OpenAPIDefinition = {
 
         ServiceForms: {
           type: "object",
+          require: ["title", "type", "description", "compulsory"],
           properties: {
-            question: {
+            title: {
               type: "string",
-              description: "the form question",
+              description: "the title form question",
             },
             type: {
               type: "string",
               description: "type of the question",
             },
-            options: {
-              type: "array",
-              description: "options of the question",
+            description: {
+              type: "string",
+              description: "description of the question",
             },
             compulsory: {
               type: "boolean",
               description: "status of the question",
-            },
-            file: {
-              type: "object",
-              description: "The file section",
-              properties: {
-                name: {
-                  type: "string",
-                  description: "Name of the file",
-                },
-                description: {
-                  type: "string",
-                  description: "Description of the file",
-                },
-                link: {
-                  type: "string",
-                  description: "Link to the file",
-                },
-                type: {
-                  type: "string",
-                  description: "Type of the file",
-                },
-              },
-            },
-            subForm: {
-              type: "boolean",
-              description: "flag to add subform",
-            },
-            form: {
-              type: "array",
-              description: "The question of the service selected",
-              items: {
-                type: "object",
-                properties: {
-                  question: {
-                    type: "string",
-                    description: "the form question",
-                  },
-                  type: {
-                    type: "string",
-                    description: "type of the question",
-                  },
-                  options: {
-                    type: "array",
-                    description: "options of the question",
-                  },
-                  compulsory: {
-                    type: "boolean",
-                    description: "status of the question",
-                  },
-                  file: {
-                    type: "object",
-                    description: "The file section",
-                    properties: {
-                      name: {
-                        type: "string",
-                        description: "Name of the file",
-                      },
-                      description: {
-                        type: "string",
-                        description: "Description of the file",
-                      },
-                      link: {
-                        type: "string",
-                        description: "Link to the file",
-                      },
-                      type: {
-                        type: "string",
-                        description: "Type of the file",
-                      },
-                    },
-                  },
-                },
-              },
             },
           },
         },
@@ -753,9 +681,64 @@ const options: OpenAPIDefinition = {
               type: "boolean",
               description: "status of the question",
             },
+            fileName: {
+              type: "string",
+              description: "name of the file",
+            },
+            fileDescription: {
+              type: "string",
+              description: "description of the file",
+            },
+            fileLink: {
+              type: "string",
+              description: "link of the file",
+            },
+            fileType: {
+              type: "string",
+              description: "type of the file",
+            },
           },
         },
 
+        ServiceSubForm: {
+          type: "object",
+          require: ["question", "type", "compulsory", "options"],
+
+          properties: {
+            question: {
+              type: "string",
+              description: "the form question",
+            },
+            type: {
+              type: "string",
+              description: "type of the question",
+            },
+            options: {
+              type: "array",
+              description: "options of the question",
+            },
+            compulsory: {
+              type: "boolean",
+              description: "status of the question",
+            },
+            fileName: {
+              type: "string",
+              description: "name of the file",
+            },
+            fileDescription: {
+              type: "string",
+              description: "description of the file",
+            },
+            fileLink: {
+              type: "string",
+              description: "link of the file",
+            },
+            fileType: {
+              type: "string",
+              description: "type of the file",
+            },
+          },
+        },
         //PRODUCT
         CreateProduct: {
           type: "object",
@@ -1552,7 +1535,9 @@ const options: OpenAPIDefinition = {
             },
           },
         },
+      },
 
+      "/service/product/allByServiceCategory/{serviceCategoryId}": {
         get: {
           summary: "Get all product service with service category ID",
           tags: ["Service Product"],
@@ -1741,6 +1726,30 @@ const options: OpenAPIDefinition = {
         },
       },
 
+      "/service/product/formByService/{serviceId}": {
+        get: {
+          summary: "Get all service forms with service ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "serviceId",
+              in: "path",
+              required: true,
+              description: "ID of service of the service form",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service form fetched successfully",
+              schema: {
+                $ref: "#/components/schemas/ServiceForms",
+              },
+            },
+          },
+        },
+      },
+
       "/service/product/form/{id}": {
         get: {
           summary: "Get a product service with given ID",
@@ -1795,14 +1804,6 @@ const options: OpenAPIDefinition = {
               description: "ID of the service form",
               type: "string",
             },
-            {
-              name: "serviceForms",
-              in: "body",
-              description: "properties of the service form",
-              schema: {
-                $ref: "#/components/schemas/ServiceForms",
-              },
-            },
           ],
 
           requestBody: {
@@ -1844,6 +1845,145 @@ const options: OpenAPIDefinition = {
         },
       },
 
+      "/service/product/subform/{serviceFormId}": {
+        post: {
+          tags: ["Service Product"],
+          summary: "Create a new service sub form",
+          description: "Create new service sub form in system",
+          parameters: [
+            {
+              name: "serviceFormId",
+              in: "path",
+              required: true,
+              description: "ID of service sub form to be fetched",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceSubForm", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New service sub form is created",
+              schema: {
+                $ref: "#/components/schemas/ServiceSubForm",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product/subforms/{serviceFormId}": {
+        get: {
+          summary: "Get all service sub forms under a service category",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "serviceFormId",
+              in: "path",
+              required: true,
+              description: "service category ID to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service sub form is fetched",
+              schema: {
+                $ref: "#/components/schemas/ServiceSubForm",
+              },
+            },
+          },
+        },
+      },
+
+      "/service/product/subform/{id}": {
+        get: {
+          summary: "Get a service sub form with given ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service sub form to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service sub form is fetched",
+              schema: {
+                $ref: "#/components/schemas/ServiceSubForm",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete a service sub form with given ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service sub form to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "Service sub form is deleted",
+              schema: {
+                $ref: "#/components/schemas/ServiceSubForm",
+              },
+            },
+          },
+        },
+
+        put: {
+          summary: "Update a service sub form with give ID",
+          tags: ["Service Product"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of service sub form to be updated",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceSubForm", //
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Service sub form is updated",
+              schema: {
+                $ref: "#/components/schemas/ServiceSubForm",
+              },
+            },
+          },
+        },
+      },
       //Services
       "/services": {
         post: {

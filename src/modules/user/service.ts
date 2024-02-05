@@ -300,7 +300,6 @@ const loginUser = async (
     if (!user) {
       throw new BadRequest("User not found!.");
     }
-    console.log(user.password);
 
     if (user.password) {
       let checkPassword = await matchChecker(
@@ -353,7 +352,6 @@ const loginUser = async (
 
     return response;
   } catch (error) {
-    console.log("error", error);
     throw error;
   }
 };
@@ -441,7 +439,6 @@ const forgotPassword = async (forgotPayload: ForgotPassword) => {
       statusCode: 200,
     };
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -474,7 +471,6 @@ const changePassword = async (changePayload: any) => {
       statusCode: 200,
     };
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
