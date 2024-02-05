@@ -73,15 +73,12 @@ const GetAllProductsByUserId = async (
     const userId = req.params.userId;
     const products = await getAllProductsByUserId(userId);
 
-    return res
-      .status(products.statusCode)
-      .json({
-        message: products.message,
-        data: products.data,
-        statusCode: products.statusCode,
-      });
+    return res.status(products.statusCode).json({
+      message: products.message,
+      data: products.data,
+      statusCode: products.statusCode,
+    });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -98,13 +95,11 @@ const GetProductById = async (
     const id = req.params.id;
     const product = await getProductById(id);
 
-    return res
-      .status(product.statusCode)
-      .json({
-        message: product.message,
-        data: product.data,
-        statusCode: product.statusCode,
-      });
+    return res.status(product.statusCode).json({
+      message: product.message,
+      data: product.data,
+      statusCode: product.statusCode,
+    });
   } catch (error) {
     next(error);
   }
@@ -132,7 +127,6 @@ const AddProductQA = async (
       .status(product.statusCode)
       .json({ message: product.message, data: product.data });
   } catch (error) {
-    console.log("error", error);
     next(error);
   }
 };
