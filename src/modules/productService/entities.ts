@@ -1,27 +1,21 @@
 export interface ProductServicePayload {
   name: string;
-  type: string;
-  code: string;
   description: string;
   country: string;
-  price: string;
+  currency: string;
+  amount: number;
   timeline: string;
-  feature: string[];
-  numberOfShares: string;
   serviceCategoryId: string;
 }
 
 export interface ProductServiceData {
   id: string;
   name: string;
-  type: string;
-  code: string;
   description: string;
   country: string;
-  price: string;
+  currency: string;
+  amount: number;
   timeline: string;
-  feature: string[];
-  numberOfShares: string;
   serviceCategoryId: string;
 }
 

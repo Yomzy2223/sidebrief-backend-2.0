@@ -277,6 +277,7 @@ const ServiceCategorySubFormCreator = async (
       fileDescription: serviceCategoryPayload.fileDescription,
       fileLink: serviceCategoryPayload?.fileLink,
       fileType: serviceCategoryPayload?.fileType,
+      dependsOn: serviceCategoryPayload?.dependsOn,
       formId: formId,
     };
     const category = await saveServiceCategorySubForm(values, formId);

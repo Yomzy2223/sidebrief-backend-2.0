@@ -35,14 +35,11 @@ const ProductServiceCreator = async (
     const productServicePayload = req.body;
     const values = {
       name: productServicePayload.name.toLowerCase(),
-      type: productServicePayload.type,
-      code: productServicePayload.code,
       description: productServicePayload.description,
       country: productServicePayload.country,
-      price: productServicePayload.price,
+      currency: productServicePayload.currency,
+      amount: productServicePayload.price,
       timeline: productServicePayload.timeline,
-      feature: productServicePayload.feature,
-      numberOfShares: productServicePayload.numberOfShares,
       serviceCategoryId: serviceCategoryId,
     };
 
@@ -117,15 +114,11 @@ const ProductServiceModifier = async (
     const productServicePayload = req.body;
     const values = {
       name: productServicePayload.name.toLowerCase(),
-      type: productServicePayload.type,
-      code: productServicePayload.code,
+      currency: productServicePayload.currency,
       description: productServicePayload.description,
       country: productServicePayload.country,
-      price: productServicePayload.price,
+      amount: productServicePayload.price,
       timeline: productServicePayload.timeline,
-      feature: productServicePayload.feature,
-      requiredDocuments: productServicePayload.requiredDocuments,
-      numberOfShares: productServicePayload.numberOfShares,
       serviceCategoryId: productServicePayload.serviceCategoryId,
     };
 

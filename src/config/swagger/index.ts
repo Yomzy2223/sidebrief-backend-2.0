@@ -253,16 +253,7 @@ const options: OpenAPIDefinition = {
               description: "The name of the product service",
               required: true,
             },
-            type: {
-              type: "string",
-              description: "The type of the product service",
-              required: true,
-            },
-            code: {
-              type: "string",
-              description: "The code of the product service",
-              required: true,
-            },
+
             description: {
               type: "string",
               description: "The description of the product service",
@@ -273,25 +264,19 @@ const options: OpenAPIDefinition = {
               description: "The country of the product service",
               required: true,
             },
-            price: {
+            currency: {
               type: "string",
-              description: "The price of the product service ",
+              description: "The currerncy of the product service",
+              required: true,
+            },
+            amount: {
+              type: "string",
+              description: "The amount of the product service ",
               required: true,
             },
             timeline: {
               type: "string",
               description: "The timeline for the product service ",
-              required: true,
-            },
-            feature: {
-              type: "array",
-              description: "The features of the product service ",
-              required: true,
-            },
-
-            numberOfShares: {
-              type: "string",
-              description: "The number of shares for the product service ",
               required: true,
             },
           },
@@ -696,6 +681,10 @@ const options: OpenAPIDefinition = {
             fileType: {
               type: "string",
               description: "type of the file",
+            },
+            dependsOn: {
+              type: "string",
+              description: "depends on ?",
             },
           },
         },

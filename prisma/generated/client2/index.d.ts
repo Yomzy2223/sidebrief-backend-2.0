@@ -313,6 +313,7 @@ export type ServiceCategorySubFormPayload<ExtArgs extends $Extensions.Args = $Ex
     fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -337,16 +338,13 @@ export type ServicePayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
   scalars: $Extensions.GetResult<{
     id: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature: string[]
-    categoryForm: string[]
     hasShares: boolean
-    numberOfShares: string
     hasAgent: boolean
     hasOwner: boolean
     hasController: boolean
@@ -15336,6 +15334,7 @@ export namespace Prisma {
     fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15350,6 +15349,7 @@ export namespace Prisma {
     fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15365,6 +15365,7 @@ export namespace Prisma {
     fileDescription: number
     fileType: number
     fileLink: number
+    dependsOn: number
     compulsory: number
     createdAt: number
     updatedAt: number
@@ -15381,6 +15382,7 @@ export namespace Prisma {
     fileDescription?: true
     fileType?: true
     fileLink?: true
+    dependsOn?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -15395,6 +15397,7 @@ export namespace Prisma {
     fileDescription?: true
     fileType?: true
     fileLink?: true
+    dependsOn?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -15410,6 +15413,7 @@ export namespace Prisma {
     fileDescription?: true
     fileType?: true
     fileLink?: true
+    dependsOn?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -15499,6 +15503,7 @@ export namespace Prisma {
     fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -15531,6 +15536,7 @@ export namespace Prisma {
     fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
+    dependsOn?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -15547,6 +15553,7 @@ export namespace Prisma {
     fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
+    dependsOn?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -16307,21 +16314,29 @@ export namespace Prisma {
 
   export type AggregateService = {
     _count: ServiceCountAggregateOutputType | null
+    _avg: ServiceAvgAggregateOutputType | null
+    _sum: ServiceSumAggregateOutputType | null
     _min: ServiceMinAggregateOutputType | null
     _max: ServiceMaxAggregateOutputType | null
+  }
+
+  export type ServiceAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type ServiceSumAggregateOutputType = {
+    amount: number | null
   }
 
   export type ServiceMinAggregateOutputType = {
     id: string | null
     name: string | null
-    type: string | null
-    code: string | null
     description: string | null
     country: string | null
-    price: string | null
+    currency: string | null
+    amount: number | null
     timeline: string | null
     hasShares: boolean | null
-    numberOfShares: string | null
     hasAgent: boolean | null
     hasOwner: boolean | null
     hasController: boolean | null
@@ -16336,14 +16351,12 @@ export namespace Prisma {
   export type ServiceMaxAggregateOutputType = {
     id: string | null
     name: string | null
-    type: string | null
-    code: string | null
     description: string | null
     country: string | null
-    price: string | null
+    currency: string | null
+    amount: number | null
     timeline: string | null
     hasShares: boolean | null
-    numberOfShares: string | null
     hasAgent: boolean | null
     hasOwner: boolean | null
     hasController: boolean | null
@@ -16358,16 +16371,13 @@ export namespace Prisma {
   export type ServiceCountAggregateOutputType = {
     id: number
     name: number
-    type: number
-    code: number
     description: number
     country: number
-    price: number
+    currency: number
+    amount: number
     timeline: number
     feature: number
-    categoryForm: number
     hasShares: number
-    numberOfShares: number
     hasAgent: number
     hasOwner: number
     hasController: number
@@ -16381,17 +16391,23 @@ export namespace Prisma {
   }
 
 
+  export type ServiceAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type ServiceSumAggregateInputType = {
+    amount?: true
+  }
+
   export type ServiceMinAggregateInputType = {
     id?: true
     name?: true
-    type?: true
-    code?: true
     description?: true
     country?: true
-    price?: true
+    currency?: true
+    amount?: true
     timeline?: true
     hasShares?: true
-    numberOfShares?: true
     hasAgent?: true
     hasOwner?: true
     hasController?: true
@@ -16406,14 +16422,12 @@ export namespace Prisma {
   export type ServiceMaxAggregateInputType = {
     id?: true
     name?: true
-    type?: true
-    code?: true
     description?: true
     country?: true
-    price?: true
+    currency?: true
+    amount?: true
     timeline?: true
     hasShares?: true
-    numberOfShares?: true
     hasAgent?: true
     hasOwner?: true
     hasController?: true
@@ -16428,16 +16442,13 @@ export namespace Prisma {
   export type ServiceCountAggregateInputType = {
     id?: true
     name?: true
-    type?: true
-    code?: true
     description?: true
     country?: true
-    price?: true
+    currency?: true
+    amount?: true
     timeline?: true
     feature?: true
-    categoryForm?: true
     hasShares?: true
-    numberOfShares?: true
     hasAgent?: true
     hasOwner?: true
     hasController?: true
@@ -16488,6 +16499,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: ServiceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ServiceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ServiceMinAggregateInputType
@@ -16518,6 +16541,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ServiceCountAggregateInputType | true
+    _avg?: ServiceAvgAggregateInputType
+    _sum?: ServiceSumAggregateInputType
     _min?: ServiceMinAggregateInputType
     _max?: ServiceMaxAggregateInputType
   }
@@ -16526,16 +16551,13 @@ export namespace Prisma {
   export type ServiceGroupByOutputType = {
     id: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature: string[]
-    categoryForm: string[]
     hasShares: boolean
-    numberOfShares: string
     hasAgent: boolean
     hasOwner: boolean
     hasController: boolean
@@ -16546,6 +16568,8 @@ export namespace Prisma {
     updatedAt: Date
     serviceCategoryId: string
     _count: ServiceCountAggregateOutputType | null
+    _avg: ServiceAvgAggregateOutputType | null
+    _sum: ServiceSumAggregateOutputType | null
     _min: ServiceMinAggregateOutputType | null
     _max: ServiceMaxAggregateOutputType | null
   }
@@ -16567,16 +16591,13 @@ export namespace Prisma {
   export type ServiceSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    type?: boolean
-    code?: boolean
     description?: boolean
     country?: boolean
-    price?: boolean
+    currency?: boolean
+    amount?: boolean
     timeline?: boolean
     feature?: boolean
-    categoryForm?: boolean
     hasShares?: boolean
-    numberOfShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -16596,16 +16617,13 @@ export namespace Prisma {
   export type ServiceSelectScalar = {
     id?: boolean
     name?: boolean
-    type?: boolean
-    code?: boolean
     description?: boolean
     country?: boolean
-    price?: boolean
+    currency?: boolean
+    amount?: boolean
     timeline?: boolean
     feature?: boolean
-    categoryForm?: boolean
     hasShares?: boolean
-    numberOfShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -29302,6 +29320,7 @@ export namespace Prisma {
     fileDescription: 'fileDescription',
     fileType: 'fileType',
     fileLink: 'fileLink',
+    dependsOn: 'dependsOn',
     compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -29314,16 +29333,13 @@ export namespace Prisma {
   export const ServiceScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    type: 'type',
-    code: 'code',
     description: 'description',
     country: 'country',
-    price: 'price',
+    currency: 'currency',
+    amount: 'amount',
     timeline: 'timeline',
     feature: 'feature',
-    categoryForm: 'categoryForm',
     hasShares: 'hasShares',
-    numberOfShares: 'numberOfShares',
     hasAgent: 'hasAgent',
     hasOwner: 'hasOwner',
     hasController: 'hasController',
@@ -30347,6 +30363,7 @@ export namespace Prisma {
     fileDescription?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    dependsOn?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -30363,6 +30380,7 @@ export namespace Prisma {
     fileDescription?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    dependsOn?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30383,6 +30401,7 @@ export namespace Prisma {
     fileDescription?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    dependsOn?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30404,6 +30423,7 @@ export namespace Prisma {
     fileDescription?: StringNullableWithAggregatesFilter | string | null
     fileType?: StringNullableWithAggregatesFilter | string | null
     fileLink?: StringNullableWithAggregatesFilter | string | null
+    dependsOn?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -30416,16 +30436,13 @@ export namespace Prisma {
     NOT?: Enumerable<ServiceWhereInput>
     id?: StringFilter | string
     name?: StringFilter | string
-    type?: StringFilter | string
-    code?: StringFilter | string
     description?: StringFilter | string
     country?: StringFilter | string
-    price?: StringFilter | string
+    currency?: StringFilter | string
+    amount?: IntFilter | number
     timeline?: StringFilter | string
     feature?: StringNullableListFilter
-    categoryForm?: StringNullableListFilter
     hasShares?: BoolFilter | boolean
-    numberOfShares?: StringFilter | string
     hasAgent?: BoolFilter | boolean
     hasOwner?: BoolFilter | boolean
     hasController?: BoolFilter | boolean
@@ -30444,16 +30461,13 @@ export namespace Prisma {
   export type ServiceOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    type?: SortOrder
-    code?: SortOrder
     description?: SortOrder
     country?: SortOrder
-    price?: SortOrder
+    currency?: SortOrder
+    amount?: SortOrder
     timeline?: SortOrder
     feature?: SortOrder
-    categoryForm?: SortOrder
     hasShares?: SortOrder
-    numberOfShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
     hasController?: SortOrder
@@ -30476,16 +30490,13 @@ export namespace Prisma {
   export type ServiceOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    type?: SortOrder
-    code?: SortOrder
     description?: SortOrder
     country?: SortOrder
-    price?: SortOrder
+    currency?: SortOrder
+    amount?: SortOrder
     timeline?: SortOrder
     feature?: SortOrder
-    categoryForm?: SortOrder
     hasShares?: SortOrder
-    numberOfShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
     hasController?: SortOrder
@@ -30496,8 +30507,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     serviceCategoryId?: SortOrder
     _count?: ServiceCountOrderByAggregateInput
+    _avg?: ServiceAvgOrderByAggregateInput
     _max?: ServiceMaxOrderByAggregateInput
     _min?: ServiceMinOrderByAggregateInput
+    _sum?: ServiceSumOrderByAggregateInput
   }
 
   export type ServiceScalarWhereWithAggregatesInput = {
@@ -30506,16 +30519,13 @@ export namespace Prisma {
     NOT?: Enumerable<ServiceScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     name?: StringWithAggregatesFilter | string
-    type?: StringWithAggregatesFilter | string
-    code?: StringWithAggregatesFilter | string
     description?: StringWithAggregatesFilter | string
     country?: StringWithAggregatesFilter | string
-    price?: StringWithAggregatesFilter | string
+    currency?: StringWithAggregatesFilter | string
+    amount?: IntWithAggregatesFilter | number
     timeline?: StringWithAggregatesFilter | string
     feature?: StringNullableListFilter
-    categoryForm?: StringNullableListFilter
     hasShares?: BoolWithAggregatesFilter | boolean
-    numberOfShares?: StringWithAggregatesFilter | string
     hasAgent?: BoolWithAggregatesFilter | boolean
     hasOwner?: BoolWithAggregatesFilter | boolean
     hasController?: BoolWithAggregatesFilter | boolean
@@ -32392,6 +32402,7 @@ export namespace Prisma {
     fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32407,6 +32418,7 @@ export namespace Prisma {
     fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32422,6 +32434,7 @@ export namespace Prisma {
     fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32437,6 +32450,7 @@ export namespace Prisma {
     fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32452,6 +32466,7 @@ export namespace Prisma {
     fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32467,6 +32482,7 @@ export namespace Prisma {
     fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32481,6 +32497,7 @@ export namespace Prisma {
     fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32490,16 +32507,13 @@ export namespace Prisma {
   export type ServiceCreateInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -32517,16 +32531,13 @@ export namespace Prisma {
   export type ServiceUncheckedCreateInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -32544,16 +32555,13 @@ export namespace Prisma {
   export type ServiceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -32571,16 +32579,13 @@ export namespace Prisma {
   export type ServiceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -32598,16 +32603,13 @@ export namespace Prisma {
   export type ServiceCreateManyInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -32622,16 +32624,13 @@ export namespace Prisma {
   export type ServiceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -32645,16 +32644,13 @@ export namespace Prisma {
   export type ServiceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -34353,6 +34349,7 @@ export namespace Prisma {
     fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    dependsOn?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34367,6 +34364,7 @@ export namespace Prisma {
     fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    dependsOn?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34381,10 +34379,22 @@ export namespace Prisma {
     fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    dependsOn?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     formId?: SortOrder
+  }
+
+  export type IntFilter = {
+    equals?: number
+    in?: Enumerable<number> | number
+    notIn?: Enumerable<number> | number
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntFilter | number
   }
 
   export type ServiceTemplateListRelationFilter = {
@@ -34410,16 +34420,13 @@ export namespace Prisma {
   export type ServiceCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    type?: SortOrder
-    code?: SortOrder
     description?: SortOrder
     country?: SortOrder
-    price?: SortOrder
+    currency?: SortOrder
+    amount?: SortOrder
     timeline?: SortOrder
     feature?: SortOrder
-    categoryForm?: SortOrder
     hasShares?: SortOrder
-    numberOfShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
     hasController?: SortOrder
@@ -34431,17 +34438,19 @@ export namespace Prisma {
     serviceCategoryId?: SortOrder
   }
 
+  export type ServiceAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
   export type ServiceMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    type?: SortOrder
-    code?: SortOrder
     description?: SortOrder
     country?: SortOrder
-    price?: SortOrder
+    currency?: SortOrder
+    amount?: SortOrder
     timeline?: SortOrder
     hasShares?: SortOrder
-    numberOfShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
     hasController?: SortOrder
@@ -34456,14 +34465,12 @@ export namespace Prisma {
   export type ServiceMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    type?: SortOrder
-    code?: SortOrder
     description?: SortOrder
     country?: SortOrder
-    price?: SortOrder
+    currency?: SortOrder
+    amount?: SortOrder
     timeline?: SortOrder
     hasShares?: SortOrder
-    numberOfShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
     hasController?: SortOrder
@@ -34473,6 +34480,26 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceCategoryId?: SortOrder
+  }
+
+  export type ServiceSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter = {
+    equals?: number
+    in?: Enumerable<number> | number
+    notIn?: Enumerable<number> | number
+    lt?: number
+    lte?: number
+    gt?: number
+    gte?: number
+    not?: NestedIntWithAggregatesFilter | number
+    _count?: NestedIntFilter
+    _avg?: NestedFloatFilter
+    _sum?: NestedIntFilter
+    _min?: NestedIntFilter
+    _max?: NestedIntFilter
   }
 
   export type ServiceRelationFilter = {
@@ -34845,17 +34872,6 @@ export namespace Prisma {
     productId?: SortOrder
   }
 
-  export type IntFilter = {
-    equals?: number
-    in?: Enumerable<number> | number
-    notIn?: Enumerable<number> | number
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntFilter | number
-  }
-
   export type TeamRelationFilter = {
     is?: TeamWhereInput | null
     isNot?: TeamWhereInput | null
@@ -34903,22 +34919,6 @@ export namespace Prisma {
 
   export type TeamMemberSumOrderByAggregateInput = {
     launchOwnership?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter = {
-    equals?: number
-    in?: Enumerable<number> | number
-    notIn?: Enumerable<number> | number
-    lt?: number
-    lte?: number
-    gt?: number
-    gte?: number
-    not?: NestedIntWithAggregatesFilter | number
-    _count?: NestedIntFilter
-    _avg?: NestedFloatFilter
-    _sum?: NestedIntFilter
-    _min?: NestedIntFilter
-    _max?: NestedIntFilter
   }
 
   export type InvitationCountOrderByAggregateInput = {
@@ -35442,10 +35442,6 @@ export namespace Prisma {
     set: Enumerable<string>
   }
 
-  export type ServiceCreatecategoryFormInput = {
-    set: Enumerable<string>
-  }
-
   export type ServiceCategoryCreateNestedOneWithoutServicesInput = {
     create?: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
     connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput
@@ -35494,12 +35490,15 @@ export namespace Prisma {
     connect?: Enumerable<ServiceFormWhereUniqueInput>
   }
 
-  export type ServiceUpdatefeatureInput = {
-    set?: Enumerable<string>
-    push?: string | Enumerable<string>
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
-  export type ServiceUpdatecategoryFormInput = {
+  export type ServiceUpdatefeatureInput = {
     set?: Enumerable<string>
     push?: string | Enumerable<string>
   }
@@ -36047,14 +36046,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type TeamUpdateOneRequiredWithoutTeamMemberNestedInput = {
     create?: XOR<TeamCreateWithoutTeamMemberInput, TeamUncheckedCreateWithoutTeamMemberInput>
     connectOrCreate?: TeamCreateOrConnectWithoutTeamMemberInput
@@ -36284,23 +36275,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter
   }
 
-  export type NestedEnumProductActivityStageFilter = {
-    equals?: ProductActivityStage
-    in?: Enumerable<ProductActivityStage>
-    notIn?: Enumerable<ProductActivityStage>
-    not?: NestedEnumProductActivityStageFilter | ProductActivityStage
-  }
-
-  export type NestedEnumProductActivityStageWithAggregatesFilter = {
-    equals?: ProductActivityStage
-    in?: Enumerable<ProductActivityStage>
-    notIn?: Enumerable<ProductActivityStage>
-    not?: NestedEnumProductActivityStageWithAggregatesFilter | ProductActivityStage
-    _count?: NestedIntFilter
-    _min?: NestedEnumProductActivityStageFilter
-    _max?: NestedEnumProductActivityStageFilter
-  }
-
   export type NestedIntWithAggregatesFilter = {
     equals?: number
     in?: Enumerable<number> | number
@@ -36326,6 +36300,23 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedFloatFilter | number
+  }
+
+  export type NestedEnumProductActivityStageFilter = {
+    equals?: ProductActivityStage
+    in?: Enumerable<ProductActivityStage>
+    notIn?: Enumerable<ProductActivityStage>
+    not?: NestedEnumProductActivityStageFilter | ProductActivityStage
+  }
+
+  export type NestedEnumProductActivityStageWithAggregatesFilter = {
+    equals?: ProductActivityStage
+    in?: Enumerable<ProductActivityStage>
+    notIn?: Enumerable<ProductActivityStage>
+    not?: NestedEnumProductActivityStageWithAggregatesFilter | ProductActivityStage
+    _count?: NestedIntFilter
+    _min?: NestedEnumProductActivityStageFilter
+    _max?: NestedEnumProductActivityStageFilter
   }
 
   export type CollaboratorDocumentCreateWithoutCollaboratorInput = {
@@ -36780,16 +36771,13 @@ export namespace Prisma {
   export type ServiceCreateWithoutCategoryInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -36806,16 +36794,13 @@ export namespace Prisma {
   export type ServiceUncheckedCreateWithoutCategoryInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -36893,16 +36878,13 @@ export namespace Prisma {
     NOT?: Enumerable<ServiceScalarWhereInput>
     id?: StringFilter | string
     name?: StringFilter | string
-    type?: StringFilter | string
-    code?: StringFilter | string
     description?: StringFilter | string
     country?: StringFilter | string
-    price?: StringFilter | string
+    currency?: StringFilter | string
+    amount?: IntFilter | number
     timeline?: StringFilter | string
     feature?: StringNullableListFilter
-    categoryForm?: StringNullableListFilter
     hasShares?: BoolFilter | boolean
-    numberOfShares?: StringFilter | string
     hasAgent?: BoolFilter | boolean
     hasOwner?: BoolFilter | boolean
     hasController?: BoolFilter | boolean
@@ -36978,6 +36960,7 @@ export namespace Prisma {
     fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -36992,6 +36975,7 @@ export namespace Prisma {
     fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -37060,6 +37044,7 @@ export namespace Prisma {
     fileDescription?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    dependsOn?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -37350,16 +37335,13 @@ export namespace Prisma {
   export type ServiceCreateWithoutTemplatesInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -37376,16 +37358,13 @@ export namespace Prisma {
   export type ServiceUncheckedCreateWithoutTemplatesInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -37412,16 +37391,13 @@ export namespace Prisma {
   export type ServiceUpdateWithoutTemplatesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -37438,16 +37414,13 @@ export namespace Prisma {
   export type ServiceUncheckedUpdateWithoutTemplatesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -37464,16 +37437,13 @@ export namespace Prisma {
   export type ServiceCreateWithoutFormsInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -37490,16 +37460,13 @@ export namespace Prisma {
   export type ServiceUncheckedCreateWithoutFormsInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -37564,16 +37531,13 @@ export namespace Prisma {
   export type ServiceUpdateWithoutFormsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -37590,16 +37554,13 @@ export namespace Prisma {
   export type ServiceUncheckedUpdateWithoutFormsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -37736,16 +37697,13 @@ export namespace Prisma {
   export type ServiceCreateWithoutProductsInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -37762,16 +37720,13 @@ export namespace Prisma {
   export type ServiceUncheckedCreateWithoutProductsInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -37962,16 +37917,13 @@ export namespace Prisma {
   export type ServiceUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -37988,16 +37940,13 @@ export namespace Prisma {
   export type ServiceUncheckedUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -39004,16 +38953,13 @@ export namespace Prisma {
   export type ServiceCreateManyCategoryInput = {
     id?: string
     name: string
-    type: string
-    code: string
     description: string
     country: string
-    price: string
+    currency: string
+    amount: number
     timeline: string
     feature?: ServiceCreatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceCreatecategoryFormInput | Enumerable<string>
     hasShares?: boolean
-    numberOfShares: string
     hasAgent?: boolean
     hasOwner?: boolean
     hasController?: boolean
@@ -39037,16 +38983,13 @@ export namespace Prisma {
   export type ServiceUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -39063,16 +39006,13 @@ export namespace Prisma {
   export type ServiceUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -39089,16 +39029,13 @@ export namespace Prisma {
   export type ServiceUncheckedUpdateManyWithoutServicesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    categoryForm?: ServiceUpdatecategoryFormInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
-    numberOfShares?: StringFieldUpdateOperationsInput | string
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
     hasController?: BoolFieldUpdateOperationsInput | boolean
@@ -39150,6 +39087,7 @@ export namespace Prisma {
     fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -39164,6 +39102,7 @@ export namespace Prisma {
     fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39178,6 +39117,7 @@ export namespace Prisma {
     fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39192,6 +39132,7 @@ export namespace Prisma {
     fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

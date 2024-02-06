@@ -100,14 +100,11 @@ interface ProductServices {
   require: string[];
   properties: {
     name: Props;
-    type: Props;
-    code: Props;
     description: Props;
     country: Props;
-    price: Props;
+    amount: Props;
+    currency: Props;
     timeline: Props;
-    feature: Props;
-    numberOfShares: Props;
   };
 }
 
@@ -303,6 +300,7 @@ interface ServiceCategorySubForm {
     fileDescription: Props;
     fileLink: Props;
     fileType: Props;
+    dependsOn: Props;
   };
 }
 

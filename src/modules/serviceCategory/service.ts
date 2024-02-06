@@ -227,6 +227,9 @@ const getAllServiceCategoryForm = async (
       where: {
         serviceCategoryId: serviceCategoryId,
       },
+      include: {
+        subForm: true,
+      },
     });
     if (!category) {
       return {

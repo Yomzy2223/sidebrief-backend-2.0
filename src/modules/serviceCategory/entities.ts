@@ -32,6 +32,7 @@ export interface ServiceCategorySubFormPayload {
   fileType?: string;
   fileDescription?: string;
   fileLink?: string;
+  dependsOn?: string;
 }
 
 export interface ServiceCategoryFormData {
