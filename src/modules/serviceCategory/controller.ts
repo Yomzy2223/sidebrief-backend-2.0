@@ -105,7 +105,9 @@ const ServiceCategoryModifier = async (
     };
     const category = await updateServiceCategory(id, values);
 
-    return res.status(category.statusCode).json(category.message);
+    return res
+      .status(category.statusCode)
+      .json({ message: category.message, data: category.data });
   } catch (error) {
     next(error);
   }
@@ -203,7 +205,9 @@ const ServiceCategoryFormModifier = async (
       serviceCategoryFormId
     );
 
-    return res.status(category.statusCode).json(category);
+    return res
+      .status(category.statusCode)
+      .json({ message: category.message, data: category.data });
   } catch (error) {
     next(error);
   }
@@ -328,7 +332,9 @@ const ServiceCategorySubFormModifier = async (
     };
     const category = await updateServiceCategorySubForm(values, subFormId);
 
-    return res.status(category.statusCode).json(category);
+    return res
+      .status(category.statusCode)
+      .json({ message: category.message, data: category.data });
   } catch (error) {
     next(error);
   }

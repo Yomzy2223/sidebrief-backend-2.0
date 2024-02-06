@@ -6718,3 +6718,5 @@ Please make sure your database server is running at `sidebrief-developement-db.c
 info: Label: 05-Feb-2024 21:29:00: User with akinyemi@sidebrief.com signed in successfully.
 error: Label: 05-Feb-2024 21:38:57: User not found!. with error Error: User not found!. occurred when POST /users/login was called
 info: Label: 05-Feb-2024 21:39:10: User with akinyemi@sidebrief.com signed in successfully.
+error: Label: 06-Feb-2024 09:55:04: User not found!. with error Error: User not found!. occurred when POST /users/login was called
+info: Label: 06-Feb-2024 09:55:14: User with akinyemi@sidebrief.com signed in successfully.
