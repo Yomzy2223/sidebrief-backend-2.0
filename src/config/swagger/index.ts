@@ -238,14 +238,11 @@ const options: OpenAPIDefinition = {
           type: "object",
           require: [
             "name",
-            "type",
-            "code",
             "description",
             "country",
-            "price",
+            "currency",
+            "amount",
             "timeline",
-            "feature",
-            "numberOfShares",
           ],
           properties: {
             name: {
@@ -253,7 +250,11 @@ const options: OpenAPIDefinition = {
               description: "The name of the product service",
               required: true,
             },
-
+            feature: {
+              type: "array",
+              description: "The features of the product service",
+              required: true,
+            },
             description: {
               type: "string",
               description: "The description of the product service",
@@ -670,9 +671,9 @@ const options: OpenAPIDefinition = {
               type: "string",
               description: "name of the file",
             },
-            fileDescription: {
-              type: "string",
-              description: "description of the file",
+            allowOther: {
+              type: "boolean",
+              description: "allow other answer of the file",
             },
             fileLink: {
               type: "string",
@@ -714,9 +715,13 @@ const options: OpenAPIDefinition = {
               type: "string",
               description: "name of the file",
             },
-            fileDescription: {
+            allowOther: {
+              type: "boolean",
+              description: "allow other answer",
+            },
+            dependsOn: {
               type: "string",
-              description: "description of the file",
+              description: "depends on?",
             },
             fileLink: {
               type: "string",

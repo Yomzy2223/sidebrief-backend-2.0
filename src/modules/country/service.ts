@@ -14,7 +14,7 @@ const saveCountry = async (
     const checkCountry = await prisma.country.findUnique({
       where: { name: countryPayload.name },
     });
-    if (!checkCountry) {
+    if (checkCountry) {
       throw new BadRequest("Country with this name already exists");
     }
 

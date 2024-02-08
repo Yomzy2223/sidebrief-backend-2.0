@@ -5,6 +5,7 @@ export interface ProductServicePayload {
   currency: string;
   amount: number;
   timeline: string;
+  feature: string[];
   serviceCategoryId: string;
 }
 
@@ -16,6 +17,7 @@ export interface ProductServiceData {
   currency: string;
   amount: number;
   timeline: string;
+  feature: string[];
   serviceCategoryId: string;
 }
 
@@ -79,7 +81,8 @@ export interface ServiceSubFormPayload {
   compulsory?: boolean;
   fileName?: string;
   fileType?: string;
-  fileDescription?: string;
+  dependsOn?: string;
+  allowOther?: boolean;
   fileLink?: string;
 }
 
@@ -90,7 +93,8 @@ export interface UpdateServiceSubFormPayload {
   compulsory?: boolean;
   fileName?: string;
   fileType?: string;
-  fileDescription?: string;
+  dependsOn?: string;
+  allowOther?: boolean;
   fileLink?: string;
 }
 
@@ -102,7 +106,8 @@ export interface ServiceSubFormResponseData {
   compulsory?: boolean;
   fileName?: string | null;
   fileType?: string | null;
-  fileDescription?: string | null;
+  dependsOn?: string | null;
+  allowOther?: boolean | null;
   fileLink?: string | null;
 }
 

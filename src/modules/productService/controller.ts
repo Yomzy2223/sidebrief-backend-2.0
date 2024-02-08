@@ -39,6 +39,7 @@ const ProductServiceCreator = async (
       country: productServicePayload.country,
       currency: productServicePayload.currency,
       amount: productServicePayload.price,
+      feature: productServicePayload.features,
       timeline: productServicePayload.timeline,
       serviceCategoryId: serviceCategoryId,
     };
@@ -119,6 +120,7 @@ const ProductServiceModifier = async (
       country: productServicePayload.country,
       amount: productServicePayload.price,
       timeline: productServicePayload.timeline,
+      feature: productServicePayload.feature,
       serviceCategoryId: productServicePayload.serviceCategoryId,
     };
 
@@ -303,7 +305,8 @@ const ServiceSubFormCreator = async (
       options: serviceCategoryPayload?.options,
       compulsory: serviceCategoryPayload?.compulsory,
       fileName: serviceCategoryPayload?.fileName,
-      fileDescription: serviceCategoryPayload.fileDescription,
+      allowOther: serviceCategoryPayload?.allowOther,
+      dependsOn: serviceCategoryPayload?.dependsOn,
       fileLink: serviceCategoryPayload?.fileLink,
       fileType: serviceCategoryPayload?.fileType,
       serviceFormId: serviceFormId,
@@ -354,9 +357,10 @@ const ServiceSubFormModifier = async (
       options: serviceCategoryPayload?.options,
       compulsory: serviceCategoryPayload?.compulsory,
       fileName: serviceCategoryPayload?.fileName,
-      fileDescription: serviceCategoryPayload.fileDescription,
       fileLink: serviceCategoryPayload?.fileLink,
       fileType: serviceCategoryPayload?.fileType,
+      allowOther: serviceCategoryPayload?.allowOther,
+      dependsOn: serviceCategoryPayload?.dependsOn,
     };
     const category = await updateServiceSubForm(values, subFormId);
 

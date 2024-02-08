@@ -187,10 +187,10 @@ model ServiceCategorySubForm {
   type String?
   options String[]
   fileName String?
-  fileDescription String?
   fileType String?
   fileLink String?
   dependsOn String?
+  allowOther Boolean @default(false)
   compulsory Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
@@ -248,10 +248,11 @@ model ServiceSubForm {
   question String?
   options String[]
   type String?
+  allowOther Boolean @default(false)
   fileName String?
-  fileDescription String?
   fileType String?
   fileLink String?
+    dependsOn String?
   compulsory Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
@@ -285,7 +286,6 @@ model ProductQA {
   compulsory Boolean @default(false)
   isGeneral Boolean @default(false)
   fileName String?
-  fileDescription String?
   fileType String?
   fileLink String?
   createdAt DateTime @default(now())

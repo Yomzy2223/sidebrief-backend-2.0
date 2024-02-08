@@ -6,14 +6,12 @@ const validate = new Validator();
 
 const productServiceSchema = {
   name: { type: "string", min: 3, max: 50 },
-  type: { type: "string", min: 3, max: 50 },
-  code: { type: "string", min: 1, max: 10 },
+  currency: { type: "string", min: 3, max: 50 },
   description: { type: "string", min: 3, max: 255 },
   country: { type: "string", min: 3, max: 50 },
-  price: { type: "string", min: 3, max: 50 },
+  amount: { type: "string", min: 3, max: 50 },
   timeline: { type: "string", min: 3, max: 50 },
   feature: { type: "array", items: "string", min: 1 },
-  numberOfShares: { type: "string", min: 1, max: 100 },
 };
 
 const validateProductService = validate.compile(productServiceSchema);

@@ -30,7 +30,7 @@ export interface ServiceCategorySubFormPayload {
   compulsory?: boolean;
   fileName?: string;
   fileType?: string;
-  fileDescription?: string;
+  allowOther?: boolean;
   fileLink?: string;
   dependsOn?: string;
 }
@@ -77,6 +77,7 @@ export interface UpdateServiceCategorySubFormPayload {
   compulsory?: boolean;
   fileName?: string;
   fileType?: string;
-  fileDescription?: string;
+  dependsOn?: string;
+  allowOther?: boolean;
   fileLink?: string;
 }

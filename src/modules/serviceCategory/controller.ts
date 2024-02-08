@@ -274,9 +274,9 @@ const ServiceCategorySubFormCreator = async (
       options: serviceCategoryPayload?.options,
       compulsory: serviceCategoryPayload?.compulsory,
       fileName: serviceCategoryPayload?.fileName,
-      fileDescription: serviceCategoryPayload.fileDescription,
       fileLink: serviceCategoryPayload?.fileLink,
       fileType: serviceCategoryPayload?.fileType,
+      allowOther: serviceCategoryPayload?.allowOther,
       dependsOn: serviceCategoryPayload?.dependsOn,
       formId: formId,
     };
@@ -327,7 +327,8 @@ const ServiceCategorySubFormModifier = async (
       options: serviceCategoryPayload?.options,
       compulsory: serviceCategoryPayload?.compulsory,
       fileName: serviceCategoryPayload?.fileName,
-      fileDescription: serviceCategoryPayload.fileDescription,
+      allowOther: serviceCategoryPayload?.allowOther,
+      dependsOn: serviceCategoryPayload?.dependsOn,
       fileLink: serviceCategoryPayload?.fileLink,
       fileType: serviceCategoryPayload?.fileType,
     };

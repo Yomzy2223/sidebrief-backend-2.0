@@ -310,10 +310,10 @@ export type ServiceCategorySubFormPayload<ExtArgs extends $Extensions.Args = $Ex
     type: string | null
     options: string[]
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
     dependsOn: string | null
+    allowOther: boolean
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -419,10 +419,11 @@ export type ServiceSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
     question: string | null
     options: string[]
     type: string | null
+    allowOther: boolean
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -480,7 +481,6 @@ export type ProductQAPayload<ExtArgs extends $Extensions.Args = $Extensions.Defa
     compulsory: boolean
     isGeneral: boolean
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
     createdAt: Date
@@ -15331,10 +15331,10 @@ export namespace Prisma {
     question: string | null
     type: string | null
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
     dependsOn: string | null
+    allowOther: boolean | null
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15346,10 +15346,10 @@ export namespace Prisma {
     question: string | null
     type: string | null
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
     dependsOn: string | null
+    allowOther: boolean | null
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15362,10 +15362,10 @@ export namespace Prisma {
     type: number
     options: number
     fileName: number
-    fileDescription: number
     fileType: number
     fileLink: number
     dependsOn: number
+    allowOther: number
     compulsory: number
     createdAt: number
     updatedAt: number
@@ -15379,10 +15379,10 @@ export namespace Prisma {
     question?: true
     type?: true
     fileName?: true
-    fileDescription?: true
     fileType?: true
     fileLink?: true
     dependsOn?: true
+    allowOther?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -15394,10 +15394,10 @@ export namespace Prisma {
     question?: true
     type?: true
     fileName?: true
-    fileDescription?: true
     fileType?: true
     fileLink?: true
     dependsOn?: true
+    allowOther?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -15410,10 +15410,10 @@ export namespace Prisma {
     type?: true
     options?: true
     fileName?: true
-    fileDescription?: true
     fileType?: true
     fileLink?: true
     dependsOn?: true
+    allowOther?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -15500,10 +15500,10 @@ export namespace Prisma {
     type: string | null
     options: string[]
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
     dependsOn: string | null
+    allowOther: boolean
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -15533,10 +15533,10 @@ export namespace Prisma {
     type?: boolean
     options?: boolean
     fileName?: boolean
-    fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
     dependsOn?: boolean
+    allowOther?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -15550,10 +15550,10 @@ export namespace Prisma {
     type?: boolean
     options?: boolean
     fileName?: boolean
-    fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
     dependsOn?: boolean
+    allowOther?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -19390,10 +19390,11 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    allowOther: boolean | null
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -19404,10 +19405,11 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    allowOther: boolean | null
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -19419,10 +19421,11 @@ export namespace Prisma {
     question: number
     options: number
     type: number
+    allowOther: number
     fileName: number
-    fileDescription: number
     fileType: number
     fileLink: number
+    dependsOn: number
     compulsory: number
     createdAt: number
     updatedAt: number
@@ -19435,10 +19438,11 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    allowOther?: true
     fileName?: true
-    fileDescription?: true
     fileType?: true
     fileLink?: true
+    dependsOn?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -19449,10 +19453,11 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    allowOther?: true
     fileName?: true
-    fileDescription?: true
     fileType?: true
     fileLink?: true
+    dependsOn?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -19464,10 +19469,11 @@ export namespace Prisma {
     question?: true
     options?: true
     type?: true
+    allowOther?: true
     fileName?: true
-    fileDescription?: true
     fileType?: true
     fileLink?: true
+    dependsOn?: true
     compulsory?: true
     createdAt?: true
     updatedAt?: true
@@ -19553,10 +19559,11 @@ export namespace Prisma {
     question: string | null
     options: string[]
     type: string | null
+    allowOther: boolean
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
@@ -19585,10 +19592,11 @@ export namespace Prisma {
     question?: boolean
     options?: boolean
     type?: boolean
+    allowOther?: boolean
     fileName?: boolean
-    fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
+    dependsOn?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -19601,10 +19609,11 @@ export namespace Prisma {
     question?: boolean
     options?: boolean
     type?: boolean
+    allowOther?: boolean
     fileName?: boolean
-    fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
+    dependsOn?: boolean
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -21435,7 +21444,6 @@ export namespace Prisma {
     compulsory: boolean | null
     isGeneral: boolean | null
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
     createdAt: Date | null
@@ -21450,7 +21458,6 @@ export namespace Prisma {
     compulsory: boolean | null
     isGeneral: boolean | null
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
     createdAt: Date | null
@@ -21466,7 +21473,6 @@ export namespace Prisma {
     compulsory: number
     isGeneral: number
     fileName: number
-    fileDescription: number
     fileType: number
     fileLink: number
     createdAt: number
@@ -21483,7 +21489,6 @@ export namespace Prisma {
     compulsory?: true
     isGeneral?: true
     fileName?: true
-    fileDescription?: true
     fileType?: true
     fileLink?: true
     createdAt?: true
@@ -21498,7 +21503,6 @@ export namespace Prisma {
     compulsory?: true
     isGeneral?: true
     fileName?: true
-    fileDescription?: true
     fileType?: true
     fileLink?: true
     createdAt?: true
@@ -21514,7 +21518,6 @@ export namespace Prisma {
     compulsory?: true
     isGeneral?: true
     fileName?: true
-    fileDescription?: true
     fileType?: true
     fileLink?: true
     createdAt?: true
@@ -21604,7 +21607,6 @@ export namespace Prisma {
     compulsory: boolean
     isGeneral: boolean
     fileName: string | null
-    fileDescription: string | null
     fileType: string | null
     fileLink: string | null
     createdAt: Date
@@ -21637,7 +21639,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: boolean
-    fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
     createdAt?: boolean
@@ -21656,7 +21657,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: boolean
-    fileDescription?: boolean
     fileType?: boolean
     fileLink?: boolean
     createdAt?: boolean
@@ -29317,10 +29317,10 @@ export namespace Prisma {
     type: 'type',
     options: 'options',
     fileName: 'fileName',
-    fileDescription: 'fileDescription',
     fileType: 'fileType',
     fileLink: 'fileLink',
     dependsOn: 'dependsOn',
+    allowOther: 'allowOther',
     compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -29386,10 +29386,11 @@ export namespace Prisma {
     question: 'question',
     options: 'options',
     type: 'type',
+    allowOther: 'allowOther',
     fileName: 'fileName',
-    fileDescription: 'fileDescription',
     fileType: 'fileType',
     fileLink: 'fileLink',
+    dependsOn: 'dependsOn',
     compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -29424,7 +29425,6 @@ export namespace Prisma {
     compulsory: 'compulsory',
     isGeneral: 'isGeneral',
     fileName: 'fileName',
-    fileDescription: 'fileDescription',
     fileType: 'fileType',
     fileLink: 'fileLink',
     createdAt: 'createdAt',
@@ -30360,10 +30360,10 @@ export namespace Prisma {
     type?: StringNullableFilter | string | null
     options?: StringNullableListFilter
     fileName?: StringNullableFilter | string | null
-    fileDescription?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
     dependsOn?: StringNullableFilter | string | null
+    allowOther?: BoolFilter | boolean
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -30377,10 +30377,10 @@ export namespace Prisma {
     type?: SortOrderInput | SortOrder
     options?: SortOrder
     fileName?: SortOrderInput | SortOrder
-    fileDescription?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
     dependsOn?: SortOrderInput | SortOrder
+    allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30398,10 +30398,10 @@ export namespace Prisma {
     type?: SortOrderInput | SortOrder
     options?: SortOrder
     fileName?: SortOrderInput | SortOrder
-    fileDescription?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
     dependsOn?: SortOrderInput | SortOrder
+    allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30420,10 +30420,10 @@ export namespace Prisma {
     type?: StringNullableWithAggregatesFilter | string | null
     options?: StringNullableListFilter
     fileName?: StringNullableWithAggregatesFilter | string | null
-    fileDescription?: StringNullableWithAggregatesFilter | string | null
     fileType?: StringNullableWithAggregatesFilter | string | null
     fileLink?: StringNullableWithAggregatesFilter | string | null
     dependsOn?: StringNullableWithAggregatesFilter | string | null
+    allowOther?: BoolWithAggregatesFilter | boolean
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -30661,10 +30661,11 @@ export namespace Prisma {
     question?: StringNullableFilter | string | null
     options?: StringNullableListFilter
     type?: StringNullableFilter | string | null
+    allowOther?: BoolFilter | boolean
     fileName?: StringNullableFilter | string | null
-    fileDescription?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    dependsOn?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -30677,10 +30678,11 @@ export namespace Prisma {
     question?: SortOrderInput | SortOrder
     options?: SortOrder
     type?: SortOrderInput | SortOrder
+    allowOther?: SortOrder
     fileName?: SortOrderInput | SortOrder
-    fileDescription?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    dependsOn?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30697,10 +30699,11 @@ export namespace Prisma {
     question?: SortOrderInput | SortOrder
     options?: SortOrder
     type?: SortOrderInput | SortOrder
+    allowOther?: SortOrder
     fileName?: SortOrderInput | SortOrder
-    fileDescription?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    dependsOn?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -30718,10 +30721,11 @@ export namespace Prisma {
     question?: StringNullableWithAggregatesFilter | string | null
     options?: StringNullableListFilter
     type?: StringNullableWithAggregatesFilter | string | null
+    allowOther?: BoolWithAggregatesFilter | boolean
     fileName?: StringNullableWithAggregatesFilter | string | null
-    fileDescription?: StringNullableWithAggregatesFilter | string | null
     fileType?: StringNullableWithAggregatesFilter | string | null
     fileLink?: StringNullableWithAggregatesFilter | string | null
+    dependsOn?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
@@ -30818,7 +30822,6 @@ export namespace Prisma {
     compulsory?: BoolFilter | boolean
     isGeneral?: BoolFilter | boolean
     fileName?: StringNullableFilter | string | null
-    fileDescription?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
@@ -30836,7 +30839,6 @@ export namespace Prisma {
     compulsory?: SortOrder
     isGeneral?: SortOrder
     fileName?: SortOrderInput | SortOrder
-    fileDescription?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -30858,7 +30860,6 @@ export namespace Prisma {
     compulsory?: SortOrder
     isGeneral?: SortOrder
     fileName?: SortOrderInput | SortOrder
-    fileDescription?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -30880,7 +30881,6 @@ export namespace Prisma {
     compulsory?: BoolWithAggregatesFilter | boolean
     isGeneral?: BoolWithAggregatesFilter | boolean
     fileName?: StringNullableWithAggregatesFilter | string | null
-    fileDescription?: StringNullableWithAggregatesFilter | string | null
     fileType?: StringNullableWithAggregatesFilter | string | null
     fileLink?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
@@ -32399,10 +32399,10 @@ export namespace Prisma {
     type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     dependsOn?: string | null
+    allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32415,10 +32415,10 @@ export namespace Prisma {
     type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     dependsOn?: string | null
+    allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32431,10 +32431,10 @@ export namespace Prisma {
     type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32447,10 +32447,10 @@ export namespace Prisma {
     type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32463,10 +32463,10 @@ export namespace Prisma {
     type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     dependsOn?: string | null
+    allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32479,10 +32479,10 @@ export namespace Prisma {
     type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32494,10 +32494,10 @@ export namespace Prisma {
     type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32816,10 +32816,11 @@ export namespace Prisma {
     question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
     type?: string | null
+    allowOther?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32831,10 +32832,11 @@ export namespace Prisma {
     question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
     type?: string | null
+    allowOther?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32846,10 +32848,11 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32861,10 +32864,11 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32876,10 +32880,11 @@ export namespace Prisma {
     question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
     type?: string | null
+    allowOther?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -32891,10 +32896,11 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32905,10 +32911,11 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33031,7 +33038,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     createdAt?: Date | string
@@ -33048,7 +33054,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     createdAt?: Date | string
@@ -33065,7 +33070,6 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33082,7 +33086,6 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33099,7 +33102,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     createdAt?: Date | string
@@ -33115,7 +33117,6 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33130,7 +33131,6 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34346,10 +34346,10 @@ export namespace Prisma {
     type?: SortOrder
     options?: SortOrder
     fileName?: SortOrder
-    fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
     dependsOn?: SortOrder
+    allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34361,10 +34361,10 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     fileName?: SortOrder
-    fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
     dependsOn?: SortOrder
+    allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34376,10 +34376,10 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     fileName?: SortOrder
-    fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
     dependsOn?: SortOrder
+    allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34590,10 +34590,11 @@ export namespace Prisma {
     question?: SortOrder
     options?: SortOrder
     type?: SortOrder
+    allowOther?: SortOrder
     fileName?: SortOrder
-    fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    dependsOn?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34604,10 +34605,11 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    allowOther?: SortOrder
     fileName?: SortOrder
-    fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    dependsOn?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34618,10 +34620,11 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    allowOther?: SortOrder
     fileName?: SortOrder
-    fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    dependsOn?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -34740,7 +34743,6 @@ export namespace Prisma {
     compulsory?: SortOrder
     isGeneral?: SortOrder
     fileName?: SortOrder
-    fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
     createdAt?: SortOrder
@@ -34755,7 +34757,6 @@ export namespace Prisma {
     compulsory?: SortOrder
     isGeneral?: SortOrder
     fileName?: SortOrder
-    fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
     createdAt?: SortOrder
@@ -34770,7 +34771,6 @@ export namespace Prisma {
     compulsory?: SortOrder
     isGeneral?: SortOrder
     fileName?: SortOrder
-    fileDescription?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
     createdAt?: SortOrder
@@ -36957,10 +36957,10 @@ export namespace Prisma {
     type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     dependsOn?: string | null
+    allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -36972,10 +36972,10 @@ export namespace Prisma {
     type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     dependsOn?: string | null
+    allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -37041,10 +37041,10 @@ export namespace Prisma {
     type?: StringNullableFilter | string | null
     options?: StringNullableListFilter
     fileName?: StringNullableFilter | string | null
-    fileDescription?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
     dependsOn?: StringNullableFilter | string | null
+    allowOther?: BoolFilter | boolean
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -37490,10 +37490,11 @@ export namespace Prisma {
     question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
     type?: string | null
+    allowOther?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -37504,10 +37505,11 @@ export namespace Prisma {
     question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
     type?: string | null
+    allowOther?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -37598,10 +37600,11 @@ export namespace Prisma {
     question?: StringNullableFilter | string | null
     options?: StringNullableListFilter
     type?: StringNullableFilter | string | null
+    allowOther?: BoolFilter | boolean
     fileName?: StringNullableFilter | string | null
-    fileDescription?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    dependsOn?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
@@ -37846,7 +37849,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     createdAt?: Date | string
@@ -37862,7 +37864,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     createdAt?: Date | string
@@ -38080,7 +38081,6 @@ export namespace Prisma {
     compulsory?: BoolFilter | boolean
     isGeneral?: BoolFilter | boolean
     fileName?: StringNullableFilter | string | null
-    fileDescription?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
@@ -38224,7 +38224,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     createdAt?: Date | string
@@ -38240,7 +38239,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     createdAt?: Date | string
@@ -38266,7 +38264,6 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38282,7 +38279,6 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39084,10 +39080,10 @@ export namespace Prisma {
     type?: string | null
     options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     dependsOn?: string | null
+    allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -39099,10 +39095,10 @@ export namespace Prisma {
     type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39114,10 +39110,10 @@ export namespace Prisma {
     type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39129,10 +39125,10 @@ export namespace Prisma {
     type?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39279,10 +39275,11 @@ export namespace Prisma {
     question?: string | null
     options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
     type?: string | null
+    allowOther?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
+    dependsOn?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -39293,10 +39290,11 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39307,10 +39305,11 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39321,10 +39320,11 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39357,7 +39357,6 @@ export namespace Prisma {
     compulsory?: boolean
     isGeneral?: boolean
     fileName?: string | null
-    fileDescription?: string | null
     fileType?: string | null
     fileLink?: string | null
     createdAt?: Date | string
@@ -39433,7 +39432,6 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39449,7 +39447,6 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39465,7 +39462,6 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileDescription?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

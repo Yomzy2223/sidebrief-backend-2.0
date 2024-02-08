@@ -105,6 +105,7 @@ interface ProductServices {
     amount: Props;
     currency: Props;
     timeline: Props;
+    feature: Props;
   };
 }
 
@@ -296,8 +297,8 @@ interface ServiceCategorySubForm {
     options: Props;
     type: Props;
     compulsory: Props;
+    allowOther: Props;
     fileName: Props;
-    fileDescription: Props;
     fileLink: Props;
     fileType: Props;
     dependsOn: Props;
@@ -313,7 +314,8 @@ interface ServiceSubForm {
     type: Props;
     compulsory: Props;
     fileName: Props;
-    fileDescription: Props;
+    dependsOn: Props;
+    allowOther: Props;
     fileLink: Props;
     fileType: Props;
   };
