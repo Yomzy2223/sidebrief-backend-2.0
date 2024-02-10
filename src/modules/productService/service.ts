@@ -30,6 +30,7 @@ const saveProductService = async (
     if (!checkService) {
       throw new BadRequest("Service does not exist");
     }
+
     const service = await prisma.service.create({
       data: productServicePayload,
     });
@@ -44,7 +45,7 @@ const saveProductService = async (
     const response: ProductServiceResponse = {
       message: "Product service created successfully",
       data: service,
-      statusCode: 201,
+      statusCode: 200,
     };
 
     return response;

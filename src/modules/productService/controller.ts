@@ -38,8 +38,8 @@ const ProductServiceCreator = async (
       description: productServicePayload.description,
       country: productServicePayload.country,
       currency: productServicePayload.currency,
-      amount: productServicePayload.price,
-      feature: productServicePayload.features,
+      amount: productServicePayload.amount,
+      feature: productServicePayload.feature,
       timeline: productServicePayload.timeline,
       serviceCategoryId: serviceCategoryId,
     };

@@ -9,7 +9,7 @@ const productServiceSchema = {
   currency: { type: "string", min: 3, max: 50 },
   description: { type: "string", min: 3, max: 255 },
   country: { type: "string", min: 3, max: 50 },
-  amount: { type: "string", min: 3, max: 50 },
+  amount: { type: "number", min: 3, max: 50 },
   timeline: { type: "string", min: 3, max: 50 },
   feature: { type: "array", items: "string", min: 1 },
 };
