@@ -184,7 +184,6 @@ const CreateEnterprise = async (
       logo: enterprisePayload.logo,
       backdrop: enterprisePayload.backdrop,
     };
-    console.log("palo", values);
     const diligenceEnterprise = await createEnterprise(values);
 
     return res.status(diligenceEnterprise.statusCode).json({
