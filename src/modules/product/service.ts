@@ -215,6 +215,9 @@ const getProductById = async (id: string): Promise<ProductResponse> => {
       where: {
         id: id,
       },
+      include: {
+        service: true,
+      },
     });
     if (!product) {
       throw new BadRequest("Product date not found!.");

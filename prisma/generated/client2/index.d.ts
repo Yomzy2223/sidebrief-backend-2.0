@@ -183,6 +183,9 @@ export type AccountPayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     type: string
     provider: string
     scope: string
+    isDeprecated: boolean
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["account"]>
   composites: {}
 }
@@ -242,6 +245,7 @@ export type UserDocumentPayload<ExtArgs extends $Extensions.Args = $Extensions.D
     type: string
     description: string
     userId: string
+    isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["userDocument"]>
@@ -283,12 +287,13 @@ export type ServiceCategoryFormPayload<ExtArgs extends $Extensions.Args = $Exten
   }
   scalars: $Extensions.GetResult<{
     id: string
-    title: string | null
+    title: string
     description: string | null
     type: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     serviceCategoryId: string
   }, ExtArgs["result"]["serviceCategoryForm"]>
   composites: {}
@@ -317,6 +322,7 @@ export type ServiceCategorySubFormPayload<ExtArgs extends $Extensions.Args = $Ex
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     formId: string
   }, ExtArgs["result"]["serviceCategorySubForm"]>
   composites: {}
@@ -332,7 +338,6 @@ export type ServicePayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
   objects: {
     category: ServiceCategoryPayload<ExtArgs>
     products: ProductPayload<ExtArgs>[]
-    templates: ServiceTemplatePayload<ExtArgs>[]
     forms: ServiceFormPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
@@ -353,6 +358,7 @@ export type ServicePayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     agentIsCalled: string | null
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     serviceCategoryId: string
   }, ExtArgs["result"]["service"]>
   composites: {}
@@ -363,28 +369,6 @@ export type ServicePayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
  * 
  */
 export type Service = runtime.Types.DefaultSelection<ServicePayload>
-export type ServiceTemplatePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "ServiceTemplate"
-  objects: {
-    service: ServicePayload<ExtArgs>
-  }
-  scalars: $Extensions.GetResult<{
-    id: string
-    name: string
-    type: string
-    description: string
-    createdAt: Date
-    updatedAt: Date
-    serviceId: string
-  }, ExtArgs["result"]["serviceTemplate"]>
-  composites: {}
-}
-
-/**
- * Model ServiceTemplate
- * 
- */
-export type ServiceTemplate = runtime.Types.DefaultSelection<ServiceTemplatePayload>
 export type ServiceFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
   name: "ServiceForm"
   objects: {
@@ -393,11 +377,12 @@ export type ServiceFormPayload<ExtArgs extends $Extensions.Args = $Extensions.De
   }
   scalars: $Extensions.GetResult<{
     id: string
-    title: string | null
+    title: string
     type: string | null
     description: string | null
     compulsory: boolean
     createdAt: Date
+    isDeprecated: boolean
     updatedAt: Date
     serviceId: string
   }, ExtArgs["result"]["serviceForm"]>
@@ -425,6 +410,7 @@ export type ServiceSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
     fileLink: string | null
     dependsOn: string | null
     compulsory: boolean
+    isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
     serviceFormId: string
@@ -455,6 +441,7 @@ export type ProductPayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     status: string
     currentState: ProductActivityStage
     createdAt: Date
+    isDeprecated: boolean
     updatedAt: Date
     serviceId: string | null
     userId: string
@@ -485,6 +472,7 @@ export type ProductQAPayload<ExtArgs extends $Extensions.Args = $Extensions.Defa
     fileLink: string | null
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     productId: string
   }, ExtArgs["result"]["productQA"]>
   composites: {}
@@ -506,6 +494,7 @@ export type ProductQASubFormPayload<ExtArgs extends $Extensions.Args = $Extensio
     answer: string[]
     type: string | null
     compulsory: boolean
+    isDeprecated: boolean
     productQAId: string
   }, ExtArgs["result"]["productQASubForm"]>
   composites: {}
@@ -525,6 +514,7 @@ export type ClaimPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultA
     userId: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
   }, ExtArgs["result"]["claim"]>
   composites: {}
 }
@@ -548,6 +538,7 @@ export type TeamPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultAr
     userId: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     productId: string
   }, ExtArgs["result"]["team"]>
   composites: {}
@@ -574,6 +565,7 @@ export type TeamMemberPayload<ExtArgs extends $Extensions.Args = $Extensions.Def
     userId: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
   }, ExtArgs["result"]["teamMember"]>
   composites: {}
 }
@@ -597,6 +589,7 @@ export type InvitationPayload<ExtArgs extends $Extensions.Args = $Extensions.Def
     invitedBy: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
   }, ExtArgs["result"]["invitation"]>
   composites: {}
 }
@@ -619,6 +612,7 @@ export type PaymentPayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     email: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     productId: string
   }, ExtArgs["result"]["payment"]>
   composites: {}
@@ -647,6 +641,7 @@ export type ParterPayload<ExtArgs extends $Extensions.Args = $Extensions.Default
     servicesDeclined: string[]
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
   }, ExtArgs["result"]["parter"]>
   composites: {}
 }
@@ -935,16 +930,6 @@ export class PrismaClient<
     * ```
     */
   get service(): Prisma.ServiceDelegate<GlobalReject, ExtArgs>;
-
-  /**
-   * `prisma.serviceTemplate`: Exposes CRUD operations for the **ServiceTemplate** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ServiceTemplates
-    * const serviceTemplates = await prisma.serviceTemplate.findMany()
-    * ```
-    */
-  get serviceTemplate(): Prisma.ServiceTemplateDelegate<GlobalReject, ExtArgs>;
 
   /**
    * `prisma.serviceForm`: Exposes CRUD operations for the **ServiceForm** model.
@@ -1552,7 +1537,6 @@ export namespace Prisma {
     ServiceCategoryForm: 'ServiceCategoryForm',
     ServiceCategorySubForm: 'ServiceCategorySubForm',
     Service: 'Service',
-    ServiceTemplate: 'ServiceTemplate',
     ServiceForm: 'ServiceForm',
     ServiceSubForm: 'ServiceSubForm',
     Product: 'Product',
@@ -1580,7 +1564,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'staff' | 'collaborator' | 'collaboratorDocument' | 'reward' | 'country' | 'bank' | 'notification' | 'account' | 'user' | 'userDocument' | 'serviceCategory' | 'serviceCategoryForm' | 'serviceCategorySubForm' | 'service' | 'serviceTemplate' | 'serviceForm' | 'serviceSubForm' | 'product' | 'productQA' | 'productQASubForm' | 'claim' | 'team' | 'teamMember' | 'invitation' | 'payment' | 'parter'
+      modelProps: 'staff' | 'collaborator' | 'collaboratorDocument' | 'reward' | 'country' | 'bank' | 'notification' | 'account' | 'user' | 'userDocument' | 'serviceCategory' | 'serviceCategoryForm' | 'serviceCategorySubForm' | 'service' | 'serviceForm' | 'serviceSubForm' | 'product' | 'productQA' | 'productQASubForm' | 'claim' | 'team' | 'teamMember' | 'invitation' | 'payment' | 'parter'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -2491,71 +2475,6 @@ export namespace Prisma {
           count: {
             args: Prisma.ServiceCountArgs<ExtArgs>,
             result: $Utils.Optional<ServiceCountAggregateOutputType> | number
-          }
-        }
-      }
-      ServiceTemplate: {
-        payload: ServiceTemplatePayload<ExtArgs>
-        operations: {
-          findUnique: {
-            args: Prisma.ServiceTemplateFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceTemplatePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ServiceTemplateFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceTemplatePayload>
-          }
-          findFirst: {
-            args: Prisma.ServiceTemplateFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceTemplatePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ServiceTemplateFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceTemplatePayload>
-          }
-          findMany: {
-            args: Prisma.ServiceTemplateFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceTemplatePayload>[]
-          }
-          create: {
-            args: Prisma.ServiceTemplateCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceTemplatePayload>
-          }
-          createMany: {
-            args: Prisma.ServiceTemplateCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.ServiceTemplateDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceTemplatePayload>
-          }
-          update: {
-            args: Prisma.ServiceTemplateUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceTemplatePayload>
-          }
-          deleteMany: {
-            args: Prisma.ServiceTemplateDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ServiceTemplateUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.ServiceTemplateUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceTemplatePayload>
-          }
-          aggregate: {
-            args: Prisma.ServiceTemplateAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateServiceTemplate>
-          }
-          groupBy: {
-            args: Prisma.ServiceTemplateGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ServiceTemplateGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ServiceTemplateCountArgs<ExtArgs>,
-            result: $Utils.Optional<ServiceTemplateCountAggregateOutputType> | number
           }
         }
       }
@@ -3627,13 +3546,11 @@ export namespace Prisma {
 
   export type ServiceCountOutputType = {
     products: number
-    templates: number
     forms: number
   }
 
   export type ServiceCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     products?: boolean | ServiceCountOutputTypeCountProductsArgs
-    templates?: boolean | ServiceCountOutputTypeCountTemplatesArgs
     forms?: boolean | ServiceCountOutputTypeCountFormsArgs
   }
 
@@ -3655,14 +3572,6 @@ export namespace Prisma {
    */
   export type ServiceCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: ProductWhereInput
-  }
-
-
-  /**
-   * ServiceCountOutputType without action
-   */
-  export type ServiceCountOutputTypeCountTemplatesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ServiceTemplateWhereInput
   }
 
 
@@ -10397,6 +10306,9 @@ export namespace Prisma {
     type: string | null
     provider: string | null
     scope: string | null
+    isDeprecated: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type AccountMaxAggregateOutputType = {
@@ -10405,6 +10317,9 @@ export namespace Prisma {
     type: string | null
     provider: string | null
     scope: string | null
+    isDeprecated: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type AccountCountAggregateOutputType = {
@@ -10413,6 +10328,9 @@ export namespace Prisma {
     type: number
     provider: number
     scope: number
+    isDeprecated: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -10423,6 +10341,9 @@ export namespace Prisma {
     type?: true
     provider?: true
     scope?: true
+    isDeprecated?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type AccountMaxAggregateInputType = {
@@ -10431,6 +10352,9 @@ export namespace Prisma {
     type?: true
     provider?: true
     scope?: true
+    isDeprecated?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type AccountCountAggregateInputType = {
@@ -10439,6 +10363,9 @@ export namespace Prisma {
     type?: true
     provider?: true
     scope?: true
+    isDeprecated?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -10521,6 +10448,9 @@ export namespace Prisma {
     type: string
     provider: string
     scope: string
+    isDeprecated: boolean
+    createdAt: Date
+    updatedAt: Date
     _count: AccountCountAggregateOutputType | null
     _min: AccountMinAggregateOutputType | null
     _max: AccountMaxAggregateOutputType | null
@@ -10546,6 +10476,9 @@ export namespace Prisma {
     type?: boolean
     provider?: boolean
     scope?: boolean
+    isDeprecated?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserArgs<ExtArgs>
   }, ExtArgs["result"]["account"]>
 
@@ -10555,6 +10488,9 @@ export namespace Prisma {
     type?: boolean
     provider?: boolean
     scope?: boolean
+    isDeprecated?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
   export type AccountInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
@@ -12477,6 +12413,7 @@ export namespace Prisma {
     type: string | null
     description: string | null
     userId: string | null
+    isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -12487,6 +12424,7 @@ export namespace Prisma {
     type: string | null
     description: string | null
     userId: string | null
+    isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -12497,6 +12435,7 @@ export namespace Prisma {
     type: number
     description: number
     userId: number
+    isDeprecated: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -12509,6 +12448,7 @@ export namespace Prisma {
     type?: true
     description?: true
     userId?: true
+    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -12519,6 +12459,7 @@ export namespace Prisma {
     type?: true
     description?: true
     userId?: true
+    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -12529,6 +12470,7 @@ export namespace Prisma {
     type?: true
     description?: true
     userId?: true
+    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -12613,6 +12555,7 @@ export namespace Prisma {
     type: string
     description: string
     userId: string
+    isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
     _count: UserDocumentCountAggregateOutputType | null
@@ -12640,6 +12583,7 @@ export namespace Prisma {
     type?: boolean
     description?: boolean
     userId?: boolean
+    isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["userDocument"]>
@@ -12650,6 +12594,7 @@ export namespace Prisma {
     type?: boolean
     description?: boolean
     userId?: boolean
+    isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -14356,6 +14301,7 @@ export namespace Prisma {
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     serviceCategoryId: string | null
   }
 
@@ -14367,6 +14313,7 @@ export namespace Prisma {
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     serviceCategoryId: string | null
   }
 
@@ -14378,6 +14325,7 @@ export namespace Prisma {
     compulsory: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     serviceCategoryId: number
     _all: number
   }
@@ -14391,6 +14339,7 @@ export namespace Prisma {
     compulsory?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceCategoryId?: true
   }
 
@@ -14402,6 +14351,7 @@ export namespace Prisma {
     compulsory?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceCategoryId?: true
   }
 
@@ -14413,6 +14363,7 @@ export namespace Prisma {
     compulsory?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceCategoryId?: true
     _all?: true
   }
@@ -14492,12 +14443,13 @@ export namespace Prisma {
 
   export type ServiceCategoryFormGroupByOutputType = {
     id: string
-    title: string | null
+    title: string
     description: string | null
     type: string | null
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     serviceCategoryId: string
     _count: ServiceCategoryFormCountAggregateOutputType | null
     _min: ServiceCategoryFormMinAggregateOutputType | null
@@ -14526,6 +14478,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     serviceCategoryId?: boolean
     category?: boolean | ServiceCategoryArgs<ExtArgs>
     subForm?: boolean | ServiceCategoryForm$subFormArgs<ExtArgs>
@@ -14540,6 +14493,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     serviceCategoryId?: boolean
   }
 
@@ -15338,6 +15292,7 @@ export namespace Prisma {
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     formId: string | null
   }
 
@@ -15353,6 +15308,7 @@ export namespace Prisma {
     compulsory: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     formId: string | null
   }
 
@@ -15369,6 +15325,7 @@ export namespace Prisma {
     compulsory: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     formId: number
     _all: number
   }
@@ -15386,6 +15343,7 @@ export namespace Prisma {
     compulsory?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     formId?: true
   }
 
@@ -15401,6 +15359,7 @@ export namespace Prisma {
     compulsory?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     formId?: true
   }
 
@@ -15417,6 +15376,7 @@ export namespace Prisma {
     compulsory?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     formId?: true
     _all?: true
   }
@@ -15507,6 +15467,7 @@ export namespace Prisma {
     compulsory: boolean
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     formId: string
     _count: ServiceCategorySubFormCountAggregateOutputType | null
     _min: ServiceCategorySubFormMinAggregateOutputType | null
@@ -15540,6 +15501,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     formId?: boolean
     category?: boolean | ServiceCategoryFormArgs<ExtArgs>
   }, ExtArgs["result"]["serviceCategorySubForm"]>
@@ -15557,6 +15519,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     formId?: boolean
   }
 
@@ -16345,6 +16308,7 @@ export namespace Prisma {
     agentIsCalled: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     serviceCategoryId: string | null
   }
 
@@ -16365,6 +16329,7 @@ export namespace Prisma {
     agentIsCalled: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     serviceCategoryId: string | null
   }
 
@@ -16386,6 +16351,7 @@ export namespace Prisma {
     agentIsCalled: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     serviceCategoryId: number
     _all: number
   }
@@ -16416,6 +16382,7 @@ export namespace Prisma {
     agentIsCalled?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceCategoryId?: true
   }
 
@@ -16436,6 +16403,7 @@ export namespace Prisma {
     agentIsCalled?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceCategoryId?: true
   }
 
@@ -16457,6 +16425,7 @@ export namespace Prisma {
     agentIsCalled?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceCategoryId?: true
     _all?: true
   }
@@ -16566,6 +16535,7 @@ export namespace Prisma {
     agentIsCalled: string | null
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     serviceCategoryId: string
     _count: ServiceCountAggregateOutputType | null
     _avg: ServiceAvgAggregateOutputType | null
@@ -16606,10 +16576,10 @@ export namespace Prisma {
     agentIsCalled?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     serviceCategoryId?: boolean
     category?: boolean | ServiceCategoryArgs<ExtArgs>
     products?: boolean | Service$productsArgs<ExtArgs>
-    templates?: boolean | Service$templatesArgs<ExtArgs>
     forms?: boolean | Service$formsArgs<ExtArgs>
     _count?: boolean | ServiceCountOutputTypeArgs<ExtArgs>
   }, ExtArgs["result"]["service"]>
@@ -16632,13 +16602,13 @@ export namespace Prisma {
     agentIsCalled?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     serviceCategoryId?: boolean
   }
 
   export type ServiceInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     category?: boolean | ServiceCategoryArgs<ExtArgs>
     products?: boolean | Service$productsArgs<ExtArgs>
-    templates?: boolean | Service$templatesArgs<ExtArgs>
     forms?: boolean | Service$formsArgs<ExtArgs>
     _count?: boolean | ServiceCountOutputTypeArgs<ExtArgs>
   }
@@ -17016,8 +16986,6 @@ export namespace Prisma {
     category<T extends ServiceCategoryArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
     products<T extends Service$productsArgs<ExtArgs> = {}>(args?: Subset<T, Service$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductPayload<ExtArgs>, T, 'findMany', never>| Null>;
-
-    templates<T extends Service$templatesArgs<ExtArgs> = {}>(args?: Subset<T, Service$templatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'findMany', never>| Null>;
 
     forms<T extends Service$formsArgs<ExtArgs> = {}>(args?: Subset<T, Service$formsArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServiceFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
@@ -17398,27 +17366,6 @@ export namespace Prisma {
 
 
   /**
-   * Service.templates
-   */
-  export type Service$templatesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    where?: ServiceTemplateWhereInput
-    orderBy?: Enumerable<ServiceTemplateOrderByWithRelationInput>
-    cursor?: ServiceTemplateWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Enumerable<ServiceTemplateScalarFieldEnum>
-  }
-
-
-  /**
    * Service.forms
    */
   export type Service$formsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
@@ -17456,948 +17403,6 @@ export namespace Prisma {
 
 
   /**
-   * Model ServiceTemplate
-   */
-
-
-  export type AggregateServiceTemplate = {
-    _count: ServiceTemplateCountAggregateOutputType | null
-    _min: ServiceTemplateMinAggregateOutputType | null
-    _max: ServiceTemplateMaxAggregateOutputType | null
-  }
-
-  export type ServiceTemplateMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    type: string | null
-    description: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    serviceId: string | null
-  }
-
-  export type ServiceTemplateMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    type: string | null
-    description: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    serviceId: string | null
-  }
-
-  export type ServiceTemplateCountAggregateOutputType = {
-    id: number
-    name: number
-    type: number
-    description: number
-    createdAt: number
-    updatedAt: number
-    serviceId: number
-    _all: number
-  }
-
-
-  export type ServiceTemplateMinAggregateInputType = {
-    id?: true
-    name?: true
-    type?: true
-    description?: true
-    createdAt?: true
-    updatedAt?: true
-    serviceId?: true
-  }
-
-  export type ServiceTemplateMaxAggregateInputType = {
-    id?: true
-    name?: true
-    type?: true
-    description?: true
-    createdAt?: true
-    updatedAt?: true
-    serviceId?: true
-  }
-
-  export type ServiceTemplateCountAggregateInputType = {
-    id?: true
-    name?: true
-    type?: true
-    description?: true
-    createdAt?: true
-    updatedAt?: true
-    serviceId?: true
-    _all?: true
-  }
-
-  export type ServiceTemplateAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ServiceTemplate to aggregate.
-     */
-    where?: ServiceTemplateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceTemplates to fetch.
-     */
-    orderBy?: Enumerable<ServiceTemplateOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ServiceTemplateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceTemplates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceTemplates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ServiceTemplates
-    **/
-    _count?: true | ServiceTemplateCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ServiceTemplateMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ServiceTemplateMaxAggregateInputType
-  }
-
-  export type GetServiceTemplateAggregateType<T extends ServiceTemplateAggregateArgs> = {
-        [P in keyof T & keyof AggregateServiceTemplate]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateServiceTemplate[P]>
-      : GetScalarType<T[P], AggregateServiceTemplate[P]>
-  }
-
-
-
-
-  export type ServiceTemplateGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ServiceTemplateWhereInput
-    orderBy?: Enumerable<ServiceTemplateOrderByWithAggregationInput>
-    by: ServiceTemplateScalarFieldEnum[]
-    having?: ServiceTemplateScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ServiceTemplateCountAggregateInputType | true
-    _min?: ServiceTemplateMinAggregateInputType
-    _max?: ServiceTemplateMaxAggregateInputType
-  }
-
-
-  export type ServiceTemplateGroupByOutputType = {
-    id: string
-    name: string
-    type: string
-    description: string
-    createdAt: Date
-    updatedAt: Date
-    serviceId: string
-    _count: ServiceTemplateCountAggregateOutputType | null
-    _min: ServiceTemplateMinAggregateOutputType | null
-    _max: ServiceTemplateMaxAggregateOutputType | null
-  }
-
-  type GetServiceTemplateGroupByPayload<T extends ServiceTemplateGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickArray<ServiceTemplateGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ServiceTemplateGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ServiceTemplateGroupByOutputType[P]>
-            : GetScalarType<T[P], ServiceTemplateGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ServiceTemplateSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    type?: boolean
-    description?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    serviceId?: boolean
-    service?: boolean | ServiceArgs<ExtArgs>
-  }, ExtArgs["result"]["serviceTemplate"]>
-
-  export type ServiceTemplateSelectScalar = {
-    id?: boolean
-    name?: boolean
-    type?: boolean
-    description?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    serviceId?: boolean
-  }
-
-  export type ServiceTemplateInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    service?: boolean | ServiceArgs<ExtArgs>
-  }
-
-
-  type ServiceTemplateGetPayload<S extends boolean | null | undefined | ServiceTemplateArgs> = $Types.GetResult<ServiceTemplatePayload, S>
-
-  type ServiceTemplateCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
-    Omit<ServiceTemplateFindManyArgs, 'select' | 'include'> & {
-      select?: ServiceTemplateCountAggregateInputType | true
-    }
-
-  export interface ServiceTemplateDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceTemplate'], meta: { name: 'ServiceTemplate' } }
-    /**
-     * Find zero or one ServiceTemplate that matches the filter.
-     * @param {ServiceTemplateFindUniqueArgs} args - Arguments to find a ServiceTemplate
-     * @example
-     * // Get one ServiceTemplate
-     * const serviceTemplate = await prisma.serviceTemplate.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends ServiceTemplateFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, ServiceTemplateFindUniqueArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ServiceTemplate'> extends True ? Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
-
-    /**
-     * Find one ServiceTemplate that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {ServiceTemplateFindUniqueOrThrowArgs} args - Arguments to find a ServiceTemplate
-     * @example
-     * // Get one ServiceTemplate
-     * const serviceTemplate = await prisma.serviceTemplate.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends ServiceTemplateFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceTemplateFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
-
-    /**
-     * Find the first ServiceTemplate that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceTemplateFindFirstArgs} args - Arguments to find a ServiceTemplate
-     * @example
-     * // Get one ServiceTemplate
-     * const serviceTemplate = await prisma.serviceTemplate.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends ServiceTemplateFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, ServiceTemplateFindFirstArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ServiceTemplate'> extends True ? Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
-
-    /**
-     * Find the first ServiceTemplate that matches the filter or
-     * throw `NotFoundError` if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceTemplateFindFirstOrThrowArgs} args - Arguments to find a ServiceTemplate
-     * @example
-     * // Get one ServiceTemplate
-     * const serviceTemplate = await prisma.serviceTemplate.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends ServiceTemplateFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceTemplateFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
-
-    /**
-     * Find zero or more ServiceTemplates that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceTemplateFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ServiceTemplates
-     * const serviceTemplates = await prisma.serviceTemplate.findMany()
-     * 
-     * // Get first 10 ServiceTemplates
-     * const serviceTemplates = await prisma.serviceTemplate.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const serviceTemplateWithIdOnly = await prisma.serviceTemplate.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends ServiceTemplateFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceTemplateFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'findMany', never>>
-
-    /**
-     * Create a ServiceTemplate.
-     * @param {ServiceTemplateCreateArgs} args - Arguments to create a ServiceTemplate.
-     * @example
-     * // Create one ServiceTemplate
-     * const ServiceTemplate = await prisma.serviceTemplate.create({
-     *   data: {
-     *     // ... data to create a ServiceTemplate
-     *   }
-     * })
-     * 
-    **/
-    create<T extends ServiceTemplateCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceTemplateCreateArgs<ExtArgs>>
-    ): Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
-
-    /**
-     * Create many ServiceTemplates.
-     *     @param {ServiceTemplateCreateManyArgs} args - Arguments to create many ServiceTemplates.
-     *     @example
-     *     // Create many ServiceTemplates
-     *     const serviceTemplate = await prisma.serviceTemplate.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends ServiceTemplateCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceTemplateCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a ServiceTemplate.
-     * @param {ServiceTemplateDeleteArgs} args - Arguments to delete one ServiceTemplate.
-     * @example
-     * // Delete one ServiceTemplate
-     * const ServiceTemplate = await prisma.serviceTemplate.delete({
-     *   where: {
-     *     // ... filter to delete one ServiceTemplate
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends ServiceTemplateDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceTemplateDeleteArgs<ExtArgs>>
-    ): Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
-
-    /**
-     * Update one ServiceTemplate.
-     * @param {ServiceTemplateUpdateArgs} args - Arguments to update one ServiceTemplate.
-     * @example
-     * // Update one ServiceTemplate
-     * const serviceTemplate = await prisma.serviceTemplate.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends ServiceTemplateUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceTemplateUpdateArgs<ExtArgs>>
-    ): Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
-
-    /**
-     * Delete zero or more ServiceTemplates.
-     * @param {ServiceTemplateDeleteManyArgs} args - Arguments to filter ServiceTemplates to delete.
-     * @example
-     * // Delete a few ServiceTemplates
-     * const { count } = await prisma.serviceTemplate.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends ServiceTemplateDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceTemplateDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ServiceTemplates.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceTemplateUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ServiceTemplates
-     * const serviceTemplate = await prisma.serviceTemplate.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends ServiceTemplateUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceTemplateUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one ServiceTemplate.
-     * @param {ServiceTemplateUpsertArgs} args - Arguments to update or create a ServiceTemplate.
-     * @example
-     * // Update or create a ServiceTemplate
-     * const serviceTemplate = await prisma.serviceTemplate.upsert({
-     *   create: {
-     *     // ... data to create a ServiceTemplate
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ServiceTemplate we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends ServiceTemplateUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceTemplateUpsertArgs<ExtArgs>>
-    ): Prisma__ServiceTemplateClient<$Types.GetResult<ServiceTemplatePayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
-
-    /**
-     * Count the number of ServiceTemplates.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceTemplateCountArgs} args - Arguments to filter ServiceTemplates to count.
-     * @example
-     * // Count the number of ServiceTemplates
-     * const count = await prisma.serviceTemplate.count({
-     *   where: {
-     *     // ... the filter for the ServiceTemplates we want to count
-     *   }
-     * })
-    **/
-    count<T extends ServiceTemplateCountArgs>(
-      args?: Subset<T, ServiceTemplateCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ServiceTemplateCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ServiceTemplate.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceTemplateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ServiceTemplateAggregateArgs>(args: Subset<T, ServiceTemplateAggregateArgs>): Prisma.PrismaPromise<GetServiceTemplateAggregateType<T>>
-
-    /**
-     * Group by ServiceTemplate.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceTemplateGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ServiceTemplateGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ServiceTemplateGroupByArgs['orderBy'] }
-        : { orderBy?: ServiceTemplateGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends TupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ServiceTemplateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceTemplateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ServiceTemplate.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export class Prisma__ServiceTemplateClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
-    private readonly _dmmf;
-    private readonly _queryType;
-    private readonly _rootField;
-    private readonly _clientMethod;
-    private readonly _args;
-    private readonly _dataPath;
-    private readonly _errorFormat;
-    private readonly _measurePerformance?;
-    private _isList;
-    private _callsite;
-    private _requestPromise?;
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
-
-    service<T extends ServiceArgs<ExtArgs> = {}>(args?: Subset<T, ServiceArgs<ExtArgs>>): Prisma__ServiceClient<$Types.GetResult<ServicePayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
-
-    private get _document();
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
-  }
-
-
-
-  // Custom InputTypes
-
-  /**
-   * ServiceTemplate base type for findUnique actions
-   */
-  export type ServiceTemplateFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceTemplate to fetch.
-     */
-    where: ServiceTemplateWhereUniqueInput
-  }
-
-  /**
-   * ServiceTemplate findUnique
-   */
-  export interface ServiceTemplateFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceTemplateFindUniqueArgsBase<ExtArgs> {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * ServiceTemplate findUniqueOrThrow
-   */
-  export type ServiceTemplateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceTemplate to fetch.
-     */
-    where: ServiceTemplateWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceTemplate base type for findFirst actions
-   */
-  export type ServiceTemplateFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceTemplate to fetch.
-     */
-    where?: ServiceTemplateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceTemplates to fetch.
-     */
-    orderBy?: Enumerable<ServiceTemplateOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ServiceTemplates.
-     */
-    cursor?: ServiceTemplateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceTemplates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceTemplates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ServiceTemplates.
-     */
-    distinct?: Enumerable<ServiceTemplateScalarFieldEnum>
-  }
-
-  /**
-   * ServiceTemplate findFirst
-   */
-  export interface ServiceTemplateFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceTemplateFindFirstArgsBase<ExtArgs> {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * ServiceTemplate findFirstOrThrow
-   */
-  export type ServiceTemplateFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceTemplate to fetch.
-     */
-    where?: ServiceTemplateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceTemplates to fetch.
-     */
-    orderBy?: Enumerable<ServiceTemplateOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ServiceTemplates.
-     */
-    cursor?: ServiceTemplateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceTemplates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceTemplates.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ServiceTemplates.
-     */
-    distinct?: Enumerable<ServiceTemplateScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceTemplate findMany
-   */
-  export type ServiceTemplateFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceTemplates to fetch.
-     */
-    where?: ServiceTemplateWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceTemplates to fetch.
-     */
-    orderBy?: Enumerable<ServiceTemplateOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ServiceTemplates.
-     */
-    cursor?: ServiceTemplateWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceTemplates from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceTemplates.
-     */
-    skip?: number
-    distinct?: Enumerable<ServiceTemplateScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceTemplate create
-   */
-  export type ServiceTemplateCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ServiceTemplate.
-     */
-    data: XOR<ServiceTemplateCreateInput, ServiceTemplateUncheckedCreateInput>
-  }
-
-
-  /**
-   * ServiceTemplate createMany
-   */
-  export type ServiceTemplateCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ServiceTemplates.
-     */
-    data: Enumerable<ServiceTemplateCreateManyInput>
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * ServiceTemplate update
-   */
-  export type ServiceTemplateUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ServiceTemplate.
-     */
-    data: XOR<ServiceTemplateUpdateInput, ServiceTemplateUncheckedUpdateInput>
-    /**
-     * Choose, which ServiceTemplate to update.
-     */
-    where: ServiceTemplateWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceTemplate updateMany
-   */
-  export type ServiceTemplateUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ServiceTemplates.
-     */
-    data: XOR<ServiceTemplateUpdateManyMutationInput, ServiceTemplateUncheckedUpdateManyInput>
-    /**
-     * Filter which ServiceTemplates to update
-     */
-    where?: ServiceTemplateWhereInput
-  }
-
-
-  /**
-   * ServiceTemplate upsert
-   */
-  export type ServiceTemplateUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ServiceTemplate to update in case it exists.
-     */
-    where: ServiceTemplateWhereUniqueInput
-    /**
-     * In case the ServiceTemplate found by the `where` argument doesn't exist, create a new ServiceTemplate with this data.
-     */
-    create: XOR<ServiceTemplateCreateInput, ServiceTemplateUncheckedCreateInput>
-    /**
-     * In case the ServiceTemplate was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ServiceTemplateUpdateInput, ServiceTemplateUncheckedUpdateInput>
-  }
-
-
-  /**
-   * ServiceTemplate delete
-   */
-  export type ServiceTemplateDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-    /**
-     * Filter which ServiceTemplate to delete.
-     */
-    where: ServiceTemplateWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceTemplate deleteMany
-   */
-  export type ServiceTemplateDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ServiceTemplates to delete
-     */
-    where?: ServiceTemplateWhereInput
-  }
-
-
-  /**
-   * ServiceTemplate without action
-   */
-  export type ServiceTemplateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceTemplate
-     */
-    select?: ServiceTemplateSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceTemplateInclude<ExtArgs> | null
-  }
-
-
-
-  /**
    * Model ServiceForm
    */
 
@@ -18415,6 +17420,7 @@ export namespace Prisma {
     description: string | null
     compulsory: boolean | null
     createdAt: Date | null
+    isDeprecated: boolean | null
     updatedAt: Date | null
     serviceId: string | null
   }
@@ -18426,6 +17432,7 @@ export namespace Prisma {
     description: string | null
     compulsory: boolean | null
     createdAt: Date | null
+    isDeprecated: boolean | null
     updatedAt: Date | null
     serviceId: string | null
   }
@@ -18437,6 +17444,7 @@ export namespace Prisma {
     description: number
     compulsory: number
     createdAt: number
+    isDeprecated: number
     updatedAt: number
     serviceId: number
     _all: number
@@ -18450,6 +17458,7 @@ export namespace Prisma {
     description?: true
     compulsory?: true
     createdAt?: true
+    isDeprecated?: true
     updatedAt?: true
     serviceId?: true
   }
@@ -18461,6 +17470,7 @@ export namespace Prisma {
     description?: true
     compulsory?: true
     createdAt?: true
+    isDeprecated?: true
     updatedAt?: true
     serviceId?: true
   }
@@ -18472,6 +17482,7 @@ export namespace Prisma {
     description?: true
     compulsory?: true
     createdAt?: true
+    isDeprecated?: true
     updatedAt?: true
     serviceId?: true
     _all?: true
@@ -18552,11 +17563,12 @@ export namespace Prisma {
 
   export type ServiceFormGroupByOutputType = {
     id: string
-    title: string | null
+    title: string
     type: string | null
     description: string | null
     compulsory: boolean
     createdAt: Date
+    isDeprecated: boolean
     updatedAt: Date
     serviceId: string
     _count: ServiceFormCountAggregateOutputType | null
@@ -18585,6 +17597,7 @@ export namespace Prisma {
     description?: boolean
     compulsory?: boolean
     createdAt?: boolean
+    isDeprecated?: boolean
     updatedAt?: boolean
     serviceId?: boolean
     service?: boolean | ServiceArgs<ExtArgs>
@@ -18599,6 +17612,7 @@ export namespace Prisma {
     description?: boolean
     compulsory?: boolean
     createdAt?: boolean
+    isDeprecated?: boolean
     updatedAt?: boolean
     serviceId?: boolean
   }
@@ -19396,6 +18410,7 @@ export namespace Prisma {
     fileLink: string | null
     dependsOn: string | null
     compulsory: boolean | null
+    isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     serviceFormId: string | null
@@ -19411,6 +18426,7 @@ export namespace Prisma {
     fileLink: string | null
     dependsOn: string | null
     compulsory: boolean | null
+    isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     serviceFormId: string | null
@@ -19427,6 +18443,7 @@ export namespace Prisma {
     fileLink: number
     dependsOn: number
     compulsory: number
+    isDeprecated: number
     createdAt: number
     updatedAt: number
     serviceFormId: number
@@ -19444,6 +18461,7 @@ export namespace Prisma {
     fileLink?: true
     dependsOn?: true
     compulsory?: true
+    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
     serviceFormId?: true
@@ -19459,6 +18477,7 @@ export namespace Prisma {
     fileLink?: true
     dependsOn?: true
     compulsory?: true
+    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
     serviceFormId?: true
@@ -19475,6 +18494,7 @@ export namespace Prisma {
     fileLink?: true
     dependsOn?: true
     compulsory?: true
+    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
     serviceFormId?: true
@@ -19565,6 +18585,7 @@ export namespace Prisma {
     fileLink: string | null
     dependsOn: string | null
     compulsory: boolean
+    isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
     serviceFormId: string
@@ -19598,6 +18619,7 @@ export namespace Prisma {
     fileLink?: boolean
     dependsOn?: boolean
     compulsory?: boolean
+    isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     serviceFormId?: boolean
@@ -19615,6 +18637,7 @@ export namespace Prisma {
     fileLink?: boolean
     dependsOn?: boolean
     compulsory?: boolean
+    isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     serviceFormId?: boolean
@@ -20387,6 +19410,7 @@ export namespace Prisma {
     status: string | null
     currentState: ProductActivityStage | null
     createdAt: Date | null
+    isDeprecated: boolean | null
     updatedAt: Date | null
     serviceId: string | null
     userId: string | null
@@ -20401,6 +19425,7 @@ export namespace Prisma {
     status: string | null
     currentState: ProductActivityStage | null
     createdAt: Date | null
+    isDeprecated: boolean | null
     updatedAt: Date | null
     serviceId: string | null
     userId: string | null
@@ -20415,6 +19440,7 @@ export namespace Prisma {
     status: number
     currentState: number
     createdAt: number
+    isDeprecated: number
     updatedAt: number
     serviceId: number
     userId: number
@@ -20431,6 +19457,7 @@ export namespace Prisma {
     status?: true
     currentState?: true
     createdAt?: true
+    isDeprecated?: true
     updatedAt?: true
     serviceId?: true
     userId?: true
@@ -20445,6 +19472,7 @@ export namespace Prisma {
     status?: true
     currentState?: true
     createdAt?: true
+    isDeprecated?: true
     updatedAt?: true
     serviceId?: true
     userId?: true
@@ -20459,6 +19487,7 @@ export namespace Prisma {
     status?: true
     currentState?: true
     createdAt?: true
+    isDeprecated?: true
     updatedAt?: true
     serviceId?: true
     userId?: true
@@ -20547,6 +19576,7 @@ export namespace Prisma {
     status: string
     currentState: ProductActivityStage
     createdAt: Date
+    isDeprecated: boolean
     updatedAt: Date
     serviceId: string | null
     userId: string
@@ -20578,6 +19608,7 @@ export namespace Prisma {
     status?: boolean
     currentState?: boolean
     createdAt?: boolean
+    isDeprecated?: boolean
     updatedAt?: boolean
     serviceId?: boolean
     userId?: boolean
@@ -20598,6 +19629,7 @@ export namespace Prisma {
     status?: boolean
     currentState?: boolean
     createdAt?: boolean
+    isDeprecated?: boolean
     updatedAt?: boolean
     serviceId?: boolean
     userId?: boolean
@@ -21448,6 +20480,7 @@ export namespace Prisma {
     fileLink: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     productId: string | null
   }
 
@@ -21462,6 +20495,7 @@ export namespace Prisma {
     fileLink: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     productId: string | null
   }
 
@@ -21477,6 +20511,7 @@ export namespace Prisma {
     fileLink: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     productId: number
     _all: number
   }
@@ -21493,6 +20528,7 @@ export namespace Prisma {
     fileLink?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     productId?: true
   }
 
@@ -21507,6 +20543,7 @@ export namespace Prisma {
     fileLink?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     productId?: true
   }
 
@@ -21522,6 +20559,7 @@ export namespace Prisma {
     fileLink?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     productId?: true
     _all?: true
   }
@@ -21611,6 +20649,7 @@ export namespace Prisma {
     fileLink: string | null
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     productId: string
     _count: ProductQACountAggregateOutputType | null
     _min: ProductQAMinAggregateOutputType | null
@@ -21643,6 +20682,7 @@ export namespace Prisma {
     fileLink?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     productId?: boolean
     products?: boolean | ProductArgs<ExtArgs>
     productSubForm?: boolean | ProductQA$productSubFormArgs<ExtArgs>
@@ -21661,6 +20701,7 @@ export namespace Prisma {
     fileLink?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     productId?: boolean
   }
 
@@ -22452,6 +21493,7 @@ export namespace Prisma {
     question: string | null
     type: string | null
     compulsory: boolean | null
+    isDeprecated: boolean | null
     productQAId: string | null
   }
 
@@ -22460,6 +21502,7 @@ export namespace Prisma {
     question: string | null
     type: string | null
     compulsory: boolean | null
+    isDeprecated: boolean | null
     productQAId: string | null
   }
 
@@ -22469,6 +21512,7 @@ export namespace Prisma {
     answer: number
     type: number
     compulsory: number
+    isDeprecated: number
     productQAId: number
     _all: number
   }
@@ -22479,6 +21523,7 @@ export namespace Prisma {
     question?: true
     type?: true
     compulsory?: true
+    isDeprecated?: true
     productQAId?: true
   }
 
@@ -22487,6 +21532,7 @@ export namespace Prisma {
     question?: true
     type?: true
     compulsory?: true
+    isDeprecated?: true
     productQAId?: true
   }
 
@@ -22496,6 +21542,7 @@ export namespace Prisma {
     answer?: true
     type?: true
     compulsory?: true
+    isDeprecated?: true
     productQAId?: true
     _all?: true
   }
@@ -22579,6 +21626,7 @@ export namespace Prisma {
     answer: string[]
     type: string | null
     compulsory: boolean
+    isDeprecated: boolean
     productQAId: string
     _count: ProductQASubFormCountAggregateOutputType | null
     _min: ProductQASubFormMinAggregateOutputType | null
@@ -22605,6 +21653,7 @@ export namespace Prisma {
     answer?: boolean
     type?: boolean
     compulsory?: boolean
+    isDeprecated?: boolean
     productQAId?: boolean
     productQA?: boolean | ProductQAArgs<ExtArgs>
   }, ExtArgs["result"]["productQASubForm"]>
@@ -22615,6 +21664,7 @@ export namespace Prisma {
     answer?: boolean
     type?: boolean
     compulsory?: boolean
+    isDeprecated?: boolean
     productQAId?: boolean
   }
 
@@ -23382,6 +22432,7 @@ export namespace Prisma {
     userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
   }
 
   export type ClaimMaxAggregateOutputType = {
@@ -23390,6 +22441,7 @@ export namespace Prisma {
     userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
   }
 
   export type ClaimCountAggregateOutputType = {
@@ -23398,6 +22450,7 @@ export namespace Prisma {
     userId: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     _all: number
   }
 
@@ -23408,6 +22461,7 @@ export namespace Prisma {
     userId?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
   }
 
   export type ClaimMaxAggregateInputType = {
@@ -23416,6 +22470,7 @@ export namespace Prisma {
     userId?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
   }
 
   export type ClaimCountAggregateInputType = {
@@ -23424,6 +22479,7 @@ export namespace Prisma {
     userId?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     _all?: true
   }
 
@@ -23506,6 +22562,7 @@ export namespace Prisma {
     userId: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     _count: ClaimCountAggregateOutputType | null
     _min: ClaimMinAggregateOutputType | null
     _max: ClaimMaxAggregateOutputType | null
@@ -23531,6 +22588,7 @@ export namespace Prisma {
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
   }, ExtArgs["result"]["claim"]>
 
   export type ClaimSelectScalar = {
@@ -23539,6 +22597,7 @@ export namespace Prisma {
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
   }
 
 
@@ -24261,6 +23320,7 @@ export namespace Prisma {
     userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     productId: string | null
   }
 
@@ -24271,6 +23331,7 @@ export namespace Prisma {
     userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     productId: string | null
   }
 
@@ -24281,6 +23342,7 @@ export namespace Prisma {
     userId: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     productId: number
     _all: number
   }
@@ -24293,6 +23355,7 @@ export namespace Prisma {
     userId?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     productId?: true
   }
 
@@ -24303,6 +23366,7 @@ export namespace Prisma {
     userId?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     productId?: true
   }
 
@@ -24313,6 +23377,7 @@ export namespace Prisma {
     userId?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     productId?: true
     _all?: true
   }
@@ -24397,6 +23462,7 @@ export namespace Prisma {
     userId: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     productId: string
     _count: TeamCountAggregateOutputType | null
     _min: TeamMinAggregateOutputType | null
@@ -24424,6 +23490,7 @@ export namespace Prisma {
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     productId?: boolean
     product?: boolean | ProductArgs<ExtArgs>
     invitation?: boolean | Team$invitationArgs<ExtArgs>
@@ -24438,6 +23505,7 @@ export namespace Prisma {
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     productId?: boolean
   }
 
@@ -25268,6 +24336,7 @@ export namespace Prisma {
     userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
   }
 
   export type TeamMemberMaxAggregateOutputType = {
@@ -25280,6 +24349,7 @@ export namespace Prisma {
     userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
   }
 
   export type TeamMemberCountAggregateOutputType = {
@@ -25292,6 +24362,7 @@ export namespace Prisma {
     userId: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     _all: number
   }
 
@@ -25314,6 +24385,7 @@ export namespace Prisma {
     userId?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
   }
 
   export type TeamMemberMaxAggregateInputType = {
@@ -25326,6 +24398,7 @@ export namespace Prisma {
     userId?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
   }
 
   export type TeamMemberCountAggregateInputType = {
@@ -25338,6 +24411,7 @@ export namespace Prisma {
     userId?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     _all?: true
   }
 
@@ -25438,6 +24512,7 @@ export namespace Prisma {
     userId: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     _count: TeamMemberCountAggregateOutputType | null
     _avg: TeamMemberAvgAggregateOutputType | null
     _sum: TeamMemberSumAggregateOutputType | null
@@ -25469,6 +24544,7 @@ export namespace Prisma {
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     team?: boolean | TeamArgs<ExtArgs>
     user?: boolean | UserArgs<ExtArgs>
   }, ExtArgs["result"]["teamMember"]>
@@ -25483,6 +24559,7 @@ export namespace Prisma {
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
   }
 
   export type TeamMemberInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
@@ -26255,6 +25332,7 @@ export namespace Prisma {
     invitedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
   }
 
   export type InvitationMaxAggregateOutputType = {
@@ -26266,6 +25344,7 @@ export namespace Prisma {
     invitedBy: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
   }
 
   export type InvitationCountAggregateOutputType = {
@@ -26277,6 +25356,7 @@ export namespace Prisma {
     invitedBy: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     _all: number
   }
 
@@ -26290,6 +25370,7 @@ export namespace Prisma {
     invitedBy?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
   }
 
   export type InvitationMaxAggregateInputType = {
@@ -26301,6 +25382,7 @@ export namespace Prisma {
     invitedBy?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
   }
 
   export type InvitationCountAggregateInputType = {
@@ -26312,6 +25394,7 @@ export namespace Prisma {
     invitedBy?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     _all?: true
   }
 
@@ -26397,6 +25480,7 @@ export namespace Prisma {
     invitedBy: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     _count: InvitationCountAggregateOutputType | null
     _min: InvitationMinAggregateOutputType | null
     _max: InvitationMaxAggregateOutputType | null
@@ -26425,6 +25509,7 @@ export namespace Prisma {
     invitedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     team?: boolean | TeamArgs<ExtArgs>
   }, ExtArgs["result"]["invitation"]>
 
@@ -26437,6 +25522,7 @@ export namespace Prisma {
     invitedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
   }
 
   export type InvitationInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
@@ -27205,6 +26291,7 @@ export namespace Prisma {
     email: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     productId: string | null
   }
 
@@ -27216,6 +26303,7 @@ export namespace Prisma {
     email: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     productId: string | null
   }
 
@@ -27227,6 +26315,7 @@ export namespace Prisma {
     email: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     productId: number
     _all: number
   }
@@ -27240,6 +26329,7 @@ export namespace Prisma {
     email?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     productId?: true
   }
 
@@ -27251,6 +26341,7 @@ export namespace Prisma {
     email?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     productId?: true
   }
 
@@ -27262,6 +26353,7 @@ export namespace Prisma {
     email?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     productId?: true
     _all?: true
   }
@@ -27347,6 +26439,7 @@ export namespace Prisma {
     email: string
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     productId: string
     _count: PaymentCountAggregateOutputType | null
     _min: PaymentMinAggregateOutputType | null
@@ -27375,6 +26468,7 @@ export namespace Prisma {
     email?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     productId?: boolean
     products?: boolean | ProductArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
@@ -27387,6 +26481,7 @@ export namespace Prisma {
     email?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     productId?: boolean
   }
 
@@ -28170,6 +27265,7 @@ export namespace Prisma {
     paymentsDue: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
   }
 
   export type ParterMaxAggregateOutputType = {
@@ -28180,6 +27276,7 @@ export namespace Prisma {
     paymentsDue: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
   }
 
   export type ParterCountAggregateOutputType = {
@@ -28197,6 +27294,7 @@ export namespace Prisma {
     servicesDeclined: number
     createdAt: number
     updatedAt: number
+    isDeprecated: number
     _all: number
   }
 
@@ -28221,6 +27319,7 @@ export namespace Prisma {
     paymentsDue?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
   }
 
   export type ParterMaxAggregateInputType = {
@@ -28231,6 +27330,7 @@ export namespace Prisma {
     paymentsDue?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
   }
 
   export type ParterCountAggregateInputType = {
@@ -28248,6 +27348,7 @@ export namespace Prisma {
     servicesDeclined?: true
     createdAt?: true
     updatedAt?: true
+    isDeprecated?: true
     _all?: true
   }
 
@@ -28353,6 +27454,7 @@ export namespace Prisma {
     servicesDeclined: string[]
     createdAt: Date
     updatedAt: Date
+    isDeprecated: boolean
     _count: ParterCountAggregateOutputType | null
     _avg: ParterAvgAggregateOutputType | null
     _sum: ParterSumAggregateOutputType | null
@@ -28389,6 +27491,7 @@ export namespace Prisma {
     servicesDeclined?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
   }, ExtArgs["result"]["parter"]>
 
   export type ParterSelectScalar = {
@@ -28406,6 +27509,7 @@ export namespace Prisma {
     servicesDeclined?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
   }
 
 
@@ -29236,7 +28340,10 @@ export namespace Prisma {
     userId: 'userId',
     type: 'type',
     provider: 'provider',
-    scope: 'scope'
+    scope: 'scope',
+    isDeprecated: 'isDeprecated',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
@@ -29278,6 +28385,7 @@ export namespace Prisma {
     type: 'type',
     description: 'description',
     userId: 'userId',
+    isDeprecated: 'isDeprecated',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -29305,6 +28413,7 @@ export namespace Prisma {
     compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated',
     serviceCategoryId: 'serviceCategoryId'
   };
 
@@ -29324,6 +28433,7 @@ export namespace Prisma {
     compulsory: 'compulsory',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated',
     formId: 'formId'
   };
 
@@ -29348,23 +28458,11 @@ export namespace Prisma {
     agentIsCalled: 'agentIsCalled',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated',
     serviceCategoryId: 'serviceCategoryId'
   };
 
   export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
-
-
-  export const ServiceTemplateScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    type: 'type',
-    description: 'description',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    serviceId: 'serviceId'
-  };
-
-  export type ServiceTemplateScalarFieldEnum = (typeof ServiceTemplateScalarFieldEnum)[keyof typeof ServiceTemplateScalarFieldEnum]
 
 
   export const ServiceFormScalarFieldEnum: {
@@ -29374,6 +28472,7 @@ export namespace Prisma {
     description: 'description',
     compulsory: 'compulsory',
     createdAt: 'createdAt',
+    isDeprecated: 'isDeprecated',
     updatedAt: 'updatedAt',
     serviceId: 'serviceId'
   };
@@ -29392,6 +28491,7 @@ export namespace Prisma {
     fileLink: 'fileLink',
     dependsOn: 'dependsOn',
     compulsory: 'compulsory',
+    isDeprecated: 'isDeprecated',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     serviceFormId: 'serviceFormId'
@@ -29409,6 +28509,7 @@ export namespace Prisma {
     status: 'status',
     currentState: 'currentState',
     createdAt: 'createdAt',
+    isDeprecated: 'isDeprecated',
     updatedAt: 'updatedAt',
     serviceId: 'serviceId',
     userId: 'userId'
@@ -29429,6 +28530,7 @@ export namespace Prisma {
     fileLink: 'fileLink',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated',
     productId: 'productId'
   };
 
@@ -29441,6 +28543,7 @@ export namespace Prisma {
     answer: 'answer',
     type: 'type',
     compulsory: 'compulsory',
+    isDeprecated: 'isDeprecated',
     productQAId: 'productQAId'
   };
 
@@ -29452,7 +28555,8 @@ export namespace Prisma {
     value: 'value',
     userId: 'userId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated'
   };
 
   export type ClaimScalarFieldEnum = (typeof ClaimScalarFieldEnum)[keyof typeof ClaimScalarFieldEnum]
@@ -29465,6 +28569,7 @@ export namespace Prisma {
     userId: 'userId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated',
     productId: 'productId'
   };
 
@@ -29480,7 +28585,8 @@ export namespace Prisma {
     teamId: 'teamId',
     userId: 'userId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated'
   };
 
   export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]
@@ -29494,7 +28600,8 @@ export namespace Prisma {
     expireIn: 'expireIn',
     invitedBy: 'invitedBy',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated'
   };
 
   export type InvitationScalarFieldEnum = (typeof InvitationScalarFieldEnum)[keyof typeof InvitationScalarFieldEnum]
@@ -29508,6 +28615,7 @@ export namespace Prisma {
     email: 'email',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated',
     productId: 'productId'
   };
 
@@ -29528,7 +28636,8 @@ export namespace Prisma {
     servicesCompleted: 'servicesCompleted',
     servicesDeclined: 'servicesDeclined',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    isDeprecated: 'isDeprecated'
   };
 
   export type ParterScalarFieldEnum = (typeof ParterScalarFieldEnum)[keyof typeof ParterScalarFieldEnum]
@@ -30017,6 +29126,9 @@ export namespace Prisma {
     type?: StringFilter | string
     provider?: StringFilter | string
     scope?: StringFilter | string
+    isDeprecated?: BoolFilter | boolean
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
@@ -30026,6 +29138,9 @@ export namespace Prisma {
     type?: SortOrder
     provider?: SortOrder
     scope?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -30039,6 +29154,9 @@ export namespace Prisma {
     type?: SortOrder
     provider?: SortOrder
     scope?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: AccountCountOrderByAggregateInput
     _max?: AccountMaxOrderByAggregateInput
     _min?: AccountMinOrderByAggregateInput
@@ -30053,6 +29171,9 @@ export namespace Prisma {
     type?: StringWithAggregatesFilter | string
     provider?: StringWithAggregatesFilter | string
     scope?: StringWithAggregatesFilter | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
 
   export type UserWhereInput = {
@@ -30192,6 +29313,7 @@ export namespace Prisma {
     type?: StringFilter | string
     description?: StringFilter | string
     userId?: StringFilter | string
+    isDeprecated?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
   }
@@ -30202,6 +29324,7 @@ export namespace Prisma {
     type?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -30216,6 +29339,7 @@ export namespace Prisma {
     type?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserDocumentCountOrderByAggregateInput
@@ -30232,6 +29356,7 @@ export namespace Prisma {
     type?: StringWithAggregatesFilter | string
     description?: StringWithAggregatesFilter | string
     userId?: StringWithAggregatesFilter | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
@@ -30295,12 +29420,13 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategoryFormWhereInput>
     NOT?: Enumerable<ServiceCategoryFormWhereInput>
     id?: StringFilter | string
-    title?: StringNullableFilter | string | null
+    title?: StringFilter | string
     description?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     serviceCategoryId?: StringFilter | string
     category?: XOR<ServiceCategoryRelationFilter, ServiceCategoryWhereInput>
     subForm?: ServiceCategorySubFormListRelationFilter
@@ -30308,12 +29434,13 @@ export namespace Prisma {
 
   export type ServiceCategoryFormOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    title?: SortOrder
     description?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
     category?: ServiceCategoryOrderByWithRelationInput
     subForm?: ServiceCategorySubFormOrderByRelationAggregateInput
@@ -30321,16 +29448,18 @@ export namespace Prisma {
 
   export type ServiceCategoryFormWhereUniqueInput = {
     id?: string
+    title?: string
   }
 
   export type ServiceCategoryFormOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    title?: SortOrder
     description?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
     _count?: ServiceCategoryFormCountOrderByAggregateInput
     _max?: ServiceCategoryFormMaxOrderByAggregateInput
@@ -30342,12 +29471,13 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategoryFormScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ServiceCategoryFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    title?: StringNullableWithAggregatesFilter | string | null
+    title?: StringWithAggregatesFilter | string
     description?: StringNullableWithAggregatesFilter | string | null
     type?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     serviceCategoryId?: StringWithAggregatesFilter | string
   }
 
@@ -30367,6 +29497,7 @@ export namespace Prisma {
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     formId?: StringFilter | string
     category?: XOR<ServiceCategoryFormRelationFilter, ServiceCategoryFormWhereInput>
   }
@@ -30384,6 +29515,7 @@ export namespace Prisma {
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     formId?: SortOrder
     category?: ServiceCategoryFormOrderByWithRelationInput
   }
@@ -30405,6 +29537,7 @@ export namespace Prisma {
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     formId?: SortOrder
     _count?: ServiceCategorySubFormCountOrderByAggregateInput
     _max?: ServiceCategorySubFormMaxOrderByAggregateInput
@@ -30427,6 +29560,7 @@ export namespace Prisma {
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     formId?: StringWithAggregatesFilter | string
   }
 
@@ -30451,10 +29585,10 @@ export namespace Prisma {
     agentIsCalled?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     serviceCategoryId?: StringFilter | string
     category?: XOR<ServiceCategoryRelationFilter, ServiceCategoryWhereInput>
     products?: ProductListRelationFilter
-    templates?: ServiceTemplateListRelationFilter
     forms?: ServiceFormListRelationFilter
   }
 
@@ -30476,10 +29610,10 @@ export namespace Prisma {
     agentIsCalled?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
     category?: ServiceCategoryOrderByWithRelationInput
     products?: ProductOrderByRelationAggregateInput
-    templates?: ServiceTemplateOrderByRelationAggregateInput
     forms?: ServiceFormOrderByRelationAggregateInput
   }
 
@@ -30505,6 +29639,7 @@ export namespace Prisma {
     agentIsCalled?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
     _count?: ServiceCountOrderByAggregateInput
     _avg?: ServiceAvgOrderByAggregateInput
@@ -30534,62 +29669,8 @@ export namespace Prisma {
     agentIsCalled?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     serviceCategoryId?: StringWithAggregatesFilter | string
-  }
-
-  export type ServiceTemplateWhereInput = {
-    AND?: Enumerable<ServiceTemplateWhereInput>
-    OR?: Enumerable<ServiceTemplateWhereInput>
-    NOT?: Enumerable<ServiceTemplateWhereInput>
-    id?: StringFilter | string
-    name?: StringFilter | string
-    type?: StringFilter | string
-    description?: StringFilter | string
-    createdAt?: DateTimeFilter | Date | string
-    updatedAt?: DateTimeFilter | Date | string
-    serviceId?: StringFilter | string
-    service?: XOR<ServiceRelationFilter, ServiceWhereInput>
-  }
-
-  export type ServiceTemplateOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    serviceId?: SortOrder
-    service?: ServiceOrderByWithRelationInput
-  }
-
-  export type ServiceTemplateWhereUniqueInput = {
-    id?: string
-  }
-
-  export type ServiceTemplateOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    serviceId?: SortOrder
-    _count?: ServiceTemplateCountOrderByAggregateInput
-    _max?: ServiceTemplateMaxOrderByAggregateInput
-    _min?: ServiceTemplateMinOrderByAggregateInput
-  }
-
-  export type ServiceTemplateScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ServiceTemplateScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ServiceTemplateScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ServiceTemplateScalarWhereWithAggregatesInput>
-    id?: StringWithAggregatesFilter | string
-    name?: StringWithAggregatesFilter | string
-    type?: StringWithAggregatesFilter | string
-    description?: StringWithAggregatesFilter | string
-    createdAt?: DateTimeWithAggregatesFilter | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter | Date | string
-    serviceId?: StringWithAggregatesFilter | string
   }
 
   export type ServiceFormWhereInput = {
@@ -30597,11 +29678,12 @@ export namespace Prisma {
     OR?: Enumerable<ServiceFormWhereInput>
     NOT?: Enumerable<ServiceFormWhereInput>
     id?: StringFilter | string
-    title?: StringNullableFilter | string | null
+    title?: StringFilter | string
     type?: StringNullableFilter | string | null
     description?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     updatedAt?: DateTimeFilter | Date | string
     serviceId?: StringFilter | string
     service?: XOR<ServiceRelationFilter, ServiceWhereInput>
@@ -30610,11 +29692,12 @@ export namespace Prisma {
 
   export type ServiceFormOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    title?: SortOrder
     type?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
     service?: ServiceOrderByWithRelationInput
@@ -30623,15 +29706,17 @@ export namespace Prisma {
 
   export type ServiceFormWhereUniqueInput = {
     id?: string
+    title?: string
   }
 
   export type ServiceFormOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    title?: SortOrder
     type?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
     _count?: ServiceFormCountOrderByAggregateInput
@@ -30644,11 +29729,12 @@ export namespace Prisma {
     OR?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    title?: StringNullableWithAggregatesFilter | string | null
+    title?: StringWithAggregatesFilter | string
     type?: StringNullableWithAggregatesFilter | string | null
     description?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     serviceId?: StringWithAggregatesFilter | string
   }
@@ -30667,6 +29753,7 @@ export namespace Prisma {
     fileLink?: StringNullableFilter | string | null
     dependsOn?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
+    isDeprecated?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     serviceFormId?: StringFilter | string
@@ -30684,6 +29771,7 @@ export namespace Prisma {
     fileLink?: SortOrderInput | SortOrder
     dependsOn?: SortOrderInput | SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceFormId?: SortOrder
@@ -30705,6 +29793,7 @@ export namespace Prisma {
     fileLink?: SortOrderInput | SortOrder
     dependsOn?: SortOrderInput | SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceFormId?: SortOrder
@@ -30727,6 +29816,7 @@ export namespace Prisma {
     fileLink?: StringNullableWithAggregatesFilter | string | null
     dependsOn?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     serviceFormId?: StringWithAggregatesFilter | string
@@ -30744,6 +29834,7 @@ export namespace Prisma {
     status?: StringFilter | string
     currentState?: EnumProductActivityStageFilter | ProductActivityStage
     createdAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     updatedAt?: DateTimeFilter | Date | string
     serviceId?: StringNullableFilter | string | null
     userId?: StringFilter | string
@@ -30763,6 +29854,7 @@ export namespace Prisma {
     status?: SortOrder
     currentState?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrderInput | SortOrder
     userId?: SortOrder
@@ -30786,6 +29878,7 @@ export namespace Prisma {
     status?: SortOrder
     currentState?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrderInput | SortOrder
     userId?: SortOrder
@@ -30806,6 +29899,7 @@ export namespace Prisma {
     status?: StringWithAggregatesFilter | string
     currentState?: EnumProductActivityStageWithAggregatesFilter | ProductActivityStage
     createdAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     serviceId?: StringNullableWithAggregatesFilter | string | null
     userId?: StringWithAggregatesFilter | string
@@ -30826,6 +29920,7 @@ export namespace Prisma {
     fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     productId?: StringFilter | string
     products?: XOR<ProductRelationFilter, ProductWhereInput>
     productSubForm?: ProductQASubFormListRelationFilter
@@ -30843,6 +29938,7 @@ export namespace Prisma {
     fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
     products?: ProductOrderByWithRelationInput
     productSubForm?: ProductQASubFormOrderByRelationAggregateInput
@@ -30864,6 +29960,7 @@ export namespace Prisma {
     fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
     _count?: ProductQACountOrderByAggregateInput
     _max?: ProductQAMaxOrderByAggregateInput
@@ -30885,6 +29982,7 @@ export namespace Prisma {
     fileLink?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     productId?: StringWithAggregatesFilter | string
   }
 
@@ -30897,6 +29995,7 @@ export namespace Prisma {
     answer?: StringNullableListFilter
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
+    isDeprecated?: BoolFilter | boolean
     productQAId?: StringFilter | string
     productQA?: XOR<ProductQARelationFilter, ProductQAWhereInput>
   }
@@ -30907,6 +30006,7 @@ export namespace Prisma {
     answer?: SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     productQAId?: SortOrder
     productQA?: ProductQAOrderByWithRelationInput
   }
@@ -30921,6 +30021,7 @@ export namespace Prisma {
     answer?: SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     productQAId?: SortOrder
     _count?: ProductQASubFormCountOrderByAggregateInput
     _max?: ProductQASubFormMaxOrderByAggregateInput
@@ -30936,6 +30037,7 @@ export namespace Prisma {
     answer?: StringNullableListFilter
     type?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     productQAId?: StringWithAggregatesFilter | string
   }
 
@@ -30948,6 +30050,7 @@ export namespace Prisma {
     userId?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
   }
 
   export type ClaimOrderByWithRelationInput = {
@@ -30956,6 +30059,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type ClaimWhereUniqueInput = {
@@ -30968,6 +30072,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     _count?: ClaimCountOrderByAggregateInput
     _max?: ClaimMaxOrderByAggregateInput
     _min?: ClaimMinOrderByAggregateInput
@@ -30982,6 +30087,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter | string
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
   }
 
   export type TeamWhereInput = {
@@ -30994,6 +30100,7 @@ export namespace Prisma {
     userId?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     productId?: StringFilter | string
     product?: XOR<ProductRelationFilter, ProductWhereInput>
     invitation?: InvitationListRelationFilter
@@ -31007,6 +30114,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
     product?: ProductOrderByWithRelationInput
     invitation?: InvitationOrderByRelationAggregateInput
@@ -31024,6 +30132,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
     _count?: TeamCountOrderByAggregateInput
     _max?: TeamMaxOrderByAggregateInput
@@ -31040,6 +30149,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter | string
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     productId?: StringWithAggregatesFilter | string
   }
 
@@ -31056,6 +30166,7 @@ export namespace Prisma {
     userId?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     team?: XOR<TeamRelationFilter, TeamWhereInput>
     user?: XOR<UserRelationFilter, UserWhereInput>
   }
@@ -31070,6 +30181,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     team?: TeamOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
   }
@@ -31088,6 +30200,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     _count?: TeamMemberCountOrderByAggregateInput
     _avg?: TeamMemberAvgOrderByAggregateInput
     _max?: TeamMemberMaxOrderByAggregateInput
@@ -31108,6 +30221,7 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter | string
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
   }
 
   export type InvitationWhereInput = {
@@ -31122,6 +30236,7 @@ export namespace Prisma {
     invitedBy?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     team?: XOR<TeamRelationFilter, TeamWhereInput>
   }
 
@@ -31134,6 +30249,7 @@ export namespace Prisma {
     invitedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     team?: TeamOrderByWithRelationInput
   }
 
@@ -31150,6 +30266,7 @@ export namespace Prisma {
     invitedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     _count?: InvitationCountOrderByAggregateInput
     _max?: InvitationMaxOrderByAggregateInput
     _min?: InvitationMinOrderByAggregateInput
@@ -31167,6 +30284,7 @@ export namespace Prisma {
     invitedBy?: StringWithAggregatesFilter | string
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
   }
 
   export type PaymentWhereInput = {
@@ -31180,6 +30298,7 @@ export namespace Prisma {
     email?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     productId?: StringFilter | string
     products?: XOR<ProductRelationFilter, ProductWhereInput>
   }
@@ -31192,6 +30311,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
     products?: ProductOrderByWithRelationInput
   }
@@ -31208,6 +30328,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
     _count?: PaymentCountOrderByAggregateInput
     _max?: PaymentMaxOrderByAggregateInput
@@ -31225,6 +30346,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter | string
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
     productId?: StringWithAggregatesFilter | string
   }
 
@@ -31246,6 +30368,7 @@ export namespace Prisma {
     servicesDeclined?: StringNullableListFilter
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
   }
 
   export type ParterOrderByWithRelationInput = {
@@ -31263,6 +30386,7 @@ export namespace Prisma {
     servicesDeclined?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type ParterWhereUniqueInput = {
@@ -31284,6 +30408,7 @@ export namespace Prisma {
     servicesDeclined?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     _count?: ParterCountOrderByAggregateInput
     _avg?: ParterAvgOrderByAggregateInput
     _max?: ParterMaxOrderByAggregateInput
@@ -31309,6 +30434,7 @@ export namespace Prisma {
     servicesDeclined?: StringNullableListFilter
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    isDeprecated?: BoolWithAggregatesFilter | boolean
   }
 
   export type StaffCreateInput = {
@@ -31921,6 +31047,9 @@ export namespace Prisma {
     type: string
     provider: string
     scope: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutAccountInput
   }
 
@@ -31930,6 +31059,9 @@ export namespace Prisma {
     type: string
     provider: string
     scope: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountUpdateInput = {
@@ -31937,6 +31069,9 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutAccountNestedInput
   }
 
@@ -31946,6 +31081,9 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountCreateManyInput = {
@@ -31954,6 +31092,9 @@ export namespace Prisma {
     type: string
     provider: string
     scope: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountUpdateManyMutationInput = {
@@ -31961,6 +31102,9 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountUncheckedUpdateManyInput = {
@@ -31969,6 +31113,9 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateInput = {
@@ -32178,6 +31325,7 @@ export namespace Prisma {
     type: string
     description: string
     userId: string
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32188,6 +31336,7 @@ export namespace Prisma {
     type: string
     description: string
     userId: string
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32198,6 +31347,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32208,6 +31358,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32218,6 +31369,7 @@ export namespace Prisma {
     type: string
     description: string
     userId: string
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32228,6 +31380,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32238,6 +31391,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32315,81 +31469,88 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateInput = {
     id?: string
-    title?: string | null
+    title: string
     description?: string | null
     type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     category: ServiceCategoryCreateNestedOneWithoutFormInput
     subForm?: ServiceCategorySubFormCreateNestedManyWithoutCategoryInput
   }
 
   export type ServiceCategoryFormUncheckedCreateInput = {
     id?: string
-    title?: string | null
+    title: string
     description?: string | null
     type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     serviceCategoryId: string
     subForm?: ServiceCategorySubFormUncheckedCreateNestedManyWithoutCategoryInput
   }
 
   export type ServiceCategoryFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     category?: ServiceCategoryUpdateOneRequiredWithoutFormNestedInput
     subForm?: ServiceCategorySubFormUpdateManyWithoutCategoryNestedInput
   }
 
   export type ServiceCategoryFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
     subForm?: ServiceCategorySubFormUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type ServiceCategoryFormCreateManyInput = {
     id?: string
-    title?: string | null
+    title: string
     description?: string | null
     type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     serviceCategoryId: string
   }
 
   export type ServiceCategoryFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceCategoryFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -32406,6 +31567,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     category: ServiceCategoryFormCreateNestedOneWithoutSubFormInput
   }
 
@@ -32422,6 +31584,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     formId: string
   }
 
@@ -32438,6 +31601,7 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     category?: ServiceCategoryFormUpdateOneRequiredWithoutSubFormNestedInput
   }
 
@@ -32454,6 +31618,7 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     formId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -32470,6 +31635,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     formId: string
   }
 
@@ -32486,6 +31652,7 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceCategorySubFormUncheckedUpdateManyInput = {
@@ -32501,6 +31668,7 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     formId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -32522,9 +31690,9 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     category: ServiceCategoryCreateNestedOneWithoutServicesInput
     products?: ProductCreateNestedManyWithoutServiceInput
-    templates?: ServiceTemplateCreateNestedManyWithoutServiceInput
     forms?: ServiceFormCreateNestedManyWithoutServiceInput
   }
 
@@ -32546,9 +31714,9 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     serviceCategoryId: string
     products?: ProductUncheckedCreateNestedManyWithoutServiceInput
-    templates?: ServiceTemplateUncheckedCreateNestedManyWithoutServiceInput
     forms?: ServiceFormUncheckedCreateNestedManyWithoutServiceInput
   }
 
@@ -32570,9 +31738,9 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     category?: ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput
     products?: ProductUpdateManyWithoutServiceNestedInput
-    templates?: ServiceTemplateUpdateManyWithoutServiceNestedInput
     forms?: ServiceFormUpdateManyWithoutServiceNestedInput
   }
 
@@ -32594,9 +31762,9 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
     products?: ProductUncheckedUpdateManyWithoutServiceNestedInput
-    templates?: ServiceTemplateUncheckedUpdateManyWithoutServiceNestedInput
     forms?: ServiceFormUncheckedUpdateManyWithoutServiceNestedInput
   }
 
@@ -32618,6 +31786,7 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     serviceCategoryId: string
   }
 
@@ -32639,6 +31808,7 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceUncheckedUpdateManyInput = {
@@ -32659,85 +31829,18 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ServiceTemplateCreateInput = {
-    id?: string
-    name: string
-    type: string
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    service: ServiceCreateNestedOneWithoutTemplatesInput
-  }
-
-  export type ServiceTemplateUncheckedCreateInput = {
-    id?: string
-    name: string
-    type: string
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    serviceId: string
-  }
-
-  export type ServiceTemplateUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    service?: ServiceUpdateOneRequiredWithoutTemplatesNestedInput
-  }
-
-  export type ServiceTemplateUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ServiceTemplateCreateManyInput = {
-    id?: string
-    name: string
-    type: string
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    serviceId: string
-  }
-
-  export type ServiceTemplateUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ServiceTemplateUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceFormCreateInput = {
     id?: string
-    title?: string | null
+    title: string
     type?: string | null
     description?: string | null
     compulsory?: boolean
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     service: ServiceCreateNestedOneWithoutFormsInput
     serviceSubForm?: ServiceSubFormCreateNestedManyWithoutServiceFormInput
@@ -32745,11 +31848,12 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedCreateInput = {
     id?: string
-    title?: string | null
+    title: string
     type?: string | null
     description?: string | null
     compulsory?: boolean
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId: string
     serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
@@ -32757,11 +31861,12 @@ export namespace Prisma {
 
   export type ServiceFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     type?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneRequiredWithoutFormsNestedInput
     serviceSubForm?: ServiceSubFormUpdateManyWithoutServiceFormNestedInput
@@ -32769,11 +31874,12 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     type?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: StringFieldUpdateOperationsInput | string
     serviceSubForm?: ServiceSubFormUncheckedUpdateManyWithoutServiceFormNestedInput
@@ -32781,32 +31887,35 @@ export namespace Prisma {
 
   export type ServiceFormCreateManyInput = {
     id?: string
-    title?: string | null
+    title: string
     type?: string | null
     description?: string | null
     compulsory?: boolean
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId: string
   }
 
   export type ServiceFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     type?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ServiceFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     type?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: StringFieldUpdateOperationsInput | string
   }
@@ -32822,6 +31931,7 @@ export namespace Prisma {
     fileLink?: string | null
     dependsOn?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceForm: ServiceFormCreateNestedOneWithoutServiceSubFormInput
@@ -32838,6 +31948,7 @@ export namespace Prisma {
     fileLink?: string | null
     dependsOn?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceFormId: string
@@ -32854,6 +31965,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceForm?: ServiceFormUpdateOneRequiredWithoutServiceSubFormNestedInput
@@ -32870,6 +31982,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceFormId?: StringFieldUpdateOperationsInput | string
@@ -32886,6 +31999,7 @@ export namespace Prisma {
     fileLink?: string | null
     dependsOn?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     serviceFormId: string
@@ -32902,6 +32016,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32917,6 +32032,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceFormId?: StringFieldUpdateOperationsInput | string
@@ -32931,6 +32047,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     Team?: TeamCreateNestedManyWithoutProductInput
     service?: ServiceCreateNestedOneWithoutProductsInput
@@ -32948,6 +32065,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId?: string | null
     userId: string
@@ -32965,6 +32083,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Team?: TeamUpdateManyWithoutProductNestedInput
     service?: ServiceUpdateOneWithoutProductsNestedInput
@@ -32982,6 +32101,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
@@ -32999,6 +32119,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId?: string | null
     userId: string
@@ -33013,6 +32134,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -33025,6 +32147,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
@@ -33042,6 +32165,7 @@ export namespace Prisma {
     fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     products: ProductCreateNestedOneWithoutProductQAInput
     productSubForm?: ProductQASubFormCreateNestedManyWithoutProductQAInput
   }
@@ -33058,6 +32182,7 @@ export namespace Prisma {
     fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productId: string
     productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
   }
@@ -33074,6 +32199,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     products?: ProductUpdateOneRequiredWithoutProductQANestedInput
     productSubForm?: ProductQASubFormUpdateManyWithoutProductQANestedInput
   }
@@ -33090,6 +32216,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productId?: StringFieldUpdateOperationsInput | string
     productSubForm?: ProductQASubFormUncheckedUpdateManyWithoutProductQANestedInput
   }
@@ -33106,6 +32233,7 @@ export namespace Prisma {
     fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productId: string
   }
 
@@ -33121,6 +32249,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductQAUncheckedUpdateManyInput = {
@@ -33135,6 +32264,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -33144,6 +32274,7 @@ export namespace Prisma {
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
     productQA: ProductQACreateNestedOneWithoutProductSubFormInput
   }
 
@@ -33153,6 +32284,7 @@ export namespace Prisma {
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
     productQAId: string
   }
 
@@ -33162,6 +32294,7 @@ export namespace Prisma {
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productQA?: ProductQAUpdateOneRequiredWithoutProductSubFormNestedInput
   }
 
@@ -33171,6 +32304,7 @@ export namespace Prisma {
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productQAId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -33180,6 +32314,7 @@ export namespace Prisma {
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
     productQAId: string
   }
 
@@ -33189,6 +32324,7 @@ export namespace Prisma {
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductQASubFormUncheckedUpdateManyInput = {
@@ -33197,6 +32333,7 @@ export namespace Prisma {
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productQAId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -33206,6 +32343,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ClaimUncheckedCreateInput = {
@@ -33214,6 +32352,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ClaimUpdateInput = {
@@ -33222,6 +32361,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClaimUncheckedUpdateInput = {
@@ -33230,6 +32370,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClaimCreateManyInput = {
@@ -33238,6 +32379,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ClaimUpdateManyMutationInput = {
@@ -33246,6 +32388,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClaimUncheckedUpdateManyInput = {
@@ -33254,6 +32397,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TeamCreateInput = {
@@ -33263,6 +32407,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     product: ProductCreateNestedOneWithoutTeamInput
     invitation?: InvitationCreateNestedManyWithoutTeamInput
     teamMember?: TeamMemberCreateNestedManyWithoutTeamInput
@@ -33275,6 +32420,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productId: string
     invitation?: InvitationUncheckedCreateNestedManyWithoutTeamInput
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
@@ -33287,6 +32433,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     product?: ProductUpdateOneRequiredWithoutTeamNestedInput
     invitation?: InvitationUpdateManyWithoutTeamNestedInput
     teamMember?: TeamMemberUpdateManyWithoutTeamNestedInput
@@ -33299,6 +32446,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productId?: StringFieldUpdateOperationsInput | string
     invitation?: InvitationUncheckedUpdateManyWithoutTeamNestedInput
     teamMember?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
@@ -33311,6 +32459,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productId: string
   }
 
@@ -33321,6 +32470,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TeamUncheckedUpdateManyInput = {
@@ -33330,6 +32480,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -33341,6 +32492,7 @@ export namespace Prisma {
     launchOwnership: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     team: TeamCreateNestedOneWithoutTeamMemberInput
     user: UserCreateNestedOneWithoutTeamMemberInput
   }
@@ -33355,6 +32507,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type TeamMemberUpdateInput = {
@@ -33365,6 +32518,7 @@ export namespace Prisma {
     launchOwnership?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     team?: TeamUpdateOneRequiredWithoutTeamMemberNestedInput
     user?: UserUpdateOneRequiredWithoutTeamMemberNestedInput
   }
@@ -33379,6 +32533,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TeamMemberCreateManyInput = {
@@ -33391,6 +32546,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type TeamMemberUpdateManyMutationInput = {
@@ -33401,6 +32557,7 @@ export namespace Prisma {
     launchOwnership?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TeamMemberUncheckedUpdateManyInput = {
@@ -33413,6 +32570,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type InvitationCreateInput = {
@@ -33423,6 +32581,7 @@ export namespace Prisma {
     invitedBy: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     team: TeamCreateNestedOneWithoutInvitationInput
   }
 
@@ -33435,6 +32594,7 @@ export namespace Prisma {
     invitedBy: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type InvitationUpdateInput = {
@@ -33445,6 +32605,7 @@ export namespace Prisma {
     invitedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     team?: TeamUpdateOneRequiredWithoutInvitationNestedInput
   }
 
@@ -33457,6 +32618,7 @@ export namespace Prisma {
     invitedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type InvitationCreateManyInput = {
@@ -33468,6 +32630,7 @@ export namespace Prisma {
     invitedBy: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type InvitationUpdateManyMutationInput = {
@@ -33478,6 +32641,7 @@ export namespace Prisma {
     invitedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type InvitationUncheckedUpdateManyInput = {
@@ -33489,6 +32653,7 @@ export namespace Prisma {
     invitedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PaymentCreateInput = {
@@ -33499,6 +32664,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     products: ProductCreateNestedOneWithoutPaymentInput
   }
 
@@ -33510,6 +32676,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productId: string
   }
 
@@ -33521,6 +32688,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     products?: ProductUpdateOneRequiredWithoutPaymentNestedInput
   }
 
@@ -33532,6 +32700,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -33543,6 +32712,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productId: string
   }
 
@@ -33554,6 +32724,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PaymentUncheckedUpdateManyInput = {
@@ -33564,6 +32735,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -33582,6 +32754,7 @@ export namespace Prisma {
     servicesDeclined?: ParterCreateservicesDeclinedInput | Enumerable<string>
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ParterUncheckedCreateInput = {
@@ -33599,6 +32772,7 @@ export namespace Prisma {
     servicesDeclined?: ParterCreateservicesDeclinedInput | Enumerable<string>
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ParterUpdateInput = {
@@ -33616,6 +32790,7 @@ export namespace Prisma {
     servicesDeclined?: ParterUpdateservicesDeclinedInput | Enumerable<string>
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ParterUncheckedUpdateInput = {
@@ -33633,6 +32808,7 @@ export namespace Prisma {
     servicesDeclined?: ParterUpdateservicesDeclinedInput | Enumerable<string>
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ParterCreateManyInput = {
@@ -33650,6 +32826,7 @@ export namespace Prisma {
     servicesDeclined?: ParterCreateservicesDeclinedInput | Enumerable<string>
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ParterUpdateManyMutationInput = {
@@ -33667,6 +32844,7 @@ export namespace Prisma {
     servicesDeclined?: ParterUpdateservicesDeclinedInput | Enumerable<string>
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ParterUncheckedUpdateManyInput = {
@@ -33684,6 +32862,7 @@ export namespace Prisma {
     servicesDeclined?: ParterUpdateservicesDeclinedInput | Enumerable<string>
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter = {
@@ -34079,6 +33258,9 @@ export namespace Prisma {
     type?: SortOrder
     provider?: SortOrder
     scope?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type AccountMaxOrderByAggregateInput = {
@@ -34087,6 +33269,9 @@ export namespace Prisma {
     type?: SortOrder
     provider?: SortOrder
     scope?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type AccountMinOrderByAggregateInput = {
@@ -34095,6 +33280,9 @@ export namespace Prisma {
     type?: SortOrder
     provider?: SortOrder
     scope?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StringNullableListFilter = {
@@ -34216,6 +33404,7 @@ export namespace Prisma {
     type?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -34226,6 +33415,7 @@ export namespace Prisma {
     type?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -34236,6 +33426,7 @@ export namespace Prisma {
     type?: SortOrder
     description?: SortOrder
     userId?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -34310,6 +33501,7 @@ export namespace Prisma {
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
   }
 
@@ -34321,6 +33513,7 @@ export namespace Prisma {
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
   }
 
@@ -34332,6 +33525,7 @@ export namespace Prisma {
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
   }
 
@@ -34353,6 +33547,7 @@ export namespace Prisma {
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     formId?: SortOrder
   }
 
@@ -34368,6 +33563,7 @@ export namespace Prisma {
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     formId?: SortOrder
   }
 
@@ -34383,6 +33579,7 @@ export namespace Prisma {
     compulsory?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     formId?: SortOrder
   }
 
@@ -34397,20 +33594,10 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type ServiceTemplateListRelationFilter = {
-    every?: ServiceTemplateWhereInput
-    some?: ServiceTemplateWhereInput
-    none?: ServiceTemplateWhereInput
-  }
-
   export type ServiceFormListRelationFilter = {
     every?: ServiceFormWhereInput
     some?: ServiceFormWhereInput
     none?: ServiceFormWhereInput
-  }
-
-  export type ServiceTemplateOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type ServiceFormOrderByRelationAggregateInput = {
@@ -34435,6 +33622,7 @@ export namespace Prisma {
     agentIsCalled?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
   }
 
@@ -34459,6 +33647,7 @@ export namespace Prisma {
     agentIsCalled?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
   }
 
@@ -34479,6 +33668,7 @@ export namespace Prisma {
     agentIsCalled?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     serviceCategoryId?: SortOrder
   }
 
@@ -34507,36 +33697,6 @@ export namespace Prisma {
     isNot?: ServiceWhereInput | null
   }
 
-  export type ServiceTemplateCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    serviceId?: SortOrder
-  }
-
-  export type ServiceTemplateMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    serviceId?: SortOrder
-  }
-
-  export type ServiceTemplateMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    serviceId?: SortOrder
-  }
-
   export type ServiceSubFormListRelationFilter = {
     every?: ServiceSubFormWhereInput
     some?: ServiceSubFormWhereInput
@@ -34554,6 +33714,7 @@ export namespace Prisma {
     description?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
   }
@@ -34565,6 +33726,7 @@ export namespace Prisma {
     description?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
   }
@@ -34576,6 +33738,7 @@ export namespace Prisma {
     description?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
   }
@@ -34596,6 +33759,7 @@ export namespace Prisma {
     fileLink?: SortOrder
     dependsOn?: SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceFormId?: SortOrder
@@ -34611,6 +33775,7 @@ export namespace Prisma {
     fileLink?: SortOrder
     dependsOn?: SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceFormId?: SortOrder
@@ -34626,6 +33791,7 @@ export namespace Prisma {
     fileLink?: SortOrder
     dependsOn?: SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     serviceFormId?: SortOrder
@@ -34677,6 +33843,7 @@ export namespace Prisma {
     status?: SortOrder
     currentState?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
     userId?: SortOrder
@@ -34691,6 +33858,7 @@ export namespace Prisma {
     status?: SortOrder
     currentState?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
     userId?: SortOrder
@@ -34705,6 +33873,7 @@ export namespace Prisma {
     status?: SortOrder
     currentState?: SortOrder
     createdAt?: SortOrder
+    isDeprecated?: SortOrder
     updatedAt?: SortOrder
     serviceId?: SortOrder
     userId?: SortOrder
@@ -34747,6 +33916,7 @@ export namespace Prisma {
     fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
   }
 
@@ -34761,6 +33931,7 @@ export namespace Prisma {
     fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
   }
 
@@ -34775,6 +33946,7 @@ export namespace Prisma {
     fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
   }
 
@@ -34789,6 +33961,7 @@ export namespace Prisma {
     answer?: SortOrder
     type?: SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     productQAId?: SortOrder
   }
 
@@ -34797,6 +33970,7 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     productQAId?: SortOrder
   }
 
@@ -34805,6 +33979,7 @@ export namespace Prisma {
     question?: SortOrder
     type?: SortOrder
     compulsory?: SortOrder
+    isDeprecated?: SortOrder
     productQAId?: SortOrder
   }
 
@@ -34814,6 +33989,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type ClaimMaxOrderByAggregateInput = {
@@ -34822,6 +33998,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type ClaimMinOrderByAggregateInput = {
@@ -34830,6 +34007,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type InvitationListRelationFilter = {
@@ -34849,6 +34027,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
   }
 
@@ -34859,6 +34038,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
   }
 
@@ -34869,6 +34049,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
   }
 
@@ -34887,6 +34068,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type TeamMemberAvgOrderByAggregateInput = {
@@ -34903,6 +34085,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type TeamMemberMinOrderByAggregateInput = {
@@ -34915,6 +34098,7 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type TeamMemberSumOrderByAggregateInput = {
@@ -34930,6 +34114,7 @@ export namespace Prisma {
     invitedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type InvitationMaxOrderByAggregateInput = {
@@ -34941,6 +34126,7 @@ export namespace Prisma {
     invitedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type InvitationMinOrderByAggregateInput = {
@@ -34952,6 +34138,7 @@ export namespace Prisma {
     invitedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type PaymentCountOrderByAggregateInput = {
@@ -34962,6 +34149,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
   }
 
@@ -34973,6 +34161,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
   }
 
@@ -34984,6 +34173,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
     productId?: SortOrder
   }
 
@@ -35002,6 +34192,7 @@ export namespace Prisma {
     servicesDeclined?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type ParterAvgOrderByAggregateInput = {
@@ -35018,6 +34209,7 @@ export namespace Prisma {
     paymentsDue?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type ParterMinOrderByAggregateInput = {
@@ -35028,6 +34220,7 @@ export namespace Prisma {
     paymentsDue?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    isDeprecated?: SortOrder
   }
 
   export type ParterSumOrderByAggregateInput = {
@@ -35455,13 +34648,6 @@ export namespace Prisma {
     connect?: Enumerable<ProductWhereUniqueInput>
   }
 
-  export type ServiceTemplateCreateNestedManyWithoutServiceInput = {
-    create?: XOR<Enumerable<ServiceTemplateCreateWithoutServiceInput>, Enumerable<ServiceTemplateUncheckedCreateWithoutServiceInput>>
-    connectOrCreate?: Enumerable<ServiceTemplateCreateOrConnectWithoutServiceInput>
-    createMany?: ServiceTemplateCreateManyServiceInputEnvelope
-    connect?: Enumerable<ServiceTemplateWhereUniqueInput>
-  }
-
   export type ServiceFormCreateNestedManyWithoutServiceInput = {
     create?: XOR<Enumerable<ServiceFormCreateWithoutServiceInput>, Enumerable<ServiceFormUncheckedCreateWithoutServiceInput>>
     connectOrCreate?: Enumerable<ServiceFormCreateOrConnectWithoutServiceInput>
@@ -35474,13 +34660,6 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<ProductCreateOrConnectWithoutServiceInput>
     createMany?: ProductCreateManyServiceInputEnvelope
     connect?: Enumerable<ProductWhereUniqueInput>
-  }
-
-  export type ServiceTemplateUncheckedCreateNestedManyWithoutServiceInput = {
-    create?: XOR<Enumerable<ServiceTemplateCreateWithoutServiceInput>, Enumerable<ServiceTemplateUncheckedCreateWithoutServiceInput>>
-    connectOrCreate?: Enumerable<ServiceTemplateCreateOrConnectWithoutServiceInput>
-    createMany?: ServiceTemplateCreateManyServiceInputEnvelope
-    connect?: Enumerable<ServiceTemplateWhereUniqueInput>
   }
 
   export type ServiceFormUncheckedCreateNestedManyWithoutServiceInput = {
@@ -35525,20 +34704,6 @@ export namespace Prisma {
     deleteMany?: Enumerable<ProductScalarWhereInput>
   }
 
-  export type ServiceTemplateUpdateManyWithoutServiceNestedInput = {
-    create?: XOR<Enumerable<ServiceTemplateCreateWithoutServiceInput>, Enumerable<ServiceTemplateUncheckedCreateWithoutServiceInput>>
-    connectOrCreate?: Enumerable<ServiceTemplateCreateOrConnectWithoutServiceInput>
-    upsert?: Enumerable<ServiceTemplateUpsertWithWhereUniqueWithoutServiceInput>
-    createMany?: ServiceTemplateCreateManyServiceInputEnvelope
-    set?: Enumerable<ServiceTemplateWhereUniqueInput>
-    disconnect?: Enumerable<ServiceTemplateWhereUniqueInput>
-    delete?: Enumerable<ServiceTemplateWhereUniqueInput>
-    connect?: Enumerable<ServiceTemplateWhereUniqueInput>
-    update?: Enumerable<ServiceTemplateUpdateWithWhereUniqueWithoutServiceInput>
-    updateMany?: Enumerable<ServiceTemplateUpdateManyWithWhereWithoutServiceInput>
-    deleteMany?: Enumerable<ServiceTemplateScalarWhereInput>
-  }
-
   export type ServiceFormUpdateManyWithoutServiceNestedInput = {
     create?: XOR<Enumerable<ServiceFormCreateWithoutServiceInput>, Enumerable<ServiceFormUncheckedCreateWithoutServiceInput>>
     connectOrCreate?: Enumerable<ServiceFormCreateOrConnectWithoutServiceInput>
@@ -35567,20 +34732,6 @@ export namespace Prisma {
     deleteMany?: Enumerable<ProductScalarWhereInput>
   }
 
-  export type ServiceTemplateUncheckedUpdateManyWithoutServiceNestedInput = {
-    create?: XOR<Enumerable<ServiceTemplateCreateWithoutServiceInput>, Enumerable<ServiceTemplateUncheckedCreateWithoutServiceInput>>
-    connectOrCreate?: Enumerable<ServiceTemplateCreateOrConnectWithoutServiceInput>
-    upsert?: Enumerable<ServiceTemplateUpsertWithWhereUniqueWithoutServiceInput>
-    createMany?: ServiceTemplateCreateManyServiceInputEnvelope
-    set?: Enumerable<ServiceTemplateWhereUniqueInput>
-    disconnect?: Enumerable<ServiceTemplateWhereUniqueInput>
-    delete?: Enumerable<ServiceTemplateWhereUniqueInput>
-    connect?: Enumerable<ServiceTemplateWhereUniqueInput>
-    update?: Enumerable<ServiceTemplateUpdateWithWhereUniqueWithoutServiceInput>
-    updateMany?: Enumerable<ServiceTemplateUpdateManyWithWhereWithoutServiceInput>
-    deleteMany?: Enumerable<ServiceTemplateScalarWhereInput>
-  }
-
   export type ServiceFormUncheckedUpdateManyWithoutServiceNestedInput = {
     create?: XOR<Enumerable<ServiceFormCreateWithoutServiceInput>, Enumerable<ServiceFormUncheckedCreateWithoutServiceInput>>
     connectOrCreate?: Enumerable<ServiceFormCreateOrConnectWithoutServiceInput>
@@ -35593,20 +34744,6 @@ export namespace Prisma {
     update?: Enumerable<ServiceFormUpdateWithWhereUniqueWithoutServiceInput>
     updateMany?: Enumerable<ServiceFormUpdateManyWithWhereWithoutServiceInput>
     deleteMany?: Enumerable<ServiceFormScalarWhereInput>
-  }
-
-  export type ServiceCreateNestedOneWithoutTemplatesInput = {
-    create?: XOR<ServiceCreateWithoutTemplatesInput, ServiceUncheckedCreateWithoutTemplatesInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutTemplatesInput
-    connect?: ServiceWhereUniqueInput
-  }
-
-  export type ServiceUpdateOneRequiredWithoutTemplatesNestedInput = {
-    create?: XOR<ServiceCreateWithoutTemplatesInput, ServiceUncheckedCreateWithoutTemplatesInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutTemplatesInput
-    upsert?: ServiceUpsertWithoutTemplatesInput
-    connect?: ServiceWhereUniqueInput
-    update?: XOR<ServiceUpdateWithoutTemplatesInput, ServiceUncheckedUpdateWithoutTemplatesInput>
   }
 
   export type ServiceCreateNestedOneWithoutFormsInput = {
@@ -36587,6 +35724,7 @@ export namespace Prisma {
     launchOwnership: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     team: TeamCreateNestedOneWithoutTeamMemberInput
   }
 
@@ -36599,6 +35737,7 @@ export namespace Prisma {
     teamId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type TeamMemberCreateOrConnectWithoutUserInput = {
@@ -36616,6 +35755,9 @@ export namespace Prisma {
     type: string
     provider: string
     scope: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountUncheckedCreateWithoutUserInput = {
@@ -36623,6 +35765,9 @@ export namespace Prisma {
     type: string
     provider: string
     scope: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AccountCreateOrConnectWithoutUserInput = {
@@ -36644,6 +35789,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     Team?: TeamCreateNestedManyWithoutProductInput
     service?: ServiceCreateNestedOneWithoutProductsInput
@@ -36660,6 +35806,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId?: string | null
     Team?: TeamUncheckedCreateNestedManyWithoutProductInput
@@ -36706,6 +35853,7 @@ export namespace Prisma {
     userId?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -36733,6 +35881,9 @@ export namespace Prisma {
     type?: StringFilter | string
     provider?: StringFilter | string
     scope?: StringFilter | string
+    isDeprecated?: BoolFilter | boolean
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
   }
 
   export type ProductUpsertWithWhereUniqueWithoutUserInput = {
@@ -36763,6 +35914,7 @@ export namespace Prisma {
     status?: StringFilter | string
     currentState?: EnumProductActivityStageFilter | ProductActivityStage
     createdAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     updatedAt?: DateTimeFilter | Date | string
     serviceId?: StringNullableFilter | string | null
     userId?: StringFilter | string
@@ -36786,8 +35938,8 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     products?: ProductCreateNestedManyWithoutServiceInput
-    templates?: ServiceTemplateCreateNestedManyWithoutServiceInput
     forms?: ServiceFormCreateNestedManyWithoutServiceInput
   }
 
@@ -36809,8 +35961,8 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     products?: ProductUncheckedCreateNestedManyWithoutServiceInput
-    templates?: ServiceTemplateUncheckedCreateNestedManyWithoutServiceInput
     forms?: ServiceFormUncheckedCreateNestedManyWithoutServiceInput
   }
 
@@ -36826,23 +35978,25 @@ export namespace Prisma {
 
   export type ServiceCategoryFormCreateWithoutCategoryInput = {
     id?: string
-    title?: string | null
+    title: string
     description?: string | null
     type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     subForm?: ServiceCategorySubFormCreateNestedManyWithoutCategoryInput
   }
 
   export type ServiceCategoryFormUncheckedCreateWithoutCategoryInput = {
     id?: string
-    title?: string | null
+    title: string
     description?: string | null
     type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     subForm?: ServiceCategorySubFormUncheckedCreateNestedManyWithoutCategoryInput
   }
 
@@ -36893,6 +36047,7 @@ export namespace Prisma {
     agentIsCalled?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     serviceCategoryId?: StringFilter | string
   }
 
@@ -36917,12 +36072,13 @@ export namespace Prisma {
     OR?: Enumerable<ServiceCategoryFormScalarWhereInput>
     NOT?: Enumerable<ServiceCategoryFormScalarWhereInput>
     id?: StringFilter | string
-    title?: StringNullableFilter | string | null
+    title?: StringFilter | string
     description?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     serviceCategoryId?: StringFilter | string
   }
 
@@ -36964,6 +36120,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ServiceCategorySubFormUncheckedCreateWithoutCategoryInput = {
@@ -36979,6 +36136,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ServiceCategorySubFormCreateOrConnectWithoutCategoryInput = {
@@ -37048,28 +36206,31 @@ export namespace Prisma {
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     formId?: StringFilter | string
   }
 
   export type ServiceCategoryFormCreateWithoutSubFormInput = {
     id?: string
-    title?: string | null
+    title: string
     description?: string | null
     type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     category: ServiceCategoryCreateNestedOneWithoutFormInput
   }
 
   export type ServiceCategoryFormUncheckedCreateWithoutSubFormInput = {
     id?: string
-    title?: string | null
+    title: string
     description?: string | null
     type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     serviceCategoryId: string
   }
 
@@ -37085,23 +36246,25 @@ export namespace Prisma {
 
   export type ServiceCategoryFormUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     category?: ServiceCategoryUpdateOneRequiredWithoutFormNestedInput
   }
 
   export type ServiceCategoryFormUncheckedUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -37139,6 +36302,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     Team?: TeamCreateNestedManyWithoutProductInput
     user: UserCreateNestedOneWithoutProductInput
@@ -37155,6 +36319,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     userId: string
     Team?: TeamUncheckedCreateNestedManyWithoutProductInput
@@ -37172,52 +36337,26 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ServiceTemplateCreateWithoutServiceInput = {
-    id?: string
-    name: string
-    type: string
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ServiceTemplateUncheckedCreateWithoutServiceInput = {
-    id?: string
-    name: string
-    type: string
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ServiceTemplateCreateOrConnectWithoutServiceInput = {
-    where: ServiceTemplateWhereUniqueInput
-    create: XOR<ServiceTemplateCreateWithoutServiceInput, ServiceTemplateUncheckedCreateWithoutServiceInput>
-  }
-
-  export type ServiceTemplateCreateManyServiceInputEnvelope = {
-    data: Enumerable<ServiceTemplateCreateManyServiceInput>
-    skipDuplicates?: boolean
-  }
-
   export type ServiceFormCreateWithoutServiceInput = {
     id?: string
-    title?: string | null
+    title: string
     type?: string | null
     description?: string | null
     compulsory?: boolean
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceSubForm?: ServiceSubFormCreateNestedManyWithoutServiceFormInput
   }
 
   export type ServiceFormUncheckedCreateWithoutServiceInput = {
     id?: string
-    title?: string | null
+    title: string
     type?: string | null
     description?: string | null
     compulsory?: boolean
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
   }
@@ -37273,35 +36412,6 @@ export namespace Prisma {
     data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutProductsInput>
   }
 
-  export type ServiceTemplateUpsertWithWhereUniqueWithoutServiceInput = {
-    where: ServiceTemplateWhereUniqueInput
-    update: XOR<ServiceTemplateUpdateWithoutServiceInput, ServiceTemplateUncheckedUpdateWithoutServiceInput>
-    create: XOR<ServiceTemplateCreateWithoutServiceInput, ServiceTemplateUncheckedCreateWithoutServiceInput>
-  }
-
-  export type ServiceTemplateUpdateWithWhereUniqueWithoutServiceInput = {
-    where: ServiceTemplateWhereUniqueInput
-    data: XOR<ServiceTemplateUpdateWithoutServiceInput, ServiceTemplateUncheckedUpdateWithoutServiceInput>
-  }
-
-  export type ServiceTemplateUpdateManyWithWhereWithoutServiceInput = {
-    where: ServiceTemplateScalarWhereInput
-    data: XOR<ServiceTemplateUpdateManyMutationInput, ServiceTemplateUncheckedUpdateManyWithoutTemplatesInput>
-  }
-
-  export type ServiceTemplateScalarWhereInput = {
-    AND?: Enumerable<ServiceTemplateScalarWhereInput>
-    OR?: Enumerable<ServiceTemplateScalarWhereInput>
-    NOT?: Enumerable<ServiceTemplateScalarWhereInput>
-    id?: StringFilter | string
-    name?: StringFilter | string
-    type?: StringFilter | string
-    description?: StringFilter | string
-    createdAt?: DateTimeFilter | Date | string
-    updatedAt?: DateTimeFilter | Date | string
-    serviceId?: StringFilter | string
-  }
-
   export type ServiceFormUpsertWithWhereUniqueWithoutServiceInput = {
     where: ServiceFormWhereUniqueInput
     update: XOR<ServiceFormUpdateWithoutServiceInput, ServiceFormUncheckedUpdateWithoutServiceInput>
@@ -37323,115 +36433,14 @@ export namespace Prisma {
     OR?: Enumerable<ServiceFormScalarWhereInput>
     NOT?: Enumerable<ServiceFormScalarWhereInput>
     id?: StringFilter | string
-    title?: StringNullableFilter | string | null
+    title?: StringFilter | string
     type?: StringNullableFilter | string | null
     description?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     updatedAt?: DateTimeFilter | Date | string
     serviceId?: StringFilter | string
-  }
-
-  export type ServiceCreateWithoutTemplatesInput = {
-    id?: string
-    name: string
-    description: string
-    country: string
-    currency: string
-    amount: number
-    timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
-    hasShares?: boolean
-    hasAgent?: boolean
-    hasOwner?: boolean
-    hasController?: boolean
-    controllerIsCalled?: string | null
-    OwnerIsCalled?: string | null
-    agentIsCalled?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    category: ServiceCategoryCreateNestedOneWithoutServicesInput
-    products?: ProductCreateNestedManyWithoutServiceInput
-    forms?: ServiceFormCreateNestedManyWithoutServiceInput
-  }
-
-  export type ServiceUncheckedCreateWithoutTemplatesInput = {
-    id?: string
-    name: string
-    description: string
-    country: string
-    currency: string
-    amount: number
-    timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
-    hasShares?: boolean
-    hasAgent?: boolean
-    hasOwner?: boolean
-    hasController?: boolean
-    controllerIsCalled?: string | null
-    OwnerIsCalled?: string | null
-    agentIsCalled?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    serviceCategoryId: string
-    products?: ProductUncheckedCreateNestedManyWithoutServiceInput
-    forms?: ServiceFormUncheckedCreateNestedManyWithoutServiceInput
-  }
-
-  export type ServiceCreateOrConnectWithoutTemplatesInput = {
-    where: ServiceWhereUniqueInput
-    create: XOR<ServiceCreateWithoutTemplatesInput, ServiceUncheckedCreateWithoutTemplatesInput>
-  }
-
-  export type ServiceUpsertWithoutTemplatesInput = {
-    update: XOR<ServiceUpdateWithoutTemplatesInput, ServiceUncheckedUpdateWithoutTemplatesInput>
-    create: XOR<ServiceCreateWithoutTemplatesInput, ServiceUncheckedCreateWithoutTemplatesInput>
-  }
-
-  export type ServiceUpdateWithoutTemplatesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    currency?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    hasShares?: BoolFieldUpdateOperationsInput | boolean
-    hasAgent?: BoolFieldUpdateOperationsInput | boolean
-    hasOwner?: BoolFieldUpdateOperationsInput | boolean
-    hasController?: BoolFieldUpdateOperationsInput | boolean
-    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput
-    products?: ProductUpdateManyWithoutServiceNestedInput
-    forms?: ServiceFormUpdateManyWithoutServiceNestedInput
-  }
-
-  export type ServiceUncheckedUpdateWithoutTemplatesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    currency?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    hasShares?: BoolFieldUpdateOperationsInput | boolean
-    hasAgent?: BoolFieldUpdateOperationsInput | boolean
-    hasOwner?: BoolFieldUpdateOperationsInput | boolean
-    hasController?: BoolFieldUpdateOperationsInput | boolean
-    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceCategoryId?: StringFieldUpdateOperationsInput | string
-    products?: ProductUncheckedUpdateManyWithoutServiceNestedInput
-    forms?: ServiceFormUncheckedUpdateManyWithoutServiceNestedInput
   }
 
   export type ServiceCreateWithoutFormsInput = {
@@ -37452,9 +36461,9 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     category: ServiceCategoryCreateNestedOneWithoutServicesInput
     products?: ProductCreateNestedManyWithoutServiceInput
-    templates?: ServiceTemplateCreateNestedManyWithoutServiceInput
   }
 
   export type ServiceUncheckedCreateWithoutFormsInput = {
@@ -37475,9 +36484,9 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     serviceCategoryId: string
     products?: ProductUncheckedCreateNestedManyWithoutServiceInput
-    templates?: ServiceTemplateUncheckedCreateNestedManyWithoutServiceInput
   }
 
   export type ServiceCreateOrConnectWithoutFormsInput = {
@@ -37496,6 +36505,7 @@ export namespace Prisma {
     fileLink?: string | null
     dependsOn?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -37511,6 +36521,7 @@ export namespace Prisma {
     fileLink?: string | null
     dependsOn?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -37548,9 +36559,9 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     category?: ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput
     products?: ProductUpdateManyWithoutServiceNestedInput
-    templates?: ServiceTemplateUpdateManyWithoutServiceNestedInput
   }
 
   export type ServiceUncheckedUpdateWithoutFormsInput = {
@@ -37571,9 +36582,9 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
     products?: ProductUncheckedUpdateManyWithoutServiceNestedInput
-    templates?: ServiceTemplateUncheckedUpdateManyWithoutServiceNestedInput
   }
 
   export type ServiceSubFormUpsertWithWhereUniqueWithoutServiceFormInput = {
@@ -37606,6 +36617,7 @@ export namespace Prisma {
     fileLink?: StringNullableFilter | string | null
     dependsOn?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
+    isDeprecated?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     serviceFormId?: StringFilter | string
@@ -37613,22 +36625,24 @@ export namespace Prisma {
 
   export type ServiceFormCreateWithoutServiceSubFormInput = {
     id?: string
-    title?: string | null
+    title: string
     type?: string | null
     description?: string | null
     compulsory?: boolean
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     service: ServiceCreateNestedOneWithoutFormsInput
   }
 
   export type ServiceFormUncheckedCreateWithoutServiceSubFormInput = {
     id?: string
-    title?: string | null
+    title: string
     type?: string | null
     description?: string | null
     compulsory?: boolean
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId: string
   }
@@ -37645,22 +36659,24 @@ export namespace Prisma {
 
   export type ServiceFormUpdateWithoutServiceSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     type?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneRequiredWithoutFormsNestedInput
   }
 
   export type ServiceFormUncheckedUpdateWithoutServiceSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     type?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: StringFieldUpdateOperationsInput | string
   }
@@ -37672,6 +36688,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     invitation?: InvitationCreateNestedManyWithoutTeamInput
     teamMember?: TeamMemberCreateNestedManyWithoutTeamInput
   }
@@ -37683,6 +36700,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     invitation?: InvitationUncheckedCreateNestedManyWithoutTeamInput
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
   }
@@ -37715,8 +36733,8 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     category: ServiceCategoryCreateNestedOneWithoutServicesInput
-    templates?: ServiceTemplateCreateNestedManyWithoutServiceInput
     forms?: ServiceFormCreateNestedManyWithoutServiceInput
   }
 
@@ -37738,8 +36756,8 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     serviceCategoryId: string
-    templates?: ServiceTemplateUncheckedCreateNestedManyWithoutServiceInput
     forms?: ServiceFormUncheckedCreateNestedManyWithoutServiceInput
   }
 
@@ -37819,6 +36837,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type PaymentUncheckedCreateWithoutProductsInput = {
@@ -37829,6 +36848,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type PaymentCreateOrConnectWithoutProductsInput = {
@@ -37853,6 +36873,7 @@ export namespace Prisma {
     fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productSubForm?: ProductQASubFormCreateNestedManyWithoutProductQAInput
   }
 
@@ -37868,6 +36889,7 @@ export namespace Prisma {
     fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
   }
 
@@ -37907,6 +36929,7 @@ export namespace Prisma {
     userId?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     productId?: StringFilter | string
   }
 
@@ -37933,8 +36956,8 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     category?: ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput
-    templates?: ServiceTemplateUpdateManyWithoutServiceNestedInput
     forms?: ServiceFormUpdateManyWithoutServiceNestedInput
   }
 
@@ -37956,8 +36979,8 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     serviceCategoryId?: StringFieldUpdateOperationsInput | string
-    templates?: ServiceTemplateUncheckedUpdateManyWithoutServiceNestedInput
     forms?: ServiceFormUncheckedUpdateManyWithoutServiceNestedInput
   }
 
@@ -38051,6 +37074,7 @@ export namespace Prisma {
     email?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     productId?: StringFilter | string
   }
 
@@ -38085,6 +37109,7 @@ export namespace Prisma {
     fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
     productId?: StringFilter | string
   }
 
@@ -38097,6 +37122,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     Team?: TeamCreateNestedManyWithoutProductInput
     service?: ServiceCreateNestedOneWithoutProductsInput
@@ -38113,6 +37139,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId?: string | null
     userId: string
@@ -38131,6 +37158,7 @@ export namespace Prisma {
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
   }
 
   export type ProductQASubFormUncheckedCreateWithoutProductQAInput = {
@@ -38139,6 +37167,7 @@ export namespace Prisma {
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
   }
 
   export type ProductQASubFormCreateOrConnectWithoutProductQAInput = {
@@ -38165,6 +37194,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Team?: TeamUpdateManyWithoutProductNestedInput
     service?: ServiceUpdateOneWithoutProductsNestedInput
@@ -38181,6 +37211,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
@@ -38213,6 +37244,7 @@ export namespace Prisma {
     answer?: StringNullableListFilter
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
+    isDeprecated?: BoolFilter | boolean
     productQAId?: StringFilter | string
   }
 
@@ -38228,6 +37260,7 @@ export namespace Prisma {
     fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     products: ProductCreateNestedOneWithoutProductQAInput
   }
 
@@ -38243,6 +37276,7 @@ export namespace Prisma {
     fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productId: string
   }
 
@@ -38268,6 +37302,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     products?: ProductUpdateOneRequiredWithoutProductQANestedInput
   }
 
@@ -38283,6 +37318,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productId?: StringFieldUpdateOperationsInput | string
   }
 
@@ -38295,6 +37331,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     service?: ServiceCreateNestedOneWithoutProductsInput
     user: UserCreateNestedOneWithoutProductInput
@@ -38311,6 +37348,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId?: string | null
     userId: string
@@ -38331,6 +37369,7 @@ export namespace Prisma {
     invitedBy: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type InvitationUncheckedCreateWithoutTeamInput = {
@@ -38341,6 +37380,7 @@ export namespace Prisma {
     invitedBy: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type InvitationCreateOrConnectWithoutTeamInput = {
@@ -38361,6 +37401,7 @@ export namespace Prisma {
     launchOwnership: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     user: UserCreateNestedOneWithoutTeamMemberInput
   }
 
@@ -38373,6 +37414,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type TeamMemberCreateOrConnectWithoutTeamInput = {
@@ -38399,6 +37441,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneWithoutProductsNestedInput
     user?: UserUpdateOneRequiredWithoutProductNestedInput
@@ -38415,6 +37458,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
@@ -38450,6 +37494,7 @@ export namespace Prisma {
     invitedBy?: StringFilter | string
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
   }
 
   export type TeamMemberUpsertWithWhereUniqueWithoutTeamInput = {
@@ -38475,6 +37520,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     product: ProductCreateNestedOneWithoutTeamInput
     invitation?: InvitationCreateNestedManyWithoutTeamInput
   }
@@ -38486,6 +37532,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productId: string
     invitation?: InvitationUncheckedCreateNestedManyWithoutTeamInput
   }
@@ -38570,6 +37617,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     product?: ProductUpdateOneRequiredWithoutTeamNestedInput
     invitation?: InvitationUpdateManyWithoutTeamNestedInput
   }
@@ -38581,6 +37629,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productId?: StringFieldUpdateOperationsInput | string
     invitation?: InvitationUncheckedUpdateManyWithoutTeamNestedInput
   }
@@ -38655,6 +37704,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     product: ProductCreateNestedOneWithoutTeamInput
     teamMember?: TeamMemberCreateNestedManyWithoutTeamInput
   }
@@ -38666,6 +37716,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
     productId: string
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
   }
@@ -38687,6 +37738,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     product?: ProductUpdateOneRequiredWithoutTeamNestedInput
     teamMember?: TeamMemberUpdateManyWithoutTeamNestedInput
   }
@@ -38698,6 +37750,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productId?: StringFieldUpdateOperationsInput | string
     teamMember?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
   }
@@ -38711,6 +37764,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     Team?: TeamCreateNestedManyWithoutProductInput
     service?: ServiceCreateNestedOneWithoutProductsInput
@@ -38727,6 +37781,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId?: string | null
     userId: string
@@ -38753,6 +37808,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Team?: TeamUpdateManyWithoutProductNestedInput
     service?: ServiceUpdateOneWithoutProductsNestedInput
@@ -38769,6 +37825,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
@@ -38825,6 +37882,7 @@ export namespace Prisma {
     teamId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type AccountCreateManyUserInput = {
@@ -38832,6 +37890,9 @@ export namespace Prisma {
     type: string
     provider: string
     scope: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProductCreateManyUserInput = {
@@ -38843,6 +37904,7 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     serviceId?: string | null
   }
@@ -38855,6 +37917,7 @@ export namespace Prisma {
     launchOwnership?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     team?: TeamUpdateOneRequiredWithoutTeamMemberNestedInput
   }
 
@@ -38867,6 +37930,7 @@ export namespace Prisma {
     teamId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TeamMemberUncheckedUpdateManyWithoutTeamMemberInput = {
@@ -38878,6 +37942,7 @@ export namespace Prisma {
     teamId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -38885,6 +37950,9 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountUncheckedUpdateWithoutUserInput = {
@@ -38892,6 +37960,9 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountUncheckedUpdateManyWithoutAccountInput = {
@@ -38899,6 +37970,9 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     scope?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductUpdateWithoutUserInput = {
@@ -38910,6 +37984,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Team?: TeamUpdateManyWithoutProductNestedInput
     service?: ServiceUpdateOneWithoutProductsNestedInput
@@ -38926,6 +38001,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: NullableStringFieldUpdateOperationsInput | string | null
     Team?: TeamUncheckedUpdateManyWithoutProductNestedInput
@@ -38942,6 +38018,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceId?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -38964,16 +38041,18 @@ export namespace Prisma {
     agentIsCalled?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ServiceCategoryFormCreateManyCategoryInput = {
     id?: string
-    title?: string | null
+    title: string
     description?: string | null
     type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ServiceUpdateWithoutCategoryInput = {
@@ -38994,8 +38073,8 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     products?: ProductUpdateManyWithoutServiceNestedInput
-    templates?: ServiceTemplateUpdateManyWithoutServiceNestedInput
     forms?: ServiceFormUpdateManyWithoutServiceNestedInput
   }
 
@@ -39017,8 +38096,8 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     products?: ProductUncheckedUpdateManyWithoutServiceNestedInput
-    templates?: ServiceTemplateUncheckedUpdateManyWithoutServiceNestedInput
     forms?: ServiceFormUncheckedUpdateManyWithoutServiceNestedInput
   }
 
@@ -39040,38 +38119,42 @@ export namespace Prisma {
     agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceCategoryFormUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     subForm?: ServiceCategorySubFormUpdateManyWithoutCategoryNestedInput
   }
 
   export type ServiceCategoryFormUncheckedUpdateWithoutCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     subForm?: ServiceCategorySubFormUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type ServiceCategoryFormUncheckedUpdateManyWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceCategorySubFormCreateManyCategoryInput = {
@@ -39087,6 +38170,7 @@ export namespace Prisma {
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ServiceCategorySubFormUpdateWithoutCategoryInput = {
@@ -39102,6 +38186,7 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceCategorySubFormUncheckedUpdateWithoutCategoryInput = {
@@ -39117,6 +38202,7 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ServiceCategorySubFormUncheckedUpdateManyWithoutSubFormInput = {
@@ -39132,6 +38218,7 @@ export namespace Prisma {
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductCreateManyServiceInput = {
@@ -39143,26 +38230,19 @@ export namespace Prisma {
     status?: string
     currentState?: ProductActivityStage
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
     userId: string
   }
 
-  export type ServiceTemplateCreateManyServiceInput = {
-    id?: string
-    name: string
-    type: string
-    description: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
   export type ServiceFormCreateManyServiceInput = {
     id?: string
-    title?: string | null
+    title: string
     type?: string | null
     description?: string | null
     compulsory?: boolean
     createdAt?: Date | string
+    isDeprecated?: boolean
     updatedAt?: Date | string
   }
 
@@ -39175,6 +38255,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Team?: TeamUpdateManyWithoutProductNestedInput
     user?: UserUpdateOneRequiredWithoutProductNestedInput
@@ -39191,6 +38272,7 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
     Team?: TeamUncheckedUpdateManyWithoutProductNestedInput
@@ -39207,66 +38289,43 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ServiceTemplateUpdateWithoutServiceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ServiceTemplateUncheckedUpdateWithoutServiceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ServiceTemplateUncheckedUpdateManyWithoutTemplatesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type ServiceFormUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     type?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceSubForm?: ServiceSubFormUpdateManyWithoutServiceFormNestedInput
   }
 
   export type ServiceFormUncheckedUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     type?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     serviceSubForm?: ServiceSubFormUncheckedUpdateManyWithoutServiceFormNestedInput
   }
 
   export type ServiceFormUncheckedUpdateManyWithoutFormsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     type?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -39281,6 +38340,7 @@ export namespace Prisma {
     fileLink?: string | null
     dependsOn?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -39296,6 +38356,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -39311,6 +38372,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -39326,6 +38388,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -39337,6 +38400,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type PaymentCreateManyProductsInput = {
@@ -39347,6 +38411,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type ProductQACreateManyProductsInput = {
@@ -39361,6 +38426,7 @@ export namespace Prisma {
     fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type TeamUpdateWithoutProductInput = {
@@ -39370,6 +38436,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     invitation?: InvitationUpdateManyWithoutTeamNestedInput
     teamMember?: TeamMemberUpdateManyWithoutTeamNestedInput
   }
@@ -39381,6 +38448,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     invitation?: InvitationUncheckedUpdateManyWithoutTeamNestedInput
     teamMember?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
   }
@@ -39392,6 +38460,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PaymentUpdateWithoutProductsInput = {
@@ -39402,6 +38471,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PaymentUncheckedUpdateWithoutProductsInput = {
@@ -39412,6 +38482,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PaymentUncheckedUpdateManyWithoutPaymentInput = {
@@ -39422,6 +38493,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductQAUpdateWithoutProductsInput = {
@@ -39436,6 +38508,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productSubForm?: ProductQASubFormUpdateManyWithoutProductQANestedInput
   }
 
@@ -39451,6 +38524,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     productSubForm?: ProductQASubFormUncheckedUpdateManyWithoutProductQANestedInput
   }
 
@@ -39466,6 +38540,7 @@ export namespace Prisma {
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductQASubFormCreateManyProductQAInput = {
@@ -39474,6 +38549,7 @@ export namespace Prisma {
     answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
     compulsory?: boolean
+    isDeprecated?: boolean
   }
 
   export type ProductQASubFormUpdateWithoutProductQAInput = {
@@ -39482,6 +38558,7 @@ export namespace Prisma {
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductQASubFormUncheckedUpdateWithoutProductQAInput = {
@@ -39490,6 +38567,7 @@ export namespace Prisma {
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ProductQASubFormUncheckedUpdateManyWithoutProductSubFormInput = {
@@ -39498,6 +38576,7 @@ export namespace Prisma {
     answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type InvitationCreateManyTeamInput = {
@@ -39508,6 +38587,7 @@ export namespace Prisma {
     invitedBy: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type TeamMemberCreateManyTeamInput = {
@@ -39519,6 +38599,7 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    isDeprecated?: boolean
   }
 
   export type InvitationUpdateWithoutTeamInput = {
@@ -39529,6 +38610,7 @@ export namespace Prisma {
     invitedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type InvitationUncheckedUpdateWithoutTeamInput = {
@@ -39539,6 +38621,7 @@ export namespace Prisma {
     invitedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type InvitationUncheckedUpdateManyWithoutInvitationInput = {
@@ -39549,6 +38632,7 @@ export namespace Prisma {
     invitedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TeamMemberUpdateWithoutTeamInput = {
@@ -39559,6 +38643,7 @@ export namespace Prisma {
     launchOwnership?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutTeamMemberNestedInput
   }
 
@@ -39571,6 +38656,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
 

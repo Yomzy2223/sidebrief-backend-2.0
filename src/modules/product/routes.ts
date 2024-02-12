@@ -26,7 +26,7 @@ router.post(
   validator(initializeProductCredentials),
   CreateProduct
 );
-router.get("/:userId", userAuth, GetAllProductsByUserId);
+router.get("user/:userId", userAuth, GetAllProductsByUserId);
 router.get("/:id", GetProductById);
 
 router.post(

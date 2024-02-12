@@ -231,6 +231,13 @@ const saveServiceForm = async (
       throw new BadRequest("Service does not exist");
     }
 
+    const checkServiceForm = await prisma.serviceForm.findUnique({
+      where: { title: serviceFormPayload.title },
+    });
+    if (checkServiceForm) {
+      throw new BadRequest("Service form with this title already exists");
+    }
+
     const serviceForm = await prisma.serviceForm.create({
       data: serviceFormPayload,
     });

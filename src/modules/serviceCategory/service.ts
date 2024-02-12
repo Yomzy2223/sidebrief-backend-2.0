@@ -193,6 +193,13 @@ const saveServiceCategoryForm = async (
       throw new BadRequest("Service does not exist");
     }
 
+    const checkServiceForm = await prisma.serviceCategoryForm.findUnique({
+      where: { title: serviceCategoryPayload.title },
+    });
+    if (checkServiceForm) {
+      throw new BadRequest("Service form with this title already exists");
+    }
+
     const categoryForm = await prisma.serviceCategoryForm.create({
       data: serviceCategoryPayload,
     });

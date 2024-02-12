@@ -114,6 +114,9 @@ model Account {
       type String
       provider String
       scope String
+          isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
       user User @relation(fields: [userId], references: [id])
 }
 
@@ -154,6 +157,7 @@ model UserDocument {
       type String
       description String
       userId String
+        isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
@@ -170,12 +174,13 @@ model ServiceCategory {
 
 model ServiceCategoryForm {  
   id String @id @default(uuid())
-  title String?
+  title String @unique
   description String?
   type String?
   compulsory Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+        isDeprecated Boolean   @default(false)
   category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
   serviceCategoryId String
   subForm ServiceCategorySubForm[]
@@ -194,6 +199,7 @@ model ServiceCategorySubForm {
   compulsory Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  isDeprecated Boolean   @default(false)
   category ServiceCategoryForm @relation(fields: [formId], references: [id])
   formId String
 }
@@ -215,29 +221,20 @@ model Service {
       agentIsCalled String?
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
       category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
       serviceCategoryId String
       products Product[]
-      templates ServiceTemplate[]
       forms ServiceForm[]
-}
-model ServiceTemplate {
-  id String @id @default(uuid())
-  name String
-  type String
-  description String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  service Service @relation(fields: [serviceId], references: [id])
-  serviceId String
 }
 model ServiceForm {  
   id String @id @default(uuid())
-  title String?
+  title String @unique
   type String?
   description String?
   compulsory Boolean @default(false)
   createdAt DateTime @default(now())
+  isDeprecated Boolean   @default(false)
   updatedAt DateTime @default(now())
   service Service @relation(fields: [serviceId], references: [id])
   serviceId String
@@ -252,8 +249,9 @@ model ServiceSubForm {
   fileName String?
   fileType String?
   fileLink String?
-    dependsOn String?
+  dependsOn String?
   compulsory Boolean @default(false)
+  isDeprecated Boolean   @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   serviceForm ServiceForm @relation(fields: [serviceFormId], references: [id])
@@ -270,6 +268,7 @@ model Product {
       status String @default("pending")
       currentState ProductActivityStage @default(START)
       createdAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
       updatedAt DateTime @default(now())
       service Service? @relation(fields: [serviceId], references: [id])
       user User @relation(fields: [userId], references: [id])
@@ -290,6 +289,7 @@ model ProductQA {
   fileLink String?
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  isDeprecated Boolean   @default(false)
   products Product @relation(fields: [productId], references: [id])
   productId String
   productSubForm ProductQASubForm[]
@@ -302,6 +302,7 @@ model ProductQASubForm {
   answer String[]
   type String?
   compulsory Boolean @default(false)
+  isDeprecated Boolean   @default(false)
   productQA ProductQA @relation(fields: [productQAId], references: [id])
   productQAId String
 
@@ -312,6 +313,7 @@ model Claim {
       userId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
 }
 model Team {
       id String @id @default(uuid())
@@ -320,6 +322,7 @@ model Team {
       userId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+        isDeprecated Boolean   @default(false)
       product Product @relation(fields: [productId], references: [id])
       productId String
       invitation Invitation[]
@@ -336,6 +339,7 @@ model TeamMember {
       userId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+        isDeprecated Boolean   @default(false)
       team Team @relation(fields: [teamId], references: [id])
       user User @relation(fields: [userId], references: [id])
 }
@@ -349,6 +353,7 @@ model Invitation {
       invitedBy String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+        isDeprecated Boolean   @default(false)
       team Team @relation(fields: [teamId], references: [id])
    
 }
@@ -360,6 +365,7 @@ model Payment  {
       email String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+        isDeprecated Boolean   @default(false)
       products Product @relation(fields: [productId], references: [id])
       productId String
 }
@@ -379,4 +385,5 @@ model Parter {
       servicesDeclined String[]
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+        isDeprecated Boolean   @default(false)
 }

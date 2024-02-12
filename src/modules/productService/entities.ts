@@ -28,7 +28,7 @@ export interface ProductServiceResponse {
 }
 
 export interface ServiceFormPayload {
-  title?: string;
+  title: string;
   type?: string;
   description?: string;
   compulsory?: boolean;
