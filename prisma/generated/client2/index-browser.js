@@ -196,7 +196,10 @@ exports.Prisma.AccountScalarFieldEnum = {
   userId: 'userId',
   type: 'type',
   provider: 'provider',
-  scope: 'scope'
+  scope: 'scope',
+  isDeprecated: 'isDeprecated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -232,6 +235,7 @@ exports.Prisma.UserDocumentScalarFieldEnum = {
   type: 'type',
   description: 'description',
   userId: 'userId',
+  isDeprecated: 'isDeprecated',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -253,6 +257,7 @@ exports.Prisma.ServiceCategoryFormScalarFieldEnum = {
   compulsory: 'compulsory',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated',
   serviceCategoryId: 'serviceCategoryId'
 };
 
@@ -269,6 +274,7 @@ exports.Prisma.ServiceCategorySubFormScalarFieldEnum = {
   compulsory: 'compulsory',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated',
   formId: 'formId'
 };
 
@@ -290,17 +296,8 @@ exports.Prisma.ServiceScalarFieldEnum = {
   agentIsCalled: 'agentIsCalled',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated',
   serviceCategoryId: 'serviceCategoryId'
-};
-
-exports.Prisma.ServiceTemplateScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  type: 'type',
-  description: 'description',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  serviceId: 'serviceId'
 };
 
 exports.Prisma.ServiceFormScalarFieldEnum = {
@@ -310,6 +307,7 @@ exports.Prisma.ServiceFormScalarFieldEnum = {
   description: 'description',
   compulsory: 'compulsory',
   createdAt: 'createdAt',
+  isDeprecated: 'isDeprecated',
   updatedAt: 'updatedAt',
   serviceId: 'serviceId'
 };
@@ -325,6 +323,7 @@ exports.Prisma.ServiceSubFormScalarFieldEnum = {
   fileLink: 'fileLink',
   dependsOn: 'dependsOn',
   compulsory: 'compulsory',
+  isDeprecated: 'isDeprecated',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   serviceFormId: 'serviceFormId'
@@ -339,6 +338,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   status: 'status',
   currentState: 'currentState',
   createdAt: 'createdAt',
+  isDeprecated: 'isDeprecated',
   updatedAt: 'updatedAt',
   serviceId: 'serviceId',
   userId: 'userId'
@@ -356,6 +356,7 @@ exports.Prisma.ProductQAScalarFieldEnum = {
   fileLink: 'fileLink',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated',
   productId: 'productId'
 };
 
@@ -365,6 +366,7 @@ exports.Prisma.ProductQASubFormScalarFieldEnum = {
   answer: 'answer',
   type: 'type',
   compulsory: 'compulsory',
+  isDeprecated: 'isDeprecated',
   productQAId: 'productQAId'
 };
 
@@ -373,7 +375,8 @@ exports.Prisma.ClaimScalarFieldEnum = {
   value: 'value',
   userId: 'userId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated'
 };
 
 exports.Prisma.TeamScalarFieldEnum = {
@@ -383,6 +386,7 @@ exports.Prisma.TeamScalarFieldEnum = {
   userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated',
   productId: 'productId'
 };
 
@@ -395,7 +399,8 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
   teamId: 'teamId',
   userId: 'userId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated'
 };
 
 exports.Prisma.InvitationScalarFieldEnum = {
@@ -406,7 +411,8 @@ exports.Prisma.InvitationScalarFieldEnum = {
   expireIn: 'expireIn',
   invitedBy: 'invitedBy',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated'
 };
 
 exports.Prisma.PaymentScalarFieldEnum = {
@@ -417,6 +423,7 @@ exports.Prisma.PaymentScalarFieldEnum = {
   email: 'email',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated',
   productId: 'productId'
 };
 
@@ -434,7 +441,8 @@ exports.Prisma.ParterScalarFieldEnum = {
   servicesCompleted: 'servicesCompleted',
   servicesDeclined: 'servicesDeclined',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated'
 };
 
 exports.Prisma.SortOrder = {
@@ -473,7 +481,6 @@ exports.Prisma.ModelName = {
   ServiceCategoryForm: 'ServiceCategoryForm',
   ServiceCategorySubForm: 'ServiceCategorySubForm',
   Service: 'Service',
-  ServiceTemplate: 'ServiceTemplate',
   ServiceForm: 'ServiceForm',
   ServiceSubForm: 'ServiceSubForm',
   Product: 'Product',
