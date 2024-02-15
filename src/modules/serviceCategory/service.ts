@@ -56,11 +56,7 @@ const getAllServiceCategory = async (): Promise<ServiceCategoryResponse> => {
   //  get the service category list from the table
   //  return the service category list to the service category controller
   try {
-    const category = await prisma.serviceCategory.findMany({
-      where: {
-        isDeprecated: false,
-      },
-    });
+    const category = await prisma.serviceCategory.findMany({});
     if (!category) {
       return {
         message: "Empty Data",
@@ -164,12 +160,9 @@ const removeServiceCategory = async (id: string) => {
   //return response to the service category controller
 
   try {
-    const deleteCategory = await prisma.serviceCategory.update({
+    const deleteCategory = await prisma.serviceCategory.delete({
       where: {
         id: id,
-      },
-      data: {
-        isDeprecated: true,
       },
     });
     if (!deleteCategory) {
@@ -240,10 +233,6 @@ const getAllServiceCategoryForm = async (
     const category = await prisma.serviceCategoryForm.findMany({
       where: {
         serviceCategoryId: serviceCategoryId,
-        isDeprecated: false,
-        category: {
-          isDeprecated: false,
-        },
       },
       include: {
         subForm: true,
@@ -346,12 +335,9 @@ const removeServiceCategoryForm = async (id: string) => {
   //return response to the service category controller
 
   try {
-    const deleteCategory = await prisma.serviceCategoryForm.update({
+    const deleteCategory = await prisma.serviceCategoryForm.delete({
       where: {
         id: id,
-      },
-      data: {
-        isDeprecated: true,
       },
     });
     if (!deleteCategory) {
@@ -415,10 +401,6 @@ const getAllServiceCategorySubForm = async (
     const category = await prisma.serviceCategorySubForm.findMany({
       where: {
         formId: formId,
-        isDeprecated: false,
-        category: {
-          isDeprecated: false,
-        },
       },
     });
     if (!category) {
@@ -516,12 +498,9 @@ const removeServiceCategorySubForm = async (id: string) => {
   //return response to the service category controller
 
   try {
-    const deleteCategory = await prisma.serviceCategorySubForm.update({
+    const deleteCategory = await prisma.serviceCategorySubForm.delete({
       where: {
         id: id,
-      },
-      data: {
-        isDeprecated: true,
       },
     });
     if (!deleteCategory) {
