@@ -1,4 +1,3 @@
-
 import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 import { Request } from "express";
@@ -228,7 +227,6 @@ const webhook = async (req: Request) => {
     }
 
     const payload = req.body;
-    console.log("result from flutterwave", payload);
 
     const verifyOption = {
       id: payload?.data?.id,
