@@ -60,7 +60,14 @@ const getAllProductService = async (): Promise<ProductServiceResponse> => {
   //  get the product service  list from the table
   //  return the product service list to the product service controller
   try {
-    const service = await prisma.service.findMany({});
+    const service = await prisma.service.findMany({
+      where: {
+        isDeprecated: false,
+        category: {
+          isDeprecated: false,
+        },
+      },
+    });
     if (!service) {
       return {
         message: "Empty Data",
@@ -92,6 +99,7 @@ const getProductServiceByServiceCategory = async (
     const service = await prisma.service.findMany({
       where: {
         serviceCategoryId: serviceCategoryId,
+        isDeprecated: false,
       },
     });
 
@@ -201,9 +209,12 @@ const removeProductService = async (id: string) => {
       throw new BadRequest("Product service not found!");
     }
 
-    const deleteService = await prisma.service.delete({
+    const deleteService = await prisma.service.update({
       where: {
         id: id,
+      },
+      data: {
+        isDeprecated: true,
       },
     });
 
@@ -272,6 +283,10 @@ const getAllServiceForm = async (
     const service = await prisma.serviceForm.findMany({
       where: {
         serviceId: serviceId,
+        isDeprecated: false,
+        service: {
+          isDeprecated: false,
+        },
       },
     });
     if (!service) {
@@ -332,6 +347,7 @@ const getServiceFormByService = async (
     const serviceForm = await prisma.serviceForm.findMany({
       where: {
         serviceId: serviceId,
+        isDeprecated: false,
       },
     });
 
@@ -438,9 +454,12 @@ const removeServiceForm = async (id: string) => {
       throw new BadRequest("Service form not found!");
     }
 
-    const deleteServiceForm = await prisma.serviceForm.delete({
+    const deleteServiceForm = await prisma.serviceForm.update({
       where: {
         id: id,
+      },
+      data: {
+        isDeprecated: true,
       },
     });
 
@@ -501,6 +520,10 @@ const getAllServiceSubForm = async (
     const category = await prisma.serviceSubForm.findMany({
       where: {
         serviceFormId: serviceFormId,
+        isDeprecated: false,
+        serviceForm: {
+          isDeprecated: false,
+        },
       },
     });
     if (!category) {
@@ -596,9 +619,12 @@ const removeServiceSubForm = async (id: string) => {
   //return response to the service category controller
 
   try {
-    const deleteCategory = await prisma.serviceSubForm.delete({
+    const deleteCategory = await prisma.serviceSubForm.update({
       where: {
         id: id,
+      },
+      data: {
+        isDeprecated: true,
       },
     });
     if (!deleteCategory) {
