@@ -1,4 +1,3 @@
-
 import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 import { Request } from "express";
@@ -267,8 +266,6 @@ const validateCharge = async (otpPayload: any) => {
       .post(url, payload, options)
       .then((response) => console.log(response?.data))
       .catch((err) => console.log(err));
-
-    console.log("testing", validateRes);
 
     const verifyOption = {
       id: validateRes?.data?.id,
