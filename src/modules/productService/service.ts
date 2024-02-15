@@ -100,6 +100,7 @@ const getProductServiceByServiceCategory = async (
       where: {
         serviceCategoryId: serviceCategoryId,
         isDeprecated: false,
+
         category: {
           isDeprecated: false,
         },
@@ -351,9 +352,11 @@ const getServiceFormByService = async (
       where: {
         serviceId: serviceId,
         isDeprecated: false,
+
         service: {
           isDeprecated: false,
         },
+
       },
     });
 
@@ -465,7 +468,7 @@ const removeServiceForm = async (id: string) => {
         id: id,
       },
       data: {
-        isDeprecated: false,
+        isDeprecated: true,
       },
     });
 
