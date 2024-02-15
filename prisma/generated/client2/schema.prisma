@@ -174,7 +174,7 @@ model ServiceCategory {
 
 model ServiceCategoryForm {  
   id String @id @default(uuid())
-  title String?
+  title String @unique
   description String?
   type String?
   compulsory Boolean @default(false)
@@ -229,7 +229,7 @@ model Service {
 }
 model ServiceForm {  
   id String @id @default(uuid())
-  title String?
+  title String @unique
   type String?
   description String?
   compulsory Boolean @default(false)

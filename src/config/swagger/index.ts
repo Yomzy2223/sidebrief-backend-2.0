@@ -2423,7 +2423,7 @@ const options: OpenAPIDefinition = {
         // },
       },
 
-      "/product/{userId}": {
+      "/product/user/{userId}": {
         get: {
           tags: ["Product"],
           summary: "Get all users products in system",
