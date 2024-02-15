@@ -266,8 +266,6 @@ const validateCharge = async (otpPayload: any) => {
       .then((response) => console.log(response?.data))
       .catch((err) => console.log(err));
 
-    console.log("testing", validateRes);
-
     const verifyOption = {
       id: validateRes?.data?.id,
       amount: otpPayload.amount,
