@@ -21,7 +21,6 @@
   - You are about to drop the `ServiceCategorySubForm` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `ServiceForm` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `ServiceSubForm` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ServiceTemplate` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Staff` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Team` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `TeamMember` table. If the table is not empty, all the data it contains will be lost.
@@ -67,9 +66,6 @@ ALTER TABLE "ServiceForm" DROP CONSTRAINT "ServiceForm_serviceId_fkey";
 
 -- DropForeignKey
 ALTER TABLE "ServiceSubForm" DROP CONSTRAINT "ServiceSubForm_serviceFormId_fkey";
-
--- DropForeignKey
-ALTER TABLE "ServiceTemplate" DROP CONSTRAINT "ServiceTemplate_serviceId_fkey";
 
 -- DropForeignKey
 ALTER TABLE "Team" DROP CONSTRAINT "Team_productId_fkey";
@@ -139,9 +135,6 @@ DROP TABLE "ServiceForm";
 
 -- DropTable
 DROP TABLE "ServiceSubForm";
-
--- DropTable
-DROP TABLE "ServiceTemplate";
 
 -- DropTable
 DROP TABLE "Staff";

@@ -207,7 +207,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\HP\\SideBrief v2\\sidebrief-backend-2.0\\prisma\\generated\\client1",
+      "value": "/Users/akinyemibamidele/Documents/Soss-v2/prisma/generated/client1",
       "fromEnvVar": null
     },
     "config": {
@@ -216,7 +216,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin",
         "native": true
       }
     ],
@@ -264,7 +264,7 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
-path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "prisma/generated/client1/query_engine-windows.dll.node")
+path.join(__dirname, "libquery_engine-darwin.dylib.node");
+path.join(process.cwd(), "prisma/generated/client1/libquery_engine-darwin.dylib.node")
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/generated/client1/schema.prisma")

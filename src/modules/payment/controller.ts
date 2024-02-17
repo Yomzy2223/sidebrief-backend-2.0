@@ -27,7 +27,6 @@ const MakePayment = async (req: Request, res: Response) => {
     };
 
     const payment = await makePayment(transactionPayload);
-    console.log("sdfs", payment);
   } catch (error) {}
 };
 

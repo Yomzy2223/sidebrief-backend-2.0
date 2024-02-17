@@ -176,8 +176,6 @@ const verifyPayment = async (payload: PaymentVerificationPayload) => {
       .then((response) => console.log(response?.data))
       .catch((err) => console.log(err));
 
-    console.log("testing", res);
-
     if (
       res.status === "successful" &&
       res.data.amount === payload.amount &&
