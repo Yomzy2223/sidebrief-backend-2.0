@@ -175,7 +175,6 @@ const ServiceFormCreator = async (
     const service = await saveServiceForm(values, serviceId);
     return res.status(service.statusCode).json(service);
   } catch (error) {
-    console.log("err", error);
     next(error);
   }
 };

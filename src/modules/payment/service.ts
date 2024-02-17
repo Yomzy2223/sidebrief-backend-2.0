@@ -1,4 +1,3 @@
-
 import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 import { Request } from "express";
@@ -176,8 +175,6 @@ const verifyPayment = async (payload: PaymentVerificationPayload) => {
       .get(url, options)
       .then((response) => console.log(response?.data))
       .catch((err) => console.log(err));
-
-    console.log("testing", res);
 
     if (
       res.status === "successful" &&
