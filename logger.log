@@ -7021,3 +7021,21 @@ Argument category for data.category is missing.
 Note: Lines with + are required, lines with ? are optional.
  occurred when POST /service/product/888eabf0-4831-4b90-87a7-6e6f3984d63b was called
 info: Label: 10-Feb-2024 11:47:02: $ product service category created successfully
+error: Label: 17-Feb-2024 13:58:43: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:51
+
+  56 //  get the service category list from the table
+  57 //  return the service category list to the service category controller
+  58 try {
+→ 59   const category = await prisma.serviceCategory.findMany(
+The table `public.ServiceCategory` does not exist in the current database. occurred when GET /services was called
+error: Label: 17-Feb-2024 13:59:26: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:51
+
+  56 //  get the service category list from the table
+  57 //  return the service category list to the service category controller
+  58 try {
+→ 59   const category = await prisma.serviceCategory.findMany(
+The table `public.ServiceCategory` does not exist in the current database. occurred when GET /services was called
