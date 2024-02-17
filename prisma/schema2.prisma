@@ -114,7 +114,7 @@ model Account {
       type String
       provider String
       scope String
-          isDeprecated Boolean   @default(false)
+      isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       user User @relation(fields: [userId], references: [id])
@@ -157,7 +157,7 @@ model UserDocument {
       type String
       description String
       userId String
-        isDeprecated Boolean   @default(false)
+      isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
@@ -180,7 +180,7 @@ model ServiceCategoryForm {
   compulsory Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-        isDeprecated Boolean   @default(false)
+  isDeprecated Boolean   @default(false)
   category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
   serviceCategoryId String
   subForm ServiceCategorySubForm[]
@@ -322,7 +322,7 @@ model Team {
       userId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-        isDeprecated Boolean   @default(false)
+      isDeprecated Boolean   @default(false)
       product Product @relation(fields: [productId], references: [id])
       productId String
       invitation Invitation[]
@@ -339,7 +339,7 @@ model TeamMember {
       userId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-        isDeprecated Boolean   @default(false)
+      isDeprecated Boolean   @default(false)
       team Team @relation(fields: [teamId], references: [id])
       user User @relation(fields: [userId], references: [id])
 }
@@ -353,7 +353,7 @@ model Invitation {
       invitedBy String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-        isDeprecated Boolean   @default(false)
+      isDeprecated Boolean   @default(false)
       team Team @relation(fields: [teamId], references: [id])
    
 }
@@ -365,7 +365,7 @@ model Payment  {
       email String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-        isDeprecated Boolean   @default(false)
+      isDeprecated Boolean   @default(false)
       products Product @relation(fields: [productId], references: [id])
       productId String
 }
@@ -385,5 +385,5 @@ model Parter {
       servicesDeclined String[]
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-        isDeprecated Boolean   @default(false)
+      isDeprecated Boolean   @default(false)
 }
