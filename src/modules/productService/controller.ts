@@ -165,7 +165,7 @@ const ServiceFormCreator = async (
     const serviceId = req.params.serviceId;
     const serviceFormPayload = req.body;
     const values = {
-      title: serviceFormPayload.question,
+      title: serviceFormPayload.title,
       type: serviceFormPayload.type,
       description: serviceFormPayload.description,
       compulsory: serviceFormPayload.compulsory,

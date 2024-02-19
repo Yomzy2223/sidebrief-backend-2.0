@@ -15,7 +15,6 @@ import axios from "axios";
 //make payment
 const makePayment = async (transactionPayload: PaymentPayload) => {
   try {
-    //
     const updateProduct = await prisma.product.update({
       where: { id: transactionPayload.productId },
       data: {
@@ -25,7 +24,7 @@ const makePayment = async (transactionPayload: PaymentPayload) => {
     });
 
     // //payment with transfer
-    if (transactionPayload.type === "Transafer") {
+    if (transactionPayload.type === "Transfer") {
       const testPayload = {
         tx_ref: "transactionPayload.productId",
         amount: 15000,
