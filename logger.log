@@ -7109,3 +7109,5 @@ Invalid `prisma.serviceForm.findUnique()` invocation in
 Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
 
 Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /service/product/form/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+error: Label: 19-Feb-2024 14:54:21: Service form does not exist with error Error: Service form does not exist occurred when POST /service/product/subform/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+info: Label: 19-Feb-2024 14:55:01: service sub form created successfully
