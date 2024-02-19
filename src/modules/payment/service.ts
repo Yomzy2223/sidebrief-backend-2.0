@@ -1,4 +1,3 @@
-
 import { PrismaClient } from "../../../prisma/generated/client2";
 import logger from "../../config/logger";
 import { Request } from "express";
@@ -16,14 +15,13 @@ import axios from "axios";
 //make payment
 const makePayment = async (transactionPayload: PaymentPayload) => {
   try {
-    //
-    const updateProduct = await prisma.product.update({
-      where: { id: transactionPayload.productId },
-      data: {
-        serviceId: transactionPayload.serviceId,
-        currentState: "PAYMENT",
-      },
-    });
+    // const updateProduct = await prisma.product.update({
+    //   where: { id: transactionPayload.productId },
+    //   data: {
+    //     serviceId: transactionPayload.serviceId,
+    //     currentState: "PAYMENT",
+    //   },
+    // });
 
     // //payment with transfer
     if (transactionPayload.type === "Transafer") {
@@ -316,4 +314,175 @@ const confirmPayment = async (confirmPaymentPayload: ConfirmPayload) => {
   }
 };
 
-export { makePayment, webhook, confirmPayment, validateCharge };
+// PAY WITH PAYSTACK
+//make payment
+const makePaymentWithPaystack = async (transactionPayload: PaymentPayload) => {
+  try {
+    //
+    // const updateProduct = await prisma.product.update({
+    //   where: { id: transactionPayload.productId },
+    //   data: {
+    //     serviceId: transactionPayload.serviceId,
+    //     currentState: "PAYMENT",
+    //   },
+    // });
+
+    // //payment with transfer
+    if (transactionPayload.type === "Transfer") {
+      const testPayload = {
+        tx_ref: "transactionPayload.productId",
+        amount: 15000,
+        email: "akinyemibamidel2@gmail.com",
+        currency: "NGN",
+      };
+
+      const payload = {
+        tx_ref: transactionPayload.productId,
+        amount: transactionPayload.amount,
+        email: transactionPayload.email,
+        currency: transactionPayload.currency,
+      };
+
+      const token = process.env.PSTK_SECRET_KEY as string;
+
+      console.log("2", token);
+      const options = {
+        hostname: "api.paystack.co",
+        port: 443,
+        path: "/charge",
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+
+      console.log("3", options);
+      const url = process.env.PSTK_BANK_TRANSFER as string;
+
+      console.log("4", url);
+      const res: any = await axios
+        .post(url, testPayload, options)
+        .then((response) => console.log(response?.data))
+        .catch((err) => console.log(err));
+
+      console.log("testing", res);
+
+      logger.info({
+        message: `User with ${transactionPayload?.email} initiated a transfer payment successfully`,
+      });
+      return {
+        message: res?.message,
+        data: res.meta.authorization,
+        statusCode: 200,
+      };
+    }
+    // card payment
+    if (transactionPayload.type === "Card") {
+      const payload = {
+        tx_ref: transactionPayload.productId,
+        amount: transactionPayload.amount,
+        card_number: transactionPayload.card_number,
+        cvv: transactionPayload.cvv,
+        expiry_month: transactionPayload.expiry_month,
+        expiry_year: transactionPayload.expiry_year,
+        email: transactionPayload.email,
+        currency: transactionPayload.currency,
+        authorization: {
+          pin: transactionPayload.card_pin,
+          mode: "pin",
+        },
+      };
+
+      const token = process.env.PSTK_SECRET_KEY as string;
+
+      const options = {
+        hostname: "api.paystack.co",
+        port: 443,
+        path: "/charge",
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+
+      const url = process.env.PSTK_CARD as string;
+
+      const res: any = await axios
+        .post(url, payload, options)
+        .then((response) => console.log(response?.data))
+        .catch((err) => console.log(err));
+
+      console.log("testing", res);
+
+      logger.info({
+        message: `User with ${transactionPayload?.email} initiated a card payment successfully`,
+      });
+      return {
+        message: res?.message,
+        data: res.meta.data,
+        statusCode: 200,
+      };
+    }
+
+    // ussd payment
+    if (transactionPayload.type === "USSD") {
+      const test = {
+        tx_ref: "MC-15852309v5050e8y",
+        account_bank: "737",
+        amount: "10",
+        currency: "NGN",
+        email: "user@example.com",
+      };
+
+      const payload = {
+        tx_ref: transactionPayload.productId,
+        amount: transactionPayload.amount,
+        email: transactionPayload.email,
+        currency: transactionPayload.currency,
+        account_bank: transactionPayload.account_bank,
+      };
+
+      const token = process.env.PSTK_SECRET_KEY as string;
+
+      const options = {
+        hostname: "api.paystack.co",
+        port: 443,
+        path: "/charge",
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      const url = process.env.PSTK_USSD as string;
+
+      const res: any = await axios
+        .post(url, payload, options)
+        .then((response) => console.log(response?.data))
+        .catch((err) => console.log(err));
+
+      console.log("testing", res);
+
+      logger.info({
+        message: `User with ${transactionPayload?.email} initiated a ussd payment successfully`,
+      });
+      return {
+        message: res?.message,
+        data: res.meta.data,
+        statusCode: 200,
+      };
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export {
+  makePayment,
+  webhook,
+  confirmPayment,
+  validateCharge,
+  makePaymentWithPaystack,
+};
