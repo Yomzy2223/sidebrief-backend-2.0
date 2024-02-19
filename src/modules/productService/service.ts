@@ -355,6 +355,9 @@ const getServiceFormByService = async (
           isDeprecated: false,
         },
       },
+      include: {
+        serviceSubForm: true,
+      },
     });
 
     if (!serviceForm) {

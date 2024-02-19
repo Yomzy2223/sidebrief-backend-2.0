@@ -1696,28 +1696,6 @@ const options: OpenAPIDefinition = {
             },
           },
         },
-
-        get: {
-          summary: "Get all service forms with service ID",
-          tags: ["Service Product"],
-          parameters: [
-            {
-              name: "serviceId",
-              in: "path",
-              required: true,
-              description: "ID of service of the service form",
-              type: "string",
-            },
-          ],
-          responses: {
-            200: {
-              description: "Service form fetched successfully",
-              schema: {
-                $ref: "#/components/schemas/ServiceForms",
-              },
-            },
-          },
-        },
       },
 
       "/service/product/formByService/{serviceId}": {
