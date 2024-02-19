@@ -245,8 +245,11 @@ const saveServiceForm = async (
       throw new BadRequest("Service does not exist");
     }
 
-    const checkServiceForm = await prisma.serviceForm.findUnique({
-      where: { title: serviceFormPayload.title },
+    const checkServiceForm = await prisma.serviceForm.findFirst({
+      where: {
+        title: serviceFormPayload.title,
+        serviceId: serviceId,
+      },
     });
     if (checkServiceForm) {
       throw new BadRequest("Service form with this title already exists");
@@ -347,6 +350,16 @@ const getServiceFormByService = async (
   // return the service form to the service controller
 
   try {
+    const service = await prisma.service.findUnique({
+      where: {
+        id: serviceId,
+      },
+    });
+
+    if (!service) {
+      throw new BadRequest("Service not found!.");
+    }
+
     const serviceForm = await prisma.serviceForm.findMany({
       where: {
         serviceId: serviceId,

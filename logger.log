@@ -7111,3 +7111,7 @@ Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1
 Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /service/product/form/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
 error: Label: 19-Feb-2024 14:54:21: Service form does not exist with error Error: Service form does not exist occurred when POST /service/product/subform/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
 info: Label: 19-Feb-2024 14:55:01: service sub form created successfully
+info: Label: 19-Feb-2024 17:22:43: Service form created successfully
+error: Label: 19-Feb-2024 17:23:25: Service form with this title already exists with error Error: Service form with this title already exists occurred when POST /service/product/form/ef3c68ad-1a8a-4e29-9122-a8f3293b21f1 was called
+error: Label: 19-Feb-2024 17:24:29: Service form with this title already exists with error Error: Service form with this title already exists occurred when POST /service/product/form/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+info: Label: 19-Feb-2024 17:25:20: Service form created successfully

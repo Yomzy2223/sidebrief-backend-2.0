@@ -229,7 +229,7 @@ model Service {
 }
 model ServiceForm {  
   id String @id @default(uuid())
-  title String @unique
+  title String? 
   type String?
   description String?
   compulsory Boolean @default(false)
