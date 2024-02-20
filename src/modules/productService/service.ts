@@ -294,6 +294,9 @@ const getAllServiceForm = async (
           isDeprecated: false,
         },
       },
+      include: {
+        serviceSubForm: true,
+      },
     });
     if (!service) {
       return {
@@ -323,6 +326,9 @@ const getServiceForm = async (id: string): Promise<ServiceFormResponse> => {
     const serviceForm = await prisma.serviceForm.findUnique({
       where: {
         id: id,
+      },
+      include: {
+        serviceSubForm: true,
       },
     });
 
@@ -354,8 +360,10 @@ const getServiceFormByService = async (
       where: {
         id: serviceId,
       },
+      include: {
+        forms: true,
+      },
     });
-
     if (!service) {
       throw new BadRequest("Service not found!.");
     }

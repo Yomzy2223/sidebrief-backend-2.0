@@ -62,7 +62,7 @@ router.delete("/:id", staffAuth, ServiceCategoryFormRemover);
 router.post(
   "/subform/:formId",
   staffAuth,
-  validator(validateServiceCategorySubForm),
+  // validator(validateServiceCategorySubForm),
   ServiceCategorySubFormCreator
 );
 router.get("/subforms/:formId", ServiceCategorySubFormFetcher);

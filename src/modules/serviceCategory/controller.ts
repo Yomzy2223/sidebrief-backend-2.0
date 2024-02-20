@@ -127,7 +127,9 @@ const ServiceCategoryRemover = async (
     const id: string = req.params.id;
     const deleteCategory = await removeServiceCategory(id);
 
-    return res.status(deleteCategory.statusCode).json(deleteCategory.message);
+    return res
+      .status(deleteCategory.statusCode)
+      .json({ message: deleteCategory.message });
   } catch (error) {
     next(error);
   }
@@ -247,7 +249,9 @@ const ServiceCategoryFormRemover = async (
     const id: string = req.params.id;
     const deleteCategory = await removeServiceCategoryForm(id);
 
-    return res.status(deleteCategory.statusCode).json(deleteCategory.message);
+    return res
+      .status(deleteCategory.statusCode)
+      .json({ message: deleteCategory.message });
   } catch (error) {
     next(error);
   }
@@ -375,7 +379,9 @@ const ServiceCategorySubFormRemover = async (
     const id: string = req.params.id;
     const deleteCategory = await removeServiceCategorySubForm(id);
 
-    return res.status(deleteCategory.statusCode).json(deleteCategory.message);
+    return res
+      .status(deleteCategory.statusCode)
+      .json({ message: deleteCategory.message });
   } catch (error) {
     next(error);
   }

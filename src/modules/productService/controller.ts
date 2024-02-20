@@ -145,7 +145,9 @@ const ProductServiceRemover = async (
     const id: string = req.params.id;
     const deleteService = await removeProductService(id);
 
-    return res.status(deleteService.statusCode).json(deleteService.message);
+    return res
+      .status(deleteService.statusCode)
+      .json({ message: deleteService.message });
   } catch (error) {
     next(error);
   }
@@ -278,7 +280,9 @@ const ServiceFormRemover = async (
     const id: string = req.params.id;
     const deleteService = await removeServiceForm(id);
 
-    return res.status(deleteService.statusCode).json(deleteService.message);
+    return res
+      .status(deleteService.statusCode)
+      .json({ message: deleteService.message });
   } catch (error) {
     next(error);
   }
@@ -402,7 +406,9 @@ const ServiceSubFormRemover = async (
     const id: string = req.params.id;
     const deleteCategory = await removeServiceSubForm(id);
 
-    return res.status(deleteCategory.statusCode).json(deleteCategory.message);
+    return res
+      .status(deleteCategory.statusCode)
+      .json({ message: deleteCategory.message });
   } catch (error) {
     next(error);
   }
