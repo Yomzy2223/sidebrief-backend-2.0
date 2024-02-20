@@ -1,53 +1,5 @@
-/*
-  Warnings:
-
-  - You are about to drop the `DiligenceEnterprise` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `DiligenceManager` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `DiligenceRequest` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `DiligenceRequestDocument` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `DiligenceStaff` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `DiligenceUser` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `NigerianBank` table. If the table is not empty, all the data it contains will be lost.
-
-*/
 -- CreateEnum
 CREATE TYPE "ProductActivityStage" AS ENUM ('START', 'PAYMENT', 'PRORIETOR', 'REVIEW');
-
--- DropForeignKey
-ALTER TABLE "DiligenceManager" DROP CONSTRAINT "DiligenceManager_diligenceEnterpriseId_fkey";
-
--- DropForeignKey
-ALTER TABLE "DiligenceRequest" DROP CONSTRAINT "DiligenceRequest_diligenceEnterpriseId_fkey";
-
--- DropForeignKey
-ALTER TABLE "DiligenceRequestDocument" DROP CONSTRAINT "DiligenceRequestDocument_diligenceRequestId_fkey";
-
--- DropForeignKey
-ALTER TABLE "DiligenceStaff" DROP CONSTRAINT "DiligenceStaff_diligenceManagerId_fkey";
-
--- DropForeignKey
-ALTER TABLE "DiligenceUser" DROP CONSTRAINT "DiligenceUser_diligenceEnterpriseId_fkey";
-
--- DropTable
-DROP TABLE "DiligenceEnterprise";
-
--- DropTable
-DROP TABLE "DiligenceManager";
-
--- DropTable
-DROP TABLE "DiligenceRequest";
-
--- DropTable
-DROP TABLE "DiligenceRequestDocument";
-
--- DropTable
-DROP TABLE "DiligenceStaff";
-
--- DropTable
-DROP TABLE "DiligenceUser";
-
--- DropTable
-DROP TABLE "NigerianBank";
 
 -- CreateTable
 CREATE TABLE "Staff" (
@@ -163,6 +115,9 @@ CREATE TABLE "Account" (
     "type" TEXT NOT NULL,
     "provider" TEXT NOT NULL,
     "scope" TEXT NOT NULL,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Account_pkey" PRIMARY KEY ("id")
 );
@@ -173,11 +128,12 @@ CREATE TABLE "User" (
     "fullName" TEXT NOT NULL,
     "username" TEXT,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
+    "password" TEXT,
+    "googleId" TEXT,
     "phone" TEXT,
     "picture" TEXT,
     "isVerified" BOOLEAN NOT NULL DEFAULT false,
-    "referral" TEXT NOT NULL,
+    "referral" TEXT,
     "country" TEXT,
     "resetToken" TEXT,
     "isPartner" BOOLEAN NOT NULL DEFAULT false,
@@ -203,6 +159,7 @@ CREATE TABLE "UserDocument" (
     "type" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -224,31 +181,49 @@ CREATE TABLE "ServiceCategory" (
 -- CreateTable
 CREATE TABLE "ServiceCategoryForm" (
     "id" TEXT NOT NULL,
-    "question" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "options" TEXT[],
+    "title" TEXT NOT NULL,
+    "description" TEXT,
+    "type" TEXT,
     "compulsory" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "serviceCategoryId" TEXT NOT NULL,
 
     CONSTRAINT "ServiceCategoryForm_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
+CREATE TABLE "ServiceCategorySubForm" (
+    "id" TEXT NOT NULL,
+    "question" TEXT,
+    "type" TEXT,
+    "options" TEXT[],
+    "fileName" TEXT,
+    "fileType" TEXT,
+    "fileLink" TEXT,
+    "dependsOn" TEXT,
+    "allowOther" BOOLEAN NOT NULL DEFAULT false,
+    "compulsory" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
+    "formId" TEXT NOT NULL,
+
+    CONSTRAINT "ServiceCategorySubForm_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Service" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "code" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "country" TEXT NOT NULL,
-    "price" TEXT NOT NULL,
+    "currency" TEXT NOT NULL,
+    "amount" INTEGER NOT NULL,
     "timeline" TEXT NOT NULL,
     "feature" TEXT[],
-    "categoryForm" TEXT[],
     "hasShares" BOOLEAN NOT NULL DEFAULT false,
-    "numberOfShares" TEXT NOT NULL,
     "hasAgent" BOOLEAN NOT NULL DEFAULT false,
     "hasOwner" BOOLEAN NOT NULL DEFAULT false,
     "hasController" BOOLEAN NOT NULL DEFAULT false,
@@ -257,36 +232,45 @@ CREATE TABLE "Service" (
     "agentIsCalled" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "serviceCategoryId" TEXT NOT NULL,
 
     CONSTRAINT "Service_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ServiceTemplate" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "serviceId" TEXT NOT NULL,
-
-    CONSTRAINT "ServiceTemplate_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "ServiceForm" (
     "id" TEXT NOT NULL,
-    "question" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "options" TEXT[],
+    "title" TEXT NOT NULL,
+    "type" TEXT,
+    "description" TEXT,
     "compulsory" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "serviceId" TEXT NOT NULL,
 
     CONSTRAINT "ServiceForm_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ServiceSubForm" (
+    "id" TEXT NOT NULL,
+    "question" TEXT,
+    "options" TEXT[],
+    "type" TEXT,
+    "allowOther" BOOLEAN NOT NULL DEFAULT false,
+    "fileName" TEXT,
+    "fileType" TEXT,
+    "fileLink" TEXT,
+    "dependsOn" TEXT,
+    "compulsory" BOOLEAN NOT NULL DEFAULT false,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "serviceFormId" TEXT NOT NULL,
+
+    CONSTRAINT "ServiceSubForm_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -299,6 +283,7 @@ CREATE TABLE "Product" (
     "status" TEXT NOT NULL DEFAULT 'pending',
     "currentState" "ProductActivityStage" NOT NULL DEFAULT 'START',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "serviceId" TEXT,
     "userId" TEXT NOT NULL,
@@ -309,13 +294,33 @@ CREATE TABLE "Product" (
 -- CreateTable
 CREATE TABLE "ProductQA" (
     "id" TEXT NOT NULL,
-    "question" TEXT NOT NULL,
+    "question" TEXT,
     "answer" TEXT[],
+    "type" TEXT,
+    "compulsory" BOOLEAN NOT NULL DEFAULT false,
+    "isGeneral" BOOLEAN NOT NULL DEFAULT false,
+    "fileName" TEXT,
+    "fileType" TEXT,
+    "fileLink" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "productId" TEXT NOT NULL,
 
     CONSTRAINT "ProductQA_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ProductQASubForm" (
+    "id" TEXT NOT NULL,
+    "question" TEXT,
+    "answer" TEXT[],
+    "type" TEXT,
+    "compulsory" BOOLEAN NOT NULL DEFAULT false,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
+    "productQAId" TEXT NOT NULL,
+
+    CONSTRAINT "ProductQASubForm_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -325,6 +330,7 @@ CREATE TABLE "Claim" (
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Claim_pkey" PRIMARY KEY ("id")
 );
@@ -337,6 +343,7 @@ CREATE TABLE "Team" (
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "productId" TEXT NOT NULL,
 
     CONSTRAINT "Team_pkey" PRIMARY KEY ("id")
@@ -353,6 +360,7 @@ CREATE TABLE "TeamMember" (
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "TeamMember_pkey" PRIMARY KEY ("id")
 );
@@ -367,6 +375,7 @@ CREATE TABLE "Invitation" (
     "invitedBy" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Invitation_pkey" PRIMARY KEY ("id")
 );
@@ -380,6 +389,7 @@ CREATE TABLE "Payment" (
     "email" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "productId" TEXT NOT NULL,
 
     CONSTRAINT "Payment_pkey" PRIMARY KEY ("id")
@@ -401,6 +411,7 @@ CREATE TABLE "Parter" (
     "servicesDeclined" TEXT[],
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Parter_pkey" PRIMARY KEY ("id")
 );
@@ -429,6 +440,12 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 -- CreateIndex
 CREATE UNIQUE INDEX "ServiceCategory_name_key" ON "ServiceCategory"("name");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "ServiceCategoryForm_title_key" ON "ServiceCategoryForm"("title");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ServiceForm_title_key" ON "ServiceForm"("title");
+
 -- AddForeignKey
 ALTER TABLE "CollaboratorDocument" ADD CONSTRAINT "CollaboratorDocument_collaboratorId_fkey" FOREIGN KEY ("collaboratorId") REFERENCES "Collaborator"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -439,13 +456,16 @@ ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId"
 ALTER TABLE "ServiceCategoryForm" ADD CONSTRAINT "ServiceCategoryForm_serviceCategoryId_fkey" FOREIGN KEY ("serviceCategoryId") REFERENCES "ServiceCategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "ServiceCategorySubForm" ADD CONSTRAINT "ServiceCategorySubForm_formId_fkey" FOREIGN KEY ("formId") REFERENCES "ServiceCategoryForm"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Service" ADD CONSTRAINT "Service_serviceCategoryId_fkey" FOREIGN KEY ("serviceCategoryId") REFERENCES "ServiceCategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ServiceTemplate" ADD CONSTRAINT "ServiceTemplate_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ServiceForm" ADD CONSTRAINT "ServiceForm_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ServiceForm" ADD CONSTRAINT "ServiceForm_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ServiceSubForm" ADD CONSTRAINT "ServiceSubForm_serviceFormId_fkey" FOREIGN KEY ("serviceFormId") REFERENCES "ServiceForm"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Product" ADD CONSTRAINT "Product_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -455,6 +475,9 @@ ALTER TABLE "Product" ADD CONSTRAINT "Product_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "ProductQA" ADD CONSTRAINT "ProductQA_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ProductQASubForm" ADD CONSTRAINT "ProductQASubForm_productQAId_fkey" FOREIGN KEY ("productQAId") REFERENCES "ProductQA"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Team" ADD CONSTRAINT "Team_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

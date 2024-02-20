@@ -13,7 +13,6 @@ const ErrorHandler = (
   logger.error({
     message: `${errMessage} with error ${err} occurred when ${req.method} ${req.originalUrl} was called`,
   });
-
   res.status(errStatus).json({
     error: errMessage,
   });

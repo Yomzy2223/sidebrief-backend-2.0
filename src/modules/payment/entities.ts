@@ -9,8 +9,8 @@ export interface PaymentPayload {
   expiry_year?: string;
   account_bank?: string;
   type?: string;
+  productRequestId?: string;
   productId?: string;
-  serviceId?: string;
 }
 export interface ConfirmPayload {
   email?: string;

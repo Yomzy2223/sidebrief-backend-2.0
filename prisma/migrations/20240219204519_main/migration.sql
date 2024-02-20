@@ -12,16 +12,15 @@
   - You are about to drop the `Parter` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Payment` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Product` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ProductQA` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ProductQASubForm` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `ProductForm` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `ProductRequest` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `ProductRequestQA` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `ProductRequestQASubForm` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `ProductSubForm` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Reward` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Service` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ServiceCategory` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ServiceCategoryForm` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ServiceCategorySubForm` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `ServiceForm` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `ServiceSubForm` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ServiceTemplate` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Staff` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `Team` table. If the table is not empty, all the data it contains will be lost.
   - You are about to drop the `TeamMember` table. If the table is not empty, all the data it contains will be lost.
@@ -39,40 +38,37 @@ ALTER TABLE "CollaboratorDocument" DROP CONSTRAINT "CollaboratorDocument_collabo
 ALTER TABLE "Invitation" DROP CONSTRAINT "Invitation_teamId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "Payment" DROP CONSTRAINT "Payment_productId_fkey";
+ALTER TABLE "Payment" DROP CONSTRAINT "Payment_productRequestId_fkey";
 
 -- DropForeignKey
 ALTER TABLE "Product" DROP CONSTRAINT "Product_serviceId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "Product" DROP CONSTRAINT "Product_userId_fkey";
+ALTER TABLE "ProductForm" DROP CONSTRAINT "ProductForm_productId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "ProductQA" DROP CONSTRAINT "ProductQA_productId_fkey";
+ALTER TABLE "ProductRequest" DROP CONSTRAINT "ProductRequest_productId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "ProductQASubForm" DROP CONSTRAINT "ProductQASubForm_productQAId_fkey";
+ALTER TABLE "ProductRequest" DROP CONSTRAINT "ProductRequest_userId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "Service" DROP CONSTRAINT "Service_serviceCategoryId_fkey";
+ALTER TABLE "ProductRequestQA" DROP CONSTRAINT "ProductRequestQA_productRequestId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "ServiceCategoryForm" DROP CONSTRAINT "ServiceCategoryForm_serviceCategoryId_fkey";
+ALTER TABLE "ProductRequestQASubForm" DROP CONSTRAINT "ProductRequestQASubForm_productRequestQAId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "ServiceCategorySubForm" DROP CONSTRAINT "ServiceCategorySubForm_formId_fkey";
+ALTER TABLE "ProductSubForm" DROP CONSTRAINT "ProductSubForm_productFormId_fkey";
 
 -- DropForeignKey
 ALTER TABLE "ServiceForm" DROP CONSTRAINT "ServiceForm_serviceId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "ServiceSubForm" DROP CONSTRAINT "ServiceSubForm_serviceFormId_fkey";
+ALTER TABLE "ServiceSubForm" DROP CONSTRAINT "ServiceSubForm_formId_fkey";
 
 -- DropForeignKey
-ALTER TABLE "ServiceTemplate" DROP CONSTRAINT "ServiceTemplate_serviceId_fkey";
-
--- DropForeignKey
-ALTER TABLE "Team" DROP CONSTRAINT "Team_productId_fkey";
+ALTER TABLE "Team" DROP CONSTRAINT "Team_productRequestId_fkey";
 
 -- DropForeignKey
 ALTER TABLE "TeamMember" DROP CONSTRAINT "TeamMember_teamId_fkey";
@@ -114,10 +110,19 @@ DROP TABLE "Payment";
 DROP TABLE "Product";
 
 -- DropTable
-DROP TABLE "ProductQA";
+DROP TABLE "ProductForm";
 
 -- DropTable
-DROP TABLE "ProductQASubForm";
+DROP TABLE "ProductRequest";
+
+-- DropTable
+DROP TABLE "ProductRequestQA";
+
+-- DropTable
+DROP TABLE "ProductRequestQASubForm";
+
+-- DropTable
+DROP TABLE "ProductSubForm";
 
 -- DropTable
 DROP TABLE "Reward";
@@ -126,22 +131,10 @@ DROP TABLE "Reward";
 DROP TABLE "Service";
 
 -- DropTable
-DROP TABLE "ServiceCategory";
-
--- DropTable
-DROP TABLE "ServiceCategoryForm";
-
--- DropTable
-DROP TABLE "ServiceCategorySubForm";
-
--- DropTable
 DROP TABLE "ServiceForm";
 
 -- DropTable
 DROP TABLE "ServiceSubForm";
-
--- DropTable
-DROP TABLE "ServiceTemplate";
 
 -- DropTable
 DROP TABLE "Staff";

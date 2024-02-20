@@ -15,16 +15,16 @@ import axios from "axios";
 //make payment
 const makePayment = async (transactionPayload: PaymentPayload) => {
   try {
-    // const updateProduct = await prisma.product.update({
-    //   where: { id: transactionPayload.productId },
-    //   data: {
-    //     serviceId: transactionPayload.serviceId,
-    //     currentState: "PAYMENT",
-    //   },
-    // });
+    const updateProduct = await prisma.productRequest.update({
+      where: { id: transactionPayload.productRequestId },
+      data: {
+        productId: transactionPayload.productId,
+        currentState: "PAYMENT",
+      },
+    });
 
     // //payment with transfer
-    if (transactionPayload.type === "Transafer") {
+    if (transactionPayload.type === "Transfer") {
       const testPayload = {
         tx_ref: "transactionPayload.productId",
         amount: 15000,
@@ -175,8 +175,6 @@ const verifyPayment = async (payload: PaymentVerificationPayload) => {
       .then((response) => console.log(response?.data))
       .catch((err) => console.log(err));
 
-    console.log("testing", res);
-
     if (
       res.status === "successful" &&
       res.data.amount === payload.amount &&
@@ -197,7 +195,7 @@ const verifyPayment = async (payload: PaymentVerificationPayload) => {
         provider: "Flutterwave",
         email: res.data.customer.email,
         transactionId: res.data.id,
-        productId: res.data.tx_ref,
+        productRequestId: res.data.tx_ref,
         status: res.status,
       };
       const savePayment = prisma.payment.create({
@@ -226,7 +224,6 @@ const webhook = async (req: Request) => {
     }
 
     const payload = req.body;
-    console.log("result from flutterwave", payload);
 
     const verifyOption = {
       id: payload?.data?.id,
@@ -266,8 +263,6 @@ const validateCharge = async (otpPayload: any) => {
       .then((response) => console.log(response?.data))
       .catch((err) => console.log(err));
 
-    console.log("testing", validateRes);
-
     const verifyOption = {
       id: validateRes?.data?.id,
       amount: otpPayload.amount,
@@ -294,7 +289,7 @@ const confirmPayment = async (confirmPaymentPayload: ConfirmPayload) => {
       AND "email" = ${confirmPaymentPayload.email}
     `;
 
-    const updateProduct = await prisma.product.update({
+    const updateProduct = await prisma.productRequest.update({
       where: {
         id: confirmPaymentPayload.productId,
       },
@@ -319,10 +314,10 @@ const confirmPayment = async (confirmPaymentPayload: ConfirmPayload) => {
 const makePaymentWithPaystack = async (transactionPayload: PaymentPayload) => {
   try {
     //
-    // const updateProduct = await prisma.product.update({
-    //   where: { id: transactionPayload.productId },
+    // const updateProduct = await prisma.productRequest.update({
+    //   where: { id: transactionPayload.productRequestId },
     //   data: {
-    //     serviceId: transactionPayload.serviceId,
+    //     productId: transactionPayload.productId,
     //     currentState: "PAYMENT",
     //   },
     // });

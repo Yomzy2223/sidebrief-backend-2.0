@@ -2,77 +2,72 @@ import express from "express";
 import { userAuth, staffAuth } from "../../middleware/auth";
 import validator from "../../middleware/validator";
 import {
-  validateServiceCategory,
-  validateServiceCategoryForm,
-  validateServiceCategorySubForm,
+  validateService,
+  validateServiceForm,
+  validateServiceSubForm,
 } from "../../utils/validation";
 const router = express.Router();
 
 import {
-  ServiceCategoryCreator,
-  ServiceCategoriesFetcher,
-  ServiceCategoryFetcher,
-  ServiceCategoryModifier,
-  ServiceCategoryRemover,
-  ServiceCategoryFormCreator,
-  ServiceCategoryFormFetcher,
-  ServiceCategoryFormModifier,
-  ServiceACategoryFormFetcher,
-  ServiceCategoryFormRemover,
-  ServiceCategorySubFormCreator,
-  ServiceCategorySubFormFetcher,
-  ServiceCategorySubFormModifier,
+  ServiceCreator,
+  ServicesFetcher,
+  ServiceFetcher,
+  ServiceModifier,
+  ServiceRemover,
+  ServiceFormCreator,
+  ServiceFormFetcher,
+  ServiceFormModifier,
+  ServiceFormsFetcher,
+  ServiceFormRemover,
+  ServiceSubFormCreator,
+  ServiceSubFormFetcher,
+  ServiceSubFormModifier,
   ServiceACategorySubFormFetcher,
-  ServiceCategorySubFormRemover,
+  ServiceSubFormRemover,
 } from "./controller";
 
-router.post(
-  "/",
-  staffAuth,
-  validator(validateServiceCategory),
-  ServiceCategoryCreator
-);
-router.get("/", ServiceCategoriesFetcher);
-router.get("/:id", ServiceCategoryFetcher);
+router.post("/", staffAuth, validator(validateService), ServiceCreator);
+router.get("/", ServicesFetcher);
+router.get("/:id", ServiceFetcher);
 router.put(
   "/:id",
 
-  validator(validateServiceCategory),
-  ServiceCategoryModifier
+  validator(validateService),
+  ServiceModifier
 );
-router.delete("/:id", staffAuth, ServiceCategoryRemover);
+router.delete("/:id", staffAuth, ServiceRemover);
 
 router.post(
-  "/form/:serviceCategoryId",
+  "/form/:serviceId",
   staffAuth,
-  validator(validateServiceCategoryForm),
-  ServiceCategoryFormCreator
+  validator(validateServiceForm),
+  ServiceFormCreator
 );
-router.get("/forms/:serviceCategoryId", ServiceCategoryFormFetcher);
-router.get("/form/:id", ServiceACategoryFormFetcher);
+router.get("/forms/:serviceId", ServiceFormsFetcher);
+router.get("/form/:id", ServiceFormFetcher);
 
 router.put(
   "/form/:id",
   staffAuth,
-  validator(validateServiceCategoryForm),
-  ServiceCategoryFormModifier
+  validator(validateServiceForm),
+  ServiceFormModifier
 );
-router.delete("/:id", staffAuth, ServiceCategoryFormRemover);
+router.delete("/:id", staffAuth, ServiceFormRemover);
 
 router.post(
   "/subform/:formId",
   staffAuth,
-  validator(validateServiceCategorySubForm),
-  ServiceCategorySubFormCreator
+  validator(validateServiceSubForm),
+  ServiceSubFormCreator
 );
-router.get("/subforms/:formId", ServiceCategorySubFormFetcher);
+router.get("/subforms/:formId", ServiceSubFormFetcher);
 router.get("/subform/:id", ServiceACategorySubFormFetcher);
 
 router.put(
   "/subform/:id",
   staffAuth,
-  validator(validateServiceCategorySubForm),
-  ServiceCategorySubFormModifier
+  validator(validateServiceSubForm),
+  ServiceSubFormModifier
 );
-router.delete("/:id", staffAuth, ServiceCategorySubFormRemover);
+router.delete("/:id", staffAuth, ServiceSubFormRemover);
 export default router;

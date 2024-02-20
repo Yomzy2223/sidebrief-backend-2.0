@@ -24,11 +24,10 @@ const MakePayment = async (req: Request, res: Response) => {
       account_bank: payload.account_bank,
       type: payload.type,
       productId: payload.productId,
-      serviceId: payload.serviceId,
+      productRequestId: payload.productRequestId,
     };
 
     const payment = await makePayment(transactionPayload);
-    console.log("sdfs", payment);
   } catch (error) {}
 };
 
@@ -98,7 +97,7 @@ const MakePaymentWithPaystack = async (req: Request, res: Response) => {
       account_bank: payload.account_bank,
       type: payload.type,
       productId: payload.productId,
-      serviceId: payload.serviceId,
+      productRequestId: payload.productRequestId,
     };
 
     const payment = await makePaymentWithPaystack(transactionPayload);
