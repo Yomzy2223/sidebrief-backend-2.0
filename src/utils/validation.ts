@@ -79,7 +79,6 @@ const validateServiceCategoryForm = validate.compile(serviceCategoryFormSchema);
 const serviceCategorySubFormSchema = {
   question: { type: "string", min: 3, max: 255 },
   type: { type: "string", min: 3, max: 100 },
-  options: { type: "array", items: "string", min: 1 },
 };
 
 const validateServiceCategorySubForm = validate.compile(
