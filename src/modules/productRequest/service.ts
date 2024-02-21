@@ -251,88 +251,55 @@ const createProductRequestQA = async (
       throw new NotFound("User Product Request not found");
     }
 
-    if (productRequestQAPayload.form.length === 1) {
-      const data = {
-        question: productRequestQAPayload?.form[0]?.question,
-        answer: productRequestQAPayload?.form[0]?.answer,
-        type: productRequestQAPayload?.form[0]?.type,
-        compulsory: productRequestQAPayload?.form[0]?.compulsory,
-        isGeneral: productRequestQAPayload?.form[0]?.isGeneral,
-        requestId: findproductRequest.id,
-        fileName: productRequestQAPayload?.form[0]?.file?.name,
-        fileDescription: productRequestQAPayload?.form[0]?.file?.description,
-        fileLink: productRequestQAPayload?.form[0]?.file?.link,
-        fileType: productRequestQAPayload?.form[0]?.file?.type,
-      };
-      const createproductRequestFormData = await prisma.productRequestQA.create(
-        {
-          data: data,
-        }
+    const formData = {
+      title: productRequestQAPayload?.title,
+      description: productRequestQAPayload?.description,
+      type: productRequestQAPayload?.type,
+      compulsory: productRequestQAPayload?.compulsory,
+      isGeneral: productRequestQAPayload?.isGeneral,
+      requestId: findproductRequest.id,
+    };
+
+    const createproductRequestFormData = await prisma.productRequestQA.create({
+      data: formData,
+    });
+    if (!createproductRequestFormData) {
+      throw new BadRequest(
+        "Error occured while saving this Product Request Form"
       );
-      if (!createproductRequestFormData) {
-        throw new BadRequest(
-          "Error occured while creating this Product Request Form"
-        );
-      }
+    }
 
-      if (productRequestQAPayload.form[0].subForm) {
-        const productRequestForm = productRequestQAPayload.form[0].profile.map(
-          (data: ProfileData) => ({
-            question: data.question,
-            answer: data.answer,
-            type: data.type,
-            compulsory: data.compulsory,
-            requestQAId: createproductRequestFormData.id,
-          })
-        );
+    const productRequestForm = productRequestQAPayload.subForm.map(
+      (data: FormData) => ({
+        question: data.question,
+        answer: data.answer,
+        type: data.type,
+        compulsory: data.compulsory,
+        fileName: data?.file?.name,
+        fileLink: data?.file?.link,
+        fileType: data?.file?.type,
+        requestQAId: createproductRequestFormData.id,
+      })
+    );
 
-        const productRequestQA =
-          await prisma.productRequestQASubForm.createMany({
-            data: productRequestForm,
-            skipDuplicates: true,
-          });
+    const productRequestQA = await prisma.productRequestQASubForm.createMany({
+      data: productRequestForm,
+      skipDuplicates: true,
+    });
 
-        if (!productRequestQA) {
-          throw new BadRequest(
-            "Error occured while creating this Product Request Sub Form"
-          );
-        }
-      }
-    } else {
-      const productRequestForm = productRequestQAPayload.form.map(
-        (data: FormData) => ({
-          question: data?.question,
-          answer: data?.answer,
-          type: data?.type,
-          isGeneral: data?.isGeneral,
-          compulsory: data?.compulsory,
-          requestId: findproductRequest.id,
-          fileName: data?.file?.name,
-          fileDescription: data?.file?.description,
-          fileLink: data?.file?.link,
-          fileType: data?.file?.type,
-        })
+    if (!productRequestQA) {
+      throw new BadRequest(
+        "Error occured while saving this Product Request Sub Form"
       );
-
-      const productRequestQA = await prisma.productRequestQA.createMany({
-        data: productRequestForm,
-        skipDuplicates: true,
-      });
-
-      if (!productRequestQA) {
-        throw new BadRequest(
-          "Error occured while creating this Product Request Form"
-        );
-      }
     }
 
     logger.info({
       message: `Form saved successfully for Product Request with ${requestId} `,
     });
 
-    const productRequestForms = await prisma.productRequestQA.findMany({
+    const productRequestForms = await prisma.productRequestQA.findUnique({
       where: {
-        requestId: findproductRequest.id,
+        id: createproductRequestFormData.id,
       },
       include: {
         subForm: true,
@@ -356,7 +323,7 @@ const createProductRequestQA = async (
 };
 
 //get all product QA product
-const getAllProductQA = async (
+const getAllRequestProductQA = async (
   requestId: string
 ): Promise<ProductRequestQAResponse> => {
   //  get the all the product QA
@@ -365,6 +332,10 @@ const getAllProductQA = async (
     const GeneralQA = await prisma.productRequestQA.findMany({
       where: {
         requestId: requestId,
+        isGeneral: false,
+      },
+      include: {
+        subForm: true,
       },
     });
     if (!GeneralQA) {
@@ -375,7 +346,41 @@ const getAllProductQA = async (
       };
     }
     const response: ProductRequestQAResponse = {
-      message: "Product QA fetched successfully",
+      message: "Request Product QA fetched successfully",
+      data: GeneralQA,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getAllRequestServiceQA = async (
+  requestId: string
+): Promise<ProductRequestQAResponse> => {
+  //  get the all the product QA
+  //  return the  list to the product QA controller
+  try {
+    const GeneralQA = await prisma.productRequestQA.findMany({
+      where: {
+        requestId: requestId,
+        isGeneral: true,
+      },
+      include: {
+        subForm: true,
+      },
+    });
+    if (!GeneralQA) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ProductRequestQAResponse = {
+      message: "Request Service QA fetched successfully",
       data: GeneralQA,
       statusCode: 200,
     };
@@ -425,7 +430,7 @@ const getAllProductRequestQAByQuestion = async (
   try {
     const GeneralQA = await prisma.productRequestQA.findMany({
       where: {
-        question: payload.question,
+        title: payload.title,
         requestId: payload.requestId,
         isGeneral: false,
       },
@@ -517,7 +522,8 @@ export {
   initializeProductRequest,
   createProductRequestQA,
   getAllProductRequestQA,
-  getAllProductQA,
+  getAllRequestProductQA,
+  getAllRequestServiceQA,
   ScheduledJob,
   getAllProductRequestsByUserId,
   submitProductRequest,

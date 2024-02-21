@@ -340,7 +340,13 @@ interface AddProductQA {
   type: string;
   require: string[];
   properties: {
-    form: {
+    title: Props;
+    description: Props;
+    type: Props;
+    compulsory: Props;
+    isGeneral: Props;
+
+    subForm: {
       type: string;
       description: string;
       items: {
@@ -351,29 +357,12 @@ interface AddProductQA {
           answer: Props;
           type: Props;
           compulsory: Props;
-          isGeneral: Props;
-          subForm: Props;
-          profile: {
-            type: string;
-            description: string;
-            items: {
-              type: string;
-              require: string[];
-              properties: {
-                question: Props;
-                answer: Props;
-                type: Props;
-                compulsory: Props;
-              };
-            };
-          };
           file: {
             type: string;
             description: string;
             require: string[];
             properties: {
               name: Props;
-              description: Props;
               link: Props;
               type: Props;
             };
