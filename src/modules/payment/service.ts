@@ -96,8 +96,6 @@ const makePayment = async (transactionPayload: PaymentPayload) => {
         .then((response) => console.log(response?.data))
         .catch((err) => console.log(err));
 
-      console.log("testing", res);
-
       logger.info({
         message: `User with ${transactionPayload?.email} initiated a card payment successfully`,
       });
