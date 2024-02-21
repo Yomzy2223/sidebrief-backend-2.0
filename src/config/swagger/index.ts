@@ -742,6 +742,10 @@ const options: OpenAPIDefinition = {
               type: "string",
               description: "The id of the user",
             },
+            productId: {
+              type: "string",
+              description: "The id of the produt",
+            },
           },
         },
 
@@ -2331,34 +2335,34 @@ const options: OpenAPIDefinition = {
           },
         },
       },
-      "/productRequest/productId": {
-        post: {
-          tags: ["Product Request"],
-          summary: "Add service ID to the product",
-          description: "Add service ID to the product",
+      // "/productRequest/productId": {
+      //   post: {
+      //     tags: ["Product Request"],
+      //     summary: "Add service ID to the product",
+      //     description: "Add service ID to the product",
 
-          requestBody: {
-            // expected request body
-            content: {
-              // content-type
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/ProductServiceId", //
-                },
-              },
-            },
-          },
-          produces: ["application/json"],
-          responses: {
-            200: {
-              description: "New user product is created",
-              schema: {
-                $ref: "#/components/schemas/ProductServiceId",
-              },
-            },
-          },
-        },
-      },
+      //     requestBody: {
+      //       // expected request body
+      //       content: {
+      //         // content-type
+      //         "application/json": {
+      //           schema: {
+      //             $ref: "#/components/schemas/ProductServiceId", //
+      //           },
+      //         },
+      //       },
+      //     },
+      //     produces: ["application/json"],
+      //     responses: {
+      //       200: {
+      //         description: "New user product is created",
+      //         schema: {
+      //           $ref: "#/components/schemas/ProductServiceId",
+      //         },
+      //       },
+      //     },
+      //   },
+      // },
 
       "/productRequest/submission/{requestId}": {
         post: {

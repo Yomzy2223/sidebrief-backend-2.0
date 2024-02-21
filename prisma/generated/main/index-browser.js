@@ -346,14 +346,11 @@ exports.Prisma.ProductRequestScalarFieldEnum = {
 
 exports.Prisma.ProductRequestQAScalarFieldEnum = {
   id: 'id',
-  question: 'question',
-  answer: 'answer',
+  title: 'title',
+  description: 'description',
   type: 'type',
   compulsory: 'compulsory',
   isGeneral: 'isGeneral',
-  fileName: 'fileName',
-  fileType: 'fileType',
-  fileLink: 'fileLink',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeprecated: 'isDeprecated',
@@ -365,6 +362,9 @@ exports.Prisma.ProductRequestQASubFormScalarFieldEnum = {
   question: 'question',
   answer: 'answer',
   type: 'type',
+  fileName: 'fileName',
+  fileType: 'fileType',
+  fileLink: 'fileLink',
   compulsory: 'compulsory',
   isDeprecated: 'isDeprecated',
   requestQAId: 'requestQAId'

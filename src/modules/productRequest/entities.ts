@@ -1,5 +1,6 @@
 export interface ProductRequestPayload {
   userId: string;
+  productId: string;
 }
 export interface FormPayload {
   form: FormData[];

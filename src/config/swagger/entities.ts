@@ -325,6 +325,7 @@ interface CreateProduct {
   require: string[];
   properties: {
     userId: Props;
+    productId: Props;
   };
 }
 interface GetProductQAByQuestion {

@@ -24,6 +24,7 @@ const CreateProductRequest = async (
 
     const ProductRequestPayload = {
       userId: req.body.userId,
+      productId: req.body.productId,
     };
 
     const user = await initializeProductRequest(ProductRequestPayload);

@@ -462,14 +462,11 @@ export type ProductRequestQAPayload<ExtArgs extends $Extensions.Args = $Extensio
   }
   scalars: $Extensions.GetResult<{
     id: string
-    question: string | null
-    answer: string[]
+    title: string | null
+    description: string | null
     type: string | null
     compulsory: boolean
     isGeneral: boolean
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date
     updatedAt: Date
     isDeprecated: boolean
@@ -493,6 +490,9 @@ export type ProductRequestQASubFormPayload<ExtArgs extends $Extensions.Args = $E
     question: string | null
     answer: string[]
     type: string | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean
     isDeprecated: boolean
     requestQAId: string
@@ -20471,13 +20471,11 @@ export namespace Prisma {
 
   export type ProductRequestQAMinAggregateOutputType = {
     id: string | null
-    question: string | null
+    title: string | null
+    description: string | null
     type: string | null
     compulsory: boolean | null
     isGeneral: boolean | null
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date | null
     updatedAt: Date | null
     isDeprecated: boolean | null
@@ -20486,13 +20484,11 @@ export namespace Prisma {
 
   export type ProductRequestQAMaxAggregateOutputType = {
     id: string | null
-    question: string | null
+    title: string | null
+    description: string | null
     type: string | null
     compulsory: boolean | null
     isGeneral: boolean | null
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date | null
     updatedAt: Date | null
     isDeprecated: boolean | null
@@ -20501,14 +20497,11 @@ export namespace Prisma {
 
   export type ProductRequestQACountAggregateOutputType = {
     id: number
-    question: number
-    answer: number
+    title: number
+    description: number
     type: number
     compulsory: number
     isGeneral: number
-    fileName: number
-    fileType: number
-    fileLink: number
     createdAt: number
     updatedAt: number
     isDeprecated: number
@@ -20519,13 +20512,11 @@ export namespace Prisma {
 
   export type ProductRequestQAMinAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
+    description?: true
     type?: true
     compulsory?: true
     isGeneral?: true
-    fileName?: true
-    fileType?: true
-    fileLink?: true
     createdAt?: true
     updatedAt?: true
     isDeprecated?: true
@@ -20534,13 +20525,11 @@ export namespace Prisma {
 
   export type ProductRequestQAMaxAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
+    description?: true
     type?: true
     compulsory?: true
     isGeneral?: true
-    fileName?: true
-    fileType?: true
-    fileLink?: true
     createdAt?: true
     updatedAt?: true
     isDeprecated?: true
@@ -20549,14 +20538,11 @@ export namespace Prisma {
 
   export type ProductRequestQACountAggregateInputType = {
     id?: true
-    question?: true
-    answer?: true
+    title?: true
+    description?: true
     type?: true
     compulsory?: true
     isGeneral?: true
-    fileName?: true
-    fileType?: true
-    fileLink?: true
     createdAt?: true
     updatedAt?: true
     isDeprecated?: true
@@ -20639,14 +20625,11 @@ export namespace Prisma {
 
   export type ProductRequestQAGroupByOutputType = {
     id: string
-    question: string | null
-    answer: string[]
+    title: string | null
+    description: string | null
     type: string | null
     compulsory: boolean
     isGeneral: boolean
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date
     updatedAt: Date
     isDeprecated: boolean
@@ -20672,14 +20655,11 @@ export namespace Prisma {
 
   export type ProductRequestQASelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    question?: boolean
-    answer?: boolean
+    title?: boolean
+    description?: boolean
     type?: boolean
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileLink?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeprecated?: boolean
@@ -20691,14 +20671,11 @@ export namespace Prisma {
 
   export type ProductRequestQASelectScalar = {
     id?: boolean
-    question?: boolean
-    answer?: boolean
+    title?: boolean
+    description?: boolean
     type?: boolean
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileLink?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isDeprecated?: boolean
@@ -21492,6 +21469,9 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
     requestQAId: string | null
@@ -21501,6 +21481,9 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
     requestQAId: string | null
@@ -21511,6 +21494,9 @@ export namespace Prisma {
     question: number
     answer: number
     type: number
+    fileName: number
+    fileType: number
+    fileLink: number
     compulsory: number
     isDeprecated: number
     requestQAId: number
@@ -21522,6 +21508,9 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    fileName?: true
+    fileType?: true
+    fileLink?: true
     compulsory?: true
     isDeprecated?: true
     requestQAId?: true
@@ -21531,6 +21520,9 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
+    fileName?: true
+    fileType?: true
+    fileLink?: true
     compulsory?: true
     isDeprecated?: true
     requestQAId?: true
@@ -21541,6 +21533,9 @@ export namespace Prisma {
     question?: true
     answer?: true
     type?: true
+    fileName?: true
+    fileType?: true
+    fileLink?: true
     compulsory?: true
     isDeprecated?: true
     requestQAId?: true
@@ -21625,6 +21620,9 @@ export namespace Prisma {
     question: string | null
     answer: string[]
     type: string | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean
     isDeprecated: boolean
     requestQAId: string
@@ -21652,6 +21650,9 @@ export namespace Prisma {
     question?: boolean
     answer?: boolean
     type?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileLink?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
     requestQAId?: boolean
@@ -21663,6 +21664,9 @@ export namespace Prisma {
     question?: boolean
     answer?: boolean
     type?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileLink?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
     requestQAId?: boolean
@@ -28520,14 +28524,11 @@ export namespace Prisma {
 
   export const ProductRequestQAScalarFieldEnum: {
     id: 'id',
-    question: 'question',
-    answer: 'answer',
+    title: 'title',
+    description: 'description',
     type: 'type',
     compulsory: 'compulsory',
     isGeneral: 'isGeneral',
-    fileName: 'fileName',
-    fileType: 'fileType',
-    fileLink: 'fileLink',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isDeprecated: 'isDeprecated',
@@ -28542,6 +28543,9 @@ export namespace Prisma {
     question: 'question',
     answer: 'answer',
     type: 'type',
+    fileName: 'fileName',
+    fileType: 'fileType',
+    fileLink: 'fileLink',
     compulsory: 'compulsory',
     isDeprecated: 'isDeprecated',
     requestQAId: 'requestQAId'
@@ -29909,14 +29913,11 @@ export namespace Prisma {
     OR?: Enumerable<ProductRequestQAWhereInput>
     NOT?: Enumerable<ProductRequestQAWhereInput>
     id?: StringFilter | string
-    question?: StringNullableFilter | string | null
-    answer?: StringNullableListFilter
+    title?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isGeneral?: BoolFilter | boolean
-    fileName?: StringNullableFilter | string | null
-    fileType?: StringNullableFilter | string | null
-    fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
@@ -29927,14 +29928,11 @@ export namespace Prisma {
 
   export type ProductRequestQAOrderByWithRelationInput = {
     id?: SortOrder
-    question?: SortOrderInput | SortOrder
-    answer?: SortOrder
+    title?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isGeneral?: SortOrder
-    fileName?: SortOrderInput | SortOrder
-    fileType?: SortOrderInput | SortOrder
-    fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
@@ -29949,14 +29947,11 @@ export namespace Prisma {
 
   export type ProductRequestQAOrderByWithAggregationInput = {
     id?: SortOrder
-    question?: SortOrderInput | SortOrder
-    answer?: SortOrder
+    title?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isGeneral?: SortOrder
-    fileName?: SortOrderInput | SortOrder
-    fileType?: SortOrderInput | SortOrder
-    fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
@@ -29971,14 +29966,11 @@ export namespace Prisma {
     OR?: Enumerable<ProductRequestQAScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ProductRequestQAScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    question?: StringNullableWithAggregatesFilter | string | null
-    answer?: StringNullableListFilter
+    title?: StringNullableWithAggregatesFilter | string | null
+    description?: StringNullableWithAggregatesFilter | string | null
     type?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     isGeneral?: BoolWithAggregatesFilter | boolean
-    fileName?: StringNullableWithAggregatesFilter | string | null
-    fileType?: StringNullableWithAggregatesFilter | string | null
-    fileLink?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     isDeprecated?: BoolWithAggregatesFilter | boolean
@@ -29993,6 +29985,9 @@ export namespace Prisma {
     question?: StringNullableFilter | string | null
     answer?: StringNullableListFilter
     type?: StringNullableFilter | string | null
+    fileName?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
     requestQAId?: StringFilter | string
@@ -30004,6 +29999,9 @@ export namespace Prisma {
     question?: SortOrderInput | SortOrder
     answer?: SortOrder
     type?: SortOrderInput | SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -30019,6 +30017,9 @@ export namespace Prisma {
     question?: SortOrderInput | SortOrder
     answer?: SortOrder
     type?: SortOrderInput | SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -30035,6 +30036,9 @@ export namespace Prisma {
     question?: StringNullableWithAggregatesFilter | string | null
     answer?: StringNullableListFilter
     type?: StringNullableWithAggregatesFilter | string | null
+    fileName?: StringNullableWithAggregatesFilter | string | null
+    fileType?: StringNullableWithAggregatesFilter | string | null
+    fileLink?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     isDeprecated?: BoolWithAggregatesFilter | boolean
     requestQAId?: StringWithAggregatesFilter | string
@@ -32154,14 +32158,11 @@ export namespace Prisma {
 
   export type ProductRequestQACreateInput = {
     id?: string
-    question?: string | null
-    answer?: ProductRequestQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
@@ -32171,14 +32172,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUncheckedCreateInput = {
     id?: string
-    question?: string | null
-    answer?: ProductRequestQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
@@ -32188,14 +32186,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductRequestQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -32205,14 +32200,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductRequestQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -32222,14 +32214,11 @@ export namespace Prisma {
 
   export type ProductRequestQACreateManyInput = {
     id?: string
-    question?: string | null
-    answer?: ProductRequestQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
@@ -32238,14 +32227,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductRequestQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -32253,14 +32239,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductRequestQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -32272,6 +32255,9 @@ export namespace Prisma {
     question?: string | null
     answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     requestQA: ProductRequestQACreateNestedOneWithoutSubFormInput
@@ -32282,6 +32268,9 @@ export namespace Prisma {
     question?: string | null
     answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     requestQAId: string
@@ -32292,6 +32281,9 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     requestQA?: ProductRequestQAUpdateOneRequiredWithoutSubFormNestedInput
@@ -32302,6 +32294,9 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     requestQAId?: StringFieldUpdateOperationsInput | string
@@ -32312,6 +32307,9 @@ export namespace Prisma {
     question?: string | null
     answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     requestQAId: string
@@ -32322,6 +32320,9 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -32331,6 +32332,9 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     requestQAId?: StringFieldUpdateOperationsInput | string
@@ -33905,14 +33909,11 @@ export namespace Prisma {
 
   export type ProductRequestQACountOrderByAggregateInput = {
     id?: SortOrder
-    question?: SortOrder
-    answer?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     type?: SortOrder
     compulsory?: SortOrder
     isGeneral?: SortOrder
-    fileName?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
@@ -33921,13 +33922,11 @@ export namespace Prisma {
 
   export type ProductRequestQAMaxOrderByAggregateInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     type?: SortOrder
     compulsory?: SortOrder
     isGeneral?: SortOrder
-    fileName?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
@@ -33936,13 +33935,11 @@ export namespace Prisma {
 
   export type ProductRequestQAMinOrderByAggregateInput = {
     id?: SortOrder
-    question?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
     type?: SortOrder
     compulsory?: SortOrder
     isGeneral?: SortOrder
-    fileName?: SortOrder
-    fileType?: SortOrder
-    fileLink?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
@@ -33959,6 +33956,9 @@ export namespace Prisma {
     question?: SortOrder
     answer?: SortOrder
     type?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrder
+    fileLink?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -33968,6 +33968,9 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrder
+    fileLink?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -33977,6 +33980,9 @@ export namespace Prisma {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrder
+    fileLink?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -34984,10 +34990,6 @@ export namespace Prisma {
     deleteMany?: Enumerable<ProductRequestQAScalarWhereInput>
   }
 
-  export type ProductRequestQACreateanswerInput = {
-    set: Enumerable<string>
-  }
-
   export type ProductRequestCreateNestedOneWithoutRequestQAInput = {
     create?: XOR<ProductRequestCreateWithoutRequestQAInput, ProductRequestUncheckedCreateWithoutRequestQAInput>
     connectOrCreate?: ProductRequestCreateOrConnectWithoutRequestQAInput
@@ -35006,11 +35008,6 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<ProductRequestQASubFormCreateOrConnectWithoutRequestQAInput>
     createMany?: ProductRequestQASubFormCreateManyRequestQAInputEnvelope
     connect?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
-  }
-
-  export type ProductRequestQAUpdateanswerInput = {
-    set?: Enumerable<string>
-    push?: string | Enumerable<string>
   }
 
   export type ProductRequestUpdateOneRequiredWithoutRequestQANestedInput = {
@@ -36862,14 +36859,11 @@ export namespace Prisma {
 
   export type ProductRequestQACreateWithoutRequestInput = {
     id?: string
-    question?: string | null
-    answer?: ProductRequestQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
@@ -36878,14 +36872,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUncheckedCreateWithoutRequestInput = {
     id?: string
-    question?: string | null
-    answer?: ProductRequestQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
@@ -37098,14 +37089,11 @@ export namespace Prisma {
     OR?: Enumerable<ProductRequestQAScalarWhereInput>
     NOT?: Enumerable<ProductRequestQAScalarWhereInput>
     id?: StringFilter | string
-    question?: StringNullableFilter | string | null
-    answer?: StringNullableListFilter
+    title?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isGeneral?: BoolFilter | boolean
-    fileName?: StringNullableFilter | string | null
-    fileType?: StringNullableFilter | string | null
-    fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
@@ -37156,6 +37144,9 @@ export namespace Prisma {
     question?: string | null
     answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
   }
@@ -37165,6 +37156,9 @@ export namespace Prisma {
     question?: string | null
     answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
   }
@@ -37242,6 +37236,9 @@ export namespace Prisma {
     question?: StringNullableFilter | string | null
     answer?: StringNullableListFilter
     type?: StringNullableFilter | string | null
+    fileName?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
     requestQAId?: StringFilter | string
@@ -37249,14 +37246,11 @@ export namespace Prisma {
 
   export type ProductRequestQACreateWithoutSubFormInput = {
     id?: string
-    question?: string | null
-    answer?: ProductRequestQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
@@ -37265,14 +37259,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUncheckedCreateWithoutSubFormInput = {
     id?: string
-    question?: string | null
-    answer?: ProductRequestQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
@@ -37291,14 +37282,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductRequestQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -37307,14 +37295,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUncheckedUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductRequestQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -38415,14 +38400,11 @@ export namespace Prisma {
 
   export type ProductRequestQACreateManyRequestInput = {
     id?: string
-    question?: string | null
-    answer?: ProductRequestQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
@@ -38497,14 +38479,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUpdateWithoutRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductRequestQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -38513,14 +38492,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUncheckedUpdateWithoutRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductRequestQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -38529,14 +38505,11 @@ export namespace Prisma {
 
   export type ProductRequestQAUncheckedUpdateManyWithoutRequestQAInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductRequestQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -38547,6 +38520,9 @@ export namespace Prisma {
     question?: string | null
     answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
   }
@@ -38556,6 +38532,9 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -38565,6 +38544,9 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -38574,6 +38556,9 @@ export namespace Prisma {
     question?: NullableStringFieldUpdateOperationsInput | string | null
     answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
