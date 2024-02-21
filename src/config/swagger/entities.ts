@@ -273,7 +273,7 @@ interface ProductServiceId {
   type: string;
   require: string[];
   properties: {
-    serviceId: Props;
+    requestId: Props;
     productId: Props;
   };
 }
@@ -325,6 +325,7 @@ interface CreateProduct {
   require: string[];
   properties: {
     userId: Props;
+    productId: Props;
   };
 }
 interface GetProductQAByQuestion {
@@ -332,14 +333,20 @@ interface GetProductQAByQuestion {
   require: string[];
   properties: {
     question: Props;
-    productId: Props;
+    requestId: Props;
   };
 }
 interface AddProductQA {
   type: string;
   require: string[];
   properties: {
-    form: {
+    title: Props;
+    description: Props;
+    type: Props;
+    compulsory: Props;
+    isGeneral: Props;
+
+    subForm: {
       type: string;
       description: string;
       items: {
@@ -350,29 +357,12 @@ interface AddProductQA {
           answer: Props;
           type: Props;
           compulsory: Props;
-          isGeneral: Props;
-          subForm: Props;
-          profile: {
-            type: string;
-            description: string;
-            items: {
-              type: string;
-              require: string[];
-              properties: {
-                question: Props;
-                answer: Props;
-                type: Props;
-                compulsory: Props;
-              };
-            };
-          };
           file: {
             type: string;
             description: string;
             require: string[];
             properties: {
               name: Props;
-              description: Props;
               link: Props;
               type: Props;
             };
@@ -398,7 +388,7 @@ export interface PaymentInitialization {
     account_bank: Props;
     type: Props;
     productId: Props;
-    serviceId: Props;
+    requestId: Props;
   };
 }
 
@@ -407,7 +397,7 @@ export interface PaymentConfirmation {
   require: string[];
   properties: {
     email?: Props;
-    productId?: Props;
+    requestId?: Props;
   };
 }
 

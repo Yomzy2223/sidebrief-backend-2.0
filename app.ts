@@ -7,12 +7,11 @@ import cors from "cors";
 import usersRoutes from "./src/modules/user/routes";
 import bankRoutes from "./src/modules/bank/routes";
 import countryRoutes from "./src/modules/country/routes";
-import staffRoutes from "./src/modules/staff/routes";
 import diligenceRoutes from "./src/modules/diligence/routes";
 import serviceRoutes from "./src/modules/serviceCategory/routes";
 import collaboratorRoutes from "./src/modules/collaborator/routes";
-import productServiceRoutes from "./src/modules/productService/routes";
 import productRoutes from "./src/modules/product/routes";
+import productRequestRoutes from "./src/modules/productRequest/routes";
 import paymentRoutes from "./src/modules/payment/routes";
 // const connectDb = require("./src/config/database");
 import logger from "./src/config/logger";
@@ -21,7 +20,7 @@ import swaggerUi from "swagger-ui-express";
 import options from "./src/config/swagger";
 import session from "express-session";
 import ErrorHandler from "./src/middleware/errorHandler";
-import { ScheduledJob } from "./src/modules/product/service";
+import { ScheduledJob } from "./src/modules/productRequest/service";
 
 const app = express();
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
@@ -66,8 +65,6 @@ app.use(
 //all routes
 //user
 app.use("/users", usersRoutes);
-// staff
-app.use("/staffs", staffRoutes);
 //collaborator
 app.use("/collaborators", collaboratorRoutes);
 //service
@@ -79,9 +76,9 @@ app.use("/countries", countryRoutes);
 //test
 app.use("/diligence", diligenceRoutes);
 //productService
-app.use("/service/product", productServiceRoutes);
-//product
-app.use("/product", productRoutes);
+app.use("/products", productRoutes);
+//productRequest
+app.use("/productRequest", productRequestRoutes);
 
 //payment
 app.use("/payment", paymentRoutes);

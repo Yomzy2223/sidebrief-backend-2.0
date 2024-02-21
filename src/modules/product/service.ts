@@ -1,193 +1,74 @@
-import { PrismaClient } from "../../../prisma/generated/client2";
-import logger from "../../config/logger";
-import { BadRequest, NotFound, Unauthorized } from "../../utils/requestErrors";
-const prisma = new PrismaClient();
 import {
   FormData,
-  FormPayload,
-  ProductData,
   ProductPayload,
-  ProductQAResponse,
   ProductResponse,
-  ProductWithoutDataResponse,
-  ProfileData,
-  UpdateProductServiceIdPayload,
+  ProductFormPayload,
+  ProductFormResponse,
+  ProductSubFormPayload,
+  ProductSubFormResponse,
+  SubFormPayload,
+  UpdateProductFormPayload,
+  UpdateProductSubFormPayload,
 } from "./entities";
-import EmailSender from "../../services/emailEngine";
 
-//CHRONE JOB
-const getProductData = async (): Promise<ProductData[]> => {
-  try {
-    const timeNumber: number = 12;
-    // calculating 12 hours backward
-    const cutoffTime = new Date(Date.now() - timeNumber * 60 * 60 * 1000);
+import { PrismaClient } from "../../../prisma/generated/main";
+import logger from "../../config/logger";
+const prisma = new PrismaClient();
+import { BadRequest, NotFound } from "../../utils/requestErrors";
 
-    // get the list of uncompleted products using createdAt and completed fields
-    const checkProduct: any[] = await prisma.$queryRaw`
-    SELECT * FROM "Product" WHERE "createdAt" = ${cutoffTime} 
-    AND "completed" = false
-  `;
+// create a service for product service
 
-    //map the list to return just the userId and the currentState of the product
-    const productData: ProductData[] = checkProduct?.map(
-      (product: ProductData) => {
-        return {
-          userId: product.userId,
-          currentStage: product.currentState,
-        };
-      }
-    );
-
-    return productData;
-  } catch (error) {
-    logger.error({
-      message: `Error with the info ${error} occured `,
-    });
-    throw error;
-  }
-};
-
-const ScheduledJob = async () => {
-  try {
-    //get the productData list
-    const productData = await getProductData();
-
-    //for each product in the product list
-    for (const product of productData) {
-      //get the user details using the userId
-      const user = await prisma.user.findUnique({
-        where: {
-          id: product?.userId,
-        },
-      });
-
-      // send email notification to the user
-      const subject = "Complete your activity.";
-
-      const payload = {
-        name: user?.fullName,
-        stage: product.currentState,
-      };
-      const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
-      const recipientEmail = user?.email as string;
-      EmailSender(
-        subject,
-        payload,
-        recipientEmail,
-        senderEmail,
-        "../view/welcomeStaff.ejs"
-      );
-    }
-  } catch (error) {
-    logger.error({
-      message: `Error with the info ${error} occured `,
-    });
-    throw error;
-  }
-};
-
-// PRODUCT SERVICES
-
-//create product
-const initializeProduct = async (
-  productPayload: ProductPayload
+const saveProductService = async (
+  productPayload: ProductPayload,
+  serviceId: string
 ): Promise<ProductResponse> => {
+  // add new product  to the table
   try {
-    const user = await prisma.user.findFirst({
-      where: {
-        id: productPayload.userId,
-        isStaff: false,
-        isPartner: false,
-      },
+    const checkService = await prisma.service.findUnique({
+      where: { id: serviceId },
     });
-    if (!user) {
-      throw new NotFound(" User not found.");
+    if (!checkService) {
+      throw new BadRequest("Service does not exist");
     }
 
-    const product = await prisma.product.create({
+    const service = await prisma.product.create({
       data: productPayload,
     });
-    if (!product) {
-      throw new BadRequest("Error occured while creating this Product");
+    if (!service) {
+      throw new BadRequest("Error occured while creating this product");
     }
 
-    const checkProduct = await prisma.product.findUnique({
-      where: { id: product.id },
-      include: {
-        productQA: true,
-      },
-    });
-
     logger.info({
-      message: `${checkProduct?.userId} created a product successfully`,
+      message: `$ Product created successfully`,
     });
 
     const response: ProductResponse = {
       message: "Product created successfully",
+      data: service,
       statusCode: 200,
-      data: checkProduct,
     };
+
     return response;
   } catch (error) {
     throw error;
   }
 };
 
-//add service ID
-const addServiceId = async (
-  productPayload: UpdateProductServiceIdPayload
-): Promise<ProductResponse> => {
+// get all product service
+
+const getAllProductService = async (): Promise<ProductResponse> => {
+  //  get the product service  list from the table
+  //  return the product service list to the product service controller
   try {
-    const product = await prisma.product.findUnique({
+    const service = await prisma.product.findMany({
       where: {
-        id: productPayload?.productId,
+        isDeprecated: false,
+        service: {
+          isDeprecated: false,
+        },
       },
     });
-
-    const updateProduct = await prisma.product.update({
-      where: { id: product?.id },
-      data: { serviceId: productPayload?.serviceId },
-    });
-
-    if (!updateProduct) {
-      throw new BadRequest("Error occured while updating this product");
-    }
-
-    const checkProduct = await prisma.product.findUnique({
-      where: { id: product?.id },
-      include: {
-        productQA: true,
-      },
-    });
-
-    logger.info({
-      message: `${checkProduct?.userId} added a service ID successfully`,
-    });
-
-    const response: ProductResponse = {
-      message: "Service ID added successfully",
-      statusCode: 200,
-      data: checkProduct,
-    };
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
-
-//get all products by userId service
-const getAllProductsByUserId = async (
-  userId: string
-): Promise<ProductResponse> => {
-  //  get the products list from the table
-  //  return the products list to the products controller
-  try {
-    const products = await prisma.product.findMany({
-      where: {
-        userId: userId,
-      },
-    });
-    if (!products) {
+    if (!service) {
       return {
         message: "Empty Data",
         statusCode: 200,
@@ -195,8 +76,8 @@ const getAllProductsByUserId = async (
       };
     }
     const response: ProductResponse = {
-      message: "User products fetched successfully",
-      data: products,
+      message: "Products fetched successfully",
+      data: service,
       statusCode: 200,
     };
 
@@ -206,25 +87,217 @@ const getAllProductsByUserId = async (
   }
 };
 
-//get a product by product ID
-const getProductById = async (id: string): Promise<ProductResponse> => {
-  //  get the product date from the table
-  //  return the product date to the products controller
+// get product service by service category
+
+const getProductByService = async (
+  serviceId: string
+): Promise<ProductResponse> => {
+  // check if the product service for the service category exist
+  // return the product service to the product service controller
+
   try {
-    const product = await prisma.product.findUnique({
+    const service = await prisma.product.findMany({
+      where: {
+        serviceId: serviceId,
+        isDeprecated: false,
+        service: {
+          isDeprecated: false,
+        },
+      },
+    });
+
+    if (!service) {
+      throw new BadRequest("Product for this service not found!.");
+    }
+
+    const response: ProductResponse = {
+      message: "Product fetched successfully",
+      data: service,
+      statusCode: 200,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// get a product service
+const getProductService = async (id: string): Promise<ProductResponse> => {
+  // check if the product  for the service  exist
+  // return the product  to the product  controller
+
+  try {
+    const service = await prisma.product.findUnique({
       where: {
         id: id,
       },
-      include: {
-        service: true,
-      },
     });
-    if (!product) {
-      throw new BadRequest("Product date not found!.");
+
+    if (!service) {
+      throw new BadRequest("Product not found!.");
     }
+
     const response: ProductResponse = {
       message: "Product fetched successfully",
-      data: product,
+      data: service,
+      statusCode: 200,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// update product service
+const updateProductService = async (
+  id: string,
+  productServicePayload: ProductPayload
+) => {
+  // take both id and service payload from the product controller
+  //  check if the product exists
+  //  update the product s
+  //  return the product to the product controller
+
+  try {
+    const checkService = await prisma.product.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!checkService) {
+      throw new BadRequest("Product not found!");
+    }
+
+    const updateService = await prisma.product.update({
+      where: {
+        id: id,
+      },
+      data: productServicePayload,
+    });
+
+    if (!updateService) {
+      throw new BadRequest("Error occurred while updating Product!.");
+    }
+
+    return {
+      message: "Product updated successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+// remove product service
+
+const removeProductService = async (id: string) => {
+  //take id from the product controller
+  //check if the product exists
+  //remove the product from the record
+  //return response to the product controller
+
+  try {
+    const checkService = await prisma.product.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!checkService) {
+      throw new BadRequest("Product not found!");
+    }
+
+    const deleteService = await prisma.product.update({
+      where: {
+        id: id,
+      },
+      data: {
+        isDeprecated: true,
+      },
+    });
+
+    return {
+      message: "Product deleted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+// create a product form for product
+
+const saveProductForm = async (
+  productFormPayload: ProductFormPayload,
+  productId: string
+): Promise<ProductFormResponse> => {
+  // add new product form to the table
+  try {
+    const checkService = await prisma.product.findUnique({
+      where: { id: productId },
+    });
+    if (!checkService) {
+      throw new BadRequest("Product does not exist");
+    }
+
+    const checkServiceForm = await prisma.productForm.findFirst({
+      where: { title: productFormPayload.title },
+    });
+    if (checkServiceForm) {
+      throw new BadRequest("Product form with this title already exists");
+    }
+
+    const serviceForm = await prisma.productForm.create({
+      data: productFormPayload,
+    });
+    if (!serviceForm) {
+      throw new BadRequest("Error occured while creating this product form");
+    }
+
+    logger.info({
+      message: `Product form created successfully`,
+    });
+
+    const response: ProductFormResponse = {
+      message: "Product form created successfully",
+      data: serviceForm,
+      statusCode: 201,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// get all product form
+
+const getAllProductForm = async (
+  productId: string
+): Promise<ProductFormResponse> => {
+  //  get the product form  list from the table
+  //  return the product form list to the product form controller
+  try {
+    const service = await prisma.productForm.findMany({
+      where: {
+        productId: productId,
+        isDeprecated: false,
+        product: {
+          isDeprecated: false,
+        },
+      },
+    });
+    if (!service) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ProductFormResponse = {
+      message: "Product forms fetched successfully",
+      data: service,
       statusCode: 200,
     };
 
@@ -234,266 +307,210 @@ const getProductById = async (id: string): Promise<ProductResponse> => {
   }
 };
 
-//product info
-const createProductQA = async (
-  productQAPayload: FormPayload,
-  productId: string
-): Promise<ProductQAResponse> => {
+// get a product form
+const getProductForm = async (id: string): Promise<ProductFormResponse> => {
+  // check if the product form for the product s exist
+  // return the product form to the product form controller
+
   try {
-    const findProduct = await prisma.product.findUnique({
+    const serviceForm = await prisma.productForm.findUnique({
       where: {
-        id: productId,
+        id: id,
       },
     });
-    if (!findProduct) {
-      throw new NotFound("User product not found");
+
+    if (!serviceForm) {
+      throw new BadRequest("Product form not found!.");
     }
 
-    if (productQAPayload.form.length === 1) {
-      const data = {
-        question: productQAPayload?.form[0]?.question,
-        answer: productQAPayload?.form[0]?.answer,
-        type: productQAPayload?.form[0]?.type,
-        compulsory: productQAPayload?.form[0]?.compulsory,
-        isGeneral: productQAPayload?.form[0]?.isGeneral,
-        productId: findProduct.id,
-        fileName: productQAPayload?.form[0]?.file?.name,
-        fileDescription: productQAPayload?.form[0]?.file?.description,
-        fileLink: productQAPayload?.form[0]?.file?.link,
-        fileType: productQAPayload?.form[0]?.file?.type,
-      };
-      const createProductFormData = await prisma.productQA.create({
-        data: data,
-      });
-      if (!createProductFormData) {
-        throw new BadRequest("Error occured while creating this Product Form");
-      }
+    const response: ProductFormResponse = {
+      message: "Product form fetched successfully",
+      data: serviceForm,
+      statusCode: 200,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
 
-      if (productQAPayload.form[0].subForm) {
-        const productForm = productQAPayload.form[0].profile.map(
-          (data: ProfileData) => ({
-            question: data.question,
-            answer: data.answer,
-            type: data.type,
-            compulsory: data.compulsory,
-            productQAId: createProductFormData.id,
-          })
-        );
+// get product form by product id
 
-        const productQA = await prisma.productQASubForm.createMany({
-          data: productForm,
-          skipDuplicates: true,
-        });
+const getProductFormByProduct = async (
+  productId: string
+): Promise<ProductFormResponse> => {
+  // check if the product form for the particular product exist
+  // return the product form to the product controller
 
-        if (!productQA) {
-          throw new BadRequest(
-            "Error occured while creating this Product Sub Form"
-          );
-        }
-      }
-    } else {
-      const productForm = productQAPayload.form.map((data: FormData) => ({
-        question: data?.question,
-        answer: data?.answer,
-        type: data?.type,
-        isGeneral: data?.isGeneral,
-        compulsory: data?.compulsory,
-        productId: findProduct.id,
+  try {
+    const serviceForm = await prisma.productForm.findMany({
+      where: {
+        productId: productId,
+        isDeprecated: false,
+        product: {
+          isDeprecated: false,
+        },
+      },
+      include: {
+        productSubForm: {
+          where: {
+            isDeprecated: false,
+          },
+        },
+      },
+    });
+
+    if (!serviceForm) {
+      throw new BadRequest("Product form not found!");
+    }
+
+    const response: ProductFormResponse = {
+      message: "Product form fetched successfully",
+      data: serviceForm,
+      statusCode: 200,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// update product form
+const updateProductForm = async (
+  id: string,
+  productFormPayload: UpdateProductFormPayload,
+  subForm: SubFormPayload
+) => {
+  // take both id and service form payload from the product form category controller
+  //  check if the product form exists
+  //  update the product form
+  //  return the product form to the product form controller
+
+  try {
+    const checkServiceForm = await prisma.productForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!checkServiceForm) {
+      throw new BadRequest("Product form not found!");
+    }
+
+    const data = {
+      ...productFormPayload,
+      serviceId: checkServiceForm.productId,
+    };
+
+    const updateServiceForm = await prisma.productForm.update({
+      where: {
+        id: id,
+      },
+      data: data,
+    });
+
+    if (!updateServiceForm) {
+      throw new BadRequest("Error occurred while updating Product form!.");
+    }
+
+    if (subForm.subForm) {
+      const subServiceForm = subForm.form.map((data: FormData) => ({
+        question: data.question,
+        options: data.options,
+        type: data.type,
+        compulsory: data.compulsory,
         fileName: data?.file?.name,
         fileDescription: data?.file?.description,
         fileLink: data?.file?.link,
         fileType: data?.file?.type,
       }));
 
-      const productQA = await prisma.productQA.createMany({
-        data: productForm,
-        skipDuplicates: true,
+      const productQA = await prisma.productSubForm.updateMany({
+        data: subServiceForm,
       });
 
       if (!productQA) {
-        throw new BadRequest("Error occured while creating this Product Form");
+        throw new BadRequest(
+          "Error occured while updating this Product Sub Form"
+        );
       }
     }
-
-    logger.info({
-      message: `Form saved successfully for product with ${productId} `,
-    });
-
-    const productForms = await prisma.productQA.findMany({
-      where: {
-        productId: findProduct.id,
-      },
-      include: {
-        productSubForm: true,
-      },
-    });
-
-    if (!productForms) {
-      throw new NotFound("Error occured while getting products");
-    }
-
-    const response: ProductQAResponse = {
-      message: "Product form saved successfully",
+    return {
+      message: "Product form updated successfully!.",
       statusCode: 200,
-      data: productForms,
     };
-
-    return response;
   } catch (error) {
     throw error;
   }
 };
 
-//get all service QA service
-const getAllServiceQA = async (
-  productId: string
-): Promise<ProductQAResponse> => {
-  //  get the all the service QA
-  //  return the  list to the service QA controller
+// remove product form
+
+const removeProductForm = async (id: string) => {
+  //take id from the product form controller
+  //check if the product form exists
+  //remove the product form from the record
+  //return response to the product form controller
+
   try {
-    const GeneralQA = await prisma.productQA.findMany({
+    const checkServiceForm = await prisma.productForm.findUnique({
       where: {
-        productId: productId,
+        id: id,
       },
     });
-    if (!GeneralQA) {
-      return {
-        message: "Empty Data",
-        statusCode: 200,
-        data: [],
-      };
-    }
-    const response: ProductQAResponse = {
-      message: "Service QA fetched successfully",
-      data: GeneralQA,
-      statusCode: 200,
-    };
 
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
-
-//get all service QA service
-const getAllProductQA = async (
-  productId: string
-): Promise<ProductQAResponse> => {
-  //  get the all the product QA
-  //  return the  list to the product QA controller
-  try {
-    const GeneralQA = await prisma.productQA.findMany({
-      where: {
-        productId: productId,
-      },
-    });
-    if (!GeneralQA) {
-      return {
-        message: "Empty Data",
-        statusCode: 200,
-        data: [],
-      };
-    }
-    const response: ProductQAResponse = {
-      message: "Product QA fetched successfully",
-      data: GeneralQA,
-      statusCode: 200,
-    };
-
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
-//get all service QA service
-const getAllProductQAByQuestion = async (
-  payload: any
-): Promise<ProductQAResponse> => {
-  //  get the all the product QA
-  //  return the  list to the product QA controller
-  try {
-    const GeneralQA = await prisma.productQA.findMany({
-      where: {
-        question: payload.question,
-        productId: payload.productId,
-        isGeneral: false,
-      },
-      include: {
-        productSubForm: true,
-      },
-    });
-    if (!GeneralQA) {
-      return {
-        message: "Empty Data",
-        statusCode: 200,
-        data: [],
-      };
-    }
-    const response: ProductQAResponse = {
-      message: "Product QA fetched successfully",
-      data: GeneralQA,
-      statusCode: 200,
-    };
-
-    return response;
-  } catch (error) {
-    throw error;
-  }
-};
-
-//create product
-const submitProduct = async (
-  productId: string
-): Promise<ProductWithoutDataResponse> => {
-  try {
-    const product = await prisma.product.findUnique({
-      where: {
-        id: productId,
-      },
-    });
-    if (!product) {
-      throw new NotFound("Product not found.");
+    if (!checkServiceForm) {
+      throw new BadRequest("Product form not found!");
     }
 
-    const updateProduct = await prisma.product.update({
+    const deleteServiceForm = await prisma.productForm.update({
       where: {
-        id: productId,
+        id: id,
       },
       data: {
-        completed: true,
+        isDeprecated: false,
       },
     });
 
-    if (!updateProduct) {
-      throw new BadRequest("Error occured while submiting product.");
+    return {
+      message: "Product form deleted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+//create product sub form product
+const saveProductSubForm = async (
+  productCategoryPayload: ProductSubFormPayload,
+  formId: string
+): Promise<ProductSubFormResponse> => {
+  //   //add the new service category to the table
+
+  try {
+    const checkService = await prisma.productForm.findUnique({
+      where: { id: formId },
+    });
+    if (!checkService) {
+      throw new BadRequest("Product form does not exist");
     }
 
-    const findUser = await prisma.user.findUnique({
-      where: {
-        id: updateProduct.userId,
-      },
+    const categoryForm = await prisma.productSubForm.create({
+      data: productCategoryPayload,
     });
-
-    //send staff email
-    const subject = "Your Product has been submitted successfully.";
-    const payload = {
-      name: findUser?.fullName,
-    };
-    const senderEmail = '"Sidebrief" <hey@sidebrief.com>';
-    const recipientEmail = findUser?.email as string;
-    EmailSender(
-      subject,
-      payload,
-      recipientEmail,
-      senderEmail,
-      "../view/welcomeStaff.ejs"
-    );
+    if (!categoryForm) {
+      throw new BadRequest(
+        "Error occured while creating this Product sub form"
+      );
+    }
 
     logger.info({
-      message: "Product submitted successfully",
+      message: `Product sub form created successfully`,
     });
-    const response: ProductWithoutDataResponse = {
-      message: "Product submitted successfully",
+    const response: ProductSubFormResponse = {
+      message: "Product sub form created successfully",
+      data: categoryForm,
       statusCode: 200,
     };
     return response;
@@ -502,15 +519,148 @@ const submitProduct = async (
   }
 };
 
+//get all product sub form
+const getAllProductSubForm = async (
+  formId: string
+): Promise<ProductSubFormResponse> => {
+  //  get the service category list from the table
+  //  return the service category list to the service category controller
+  try {
+    const category = await prisma.productSubForm.findMany({
+      where: {
+        formId: formId,
+        isDeprecated: false,
+      },
+    });
+    if (!category) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ProductSubFormResponse = {
+      message: "Product sub forms fetched successfully",
+      data: category,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getProductSubForm = async (
+  id: string
+): Promise<ProductSubFormResponse> => {
+  //  get the service category list from the table
+  //  return the service category list to the service category controller
+  try {
+    const category = await prisma.productSubForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!category) {
+      throw new BadRequest("Product sub form not found!.");
+    }
+    const response: ProductSubFormResponse = {
+      message: "Product sub form fetched successfully",
+      data: category,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//update a Product sub form service
+const updateProductSubForm = async (
+  serviceCategorySubFormPayload: UpdateProductSubFormPayload,
+  id: string
+): Promise<ProductSubFormResponse> => {
+  // take both id and product sub form payload from the product sub form controller
+  //  check if the product sub form exists
+  //  update the product sub form
+  //  return the product sub form to the product sub form controller
+
+  try {
+    const category = await prisma.productSubForm.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    if (!category) {
+      throw new BadRequest("Product sub form not found!.");
+    }
+
+    const updateCategory = await prisma.productSubForm.update({
+      where: {
+        id: id,
+      },
+      data: serviceCategorySubFormPayload,
+    });
+
+    if (!updateCategory) {
+      throw new BadRequest("Error occured while updating product sub form!.");
+    }
+
+    return {
+      message: "Product sub form updated successfully",
+      data: updateCategory,
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const removeProductSubForm = async (id: string) => {
+  //take id from the service category controller
+  //check if the service category exists
+  //remove the service category from the record
+  //return response to the service category controller
+
+  try {
+    const deleteCategory = await prisma.productSubForm.update({
+      where: {
+        id: id,
+      },
+      data: {
+        isDeprecated: true,
+      },
+    });
+    if (!deleteCategory) {
+      throw new BadRequest("Product sub form not found!.");
+    }
+
+    return {
+      message: "Product sub form deleted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
 export {
-  initializeProduct,
-  createProductQA,
-  getAllProductQA,
-  getAllServiceQA,
-  ScheduledJob,
-  getAllProductsByUserId,
-  submitProduct,
-  addServiceId,
-  getProductById,
-  getAllProductQAByQuestion,
+  getAllProductService,
+  getProductByService,
+  getProductService,
+  saveProductService,
+  updateProductService,
+  removeProductService,
+  saveProductForm,
+  getAllProductForm,
+  getProductForm,
+  getProductFormByProduct,
+  removeProductForm,
+  updateProductForm,
+  saveProductSubForm,
+  getProductSubForm,
+  getAllProductSubForm,
+  updateProductSubForm,
+  removeProductSubForm,
 };

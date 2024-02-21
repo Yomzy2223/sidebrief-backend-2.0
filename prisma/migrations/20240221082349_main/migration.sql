@@ -167,7 +167,7 @@ CREATE TABLE "UserDocument" (
 );
 
 -- CreateTable
-CREATE TABLE "ServiceCategory" (
+CREATE TABLE "Service" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -175,11 +175,11 @@ CREATE TABLE "ServiceCategory" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "ServiceCategory_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Service_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ServiceCategoryForm" (
+CREATE TABLE "ServiceForm" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,
@@ -188,13 +188,13 @@ CREATE TABLE "ServiceCategoryForm" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
-    "serviceCategoryId" TEXT NOT NULL,
+    "serviceId" TEXT NOT NULL,
 
-    CONSTRAINT "ServiceCategoryForm_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ServiceForm_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ServiceCategorySubForm" (
+CREATE TABLE "ServiceSubForm" (
     "id" TEXT NOT NULL,
     "question" TEXT,
     "type" TEXT,
@@ -210,11 +210,11 @@ CREATE TABLE "ServiceCategorySubForm" (
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "formId" TEXT NOT NULL,
 
-    CONSTRAINT "ServiceCategorySubForm_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ServiceSubForm_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Service" (
+CREATE TABLE "Product" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
@@ -233,28 +233,28 @@ CREATE TABLE "Service" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
-    "serviceCategoryId" TEXT NOT NULL,
+    "serviceId" TEXT NOT NULL,
 
-    CONSTRAINT "Service_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ServiceForm" (
+CREATE TABLE "ProductForm" (
     "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
+    "title" TEXT,
     "type" TEXT,
     "description" TEXT,
     "compulsory" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "serviceId" TEXT NOT NULL,
+    "productId" TEXT NOT NULL,
 
-    CONSTRAINT "ServiceForm_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ProductForm_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ServiceSubForm" (
+CREATE TABLE "ProductSubForm" (
     "id" TEXT NOT NULL,
     "question" TEXT,
     "options" TEXT[],
@@ -268,13 +268,13 @@ CREATE TABLE "ServiceSubForm" (
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "serviceFormId" TEXT NOT NULL,
+    "formId" TEXT NOT NULL,
 
-    CONSTRAINT "ServiceSubForm_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ProductSubForm_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "Product" (
+CREATE TABLE "ProductRequest" (
     "id" TEXT NOT NULL,
     "email" TEXT,
     "address" TEXT,
@@ -285,14 +285,14 @@ CREATE TABLE "Product" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "serviceId" TEXT,
+    "productId" TEXT,
     "userId" TEXT NOT NULL,
 
-    CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ProductRequest_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ProductQA" (
+CREATE TABLE "ProductRequestQA" (
     "id" TEXT NOT NULL,
     "question" TEXT,
     "answer" TEXT[],
@@ -305,22 +305,22 @@ CREATE TABLE "ProductQA" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
-    "productId" TEXT NOT NULL,
+    "requestId" TEXT NOT NULL,
 
-    CONSTRAINT "ProductQA_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ProductRequestQA_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "ProductQASubForm" (
+CREATE TABLE "ProductRequestQASubForm" (
     "id" TEXT NOT NULL,
     "question" TEXT,
     "answer" TEXT[],
     "type" TEXT,
     "compulsory" BOOLEAN NOT NULL DEFAULT false,
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
-    "productQAId" TEXT NOT NULL,
+    "requestQAId" TEXT NOT NULL,
 
-    CONSTRAINT "ProductQASubForm_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "ProductRequestQASubForm_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -344,7 +344,7 @@ CREATE TABLE "Team" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
-    "productId" TEXT NOT NULL,
+    "productRequestId" TEXT NOT NULL,
 
     CONSTRAINT "Team_pkey" PRIMARY KEY ("id")
 );
@@ -390,7 +390,7 @@ CREATE TABLE "Payment" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "isDeprecated" BOOLEAN NOT NULL DEFAULT false,
-    "productId" TEXT NOT NULL,
+    "productRequestId" TEXT NOT NULL,
 
     CONSTRAINT "Payment_pkey" PRIMARY KEY ("id")
 );
@@ -438,10 +438,7 @@ CREATE UNIQUE INDEX "Bank_name_key" ON "Bank"("name");
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "ServiceCategory_name_key" ON "ServiceCategory"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "ServiceCategoryForm_title_key" ON "ServiceCategoryForm"("title");
+CREATE UNIQUE INDEX "Service_name_key" ON "Service"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "ServiceForm_title_key" ON "ServiceForm"("title");
@@ -453,34 +450,34 @@ ALTER TABLE "CollaboratorDocument" ADD CONSTRAINT "CollaboratorDocument_collabor
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ServiceCategoryForm" ADD CONSTRAINT "ServiceCategoryForm_serviceCategoryId_fkey" FOREIGN KEY ("serviceCategoryId") REFERENCES "ServiceCategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "ServiceCategorySubForm" ADD CONSTRAINT "ServiceCategorySubForm_formId_fkey" FOREIGN KEY ("formId") REFERENCES "ServiceCategoryForm"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Service" ADD CONSTRAINT "Service_serviceCategoryId_fkey" FOREIGN KEY ("serviceCategoryId") REFERENCES "ServiceCategory"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "ServiceForm" ADD CONSTRAINT "ServiceForm_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ServiceSubForm" ADD CONSTRAINT "ServiceSubForm_serviceFormId_fkey" FOREIGN KEY ("serviceFormId") REFERENCES "ServiceForm"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ServiceSubForm" ADD CONSTRAINT "ServiceSubForm_formId_fkey" FOREIGN KEY ("formId") REFERENCES "ServiceForm"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Product" ADD CONSTRAINT "Product_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "Service"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Product" ADD CONSTRAINT "Product_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ProductForm" ADD CONSTRAINT "ProductForm_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ProductQA" ADD CONSTRAINT "ProductQA_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ProductSubForm" ADD CONSTRAINT "ProductSubForm_formId_fkey" FOREIGN KEY ("formId") REFERENCES "ProductForm"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ProductQASubForm" ADD CONSTRAINT "ProductQASubForm_productQAId_fkey" FOREIGN KEY ("productQAId") REFERENCES "ProductQA"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ProductRequest" ADD CONSTRAINT "ProductRequest_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Team" ADD CONSTRAINT "Team_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ProductRequest" ADD CONSTRAINT "ProductRequest_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ProductRequestQA" ADD CONSTRAINT "ProductRequestQA_requestId_fkey" FOREIGN KEY ("requestId") REFERENCES "ProductRequest"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ProductRequestQASubForm" ADD CONSTRAINT "ProductRequestQASubForm_requestQAId_fkey" FOREIGN KEY ("requestQAId") REFERENCES "ProductRequestQA"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Team" ADD CONSTRAINT "Team_productRequestId_fkey" FOREIGN KEY ("productRequestId") REFERENCES "ProductRequest"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "TeamMember" ADD CONSTRAINT "TeamMember_teamId_fkey" FOREIGN KEY ("teamId") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -492,4 +489,4 @@ ALTER TABLE "TeamMember" ADD CONSTRAINT "TeamMember_userId_fkey" FOREIGN KEY ("u
 ALTER TABLE "Invitation" ADD CONSTRAINT "Invitation_teamId_fkey" FOREIGN KEY ("teamId") REFERENCES "Team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Payment" ADD CONSTRAINT "Payment_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Payment" ADD CONSTRAINT "Payment_productRequestId_fkey" FOREIGN KEY ("productRequestId") REFERENCES "ProductRequest"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

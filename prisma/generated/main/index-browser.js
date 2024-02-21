@@ -240,7 +240,7 @@ exports.Prisma.UserDocumentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ServiceCategoryScalarFieldEnum = {
+exports.Prisma.ServiceScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
@@ -249,7 +249,7 @@ exports.Prisma.ServiceCategoryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ServiceCategoryFormScalarFieldEnum = {
+exports.Prisma.ServiceFormScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
@@ -258,10 +258,10 @@ exports.Prisma.ServiceCategoryFormScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeprecated: 'isDeprecated',
-  serviceCategoryId: 'serviceCategoryId'
+  serviceId: 'serviceId'
 };
 
-exports.Prisma.ServiceCategorySubFormScalarFieldEnum = {
+exports.Prisma.ServiceSubFormScalarFieldEnum = {
   id: 'id',
   question: 'question',
   type: 'type',
@@ -278,7 +278,7 @@ exports.Prisma.ServiceCategorySubFormScalarFieldEnum = {
   formId: 'formId'
 };
 
-exports.Prisma.ServiceScalarFieldEnum = {
+exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
@@ -297,10 +297,10 @@ exports.Prisma.ServiceScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeprecated: 'isDeprecated',
-  serviceCategoryId: 'serviceCategoryId'
+  serviceId: 'serviceId'
 };
 
-exports.Prisma.ServiceFormScalarFieldEnum = {
+exports.Prisma.ProductFormScalarFieldEnum = {
   id: 'id',
   title: 'title',
   type: 'type',
@@ -309,10 +309,10 @@ exports.Prisma.ServiceFormScalarFieldEnum = {
   createdAt: 'createdAt',
   isDeprecated: 'isDeprecated',
   updatedAt: 'updatedAt',
-  serviceId: 'serviceId'
+  productId: 'productId'
 };
 
-exports.Prisma.ServiceSubFormScalarFieldEnum = {
+exports.Prisma.ProductSubFormScalarFieldEnum = {
   id: 'id',
   question: 'question',
   options: 'options',
@@ -326,10 +326,10 @@ exports.Prisma.ServiceSubFormScalarFieldEnum = {
   isDeprecated: 'isDeprecated',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  serviceFormId: 'serviceFormId'
+  formId: 'formId'
 };
 
-exports.Prisma.ProductScalarFieldEnum = {
+exports.Prisma.ProductRequestScalarFieldEnum = {
   id: 'id',
   email: 'email',
   address: 'address',
@@ -340,34 +340,34 @@ exports.Prisma.ProductScalarFieldEnum = {
   createdAt: 'createdAt',
   isDeprecated: 'isDeprecated',
   updatedAt: 'updatedAt',
-  serviceId: 'serviceId',
+  productId: 'productId',
   userId: 'userId'
 };
 
-exports.Prisma.ProductQAScalarFieldEnum = {
+exports.Prisma.ProductRequestQAScalarFieldEnum = {
   id: 'id',
-  question: 'question',
-  answer: 'answer',
+  title: 'title',
+  description: 'description',
   type: 'type',
   compulsory: 'compulsory',
   isGeneral: 'isGeneral',
-  fileName: 'fileName',
-  fileType: 'fileType',
-  fileLink: 'fileLink',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeprecated: 'isDeprecated',
-  productId: 'productId'
+  requestId: 'requestId'
 };
 
-exports.Prisma.ProductQASubFormScalarFieldEnum = {
+exports.Prisma.ProductRequestQASubFormScalarFieldEnum = {
   id: 'id',
   question: 'question',
   answer: 'answer',
   type: 'type',
+  fileName: 'fileName',
+  fileType: 'fileType',
+  fileLink: 'fileLink',
   compulsory: 'compulsory',
   isDeprecated: 'isDeprecated',
-  productQAId: 'productQAId'
+  requestQAId: 'requestQAId'
 };
 
 exports.Prisma.ClaimScalarFieldEnum = {
@@ -387,7 +387,7 @@ exports.Prisma.TeamScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeprecated: 'isDeprecated',
-  productId: 'productId'
+  productRequestId: 'productRequestId'
 };
 
 exports.Prisma.TeamMemberScalarFieldEnum = {
@@ -424,7 +424,7 @@ exports.Prisma.PaymentScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isDeprecated: 'isDeprecated',
-  productId: 'productId'
+  productRequestId: 'productRequestId'
 };
 
 exports.Prisma.ParterScalarFieldEnum = {
@@ -477,15 +477,15 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   User: 'User',
   UserDocument: 'UserDocument',
-  ServiceCategory: 'ServiceCategory',
-  ServiceCategoryForm: 'ServiceCategoryForm',
-  ServiceCategorySubForm: 'ServiceCategorySubForm',
   Service: 'Service',
   ServiceForm: 'ServiceForm',
   ServiceSubForm: 'ServiceSubForm',
   Product: 'Product',
-  ProductQA: 'ProductQA',
-  ProductQASubForm: 'ProductQASubForm',
+  ProductForm: 'ProductForm',
+  ProductSubForm: 'ProductSubForm',
+  ProductRequest: 'ProductRequest',
+  ProductRequestQA: 'ProductRequestQA',
+  ProductRequestQASubForm: 'ProductRequestQASubForm',
   Claim: 'Claim',
   Team: 'Team',
   TeamMember: 'TeamMember',

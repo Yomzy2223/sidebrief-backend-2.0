@@ -1,4 +1,4 @@
-import { PrismaClient } from "../../../prisma/generated/client1";
+import { PrismaClient } from "../../../prisma/generated/diligence";
 import logger from "../../config/logger";
 import { BadRequest, NotFound, Unauthorized } from "../../utils/requestErrors";
 const prisma = new PrismaClient();

@@ -7021,6 +7021,38 @@ Argument category for data.category is missing.
 Note: Lines with + are required, lines with ? are optional.
  occurred when POST /service/product/888eabf0-4831-4b90-87a7-6e6f3984d63b was called
 info: Label: 10-Feb-2024 11:47:02: $ product service category created successfully
+error: Label: 16-Feb-2024 14:01:18: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /services was called
+info: Label: 16-Feb-2024 14:11:31: Martins Odelana created an account successfully with martins@sidebrief.com.
+error: Label: 16-Feb-2024 14:12:29: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 16-Feb-2024 14:13:26: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+info: Label: 16-Feb-2024 14:15:15: staff with martins@sidebrief.com signed in successfully.
+error: Label: 16-Feb-2024 14:16:22: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 16-Feb-2024 14:16:49: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 16-Feb-2024 14:21:41: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+info: Label: 17-Feb-2024 15:12:20: staff with martins@sidebrief.com signed in successfully.
+error: Label: 17-Feb-2024 15:14:02: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:14:45: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:16:02: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:19:54: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:20:09: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:21:47: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:21:51: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+info: Label: 17-Feb-2024 15:23:15: staff with martins@sidebrief.com signed in successfully.
+error: Label: 17-Feb-2024 15:23:37: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+info: Label: 17-Feb-2024 15:28:27: staff with martins@sidebrief.com signed in successfully.
+info: Label: 17-Feb-2024 15:31:01: Odelana Martins created an account successfully with martins@sidebrief.com.
+error: Label: 17-Feb-2024 15:31:40: User not found!. with error Error: User not found!. occurred when POST /users/login was called
+info: Label: 17-Feb-2024 15:31:51: User with martins@sidebrief.com signed in successfully.
+info: Label: 17-Feb-2024 15:33:02: launch service category created successfully
+error: Label: 17-Feb-2024 15:36:10: Unexpected number in JSON at position 128 with error SyntaxError: Unexpected number in JSON at position 128 occurred when POST /service/product/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0Y2VmZjU4LWQwM2MtNDQ3MC04OTFiLTdlOGMzMjYxMmRlYSIsImlhdCI6MTcwODE4MDMxMSwiZXhwIjoxNzA5Mzg5OTExfQ.D6Pd3EiDiGGSTPxn1sEaJP-q8bfRtsXnd8XhBN3Xhag was called
+error: Label: 17-Feb-2024 15:37:16: Unexpected token r in JSON at position 34 with error SyntaxError: Unexpected token r in JSON at position 34 occurred when POST /service/product/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0Y2VmZjU4LWQwM2MtNDQ3MC04OTFiLTdlOGMzMjYxMmRlYSIsImlhdCI6MTcwODE4MDMxMSwiZXhwIjoxNzA5Mzg5OTExfQ.D6Pd3EiDiGGSTPxn1sEaJP-q8bfRtsXnd8XhBN3Xhag was called
+error: Label: 17-Feb-2024 15:37:37: Unexpected token r in JSON at position 34 with error SyntaxError: Unexpected token r in JSON at position 34 occurred when POST /service/product/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0Y2VmZjU4LWQwM2MtNDQ3MC04OTFiLTdlOGMzMjYxMmRlYSIsImlhdCI6MTcwODE4MDMxMSwiZXhwIjoxNzA5Mzg5OTExfQ.D6Pd3EiDiGGSTPxn1sEaJP-q8bfRtsXnd8XhBN3Xhag was called
+error: Label: 17-Feb-2024 15:37:56: Service does not exist with error Error: Service does not exist occurred when POST /service/product/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0Y2VmZjU4LWQwM2MtNDQ3MC04OTFiLTdlOGMzMjYxMmRlYSIsImlhdCI6MTcwODE4MDMxMSwiZXhwIjoxNzA5Mzg5OTExfQ.D6Pd3EiDiGGSTPxn1sEaJP-q8bfRtsXnd8XhBN3Xhag was called
+info: Label: 17-Feb-2024 15:38:59: $ product service category created successfully
+info: Label: 17-Feb-2024 15:47:14: Martins Odelana created an account successfully with odelanamartins1@gmail.com.
+info: Label: 17-Feb-2024 15:48:19: e16c87c8-d1c9-4918-9ce9-bea0fe864ed9 created a product successfully
+info: Label: 18-Feb-2024 01:08:18: User with undefined initiated a transfer payment successfully
+info: Label: 18-Feb-2024 01:10:24: User with undefined initiated a transfer payment successfully
 error: Label: 17-Feb-2024 13:58:43: Error occured with error PrismaClientKnownRequestError: 
 Invalid `prisma.serviceCategory.findMany()` invocation in
 /Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:51

@@ -1,28 +1,28 @@
-export interface ServiceCategoryPayload {
+export interface ServicePayload {
   name: string;
   description: string;
 }
-export interface ServiceCategoryData {
+export interface ServiceData {
   id: string;
   name: string;
   description: string;
 }
 
-export interface ServiceCategoryResponse {
+export interface ServiceResponse {
   statusCode: number;
   message: string;
-  data: ServiceCategoryData | ServiceCategoryData[];
+  data: ServiceData | ServiceData[];
 }
 
-export interface ServiceCategoryFormPayload {
+export interface ServiceFormPayload {
   title: string;
   type: string;
   description: string;
-  serviceCategoryId: string;
+  serviceId: string;
   compulsory: boolean;
 }
 
-export interface ServiceCategorySubFormPayload {
+export interface ServiceSubFormPayload {
   question?: string;
   type?: string;
   options?: string[];
@@ -35,15 +35,15 @@ export interface ServiceCategorySubFormPayload {
   dependsOn?: string;
 }
 
-export interface ServiceCategoryFormData {
+export interface ServiceFormData {
   id: string;
   title: string | null;
   type: string | null;
   description: string | null;
-  serviceCategoryId: string;
+  serviceId: string;
 }
 
-export interface ServiceCategorySubFormData {
+export interface ServiceSubFormData {
   id: string;
   question: string | null;
   type: string | null;
@@ -51,26 +51,26 @@ export interface ServiceCategorySubFormData {
   formId: string;
 }
 
-export interface ServiceCategoryFormResponse {
+export interface ServiceFormResponse {
   statusCode: number;
   message: string;
-  data: ServiceCategoryFormData | ServiceCategoryFormData[];
+  data: ServiceFormData | ServiceFormData[];
 }
 
-export interface ServiceCategorySubFormResponse {
+export interface ServiceSubFormResponse {
   statusCode: number;
   message: string;
-  data: ServiceCategorySubFormData | ServiceCategorySubFormData[];
+  data: ServiceSubFormData | ServiceSubFormData[];
 }
 
-export interface UpdateServiceCategoryFormPayload {
+export interface UpdateServiceFormPayload {
   title: string;
   type: string;
   description: string;
   compulsory: boolean;
 }
 
-export interface UpdateServiceCategorySubFormPayload {
+export interface UpdateServiceSubFormPayload {
   question?: string;
   type?: string;
   options?: string[];

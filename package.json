@@ -9,10 +9,10 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "jest --forceExit --detectOpenHandles --runInBand",
-    "push": "npx prisma db push --schema prisma/schema2.prisma && npx prisma db push --schema prisma/schema1.prisma",
-    "prisma": "npx prisma generate --schema prisma/schema1.prisma && npx prisma generate --schema prisma/schema2.prisma",
-    "migrate": "npm run prisma && npx prisma migrate dev --schema prisma/schema2.prisma --name main && npx prisma migrate dev --schema prisma/schema1.prisma --name main && npm run build && cp -r prisma dist/ && cp -r src/view dist/src/ && node dist/index.js",
-    "dev": "npm run prisma && npx prisma migrate deploy --schema prisma/schema2.prisma && npx prisma migrate deploy --schema prisma/schema1.prisma && npm run build && cp -r prisma dist/ && cp -r src/view dist/src/ && node dist/index.js",
+    "push": "npx prisma db push --schema prisma/main.prisma && npx prisma db push --schema prisma/diligence.prisma",
+    "prisma": "npx prisma generate --schema prisma/diligence.prisma && npx prisma generate --schema prisma/main.prisma",
+    "migrate": "npm run prisma && npx prisma migrate dev --schema prisma/main.prisma --name main && npx prisma migrate dev --schema prisma/diligence.prisma --name diligence && npm run build && cp -r prisma dist/ && cp -r src/view dist/src/ && node dist/index.js",
+    "dev": "npm run prisma && npx prisma migrate deploy --schema prisma/main.prisma && npx prisma migrate deploy --schema prisma/diligence.prisma && npm run build && cp -r prisma dist/ && cp -r src/view dist/src/ && node dist/index.js",
     "start": "npm run dev"
   },
   "author": "",

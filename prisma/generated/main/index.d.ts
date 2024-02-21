@@ -200,7 +200,7 @@ export type UserPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultAr
   objects: {
     teamMember: TeamMemberPayload<ExtArgs>[]
     account: AccountPayload<ExtArgs>[]
-    product: ProductPayload<ExtArgs>[]
+    productRequest: ProductRequestPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -257,11 +257,11 @@ export type UserDocumentPayload<ExtArgs extends $Extensions.Args = $Extensions.D
  * 
  */
 export type UserDocument = runtime.Types.DefaultSelection<UserDocumentPayload>
-export type ServiceCategoryPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "ServiceCategory"
+export type ServicePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "Service"
   objects: {
-    services: ServicePayload<ExtArgs>[]
-    form: ServiceCategoryFormPayload<ExtArgs>[]
+    products: ProductPayload<ExtArgs>[]
+    form: ServiceFormPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -270,20 +270,20 @@ export type ServiceCategoryPayload<ExtArgs extends $Extensions.Args = $Extension
     isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
-  }, ExtArgs["result"]["serviceCategory"]>
+  }, ExtArgs["result"]["service"]>
   composites: {}
 }
 
 /**
- * Model ServiceCategory
+ * Model Service
  * 
  */
-export type ServiceCategory = runtime.Types.DefaultSelection<ServiceCategoryPayload>
-export type ServiceCategoryFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "ServiceCategoryForm"
+export type Service = runtime.Types.DefaultSelection<ServicePayload>
+export type ServiceFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "ServiceForm"
   objects: {
-    category: ServiceCategoryPayload<ExtArgs>
-    subForm: ServiceCategorySubFormPayload<ExtArgs>[]
+    service: ServicePayload<ExtArgs>
+    subForm: ServiceSubFormPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -294,20 +294,20 @@ export type ServiceCategoryFormPayload<ExtArgs extends $Extensions.Args = $Exten
     createdAt: Date
     updatedAt: Date
     isDeprecated: boolean
-    serviceCategoryId: string
-  }, ExtArgs["result"]["serviceCategoryForm"]>
+    serviceId: string
+  }, ExtArgs["result"]["serviceForm"]>
   composites: {}
 }
 
 /**
- * Model ServiceCategoryForm
+ * Model ServiceForm
  * 
  */
-export type ServiceCategoryForm = runtime.Types.DefaultSelection<ServiceCategoryFormPayload>
-export type ServiceCategorySubFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "ServiceCategorySubForm"
+export type ServiceForm = runtime.Types.DefaultSelection<ServiceFormPayload>
+export type ServiceSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "ServiceSubForm"
   objects: {
-    category: ServiceCategoryFormPayload<ExtArgs>
+    form: ServiceFormPayload<ExtArgs>
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -324,21 +324,21 @@ export type ServiceCategorySubFormPayload<ExtArgs extends $Extensions.Args = $Ex
     updatedAt: Date
     isDeprecated: boolean
     formId: string
-  }, ExtArgs["result"]["serviceCategorySubForm"]>
+  }, ExtArgs["result"]["serviceSubForm"]>
   composites: {}
 }
 
 /**
- * Model ServiceCategorySubForm
+ * Model ServiceSubForm
  * 
  */
-export type ServiceCategorySubForm = runtime.Types.DefaultSelection<ServiceCategorySubFormPayload>
-export type ServicePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "Service"
+export type ServiceSubForm = runtime.Types.DefaultSelection<ServiceSubFormPayload>
+export type ProductPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "Product"
   objects: {
-    category: ServiceCategoryPayload<ExtArgs>
-    products: ProductPayload<ExtArgs>[]
-    forms: ServiceFormPayload<ExtArgs>[]
+    service: ServicePayload<ExtArgs>
+    request: ProductRequestPayload<ExtArgs>[]
+    form: ProductFormPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -359,21 +359,21 @@ export type ServicePayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     createdAt: Date
     updatedAt: Date
     isDeprecated: boolean
-    serviceCategoryId: string
-  }, ExtArgs["result"]["service"]>
+    serviceId: string
+  }, ExtArgs["result"]["product"]>
   composites: {}
 }
 
 /**
- * Model Service
+ * Model Product
  * 
  */
-export type Service = runtime.Types.DefaultSelection<ServicePayload>
-export type ServiceFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "ServiceForm"
+export type Product = runtime.Types.DefaultSelection<ProductPayload>
+export type ProductFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "ProductForm"
   objects: {
-    service: ServicePayload<ExtArgs>
-    serviceSubForm: ServiceSubFormPayload<ExtArgs>[]
+    product: ProductPayload<ExtArgs>
+    productSubForm: ProductSubFormPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -384,20 +384,20 @@ export type ServiceFormPayload<ExtArgs extends $Extensions.Args = $Extensions.De
     createdAt: Date
     isDeprecated: boolean
     updatedAt: Date
-    serviceId: string
-  }, ExtArgs["result"]["serviceForm"]>
+    productId: string
+  }, ExtArgs["result"]["productForm"]>
   composites: {}
 }
 
 /**
- * Model ServiceForm
+ * Model ProductForm
  * 
  */
-export type ServiceForm = runtime.Types.DefaultSelection<ServiceFormPayload>
-export type ServiceSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "ServiceSubForm"
+export type ProductForm = runtime.Types.DefaultSelection<ProductFormPayload>
+export type ProductSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "ProductSubForm"
   objects: {
-    serviceForm: ServiceFormPayload<ExtArgs>
+    form: ProductFormPayload<ExtArgs>
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -413,24 +413,24 @@ export type ServiceSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
     isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
-    serviceFormId: string
-  }, ExtArgs["result"]["serviceSubForm"]>
+    formId: string
+  }, ExtArgs["result"]["productSubForm"]>
   composites: {}
 }
 
 /**
- * Model ServiceSubForm
+ * Model ProductSubForm
  * 
  */
-export type ServiceSubForm = runtime.Types.DefaultSelection<ServiceSubFormPayload>
-export type ProductPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "Product"
+export type ProductSubForm = runtime.Types.DefaultSelection<ProductSubFormPayload>
+export type ProductRequestPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "ProductRequest"
   objects: {
     Team: TeamPayload<ExtArgs>[]
-    service: ServicePayload<ExtArgs> | null
+    product: ProductPayload<ExtArgs> | null
     user: UserPayload<ExtArgs>
     Payment: PaymentPayload<ExtArgs>[]
-    productQA: ProductQAPayload<ExtArgs>[]
+    requestQA: ProductRequestQAPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -443,68 +443,68 @@ export type ProductPayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     createdAt: Date
     isDeprecated: boolean
     updatedAt: Date
-    serviceId: string | null
+    productId: string | null
     userId: string
-  }, ExtArgs["result"]["product"]>
+  }, ExtArgs["result"]["productRequest"]>
   composites: {}
 }
 
 /**
- * Model Product
+ * Model ProductRequest
  * 
  */
-export type Product = runtime.Types.DefaultSelection<ProductPayload>
-export type ProductQAPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "ProductQA"
+export type ProductRequest = runtime.Types.DefaultSelection<ProductRequestPayload>
+export type ProductRequestQAPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "ProductRequestQA"
   objects: {
-    products: ProductPayload<ExtArgs>
-    productSubForm: ProductQASubFormPayload<ExtArgs>[]
+    request: ProductRequestPayload<ExtArgs>
+    subForm: ProductRequestQASubFormPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
-    question: string | null
-    answer: string[]
+    title: string | null
+    description: string | null
     type: string | null
     compulsory: boolean
     isGeneral: boolean
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date
     updatedAt: Date
     isDeprecated: boolean
-    productId: string
-  }, ExtArgs["result"]["productQA"]>
+    requestId: string
+  }, ExtArgs["result"]["productRequestQA"]>
   composites: {}
 }
 
 /**
- * Model ProductQA
+ * Model ProductRequestQA
  * 
  */
-export type ProductQA = runtime.Types.DefaultSelection<ProductQAPayload>
-export type ProductQASubFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-  name: "ProductQASubForm"
+export type ProductRequestQA = runtime.Types.DefaultSelection<ProductRequestQAPayload>
+export type ProductRequestQASubFormPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "ProductRequestQASubForm"
   objects: {
-    productQA: ProductQAPayload<ExtArgs>
+    requestQA: ProductRequestQAPayload<ExtArgs>
   }
   scalars: $Extensions.GetResult<{
     id: string
     question: string | null
     answer: string[]
     type: string | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
     compulsory: boolean
     isDeprecated: boolean
-    productQAId: string
-  }, ExtArgs["result"]["productQASubForm"]>
+    requestQAId: string
+  }, ExtArgs["result"]["productRequestQASubForm"]>
   composites: {}
 }
 
 /**
- * Model ProductQASubForm
+ * Model ProductRequestQASubForm
  * 
  */
-export type ProductQASubForm = runtime.Types.DefaultSelection<ProductQASubFormPayload>
+export type ProductRequestQASubForm = runtime.Types.DefaultSelection<ProductRequestQASubFormPayload>
 export type ClaimPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
   name: "Claim"
   objects: {}
@@ -527,7 +527,7 @@ export type Claim = runtime.Types.DefaultSelection<ClaimPayload>
 export type TeamPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
   name: "Team"
   objects: {
-    product: ProductPayload<ExtArgs>
+    productRequest: ProductRequestPayload<ExtArgs>
     invitation: InvitationPayload<ExtArgs>[]
     teamMember: TeamMemberPayload<ExtArgs>[]
   }
@@ -539,7 +539,7 @@ export type TeamPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultAr
     createdAt: Date
     updatedAt: Date
     isDeprecated: boolean
-    productId: string
+    productRequestId: string
   }, ExtArgs["result"]["team"]>
   composites: {}
 }
@@ -602,7 +602,7 @@ export type Invitation = runtime.Types.DefaultSelection<InvitationPayload>
 export type PaymentPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
   name: "Payment"
   objects: {
-    products: ProductPayload<ExtArgs>
+    productRequests: ProductRequestPayload<ExtArgs>
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -613,7 +613,7 @@ export type PaymentPayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     createdAt: Date
     updatedAt: Date
     isDeprecated: boolean
-    productId: string
+    productRequestId: string
   }, ExtArgs["result"]["payment"]>
   composites: {}
 }
@@ -892,36 +892,6 @@ export class PrismaClient<
   get userDocument(): Prisma.UserDocumentDelegate<GlobalReject, ExtArgs>;
 
   /**
-   * `prisma.serviceCategory`: Exposes CRUD operations for the **ServiceCategory** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ServiceCategories
-    * const serviceCategories = await prisma.serviceCategory.findMany()
-    * ```
-    */
-  get serviceCategory(): Prisma.ServiceCategoryDelegate<GlobalReject, ExtArgs>;
-
-  /**
-   * `prisma.serviceCategoryForm`: Exposes CRUD operations for the **ServiceCategoryForm** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ServiceCategoryForms
-    * const serviceCategoryForms = await prisma.serviceCategoryForm.findMany()
-    * ```
-    */
-  get serviceCategoryForm(): Prisma.ServiceCategoryFormDelegate<GlobalReject, ExtArgs>;
-
-  /**
-   * `prisma.serviceCategorySubForm`: Exposes CRUD operations for the **ServiceCategorySubForm** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more ServiceCategorySubForms
-    * const serviceCategorySubForms = await prisma.serviceCategorySubForm.findMany()
-    * ```
-    */
-  get serviceCategorySubForm(): Prisma.ServiceCategorySubFormDelegate<GlobalReject, ExtArgs>;
-
-  /**
    * `prisma.service`: Exposes CRUD operations for the **Service** model.
     * Example usage:
     * ```ts
@@ -962,24 +932,54 @@ export class PrismaClient<
   get product(): Prisma.ProductDelegate<GlobalReject, ExtArgs>;
 
   /**
-   * `prisma.productQA`: Exposes CRUD operations for the **ProductQA** model.
+   * `prisma.productForm`: Exposes CRUD operations for the **ProductForm** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more ProductQAS
-    * const productQAS = await prisma.productQA.findMany()
+    * // Fetch zero or more ProductForms
+    * const productForms = await prisma.productForm.findMany()
     * ```
     */
-  get productQA(): Prisma.ProductQADelegate<GlobalReject, ExtArgs>;
+  get productForm(): Prisma.ProductFormDelegate<GlobalReject, ExtArgs>;
 
   /**
-   * `prisma.productQASubForm`: Exposes CRUD operations for the **ProductQASubForm** model.
+   * `prisma.productSubForm`: Exposes CRUD operations for the **ProductSubForm** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more ProductQASubForms
-    * const productQASubForms = await prisma.productQASubForm.findMany()
+    * // Fetch zero or more ProductSubForms
+    * const productSubForms = await prisma.productSubForm.findMany()
     * ```
     */
-  get productQASubForm(): Prisma.ProductQASubFormDelegate<GlobalReject, ExtArgs>;
+  get productSubForm(): Prisma.ProductSubFormDelegate<GlobalReject, ExtArgs>;
+
+  /**
+   * `prisma.productRequest`: Exposes CRUD operations for the **ProductRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProductRequests
+    * const productRequests = await prisma.productRequest.findMany()
+    * ```
+    */
+  get productRequest(): Prisma.ProductRequestDelegate<GlobalReject, ExtArgs>;
+
+  /**
+   * `prisma.productRequestQA`: Exposes CRUD operations for the **ProductRequestQA** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProductRequestQAS
+    * const productRequestQAS = await prisma.productRequestQA.findMany()
+    * ```
+    */
+  get productRequestQA(): Prisma.ProductRequestQADelegate<GlobalReject, ExtArgs>;
+
+  /**
+   * `prisma.productRequestQASubForm`: Exposes CRUD operations for the **ProductRequestQASubForm** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProductRequestQASubForms
+    * const productRequestQASubForms = await prisma.productRequestQASubForm.findMany()
+    * ```
+    */
+  get productRequestQASubForm(): Prisma.ProductRequestQASubFormDelegate<GlobalReject, ExtArgs>;
 
   /**
    * `prisma.claim`: Exposes CRUD operations for the **Claim** model.
@@ -1533,15 +1533,15 @@ export namespace Prisma {
     Account: 'Account',
     User: 'User',
     UserDocument: 'UserDocument',
-    ServiceCategory: 'ServiceCategory',
-    ServiceCategoryForm: 'ServiceCategoryForm',
-    ServiceCategorySubForm: 'ServiceCategorySubForm',
     Service: 'Service',
     ServiceForm: 'ServiceForm',
     ServiceSubForm: 'ServiceSubForm',
     Product: 'Product',
-    ProductQA: 'ProductQA',
-    ProductQASubForm: 'ProductQASubForm',
+    ProductForm: 'ProductForm',
+    ProductSubForm: 'ProductSubForm',
+    ProductRequest: 'ProductRequest',
+    ProductRequestQA: 'ProductRequestQA',
+    ProductRequestQASubForm: 'ProductRequestQASubForm',
     Claim: 'Claim',
     Team: 'Team',
     TeamMember: 'TeamMember',
@@ -1564,7 +1564,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'staff' | 'collaborator' | 'collaboratorDocument' | 'reward' | 'country' | 'bank' | 'notification' | 'account' | 'user' | 'userDocument' | 'serviceCategory' | 'serviceCategoryForm' | 'serviceCategorySubForm' | 'service' | 'serviceForm' | 'serviceSubForm' | 'product' | 'productQA' | 'productQASubForm' | 'claim' | 'team' | 'teamMember' | 'invitation' | 'payment' | 'parter'
+      modelProps: 'staff' | 'collaborator' | 'collaboratorDocument' | 'reward' | 'country' | 'bank' | 'notification' | 'account' | 'user' | 'userDocument' | 'service' | 'serviceForm' | 'serviceSubForm' | 'product' | 'productForm' | 'productSubForm' | 'productRequest' | 'productRequestQA' | 'productRequestQASubForm' | 'claim' | 'team' | 'teamMember' | 'invitation' | 'payment' | 'parter'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -2218,201 +2218,6 @@ export namespace Prisma {
           }
         }
       }
-      ServiceCategory: {
-        payload: ServiceCategoryPayload<ExtArgs>
-        operations: {
-          findUnique: {
-            args: Prisma.ServiceCategoryFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryPayload>
-          }
-          findFirst: {
-            args: Prisma.ServiceCategoryFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ServiceCategoryFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryPayload>
-          }
-          findMany: {
-            args: Prisma.ServiceCategoryFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryPayload>[]
-          }
-          create: {
-            args: Prisma.ServiceCategoryCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryPayload>
-          }
-          createMany: {
-            args: Prisma.ServiceCategoryCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.ServiceCategoryDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryPayload>
-          }
-          update: {
-            args: Prisma.ServiceCategoryUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryPayload>
-          }
-          deleteMany: {
-            args: Prisma.ServiceCategoryDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ServiceCategoryUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.ServiceCategoryUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryPayload>
-          }
-          aggregate: {
-            args: Prisma.ServiceCategoryAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateServiceCategory>
-          }
-          groupBy: {
-            args: Prisma.ServiceCategoryGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ServiceCategoryGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ServiceCategoryCountArgs<ExtArgs>,
-            result: $Utils.Optional<ServiceCategoryCountAggregateOutputType> | number
-          }
-        }
-      }
-      ServiceCategoryForm: {
-        payload: ServiceCategoryFormPayload<ExtArgs>
-        operations: {
-          findUnique: {
-            args: Prisma.ServiceCategoryFormFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryFormPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ServiceCategoryFormFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryFormPayload>
-          }
-          findFirst: {
-            args: Prisma.ServiceCategoryFormFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryFormPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ServiceCategoryFormFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryFormPayload>
-          }
-          findMany: {
-            args: Prisma.ServiceCategoryFormFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryFormPayload>[]
-          }
-          create: {
-            args: Prisma.ServiceCategoryFormCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryFormPayload>
-          }
-          createMany: {
-            args: Prisma.ServiceCategoryFormCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.ServiceCategoryFormDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryFormPayload>
-          }
-          update: {
-            args: Prisma.ServiceCategoryFormUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryFormPayload>
-          }
-          deleteMany: {
-            args: Prisma.ServiceCategoryFormDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ServiceCategoryFormUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.ServiceCategoryFormUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategoryFormPayload>
-          }
-          aggregate: {
-            args: Prisma.ServiceCategoryFormAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateServiceCategoryForm>
-          }
-          groupBy: {
-            args: Prisma.ServiceCategoryFormGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ServiceCategoryFormGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ServiceCategoryFormCountArgs<ExtArgs>,
-            result: $Utils.Optional<ServiceCategoryFormCountAggregateOutputType> | number
-          }
-        }
-      }
-      ServiceCategorySubForm: {
-        payload: ServiceCategorySubFormPayload<ExtArgs>
-        operations: {
-          findUnique: {
-            args: Prisma.ServiceCategorySubFormFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ServiceCategorySubFormFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
-          }
-          findFirst: {
-            args: Prisma.ServiceCategorySubFormFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ServiceCategorySubFormFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
-          }
-          findMany: {
-            args: Prisma.ServiceCategorySubFormFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>[]
-          }
-          create: {
-            args: Prisma.ServiceCategorySubFormCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
-          }
-          createMany: {
-            args: Prisma.ServiceCategorySubFormCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.ServiceCategorySubFormDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
-          }
-          update: {
-            args: Prisma.ServiceCategorySubFormUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
-          }
-          deleteMany: {
-            args: Prisma.ServiceCategorySubFormDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ServiceCategorySubFormUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.ServiceCategorySubFormUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ServiceCategorySubFormPayload>
-          }
-          aggregate: {
-            args: Prisma.ServiceCategorySubFormAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateServiceCategorySubForm>
-          }
-          groupBy: {
-            args: Prisma.ServiceCategorySubFormGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ServiceCategorySubFormGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ServiceCategorySubFormCountArgs<ExtArgs>,
-            result: $Utils.Optional<ServiceCategorySubFormCountAggregateOutputType> | number
-          }
-        }
-      }
       Service: {
         payload: ServicePayload<ExtArgs>
         operations: {
@@ -2673,133 +2478,328 @@ export namespace Prisma {
           }
         }
       }
-      ProductQA: {
-        payload: ProductQAPayload<ExtArgs>
+      ProductForm: {
+        payload: ProductFormPayload<ExtArgs>
         operations: {
           findUnique: {
-            args: Prisma.ProductQAFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQAPayload> | null
+            args: Prisma.ProductFormFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductFormPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ProductQAFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQAPayload>
+            args: Prisma.ProductFormFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductFormPayload>
           }
           findFirst: {
-            args: Prisma.ProductQAFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQAPayload> | null
+            args: Prisma.ProductFormFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductFormPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ProductQAFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQAPayload>
+            args: Prisma.ProductFormFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductFormPayload>
           }
           findMany: {
-            args: Prisma.ProductQAFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQAPayload>[]
+            args: Prisma.ProductFormFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductFormPayload>[]
           }
           create: {
-            args: Prisma.ProductQACreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQAPayload>
+            args: Prisma.ProductFormCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductFormPayload>
           }
           createMany: {
-            args: Prisma.ProductQACreateManyArgs<ExtArgs>,
+            args: Prisma.ProductFormCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.ProductQADeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQAPayload>
+            args: Prisma.ProductFormDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductFormPayload>
           }
           update: {
-            args: Prisma.ProductQAUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQAPayload>
+            args: Prisma.ProductFormUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductFormPayload>
           }
           deleteMany: {
-            args: Prisma.ProductQADeleteManyArgs<ExtArgs>,
+            args: Prisma.ProductFormDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.ProductQAUpdateManyArgs<ExtArgs>,
+            args: Prisma.ProductFormUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.ProductQAUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQAPayload>
+            args: Prisma.ProductFormUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductFormPayload>
           }
           aggregate: {
-            args: Prisma.ProductQAAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateProductQA>
+            args: Prisma.ProductFormAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateProductForm>
           }
           groupBy: {
-            args: Prisma.ProductQAGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ProductQAGroupByOutputType>[]
+            args: Prisma.ProductFormGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ProductFormGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ProductQACountArgs<ExtArgs>,
-            result: $Utils.Optional<ProductQACountAggregateOutputType> | number
+            args: Prisma.ProductFormCountArgs<ExtArgs>,
+            result: $Utils.Optional<ProductFormCountAggregateOutputType> | number
           }
         }
       }
-      ProductQASubForm: {
-        payload: ProductQASubFormPayload<ExtArgs>
+      ProductSubForm: {
+        payload: ProductSubFormPayload<ExtArgs>
         operations: {
           findUnique: {
-            args: Prisma.ProductQASubFormFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQASubFormPayload> | null
+            args: Prisma.ProductSubFormFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductSubFormPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ProductQASubFormFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQASubFormPayload>
+            args: Prisma.ProductSubFormFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductSubFormPayload>
           }
           findFirst: {
-            args: Prisma.ProductQASubFormFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQASubFormPayload> | null
+            args: Prisma.ProductSubFormFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductSubFormPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ProductQASubFormFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQASubFormPayload>
+            args: Prisma.ProductSubFormFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductSubFormPayload>
           }
           findMany: {
-            args: Prisma.ProductQASubFormFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQASubFormPayload>[]
+            args: Prisma.ProductSubFormFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductSubFormPayload>[]
           }
           create: {
-            args: Prisma.ProductQASubFormCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQASubFormPayload>
+            args: Prisma.ProductSubFormCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductSubFormPayload>
           }
           createMany: {
-            args: Prisma.ProductQASubFormCreateManyArgs<ExtArgs>,
+            args: Prisma.ProductSubFormCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.ProductQASubFormDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQASubFormPayload>
+            args: Prisma.ProductSubFormDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductSubFormPayload>
           }
           update: {
-            args: Prisma.ProductQASubFormUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQASubFormPayload>
+            args: Prisma.ProductSubFormUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductSubFormPayload>
           }
           deleteMany: {
-            args: Prisma.ProductQASubFormDeleteManyArgs<ExtArgs>,
+            args: Prisma.ProductSubFormDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.ProductQASubFormUpdateManyArgs<ExtArgs>,
+            args: Prisma.ProductSubFormUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.ProductQASubFormUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<ProductQASubFormPayload>
+            args: Prisma.ProductSubFormUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductSubFormPayload>
           }
           aggregate: {
-            args: Prisma.ProductQASubFormAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateProductQASubForm>
+            args: Prisma.ProductSubFormAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateProductSubForm>
           }
           groupBy: {
-            args: Prisma.ProductQASubFormGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ProductQASubFormGroupByOutputType>[]
+            args: Prisma.ProductSubFormGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ProductSubFormGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ProductQASubFormCountArgs<ExtArgs>,
-            result: $Utils.Optional<ProductQASubFormCountAggregateOutputType> | number
+            args: Prisma.ProductSubFormCountArgs<ExtArgs>,
+            result: $Utils.Optional<ProductSubFormCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProductRequest: {
+        payload: ProductRequestPayload<ExtArgs>
+        operations: {
+          findUnique: {
+            args: Prisma.ProductRequestFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProductRequestFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.ProductRequestFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProductRequestFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestPayload>
+          }
+          findMany: {
+            args: Prisma.ProductRequestFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestPayload>[]
+          }
+          create: {
+            args: Prisma.ProductRequestCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestPayload>
+          }
+          createMany: {
+            args: Prisma.ProductRequestCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ProductRequestDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestPayload>
+          }
+          update: {
+            args: Prisma.ProductRequestUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProductRequestDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProductRequestUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProductRequestUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.ProductRequestAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateProductRequest>
+          }
+          groupBy: {
+            args: Prisma.ProductRequestGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ProductRequestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProductRequestCountArgs<ExtArgs>,
+            result: $Utils.Optional<ProductRequestCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProductRequestQA: {
+        payload: ProductRequestQAPayload<ExtArgs>
+        operations: {
+          findUnique: {
+            args: Prisma.ProductRequestQAFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQAPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProductRequestQAFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQAPayload>
+          }
+          findFirst: {
+            args: Prisma.ProductRequestQAFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQAPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProductRequestQAFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQAPayload>
+          }
+          findMany: {
+            args: Prisma.ProductRequestQAFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQAPayload>[]
+          }
+          create: {
+            args: Prisma.ProductRequestQACreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQAPayload>
+          }
+          createMany: {
+            args: Prisma.ProductRequestQACreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ProductRequestQADeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQAPayload>
+          }
+          update: {
+            args: Prisma.ProductRequestQAUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQAPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProductRequestQADeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProductRequestQAUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProductRequestQAUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQAPayload>
+          }
+          aggregate: {
+            args: Prisma.ProductRequestQAAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateProductRequestQA>
+          }
+          groupBy: {
+            args: Prisma.ProductRequestQAGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ProductRequestQAGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProductRequestQACountArgs<ExtArgs>,
+            result: $Utils.Optional<ProductRequestQACountAggregateOutputType> | number
+          }
+        }
+      }
+      ProductRequestQASubForm: {
+        payload: ProductRequestQASubFormPayload<ExtArgs>
+        operations: {
+          findUnique: {
+            args: Prisma.ProductRequestQASubFormFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQASubFormPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProductRequestQASubFormFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQASubFormPayload>
+          }
+          findFirst: {
+            args: Prisma.ProductRequestQASubFormFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQASubFormPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProductRequestQASubFormFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQASubFormPayload>
+          }
+          findMany: {
+            args: Prisma.ProductRequestQASubFormFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQASubFormPayload>[]
+          }
+          create: {
+            args: Prisma.ProductRequestQASubFormCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQASubFormPayload>
+          }
+          createMany: {
+            args: Prisma.ProductRequestQASubFormCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ProductRequestQASubFormDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQASubFormPayload>
+          }
+          update: {
+            args: Prisma.ProductRequestQASubFormUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQASubFormPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProductRequestQASubFormDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProductRequestQASubFormUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProductRequestQASubFormUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<ProductRequestQASubFormPayload>
+          }
+          aggregate: {
+            args: Prisma.ProductRequestQASubFormAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateProductRequestQASubForm>
+          }
+          groupBy: {
+            args: Prisma.ProductRequestQASubFormGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ProductRequestQASubFormGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProductRequestQASubFormCountArgs<ExtArgs>,
+            result: $Utils.Optional<ProductRequestQASubFormCountAggregateOutputType> | number
           }
         }
       }
@@ -3412,13 +3412,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     teamMember: number
     account: number
-    product: number
+    productRequest: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     teamMember?: boolean | UserCountOutputTypeCountTeamMemberArgs
     account?: boolean | UserCountOutputTypeCountAccountArgs
-    product?: boolean | UserCountOutputTypeCountProductArgs
+    productRequest?: boolean | UserCountOutputTypeCountProductRequestArgs
   }
 
   // Custom InputTypes
@@ -3453,88 +3453,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountProductArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ProductWhereInput
-  }
-
-
-
-  /**
-   * Count Type ServiceCategoryCountOutputType
-   */
-
-
-  export type ServiceCategoryCountOutputType = {
-    services: number
-    form: number
-  }
-
-  export type ServiceCategoryCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    services?: boolean | ServiceCategoryCountOutputTypeCountServicesArgs
-    form?: boolean | ServiceCategoryCountOutputTypeCountFormArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * ServiceCategoryCountOutputType without action
-   */
-  export type ServiceCategoryCountOutputTypeArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryCountOutputType
-     */
-    select?: ServiceCategoryCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * ServiceCategoryCountOutputType without action
-   */
-  export type ServiceCategoryCountOutputTypeCountServicesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ServiceWhereInput
-  }
-
-
-  /**
-   * ServiceCategoryCountOutputType without action
-   */
-  export type ServiceCategoryCountOutputTypeCountFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ServiceCategoryFormWhereInput
-  }
-
-
-
-  /**
-   * Count Type ServiceCategoryFormCountOutputType
-   */
-
-
-  export type ServiceCategoryFormCountOutputType = {
-    subForm: number
-  }
-
-  export type ServiceCategoryFormCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    subForm?: boolean | ServiceCategoryFormCountOutputTypeCountSubFormArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * ServiceCategoryFormCountOutputType without action
-   */
-  export type ServiceCategoryFormCountOutputTypeArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryFormCountOutputType
-     */
-    select?: ServiceCategoryFormCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * ServiceCategoryFormCountOutputType without action
-   */
-  export type ServiceCategoryFormCountOutputTypeCountSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ServiceCategorySubFormWhereInput
+  export type UserCountOutputTypeCountProductRequestArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductRequestWhereInput
   }
 
 
@@ -3546,12 +3466,12 @@ export namespace Prisma {
 
   export type ServiceCountOutputType = {
     products: number
-    forms: number
+    form: number
   }
 
   export type ServiceCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     products?: boolean | ServiceCountOutputTypeCountProductsArgs
-    forms?: boolean | ServiceCountOutputTypeCountFormsArgs
+    form?: boolean | ServiceCountOutputTypeCountFormArgs
   }
 
   // Custom InputTypes
@@ -3578,7 +3498,7 @@ export namespace Prisma {
   /**
    * ServiceCountOutputType without action
    */
-  export type ServiceCountOutputTypeCountFormsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ServiceCountOutputTypeCountFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: ServiceFormWhereInput
   }
 
@@ -3590,11 +3510,11 @@ export namespace Prisma {
 
 
   export type ServiceFormCountOutputType = {
-    serviceSubForm: number
+    subForm: number
   }
 
   export type ServiceFormCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    serviceSubForm?: boolean | ServiceFormCountOutputTypeCountServiceSubFormArgs
+    subForm?: boolean | ServiceFormCountOutputTypeCountSubFormArgs
   }
 
   // Custom InputTypes
@@ -3613,7 +3533,7 @@ export namespace Prisma {
   /**
    * ServiceFormCountOutputType without action
    */
-  export type ServiceFormCountOutputTypeCountServiceSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ServiceFormCountOutputTypeCountSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: ServiceSubFormWhereInput
   }
 
@@ -3625,15 +3545,13 @@ export namespace Prisma {
 
 
   export type ProductCountOutputType = {
-    Team: number
-    Payment: number
-    productQA: number
+    request: number
+    form: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Team?: boolean | ProductCountOutputTypeCountTeamArgs
-    Payment?: boolean | ProductCountOutputTypeCountPaymentArgs
-    productQA?: boolean | ProductCountOutputTypeCountProductQAArgs
+    request?: boolean | ProductCountOutputTypeCountRequestArgs
+    form?: boolean | ProductCountOutputTypeCountFormArgs
   }
 
   // Custom InputTypes
@@ -3652,59 +3570,141 @@ export namespace Prisma {
   /**
    * ProductCountOutputType without action
    */
-  export type ProductCountOutputTypeCountTeamArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: TeamWhereInput
+  export type ProductCountOutputTypeCountRequestArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductRequestWhereInput
   }
 
 
   /**
    * ProductCountOutputType without action
    */
-  export type ProductCountOutputTypeCountPaymentArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: PaymentWhereInput
-  }
-
-
-  /**
-   * ProductCountOutputType without action
-   */
-  export type ProductCountOutputTypeCountProductQAArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ProductQAWhereInput
+  export type ProductCountOutputTypeCountFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductFormWhereInput
   }
 
 
 
   /**
-   * Count Type ProductQACountOutputType
+   * Count Type ProductFormCountOutputType
    */
 
 
-  export type ProductQACountOutputType = {
+  export type ProductFormCountOutputType = {
     productSubForm: number
   }
 
-  export type ProductQACountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    productSubForm?: boolean | ProductQACountOutputTypeCountProductSubFormArgs
+  export type ProductFormCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    productSubForm?: boolean | ProductFormCountOutputTypeCountProductSubFormArgs
   }
 
   // Custom InputTypes
 
   /**
-   * ProductQACountOutputType without action
+   * ProductFormCountOutputType without action
    */
-  export type ProductQACountOutputTypeArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormCountOutputTypeArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQACountOutputType
+     * Select specific fields to fetch from the ProductFormCountOutputType
      */
-    select?: ProductQACountOutputTypeSelect<ExtArgs> | null
+    select?: ProductFormCountOutputTypeSelect<ExtArgs> | null
   }
 
 
   /**
-   * ProductQACountOutputType without action
+   * ProductFormCountOutputType without action
    */
-  export type ProductQACountOutputTypeCountProductSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ProductQASubFormWhereInput
+  export type ProductFormCountOutputTypeCountProductSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductSubFormWhereInput
+  }
+
+
+
+  /**
+   * Count Type ProductRequestCountOutputType
+   */
+
+
+  export type ProductRequestCountOutputType = {
+    Team: number
+    Payment: number
+    requestQA: number
+  }
+
+  export type ProductRequestCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    Team?: boolean | ProductRequestCountOutputTypeCountTeamArgs
+    Payment?: boolean | ProductRequestCountOutputTypeCountPaymentArgs
+    requestQA?: boolean | ProductRequestCountOutputTypeCountRequestQAArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * ProductRequestCountOutputType without action
+   */
+  export type ProductRequestCountOutputTypeArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestCountOutputType
+     */
+    select?: ProductRequestCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * ProductRequestCountOutputType without action
+   */
+  export type ProductRequestCountOutputTypeCountTeamArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: TeamWhereInput
+  }
+
+
+  /**
+   * ProductRequestCountOutputType without action
+   */
+  export type ProductRequestCountOutputTypeCountPaymentArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: PaymentWhereInput
+  }
+
+
+  /**
+   * ProductRequestCountOutputType without action
+   */
+  export type ProductRequestCountOutputTypeCountRequestQAArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductRequestQAWhereInput
+  }
+
+
+
+  /**
+   * Count Type ProductRequestQACountOutputType
+   */
+
+
+  export type ProductRequestQACountOutputType = {
+    subForm: number
+  }
+
+  export type ProductRequestQACountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    subForm?: boolean | ProductRequestQACountOutputTypeCountSubFormArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * ProductRequestQACountOutputType without action
+   */
+  export type ProductRequestQACountOutputTypeArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQACountOutputType
+     */
+    select?: ProductRequestQACountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * ProductRequestQACountOutputType without action
+   */
+  export type ProductRequestQACountOutputTypeCountSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductRequestQASubFormWhereInput
   }
 
 
@@ -11548,7 +11548,7 @@ export namespace Prisma {
     updatedAt?: boolean
     teamMember?: boolean | User$teamMemberArgs<ExtArgs>
     account?: boolean | User$accountArgs<ExtArgs>
-    product?: boolean | User$productArgs<ExtArgs>
+    productRequest?: boolean | User$productRequestArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -11582,7 +11582,7 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     teamMember?: boolean | User$teamMemberArgs<ExtArgs>
     account?: boolean | User$accountArgs<ExtArgs>
-    product?: boolean | User$productArgs<ExtArgs>
+    productRequest?: boolean | User$productRequestArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeArgs<ExtArgs>
   }
 
@@ -11960,7 +11960,7 @@ export namespace Prisma {
 
     account<T extends User$accountArgs<ExtArgs> = {}>(args?: Subset<T, User$accountArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<AccountPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
-    product<T extends User$productArgs<ExtArgs> = {}>(args?: Subset<T, User$productArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductPayload<ExtArgs>, T, 'findMany', never>| Null>;
+    productRequest<T extends User$productRequestArgs<ExtArgs> = {}>(args?: Subset<T, User$productRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
     private get _document();
     /**
@@ -12360,23 +12360,23 @@ export namespace Prisma {
 
 
   /**
-   * User.product
+   * User.productRequest
    */
-  export type User$productArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type User$productRequestArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Product
+     * Select specific fields to fetch from the ProductRequest
      */
-    select?: ProductSelect<ExtArgs> | null
+    select?: ProductRequestSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductInclude<ExtArgs> | null
-    where?: ProductWhereInput
-    orderBy?: Enumerable<ProductOrderByWithRelationInput>
-    cursor?: ProductWhereUniqueInput
+    include?: ProductRequestInclude<ExtArgs> | null
+    where?: ProductRequestWhereInput
+    orderBy?: Enumerable<ProductRequestOrderByWithRelationInput>
+    cursor?: ProductRequestWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Enumerable<ProductScalarFieldEnum>
+    distinct?: Enumerable<ProductRequestScalarFieldEnum>
   }
 
 
@@ -13302,3131 +13302,70 @@ export namespace Prisma {
 
 
   /**
-   * Model ServiceCategory
-   */
-
-
-  export type AggregateServiceCategory = {
-    _count: ServiceCategoryCountAggregateOutputType | null
-    _min: ServiceCategoryMinAggregateOutputType | null
-    _max: ServiceCategoryMaxAggregateOutputType | null
-  }
-
-  export type ServiceCategoryMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    description: string | null
-    isDeprecated: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type ServiceCategoryMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    description: string | null
-    isDeprecated: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type ServiceCategoryCountAggregateOutputType = {
-    id: number
-    name: number
-    description: number
-    isDeprecated: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type ServiceCategoryMinAggregateInputType = {
-    id?: true
-    name?: true
-    description?: true
-    isDeprecated?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type ServiceCategoryMaxAggregateInputType = {
-    id?: true
-    name?: true
-    description?: true
-    isDeprecated?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type ServiceCategoryCountAggregateInputType = {
-    id?: true
-    name?: true
-    description?: true
-    isDeprecated?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type ServiceCategoryAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ServiceCategory to aggregate.
-     */
-    where?: ServiceCategoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategories to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategoryOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ServiceCategoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategories.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ServiceCategories
-    **/
-    _count?: true | ServiceCategoryCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ServiceCategoryMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ServiceCategoryMaxAggregateInputType
-  }
-
-  export type GetServiceCategoryAggregateType<T extends ServiceCategoryAggregateArgs> = {
-        [P in keyof T & keyof AggregateServiceCategory]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateServiceCategory[P]>
-      : GetScalarType<T[P], AggregateServiceCategory[P]>
-  }
-
-
-
-
-  export type ServiceCategoryGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ServiceCategoryWhereInput
-    orderBy?: Enumerable<ServiceCategoryOrderByWithAggregationInput>
-    by: ServiceCategoryScalarFieldEnum[]
-    having?: ServiceCategoryScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ServiceCategoryCountAggregateInputType | true
-    _min?: ServiceCategoryMinAggregateInputType
-    _max?: ServiceCategoryMaxAggregateInputType
-  }
-
-
-  export type ServiceCategoryGroupByOutputType = {
-    id: string
-    name: string
-    description: string
-    isDeprecated: boolean
-    createdAt: Date
-    updatedAt: Date
-    _count: ServiceCategoryCountAggregateOutputType | null
-    _min: ServiceCategoryMinAggregateOutputType | null
-    _max: ServiceCategoryMaxAggregateOutputType | null
-  }
-
-  type GetServiceCategoryGroupByPayload<T extends ServiceCategoryGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickArray<ServiceCategoryGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ServiceCategoryGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ServiceCategoryGroupByOutputType[P]>
-            : GetScalarType<T[P], ServiceCategoryGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ServiceCategorySelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    description?: boolean
-    isDeprecated?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    services?: boolean | ServiceCategory$servicesArgs<ExtArgs>
-    form?: boolean | ServiceCategory$formArgs<ExtArgs>
-    _count?: boolean | ServiceCategoryCountOutputTypeArgs<ExtArgs>
-  }, ExtArgs["result"]["serviceCategory"]>
-
-  export type ServiceCategorySelectScalar = {
-    id?: boolean
-    name?: boolean
-    description?: boolean
-    isDeprecated?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type ServiceCategoryInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    services?: boolean | ServiceCategory$servicesArgs<ExtArgs>
-    form?: boolean | ServiceCategory$formArgs<ExtArgs>
-    _count?: boolean | ServiceCategoryCountOutputTypeArgs<ExtArgs>
-  }
-
-
-  type ServiceCategoryGetPayload<S extends boolean | null | undefined | ServiceCategoryArgs> = $Types.GetResult<ServiceCategoryPayload, S>
-
-  type ServiceCategoryCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
-    Omit<ServiceCategoryFindManyArgs, 'select' | 'include'> & {
-      select?: ServiceCategoryCountAggregateInputType | true
-    }
-
-  export interface ServiceCategoryDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceCategory'], meta: { name: 'ServiceCategory' } }
-    /**
-     * Find zero or one ServiceCategory that matches the filter.
-     * @param {ServiceCategoryFindUniqueArgs} args - Arguments to find a ServiceCategory
-     * @example
-     * // Get one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends ServiceCategoryFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, ServiceCategoryFindUniqueArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ServiceCategory'> extends True ? Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
-
-    /**
-     * Find one ServiceCategory that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {ServiceCategoryFindUniqueOrThrowArgs} args - Arguments to find a ServiceCategory
-     * @example
-     * // Get one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
-
-    /**
-     * Find the first ServiceCategory that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFindFirstArgs} args - Arguments to find a ServiceCategory
-     * @example
-     * // Get one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends ServiceCategoryFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, ServiceCategoryFindFirstArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ServiceCategory'> extends True ? Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
-
-    /**
-     * Find the first ServiceCategory that matches the filter or
-     * throw `NotFoundError` if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFindFirstOrThrowArgs} args - Arguments to find a ServiceCategory
-     * @example
-     * // Get one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends ServiceCategoryFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
-
-    /**
-     * Find zero or more ServiceCategories that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ServiceCategories
-     * const serviceCategories = await prisma.serviceCategory.findMany()
-     * 
-     * // Get first 10 ServiceCategories
-     * const serviceCategories = await prisma.serviceCategory.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const serviceCategoryWithIdOnly = await prisma.serviceCategory.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends ServiceCategoryFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findMany', never>>
-
-    /**
-     * Create a ServiceCategory.
-     * @param {ServiceCategoryCreateArgs} args - Arguments to create a ServiceCategory.
-     * @example
-     * // Create one ServiceCategory
-     * const ServiceCategory = await prisma.serviceCategory.create({
-     *   data: {
-     *     // ... data to create a ServiceCategory
-     *   }
-     * })
-     * 
-    **/
-    create<T extends ServiceCategoryCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryCreateArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
-
-    /**
-     * Create many ServiceCategories.
-     *     @param {ServiceCategoryCreateManyArgs} args - Arguments to create many ServiceCategories.
-     *     @example
-     *     // Create many ServiceCategories
-     *     const serviceCategory = await prisma.serviceCategory.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends ServiceCategoryCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a ServiceCategory.
-     * @param {ServiceCategoryDeleteArgs} args - Arguments to delete one ServiceCategory.
-     * @example
-     * // Delete one ServiceCategory
-     * const ServiceCategory = await prisma.serviceCategory.delete({
-     *   where: {
-     *     // ... filter to delete one ServiceCategory
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends ServiceCategoryDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryDeleteArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
-
-    /**
-     * Update one ServiceCategory.
-     * @param {ServiceCategoryUpdateArgs} args - Arguments to update one ServiceCategory.
-     * @example
-     * // Update one ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends ServiceCategoryUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryUpdateArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
-
-    /**
-     * Delete zero or more ServiceCategories.
-     * @param {ServiceCategoryDeleteManyArgs} args - Arguments to filter ServiceCategories to delete.
-     * @example
-     * // Delete a few ServiceCategories
-     * const { count } = await prisma.serviceCategory.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends ServiceCategoryDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ServiceCategories.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ServiceCategories
-     * const serviceCategory = await prisma.serviceCategory.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends ServiceCategoryUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one ServiceCategory.
-     * @param {ServiceCategoryUpsertArgs} args - Arguments to update or create a ServiceCategory.
-     * @example
-     * // Update or create a ServiceCategory
-     * const serviceCategory = await prisma.serviceCategory.upsert({
-     *   create: {
-     *     // ... data to create a ServiceCategory
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ServiceCategory we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends ServiceCategoryUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryUpsertArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
-
-    /**
-     * Count the number of ServiceCategories.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryCountArgs} args - Arguments to filter ServiceCategories to count.
-     * @example
-     * // Count the number of ServiceCategories
-     * const count = await prisma.serviceCategory.count({
-     *   where: {
-     *     // ... the filter for the ServiceCategories we want to count
-     *   }
-     * })
-    **/
-    count<T extends ServiceCategoryCountArgs>(
-      args?: Subset<T, ServiceCategoryCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ServiceCategoryCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ServiceCategory.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ServiceCategoryAggregateArgs>(args: Subset<T, ServiceCategoryAggregateArgs>): Prisma.PrismaPromise<GetServiceCategoryAggregateType<T>>
-
-    /**
-     * Group by ServiceCategory.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ServiceCategoryGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ServiceCategoryGroupByArgs['orderBy'] }
-        : { orderBy?: ServiceCategoryGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends TupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ServiceCategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ServiceCategory.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export class Prisma__ServiceCategoryClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
-    private readonly _dmmf;
-    private readonly _queryType;
-    private readonly _rootField;
-    private readonly _clientMethod;
-    private readonly _args;
-    private readonly _dataPath;
-    private readonly _errorFormat;
-    private readonly _measurePerformance?;
-    private _isList;
-    private _callsite;
-    private _requestPromise?;
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
-
-    services<T extends ServiceCategory$servicesArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategory$servicesArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServicePayload<ExtArgs>, T, 'findMany', never>| Null>;
-
-    form<T extends ServiceCategory$formArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategory$formArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
-
-    private get _document();
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
-  }
-
-
-
-  // Custom InputTypes
-
-  /**
-   * ServiceCategory base type for findUnique actions
-   */
-  export type ServiceCategoryFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategory to fetch.
-     */
-    where: ServiceCategoryWhereUniqueInput
-  }
-
-  /**
-   * ServiceCategory findUnique
-   */
-  export interface ServiceCategoryFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceCategoryFindUniqueArgsBase<ExtArgs> {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * ServiceCategory findUniqueOrThrow
-   */
-  export type ServiceCategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategory to fetch.
-     */
-    where: ServiceCategoryWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceCategory base type for findFirst actions
-   */
-  export type ServiceCategoryFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategory to fetch.
-     */
-    where?: ServiceCategoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategories to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategoryOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ServiceCategories.
-     */
-    cursor?: ServiceCategoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategories.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ServiceCategories.
-     */
-    distinct?: Enumerable<ServiceCategoryScalarFieldEnum>
-  }
-
-  /**
-   * ServiceCategory findFirst
-   */
-  export interface ServiceCategoryFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceCategoryFindFirstArgsBase<ExtArgs> {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * ServiceCategory findFirstOrThrow
-   */
-  export type ServiceCategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategory to fetch.
-     */
-    where?: ServiceCategoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategories to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategoryOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ServiceCategories.
-     */
-    cursor?: ServiceCategoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategories.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ServiceCategories.
-     */
-    distinct?: Enumerable<ServiceCategoryScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceCategory findMany
-   */
-  export type ServiceCategoryFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategories to fetch.
-     */
-    where?: ServiceCategoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategories to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategoryOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ServiceCategories.
-     */
-    cursor?: ServiceCategoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategories.
-     */
-    skip?: number
-    distinct?: Enumerable<ServiceCategoryScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceCategory create
-   */
-  export type ServiceCategoryCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ServiceCategory.
-     */
-    data: XOR<ServiceCategoryCreateInput, ServiceCategoryUncheckedCreateInput>
-  }
-
-
-  /**
-   * ServiceCategory createMany
-   */
-  export type ServiceCategoryCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ServiceCategories.
-     */
-    data: Enumerable<ServiceCategoryCreateManyInput>
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * ServiceCategory update
-   */
-  export type ServiceCategoryUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ServiceCategory.
-     */
-    data: XOR<ServiceCategoryUpdateInput, ServiceCategoryUncheckedUpdateInput>
-    /**
-     * Choose, which ServiceCategory to update.
-     */
-    where: ServiceCategoryWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceCategory updateMany
-   */
-  export type ServiceCategoryUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ServiceCategories.
-     */
-    data: XOR<ServiceCategoryUpdateManyMutationInput, ServiceCategoryUncheckedUpdateManyInput>
-    /**
-     * Filter which ServiceCategories to update
-     */
-    where?: ServiceCategoryWhereInput
-  }
-
-
-  /**
-   * ServiceCategory upsert
-   */
-  export type ServiceCategoryUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ServiceCategory to update in case it exists.
-     */
-    where: ServiceCategoryWhereUniqueInput
-    /**
-     * In case the ServiceCategory found by the `where` argument doesn't exist, create a new ServiceCategory with this data.
-     */
-    create: XOR<ServiceCategoryCreateInput, ServiceCategoryUncheckedCreateInput>
-    /**
-     * In case the ServiceCategory was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ServiceCategoryUpdateInput, ServiceCategoryUncheckedUpdateInput>
-  }
-
-
-  /**
-   * ServiceCategory delete
-   */
-  export type ServiceCategoryDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-    /**
-     * Filter which ServiceCategory to delete.
-     */
-    where: ServiceCategoryWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceCategory deleteMany
-   */
-  export type ServiceCategoryDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ServiceCategories to delete
-     */
-    where?: ServiceCategoryWhereInput
-  }
-
-
-  /**
-   * ServiceCategory.services
-   */
-  export type ServiceCategory$servicesArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Service
-     */
-    select?: ServiceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceInclude<ExtArgs> | null
-    where?: ServiceWhereInput
-    orderBy?: Enumerable<ServiceOrderByWithRelationInput>
-    cursor?: ServiceWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Enumerable<ServiceScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceCategory.form
-   */
-  export type ServiceCategory$formArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    where?: ServiceCategoryFormWhereInput
-    orderBy?: Enumerable<ServiceCategoryFormOrderByWithRelationInput>
-    cursor?: ServiceCategoryFormWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Enumerable<ServiceCategoryFormScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceCategory without action
-   */
-  export type ServiceCategoryArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategory
-     */
-    select?: ServiceCategorySelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryInclude<ExtArgs> | null
-  }
-
-
-
-  /**
-   * Model ServiceCategoryForm
-   */
-
-
-  export type AggregateServiceCategoryForm = {
-    _count: ServiceCategoryFormCountAggregateOutputType | null
-    _min: ServiceCategoryFormMinAggregateOutputType | null
-    _max: ServiceCategoryFormMaxAggregateOutputType | null
-  }
-
-  export type ServiceCategoryFormMinAggregateOutputType = {
-    id: string | null
-    title: string | null
-    description: string | null
-    type: string | null
-    compulsory: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    isDeprecated: boolean | null
-    serviceCategoryId: string | null
-  }
-
-  export type ServiceCategoryFormMaxAggregateOutputType = {
-    id: string | null
-    title: string | null
-    description: string | null
-    type: string | null
-    compulsory: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    isDeprecated: boolean | null
-    serviceCategoryId: string | null
-  }
-
-  export type ServiceCategoryFormCountAggregateOutputType = {
-    id: number
-    title: number
-    description: number
-    type: number
-    compulsory: number
-    createdAt: number
-    updatedAt: number
-    isDeprecated: number
-    serviceCategoryId: number
-    _all: number
-  }
-
-
-  export type ServiceCategoryFormMinAggregateInputType = {
-    id?: true
-    title?: true
-    description?: true
-    type?: true
-    compulsory?: true
-    createdAt?: true
-    updatedAt?: true
-    isDeprecated?: true
-    serviceCategoryId?: true
-  }
-
-  export type ServiceCategoryFormMaxAggregateInputType = {
-    id?: true
-    title?: true
-    description?: true
-    type?: true
-    compulsory?: true
-    createdAt?: true
-    updatedAt?: true
-    isDeprecated?: true
-    serviceCategoryId?: true
-  }
-
-  export type ServiceCategoryFormCountAggregateInputType = {
-    id?: true
-    title?: true
-    description?: true
-    type?: true
-    compulsory?: true
-    createdAt?: true
-    updatedAt?: true
-    isDeprecated?: true
-    serviceCategoryId?: true
-    _all?: true
-  }
-
-  export type ServiceCategoryFormAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ServiceCategoryForm to aggregate.
-     */
-    where?: ServiceCategoryFormWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategoryForms to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategoryFormOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ServiceCategoryFormWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategoryForms from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategoryForms.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ServiceCategoryForms
-    **/
-    _count?: true | ServiceCategoryFormCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ServiceCategoryFormMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ServiceCategoryFormMaxAggregateInputType
-  }
-
-  export type GetServiceCategoryFormAggregateType<T extends ServiceCategoryFormAggregateArgs> = {
-        [P in keyof T & keyof AggregateServiceCategoryForm]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateServiceCategoryForm[P]>
-      : GetScalarType<T[P], AggregateServiceCategoryForm[P]>
-  }
-
-
-
-
-  export type ServiceCategoryFormGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ServiceCategoryFormWhereInput
-    orderBy?: Enumerable<ServiceCategoryFormOrderByWithAggregationInput>
-    by: ServiceCategoryFormScalarFieldEnum[]
-    having?: ServiceCategoryFormScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ServiceCategoryFormCountAggregateInputType | true
-    _min?: ServiceCategoryFormMinAggregateInputType
-    _max?: ServiceCategoryFormMaxAggregateInputType
-  }
-
-
-  export type ServiceCategoryFormGroupByOutputType = {
-    id: string
-    title: string
-    description: string | null
-    type: string | null
-    compulsory: boolean
-    createdAt: Date
-    updatedAt: Date
-    isDeprecated: boolean
-    serviceCategoryId: string
-    _count: ServiceCategoryFormCountAggregateOutputType | null
-    _min: ServiceCategoryFormMinAggregateOutputType | null
-    _max: ServiceCategoryFormMaxAggregateOutputType | null
-  }
-
-  type GetServiceCategoryFormGroupByPayload<T extends ServiceCategoryFormGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickArray<ServiceCategoryFormGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ServiceCategoryFormGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ServiceCategoryFormGroupByOutputType[P]>
-            : GetScalarType<T[P], ServiceCategoryFormGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ServiceCategoryFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    description?: boolean
-    type?: boolean
-    compulsory?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    isDeprecated?: boolean
-    serviceCategoryId?: boolean
-    category?: boolean | ServiceCategoryArgs<ExtArgs>
-    subForm?: boolean | ServiceCategoryForm$subFormArgs<ExtArgs>
-    _count?: boolean | ServiceCategoryFormCountOutputTypeArgs<ExtArgs>
-  }, ExtArgs["result"]["serviceCategoryForm"]>
-
-  export type ServiceCategoryFormSelectScalar = {
-    id?: boolean
-    title?: boolean
-    description?: boolean
-    type?: boolean
-    compulsory?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    isDeprecated?: boolean
-    serviceCategoryId?: boolean
-  }
-
-  export type ServiceCategoryFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    category?: boolean | ServiceCategoryArgs<ExtArgs>
-    subForm?: boolean | ServiceCategoryForm$subFormArgs<ExtArgs>
-    _count?: boolean | ServiceCategoryFormCountOutputTypeArgs<ExtArgs>
-  }
-
-
-  type ServiceCategoryFormGetPayload<S extends boolean | null | undefined | ServiceCategoryFormArgs> = $Types.GetResult<ServiceCategoryFormPayload, S>
-
-  type ServiceCategoryFormCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
-    Omit<ServiceCategoryFormFindManyArgs, 'select' | 'include'> & {
-      select?: ServiceCategoryFormCountAggregateInputType | true
-    }
-
-  export interface ServiceCategoryFormDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceCategoryForm'], meta: { name: 'ServiceCategoryForm' } }
-    /**
-     * Find zero or one ServiceCategoryForm that matches the filter.
-     * @param {ServiceCategoryFormFindUniqueArgs} args - Arguments to find a ServiceCategoryForm
-     * @example
-     * // Get one ServiceCategoryForm
-     * const serviceCategoryForm = await prisma.serviceCategoryForm.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends ServiceCategoryFormFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, ServiceCategoryFormFindUniqueArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ServiceCategoryForm'> extends True ? Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
-
-    /**
-     * Find one ServiceCategoryForm that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {ServiceCategoryFormFindUniqueOrThrowArgs} args - Arguments to find a ServiceCategoryForm
-     * @example
-     * // Get one ServiceCategoryForm
-     * const serviceCategoryForm = await prisma.serviceCategoryForm.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends ServiceCategoryFormFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryFormFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
-
-    /**
-     * Find the first ServiceCategoryForm that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFormFindFirstArgs} args - Arguments to find a ServiceCategoryForm
-     * @example
-     * // Get one ServiceCategoryForm
-     * const serviceCategoryForm = await prisma.serviceCategoryForm.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends ServiceCategoryFormFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, ServiceCategoryFormFindFirstArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ServiceCategoryForm'> extends True ? Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
-
-    /**
-     * Find the first ServiceCategoryForm that matches the filter or
-     * throw `NotFoundError` if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFormFindFirstOrThrowArgs} args - Arguments to find a ServiceCategoryForm
-     * @example
-     * // Get one ServiceCategoryForm
-     * const serviceCategoryForm = await prisma.serviceCategoryForm.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends ServiceCategoryFormFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryFormFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
-
-    /**
-     * Find zero or more ServiceCategoryForms that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFormFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ServiceCategoryForms
-     * const serviceCategoryForms = await prisma.serviceCategoryForm.findMany()
-     * 
-     * // Get first 10 ServiceCategoryForms
-     * const serviceCategoryForms = await prisma.serviceCategoryForm.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const serviceCategoryFormWithIdOnly = await prisma.serviceCategoryForm.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends ServiceCategoryFormFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryFormFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findMany', never>>
-
-    /**
-     * Create a ServiceCategoryForm.
-     * @param {ServiceCategoryFormCreateArgs} args - Arguments to create a ServiceCategoryForm.
-     * @example
-     * // Create one ServiceCategoryForm
-     * const ServiceCategoryForm = await prisma.serviceCategoryForm.create({
-     *   data: {
-     *     // ... data to create a ServiceCategoryForm
-     *   }
-     * })
-     * 
-    **/
-    create<T extends ServiceCategoryFormCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryFormCreateArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
-
-    /**
-     * Create many ServiceCategoryForms.
-     *     @param {ServiceCategoryFormCreateManyArgs} args - Arguments to create many ServiceCategoryForms.
-     *     @example
-     *     // Create many ServiceCategoryForms
-     *     const serviceCategoryForm = await prisma.serviceCategoryForm.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends ServiceCategoryFormCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryFormCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a ServiceCategoryForm.
-     * @param {ServiceCategoryFormDeleteArgs} args - Arguments to delete one ServiceCategoryForm.
-     * @example
-     * // Delete one ServiceCategoryForm
-     * const ServiceCategoryForm = await prisma.serviceCategoryForm.delete({
-     *   where: {
-     *     // ... filter to delete one ServiceCategoryForm
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends ServiceCategoryFormDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryFormDeleteArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
-
-    /**
-     * Update one ServiceCategoryForm.
-     * @param {ServiceCategoryFormUpdateArgs} args - Arguments to update one ServiceCategoryForm.
-     * @example
-     * // Update one ServiceCategoryForm
-     * const serviceCategoryForm = await prisma.serviceCategoryForm.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends ServiceCategoryFormUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryFormUpdateArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
-
-    /**
-     * Delete zero or more ServiceCategoryForms.
-     * @param {ServiceCategoryFormDeleteManyArgs} args - Arguments to filter ServiceCategoryForms to delete.
-     * @example
-     * // Delete a few ServiceCategoryForms
-     * const { count } = await prisma.serviceCategoryForm.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends ServiceCategoryFormDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategoryFormDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ServiceCategoryForms.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFormUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ServiceCategoryForms
-     * const serviceCategoryForm = await prisma.serviceCategoryForm.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends ServiceCategoryFormUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryFormUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one ServiceCategoryForm.
-     * @param {ServiceCategoryFormUpsertArgs} args - Arguments to update or create a ServiceCategoryForm.
-     * @example
-     * // Update or create a ServiceCategoryForm
-     * const serviceCategoryForm = await prisma.serviceCategoryForm.upsert({
-     *   create: {
-     *     // ... data to create a ServiceCategoryForm
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ServiceCategoryForm we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends ServiceCategoryFormUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategoryFormUpsertArgs<ExtArgs>>
-    ): Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
-
-    /**
-     * Count the number of ServiceCategoryForms.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFormCountArgs} args - Arguments to filter ServiceCategoryForms to count.
-     * @example
-     * // Count the number of ServiceCategoryForms
-     * const count = await prisma.serviceCategoryForm.count({
-     *   where: {
-     *     // ... the filter for the ServiceCategoryForms we want to count
-     *   }
-     * })
-    **/
-    count<T extends ServiceCategoryFormCountArgs>(
-      args?: Subset<T, ServiceCategoryFormCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ServiceCategoryFormCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ServiceCategoryForm.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFormAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ServiceCategoryFormAggregateArgs>(args: Subset<T, ServiceCategoryFormAggregateArgs>): Prisma.PrismaPromise<GetServiceCategoryFormAggregateType<T>>
-
-    /**
-     * Group by ServiceCategoryForm.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategoryFormGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ServiceCategoryFormGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ServiceCategoryFormGroupByArgs['orderBy'] }
-        : { orderBy?: ServiceCategoryFormGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends TupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ServiceCategoryFormGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceCategoryFormGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ServiceCategoryForm.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export class Prisma__ServiceCategoryFormClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
-    private readonly _dmmf;
-    private readonly _queryType;
-    private readonly _rootField;
-    private readonly _clientMethod;
-    private readonly _args;
-    private readonly _dataPath;
-    private readonly _errorFormat;
-    private readonly _measurePerformance?;
-    private _isList;
-    private _callsite;
-    private _requestPromise?;
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
-
-    category<T extends ServiceCategoryArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
-
-    subForm<T extends ServiceCategoryForm$subFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryForm$subFormArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
-
-    private get _document();
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
-  }
-
-
-
-  // Custom InputTypes
-
-  /**
-   * ServiceCategoryForm base type for findUnique actions
-   */
-  export type ServiceCategoryFormFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategoryForm to fetch.
-     */
-    where: ServiceCategoryFormWhereUniqueInput
-  }
-
-  /**
-   * ServiceCategoryForm findUnique
-   */
-  export interface ServiceCategoryFormFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceCategoryFormFindUniqueArgsBase<ExtArgs> {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * ServiceCategoryForm findUniqueOrThrow
-   */
-  export type ServiceCategoryFormFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategoryForm to fetch.
-     */
-    where: ServiceCategoryFormWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceCategoryForm base type for findFirst actions
-   */
-  export type ServiceCategoryFormFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategoryForm to fetch.
-     */
-    where?: ServiceCategoryFormWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategoryForms to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategoryFormOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ServiceCategoryForms.
-     */
-    cursor?: ServiceCategoryFormWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategoryForms from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategoryForms.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ServiceCategoryForms.
-     */
-    distinct?: Enumerable<ServiceCategoryFormScalarFieldEnum>
-  }
-
-  /**
-   * ServiceCategoryForm findFirst
-   */
-  export interface ServiceCategoryFormFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceCategoryFormFindFirstArgsBase<ExtArgs> {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * ServiceCategoryForm findFirstOrThrow
-   */
-  export type ServiceCategoryFormFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategoryForm to fetch.
-     */
-    where?: ServiceCategoryFormWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategoryForms to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategoryFormOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ServiceCategoryForms.
-     */
-    cursor?: ServiceCategoryFormWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategoryForms from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategoryForms.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ServiceCategoryForms.
-     */
-    distinct?: Enumerable<ServiceCategoryFormScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceCategoryForm findMany
-   */
-  export type ServiceCategoryFormFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategoryForms to fetch.
-     */
-    where?: ServiceCategoryFormWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategoryForms to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategoryFormOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ServiceCategoryForms.
-     */
-    cursor?: ServiceCategoryFormWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategoryForms from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategoryForms.
-     */
-    skip?: number
-    distinct?: Enumerable<ServiceCategoryFormScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceCategoryForm create
-   */
-  export type ServiceCategoryFormCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ServiceCategoryForm.
-     */
-    data: XOR<ServiceCategoryFormCreateInput, ServiceCategoryFormUncheckedCreateInput>
-  }
-
-
-  /**
-   * ServiceCategoryForm createMany
-   */
-  export type ServiceCategoryFormCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ServiceCategoryForms.
-     */
-    data: Enumerable<ServiceCategoryFormCreateManyInput>
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * ServiceCategoryForm update
-   */
-  export type ServiceCategoryFormUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ServiceCategoryForm.
-     */
-    data: XOR<ServiceCategoryFormUpdateInput, ServiceCategoryFormUncheckedUpdateInput>
-    /**
-     * Choose, which ServiceCategoryForm to update.
-     */
-    where: ServiceCategoryFormWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceCategoryForm updateMany
-   */
-  export type ServiceCategoryFormUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ServiceCategoryForms.
-     */
-    data: XOR<ServiceCategoryFormUpdateManyMutationInput, ServiceCategoryFormUncheckedUpdateManyInput>
-    /**
-     * Filter which ServiceCategoryForms to update
-     */
-    where?: ServiceCategoryFormWhereInput
-  }
-
-
-  /**
-   * ServiceCategoryForm upsert
-   */
-  export type ServiceCategoryFormUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ServiceCategoryForm to update in case it exists.
-     */
-    where: ServiceCategoryFormWhereUniqueInput
-    /**
-     * In case the ServiceCategoryForm found by the `where` argument doesn't exist, create a new ServiceCategoryForm with this data.
-     */
-    create: XOR<ServiceCategoryFormCreateInput, ServiceCategoryFormUncheckedCreateInput>
-    /**
-     * In case the ServiceCategoryForm was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ServiceCategoryFormUpdateInput, ServiceCategoryFormUncheckedUpdateInput>
-  }
-
-
-  /**
-   * ServiceCategoryForm delete
-   */
-  export type ServiceCategoryFormDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-    /**
-     * Filter which ServiceCategoryForm to delete.
-     */
-    where: ServiceCategoryFormWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceCategoryForm deleteMany
-   */
-  export type ServiceCategoryFormDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ServiceCategoryForms to delete
-     */
-    where?: ServiceCategoryFormWhereInput
-  }
-
-
-  /**
-   * ServiceCategoryForm.subForm
-   */
-  export type ServiceCategoryForm$subFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    where?: ServiceCategorySubFormWhereInput
-    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
-    cursor?: ServiceCategorySubFormWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Enumerable<ServiceCategorySubFormScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceCategoryForm without action
-   */
-  export type ServiceCategoryFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategoryForm
-     */
-    select?: ServiceCategoryFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategoryFormInclude<ExtArgs> | null
-  }
-
-
-
-  /**
-   * Model ServiceCategorySubForm
-   */
-
-
-  export type AggregateServiceCategorySubForm = {
-    _count: ServiceCategorySubFormCountAggregateOutputType | null
-    _min: ServiceCategorySubFormMinAggregateOutputType | null
-    _max: ServiceCategorySubFormMaxAggregateOutputType | null
-  }
-
-  export type ServiceCategorySubFormMinAggregateOutputType = {
-    id: string | null
-    question: string | null
-    type: string | null
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
-    dependsOn: string | null
-    allowOther: boolean | null
-    compulsory: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    isDeprecated: boolean | null
-    formId: string | null
-  }
-
-  export type ServiceCategorySubFormMaxAggregateOutputType = {
-    id: string | null
-    question: string | null
-    type: string | null
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
-    dependsOn: string | null
-    allowOther: boolean | null
-    compulsory: boolean | null
-    createdAt: Date | null
-    updatedAt: Date | null
-    isDeprecated: boolean | null
-    formId: string | null
-  }
-
-  export type ServiceCategorySubFormCountAggregateOutputType = {
-    id: number
-    question: number
-    type: number
-    options: number
-    fileName: number
-    fileType: number
-    fileLink: number
-    dependsOn: number
-    allowOther: number
-    compulsory: number
-    createdAt: number
-    updatedAt: number
-    isDeprecated: number
-    formId: number
-    _all: number
-  }
-
-
-  export type ServiceCategorySubFormMinAggregateInputType = {
-    id?: true
-    question?: true
-    type?: true
-    fileName?: true
-    fileType?: true
-    fileLink?: true
-    dependsOn?: true
-    allowOther?: true
-    compulsory?: true
-    createdAt?: true
-    updatedAt?: true
-    isDeprecated?: true
-    formId?: true
-  }
-
-  export type ServiceCategorySubFormMaxAggregateInputType = {
-    id?: true
-    question?: true
-    type?: true
-    fileName?: true
-    fileType?: true
-    fileLink?: true
-    dependsOn?: true
-    allowOther?: true
-    compulsory?: true
-    createdAt?: true
-    updatedAt?: true
-    isDeprecated?: true
-    formId?: true
-  }
-
-  export type ServiceCategorySubFormCountAggregateInputType = {
-    id?: true
-    question?: true
-    type?: true
-    options?: true
-    fileName?: true
-    fileType?: true
-    fileLink?: true
-    dependsOn?: true
-    allowOther?: true
-    compulsory?: true
-    createdAt?: true
-    updatedAt?: true
-    isDeprecated?: true
-    formId?: true
-    _all?: true
-  }
-
-  export type ServiceCategorySubFormAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ServiceCategorySubForm to aggregate.
-     */
-    where?: ServiceCategorySubFormWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategorySubForms to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ServiceCategorySubFormWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategorySubForms from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategorySubForms.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned ServiceCategorySubForms
-    **/
-    _count?: true | ServiceCategorySubFormCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ServiceCategorySubFormMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ServiceCategorySubFormMaxAggregateInputType
-  }
-
-  export type GetServiceCategorySubFormAggregateType<T extends ServiceCategorySubFormAggregateArgs> = {
-        [P in keyof T & keyof AggregateServiceCategorySubForm]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateServiceCategorySubForm[P]>
-      : GetScalarType<T[P], AggregateServiceCategorySubForm[P]>
-  }
-
-
-
-
-  export type ServiceCategorySubFormGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ServiceCategorySubFormWhereInput
-    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithAggregationInput>
-    by: ServiceCategorySubFormScalarFieldEnum[]
-    having?: ServiceCategorySubFormScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ServiceCategorySubFormCountAggregateInputType | true
-    _min?: ServiceCategorySubFormMinAggregateInputType
-    _max?: ServiceCategorySubFormMaxAggregateInputType
-  }
-
-
-  export type ServiceCategorySubFormGroupByOutputType = {
-    id: string
-    question: string | null
-    type: string | null
-    options: string[]
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
-    dependsOn: string | null
-    allowOther: boolean
-    compulsory: boolean
-    createdAt: Date
-    updatedAt: Date
-    isDeprecated: boolean
-    formId: string
-    _count: ServiceCategorySubFormCountAggregateOutputType | null
-    _min: ServiceCategorySubFormMinAggregateOutputType | null
-    _max: ServiceCategorySubFormMaxAggregateOutputType | null
-  }
-
-  type GetServiceCategorySubFormGroupByPayload<T extends ServiceCategorySubFormGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickArray<ServiceCategorySubFormGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ServiceCategorySubFormGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ServiceCategorySubFormGroupByOutputType[P]>
-            : GetScalarType<T[P], ServiceCategorySubFormGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ServiceCategorySubFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    question?: boolean
-    type?: boolean
-    options?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileLink?: boolean
-    dependsOn?: boolean
-    allowOther?: boolean
-    compulsory?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    isDeprecated?: boolean
-    formId?: boolean
-    category?: boolean | ServiceCategoryFormArgs<ExtArgs>
-  }, ExtArgs["result"]["serviceCategorySubForm"]>
-
-  export type ServiceCategorySubFormSelectScalar = {
-    id?: boolean
-    question?: boolean
-    type?: boolean
-    options?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileLink?: boolean
-    dependsOn?: boolean
-    allowOther?: boolean
-    compulsory?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    isDeprecated?: boolean
-    formId?: boolean
-  }
-
-  export type ServiceCategorySubFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    category?: boolean | ServiceCategoryFormArgs<ExtArgs>
-  }
-
-
-  type ServiceCategorySubFormGetPayload<S extends boolean | null | undefined | ServiceCategorySubFormArgs> = $Types.GetResult<ServiceCategorySubFormPayload, S>
-
-  type ServiceCategorySubFormCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
-    Omit<ServiceCategorySubFormFindManyArgs, 'select' | 'include'> & {
-      select?: ServiceCategorySubFormCountAggregateInputType | true
-    }
-
-  export interface ServiceCategorySubFormDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServiceCategorySubForm'], meta: { name: 'ServiceCategorySubForm' } }
-    /**
-     * Find zero or one ServiceCategorySubForm that matches the filter.
-     * @param {ServiceCategorySubFormFindUniqueArgs} args - Arguments to find a ServiceCategorySubForm
-     * @example
-     * // Get one ServiceCategorySubForm
-     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends ServiceCategorySubFormFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, ServiceCategorySubFormFindUniqueArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ServiceCategorySubForm'> extends True ? Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
-
-    /**
-     * Find one ServiceCategorySubForm that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {ServiceCategorySubFormFindUniqueOrThrowArgs} args - Arguments to find a ServiceCategorySubForm
-     * @example
-     * // Get one ServiceCategorySubForm
-     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends ServiceCategorySubFormFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategorySubFormFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
-
-    /**
-     * Find the first ServiceCategorySubForm that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategorySubFormFindFirstArgs} args - Arguments to find a ServiceCategorySubForm
-     * @example
-     * // Get one ServiceCategorySubForm
-     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends ServiceCategorySubFormFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, ServiceCategorySubFormFindFirstArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ServiceCategorySubForm'> extends True ? Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
-
-    /**
-     * Find the first ServiceCategorySubForm that matches the filter or
-     * throw `NotFoundError` if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategorySubFormFindFirstOrThrowArgs} args - Arguments to find a ServiceCategorySubForm
-     * @example
-     * // Get one ServiceCategorySubForm
-     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends ServiceCategorySubFormFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategorySubFormFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
-
-    /**
-     * Find zero or more ServiceCategorySubForms that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategorySubFormFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all ServiceCategorySubForms
-     * const serviceCategorySubForms = await prisma.serviceCategorySubForm.findMany()
-     * 
-     * // Get first 10 ServiceCategorySubForms
-     * const serviceCategorySubForms = await prisma.serviceCategorySubForm.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const serviceCategorySubFormWithIdOnly = await prisma.serviceCategorySubForm.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends ServiceCategorySubFormFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategorySubFormFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'findMany', never>>
-
-    /**
-     * Create a ServiceCategorySubForm.
-     * @param {ServiceCategorySubFormCreateArgs} args - Arguments to create a ServiceCategorySubForm.
-     * @example
-     * // Create one ServiceCategorySubForm
-     * const ServiceCategorySubForm = await prisma.serviceCategorySubForm.create({
-     *   data: {
-     *     // ... data to create a ServiceCategorySubForm
-     *   }
-     * })
-     * 
-    **/
-    create<T extends ServiceCategorySubFormCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategorySubFormCreateArgs<ExtArgs>>
-    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
-
-    /**
-     * Create many ServiceCategorySubForms.
-     *     @param {ServiceCategorySubFormCreateManyArgs} args - Arguments to create many ServiceCategorySubForms.
-     *     @example
-     *     // Create many ServiceCategorySubForms
-     *     const serviceCategorySubForm = await prisma.serviceCategorySubForm.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends ServiceCategorySubFormCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategorySubFormCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a ServiceCategorySubForm.
-     * @param {ServiceCategorySubFormDeleteArgs} args - Arguments to delete one ServiceCategorySubForm.
-     * @example
-     * // Delete one ServiceCategorySubForm
-     * const ServiceCategorySubForm = await prisma.serviceCategorySubForm.delete({
-     *   where: {
-     *     // ... filter to delete one ServiceCategorySubForm
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends ServiceCategorySubFormDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategorySubFormDeleteArgs<ExtArgs>>
-    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
-
-    /**
-     * Update one ServiceCategorySubForm.
-     * @param {ServiceCategorySubFormUpdateArgs} args - Arguments to update one ServiceCategorySubForm.
-     * @example
-     * // Update one ServiceCategorySubForm
-     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends ServiceCategorySubFormUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategorySubFormUpdateArgs<ExtArgs>>
-    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
-
-    /**
-     * Delete zero or more ServiceCategorySubForms.
-     * @param {ServiceCategorySubFormDeleteManyArgs} args - Arguments to filter ServiceCategorySubForms to delete.
-     * @example
-     * // Delete a few ServiceCategorySubForms
-     * const { count } = await prisma.serviceCategorySubForm.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends ServiceCategorySubFormDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ServiceCategorySubFormDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more ServiceCategorySubForms.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategorySubFormUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many ServiceCategorySubForms
-     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends ServiceCategorySubFormUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategorySubFormUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one ServiceCategorySubForm.
-     * @param {ServiceCategorySubFormUpsertArgs} args - Arguments to update or create a ServiceCategorySubForm.
-     * @example
-     * // Update or create a ServiceCategorySubForm
-     * const serviceCategorySubForm = await prisma.serviceCategorySubForm.upsert({
-     *   create: {
-     *     // ... data to create a ServiceCategorySubForm
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the ServiceCategorySubForm we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends ServiceCategorySubFormUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ServiceCategorySubFormUpsertArgs<ExtArgs>>
-    ): Prisma__ServiceCategorySubFormClient<$Types.GetResult<ServiceCategorySubFormPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
-
-    /**
-     * Count the number of ServiceCategorySubForms.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategorySubFormCountArgs} args - Arguments to filter ServiceCategorySubForms to count.
-     * @example
-     * // Count the number of ServiceCategorySubForms
-     * const count = await prisma.serviceCategorySubForm.count({
-     *   where: {
-     *     // ... the filter for the ServiceCategorySubForms we want to count
-     *   }
-     * })
-    **/
-    count<T extends ServiceCategorySubFormCountArgs>(
-      args?: Subset<T, ServiceCategorySubFormCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ServiceCategorySubFormCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a ServiceCategorySubForm.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategorySubFormAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ServiceCategorySubFormAggregateArgs>(args: Subset<T, ServiceCategorySubFormAggregateArgs>): Prisma.PrismaPromise<GetServiceCategorySubFormAggregateType<T>>
-
-    /**
-     * Group by ServiceCategorySubForm.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ServiceCategorySubFormGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ServiceCategorySubFormGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ServiceCategorySubFormGroupByArgs['orderBy'] }
-        : { orderBy?: ServiceCategorySubFormGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends TupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ServiceCategorySubFormGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServiceCategorySubFormGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for ServiceCategorySubForm.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export class Prisma__ServiceCategorySubFormClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
-    private readonly _dmmf;
-    private readonly _queryType;
-    private readonly _rootField;
-    private readonly _clientMethod;
-    private readonly _args;
-    private readonly _dataPath;
-    private readonly _errorFormat;
-    private readonly _measurePerformance?;
-    private _isList;
-    private _callsite;
-    private _requestPromise?;
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
-
-    category<T extends ServiceCategoryFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryFormArgs<ExtArgs>>): Prisma__ServiceCategoryFormClient<$Types.GetResult<ServiceCategoryFormPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
-
-    private get _document();
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
-  }
-
-
-
-  // Custom InputTypes
-
-  /**
-   * ServiceCategorySubForm base type for findUnique actions
-   */
-  export type ServiceCategorySubFormFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategorySubForm to fetch.
-     */
-    where: ServiceCategorySubFormWhereUniqueInput
-  }
-
-  /**
-   * ServiceCategorySubForm findUnique
-   */
-  export interface ServiceCategorySubFormFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceCategorySubFormFindUniqueArgsBase<ExtArgs> {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * ServiceCategorySubForm findUniqueOrThrow
-   */
-  export type ServiceCategorySubFormFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategorySubForm to fetch.
-     */
-    where: ServiceCategorySubFormWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceCategorySubForm base type for findFirst actions
-   */
-  export type ServiceCategorySubFormFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategorySubForm to fetch.
-     */
-    where?: ServiceCategorySubFormWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategorySubForms to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ServiceCategorySubForms.
-     */
-    cursor?: ServiceCategorySubFormWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategorySubForms from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategorySubForms.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ServiceCategorySubForms.
-     */
-    distinct?: Enumerable<ServiceCategorySubFormScalarFieldEnum>
-  }
-
-  /**
-   * ServiceCategorySubForm findFirst
-   */
-  export interface ServiceCategorySubFormFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ServiceCategorySubFormFindFirstArgsBase<ExtArgs> {
-   /**
-    * Throw an Error if query returns no results
-    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
-    */
-    rejectOnNotFound?: RejectOnNotFound
-  }
-      
-
-  /**
-   * ServiceCategorySubForm findFirstOrThrow
-   */
-  export type ServiceCategorySubFormFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategorySubForm to fetch.
-     */
-    where?: ServiceCategorySubFormWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategorySubForms to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for ServiceCategorySubForms.
-     */
-    cursor?: ServiceCategorySubFormWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategorySubForms from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategorySubForms.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of ServiceCategorySubForms.
-     */
-    distinct?: Enumerable<ServiceCategorySubFormScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceCategorySubForm findMany
-   */
-  export type ServiceCategorySubFormFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    /**
-     * Filter, which ServiceCategorySubForms to fetch.
-     */
-    where?: ServiceCategorySubFormWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of ServiceCategorySubForms to fetch.
-     */
-    orderBy?: Enumerable<ServiceCategorySubFormOrderByWithRelationInput>
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing ServiceCategorySubForms.
-     */
-    cursor?: ServiceCategorySubFormWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` ServiceCategorySubForms from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` ServiceCategorySubForms.
-     */
-    skip?: number
-    distinct?: Enumerable<ServiceCategorySubFormScalarFieldEnum>
-  }
-
-
-  /**
-   * ServiceCategorySubForm create
-   */
-  export type ServiceCategorySubFormCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    /**
-     * The data needed to create a ServiceCategorySubForm.
-     */
-    data: XOR<ServiceCategorySubFormCreateInput, ServiceCategorySubFormUncheckedCreateInput>
-  }
-
-
-  /**
-   * ServiceCategorySubForm createMany
-   */
-  export type ServiceCategorySubFormCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many ServiceCategorySubForms.
-     */
-    data: Enumerable<ServiceCategorySubFormCreateManyInput>
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * ServiceCategorySubForm update
-   */
-  export type ServiceCategorySubFormUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    /**
-     * The data needed to update a ServiceCategorySubForm.
-     */
-    data: XOR<ServiceCategorySubFormUpdateInput, ServiceCategorySubFormUncheckedUpdateInput>
-    /**
-     * Choose, which ServiceCategorySubForm to update.
-     */
-    where: ServiceCategorySubFormWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceCategorySubForm updateMany
-   */
-  export type ServiceCategorySubFormUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update ServiceCategorySubForms.
-     */
-    data: XOR<ServiceCategorySubFormUpdateManyMutationInput, ServiceCategorySubFormUncheckedUpdateManyInput>
-    /**
-     * Filter which ServiceCategorySubForms to update
-     */
-    where?: ServiceCategorySubFormWhereInput
-  }
-
-
-  /**
-   * ServiceCategorySubForm upsert
-   */
-  export type ServiceCategorySubFormUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    /**
-     * The filter to search for the ServiceCategorySubForm to update in case it exists.
-     */
-    where: ServiceCategorySubFormWhereUniqueInput
-    /**
-     * In case the ServiceCategorySubForm found by the `where` argument doesn't exist, create a new ServiceCategorySubForm with this data.
-     */
-    create: XOR<ServiceCategorySubFormCreateInput, ServiceCategorySubFormUncheckedCreateInput>
-    /**
-     * In case the ServiceCategorySubForm was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ServiceCategorySubFormUpdateInput, ServiceCategorySubFormUncheckedUpdateInput>
-  }
-
-
-  /**
-   * ServiceCategorySubForm delete
-   */
-  export type ServiceCategorySubFormDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-    /**
-     * Filter which ServiceCategorySubForm to delete.
-     */
-    where: ServiceCategorySubFormWhereUniqueInput
-  }
-
-
-  /**
-   * ServiceCategorySubForm deleteMany
-   */
-  export type ServiceCategorySubFormDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which ServiceCategorySubForms to delete
-     */
-    where?: ServiceCategorySubFormWhereInput
-  }
-
-
-  /**
-   * ServiceCategorySubForm without action
-   */
-  export type ServiceCategorySubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ServiceCategorySubForm
-     */
-    select?: ServiceCategorySubFormSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ServiceCategorySubFormInclude<ExtArgs> | null
-  }
-
-
-
-  /**
    * Model Service
    */
 
 
   export type AggregateService = {
     _count: ServiceCountAggregateOutputType | null
-    _avg: ServiceAvgAggregateOutputType | null
-    _sum: ServiceSumAggregateOutputType | null
     _min: ServiceMinAggregateOutputType | null
     _max: ServiceMaxAggregateOutputType | null
-  }
-
-  export type ServiceAvgAggregateOutputType = {
-    amount: number | null
-  }
-
-  export type ServiceSumAggregateOutputType = {
-    amount: number | null
   }
 
   export type ServiceMinAggregateOutputType = {
     id: string | null
     name: string | null
     description: string | null
-    country: string | null
-    currency: string | null
-    amount: number | null
-    timeline: string | null
-    hasShares: boolean | null
-    hasAgent: boolean | null
-    hasOwner: boolean | null
-    hasController: boolean | null
-    controllerIsCalled: string | null
-    OwnerIsCalled: string | null
-    agentIsCalled: string | null
+    isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
-    isDeprecated: boolean | null
-    serviceCategoryId: string | null
   }
 
   export type ServiceMaxAggregateOutputType = {
     id: string | null
     name: string | null
     description: string | null
-    country: string | null
-    currency: string | null
-    amount: number | null
-    timeline: string | null
-    hasShares: boolean | null
-    hasAgent: boolean | null
-    hasOwner: boolean | null
-    hasController: boolean | null
-    controllerIsCalled: string | null
-    OwnerIsCalled: string | null
-    agentIsCalled: string | null
+    isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
-    isDeprecated: boolean | null
-    serviceCategoryId: string | null
   }
 
   export type ServiceCountAggregateOutputType = {
     id: number
     name: number
     description: number
-    country: number
-    currency: number
-    amount: number
-    timeline: number
-    feature: number
-    hasShares: number
-    hasAgent: number
-    hasOwner: number
-    hasController: number
-    controllerIsCalled: number
-    OwnerIsCalled: number
-    agentIsCalled: number
+    isDeprecated: number
     createdAt: number
     updatedAt: number
-    isDeprecated: number
-    serviceCategoryId: number
     _all: number
   }
 
-
-  export type ServiceAvgAggregateInputType = {
-    amount?: true
-  }
-
-  export type ServiceSumAggregateInputType = {
-    amount?: true
-  }
 
   export type ServiceMinAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    country?: true
-    currency?: true
-    amount?: true
-    timeline?: true
-    hasShares?: true
-    hasAgent?: true
-    hasOwner?: true
-    hasController?: true
-    controllerIsCalled?: true
-    OwnerIsCalled?: true
-    agentIsCalled?: true
+    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
-    isDeprecated?: true
-    serviceCategoryId?: true
   }
 
   export type ServiceMaxAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    country?: true
-    currency?: true
-    amount?: true
-    timeline?: true
-    hasShares?: true
-    hasAgent?: true
-    hasOwner?: true
-    hasController?: true
-    controllerIsCalled?: true
-    OwnerIsCalled?: true
-    agentIsCalled?: true
+    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
-    isDeprecated?: true
-    serviceCategoryId?: true
   }
 
   export type ServiceCountAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    country?: true
-    currency?: true
-    amount?: true
-    timeline?: true
-    feature?: true
-    hasShares?: true
-    hasAgent?: true
-    hasOwner?: true
-    hasController?: true
-    controllerIsCalled?: true
-    OwnerIsCalled?: true
-    agentIsCalled?: true
+    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
-    isDeprecated?: true
-    serviceCategoryId?: true
     _all?: true
   }
 
@@ -16468,18 +13407,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ServiceAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ServiceSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ServiceMinAggregateInputType
@@ -16510,8 +13437,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ServiceCountAggregateInputType | true
-    _avg?: ServiceAvgAggregateInputType
-    _sum?: ServiceSumAggregateInputType
     _min?: ServiceMinAggregateInputType
     _max?: ServiceMaxAggregateInputType
   }
@@ -16521,25 +13446,10 @@ export namespace Prisma {
     id: string
     name: string
     description: string
-    country: string
-    currency: string
-    amount: number
-    timeline: string
-    feature: string[]
-    hasShares: boolean
-    hasAgent: boolean
-    hasOwner: boolean
-    hasController: boolean
-    controllerIsCalled: string | null
-    OwnerIsCalled: string | null
-    agentIsCalled: string | null
+    isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
-    isDeprecated: boolean
-    serviceCategoryId: string
     _count: ServiceCountAggregateOutputType | null
-    _avg: ServiceAvgAggregateOutputType | null
-    _sum: ServiceSumAggregateOutputType | null
     _min: ServiceMinAggregateOutputType | null
     _max: ServiceMaxAggregateOutputType | null
   }
@@ -16562,25 +13472,11 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    country?: boolean
-    currency?: boolean
-    amount?: boolean
-    timeline?: boolean
-    feature?: boolean
-    hasShares?: boolean
-    hasAgent?: boolean
-    hasOwner?: boolean
-    hasController?: boolean
-    controllerIsCalled?: boolean
-    OwnerIsCalled?: boolean
-    agentIsCalled?: boolean
+    isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    isDeprecated?: boolean
-    serviceCategoryId?: boolean
-    category?: boolean | ServiceCategoryArgs<ExtArgs>
     products?: boolean | Service$productsArgs<ExtArgs>
-    forms?: boolean | Service$formsArgs<ExtArgs>
+    form?: boolean | Service$formArgs<ExtArgs>
     _count?: boolean | ServiceCountOutputTypeArgs<ExtArgs>
   }, ExtArgs["result"]["service"]>
 
@@ -16588,28 +13484,14 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    country?: boolean
-    currency?: boolean
-    amount?: boolean
-    timeline?: boolean
-    feature?: boolean
-    hasShares?: boolean
-    hasAgent?: boolean
-    hasOwner?: boolean
-    hasController?: boolean
-    controllerIsCalled?: boolean
-    OwnerIsCalled?: boolean
-    agentIsCalled?: boolean
+    isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    isDeprecated?: boolean
-    serviceCategoryId?: boolean
   }
 
   export type ServiceInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    category?: boolean | ServiceCategoryArgs<ExtArgs>
     products?: boolean | Service$productsArgs<ExtArgs>
-    forms?: boolean | Service$formsArgs<ExtArgs>
+    form?: boolean | Service$formArgs<ExtArgs>
     _count?: boolean | ServiceCountOutputTypeArgs<ExtArgs>
   }
 
@@ -16983,11 +13865,9 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
-    category<T extends ServiceCategoryArgs<ExtArgs> = {}>(args?: Subset<T, ServiceCategoryArgs<ExtArgs>>): Prisma__ServiceCategoryClient<$Types.GetResult<ServiceCategoryPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
-
     products<T extends Service$productsArgs<ExtArgs> = {}>(args?: Subset<T, Service$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
-    forms<T extends Service$formsArgs<ExtArgs> = {}>(args?: Subset<T, Service$formsArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServiceFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
+    form<T extends Service$formArgs<ExtArgs> = {}>(args?: Subset<T, Service$formArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServiceFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
     private get _document();
     /**
@@ -17366,9 +14246,9 @@ export namespace Prisma {
 
 
   /**
-   * Service.forms
+   * Service.form
    */
-  export type Service$formsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Service$formArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ServiceForm
      */
@@ -17416,36 +14296,36 @@ export namespace Prisma {
   export type ServiceFormMinAggregateOutputType = {
     id: string | null
     title: string | null
-    type: string | null
     description: string | null
+    type: string | null
     compulsory: boolean | null
     createdAt: Date | null
-    isDeprecated: boolean | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     serviceId: string | null
   }
 
   export type ServiceFormMaxAggregateOutputType = {
     id: string | null
     title: string | null
-    type: string | null
     description: string | null
+    type: string | null
     compulsory: boolean | null
     createdAt: Date | null
-    isDeprecated: boolean | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     serviceId: string | null
   }
 
   export type ServiceFormCountAggregateOutputType = {
     id: number
     title: number
-    type: number
     description: number
+    type: number
     compulsory: number
     createdAt: number
-    isDeprecated: number
     updatedAt: number
+    isDeprecated: number
     serviceId: number
     _all: number
   }
@@ -17454,36 +14334,36 @@ export namespace Prisma {
   export type ServiceFormMinAggregateInputType = {
     id?: true
     title?: true
-    type?: true
     description?: true
+    type?: true
     compulsory?: true
     createdAt?: true
-    isDeprecated?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceId?: true
   }
 
   export type ServiceFormMaxAggregateInputType = {
     id?: true
     title?: true
-    type?: true
     description?: true
+    type?: true
     compulsory?: true
     createdAt?: true
-    isDeprecated?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceId?: true
   }
 
   export type ServiceFormCountAggregateInputType = {
     id?: true
     title?: true
-    type?: true
     description?: true
+    type?: true
     compulsory?: true
     createdAt?: true
-    isDeprecated?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceId?: true
     _all?: true
   }
@@ -17563,13 +14443,13 @@ export namespace Prisma {
 
   export type ServiceFormGroupByOutputType = {
     id: string
-    title: string | null
-    type: string | null
+    title: string
     description: string | null
+    type: string | null
     compulsory: boolean
     createdAt: Date
-    isDeprecated: boolean
     updatedAt: Date
+    isDeprecated: boolean
     serviceId: string
     _count: ServiceFormCountAggregateOutputType | null
     _min: ServiceFormMinAggregateOutputType | null
@@ -17593,33 +14473,33 @@ export namespace Prisma {
   export type ServiceFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    type?: boolean
     description?: boolean
+    type?: boolean
     compulsory?: boolean
     createdAt?: boolean
-    isDeprecated?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     serviceId?: boolean
     service?: boolean | ServiceArgs<ExtArgs>
-    serviceSubForm?: boolean | ServiceForm$serviceSubFormArgs<ExtArgs>
+    subForm?: boolean | ServiceForm$subFormArgs<ExtArgs>
     _count?: boolean | ServiceFormCountOutputTypeArgs<ExtArgs>
   }, ExtArgs["result"]["serviceForm"]>
 
   export type ServiceFormSelectScalar = {
     id?: boolean
     title?: boolean
-    type?: boolean
     description?: boolean
+    type?: boolean
     compulsory?: boolean
     createdAt?: boolean
-    isDeprecated?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     serviceId?: boolean
   }
 
   export type ServiceFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     service?: boolean | ServiceArgs<ExtArgs>
-    serviceSubForm?: boolean | ServiceForm$serviceSubFormArgs<ExtArgs>
+    subForm?: boolean | ServiceForm$subFormArgs<ExtArgs>
     _count?: boolean | ServiceFormCountOutputTypeArgs<ExtArgs>
   }
 
@@ -17995,7 +14875,7 @@ export namespace Prisma {
 
     service<T extends ServiceArgs<ExtArgs> = {}>(args?: Subset<T, ServiceArgs<ExtArgs>>): Prisma__ServiceClient<$Types.GetResult<ServicePayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
-    serviceSubForm<T extends ServiceForm$serviceSubFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceForm$serviceSubFormArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServiceSubFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
+    subForm<T extends ServiceForm$subFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceForm$subFormArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ServiceSubFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
     private get _document();
     /**
@@ -18353,9 +15233,9 @@ export namespace Prisma {
 
 
   /**
-   * ServiceForm.serviceSubForm
+   * ServiceForm.subForm
    */
-  export type ServiceForm$serviceSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ServiceForm$subFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ServiceSubForm
      */
@@ -18404,49 +15284,49 @@ export namespace Prisma {
     id: string | null
     question: string | null
     type: string | null
-    allowOther: boolean | null
     fileName: string | null
     fileType: string | null
     fileLink: string | null
     dependsOn: string | null
+    allowOther: boolean | null
     compulsory: boolean | null
-    isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
-    serviceFormId: string | null
+    isDeprecated: boolean | null
+    formId: string | null
   }
 
   export type ServiceSubFormMaxAggregateOutputType = {
     id: string | null
     question: string | null
     type: string | null
-    allowOther: boolean | null
     fileName: string | null
     fileType: string | null
     fileLink: string | null
     dependsOn: string | null
+    allowOther: boolean | null
     compulsory: boolean | null
-    isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
-    serviceFormId: string | null
+    isDeprecated: boolean | null
+    formId: string | null
   }
 
   export type ServiceSubFormCountAggregateOutputType = {
     id: number
     question: number
-    options: number
     type: number
-    allowOther: number
+    options: number
     fileName: number
     fileType: number
     fileLink: number
     dependsOn: number
+    allowOther: number
     compulsory: number
-    isDeprecated: number
     createdAt: number
     updatedAt: number
-    serviceFormId: number
+    isDeprecated: number
+    formId: number
     _all: number
   }
 
@@ -18455,49 +15335,49 @@ export namespace Prisma {
     id?: true
     question?: true
     type?: true
-    allowOther?: true
     fileName?: true
     fileType?: true
     fileLink?: true
     dependsOn?: true
+    allowOther?: true
     compulsory?: true
-    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
-    serviceFormId?: true
+    isDeprecated?: true
+    formId?: true
   }
 
   export type ServiceSubFormMaxAggregateInputType = {
     id?: true
     question?: true
     type?: true
-    allowOther?: true
     fileName?: true
     fileType?: true
     fileLink?: true
     dependsOn?: true
+    allowOther?: true
     compulsory?: true
-    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
-    serviceFormId?: true
+    isDeprecated?: true
+    formId?: true
   }
 
   export type ServiceSubFormCountAggregateInputType = {
     id?: true
     question?: true
-    options?: true
     type?: true
-    allowOther?: true
+    options?: true
     fileName?: true
     fileType?: true
     fileLink?: true
     dependsOn?: true
+    allowOther?: true
     compulsory?: true
-    isDeprecated?: true
     createdAt?: true
     updatedAt?: true
-    serviceFormId?: true
+    isDeprecated?: true
+    formId?: true
     _all?: true
   }
 
@@ -18577,18 +15457,18 @@ export namespace Prisma {
   export type ServiceSubFormGroupByOutputType = {
     id: string
     question: string | null
-    options: string[]
     type: string | null
-    allowOther: boolean
+    options: string[]
     fileName: string | null
     fileType: string | null
     fileLink: string | null
     dependsOn: string | null
+    allowOther: boolean
     compulsory: boolean
-    isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
-    serviceFormId: string
+    isDeprecated: boolean
+    formId: string
     _count: ServiceSubFormCountAggregateOutputType | null
     _min: ServiceSubFormMinAggregateOutputType | null
     _max: ServiceSubFormMaxAggregateOutputType | null
@@ -18611,40 +15491,40 @@ export namespace Prisma {
   export type ServiceSubFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     question?: boolean
-    options?: boolean
     type?: boolean
-    allowOther?: boolean
+    options?: boolean
     fileName?: boolean
     fileType?: boolean
     fileLink?: boolean
     dependsOn?: boolean
+    allowOther?: boolean
     compulsory?: boolean
-    isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    serviceFormId?: boolean
-    serviceForm?: boolean | ServiceFormArgs<ExtArgs>
+    isDeprecated?: boolean
+    formId?: boolean
+    form?: boolean | ServiceFormArgs<ExtArgs>
   }, ExtArgs["result"]["serviceSubForm"]>
 
   export type ServiceSubFormSelectScalar = {
     id?: boolean
     question?: boolean
-    options?: boolean
     type?: boolean
-    allowOther?: boolean
+    options?: boolean
     fileName?: boolean
     fileType?: boolean
     fileLink?: boolean
     dependsOn?: boolean
+    allowOther?: boolean
     compulsory?: boolean
-    isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    serviceFormId?: boolean
+    isDeprecated?: boolean
+    formId?: boolean
   }
 
   export type ServiceSubFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    serviceForm?: boolean | ServiceFormArgs<ExtArgs>
+    form?: boolean | ServiceFormArgs<ExtArgs>
   }
 
 
@@ -19017,7 +15897,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
-    serviceForm<T extends ServiceFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceFormArgs<ExtArgs>>): Prisma__ServiceFormClient<$Types.GetResult<ServiceFormPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+    form<T extends ServiceFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceFormArgs<ExtArgs>>): Prisma__ServiceFormClient<$Types.GetResult<ServiceFormPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
     private get _document();
     /**
@@ -19397,100 +16277,156 @@ export namespace Prisma {
 
   export type AggregateProduct = {
     _count: ProductCountAggregateOutputType | null
+    _avg: ProductAvgAggregateOutputType | null
+    _sum: ProductSumAggregateOutputType | null
     _min: ProductMinAggregateOutputType | null
     _max: ProductMaxAggregateOutputType | null
   }
 
+  export type ProductAvgAggregateOutputType = {
+    amount: number | null
+  }
+
+  export type ProductSumAggregateOutputType = {
+    amount: number | null
+  }
+
   export type ProductMinAggregateOutputType = {
     id: string | null
-    email: string | null
-    address: string | null
-    paid: boolean | null
-    completed: boolean | null
-    status: string | null
-    currentState: ProductActivityStage | null
+    name: string | null
+    description: string | null
+    country: string | null
+    currency: string | null
+    amount: number | null
+    timeline: string | null
+    hasShares: boolean | null
+    hasAgent: boolean | null
+    hasOwner: boolean | null
+    hasController: boolean | null
+    controllerIsCalled: string | null
+    OwnerIsCalled: string | null
+    agentIsCalled: string | null
     createdAt: Date | null
-    isDeprecated: boolean | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     serviceId: string | null
-    userId: string | null
   }
 
   export type ProductMaxAggregateOutputType = {
     id: string | null
-    email: string | null
-    address: string | null
-    paid: boolean | null
-    completed: boolean | null
-    status: string | null
-    currentState: ProductActivityStage | null
+    name: string | null
+    description: string | null
+    country: string | null
+    currency: string | null
+    amount: number | null
+    timeline: string | null
+    hasShares: boolean | null
+    hasAgent: boolean | null
+    hasOwner: boolean | null
+    hasController: boolean | null
+    controllerIsCalled: string | null
+    OwnerIsCalled: string | null
+    agentIsCalled: string | null
     createdAt: Date | null
-    isDeprecated: boolean | null
     updatedAt: Date | null
+    isDeprecated: boolean | null
     serviceId: string | null
-    userId: string | null
   }
 
   export type ProductCountAggregateOutputType = {
     id: number
-    email: number
-    address: number
-    paid: number
-    completed: number
-    status: number
-    currentState: number
+    name: number
+    description: number
+    country: number
+    currency: number
+    amount: number
+    timeline: number
+    feature: number
+    hasShares: number
+    hasAgent: number
+    hasOwner: number
+    hasController: number
+    controllerIsCalled: number
+    OwnerIsCalled: number
+    agentIsCalled: number
     createdAt: number
-    isDeprecated: number
     updatedAt: number
+    isDeprecated: number
     serviceId: number
-    userId: number
     _all: number
   }
 
 
+  export type ProductAvgAggregateInputType = {
+    amount?: true
+  }
+
+  export type ProductSumAggregateInputType = {
+    amount?: true
+  }
+
   export type ProductMinAggregateInputType = {
     id?: true
-    email?: true
-    address?: true
-    paid?: true
-    completed?: true
-    status?: true
-    currentState?: true
+    name?: true
+    description?: true
+    country?: true
+    currency?: true
+    amount?: true
+    timeline?: true
+    hasShares?: true
+    hasAgent?: true
+    hasOwner?: true
+    hasController?: true
+    controllerIsCalled?: true
+    OwnerIsCalled?: true
+    agentIsCalled?: true
     createdAt?: true
-    isDeprecated?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceId?: true
-    userId?: true
   }
 
   export type ProductMaxAggregateInputType = {
     id?: true
-    email?: true
-    address?: true
-    paid?: true
-    completed?: true
-    status?: true
-    currentState?: true
+    name?: true
+    description?: true
+    country?: true
+    currency?: true
+    amount?: true
+    timeline?: true
+    hasShares?: true
+    hasAgent?: true
+    hasOwner?: true
+    hasController?: true
+    controllerIsCalled?: true
+    OwnerIsCalled?: true
+    agentIsCalled?: true
     createdAt?: true
-    isDeprecated?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceId?: true
-    userId?: true
   }
 
   export type ProductCountAggregateInputType = {
     id?: true
-    email?: true
-    address?: true
-    paid?: true
-    completed?: true
-    status?: true
-    currentState?: true
+    name?: true
+    description?: true
+    country?: true
+    currency?: true
+    amount?: true
+    timeline?: true
+    feature?: true
+    hasShares?: true
+    hasAgent?: true
+    hasOwner?: true
+    hasController?: true
+    controllerIsCalled?: true
+    OwnerIsCalled?: true
+    agentIsCalled?: true
     createdAt?: true
-    isDeprecated?: true
     updatedAt?: true
+    isDeprecated?: true
     serviceId?: true
-    userId?: true
     _all?: true
   }
 
@@ -19532,6 +16468,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: ProductAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProductSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ProductMinAggregateInputType
@@ -19562,6 +16510,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ProductCountAggregateInputType | true
+    _avg?: ProductAvgAggregateInputType
+    _sum?: ProductSumAggregateInputType
     _min?: ProductMinAggregateInputType
     _max?: ProductMaxAggregateInputType
   }
@@ -19569,18 +16519,27 @@ export namespace Prisma {
 
   export type ProductGroupByOutputType = {
     id: string
-    email: string | null
-    address: string | null
-    paid: boolean
-    completed: boolean
-    status: string
-    currentState: ProductActivityStage
+    name: string
+    description: string
+    country: string
+    currency: string
+    amount: number
+    timeline: string
+    feature: string[]
+    hasShares: boolean
+    hasAgent: boolean
+    hasOwner: boolean
+    hasController: boolean
+    controllerIsCalled: string | null
+    OwnerIsCalled: string | null
+    agentIsCalled: string | null
     createdAt: Date
-    isDeprecated: boolean
     updatedAt: Date
-    serviceId: string | null
-    userId: string
+    isDeprecated: boolean
+    serviceId: string
     _count: ProductCountAggregateOutputType | null
+    _avg: ProductAvgAggregateOutputType | null
+    _sum: ProductSumAggregateOutputType | null
     _min: ProductMinAggregateOutputType | null
     _max: ProductMaxAggregateOutputType | null
   }
@@ -19601,46 +16560,56 @@ export namespace Prisma {
 
   export type ProductSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    email?: boolean
-    address?: boolean
-    paid?: boolean
-    completed?: boolean
-    status?: boolean
-    currentState?: boolean
+    name?: boolean
+    description?: boolean
+    country?: boolean
+    currency?: boolean
+    amount?: boolean
+    timeline?: boolean
+    feature?: boolean
+    hasShares?: boolean
+    hasAgent?: boolean
+    hasOwner?: boolean
+    hasController?: boolean
+    controllerIsCalled?: boolean
+    OwnerIsCalled?: boolean
+    agentIsCalled?: boolean
     createdAt?: boolean
-    isDeprecated?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     serviceId?: boolean
-    userId?: boolean
-    Team?: boolean | Product$TeamArgs<ExtArgs>
     service?: boolean | ServiceArgs<ExtArgs>
-    user?: boolean | UserArgs<ExtArgs>
-    Payment?: boolean | Product$PaymentArgs<ExtArgs>
-    productQA?: boolean | Product$productQAArgs<ExtArgs>
+    request?: boolean | Product$requestArgs<ExtArgs>
+    form?: boolean | Product$formArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectScalar = {
     id?: boolean
-    email?: boolean
-    address?: boolean
-    paid?: boolean
-    completed?: boolean
-    status?: boolean
-    currentState?: boolean
+    name?: boolean
+    description?: boolean
+    country?: boolean
+    currency?: boolean
+    amount?: boolean
+    timeline?: boolean
+    feature?: boolean
+    hasShares?: boolean
+    hasAgent?: boolean
+    hasOwner?: boolean
+    hasController?: boolean
+    controllerIsCalled?: boolean
+    OwnerIsCalled?: boolean
+    agentIsCalled?: boolean
     createdAt?: boolean
-    isDeprecated?: boolean
     updatedAt?: boolean
+    isDeprecated?: boolean
     serviceId?: boolean
-    userId?: boolean
   }
 
   export type ProductInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    Team?: boolean | Product$TeamArgs<ExtArgs>
     service?: boolean | ServiceArgs<ExtArgs>
-    user?: boolean | UserArgs<ExtArgs>
-    Payment?: boolean | Product$PaymentArgs<ExtArgs>
-    productQA?: boolean | Product$productQAArgs<ExtArgs>
+    request?: boolean | Product$requestArgs<ExtArgs>
+    form?: boolean | Product$formArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeArgs<ExtArgs>
   }
 
@@ -20014,15 +16983,11 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
-    Team<T extends Product$TeamArgs<ExtArgs> = {}>(args?: Subset<T, Product$TeamArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<TeamPayload<ExtArgs>, T, 'findMany', never>| Null>;
-
     service<T extends ServiceArgs<ExtArgs> = {}>(args?: Subset<T, ServiceArgs<ExtArgs>>): Prisma__ServiceClient<$Types.GetResult<ServicePayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
-    user<T extends UserArgs<ExtArgs> = {}>(args?: Subset<T, UserArgs<ExtArgs>>): Prisma__UserClient<$Types.GetResult<UserPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+    request<T extends Product$requestArgs<ExtArgs> = {}>(args?: Subset<T, Product$requestArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
-    Payment<T extends Product$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Product$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<PaymentPayload<ExtArgs>, T, 'findMany', never>| Null>;
-
-    productQA<T extends Product$productQAArgs<ExtArgs> = {}>(args?: Subset<T, Product$productQAArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'findMany', never>| Null>;
+    form<T extends Product$formArgs<ExtArgs> = {}>(args?: Subset<T, Product$formArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
     private get _document();
     /**
@@ -20380,65 +17345,44 @@ export namespace Prisma {
 
 
   /**
-   * Product.Team
+   * Product.request
    */
-  export type Product$TeamArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Product$requestArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Team
+     * Select specific fields to fetch from the ProductRequest
      */
-    select?: TeamSelect<ExtArgs> | null
+    select?: ProductRequestSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: TeamInclude<ExtArgs> | null
-    where?: TeamWhereInput
-    orderBy?: Enumerable<TeamOrderByWithRelationInput>
-    cursor?: TeamWhereUniqueInput
+    include?: ProductRequestInclude<ExtArgs> | null
+    where?: ProductRequestWhereInput
+    orderBy?: Enumerable<ProductRequestOrderByWithRelationInput>
+    cursor?: ProductRequestWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Enumerable<TeamScalarFieldEnum>
+    distinct?: Enumerable<ProductRequestScalarFieldEnum>
   }
 
 
   /**
-   * Product.Payment
+   * Product.form
    */
-  export type Product$PaymentArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type Product$formArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Payment
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: PaymentSelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PaymentInclude<ExtArgs> | null
-    where?: PaymentWhereInput
-    orderBy?: Enumerable<PaymentOrderByWithRelationInput>
-    cursor?: PaymentWhereUniqueInput
+    include?: ProductFormInclude<ExtArgs> | null
+    where?: ProductFormWhereInput
+    orderBy?: Enumerable<ProductFormOrderByWithRelationInput>
+    cursor?: ProductFormWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Enumerable<PaymentScalarFieldEnum>
-  }
-
-
-  /**
-   * Product.productQA
-   */
-  export type Product$productQAArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProductQA
-     */
-    select?: ProductQASelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: ProductQAInclude<ExtArgs> | null
-    where?: ProductQAWhereInput
-    orderBy?: Enumerable<ProductQAOrderByWithRelationInput>
-    cursor?: ProductQAWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Enumerable<ProductQAScalarFieldEnum>
+    distinct?: Enumerable<ProductFormScalarFieldEnum>
   }
 
 
@@ -20459,408 +17403,376 @@ export namespace Prisma {
 
 
   /**
-   * Model ProductQA
+   * Model ProductForm
    */
 
 
-  export type AggregateProductQA = {
-    _count: ProductQACountAggregateOutputType | null
-    _min: ProductQAMinAggregateOutputType | null
-    _max: ProductQAMaxAggregateOutputType | null
+  export type AggregateProductForm = {
+    _count: ProductFormCountAggregateOutputType | null
+    _min: ProductFormMinAggregateOutputType | null
+    _max: ProductFormMaxAggregateOutputType | null
   }
 
-  export type ProductQAMinAggregateOutputType = {
+  export type ProductFormMinAggregateOutputType = {
     id: string | null
-    question: string | null
+    title: string | null
     type: string | null
+    description: string | null
     compulsory: boolean | null
-    isGeneral: boolean | null
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date | null
-    updatedAt: Date | null
     isDeprecated: boolean | null
+    updatedAt: Date | null
     productId: string | null
   }
 
-  export type ProductQAMaxAggregateOutputType = {
+  export type ProductFormMaxAggregateOutputType = {
     id: string | null
-    question: string | null
+    title: string | null
     type: string | null
+    description: string | null
     compulsory: boolean | null
-    isGeneral: boolean | null
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date | null
-    updatedAt: Date | null
     isDeprecated: boolean | null
+    updatedAt: Date | null
     productId: string | null
   }
 
-  export type ProductQACountAggregateOutputType = {
+  export type ProductFormCountAggregateOutputType = {
     id: number
-    question: number
-    answer: number
+    title: number
     type: number
+    description: number
     compulsory: number
-    isGeneral: number
-    fileName: number
-    fileType: number
-    fileLink: number
     createdAt: number
-    updatedAt: number
     isDeprecated: number
+    updatedAt: number
     productId: number
     _all: number
   }
 
 
-  export type ProductQAMinAggregateInputType = {
+  export type ProductFormMinAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
     type?: true
+    description?: true
     compulsory?: true
-    isGeneral?: true
-    fileName?: true
-    fileType?: true
-    fileLink?: true
     createdAt?: true
-    updatedAt?: true
     isDeprecated?: true
+    updatedAt?: true
     productId?: true
   }
 
-  export type ProductQAMaxAggregateInputType = {
+  export type ProductFormMaxAggregateInputType = {
     id?: true
-    question?: true
+    title?: true
     type?: true
+    description?: true
     compulsory?: true
-    isGeneral?: true
-    fileName?: true
-    fileType?: true
-    fileLink?: true
     createdAt?: true
-    updatedAt?: true
     isDeprecated?: true
+    updatedAt?: true
     productId?: true
   }
 
-  export type ProductQACountAggregateInputType = {
+  export type ProductFormCountAggregateInputType = {
     id?: true
-    question?: true
-    answer?: true
+    title?: true
     type?: true
+    description?: true
     compulsory?: true
-    isGeneral?: true
-    fileName?: true
-    fileType?: true
-    fileLink?: true
     createdAt?: true
-    updatedAt?: true
     isDeprecated?: true
+    updatedAt?: true
     productId?: true
     _all?: true
   }
 
-  export type ProductQAAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Filter which ProductQA to aggregate.
+     * Filter which ProductForm to aggregate.
      */
-    where?: ProductQAWhereInput
+    where?: ProductFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ProductQAS to fetch.
+     * Determine the order of ProductForms to fetch.
      */
-    orderBy?: Enumerable<ProductQAOrderByWithRelationInput>
+    orderBy?: Enumerable<ProductFormOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ProductQAWhereUniqueInput
+    cursor?: ProductFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ProductQAS from the position of the cursor.
+     * Take `±n` ProductForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ProductQAS.
+     * Skip the first `n` ProductForms.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned ProductQAS
+     * Count returned ProductForms
     **/
-    _count?: true | ProductQACountAggregateInputType
+    _count?: true | ProductFormCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ProductQAMinAggregateInputType
+    _min?: ProductFormMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ProductQAMaxAggregateInputType
+    _max?: ProductFormMaxAggregateInputType
   }
 
-  export type GetProductQAAggregateType<T extends ProductQAAggregateArgs> = {
-        [P in keyof T & keyof AggregateProductQA]: P extends '_count' | 'count'
+  export type GetProductFormAggregateType<T extends ProductFormAggregateArgs> = {
+        [P in keyof T & keyof AggregateProductForm]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateProductQA[P]>
-      : GetScalarType<T[P], AggregateProductQA[P]>
+        : GetScalarType<T[P], AggregateProductForm[P]>
+      : GetScalarType<T[P], AggregateProductForm[P]>
   }
 
 
 
 
-  export type ProductQAGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ProductQAWhereInput
-    orderBy?: Enumerable<ProductQAOrderByWithAggregationInput>
-    by: ProductQAScalarFieldEnum[]
-    having?: ProductQAScalarWhereWithAggregatesInput
+  export type ProductFormGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductFormWhereInput
+    orderBy?: Enumerable<ProductFormOrderByWithAggregationInput>
+    by: ProductFormScalarFieldEnum[]
+    having?: ProductFormScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ProductQACountAggregateInputType | true
-    _min?: ProductQAMinAggregateInputType
-    _max?: ProductQAMaxAggregateInputType
+    _count?: ProductFormCountAggregateInputType | true
+    _min?: ProductFormMinAggregateInputType
+    _max?: ProductFormMaxAggregateInputType
   }
 
 
-  export type ProductQAGroupByOutputType = {
+  export type ProductFormGroupByOutputType = {
     id: string
-    question: string | null
-    answer: string[]
+    title: string | null
     type: string | null
+    description: string | null
     compulsory: boolean
-    isGeneral: boolean
-    fileName: string | null
-    fileType: string | null
-    fileLink: string | null
     createdAt: Date
-    updatedAt: Date
     isDeprecated: boolean
+    updatedAt: Date
     productId: string
-    _count: ProductQACountAggregateOutputType | null
-    _min: ProductQAMinAggregateOutputType | null
-    _max: ProductQAMaxAggregateOutputType | null
+    _count: ProductFormCountAggregateOutputType | null
+    _min: ProductFormMinAggregateOutputType | null
+    _max: ProductFormMaxAggregateOutputType | null
   }
 
-  type GetProductQAGroupByPayload<T extends ProductQAGroupByArgs> = Prisma.PrismaPromise<
+  type GetProductFormGroupByPayload<T extends ProductFormGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickArray<ProductQAGroupByOutputType, T['by']> &
+      PickArray<ProductFormGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ProductQAGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ProductFormGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ProductQAGroupByOutputType[P]>
-            : GetScalarType<T[P], ProductQAGroupByOutputType[P]>
+              : GetScalarType<T[P], ProductFormGroupByOutputType[P]>
+            : GetScalarType<T[P], ProductFormGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ProductQASelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ProductFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    question?: boolean
-    answer?: boolean
+    title?: boolean
     type?: boolean
+    description?: boolean
     compulsory?: boolean
-    isGeneral?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileLink?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
     isDeprecated?: boolean
+    updatedAt?: boolean
     productId?: boolean
-    products?: boolean | ProductArgs<ExtArgs>
-    productSubForm?: boolean | ProductQA$productSubFormArgs<ExtArgs>
-    _count?: boolean | ProductQACountOutputTypeArgs<ExtArgs>
-  }, ExtArgs["result"]["productQA"]>
+    product?: boolean | ProductArgs<ExtArgs>
+    productSubForm?: boolean | ProductForm$productSubFormArgs<ExtArgs>
+    _count?: boolean | ProductFormCountOutputTypeArgs<ExtArgs>
+  }, ExtArgs["result"]["productForm"]>
 
-  export type ProductQASelectScalar = {
+  export type ProductFormSelectScalar = {
     id?: boolean
-    question?: boolean
-    answer?: boolean
+    title?: boolean
     type?: boolean
+    description?: boolean
     compulsory?: boolean
-    isGeneral?: boolean
-    fileName?: boolean
-    fileType?: boolean
-    fileLink?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
     isDeprecated?: boolean
+    updatedAt?: boolean
     productId?: boolean
   }
 
-  export type ProductQAInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    products?: boolean | ProductArgs<ExtArgs>
-    productSubForm?: boolean | ProductQA$productSubFormArgs<ExtArgs>
-    _count?: boolean | ProductQACountOutputTypeArgs<ExtArgs>
+  export type ProductFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    product?: boolean | ProductArgs<ExtArgs>
+    productSubForm?: boolean | ProductForm$productSubFormArgs<ExtArgs>
+    _count?: boolean | ProductFormCountOutputTypeArgs<ExtArgs>
   }
 
 
-  type ProductQAGetPayload<S extends boolean | null | undefined | ProductQAArgs> = $Types.GetResult<ProductQAPayload, S>
+  type ProductFormGetPayload<S extends boolean | null | undefined | ProductFormArgs> = $Types.GetResult<ProductFormPayload, S>
 
-  type ProductQACountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
-    Omit<ProductQAFindManyArgs, 'select' | 'include'> & {
-      select?: ProductQACountAggregateInputType | true
+  type ProductFormCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<ProductFormFindManyArgs, 'select' | 'include'> & {
+      select?: ProductFormCountAggregateInputType | true
     }
 
-  export interface ProductQADelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductQA'], meta: { name: 'ProductQA' } }
+  export interface ProductFormDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductForm'], meta: { name: 'ProductForm' } }
     /**
-     * Find zero or one ProductQA that matches the filter.
-     * @param {ProductQAFindUniqueArgs} args - Arguments to find a ProductQA
+     * Find zero or one ProductForm that matches the filter.
+     * @param {ProductFormFindUniqueArgs} args - Arguments to find a ProductForm
      * @example
-     * // Get one ProductQA
-     * const productQA = await prisma.productQA.findUnique({
+     * // Get one ProductForm
+     * const productForm = await prisma.productForm.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends ProductQAFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, ProductQAFindUniqueArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ProductQA'> extends True ? Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
+    findUnique<T extends ProductFormFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, ProductFormFindUniqueArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ProductForm'> extends True ? Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
 
     /**
-     * Find one ProductQA that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one ProductForm that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {ProductQAFindUniqueOrThrowArgs} args - Arguments to find a ProductQA
+     * @param {ProductFormFindUniqueOrThrowArgs} args - Arguments to find a ProductForm
      * @example
-     * // Get one ProductQA
-     * const productQA = await prisma.productQA.findUniqueOrThrow({
+     * // Get one ProductForm
+     * const productForm = await prisma.productForm.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends ProductQAFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQAFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
+    findUniqueOrThrow<T extends ProductFormFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductFormFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
 
     /**
-     * Find the first ProductQA that matches the filter.
+     * Find the first ProductForm that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQAFindFirstArgs} args - Arguments to find a ProductQA
+     * @param {ProductFormFindFirstArgs} args - Arguments to find a ProductForm
      * @example
-     * // Get one ProductQA
-     * const productQA = await prisma.productQA.findFirst({
+     * // Get one ProductForm
+     * const productForm = await prisma.productForm.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends ProductQAFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, ProductQAFindFirstArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ProductQA'> extends True ? Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
+    findFirst<T extends ProductFormFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, ProductFormFindFirstArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ProductForm'> extends True ? Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
 
     /**
-     * Find the first ProductQA that matches the filter or
+     * Find the first ProductForm that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQAFindFirstOrThrowArgs} args - Arguments to find a ProductQA
+     * @param {ProductFormFindFirstOrThrowArgs} args - Arguments to find a ProductForm
      * @example
-     * // Get one ProductQA
-     * const productQA = await prisma.productQA.findFirstOrThrow({
+     * // Get one ProductForm
+     * const productForm = await prisma.productForm.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends ProductQAFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQAFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
+    findFirstOrThrow<T extends ProductFormFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductFormFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
 
     /**
-     * Find zero or more ProductQAS that matches the filter.
+     * Find zero or more ProductForms that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQAFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {ProductFormFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all ProductQAS
-     * const productQAS = await prisma.productQA.findMany()
+     * // Get all ProductForms
+     * const productForms = await prisma.productForm.findMany()
      * 
-     * // Get first 10 ProductQAS
-     * const productQAS = await prisma.productQA.findMany({ take: 10 })
+     * // Get first 10 ProductForms
+     * const productForms = await prisma.productForm.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const productQAWithIdOnly = await prisma.productQA.findMany({ select: { id: true } })
+     * const productFormWithIdOnly = await prisma.productForm.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends ProductQAFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQAFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'findMany', never>>
+    findMany<T extends ProductFormFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductFormFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findMany', never>>
 
     /**
-     * Create a ProductQA.
-     * @param {ProductQACreateArgs} args - Arguments to create a ProductQA.
+     * Create a ProductForm.
+     * @param {ProductFormCreateArgs} args - Arguments to create a ProductForm.
      * @example
-     * // Create one ProductQA
-     * const ProductQA = await prisma.productQA.create({
+     * // Create one ProductForm
+     * const ProductForm = await prisma.productForm.create({
      *   data: {
-     *     // ... data to create a ProductQA
+     *     // ... data to create a ProductForm
      *   }
      * })
      * 
     **/
-    create<T extends ProductQACreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQACreateArgs<ExtArgs>>
-    ): Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
+    create<T extends ProductFormCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductFormCreateArgs<ExtArgs>>
+    ): Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
 
     /**
-     * Create many ProductQAS.
-     *     @param {ProductQACreateManyArgs} args - Arguments to create many ProductQAS.
+     * Create many ProductForms.
+     *     @param {ProductFormCreateManyArgs} args - Arguments to create many ProductForms.
      *     @example
-     *     // Create many ProductQAS
-     *     const productQA = await prisma.productQA.createMany({
+     *     // Create many ProductForms
+     *     const productForm = await prisma.productForm.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends ProductQACreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQACreateManyArgs<ExtArgs>>
+    createMany<T extends ProductFormCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductFormCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a ProductQA.
-     * @param {ProductQADeleteArgs} args - Arguments to delete one ProductQA.
+     * Delete a ProductForm.
+     * @param {ProductFormDeleteArgs} args - Arguments to delete one ProductForm.
      * @example
-     * // Delete one ProductQA
-     * const ProductQA = await prisma.productQA.delete({
+     * // Delete one ProductForm
+     * const ProductForm = await prisma.productForm.delete({
      *   where: {
-     *     // ... filter to delete one ProductQA
+     *     // ... filter to delete one ProductForm
      *   }
      * })
      * 
     **/
-    delete<T extends ProductQADeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQADeleteArgs<ExtArgs>>
-    ): Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
+    delete<T extends ProductFormDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductFormDeleteArgs<ExtArgs>>
+    ): Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
 
     /**
-     * Update one ProductQA.
-     * @param {ProductQAUpdateArgs} args - Arguments to update one ProductQA.
+     * Update one ProductForm.
+     * @param {ProductFormUpdateArgs} args - Arguments to update one ProductForm.
      * @example
-     * // Update one ProductQA
-     * const productQA = await prisma.productQA.update({
+     * // Update one ProductForm
+     * const productForm = await prisma.productForm.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -20870,34 +17782,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends ProductQAUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQAUpdateArgs<ExtArgs>>
-    ): Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
+    update<T extends ProductFormUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductFormUpdateArgs<ExtArgs>>
+    ): Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
 
     /**
-     * Delete zero or more ProductQAS.
-     * @param {ProductQADeleteManyArgs} args - Arguments to filter ProductQAS to delete.
+     * Delete zero or more ProductForms.
+     * @param {ProductFormDeleteManyArgs} args - Arguments to filter ProductForms to delete.
      * @example
-     * // Delete a few ProductQAS
-     * const { count } = await prisma.productQA.deleteMany({
+     * // Delete a few ProductForms
+     * const { count } = await prisma.productForm.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends ProductQADeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQADeleteManyArgs<ExtArgs>>
+    deleteMany<T extends ProductFormDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductFormDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more ProductQAS.
+     * Update zero or more ProductForms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQAUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ProductFormUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many ProductQAS
-     * const productQA = await prisma.productQA.updateMany({
+     * // Update many ProductForms
+     * const productForm = await prisma.productForm.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -20907,59 +17819,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends ProductQAUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQAUpdateManyArgs<ExtArgs>>
+    updateMany<T extends ProductFormUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductFormUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one ProductQA.
-     * @param {ProductQAUpsertArgs} args - Arguments to update or create a ProductQA.
+     * Create or update one ProductForm.
+     * @param {ProductFormUpsertArgs} args - Arguments to update or create a ProductForm.
      * @example
-     * // Update or create a ProductQA
-     * const productQA = await prisma.productQA.upsert({
+     * // Update or create a ProductForm
+     * const productForm = await prisma.productForm.upsert({
      *   create: {
-     *     // ... data to create a ProductQA
+     *     // ... data to create a ProductForm
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the ProductQA we want to update
+     *     // ... the filter for the ProductForm we want to update
      *   }
      * })
     **/
-    upsert<T extends ProductQAUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQAUpsertArgs<ExtArgs>>
-    ): Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
+    upsert<T extends ProductFormUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductFormUpsertArgs<ExtArgs>>
+    ): Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
 
     /**
-     * Count the number of ProductQAS.
+     * Count the number of ProductForms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQACountArgs} args - Arguments to filter ProductQAS to count.
+     * @param {ProductFormCountArgs} args - Arguments to filter ProductForms to count.
      * @example
-     * // Count the number of ProductQAS
-     * const count = await prisma.productQA.count({
+     * // Count the number of ProductForms
+     * const count = await prisma.productForm.count({
      *   where: {
-     *     // ... the filter for the ProductQAS we want to count
+     *     // ... the filter for the ProductForms we want to count
      *   }
      * })
     **/
-    count<T extends ProductQACountArgs>(
-      args?: Subset<T, ProductQACountArgs>,
+    count<T extends ProductFormCountArgs>(
+      args?: Subset<T, ProductFormCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ProductQACountAggregateOutputType>
+          : GetScalarType<T['select'], ProductFormCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a ProductQA.
+     * Allows you to perform aggregations operations on a ProductForm.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQAAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ProductFormAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -20979,13 +17891,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ProductQAAggregateArgs>(args: Subset<T, ProductQAAggregateArgs>): Prisma.PrismaPromise<GetProductQAAggregateType<T>>
+    aggregate<T extends ProductFormAggregateArgs>(args: Subset<T, ProductFormAggregateArgs>): Prisma.PrismaPromise<GetProductFormAggregateType<T>>
 
     /**
-     * Group by ProductQA.
+     * Group by ProductForm.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQAGroupByArgs} args - Group by arguments.
+     * @param {ProductFormGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -21000,14 +17912,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ProductQAGroupByArgs,
+      T extends ProductFormGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ProductQAGroupByArgs['orderBy'] }
-        : { orderBy?: ProductQAGroupByArgs['orderBy'] },
+        ? { orderBy: ProductFormGroupByArgs['orderBy'] }
+        : { orderBy?: ProductFormGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends TupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -21056,17 +17968,17 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ProductQAGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductQAGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ProductFormGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductFormGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for ProductQA.
+   * The delegate class that acts as a "Promise-like" for ProductForm.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__ProductQAClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
+  export class Prisma__ProductFormClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
     private readonly _dmmf;
     private readonly _queryType;
     private readonly _rootField;
@@ -21081,9 +17993,9 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
-    products<T extends ProductArgs<ExtArgs> = {}>(args?: Subset<T, ProductArgs<ExtArgs>>): Prisma__ProductClient<$Types.GetResult<ProductPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+    product<T extends ProductArgs<ExtArgs> = {}>(args?: Subset<T, ProductArgs<ExtArgs>>): Prisma__ProductClient<$Types.GetResult<ProductPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
-    productSubForm<T extends ProductQA$productSubFormArgs<ExtArgs> = {}>(args?: Subset<T, ProductQA$productSubFormArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
+    productSubForm<T extends ProductForm$productSubFormArgs<ExtArgs> = {}>(args?: Subset<T, ProductForm$productSubFormArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
     private get _document();
     /**
@@ -21113,27 +18025,27 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * ProductQA base type for findUnique actions
+   * ProductForm base type for findUnique actions
    */
-  export type ProductQAFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQA to fetch.
+     * Filter, which ProductForm to fetch.
      */
-    where: ProductQAWhereUniqueInput
+    where: ProductFormWhereUniqueInput
   }
 
   /**
-   * ProductQA findUnique
+   * ProductForm findUnique
    */
-  export interface ProductQAFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductQAFindUniqueArgsBase<ExtArgs> {
+  export interface ProductFormFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductFormFindUniqueArgsBase<ExtArgs> {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -21143,76 +18055,76 @@ export namespace Prisma {
       
 
   /**
-   * ProductQA findUniqueOrThrow
+   * ProductForm findUniqueOrThrow
    */
-  export type ProductQAFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQA to fetch.
+     * Filter, which ProductForm to fetch.
      */
-    where: ProductQAWhereUniqueInput
+    where: ProductFormWhereUniqueInput
   }
 
 
   /**
-   * ProductQA base type for findFirst actions
+   * ProductForm base type for findFirst actions
    */
-  export type ProductQAFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQA to fetch.
+     * Filter, which ProductForm to fetch.
      */
-    where?: ProductQAWhereInput
+    where?: ProductFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ProductQAS to fetch.
+     * Determine the order of ProductForms to fetch.
      */
-    orderBy?: Enumerable<ProductQAOrderByWithRelationInput>
+    orderBy?: Enumerable<ProductFormOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ProductQAS.
+     * Sets the position for searching for ProductForms.
      */
-    cursor?: ProductQAWhereUniqueInput
+    cursor?: ProductFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ProductQAS from the position of the cursor.
+     * Take `±n` ProductForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ProductQAS.
+     * Skip the first `n` ProductForms.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ProductQAS.
+     * Filter by unique combinations of ProductForms.
      */
-    distinct?: Enumerable<ProductQAScalarFieldEnum>
+    distinct?: Enumerable<ProductFormScalarFieldEnum>
   }
 
   /**
-   * ProductQA findFirst
+   * ProductForm findFirst
    */
-  export interface ProductQAFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductQAFindFirstArgsBase<ExtArgs> {
+  export interface ProductFormFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductFormFindFirstArgsBase<ExtArgs> {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -21222,606 +18134,669 @@ export namespace Prisma {
       
 
   /**
-   * ProductQA findFirstOrThrow
+   * ProductForm findFirstOrThrow
    */
-  export type ProductQAFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQA to fetch.
+     * Filter, which ProductForm to fetch.
      */
-    where?: ProductQAWhereInput
+    where?: ProductFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ProductQAS to fetch.
+     * Determine the order of ProductForms to fetch.
      */
-    orderBy?: Enumerable<ProductQAOrderByWithRelationInput>
+    orderBy?: Enumerable<ProductFormOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ProductQAS.
+     * Sets the position for searching for ProductForms.
      */
-    cursor?: ProductQAWhereUniqueInput
+    cursor?: ProductFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ProductQAS from the position of the cursor.
+     * Take `±n` ProductForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ProductQAS.
+     * Skip the first `n` ProductForms.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ProductQAS.
+     * Filter by unique combinations of ProductForms.
      */
-    distinct?: Enumerable<ProductQAScalarFieldEnum>
+    distinct?: Enumerable<ProductFormScalarFieldEnum>
   }
 
 
   /**
-   * ProductQA findMany
+   * ProductForm findMany
    */
-  export type ProductQAFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQAS to fetch.
+     * Filter, which ProductForms to fetch.
      */
-    where?: ProductQAWhereInput
+    where?: ProductFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ProductQAS to fetch.
+     * Determine the order of ProductForms to fetch.
      */
-    orderBy?: Enumerable<ProductQAOrderByWithRelationInput>
+    orderBy?: Enumerable<ProductFormOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing ProductQAS.
+     * Sets the position for listing ProductForms.
      */
-    cursor?: ProductQAWhereUniqueInput
+    cursor?: ProductFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ProductQAS from the position of the cursor.
+     * Take `±n` ProductForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ProductQAS.
+     * Skip the first `n` ProductForms.
      */
     skip?: number
-    distinct?: Enumerable<ProductQAScalarFieldEnum>
+    distinct?: Enumerable<ProductFormScalarFieldEnum>
   }
 
 
   /**
-   * ProductQA create
+   * ProductForm create
    */
-  export type ProductQACreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
     /**
-     * The data needed to create a ProductQA.
+     * The data needed to create a ProductForm.
      */
-    data: XOR<ProductQACreateInput, ProductQAUncheckedCreateInput>
+    data: XOR<ProductFormCreateInput, ProductFormUncheckedCreateInput>
   }
 
 
   /**
-   * ProductQA createMany
+   * ProductForm createMany
    */
-  export type ProductQACreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many ProductQAS.
+     * The data used to create many ProductForms.
      */
-    data: Enumerable<ProductQACreateManyInput>
+    data: Enumerable<ProductFormCreateManyInput>
     skipDuplicates?: boolean
   }
 
 
   /**
-   * ProductQA update
+   * ProductForm update
    */
-  export type ProductQAUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
     /**
-     * The data needed to update a ProductQA.
+     * The data needed to update a ProductForm.
      */
-    data: XOR<ProductQAUpdateInput, ProductQAUncheckedUpdateInput>
+    data: XOR<ProductFormUpdateInput, ProductFormUncheckedUpdateInput>
     /**
-     * Choose, which ProductQA to update.
+     * Choose, which ProductForm to update.
      */
-    where: ProductQAWhereUniqueInput
+    where: ProductFormWhereUniqueInput
   }
 
 
   /**
-   * ProductQA updateMany
+   * ProductForm updateMany
    */
-  export type ProductQAUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update ProductQAS.
+     * The data used to update ProductForms.
      */
-    data: XOR<ProductQAUpdateManyMutationInput, ProductQAUncheckedUpdateManyInput>
+    data: XOR<ProductFormUpdateManyMutationInput, ProductFormUncheckedUpdateManyInput>
     /**
-     * Filter which ProductQAS to update
+     * Filter which ProductForms to update
      */
-    where?: ProductQAWhereInput
+    where?: ProductFormWhereInput
   }
 
 
   /**
-   * ProductQA upsert
+   * ProductForm upsert
    */
-  export type ProductQAUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
     /**
-     * The filter to search for the ProductQA to update in case it exists.
+     * The filter to search for the ProductForm to update in case it exists.
      */
-    where: ProductQAWhereUniqueInput
+    where: ProductFormWhereUniqueInput
     /**
-     * In case the ProductQA found by the `where` argument doesn't exist, create a new ProductQA with this data.
+     * In case the ProductForm found by the `where` argument doesn't exist, create a new ProductForm with this data.
      */
-    create: XOR<ProductQACreateInput, ProductQAUncheckedCreateInput>
+    create: XOR<ProductFormCreateInput, ProductFormUncheckedCreateInput>
     /**
-     * In case the ProductQA was found with the provided `where` argument, update it with this data.
+     * In case the ProductForm was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ProductQAUpdateInput, ProductQAUncheckedUpdateInput>
+    update: XOR<ProductFormUpdateInput, ProductFormUncheckedUpdateInput>
   }
 
 
   /**
-   * ProductQA delete
+   * ProductForm delete
    */
-  export type ProductQADeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
     /**
-     * Filter which ProductQA to delete.
+     * Filter which ProductForm to delete.
      */
-    where: ProductQAWhereUniqueInput
+    where: ProductFormWhereUniqueInput
   }
 
 
   /**
-   * ProductQA deleteMany
+   * ProductForm deleteMany
    */
-  export type ProductQADeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Filter which ProductQAS to delete
+     * Filter which ProductForms to delete
      */
-    where?: ProductQAWhereInput
+    where?: ProductFormWhereInput
   }
 
 
   /**
-   * ProductQA.productSubForm
+   * ProductForm.productSubForm
    */
-  export type ProductQA$productSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductForm$productSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
-    where?: ProductQASubFormWhereInput
-    orderBy?: Enumerable<ProductQASubFormOrderByWithRelationInput>
-    cursor?: ProductQASubFormWhereUniqueInput
+    include?: ProductSubFormInclude<ExtArgs> | null
+    where?: ProductSubFormWhereInput
+    orderBy?: Enumerable<ProductSubFormOrderByWithRelationInput>
+    cursor?: ProductSubFormWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Enumerable<ProductQASubFormScalarFieldEnum>
+    distinct?: Enumerable<ProductSubFormScalarFieldEnum>
   }
 
 
   /**
-   * ProductQA without action
+   * ProductForm without action
    */
-  export type ProductQAArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQA
+     * Select specific fields to fetch from the ProductForm
      */
-    select?: ProductQASelect<ExtArgs> | null
+    select?: ProductFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQAInclude<ExtArgs> | null
+    include?: ProductFormInclude<ExtArgs> | null
   }
 
 
 
   /**
-   * Model ProductQASubForm
+   * Model ProductSubForm
    */
 
 
-  export type AggregateProductQASubForm = {
-    _count: ProductQASubFormCountAggregateOutputType | null
-    _min: ProductQASubFormMinAggregateOutputType | null
-    _max: ProductQASubFormMaxAggregateOutputType | null
+  export type AggregateProductSubForm = {
+    _count: ProductSubFormCountAggregateOutputType | null
+    _min: ProductSubFormMinAggregateOutputType | null
+    _max: ProductSubFormMaxAggregateOutputType | null
   }
 
-  export type ProductQASubFormMinAggregateOutputType = {
+  export type ProductSubFormMinAggregateOutputType = {
     id: string | null
     question: string | null
     type: string | null
+    allowOther: boolean | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
-    productQAId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    formId: string | null
   }
 
-  export type ProductQASubFormMaxAggregateOutputType = {
+  export type ProductSubFormMaxAggregateOutputType = {
     id: string | null
     question: string | null
     type: string | null
+    allowOther: boolean | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
-    productQAId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    formId: string | null
   }
 
-  export type ProductQASubFormCountAggregateOutputType = {
+  export type ProductSubFormCountAggregateOutputType = {
     id: number
     question: number
-    answer: number
+    options: number
     type: number
+    allowOther: number
+    fileName: number
+    fileType: number
+    fileLink: number
+    dependsOn: number
     compulsory: number
     isDeprecated: number
-    productQAId: number
+    createdAt: number
+    updatedAt: number
+    formId: number
     _all: number
   }
 
 
-  export type ProductQASubFormMinAggregateInputType = {
+  export type ProductSubFormMinAggregateInputType = {
     id?: true
     question?: true
     type?: true
+    allowOther?: true
+    fileName?: true
+    fileType?: true
+    fileLink?: true
+    dependsOn?: true
     compulsory?: true
     isDeprecated?: true
-    productQAId?: true
+    createdAt?: true
+    updatedAt?: true
+    formId?: true
   }
 
-  export type ProductQASubFormMaxAggregateInputType = {
+  export type ProductSubFormMaxAggregateInputType = {
     id?: true
     question?: true
     type?: true
+    allowOther?: true
+    fileName?: true
+    fileType?: true
+    fileLink?: true
+    dependsOn?: true
     compulsory?: true
     isDeprecated?: true
-    productQAId?: true
+    createdAt?: true
+    updatedAt?: true
+    formId?: true
   }
 
-  export type ProductQASubFormCountAggregateInputType = {
+  export type ProductSubFormCountAggregateInputType = {
     id?: true
     question?: true
-    answer?: true
+    options?: true
     type?: true
+    allowOther?: true
+    fileName?: true
+    fileType?: true
+    fileLink?: true
+    dependsOn?: true
     compulsory?: true
     isDeprecated?: true
-    productQAId?: true
+    createdAt?: true
+    updatedAt?: true
+    formId?: true
     _all?: true
   }
 
-  export type ProductQASubFormAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Filter which ProductQASubForm to aggregate.
+     * Filter which ProductSubForm to aggregate.
      */
-    where?: ProductQASubFormWhereInput
+    where?: ProductSubFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ProductQASubForms to fetch.
+     * Determine the order of ProductSubForms to fetch.
      */
-    orderBy?: Enumerable<ProductQASubFormOrderByWithRelationInput>
+    orderBy?: Enumerable<ProductSubFormOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ProductQASubFormWhereUniqueInput
+    cursor?: ProductSubFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ProductQASubForms from the position of the cursor.
+     * Take `±n` ProductSubForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ProductQASubForms.
+     * Skip the first `n` ProductSubForms.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned ProductQASubForms
+     * Count returned ProductSubForms
     **/
-    _count?: true | ProductQASubFormCountAggregateInputType
+    _count?: true | ProductSubFormCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ProductQASubFormMinAggregateInputType
+    _min?: ProductSubFormMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ProductQASubFormMaxAggregateInputType
+    _max?: ProductSubFormMaxAggregateInputType
   }
 
-  export type GetProductQASubFormAggregateType<T extends ProductQASubFormAggregateArgs> = {
-        [P in keyof T & keyof AggregateProductQASubForm]: P extends '_count' | 'count'
+  export type GetProductSubFormAggregateType<T extends ProductSubFormAggregateArgs> = {
+        [P in keyof T & keyof AggregateProductSubForm]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateProductQASubForm[P]>
-      : GetScalarType<T[P], AggregateProductQASubForm[P]>
+        : GetScalarType<T[P], AggregateProductSubForm[P]>
+      : GetScalarType<T[P], AggregateProductSubForm[P]>
   }
 
 
 
 
-  export type ProductQASubFormGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: ProductQASubFormWhereInput
-    orderBy?: Enumerable<ProductQASubFormOrderByWithAggregationInput>
-    by: ProductQASubFormScalarFieldEnum[]
-    having?: ProductQASubFormScalarWhereWithAggregatesInput
+  export type ProductSubFormGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductSubFormWhereInput
+    orderBy?: Enumerable<ProductSubFormOrderByWithAggregationInput>
+    by: ProductSubFormScalarFieldEnum[]
+    having?: ProductSubFormScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ProductQASubFormCountAggregateInputType | true
-    _min?: ProductQASubFormMinAggregateInputType
-    _max?: ProductQASubFormMaxAggregateInputType
+    _count?: ProductSubFormCountAggregateInputType | true
+    _min?: ProductSubFormMinAggregateInputType
+    _max?: ProductSubFormMaxAggregateInputType
   }
 
 
-  export type ProductQASubFormGroupByOutputType = {
+  export type ProductSubFormGroupByOutputType = {
     id: string
     question: string | null
-    answer: string[]
+    options: string[]
     type: string | null
+    allowOther: boolean
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
+    dependsOn: string | null
     compulsory: boolean
     isDeprecated: boolean
-    productQAId: string
-    _count: ProductQASubFormCountAggregateOutputType | null
-    _min: ProductQASubFormMinAggregateOutputType | null
-    _max: ProductQASubFormMaxAggregateOutputType | null
+    createdAt: Date
+    updatedAt: Date
+    formId: string
+    _count: ProductSubFormCountAggregateOutputType | null
+    _min: ProductSubFormMinAggregateOutputType | null
+    _max: ProductSubFormMaxAggregateOutputType | null
   }
 
-  type GetProductQASubFormGroupByPayload<T extends ProductQASubFormGroupByArgs> = Prisma.PrismaPromise<
+  type GetProductSubFormGroupByPayload<T extends ProductSubFormGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickArray<ProductQASubFormGroupByOutputType, T['by']> &
+      PickArray<ProductSubFormGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ProductQASubFormGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ProductSubFormGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ProductQASubFormGroupByOutputType[P]>
-            : GetScalarType<T[P], ProductQASubFormGroupByOutputType[P]>
+              : GetScalarType<T[P], ProductSubFormGroupByOutputType[P]>
+            : GetScalarType<T[P], ProductSubFormGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ProductQASubFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ProductSubFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     question?: boolean
-    answer?: boolean
+    options?: boolean
     type?: boolean
+    allowOther?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileLink?: boolean
+    dependsOn?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
-    productQAId?: boolean
-    productQA?: boolean | ProductQAArgs<ExtArgs>
-  }, ExtArgs["result"]["productQASubForm"]>
+    createdAt?: boolean
+    updatedAt?: boolean
+    formId?: boolean
+    form?: boolean | ProductFormArgs<ExtArgs>
+  }, ExtArgs["result"]["productSubForm"]>
 
-  export type ProductQASubFormSelectScalar = {
+  export type ProductSubFormSelectScalar = {
     id?: boolean
     question?: boolean
-    answer?: boolean
+    options?: boolean
     type?: boolean
+    allowOther?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileLink?: boolean
+    dependsOn?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
-    productQAId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    formId?: boolean
   }
 
-  export type ProductQASubFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    productQA?: boolean | ProductQAArgs<ExtArgs>
+  export type ProductSubFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    form?: boolean | ProductFormArgs<ExtArgs>
   }
 
 
-  type ProductQASubFormGetPayload<S extends boolean | null | undefined | ProductQASubFormArgs> = $Types.GetResult<ProductQASubFormPayload, S>
+  type ProductSubFormGetPayload<S extends boolean | null | undefined | ProductSubFormArgs> = $Types.GetResult<ProductSubFormPayload, S>
 
-  type ProductQASubFormCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
-    Omit<ProductQASubFormFindManyArgs, 'select' | 'include'> & {
-      select?: ProductQASubFormCountAggregateInputType | true
+  type ProductSubFormCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<ProductSubFormFindManyArgs, 'select' | 'include'> & {
+      select?: ProductSubFormCountAggregateInputType | true
     }
 
-  export interface ProductQASubFormDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductQASubForm'], meta: { name: 'ProductQASubForm' } }
+  export interface ProductSubFormDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductSubForm'], meta: { name: 'ProductSubForm' } }
     /**
-     * Find zero or one ProductQASubForm that matches the filter.
-     * @param {ProductQASubFormFindUniqueArgs} args - Arguments to find a ProductQASubForm
+     * Find zero or one ProductSubForm that matches the filter.
+     * @param {ProductSubFormFindUniqueArgs} args - Arguments to find a ProductSubForm
      * @example
-     * // Get one ProductQASubForm
-     * const productQASubForm = await prisma.productQASubForm.findUnique({
+     * // Get one ProductSubForm
+     * const productSubForm = await prisma.productSubForm.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUnique<T extends ProductQASubFormFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args: SelectSubset<T, ProductQASubFormFindUniqueArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ProductQASubForm'> extends True ? Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
+    findUnique<T extends ProductSubFormFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, ProductSubFormFindUniqueArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ProductSubForm'> extends True ? Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
 
     /**
-     * Find one ProductQASubForm that matches the filter or throw an error  with `error.code='P2025'` 
+     * Find one ProductSubForm that matches the filter or throw an error  with `error.code='P2025'` 
      *     if no matches were found.
-     * @param {ProductQASubFormFindUniqueOrThrowArgs} args - Arguments to find a ProductQASubForm
+     * @param {ProductSubFormFindUniqueOrThrowArgs} args - Arguments to find a ProductSubForm
      * @example
-     * // Get one ProductQASubForm
-     * const productQASubForm = await prisma.productQASubForm.findUniqueOrThrow({
+     * // Get one ProductSubForm
+     * const productSubForm = await prisma.productSubForm.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findUniqueOrThrow<T extends ProductQASubFormFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQASubFormFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
+    findUniqueOrThrow<T extends ProductSubFormFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductSubFormFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
 
     /**
-     * Find the first ProductQASubForm that matches the filter.
+     * Find the first ProductSubForm that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQASubFormFindFirstArgs} args - Arguments to find a ProductQASubForm
+     * @param {ProductSubFormFindFirstArgs} args - Arguments to find a ProductSubForm
      * @example
-     * // Get one ProductQASubForm
-     * const productQASubForm = await prisma.productQASubForm.findFirst({
+     * // Get one ProductSubForm
+     * const productSubForm = await prisma.productSubForm.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirst<T extends ProductQASubFormFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
-      args?: SelectSubset<T, ProductQASubFormFindFirstArgs<ExtArgs>>
-    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ProductQASubForm'> extends True ? Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
+    findFirst<T extends ProductSubFormFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, ProductSubFormFindFirstArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ProductSubForm'> extends True ? Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
 
     /**
-     * Find the first ProductQASubForm that matches the filter or
+     * Find the first ProductSubForm that matches the filter or
      * throw `NotFoundError` if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQASubFormFindFirstOrThrowArgs} args - Arguments to find a ProductQASubForm
+     * @param {ProductSubFormFindFirstOrThrowArgs} args - Arguments to find a ProductSubForm
      * @example
-     * // Get one ProductQASubForm
-     * const productQASubForm = await prisma.productQASubForm.findFirstOrThrow({
+     * // Get one ProductSubForm
+     * const productSubForm = await prisma.productSubForm.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
     **/
-    findFirstOrThrow<T extends ProductQASubFormFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQASubFormFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
+    findFirstOrThrow<T extends ProductSubFormFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductSubFormFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
 
     /**
-     * Find zero or more ProductQASubForms that matches the filter.
+     * Find zero or more ProductSubForms that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQASubFormFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {ProductSubFormFindManyArgs=} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all ProductQASubForms
-     * const productQASubForms = await prisma.productQASubForm.findMany()
+     * // Get all ProductSubForms
+     * const productSubForms = await prisma.productSubForm.findMany()
      * 
-     * // Get first 10 ProductQASubForms
-     * const productQASubForms = await prisma.productQASubForm.findMany({ take: 10 })
+     * // Get first 10 ProductSubForms
+     * const productSubForms = await prisma.productSubForm.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const productQASubFormWithIdOnly = await prisma.productQASubForm.findMany({ select: { id: true } })
+     * const productSubFormWithIdOnly = await prisma.productSubForm.findMany({ select: { id: true } })
      * 
     **/
-    findMany<T extends ProductQASubFormFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQASubFormFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'findMany', never>>
+    findMany<T extends ProductSubFormFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductSubFormFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'findMany', never>>
 
     /**
-     * Create a ProductQASubForm.
-     * @param {ProductQASubFormCreateArgs} args - Arguments to create a ProductQASubForm.
+     * Create a ProductSubForm.
+     * @param {ProductSubFormCreateArgs} args - Arguments to create a ProductSubForm.
      * @example
-     * // Create one ProductQASubForm
-     * const ProductQASubForm = await prisma.productQASubForm.create({
+     * // Create one ProductSubForm
+     * const ProductSubForm = await prisma.productSubForm.create({
      *   data: {
-     *     // ... data to create a ProductQASubForm
+     *     // ... data to create a ProductSubForm
      *   }
      * })
      * 
     **/
-    create<T extends ProductQASubFormCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQASubFormCreateArgs<ExtArgs>>
-    ): Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
+    create<T extends ProductSubFormCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductSubFormCreateArgs<ExtArgs>>
+    ): Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
 
     /**
-     * Create many ProductQASubForms.
-     *     @param {ProductQASubFormCreateManyArgs} args - Arguments to create many ProductQASubForms.
+     * Create many ProductSubForms.
+     *     @param {ProductSubFormCreateManyArgs} args - Arguments to create many ProductSubForms.
      *     @example
-     *     // Create many ProductQASubForms
-     *     const productQASubForm = await prisma.productQASubForm.createMany({
+     *     // Create many ProductSubForms
+     *     const productSubForm = await prisma.productSubForm.createMany({
      *       data: {
      *         // ... provide data here
      *       }
      *     })
      *     
     **/
-    createMany<T extends ProductQASubFormCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQASubFormCreateManyArgs<ExtArgs>>
+    createMany<T extends ProductSubFormCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductSubFormCreateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a ProductQASubForm.
-     * @param {ProductQASubFormDeleteArgs} args - Arguments to delete one ProductQASubForm.
+     * Delete a ProductSubForm.
+     * @param {ProductSubFormDeleteArgs} args - Arguments to delete one ProductSubForm.
      * @example
-     * // Delete one ProductQASubForm
-     * const ProductQASubForm = await prisma.productQASubForm.delete({
+     * // Delete one ProductSubForm
+     * const ProductSubForm = await prisma.productSubForm.delete({
      *   where: {
-     *     // ... filter to delete one ProductQASubForm
+     *     // ... filter to delete one ProductSubForm
      *   }
      * })
      * 
     **/
-    delete<T extends ProductQASubFormDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQASubFormDeleteArgs<ExtArgs>>
-    ): Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
+    delete<T extends ProductSubFormDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductSubFormDeleteArgs<ExtArgs>>
+    ): Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
 
     /**
-     * Update one ProductQASubForm.
-     * @param {ProductQASubFormUpdateArgs} args - Arguments to update one ProductQASubForm.
+     * Update one ProductSubForm.
+     * @param {ProductSubFormUpdateArgs} args - Arguments to update one ProductSubForm.
      * @example
-     * // Update one ProductQASubForm
-     * const productQASubForm = await prisma.productQASubForm.update({
+     * // Update one ProductSubForm
+     * const productSubForm = await prisma.productSubForm.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -21831,34 +18806,34 @@ export namespace Prisma {
      * })
      * 
     **/
-    update<T extends ProductQASubFormUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQASubFormUpdateArgs<ExtArgs>>
-    ): Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
+    update<T extends ProductSubFormUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductSubFormUpdateArgs<ExtArgs>>
+    ): Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
 
     /**
-     * Delete zero or more ProductQASubForms.
-     * @param {ProductQASubFormDeleteManyArgs} args - Arguments to filter ProductQASubForms to delete.
+     * Delete zero or more ProductSubForms.
+     * @param {ProductSubFormDeleteManyArgs} args - Arguments to filter ProductSubForms to delete.
      * @example
-     * // Delete a few ProductQASubForms
-     * const { count } = await prisma.productQASubForm.deleteMany({
+     * // Delete a few ProductSubForms
+     * const { count } = await prisma.productSubForm.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
     **/
-    deleteMany<T extends ProductQASubFormDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, ProductQASubFormDeleteManyArgs<ExtArgs>>
+    deleteMany<T extends ProductSubFormDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductSubFormDeleteManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more ProductQASubForms.
+     * Update zero or more ProductSubForms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQASubFormUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ProductSubFormUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many ProductQASubForms
-     * const productQASubForm = await prisma.productQASubForm.updateMany({
+     * // Update many ProductSubForms
+     * const productSubForm = await prisma.productSubForm.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -21868,59 +18843,59 @@ export namespace Prisma {
      * })
      * 
     **/
-    updateMany<T extends ProductQASubFormUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQASubFormUpdateManyArgs<ExtArgs>>
+    updateMany<T extends ProductSubFormUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductSubFormUpdateManyArgs<ExtArgs>>
     ): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one ProductQASubForm.
-     * @param {ProductQASubFormUpsertArgs} args - Arguments to update or create a ProductQASubForm.
+     * Create or update one ProductSubForm.
+     * @param {ProductSubFormUpsertArgs} args - Arguments to update or create a ProductSubForm.
      * @example
-     * // Update or create a ProductQASubForm
-     * const productQASubForm = await prisma.productQASubForm.upsert({
+     * // Update or create a ProductSubForm
+     * const productSubForm = await prisma.productSubForm.upsert({
      *   create: {
-     *     // ... data to create a ProductQASubForm
+     *     // ... data to create a ProductSubForm
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the ProductQASubForm we want to update
+     *     // ... the filter for the ProductSubForm we want to update
      *   }
      * })
     **/
-    upsert<T extends ProductQASubFormUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, ProductQASubFormUpsertArgs<ExtArgs>>
-    ): Prisma__ProductQASubFormClient<$Types.GetResult<ProductQASubFormPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
+    upsert<T extends ProductSubFormUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductSubFormUpsertArgs<ExtArgs>>
+    ): Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
 
     /**
-     * Count the number of ProductQASubForms.
+     * Count the number of ProductSubForms.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQASubFormCountArgs} args - Arguments to filter ProductQASubForms to count.
+     * @param {ProductSubFormCountArgs} args - Arguments to filter ProductSubForms to count.
      * @example
-     * // Count the number of ProductQASubForms
-     * const count = await prisma.productQASubForm.count({
+     * // Count the number of ProductSubForms
+     * const count = await prisma.productSubForm.count({
      *   where: {
-     *     // ... the filter for the ProductQASubForms we want to count
+     *     // ... the filter for the ProductSubForms we want to count
      *   }
      * })
     **/
-    count<T extends ProductQASubFormCountArgs>(
-      args?: Subset<T, ProductQASubFormCountArgs>,
+    count<T extends ProductSubFormCountArgs>(
+      args?: Subset<T, ProductSubFormCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ProductQASubFormCountAggregateOutputType>
+          : GetScalarType<T['select'], ProductSubFormCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a ProductQASubForm.
+     * Allows you to perform aggregations operations on a ProductSubForm.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQASubFormAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ProductSubFormAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -21940,13 +18915,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ProductQASubFormAggregateArgs>(args: Subset<T, ProductQASubFormAggregateArgs>): Prisma.PrismaPromise<GetProductQASubFormAggregateType<T>>
+    aggregate<T extends ProductSubFormAggregateArgs>(args: Subset<T, ProductSubFormAggregateArgs>): Prisma.PrismaPromise<GetProductSubFormAggregateType<T>>
 
     /**
-     * Group by ProductQASubForm.
+     * Group by ProductSubForm.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProductQASubFormGroupByArgs} args - Group by arguments.
+     * @param {ProductSubFormGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -21961,14 +18936,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ProductQASubFormGroupByArgs,
+      T extends ProductSubFormGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ProductQASubFormGroupByArgs['orderBy'] }
-        : { orderBy?: ProductQASubFormGroupByArgs['orderBy'] },
+        ? { orderBy: ProductSubFormGroupByArgs['orderBy'] }
+        : { orderBy?: ProductSubFormGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends TupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -22017,17 +18992,17 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ProductQASubFormGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductQASubFormGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ProductSubFormGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductSubFormGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for ProductQASubForm.
+   * The delegate class that acts as a "Promise-like" for ProductSubForm.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export class Prisma__ProductQASubFormClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
+  export class Prisma__ProductSubFormClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
     private readonly _dmmf;
     private readonly _queryType;
     private readonly _rootField;
@@ -22042,7 +19017,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
-    productQA<T extends ProductQAArgs<ExtArgs> = {}>(args?: Subset<T, ProductQAArgs<ExtArgs>>): Prisma__ProductQAClient<$Types.GetResult<ProductQAPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+    form<T extends ProductFormArgs<ExtArgs> = {}>(args?: Subset<T, ProductFormArgs<ExtArgs>>): Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
     private get _document();
     /**
@@ -22072,27 +19047,27 @@ export namespace Prisma {
   // Custom InputTypes
 
   /**
-   * ProductQASubForm base type for findUnique actions
+   * ProductSubForm base type for findUnique actions
    */
-  export type ProductQASubFormFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQASubForm to fetch.
+     * Filter, which ProductSubForm to fetch.
      */
-    where: ProductQASubFormWhereUniqueInput
+    where: ProductSubFormWhereUniqueInput
   }
 
   /**
-   * ProductQASubForm findUnique
+   * ProductSubForm findUnique
    */
-  export interface ProductQASubFormFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductQASubFormFindUniqueArgsBase<ExtArgs> {
+  export interface ProductSubFormFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductSubFormFindUniqueArgsBase<ExtArgs> {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
@@ -22102,76 +19077,76 @@ export namespace Prisma {
       
 
   /**
-   * ProductQASubForm findUniqueOrThrow
+   * ProductSubForm findUniqueOrThrow
    */
-  export type ProductQASubFormFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQASubForm to fetch.
+     * Filter, which ProductSubForm to fetch.
      */
-    where: ProductQASubFormWhereUniqueInput
+    where: ProductSubFormWhereUniqueInput
   }
 
 
   /**
-   * ProductQASubForm base type for findFirst actions
+   * ProductSubForm base type for findFirst actions
    */
-  export type ProductQASubFormFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQASubForm to fetch.
+     * Filter, which ProductSubForm to fetch.
      */
-    where?: ProductQASubFormWhereInput
+    where?: ProductSubFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ProductQASubForms to fetch.
+     * Determine the order of ProductSubForms to fetch.
      */
-    orderBy?: Enumerable<ProductQASubFormOrderByWithRelationInput>
+    orderBy?: Enumerable<ProductSubFormOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ProductQASubForms.
+     * Sets the position for searching for ProductSubForms.
      */
-    cursor?: ProductQASubFormWhereUniqueInput
+    cursor?: ProductSubFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ProductQASubForms from the position of the cursor.
+     * Take `±n` ProductSubForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ProductQASubForms.
+     * Skip the first `n` ProductSubForms.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ProductQASubForms.
+     * Filter by unique combinations of ProductSubForms.
      */
-    distinct?: Enumerable<ProductQASubFormScalarFieldEnum>
+    distinct?: Enumerable<ProductSubFormScalarFieldEnum>
   }
 
   /**
-   * ProductQASubForm findFirst
+   * ProductSubForm findFirst
    */
-  export interface ProductQASubFormFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductQASubFormFindFirstArgsBase<ExtArgs> {
+  export interface ProductSubFormFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductSubFormFindFirstArgsBase<ExtArgs> {
    /**
     * Throw an Error if query returns no results
     * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
@@ -22181,236 +19156,3265 @@ export namespace Prisma {
       
 
   /**
-   * ProductQASubForm findFirstOrThrow
+   * ProductSubForm findFirstOrThrow
    */
-  export type ProductQASubFormFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQASubForm to fetch.
+     * Filter, which ProductSubForm to fetch.
      */
-    where?: ProductQASubFormWhereInput
+    where?: ProductSubFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ProductQASubForms to fetch.
+     * Determine the order of ProductSubForms to fetch.
      */
-    orderBy?: Enumerable<ProductQASubFormOrderByWithRelationInput>
+    orderBy?: Enumerable<ProductSubFormOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for ProductQASubForms.
+     * Sets the position for searching for ProductSubForms.
      */
-    cursor?: ProductQASubFormWhereUniqueInput
+    cursor?: ProductSubFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ProductQASubForms from the position of the cursor.
+     * Take `±n` ProductSubForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ProductQASubForms.
+     * Skip the first `n` ProductSubForms.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of ProductQASubForms.
+     * Filter by unique combinations of ProductSubForms.
      */
-    distinct?: Enumerable<ProductQASubFormScalarFieldEnum>
+    distinct?: Enumerable<ProductSubFormScalarFieldEnum>
   }
 
 
   /**
-   * ProductQASubForm findMany
+   * ProductSubForm findMany
    */
-  export type ProductQASubFormFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
     /**
-     * Filter, which ProductQASubForms to fetch.
+     * Filter, which ProductSubForms to fetch.
      */
-    where?: ProductQASubFormWhereInput
+    where?: ProductSubFormWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of ProductQASubForms to fetch.
+     * Determine the order of ProductSubForms to fetch.
      */
-    orderBy?: Enumerable<ProductQASubFormOrderByWithRelationInput>
+    orderBy?: Enumerable<ProductSubFormOrderByWithRelationInput>
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing ProductQASubForms.
+     * Sets the position for listing ProductSubForms.
      */
-    cursor?: ProductQASubFormWhereUniqueInput
+    cursor?: ProductSubFormWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` ProductQASubForms from the position of the cursor.
+     * Take `±n` ProductSubForms from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` ProductQASubForms.
+     * Skip the first `n` ProductSubForms.
      */
     skip?: number
-    distinct?: Enumerable<ProductQASubFormScalarFieldEnum>
+    distinct?: Enumerable<ProductSubFormScalarFieldEnum>
   }
 
 
   /**
-   * ProductQASubForm create
+   * ProductSubForm create
    */
-  export type ProductQASubFormCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
     /**
-     * The data needed to create a ProductQASubForm.
+     * The data needed to create a ProductSubForm.
      */
-    data: XOR<ProductQASubFormCreateInput, ProductQASubFormUncheckedCreateInput>
+    data: XOR<ProductSubFormCreateInput, ProductSubFormUncheckedCreateInput>
   }
 
 
   /**
-   * ProductQASubForm createMany
+   * ProductSubForm createMany
    */
-  export type ProductQASubFormCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many ProductQASubForms.
+     * The data used to create many ProductSubForms.
      */
-    data: Enumerable<ProductQASubFormCreateManyInput>
+    data: Enumerable<ProductSubFormCreateManyInput>
     skipDuplicates?: boolean
   }
 
 
   /**
-   * ProductQASubForm update
+   * ProductSubForm update
    */
-  export type ProductQASubFormUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
     /**
-     * The data needed to update a ProductQASubForm.
+     * The data needed to update a ProductSubForm.
      */
-    data: XOR<ProductQASubFormUpdateInput, ProductQASubFormUncheckedUpdateInput>
+    data: XOR<ProductSubFormUpdateInput, ProductSubFormUncheckedUpdateInput>
     /**
-     * Choose, which ProductQASubForm to update.
+     * Choose, which ProductSubForm to update.
      */
-    where: ProductQASubFormWhereUniqueInput
+    where: ProductSubFormWhereUniqueInput
   }
 
 
   /**
-   * ProductQASubForm updateMany
+   * ProductSubForm updateMany
    */
-  export type ProductQASubFormUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update ProductQASubForms.
+     * The data used to update ProductSubForms.
      */
-    data: XOR<ProductQASubFormUpdateManyMutationInput, ProductQASubFormUncheckedUpdateManyInput>
+    data: XOR<ProductSubFormUpdateManyMutationInput, ProductSubFormUncheckedUpdateManyInput>
     /**
-     * Filter which ProductQASubForms to update
+     * Filter which ProductSubForms to update
      */
-    where?: ProductQASubFormWhereInput
+    where?: ProductSubFormWhereInput
   }
 
 
   /**
-   * ProductQASubForm upsert
+   * ProductSubForm upsert
    */
-  export type ProductQASubFormUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
     /**
-     * The filter to search for the ProductQASubForm to update in case it exists.
+     * The filter to search for the ProductSubForm to update in case it exists.
      */
-    where: ProductQASubFormWhereUniqueInput
+    where: ProductSubFormWhereUniqueInput
     /**
-     * In case the ProductQASubForm found by the `where` argument doesn't exist, create a new ProductQASubForm with this data.
+     * In case the ProductSubForm found by the `where` argument doesn't exist, create a new ProductSubForm with this data.
      */
-    create: XOR<ProductQASubFormCreateInput, ProductQASubFormUncheckedCreateInput>
+    create: XOR<ProductSubFormCreateInput, ProductSubFormUncheckedCreateInput>
     /**
-     * In case the ProductQASubForm was found with the provided `where` argument, update it with this data.
+     * In case the ProductSubForm was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ProductQASubFormUpdateInput, ProductQASubFormUncheckedUpdateInput>
+    update: XOR<ProductSubFormUpdateInput, ProductSubFormUncheckedUpdateInput>
   }
 
 
   /**
-   * ProductQASubForm delete
+   * ProductSubForm delete
    */
-  export type ProductQASubFormDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
     /**
-     * Filter which ProductQASubForm to delete.
+     * Filter which ProductSubForm to delete.
      */
-    where: ProductQASubFormWhereUniqueInput
+    where: ProductSubFormWhereUniqueInput
   }
 
 
   /**
-   * ProductQASubForm deleteMany
+   * ProductSubForm deleteMany
    */
-  export type ProductQASubFormDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Filter which ProductQASubForms to delete
+     * Filter which ProductSubForms to delete
      */
-    where?: ProductQASubFormWhereInput
+    where?: ProductSubFormWhereInput
   }
 
 
   /**
-   * ProductQASubForm without action
+   * ProductSubForm without action
    */
-  export type ProductQASubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type ProductSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ProductQASubForm
+     * Select specific fields to fetch from the ProductSubForm
      */
-    select?: ProductQASubFormSelect<ExtArgs> | null
+    select?: ProductSubFormSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: ProductQASubFormInclude<ExtArgs> | null
+    include?: ProductSubFormInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model ProductRequest
+   */
+
+
+  export type AggregateProductRequest = {
+    _count: ProductRequestCountAggregateOutputType | null
+    _min: ProductRequestMinAggregateOutputType | null
+    _max: ProductRequestMaxAggregateOutputType | null
+  }
+
+  export type ProductRequestMinAggregateOutputType = {
+    id: string | null
+    email: string | null
+    address: string | null
+    paid: boolean | null
+    completed: boolean | null
+    status: string | null
+    currentState: ProductActivityStage | null
+    createdAt: Date | null
+    isDeprecated: boolean | null
+    updatedAt: Date | null
+    productId: string | null
+    userId: string | null
+  }
+
+  export type ProductRequestMaxAggregateOutputType = {
+    id: string | null
+    email: string | null
+    address: string | null
+    paid: boolean | null
+    completed: boolean | null
+    status: string | null
+    currentState: ProductActivityStage | null
+    createdAt: Date | null
+    isDeprecated: boolean | null
+    updatedAt: Date | null
+    productId: string | null
+    userId: string | null
+  }
+
+  export type ProductRequestCountAggregateOutputType = {
+    id: number
+    email: number
+    address: number
+    paid: number
+    completed: number
+    status: number
+    currentState: number
+    createdAt: number
+    isDeprecated: number
+    updatedAt: number
+    productId: number
+    userId: number
+    _all: number
+  }
+
+
+  export type ProductRequestMinAggregateInputType = {
+    id?: true
+    email?: true
+    address?: true
+    paid?: true
+    completed?: true
+    status?: true
+    currentState?: true
+    createdAt?: true
+    isDeprecated?: true
+    updatedAt?: true
+    productId?: true
+    userId?: true
+  }
+
+  export type ProductRequestMaxAggregateInputType = {
+    id?: true
+    email?: true
+    address?: true
+    paid?: true
+    completed?: true
+    status?: true
+    currentState?: true
+    createdAt?: true
+    isDeprecated?: true
+    updatedAt?: true
+    productId?: true
+    userId?: true
+  }
+
+  export type ProductRequestCountAggregateInputType = {
+    id?: true
+    email?: true
+    address?: true
+    paid?: true
+    completed?: true
+    status?: true
+    currentState?: true
+    createdAt?: true
+    isDeprecated?: true
+    updatedAt?: true
+    productId?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type ProductRequestAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductRequest to aggregate.
+     */
+    where?: ProductRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequests to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProductRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProductRequests
+    **/
+    _count?: true | ProductRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProductRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProductRequestMaxAggregateInputType
+  }
+
+  export type GetProductRequestAggregateType<T extends ProductRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregateProductRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProductRequest[P]>
+      : GetScalarType<T[P], AggregateProductRequest[P]>
+  }
+
+
+
+
+  export type ProductRequestGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductRequestWhereInput
+    orderBy?: Enumerable<ProductRequestOrderByWithAggregationInput>
+    by: ProductRequestScalarFieldEnum[]
+    having?: ProductRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProductRequestCountAggregateInputType | true
+    _min?: ProductRequestMinAggregateInputType
+    _max?: ProductRequestMaxAggregateInputType
+  }
+
+
+  export type ProductRequestGroupByOutputType = {
+    id: string
+    email: string | null
+    address: string | null
+    paid: boolean
+    completed: boolean
+    status: string
+    currentState: ProductActivityStage
+    createdAt: Date
+    isDeprecated: boolean
+    updatedAt: Date
+    productId: string | null
+    userId: string
+    _count: ProductRequestCountAggregateOutputType | null
+    _min: ProductRequestMinAggregateOutputType | null
+    _max: ProductRequestMaxAggregateOutputType | null
+  }
+
+  type GetProductRequestGroupByPayload<T extends ProductRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<ProductRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProductRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProductRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], ProductRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProductRequestSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    address?: boolean
+    paid?: boolean
+    completed?: boolean
+    status?: boolean
+    currentState?: boolean
+    createdAt?: boolean
+    isDeprecated?: boolean
+    updatedAt?: boolean
+    productId?: boolean
+    userId?: boolean
+    Team?: boolean | ProductRequest$TeamArgs<ExtArgs>
+    product?: boolean | ProductArgs<ExtArgs>
+    user?: boolean | UserArgs<ExtArgs>
+    Payment?: boolean | ProductRequest$PaymentArgs<ExtArgs>
+    requestQA?: boolean | ProductRequest$requestQAArgs<ExtArgs>
+    _count?: boolean | ProductRequestCountOutputTypeArgs<ExtArgs>
+  }, ExtArgs["result"]["productRequest"]>
+
+  export type ProductRequestSelectScalar = {
+    id?: boolean
+    email?: boolean
+    address?: boolean
+    paid?: boolean
+    completed?: boolean
+    status?: boolean
+    currentState?: boolean
+    createdAt?: boolean
+    isDeprecated?: boolean
+    updatedAt?: boolean
+    productId?: boolean
+    userId?: boolean
+  }
+
+  export type ProductRequestInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    Team?: boolean | ProductRequest$TeamArgs<ExtArgs>
+    product?: boolean | ProductArgs<ExtArgs>
+    user?: boolean | UserArgs<ExtArgs>
+    Payment?: boolean | ProductRequest$PaymentArgs<ExtArgs>
+    requestQA?: boolean | ProductRequest$requestQAArgs<ExtArgs>
+    _count?: boolean | ProductRequestCountOutputTypeArgs<ExtArgs>
+  }
+
+
+  type ProductRequestGetPayload<S extends boolean | null | undefined | ProductRequestArgs> = $Types.GetResult<ProductRequestPayload, S>
+
+  type ProductRequestCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<ProductRequestFindManyArgs, 'select' | 'include'> & {
+      select?: ProductRequestCountAggregateInputType | true
+    }
+
+  export interface ProductRequestDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductRequest'], meta: { name: 'ProductRequest' } }
+    /**
+     * Find zero or one ProductRequest that matches the filter.
+     * @param {ProductRequestFindUniqueArgs} args - Arguments to find a ProductRequest
+     * @example
+     * // Get one ProductRequest
+     * const productRequest = await prisma.productRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ProductRequestFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, ProductRequestFindUniqueArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ProductRequest'> extends True ? Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
+
+    /**
+     * Find one ProductRequest that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ProductRequestFindUniqueOrThrowArgs} args - Arguments to find a ProductRequest
+     * @example
+     * // Get one ProductRequest
+     * const productRequest = await prisma.productRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ProductRequestFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find the first ProductRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestFindFirstArgs} args - Arguments to find a ProductRequest
+     * @example
+     * // Get one ProductRequest
+     * const productRequest = await prisma.productRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ProductRequestFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, ProductRequestFindFirstArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ProductRequest'> extends True ? Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
+
+    /**
+     * Find the first ProductRequest that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestFindFirstOrThrowArgs} args - Arguments to find a ProductRequest
+     * @example
+     * // Get one ProductRequest
+     * const productRequest = await prisma.productRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ProductRequestFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find zero or more ProductRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProductRequests
+     * const productRequests = await prisma.productRequest.findMany()
+     * 
+     * // Get first 10 ProductRequests
+     * const productRequests = await prisma.productRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const productRequestWithIdOnly = await prisma.productRequest.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ProductRequestFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findMany', never>>
+
+    /**
+     * Create a ProductRequest.
+     * @param {ProductRequestCreateArgs} args - Arguments to create a ProductRequest.
+     * @example
+     * // Create one ProductRequest
+     * const ProductRequest = await prisma.productRequest.create({
+     *   data: {
+     *     // ... data to create a ProductRequest
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ProductRequestCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestCreateArgs<ExtArgs>>
+    ): Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
+
+    /**
+     * Create many ProductRequests.
+     *     @param {ProductRequestCreateManyArgs} args - Arguments to create many ProductRequests.
+     *     @example
+     *     // Create many ProductRequests
+     *     const productRequest = await prisma.productRequest.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ProductRequestCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProductRequest.
+     * @param {ProductRequestDeleteArgs} args - Arguments to delete one ProductRequest.
+     * @example
+     * // Delete one ProductRequest
+     * const ProductRequest = await prisma.productRequest.delete({
+     *   where: {
+     *     // ... filter to delete one ProductRequest
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ProductRequestDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestDeleteArgs<ExtArgs>>
+    ): Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
+
+    /**
+     * Update one ProductRequest.
+     * @param {ProductRequestUpdateArgs} args - Arguments to update one ProductRequest.
+     * @example
+     * // Update one ProductRequest
+     * const productRequest = await prisma.productRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ProductRequestUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestUpdateArgs<ExtArgs>>
+    ): Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ProductRequests.
+     * @param {ProductRequestDeleteManyArgs} args - Arguments to filter ProductRequests to delete.
+     * @example
+     * // Delete a few ProductRequests
+     * const { count } = await prisma.productRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ProductRequestDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProductRequests
+     * const productRequest = await prisma.productRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ProductRequestUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProductRequest.
+     * @param {ProductRequestUpsertArgs} args - Arguments to update or create a ProductRequest.
+     * @example
+     * // Update or create a ProductRequest
+     * const productRequest = await prisma.productRequest.upsert({
+     *   create: {
+     *     // ... data to create a ProductRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProductRequest we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ProductRequestUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestUpsertArgs<ExtArgs>>
+    ): Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
+
+    /**
+     * Count the number of ProductRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestCountArgs} args - Arguments to filter ProductRequests to count.
+     * @example
+     * // Count the number of ProductRequests
+     * const count = await prisma.productRequest.count({
+     *   where: {
+     *     // ... the filter for the ProductRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProductRequestCountArgs>(
+      args?: Subset<T, ProductRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProductRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProductRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProductRequestAggregateArgs>(args: Subset<T, ProductRequestAggregateArgs>): Prisma.PrismaPromise<GetProductRequestAggregateType<T>>
+
+    /**
+     * Group by ProductRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProductRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProductRequestGroupByArgs['orderBy'] }
+        : { orderBy?: ProductRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProductRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProductRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__ProductRequestClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+    Team<T extends ProductRequest$TeamArgs<ExtArgs> = {}>(args?: Subset<T, ProductRequest$TeamArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<TeamPayload<ExtArgs>, T, 'findMany', never>| Null>;
+
+    product<T extends ProductArgs<ExtArgs> = {}>(args?: Subset<T, ProductArgs<ExtArgs>>): Prisma__ProductClient<$Types.GetResult<ProductPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+
+    user<T extends UserArgs<ExtArgs> = {}>(args?: Subset<T, UserArgs<ExtArgs>>): Prisma__UserClient<$Types.GetResult<UserPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+
+    Payment<T extends ProductRequest$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, ProductRequest$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<PaymentPayload<ExtArgs>, T, 'findMany', never>| Null>;
+
+    requestQA<T extends ProductRequest$requestQAArgs<ExtArgs> = {}>(args?: Subset<T, ProductRequest$requestQAArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'findMany', never>| Null>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * ProductRequest base type for findUnique actions
+   */
+  export type ProductRequestFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequest to fetch.
+     */
+    where: ProductRequestWhereUniqueInput
+  }
+
+  /**
+   * ProductRequest findUnique
+   */
+  export interface ProductRequestFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductRequestFindUniqueArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * ProductRequest findUniqueOrThrow
+   */
+  export type ProductRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequest to fetch.
+     */
+    where: ProductRequestWhereUniqueInput
+  }
+
+
+  /**
+   * ProductRequest base type for findFirst actions
+   */
+  export type ProductRequestFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequest to fetch.
+     */
+    where?: ProductRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequests to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductRequests.
+     */
+    cursor?: ProductRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductRequests.
+     */
+    distinct?: Enumerable<ProductRequestScalarFieldEnum>
+  }
+
+  /**
+   * ProductRequest findFirst
+   */
+  export interface ProductRequestFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductRequestFindFirstArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * ProductRequest findFirstOrThrow
+   */
+  export type ProductRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequest to fetch.
+     */
+    where?: ProductRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequests to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductRequests.
+     */
+    cursor?: ProductRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductRequests.
+     */
+    distinct?: Enumerable<ProductRequestScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequest findMany
+   */
+  export type ProductRequestFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequests to fetch.
+     */
+    where?: ProductRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequests to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProductRequests.
+     */
+    cursor?: ProductRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequests.
+     */
+    skip?: number
+    distinct?: Enumerable<ProductRequestScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequest create
+   */
+  export type ProductRequestCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProductRequest.
+     */
+    data: XOR<ProductRequestCreateInput, ProductRequestUncheckedCreateInput>
+  }
+
+
+  /**
+   * ProductRequest createMany
+   */
+  export type ProductRequestCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProductRequests.
+     */
+    data: Enumerable<ProductRequestCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * ProductRequest update
+   */
+  export type ProductRequestUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProductRequest.
+     */
+    data: XOR<ProductRequestUpdateInput, ProductRequestUncheckedUpdateInput>
+    /**
+     * Choose, which ProductRequest to update.
+     */
+    where: ProductRequestWhereUniqueInput
+  }
+
+
+  /**
+   * ProductRequest updateMany
+   */
+  export type ProductRequestUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProductRequests.
+     */
+    data: XOR<ProductRequestUpdateManyMutationInput, ProductRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductRequests to update
+     */
+    where?: ProductRequestWhereInput
+  }
+
+
+  /**
+   * ProductRequest upsert
+   */
+  export type ProductRequestUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProductRequest to update in case it exists.
+     */
+    where: ProductRequestWhereUniqueInput
+    /**
+     * In case the ProductRequest found by the `where` argument doesn't exist, create a new ProductRequest with this data.
+     */
+    create: XOR<ProductRequestCreateInput, ProductRequestUncheckedCreateInput>
+    /**
+     * In case the ProductRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProductRequestUpdateInput, ProductRequestUncheckedUpdateInput>
+  }
+
+
+  /**
+   * ProductRequest delete
+   */
+  export type ProductRequestDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+    /**
+     * Filter which ProductRequest to delete.
+     */
+    where: ProductRequestWhereUniqueInput
+  }
+
+
+  /**
+   * ProductRequest deleteMany
+   */
+  export type ProductRequestDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductRequests to delete
+     */
+    where?: ProductRequestWhereInput
+  }
+
+
+  /**
+   * ProductRequest.Team
+   */
+  export type ProductRequest$TeamArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Team
+     */
+    select?: TeamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: TeamInclude<ExtArgs> | null
+    where?: TeamWhereInput
+    orderBy?: Enumerable<TeamOrderByWithRelationInput>
+    cursor?: TeamWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<TeamScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequest.Payment
+   */
+  export type ProductRequest$PaymentArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Payment
+     */
+    select?: PaymentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentInclude<ExtArgs> | null
+    where?: PaymentWhereInput
+    orderBy?: Enumerable<PaymentOrderByWithRelationInput>
+    cursor?: PaymentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<PaymentScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequest.requestQA
+   */
+  export type ProductRequest$requestQAArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    where?: ProductRequestQAWhereInput
+    orderBy?: Enumerable<ProductRequestQAOrderByWithRelationInput>
+    cursor?: ProductRequestQAWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<ProductRequestQAScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequest without action
+   */
+  export type ProductRequestArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequest
+     */
+    select?: ProductRequestSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model ProductRequestQA
+   */
+
+
+  export type AggregateProductRequestQA = {
+    _count: ProductRequestQACountAggregateOutputType | null
+    _min: ProductRequestQAMinAggregateOutputType | null
+    _max: ProductRequestQAMaxAggregateOutputType | null
+  }
+
+  export type ProductRequestQAMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    type: string | null
+    compulsory: boolean | null
+    isGeneral: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    isDeprecated: boolean | null
+    requestId: string | null
+  }
+
+  export type ProductRequestQAMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    type: string | null
+    compulsory: boolean | null
+    isGeneral: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    isDeprecated: boolean | null
+    requestId: string | null
+  }
+
+  export type ProductRequestQACountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    type: number
+    compulsory: number
+    isGeneral: number
+    createdAt: number
+    updatedAt: number
+    isDeprecated: number
+    requestId: number
+    _all: number
+  }
+
+
+  export type ProductRequestQAMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    type?: true
+    compulsory?: true
+    isGeneral?: true
+    createdAt?: true
+    updatedAt?: true
+    isDeprecated?: true
+    requestId?: true
+  }
+
+  export type ProductRequestQAMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    type?: true
+    compulsory?: true
+    isGeneral?: true
+    createdAt?: true
+    updatedAt?: true
+    isDeprecated?: true
+    requestId?: true
+  }
+
+  export type ProductRequestQACountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    type?: true
+    compulsory?: true
+    isGeneral?: true
+    createdAt?: true
+    updatedAt?: true
+    isDeprecated?: true
+    requestId?: true
+    _all?: true
+  }
+
+  export type ProductRequestQAAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductRequestQA to aggregate.
+     */
+    where?: ProductRequestQAWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequestQAS to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestQAOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProductRequestQAWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequestQAS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequestQAS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProductRequestQAS
+    **/
+    _count?: true | ProductRequestQACountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProductRequestQAMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProductRequestQAMaxAggregateInputType
+  }
+
+  export type GetProductRequestQAAggregateType<T extends ProductRequestQAAggregateArgs> = {
+        [P in keyof T & keyof AggregateProductRequestQA]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProductRequestQA[P]>
+      : GetScalarType<T[P], AggregateProductRequestQA[P]>
+  }
+
+
+
+
+  export type ProductRequestQAGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductRequestQAWhereInput
+    orderBy?: Enumerable<ProductRequestQAOrderByWithAggregationInput>
+    by: ProductRequestQAScalarFieldEnum[]
+    having?: ProductRequestQAScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProductRequestQACountAggregateInputType | true
+    _min?: ProductRequestQAMinAggregateInputType
+    _max?: ProductRequestQAMaxAggregateInputType
+  }
+
+
+  export type ProductRequestQAGroupByOutputType = {
+    id: string
+    title: string | null
+    description: string | null
+    type: string | null
+    compulsory: boolean
+    isGeneral: boolean
+    createdAt: Date
+    updatedAt: Date
+    isDeprecated: boolean
+    requestId: string
+    _count: ProductRequestQACountAggregateOutputType | null
+    _min: ProductRequestQAMinAggregateOutputType | null
+    _max: ProductRequestQAMaxAggregateOutputType | null
+  }
+
+  type GetProductRequestQAGroupByPayload<T extends ProductRequestQAGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<ProductRequestQAGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProductRequestQAGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProductRequestQAGroupByOutputType[P]>
+            : GetScalarType<T[P], ProductRequestQAGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProductRequestQASelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    type?: boolean
+    compulsory?: boolean
+    isGeneral?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    isDeprecated?: boolean
+    requestId?: boolean
+    request?: boolean | ProductRequestArgs<ExtArgs>
+    subForm?: boolean | ProductRequestQA$subFormArgs<ExtArgs>
+    _count?: boolean | ProductRequestQACountOutputTypeArgs<ExtArgs>
+  }, ExtArgs["result"]["productRequestQA"]>
+
+  export type ProductRequestQASelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    type?: boolean
+    compulsory?: boolean
+    isGeneral?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    isDeprecated?: boolean
+    requestId?: boolean
+  }
+
+  export type ProductRequestQAInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    request?: boolean | ProductRequestArgs<ExtArgs>
+    subForm?: boolean | ProductRequestQA$subFormArgs<ExtArgs>
+    _count?: boolean | ProductRequestQACountOutputTypeArgs<ExtArgs>
+  }
+
+
+  type ProductRequestQAGetPayload<S extends boolean | null | undefined | ProductRequestQAArgs> = $Types.GetResult<ProductRequestQAPayload, S>
+
+  type ProductRequestQACountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<ProductRequestQAFindManyArgs, 'select' | 'include'> & {
+      select?: ProductRequestQACountAggregateInputType | true
+    }
+
+  export interface ProductRequestQADelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductRequestQA'], meta: { name: 'ProductRequestQA' } }
+    /**
+     * Find zero or one ProductRequestQA that matches the filter.
+     * @param {ProductRequestQAFindUniqueArgs} args - Arguments to find a ProductRequestQA
+     * @example
+     * // Get one ProductRequestQA
+     * const productRequestQA = await prisma.productRequestQA.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ProductRequestQAFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, ProductRequestQAFindUniqueArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ProductRequestQA'> extends True ? Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
+
+    /**
+     * Find one ProductRequestQA that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ProductRequestQAFindUniqueOrThrowArgs} args - Arguments to find a ProductRequestQA
+     * @example
+     * // Get one ProductRequestQA
+     * const productRequestQA = await prisma.productRequestQA.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ProductRequestQAFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQAFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find the first ProductRequestQA that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQAFindFirstArgs} args - Arguments to find a ProductRequestQA
+     * @example
+     * // Get one ProductRequestQA
+     * const productRequestQA = await prisma.productRequestQA.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ProductRequestQAFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, ProductRequestQAFindFirstArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ProductRequestQA'> extends True ? Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
+
+    /**
+     * Find the first ProductRequestQA that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQAFindFirstOrThrowArgs} args - Arguments to find a ProductRequestQA
+     * @example
+     * // Get one ProductRequestQA
+     * const productRequestQA = await prisma.productRequestQA.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ProductRequestQAFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQAFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find zero or more ProductRequestQAS that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQAFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProductRequestQAS
+     * const productRequestQAS = await prisma.productRequestQA.findMany()
+     * 
+     * // Get first 10 ProductRequestQAS
+     * const productRequestQAS = await prisma.productRequestQA.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const productRequestQAWithIdOnly = await prisma.productRequestQA.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ProductRequestQAFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQAFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'findMany', never>>
+
+    /**
+     * Create a ProductRequestQA.
+     * @param {ProductRequestQACreateArgs} args - Arguments to create a ProductRequestQA.
+     * @example
+     * // Create one ProductRequestQA
+     * const ProductRequestQA = await prisma.productRequestQA.create({
+     *   data: {
+     *     // ... data to create a ProductRequestQA
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ProductRequestQACreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQACreateArgs<ExtArgs>>
+    ): Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
+
+    /**
+     * Create many ProductRequestQAS.
+     *     @param {ProductRequestQACreateManyArgs} args - Arguments to create many ProductRequestQAS.
+     *     @example
+     *     // Create many ProductRequestQAS
+     *     const productRequestQA = await prisma.productRequestQA.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ProductRequestQACreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQACreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProductRequestQA.
+     * @param {ProductRequestQADeleteArgs} args - Arguments to delete one ProductRequestQA.
+     * @example
+     * // Delete one ProductRequestQA
+     * const ProductRequestQA = await prisma.productRequestQA.delete({
+     *   where: {
+     *     // ... filter to delete one ProductRequestQA
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ProductRequestQADeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQADeleteArgs<ExtArgs>>
+    ): Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
+
+    /**
+     * Update one ProductRequestQA.
+     * @param {ProductRequestQAUpdateArgs} args - Arguments to update one ProductRequestQA.
+     * @example
+     * // Update one ProductRequestQA
+     * const productRequestQA = await prisma.productRequestQA.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ProductRequestQAUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQAUpdateArgs<ExtArgs>>
+    ): Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ProductRequestQAS.
+     * @param {ProductRequestQADeleteManyArgs} args - Arguments to filter ProductRequestQAS to delete.
+     * @example
+     * // Delete a few ProductRequestQAS
+     * const { count } = await prisma.productRequestQA.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ProductRequestQADeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQADeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductRequestQAS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQAUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProductRequestQAS
+     * const productRequestQA = await prisma.productRequestQA.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ProductRequestQAUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQAUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProductRequestQA.
+     * @param {ProductRequestQAUpsertArgs} args - Arguments to update or create a ProductRequestQA.
+     * @example
+     * // Update or create a ProductRequestQA
+     * const productRequestQA = await prisma.productRequestQA.upsert({
+     *   create: {
+     *     // ... data to create a ProductRequestQA
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProductRequestQA we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ProductRequestQAUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQAUpsertArgs<ExtArgs>>
+    ): Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
+
+    /**
+     * Count the number of ProductRequestQAS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQACountArgs} args - Arguments to filter ProductRequestQAS to count.
+     * @example
+     * // Count the number of ProductRequestQAS
+     * const count = await prisma.productRequestQA.count({
+     *   where: {
+     *     // ... the filter for the ProductRequestQAS we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProductRequestQACountArgs>(
+      args?: Subset<T, ProductRequestQACountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProductRequestQACountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProductRequestQA.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQAAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProductRequestQAAggregateArgs>(args: Subset<T, ProductRequestQAAggregateArgs>): Prisma.PrismaPromise<GetProductRequestQAAggregateType<T>>
+
+    /**
+     * Group by ProductRequestQA.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQAGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProductRequestQAGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProductRequestQAGroupByArgs['orderBy'] }
+        : { orderBy?: ProductRequestQAGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProductRequestQAGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductRequestQAGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProductRequestQA.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__ProductRequestQAClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+    request<T extends ProductRequestArgs<ExtArgs> = {}>(args?: Subset<T, ProductRequestArgs<ExtArgs>>): Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+
+    subForm<T extends ProductRequestQA$subFormArgs<ExtArgs> = {}>(args?: Subset<T, ProductRequestQA$subFormArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'findMany', never>| Null>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * ProductRequestQA base type for findUnique actions
+   */
+  export type ProductRequestQAFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQA to fetch.
+     */
+    where: ProductRequestQAWhereUniqueInput
+  }
+
+  /**
+   * ProductRequestQA findUnique
+   */
+  export interface ProductRequestQAFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductRequestQAFindUniqueArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * ProductRequestQA findUniqueOrThrow
+   */
+  export type ProductRequestQAFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQA to fetch.
+     */
+    where: ProductRequestQAWhereUniqueInput
+  }
+
+
+  /**
+   * ProductRequestQA base type for findFirst actions
+   */
+  export type ProductRequestQAFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQA to fetch.
+     */
+    where?: ProductRequestQAWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequestQAS to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestQAOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductRequestQAS.
+     */
+    cursor?: ProductRequestQAWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequestQAS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequestQAS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductRequestQAS.
+     */
+    distinct?: Enumerable<ProductRequestQAScalarFieldEnum>
+  }
+
+  /**
+   * ProductRequestQA findFirst
+   */
+  export interface ProductRequestQAFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductRequestQAFindFirstArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * ProductRequestQA findFirstOrThrow
+   */
+  export type ProductRequestQAFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQA to fetch.
+     */
+    where?: ProductRequestQAWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequestQAS to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestQAOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductRequestQAS.
+     */
+    cursor?: ProductRequestQAWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequestQAS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequestQAS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductRequestQAS.
+     */
+    distinct?: Enumerable<ProductRequestQAScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequestQA findMany
+   */
+  export type ProductRequestQAFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQAS to fetch.
+     */
+    where?: ProductRequestQAWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequestQAS to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestQAOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProductRequestQAS.
+     */
+    cursor?: ProductRequestQAWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequestQAS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequestQAS.
+     */
+    skip?: number
+    distinct?: Enumerable<ProductRequestQAScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequestQA create
+   */
+  export type ProductRequestQACreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProductRequestQA.
+     */
+    data: XOR<ProductRequestQACreateInput, ProductRequestQAUncheckedCreateInput>
+  }
+
+
+  /**
+   * ProductRequestQA createMany
+   */
+  export type ProductRequestQACreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProductRequestQAS.
+     */
+    data: Enumerable<ProductRequestQACreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * ProductRequestQA update
+   */
+  export type ProductRequestQAUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProductRequestQA.
+     */
+    data: XOR<ProductRequestQAUpdateInput, ProductRequestQAUncheckedUpdateInput>
+    /**
+     * Choose, which ProductRequestQA to update.
+     */
+    where: ProductRequestQAWhereUniqueInput
+  }
+
+
+  /**
+   * ProductRequestQA updateMany
+   */
+  export type ProductRequestQAUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProductRequestQAS.
+     */
+    data: XOR<ProductRequestQAUpdateManyMutationInput, ProductRequestQAUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductRequestQAS to update
+     */
+    where?: ProductRequestQAWhereInput
+  }
+
+
+  /**
+   * ProductRequestQA upsert
+   */
+  export type ProductRequestQAUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProductRequestQA to update in case it exists.
+     */
+    where: ProductRequestQAWhereUniqueInput
+    /**
+     * In case the ProductRequestQA found by the `where` argument doesn't exist, create a new ProductRequestQA with this data.
+     */
+    create: XOR<ProductRequestQACreateInput, ProductRequestQAUncheckedCreateInput>
+    /**
+     * In case the ProductRequestQA was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProductRequestQAUpdateInput, ProductRequestQAUncheckedUpdateInput>
+  }
+
+
+  /**
+   * ProductRequestQA delete
+   */
+  export type ProductRequestQADeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+    /**
+     * Filter which ProductRequestQA to delete.
+     */
+    where: ProductRequestQAWhereUniqueInput
+  }
+
+
+  /**
+   * ProductRequestQA deleteMany
+   */
+  export type ProductRequestQADeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductRequestQAS to delete
+     */
+    where?: ProductRequestQAWhereInput
+  }
+
+
+  /**
+   * ProductRequestQA.subForm
+   */
+  export type ProductRequestQA$subFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    where?: ProductRequestQASubFormWhereInput
+    orderBy?: Enumerable<ProductRequestQASubFormOrderByWithRelationInput>
+    cursor?: ProductRequestQASubFormWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<ProductRequestQASubFormScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequestQA without action
+   */
+  export type ProductRequestQAArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQA
+     */
+    select?: ProductRequestQASelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQAInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model ProductRequestQASubForm
+   */
+
+
+  export type AggregateProductRequestQASubForm = {
+    _count: ProductRequestQASubFormCountAggregateOutputType | null
+    _min: ProductRequestQASubFormMinAggregateOutputType | null
+    _max: ProductRequestQASubFormMaxAggregateOutputType | null
+  }
+
+  export type ProductRequestQASubFormMinAggregateOutputType = {
+    id: string | null
+    question: string | null
+    type: string | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
+    compulsory: boolean | null
+    isDeprecated: boolean | null
+    requestQAId: string | null
+  }
+
+  export type ProductRequestQASubFormMaxAggregateOutputType = {
+    id: string | null
+    question: string | null
+    type: string | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
+    compulsory: boolean | null
+    isDeprecated: boolean | null
+    requestQAId: string | null
+  }
+
+  export type ProductRequestQASubFormCountAggregateOutputType = {
+    id: number
+    question: number
+    answer: number
+    type: number
+    fileName: number
+    fileType: number
+    fileLink: number
+    compulsory: number
+    isDeprecated: number
+    requestQAId: number
+    _all: number
+  }
+
+
+  export type ProductRequestQASubFormMinAggregateInputType = {
+    id?: true
+    question?: true
+    type?: true
+    fileName?: true
+    fileType?: true
+    fileLink?: true
+    compulsory?: true
+    isDeprecated?: true
+    requestQAId?: true
+  }
+
+  export type ProductRequestQASubFormMaxAggregateInputType = {
+    id?: true
+    question?: true
+    type?: true
+    fileName?: true
+    fileType?: true
+    fileLink?: true
+    compulsory?: true
+    isDeprecated?: true
+    requestQAId?: true
+  }
+
+  export type ProductRequestQASubFormCountAggregateInputType = {
+    id?: true
+    question?: true
+    answer?: true
+    type?: true
+    fileName?: true
+    fileType?: true
+    fileLink?: true
+    compulsory?: true
+    isDeprecated?: true
+    requestQAId?: true
+    _all?: true
+  }
+
+  export type ProductRequestQASubFormAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductRequestQASubForm to aggregate.
+     */
+    where?: ProductRequestQASubFormWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequestQASubForms to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestQASubFormOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProductRequestQASubFormWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequestQASubForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequestQASubForms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProductRequestQASubForms
+    **/
+    _count?: true | ProductRequestQASubFormCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProductRequestQASubFormMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProductRequestQASubFormMaxAggregateInputType
+  }
+
+  export type GetProductRequestQASubFormAggregateType<T extends ProductRequestQASubFormAggregateArgs> = {
+        [P in keyof T & keyof AggregateProductRequestQASubForm]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProductRequestQASubForm[P]>
+      : GetScalarType<T[P], AggregateProductRequestQASubForm[P]>
+  }
+
+
+
+
+  export type ProductRequestQASubFormGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ProductRequestQASubFormWhereInput
+    orderBy?: Enumerable<ProductRequestQASubFormOrderByWithAggregationInput>
+    by: ProductRequestQASubFormScalarFieldEnum[]
+    having?: ProductRequestQASubFormScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProductRequestQASubFormCountAggregateInputType | true
+    _min?: ProductRequestQASubFormMinAggregateInputType
+    _max?: ProductRequestQASubFormMaxAggregateInputType
+  }
+
+
+  export type ProductRequestQASubFormGroupByOutputType = {
+    id: string
+    question: string | null
+    answer: string[]
+    type: string | null
+    fileName: string | null
+    fileType: string | null
+    fileLink: string | null
+    compulsory: boolean
+    isDeprecated: boolean
+    requestQAId: string
+    _count: ProductRequestQASubFormCountAggregateOutputType | null
+    _min: ProductRequestQASubFormMinAggregateOutputType | null
+    _max: ProductRequestQASubFormMaxAggregateOutputType | null
+  }
+
+  type GetProductRequestQASubFormGroupByPayload<T extends ProductRequestQASubFormGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<ProductRequestQASubFormGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProductRequestQASubFormGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProductRequestQASubFormGroupByOutputType[P]>
+            : GetScalarType<T[P], ProductRequestQASubFormGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProductRequestQASubFormSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    question?: boolean
+    answer?: boolean
+    type?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileLink?: boolean
+    compulsory?: boolean
+    isDeprecated?: boolean
+    requestQAId?: boolean
+    requestQA?: boolean | ProductRequestQAArgs<ExtArgs>
+  }, ExtArgs["result"]["productRequestQASubForm"]>
+
+  export type ProductRequestQASubFormSelectScalar = {
+    id?: boolean
+    question?: boolean
+    answer?: boolean
+    type?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileLink?: boolean
+    compulsory?: boolean
+    isDeprecated?: boolean
+    requestQAId?: boolean
+  }
+
+  export type ProductRequestQASubFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    requestQA?: boolean | ProductRequestQAArgs<ExtArgs>
+  }
+
+
+  type ProductRequestQASubFormGetPayload<S extends boolean | null | undefined | ProductRequestQASubFormArgs> = $Types.GetResult<ProductRequestQASubFormPayload, S>
+
+  type ProductRequestQASubFormCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<ProductRequestQASubFormFindManyArgs, 'select' | 'include'> & {
+      select?: ProductRequestQASubFormCountAggregateInputType | true
+    }
+
+  export interface ProductRequestQASubFormDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductRequestQASubForm'], meta: { name: 'ProductRequestQASubForm' } }
+    /**
+     * Find zero or one ProductRequestQASubForm that matches the filter.
+     * @param {ProductRequestQASubFormFindUniqueArgs} args - Arguments to find a ProductRequestQASubForm
+     * @example
+     * // Get one ProductRequestQASubForm
+     * const productRequestQASubForm = await prisma.productRequestQASubForm.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ProductRequestQASubFormFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, ProductRequestQASubFormFindUniqueArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'ProductRequestQASubForm'> extends True ? Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
+
+    /**
+     * Find one ProductRequestQASubForm that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ProductRequestQASubFormFindUniqueOrThrowArgs} args - Arguments to find a ProductRequestQASubForm
+     * @example
+     * // Get one ProductRequestQASubForm
+     * const productRequestQASubForm = await prisma.productRequestQASubForm.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ProductRequestQASubFormFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQASubFormFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find the first ProductRequestQASubForm that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQASubFormFindFirstArgs} args - Arguments to find a ProductRequestQASubForm
+     * @example
+     * // Get one ProductRequestQASubForm
+     * const productRequestQASubForm = await prisma.productRequestQASubForm.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ProductRequestQASubFormFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, ProductRequestQASubFormFindFirstArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'ProductRequestQASubForm'> extends True ? Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
+
+    /**
+     * Find the first ProductRequestQASubForm that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQASubFormFindFirstOrThrowArgs} args - Arguments to find a ProductRequestQASubForm
+     * @example
+     * // Get one ProductRequestQASubForm
+     * const productRequestQASubForm = await prisma.productRequestQASubForm.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ProductRequestQASubFormFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQASubFormFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find zero or more ProductRequestQASubForms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQASubFormFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProductRequestQASubForms
+     * const productRequestQASubForms = await prisma.productRequestQASubForm.findMany()
+     * 
+     * // Get first 10 ProductRequestQASubForms
+     * const productRequestQASubForms = await prisma.productRequestQASubForm.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const productRequestQASubFormWithIdOnly = await prisma.productRequestQASubForm.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ProductRequestQASubFormFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQASubFormFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'findMany', never>>
+
+    /**
+     * Create a ProductRequestQASubForm.
+     * @param {ProductRequestQASubFormCreateArgs} args - Arguments to create a ProductRequestQASubForm.
+     * @example
+     * // Create one ProductRequestQASubForm
+     * const ProductRequestQASubForm = await prisma.productRequestQASubForm.create({
+     *   data: {
+     *     // ... data to create a ProductRequestQASubForm
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ProductRequestQASubFormCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQASubFormCreateArgs<ExtArgs>>
+    ): Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
+
+    /**
+     * Create many ProductRequestQASubForms.
+     *     @param {ProductRequestQASubFormCreateManyArgs} args - Arguments to create many ProductRequestQASubForms.
+     *     @example
+     *     // Create many ProductRequestQASubForms
+     *     const productRequestQASubForm = await prisma.productRequestQASubForm.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ProductRequestQASubFormCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQASubFormCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProductRequestQASubForm.
+     * @param {ProductRequestQASubFormDeleteArgs} args - Arguments to delete one ProductRequestQASubForm.
+     * @example
+     * // Delete one ProductRequestQASubForm
+     * const ProductRequestQASubForm = await prisma.productRequestQASubForm.delete({
+     *   where: {
+     *     // ... filter to delete one ProductRequestQASubForm
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ProductRequestQASubFormDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQASubFormDeleteArgs<ExtArgs>>
+    ): Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
+
+    /**
+     * Update one ProductRequestQASubForm.
+     * @param {ProductRequestQASubFormUpdateArgs} args - Arguments to update one ProductRequestQASubForm.
+     * @example
+     * // Update one ProductRequestQASubForm
+     * const productRequestQASubForm = await prisma.productRequestQASubForm.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ProductRequestQASubFormUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQASubFormUpdateArgs<ExtArgs>>
+    ): Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ProductRequestQASubForms.
+     * @param {ProductRequestQASubFormDeleteManyArgs} args - Arguments to filter ProductRequestQASubForms to delete.
+     * @example
+     * // Delete a few ProductRequestQASubForms
+     * const { count } = await prisma.productRequestQASubForm.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ProductRequestQASubFormDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ProductRequestQASubFormDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductRequestQASubForms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQASubFormUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProductRequestQASubForms
+     * const productRequestQASubForm = await prisma.productRequestQASubForm.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ProductRequestQASubFormUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQASubFormUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProductRequestQASubForm.
+     * @param {ProductRequestQASubFormUpsertArgs} args - Arguments to update or create a ProductRequestQASubForm.
+     * @example
+     * // Update or create a ProductRequestQASubForm
+     * const productRequestQASubForm = await prisma.productRequestQASubForm.upsert({
+     *   create: {
+     *     // ... data to create a ProductRequestQASubForm
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProductRequestQASubForm we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ProductRequestQASubFormUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ProductRequestQASubFormUpsertArgs<ExtArgs>>
+    ): Prisma__ProductRequestQASubFormClient<$Types.GetResult<ProductRequestQASubFormPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
+
+    /**
+     * Count the number of ProductRequestQASubForms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQASubFormCountArgs} args - Arguments to filter ProductRequestQASubForms to count.
+     * @example
+     * // Count the number of ProductRequestQASubForms
+     * const count = await prisma.productRequestQASubForm.count({
+     *   where: {
+     *     // ... the filter for the ProductRequestQASubForms we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProductRequestQASubFormCountArgs>(
+      args?: Subset<T, ProductRequestQASubFormCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProductRequestQASubFormCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProductRequestQASubForm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQASubFormAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProductRequestQASubFormAggregateArgs>(args: Subset<T, ProductRequestQASubFormAggregateArgs>): Prisma.PrismaPromise<GetProductRequestQASubFormAggregateType<T>>
+
+    /**
+     * Group by ProductRequestQASubForm.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductRequestQASubFormGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProductRequestQASubFormGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProductRequestQASubFormGroupByArgs['orderBy'] }
+        : { orderBy?: ProductRequestQASubFormGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProductRequestQASubFormGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductRequestQASubFormGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProductRequestQASubForm.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__ProductRequestQASubFormClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+    requestQA<T extends ProductRequestQAArgs<ExtArgs> = {}>(args?: Subset<T, ProductRequestQAArgs<ExtArgs>>): Prisma__ProductRequestQAClient<$Types.GetResult<ProductRequestQAPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * ProductRequestQASubForm base type for findUnique actions
+   */
+  export type ProductRequestQASubFormFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQASubForm to fetch.
+     */
+    where: ProductRequestQASubFormWhereUniqueInput
+  }
+
+  /**
+   * ProductRequestQASubForm findUnique
+   */
+  export interface ProductRequestQASubFormFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductRequestQASubFormFindUniqueArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * ProductRequestQASubForm findUniqueOrThrow
+   */
+  export type ProductRequestQASubFormFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQASubForm to fetch.
+     */
+    where: ProductRequestQASubFormWhereUniqueInput
+  }
+
+
+  /**
+   * ProductRequestQASubForm base type for findFirst actions
+   */
+  export type ProductRequestQASubFormFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQASubForm to fetch.
+     */
+    where?: ProductRequestQASubFormWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequestQASubForms to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestQASubFormOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductRequestQASubForms.
+     */
+    cursor?: ProductRequestQASubFormWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequestQASubForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequestQASubForms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductRequestQASubForms.
+     */
+    distinct?: Enumerable<ProductRequestQASubFormScalarFieldEnum>
+  }
+
+  /**
+   * ProductRequestQASubForm findFirst
+   */
+  export interface ProductRequestQASubFormFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends ProductRequestQASubFormFindFirstArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * ProductRequestQASubForm findFirstOrThrow
+   */
+  export type ProductRequestQASubFormFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQASubForm to fetch.
+     */
+    where?: ProductRequestQASubFormWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequestQASubForms to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestQASubFormOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductRequestQASubForms.
+     */
+    cursor?: ProductRequestQASubFormWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequestQASubForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequestQASubForms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductRequestQASubForms.
+     */
+    distinct?: Enumerable<ProductRequestQASubFormScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequestQASubForm findMany
+   */
+  export type ProductRequestQASubFormFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductRequestQASubForms to fetch.
+     */
+    where?: ProductRequestQASubFormWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductRequestQASubForms to fetch.
+     */
+    orderBy?: Enumerable<ProductRequestQASubFormOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProductRequestQASubForms.
+     */
+    cursor?: ProductRequestQASubFormWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductRequestQASubForms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductRequestQASubForms.
+     */
+    skip?: number
+    distinct?: Enumerable<ProductRequestQASubFormScalarFieldEnum>
+  }
+
+
+  /**
+   * ProductRequestQASubForm create
+   */
+  export type ProductRequestQASubFormCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProductRequestQASubForm.
+     */
+    data: XOR<ProductRequestQASubFormCreateInput, ProductRequestQASubFormUncheckedCreateInput>
+  }
+
+
+  /**
+   * ProductRequestQASubForm createMany
+   */
+  export type ProductRequestQASubFormCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProductRequestQASubForms.
+     */
+    data: Enumerable<ProductRequestQASubFormCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * ProductRequestQASubForm update
+   */
+  export type ProductRequestQASubFormUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProductRequestQASubForm.
+     */
+    data: XOR<ProductRequestQASubFormUpdateInput, ProductRequestQASubFormUncheckedUpdateInput>
+    /**
+     * Choose, which ProductRequestQASubForm to update.
+     */
+    where: ProductRequestQASubFormWhereUniqueInput
+  }
+
+
+  /**
+   * ProductRequestQASubForm updateMany
+   */
+  export type ProductRequestQASubFormUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProductRequestQASubForms.
+     */
+    data: XOR<ProductRequestQASubFormUpdateManyMutationInput, ProductRequestQASubFormUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductRequestQASubForms to update
+     */
+    where?: ProductRequestQASubFormWhereInput
+  }
+
+
+  /**
+   * ProductRequestQASubForm upsert
+   */
+  export type ProductRequestQASubFormUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProductRequestQASubForm to update in case it exists.
+     */
+    where: ProductRequestQASubFormWhereUniqueInput
+    /**
+     * In case the ProductRequestQASubForm found by the `where` argument doesn't exist, create a new ProductRequestQASubForm with this data.
+     */
+    create: XOR<ProductRequestQASubFormCreateInput, ProductRequestQASubFormUncheckedCreateInput>
+    /**
+     * In case the ProductRequestQASubForm was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProductRequestQASubFormUpdateInput, ProductRequestQASubFormUncheckedUpdateInput>
+  }
+
+
+  /**
+   * ProductRequestQASubForm delete
+   */
+  export type ProductRequestQASubFormDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
+    /**
+     * Filter which ProductRequestQASubForm to delete.
+     */
+    where: ProductRequestQASubFormWhereUniqueInput
+  }
+
+
+  /**
+   * ProductRequestQASubForm deleteMany
+   */
+  export type ProductRequestQASubFormDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductRequestQASubForms to delete
+     */
+    where?: ProductRequestQASubFormWhereInput
+  }
+
+
+  /**
+   * ProductRequestQASubForm without action
+   */
+  export type ProductRequestQASubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductRequestQASubForm
+     */
+    select?: ProductRequestQASubFormSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ProductRequestQASubFormInclude<ExtArgs> | null
   }
 
 
@@ -23321,7 +23325,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     isDeprecated: boolean | null
-    productId: string | null
+    productRequestId: string | null
   }
 
   export type TeamMaxAggregateOutputType = {
@@ -23332,7 +23336,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     isDeprecated: boolean | null
-    productId: string | null
+    productRequestId: string | null
   }
 
   export type TeamCountAggregateOutputType = {
@@ -23343,7 +23347,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     isDeprecated: number
-    productId: number
+    productRequestId: number
     _all: number
   }
 
@@ -23356,7 +23360,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isDeprecated?: true
-    productId?: true
+    productRequestId?: true
   }
 
   export type TeamMaxAggregateInputType = {
@@ -23367,7 +23371,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isDeprecated?: true
-    productId?: true
+    productRequestId?: true
   }
 
   export type TeamCountAggregateInputType = {
@@ -23378,7 +23382,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isDeprecated?: true
-    productId?: true
+    productRequestId?: true
     _all?: true
   }
 
@@ -23463,7 +23467,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     isDeprecated: boolean
-    productId: string
+    productRequestId: string
     _count: TeamCountAggregateOutputType | null
     _min: TeamMinAggregateOutputType | null
     _max: TeamMaxAggregateOutputType | null
@@ -23491,8 +23495,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isDeprecated?: boolean
-    productId?: boolean
-    product?: boolean | ProductArgs<ExtArgs>
+    productRequestId?: boolean
+    productRequest?: boolean | ProductRequestArgs<ExtArgs>
     invitation?: boolean | Team$invitationArgs<ExtArgs>
     teamMember?: boolean | Team$teamMemberArgs<ExtArgs>
     _count?: boolean | TeamCountOutputTypeArgs<ExtArgs>
@@ -23506,11 +23510,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isDeprecated?: boolean
-    productId?: boolean
+    productRequestId?: boolean
   }
 
   export type TeamInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    product?: boolean | ProductArgs<ExtArgs>
+    productRequest?: boolean | ProductRequestArgs<ExtArgs>
     invitation?: boolean | Team$invitationArgs<ExtArgs>
     teamMember?: boolean | Team$teamMemberArgs<ExtArgs>
     _count?: boolean | TeamCountOutputTypeArgs<ExtArgs>
@@ -23886,7 +23890,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
-    product<T extends ProductArgs<ExtArgs> = {}>(args?: Subset<T, ProductArgs<ExtArgs>>): Prisma__ProductClient<$Types.GetResult<ProductPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+    productRequest<T extends ProductRequestArgs<ExtArgs> = {}>(args?: Subset<T, ProductRequestArgs<ExtArgs>>): Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
     invitation<T extends Team$invitationArgs<ExtArgs> = {}>(args?: Subset<T, Team$invitationArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<InvitationPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
@@ -26292,7 +26296,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     isDeprecated: boolean | null
-    productId: string | null
+    productRequestId: string | null
   }
 
   export type PaymentMaxAggregateOutputType = {
@@ -26304,7 +26308,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     isDeprecated: boolean | null
-    productId: string | null
+    productRequestId: string | null
   }
 
   export type PaymentCountAggregateOutputType = {
@@ -26316,7 +26320,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     isDeprecated: number
-    productId: number
+    productRequestId: number
     _all: number
   }
 
@@ -26330,7 +26334,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isDeprecated?: true
-    productId?: true
+    productRequestId?: true
   }
 
   export type PaymentMaxAggregateInputType = {
@@ -26342,7 +26346,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isDeprecated?: true
-    productId?: true
+    productRequestId?: true
   }
 
   export type PaymentCountAggregateInputType = {
@@ -26354,7 +26358,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isDeprecated?: true
-    productId?: true
+    productRequestId?: true
     _all?: true
   }
 
@@ -26440,7 +26444,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     isDeprecated: boolean
-    productId: string
+    productRequestId: string
     _count: PaymentCountAggregateOutputType | null
     _min: PaymentMinAggregateOutputType | null
     _max: PaymentMaxAggregateOutputType | null
@@ -26469,8 +26473,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isDeprecated?: boolean
-    productId?: boolean
-    products?: boolean | ProductArgs<ExtArgs>
+    productRequestId?: boolean
+    productRequests?: boolean | ProductRequestArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
 
   export type PaymentSelectScalar = {
@@ -26482,11 +26486,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isDeprecated?: boolean
-    productId?: boolean
+    productRequestId?: boolean
   }
 
   export type PaymentInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    products?: boolean | ProductArgs<ExtArgs>
+    productRequests?: boolean | ProductRequestArgs<ExtArgs>
   }
 
 
@@ -26859,7 +26863,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
-    products<T extends ProductArgs<ExtArgs> = {}>(args?: Subset<T, ProductArgs<ExtArgs>>): Prisma__ProductClient<$Types.GetResult<ProductPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+    productRequests<T extends ProductRequestArgs<ExtArgs> = {}>(args?: Subset<T, ProductRequestArgs<ExtArgs>>): Prisma__ProductRequestClient<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
     private get _document();
     /**
@@ -28393,7 +28397,7 @@ export namespace Prisma {
   export type UserDocumentScalarFieldEnum = (typeof UserDocumentScalarFieldEnum)[keyof typeof UserDocumentScalarFieldEnum]
 
 
-  export const ServiceCategoryScalarFieldEnum: {
+  export const ServiceScalarFieldEnum: {
     id: 'id',
     name: 'name',
     description: 'description',
@@ -28402,10 +28406,10 @@ export namespace Prisma {
     updatedAt: 'updatedAt'
   };
 
-  export type ServiceCategoryScalarFieldEnum = (typeof ServiceCategoryScalarFieldEnum)[keyof typeof ServiceCategoryScalarFieldEnum]
+  export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
 
 
-  export const ServiceCategoryFormScalarFieldEnum: {
+  export const ServiceFormScalarFieldEnum: {
     id: 'id',
     title: 'title',
     description: 'description',
@@ -28414,13 +28418,13 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isDeprecated: 'isDeprecated',
-    serviceCategoryId: 'serviceCategoryId'
+    serviceId: 'serviceId'
   };
 
-  export type ServiceCategoryFormScalarFieldEnum = (typeof ServiceCategoryFormScalarFieldEnum)[keyof typeof ServiceCategoryFormScalarFieldEnum]
+  export type ServiceFormScalarFieldEnum = (typeof ServiceFormScalarFieldEnum)[keyof typeof ServiceFormScalarFieldEnum]
 
 
-  export const ServiceCategorySubFormScalarFieldEnum: {
+  export const ServiceSubFormScalarFieldEnum: {
     id: 'id',
     question: 'question',
     type: 'type',
@@ -28437,10 +28441,10 @@ export namespace Prisma {
     formId: 'formId'
   };
 
-  export type ServiceCategorySubFormScalarFieldEnum = (typeof ServiceCategorySubFormScalarFieldEnum)[keyof typeof ServiceCategorySubFormScalarFieldEnum]
+  export type ServiceSubFormScalarFieldEnum = (typeof ServiceSubFormScalarFieldEnum)[keyof typeof ServiceSubFormScalarFieldEnum]
 
 
-  export const ServiceScalarFieldEnum: {
+  export const ProductScalarFieldEnum: {
     id: 'id',
     name: 'name',
     description: 'description',
@@ -28459,13 +28463,13 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isDeprecated: 'isDeprecated',
-    serviceCategoryId: 'serviceCategoryId'
+    serviceId: 'serviceId'
   };
 
-  export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+  export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
 
 
-  export const ServiceFormScalarFieldEnum: {
+  export const ProductFormScalarFieldEnum: {
     id: 'id',
     title: 'title',
     type: 'type',
@@ -28474,13 +28478,13 @@ export namespace Prisma {
     createdAt: 'createdAt',
     isDeprecated: 'isDeprecated',
     updatedAt: 'updatedAt',
-    serviceId: 'serviceId'
+    productId: 'productId'
   };
 
-  export type ServiceFormScalarFieldEnum = (typeof ServiceFormScalarFieldEnum)[keyof typeof ServiceFormScalarFieldEnum]
+  export type ProductFormScalarFieldEnum = (typeof ProductFormScalarFieldEnum)[keyof typeof ProductFormScalarFieldEnum]
 
 
-  export const ServiceSubFormScalarFieldEnum: {
+  export const ProductSubFormScalarFieldEnum: {
     id: 'id',
     question: 'question',
     options: 'options',
@@ -28494,13 +28498,13 @@ export namespace Prisma {
     isDeprecated: 'isDeprecated',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    serviceFormId: 'serviceFormId'
+    formId: 'formId'
   };
 
-  export type ServiceSubFormScalarFieldEnum = (typeof ServiceSubFormScalarFieldEnum)[keyof typeof ServiceSubFormScalarFieldEnum]
+  export type ProductSubFormScalarFieldEnum = (typeof ProductSubFormScalarFieldEnum)[keyof typeof ProductSubFormScalarFieldEnum]
 
 
-  export const ProductScalarFieldEnum: {
+  export const ProductRequestScalarFieldEnum: {
     id: 'id',
     email: 'email',
     address: 'address',
@@ -28511,43 +28515,43 @@ export namespace Prisma {
     createdAt: 'createdAt',
     isDeprecated: 'isDeprecated',
     updatedAt: 'updatedAt',
-    serviceId: 'serviceId',
+    productId: 'productId',
     userId: 'userId'
   };
 
-  export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+  export type ProductRequestScalarFieldEnum = (typeof ProductRequestScalarFieldEnum)[keyof typeof ProductRequestScalarFieldEnum]
 
 
-  export const ProductQAScalarFieldEnum: {
+  export const ProductRequestQAScalarFieldEnum: {
     id: 'id',
-    question: 'question',
-    answer: 'answer',
+    title: 'title',
+    description: 'description',
     type: 'type',
     compulsory: 'compulsory',
     isGeneral: 'isGeneral',
-    fileName: 'fileName',
-    fileType: 'fileType',
-    fileLink: 'fileLink',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isDeprecated: 'isDeprecated',
-    productId: 'productId'
+    requestId: 'requestId'
   };
 
-  export type ProductQAScalarFieldEnum = (typeof ProductQAScalarFieldEnum)[keyof typeof ProductQAScalarFieldEnum]
+  export type ProductRequestQAScalarFieldEnum = (typeof ProductRequestQAScalarFieldEnum)[keyof typeof ProductRequestQAScalarFieldEnum]
 
 
-  export const ProductQASubFormScalarFieldEnum: {
+  export const ProductRequestQASubFormScalarFieldEnum: {
     id: 'id',
     question: 'question',
     answer: 'answer',
     type: 'type',
+    fileName: 'fileName',
+    fileType: 'fileType',
+    fileLink: 'fileLink',
     compulsory: 'compulsory',
     isDeprecated: 'isDeprecated',
-    productQAId: 'productQAId'
+    requestQAId: 'requestQAId'
   };
 
-  export type ProductQASubFormScalarFieldEnum = (typeof ProductQASubFormScalarFieldEnum)[keyof typeof ProductQASubFormScalarFieldEnum]
+  export type ProductRequestQASubFormScalarFieldEnum = (typeof ProductRequestQASubFormScalarFieldEnum)[keyof typeof ProductRequestQASubFormScalarFieldEnum]
 
 
   export const ClaimScalarFieldEnum: {
@@ -28570,7 +28574,7 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isDeprecated: 'isDeprecated',
-    productId: 'productId'
+    productRequestId: 'productRequestId'
   };
 
   export type TeamScalarFieldEnum = (typeof TeamScalarFieldEnum)[keyof typeof TeamScalarFieldEnum]
@@ -28616,7 +28620,7 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isDeprecated: 'isDeprecated',
-    productId: 'productId'
+    productRequestId: 'productRequestId'
   };
 
   export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
@@ -29206,7 +29210,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter | Date | string
     teamMember?: TeamMemberListRelationFilter
     account?: AccountListRelationFilter
-    product?: ProductListRelationFilter
+    productRequest?: ProductRequestListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -29236,7 +29240,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     teamMember?: TeamMemberOrderByRelationAggregateInput
     account?: AccountOrderByRelationAggregateInput
-    product?: ProductOrderByRelationAggregateInput
+    productRequest?: ProductRequestOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = {
@@ -29361,52 +29365,52 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
 
-  export type ServiceCategoryWhereInput = {
-    AND?: Enumerable<ServiceCategoryWhereInput>
-    OR?: Enumerable<ServiceCategoryWhereInput>
-    NOT?: Enumerable<ServiceCategoryWhereInput>
+  export type ServiceWhereInput = {
+    AND?: Enumerable<ServiceWhereInput>
+    OR?: Enumerable<ServiceWhereInput>
+    NOT?: Enumerable<ServiceWhereInput>
     id?: StringFilter | string
     name?: StringFilter | string
     description?: StringFilter | string
     isDeprecated?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
-    services?: ServiceListRelationFilter
-    form?: ServiceCategoryFormListRelationFilter
+    products?: ProductListRelationFilter
+    form?: ServiceFormListRelationFilter
   }
 
-  export type ServiceCategoryOrderByWithRelationInput = {
+  export type ServiceOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    services?: ServiceOrderByRelationAggregateInput
-    form?: ServiceCategoryFormOrderByRelationAggregateInput
+    products?: ProductOrderByRelationAggregateInput
+    form?: ServiceFormOrderByRelationAggregateInput
   }
 
-  export type ServiceCategoryWhereUniqueInput = {
+  export type ServiceWhereUniqueInput = {
     id?: string
     name?: string
   }
 
-  export type ServiceCategoryOrderByWithAggregationInput = {
+  export type ServiceOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: ServiceCategoryCountOrderByAggregateInput
-    _max?: ServiceCategoryMaxOrderByAggregateInput
-    _min?: ServiceCategoryMinOrderByAggregateInput
+    _count?: ServiceCountOrderByAggregateInput
+    _max?: ServiceMaxOrderByAggregateInput
+    _min?: ServiceMinOrderByAggregateInput
   }
 
-  export type ServiceCategoryScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ServiceCategoryScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ServiceCategoryScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ServiceCategoryScalarWhereWithAggregatesInput>
+  export type ServiceScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ServiceScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ServiceScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ServiceScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     name?: StringWithAggregatesFilter | string
     description?: StringWithAggregatesFilter | string
@@ -29415,10 +29419,10 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
   }
 
-  export type ServiceCategoryFormWhereInput = {
-    AND?: Enumerable<ServiceCategoryFormWhereInput>
-    OR?: Enumerable<ServiceCategoryFormWhereInput>
-    NOT?: Enumerable<ServiceCategoryFormWhereInput>
+  export type ServiceFormWhereInput = {
+    AND?: Enumerable<ServiceFormWhereInput>
+    OR?: Enumerable<ServiceFormWhereInput>
+    NOT?: Enumerable<ServiceFormWhereInput>
     id?: StringFilter | string
     title?: StringFilter | string
     description?: StringNullableFilter | string | null
@@ -29427,12 +29431,12 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
-    serviceCategoryId?: StringFilter | string
-    category?: XOR<ServiceCategoryRelationFilter, ServiceCategoryWhereInput>
-    subForm?: ServiceCategorySubFormListRelationFilter
+    serviceId?: StringFilter | string
+    service?: XOR<ServiceRelationFilter, ServiceWhereInput>
+    subForm?: ServiceSubFormListRelationFilter
   }
 
-  export type ServiceCategoryFormOrderByWithRelationInput = {
+  export type ServiceFormOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
@@ -29441,17 +29445,17 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
-    category?: ServiceCategoryOrderByWithRelationInput
-    subForm?: ServiceCategorySubFormOrderByRelationAggregateInput
+    serviceId?: SortOrder
+    service?: ServiceOrderByWithRelationInput
+    subForm?: ServiceSubFormOrderByRelationAggregateInput
   }
 
-  export type ServiceCategoryFormWhereUniqueInput = {
+  export type ServiceFormWhereUniqueInput = {
     id?: string
     title?: string
   }
 
-  export type ServiceCategoryFormOrderByWithAggregationInput = {
+  export type ServiceFormOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
@@ -29460,16 +29464,16 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
-    _count?: ServiceCategoryFormCountOrderByAggregateInput
-    _max?: ServiceCategoryFormMaxOrderByAggregateInput
-    _min?: ServiceCategoryFormMinOrderByAggregateInput
+    serviceId?: SortOrder
+    _count?: ServiceFormCountOrderByAggregateInput
+    _max?: ServiceFormMaxOrderByAggregateInput
+    _min?: ServiceFormMinOrderByAggregateInput
   }
 
-  export type ServiceCategoryFormScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ServiceCategoryFormScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ServiceCategoryFormScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ServiceCategoryFormScalarWhereWithAggregatesInput>
+  export type ServiceFormScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     title?: StringWithAggregatesFilter | string
     description?: StringNullableWithAggregatesFilter | string | null
@@ -29478,13 +29482,13 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     isDeprecated?: BoolWithAggregatesFilter | boolean
-    serviceCategoryId?: StringWithAggregatesFilter | string
+    serviceId?: StringWithAggregatesFilter | string
   }
 
-  export type ServiceCategorySubFormWhereInput = {
-    AND?: Enumerable<ServiceCategorySubFormWhereInput>
-    OR?: Enumerable<ServiceCategorySubFormWhereInput>
-    NOT?: Enumerable<ServiceCategorySubFormWhereInput>
+  export type ServiceSubFormWhereInput = {
+    AND?: Enumerable<ServiceSubFormWhereInput>
+    OR?: Enumerable<ServiceSubFormWhereInput>
+    NOT?: Enumerable<ServiceSubFormWhereInput>
     id?: StringFilter | string
     question?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
@@ -29499,10 +29503,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
     formId?: StringFilter | string
-    category?: XOR<ServiceCategoryFormRelationFilter, ServiceCategoryFormWhereInput>
+    form?: XOR<ServiceFormRelationFilter, ServiceFormWhereInput>
   }
 
-  export type ServiceCategorySubFormOrderByWithRelationInput = {
+  export type ServiceSubFormOrderByWithRelationInput = {
     id?: SortOrder
     question?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
@@ -29517,14 +29521,14 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
     formId?: SortOrder
-    category?: ServiceCategoryFormOrderByWithRelationInput
+    form?: ServiceFormOrderByWithRelationInput
   }
 
-  export type ServiceCategorySubFormWhereUniqueInput = {
+  export type ServiceSubFormWhereUniqueInput = {
     id?: string
   }
 
-  export type ServiceCategorySubFormOrderByWithAggregationInput = {
+  export type ServiceSubFormOrderByWithAggregationInput = {
     id?: SortOrder
     question?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
@@ -29539,15 +29543,15 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
     formId?: SortOrder
-    _count?: ServiceCategorySubFormCountOrderByAggregateInput
-    _max?: ServiceCategorySubFormMaxOrderByAggregateInput
-    _min?: ServiceCategorySubFormMinOrderByAggregateInput
+    _count?: ServiceSubFormCountOrderByAggregateInput
+    _max?: ServiceSubFormMaxOrderByAggregateInput
+    _min?: ServiceSubFormMinOrderByAggregateInput
   }
 
-  export type ServiceCategorySubFormScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ServiceCategorySubFormScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ServiceCategorySubFormScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ServiceCategorySubFormScalarWhereWithAggregatesInput>
+  export type ServiceSubFormScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ServiceSubFormScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ServiceSubFormScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ServiceSubFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     question?: StringNullableWithAggregatesFilter | string | null
     type?: StringNullableWithAggregatesFilter | string | null
@@ -29564,10 +29568,10 @@ export namespace Prisma {
     formId?: StringWithAggregatesFilter | string
   }
 
-  export type ServiceWhereInput = {
-    AND?: Enumerable<ServiceWhereInput>
-    OR?: Enumerable<ServiceWhereInput>
-    NOT?: Enumerable<ServiceWhereInput>
+  export type ProductWhereInput = {
+    AND?: Enumerable<ProductWhereInput>
+    OR?: Enumerable<ProductWhereInput>
+    NOT?: Enumerable<ProductWhereInput>
     id?: StringFilter | string
     name?: StringFilter | string
     description?: StringFilter | string
@@ -29586,13 +29590,13 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
-    serviceCategoryId?: StringFilter | string
-    category?: XOR<ServiceCategoryRelationFilter, ServiceCategoryWhereInput>
-    products?: ProductListRelationFilter
-    forms?: ServiceFormListRelationFilter
+    serviceId?: StringFilter | string
+    service?: XOR<ServiceRelationFilter, ServiceWhereInput>
+    request?: ProductRequestListRelationFilter
+    form?: ProductFormListRelationFilter
   }
 
-  export type ServiceOrderByWithRelationInput = {
+  export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -29611,17 +29615,17 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
-    category?: ServiceCategoryOrderByWithRelationInput
-    products?: ProductOrderByRelationAggregateInput
-    forms?: ServiceFormOrderByRelationAggregateInput
+    serviceId?: SortOrder
+    service?: ServiceOrderByWithRelationInput
+    request?: ProductRequestOrderByRelationAggregateInput
+    form?: ProductFormOrderByRelationAggregateInput
   }
 
-  export type ServiceWhereUniqueInput = {
+  export type ProductWhereUniqueInput = {
     id?: string
   }
 
-  export type ServiceOrderByWithAggregationInput = {
+  export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -29640,18 +29644,18 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
-    _count?: ServiceCountOrderByAggregateInput
-    _avg?: ServiceAvgOrderByAggregateInput
-    _max?: ServiceMaxOrderByAggregateInput
-    _min?: ServiceMinOrderByAggregateInput
-    _sum?: ServiceSumOrderByAggregateInput
+    serviceId?: SortOrder
+    _count?: ProductCountOrderByAggregateInput
+    _avg?: ProductAvgOrderByAggregateInput
+    _max?: ProductMaxOrderByAggregateInput
+    _min?: ProductMinOrderByAggregateInput
+    _sum?: ProductSumOrderByAggregateInput
   }
 
-  export type ServiceScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ServiceScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ServiceScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ServiceScalarWhereWithAggregatesInput>
+  export type ProductScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ProductScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ProductScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ProductScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     name?: StringWithAggregatesFilter | string
     description?: StringWithAggregatesFilter | string
@@ -29670,13 +29674,13 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     isDeprecated?: BoolWithAggregatesFilter | boolean
-    serviceCategoryId?: StringWithAggregatesFilter | string
+    serviceId?: StringWithAggregatesFilter | string
   }
 
-  export type ServiceFormWhereInput = {
-    AND?: Enumerable<ServiceFormWhereInput>
-    OR?: Enumerable<ServiceFormWhereInput>
-    NOT?: Enumerable<ServiceFormWhereInput>
+  export type ProductFormWhereInput = {
+    AND?: Enumerable<ProductFormWhereInput>
+    OR?: Enumerable<ProductFormWhereInput>
+    NOT?: Enumerable<ProductFormWhereInput>
     id?: StringFilter | string
     title?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
@@ -29685,12 +29689,12 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
     updatedAt?: DateTimeFilter | Date | string
-    serviceId?: StringFilter | string
-    service?: XOR<ServiceRelationFilter, ServiceWhereInput>
-    serviceSubForm?: ServiceSubFormListRelationFilter
+    productId?: StringFilter | string
+    product?: XOR<ProductRelationFilter, ProductWhereInput>
+    productSubForm?: ProductSubFormListRelationFilter
   }
 
-  export type ServiceFormOrderByWithRelationInput = {
+  export type ProductFormOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
@@ -29699,16 +29703,16 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrder
-    service?: ServiceOrderByWithRelationInput
-    serviceSubForm?: ServiceSubFormOrderByRelationAggregateInput
+    productId?: SortOrder
+    product?: ProductOrderByWithRelationInput
+    productSubForm?: ProductSubFormOrderByRelationAggregateInput
   }
 
-  export type ServiceFormWhereUniqueInput = {
+  export type ProductFormWhereUniqueInput = {
     id?: string
   }
 
-  export type ServiceFormOrderByWithAggregationInput = {
+  export type ProductFormOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
@@ -29717,16 +29721,16 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrder
-    _count?: ServiceFormCountOrderByAggregateInput
-    _max?: ServiceFormMaxOrderByAggregateInput
-    _min?: ServiceFormMinOrderByAggregateInput
+    productId?: SortOrder
+    _count?: ProductFormCountOrderByAggregateInput
+    _max?: ProductFormMaxOrderByAggregateInput
+    _min?: ProductFormMinOrderByAggregateInput
   }
 
-  export type ServiceFormScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
+  export type ProductFormScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ProductFormScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ProductFormScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ProductFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     title?: StringNullableWithAggregatesFilter | string | null
     type?: StringNullableWithAggregatesFilter | string | null
@@ -29735,13 +29739,13 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     isDeprecated?: BoolWithAggregatesFilter | boolean
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
-    serviceId?: StringWithAggregatesFilter | string
+    productId?: StringWithAggregatesFilter | string
   }
 
-  export type ServiceSubFormWhereInput = {
-    AND?: Enumerable<ServiceSubFormWhereInput>
-    OR?: Enumerable<ServiceSubFormWhereInput>
-    NOT?: Enumerable<ServiceSubFormWhereInput>
+  export type ProductSubFormWhereInput = {
+    AND?: Enumerable<ProductSubFormWhereInput>
+    OR?: Enumerable<ProductSubFormWhereInput>
+    NOT?: Enumerable<ProductSubFormWhereInput>
     id?: StringFilter | string
     question?: StringNullableFilter | string | null
     options?: StringNullableListFilter
@@ -29755,11 +29759,11 @@ export namespace Prisma {
     isDeprecated?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
-    serviceFormId?: StringFilter | string
-    serviceForm?: XOR<ServiceFormRelationFilter, ServiceFormWhereInput>
+    formId?: StringFilter | string
+    form?: XOR<ProductFormRelationFilter, ProductFormWhereInput>
   }
 
-  export type ServiceSubFormOrderByWithRelationInput = {
+  export type ProductSubFormOrderByWithRelationInput = {
     id?: SortOrder
     question?: SortOrderInput | SortOrder
     options?: SortOrder
@@ -29773,15 +29777,15 @@ export namespace Prisma {
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    serviceFormId?: SortOrder
-    serviceForm?: ServiceFormOrderByWithRelationInput
+    formId?: SortOrder
+    form?: ProductFormOrderByWithRelationInput
   }
 
-  export type ServiceSubFormWhereUniqueInput = {
+  export type ProductSubFormWhereUniqueInput = {
     id?: string
   }
 
-  export type ServiceSubFormOrderByWithAggregationInput = {
+  export type ProductSubFormOrderByWithAggregationInput = {
     id?: SortOrder
     question?: SortOrderInput | SortOrder
     options?: SortOrder
@@ -29795,16 +29799,16 @@ export namespace Prisma {
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    serviceFormId?: SortOrder
-    _count?: ServiceSubFormCountOrderByAggregateInput
-    _max?: ServiceSubFormMaxOrderByAggregateInput
-    _min?: ServiceSubFormMinOrderByAggregateInput
+    formId?: SortOrder
+    _count?: ProductSubFormCountOrderByAggregateInput
+    _max?: ProductSubFormMaxOrderByAggregateInput
+    _min?: ProductSubFormMinOrderByAggregateInput
   }
 
-  export type ServiceSubFormScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ServiceSubFormScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ServiceSubFormScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ServiceSubFormScalarWhereWithAggregatesInput>
+  export type ProductSubFormScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ProductSubFormScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ProductSubFormScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ProductSubFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     question?: StringNullableWithAggregatesFilter | string | null
     options?: StringNullableListFilter
@@ -29818,13 +29822,13 @@ export namespace Prisma {
     isDeprecated?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
-    serviceFormId?: StringWithAggregatesFilter | string
+    formId?: StringWithAggregatesFilter | string
   }
 
-  export type ProductWhereInput = {
-    AND?: Enumerable<ProductWhereInput>
-    OR?: Enumerable<ProductWhereInput>
-    NOT?: Enumerable<ProductWhereInput>
+  export type ProductRequestWhereInput = {
+    AND?: Enumerable<ProductRequestWhereInput>
+    OR?: Enumerable<ProductRequestWhereInput>
+    NOT?: Enumerable<ProductRequestWhereInput>
     id?: StringFilter | string
     email?: StringNullableFilter | string | null
     address?: StringNullableFilter | string | null
@@ -29835,16 +29839,16 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
     updatedAt?: DateTimeFilter | Date | string
-    serviceId?: StringNullableFilter | string | null
+    productId?: StringNullableFilter | string | null
     userId?: StringFilter | string
     Team?: TeamListRelationFilter
-    service?: XOR<ServiceRelationFilter, ServiceWhereInput> | null
+    product?: XOR<ProductRelationFilter, ProductWhereInput> | null
     user?: XOR<UserRelationFilter, UserWhereInput>
     Payment?: PaymentListRelationFilter
-    productQA?: ProductQAListRelationFilter
+    requestQA?: ProductRequestQAListRelationFilter
   }
 
-  export type ProductOrderByWithRelationInput = {
+  export type ProductRequestOrderByWithRelationInput = {
     id?: SortOrder
     email?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -29855,20 +29859,20 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrderInput | SortOrder
+    productId?: SortOrderInput | SortOrder
     userId?: SortOrder
     Team?: TeamOrderByRelationAggregateInput
-    service?: ServiceOrderByWithRelationInput
+    product?: ProductOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
     Payment?: PaymentOrderByRelationAggregateInput
-    productQA?: ProductQAOrderByRelationAggregateInput
+    requestQA?: ProductRequestQAOrderByRelationAggregateInput
   }
 
-  export type ProductWhereUniqueInput = {
+  export type ProductRequestWhereUniqueInput = {
     id?: string
   }
 
-  export type ProductOrderByWithAggregationInput = {
+  export type ProductRequestOrderByWithAggregationInput = {
     id?: SortOrder
     email?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
@@ -29879,17 +29883,17 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrderInput | SortOrder
+    productId?: SortOrderInput | SortOrder
     userId?: SortOrder
-    _count?: ProductCountOrderByAggregateInput
-    _max?: ProductMaxOrderByAggregateInput
-    _min?: ProductMinOrderByAggregateInput
+    _count?: ProductRequestCountOrderByAggregateInput
+    _max?: ProductRequestMaxOrderByAggregateInput
+    _min?: ProductRequestMinOrderByAggregateInput
   }
 
-  export type ProductScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ProductScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ProductScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ProductScalarWhereWithAggregatesInput>
+  export type ProductRequestScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ProductRequestScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ProductRequestScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ProductRequestScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     email?: StringNullableWithAggregatesFilter | string | null
     address?: StringNullableWithAggregatesFilter | string | null
@@ -29900,144 +29904,144 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     isDeprecated?: BoolWithAggregatesFilter | boolean
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
-    serviceId?: StringNullableWithAggregatesFilter | string | null
+    productId?: StringNullableWithAggregatesFilter | string | null
     userId?: StringWithAggregatesFilter | string
   }
 
-  export type ProductQAWhereInput = {
-    AND?: Enumerable<ProductQAWhereInput>
-    OR?: Enumerable<ProductQAWhereInput>
-    NOT?: Enumerable<ProductQAWhereInput>
+  export type ProductRequestQAWhereInput = {
+    AND?: Enumerable<ProductRequestQAWhereInput>
+    OR?: Enumerable<ProductRequestQAWhereInput>
+    NOT?: Enumerable<ProductRequestQAWhereInput>
     id?: StringFilter | string
-    question?: StringNullableFilter | string | null
-    answer?: StringNullableListFilter
+    title?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isGeneral?: BoolFilter | boolean
-    fileName?: StringNullableFilter | string | null
-    fileType?: StringNullableFilter | string | null
-    fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
-    productId?: StringFilter | string
-    products?: XOR<ProductRelationFilter, ProductWhereInput>
-    productSubForm?: ProductQASubFormListRelationFilter
+    requestId?: StringFilter | string
+    request?: XOR<ProductRequestRelationFilter, ProductRequestWhereInput>
+    subForm?: ProductRequestQASubFormListRelationFilter
   }
 
-  export type ProductQAOrderByWithRelationInput = {
+  export type ProductRequestQAOrderByWithRelationInput = {
     id?: SortOrder
-    question?: SortOrderInput | SortOrder
-    answer?: SortOrder
+    title?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isGeneral?: SortOrder
-    fileName?: SortOrderInput | SortOrder
-    fileType?: SortOrderInput | SortOrder
-    fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
-    products?: ProductOrderByWithRelationInput
-    productSubForm?: ProductQASubFormOrderByRelationAggregateInput
+    requestId?: SortOrder
+    request?: ProductRequestOrderByWithRelationInput
+    subForm?: ProductRequestQASubFormOrderByRelationAggregateInput
   }
 
-  export type ProductQAWhereUniqueInput = {
+  export type ProductRequestQAWhereUniqueInput = {
     id?: string
   }
 
-  export type ProductQAOrderByWithAggregationInput = {
+  export type ProductRequestQAOrderByWithAggregationInput = {
     id?: SortOrder
-    question?: SortOrderInput | SortOrder
-    answer?: SortOrder
+    title?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isGeneral?: SortOrder
-    fileName?: SortOrderInput | SortOrder
-    fileType?: SortOrderInput | SortOrder
-    fileLink?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
-    _count?: ProductQACountOrderByAggregateInput
-    _max?: ProductQAMaxOrderByAggregateInput
-    _min?: ProductQAMinOrderByAggregateInput
+    requestId?: SortOrder
+    _count?: ProductRequestQACountOrderByAggregateInput
+    _max?: ProductRequestQAMaxOrderByAggregateInput
+    _min?: ProductRequestQAMinOrderByAggregateInput
   }
 
-  export type ProductQAScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ProductQAScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ProductQAScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ProductQAScalarWhereWithAggregatesInput>
+  export type ProductRequestQAScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ProductRequestQAScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ProductRequestQAScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ProductRequestQAScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    question?: StringNullableWithAggregatesFilter | string | null
-    answer?: StringNullableListFilter
+    title?: StringNullableWithAggregatesFilter | string | null
+    description?: StringNullableWithAggregatesFilter | string | null
     type?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     isGeneral?: BoolWithAggregatesFilter | boolean
-    fileName?: StringNullableWithAggregatesFilter | string | null
-    fileType?: StringNullableWithAggregatesFilter | string | null
-    fileLink?: StringNullableWithAggregatesFilter | string | null
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     isDeprecated?: BoolWithAggregatesFilter | boolean
-    productId?: StringWithAggregatesFilter | string
+    requestId?: StringWithAggregatesFilter | string
   }
 
-  export type ProductQASubFormWhereInput = {
-    AND?: Enumerable<ProductQASubFormWhereInput>
-    OR?: Enumerable<ProductQASubFormWhereInput>
-    NOT?: Enumerable<ProductQASubFormWhereInput>
+  export type ProductRequestQASubFormWhereInput = {
+    AND?: Enumerable<ProductRequestQASubFormWhereInput>
+    OR?: Enumerable<ProductRequestQASubFormWhereInput>
+    NOT?: Enumerable<ProductRequestQASubFormWhereInput>
     id?: StringFilter | string
     question?: StringNullableFilter | string | null
     answer?: StringNullableListFilter
     type?: StringNullableFilter | string | null
+    fileName?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
-    productQAId?: StringFilter | string
-    productQA?: XOR<ProductQARelationFilter, ProductQAWhereInput>
+    requestQAId?: StringFilter | string
+    requestQA?: XOR<ProductRequestQARelationFilter, ProductRequestQAWhereInput>
   }
 
-  export type ProductQASubFormOrderByWithRelationInput = {
+  export type ProductRequestQASubFormOrderByWithRelationInput = {
     id?: SortOrder
     question?: SortOrderInput | SortOrder
     answer?: SortOrder
     type?: SortOrderInput | SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
-    productQAId?: SortOrder
-    productQA?: ProductQAOrderByWithRelationInput
+    requestQAId?: SortOrder
+    requestQA?: ProductRequestQAOrderByWithRelationInput
   }
 
-  export type ProductQASubFormWhereUniqueInput = {
+  export type ProductRequestQASubFormWhereUniqueInput = {
     id?: string
   }
 
-  export type ProductQASubFormOrderByWithAggregationInput = {
+  export type ProductRequestQASubFormOrderByWithAggregationInput = {
     id?: SortOrder
     question?: SortOrderInput | SortOrder
     answer?: SortOrder
     type?: SortOrderInput | SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileLink?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
-    productQAId?: SortOrder
-    _count?: ProductQASubFormCountOrderByAggregateInput
-    _max?: ProductQASubFormMaxOrderByAggregateInput
-    _min?: ProductQASubFormMinOrderByAggregateInput
+    requestQAId?: SortOrder
+    _count?: ProductRequestQASubFormCountOrderByAggregateInput
+    _max?: ProductRequestQASubFormMaxOrderByAggregateInput
+    _min?: ProductRequestQASubFormMinOrderByAggregateInput
   }
 
-  export type ProductQASubFormScalarWhereWithAggregatesInput = {
-    AND?: Enumerable<ProductQASubFormScalarWhereWithAggregatesInput>
-    OR?: Enumerable<ProductQASubFormScalarWhereWithAggregatesInput>
-    NOT?: Enumerable<ProductQASubFormScalarWhereWithAggregatesInput>
+  export type ProductRequestQASubFormScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<ProductRequestQASubFormScalarWhereWithAggregatesInput>
+    OR?: Enumerable<ProductRequestQASubFormScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<ProductRequestQASubFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
     question?: StringNullableWithAggregatesFilter | string | null
     answer?: StringNullableListFilter
     type?: StringNullableWithAggregatesFilter | string | null
+    fileName?: StringNullableWithAggregatesFilter | string | null
+    fileType?: StringNullableWithAggregatesFilter | string | null
+    fileLink?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     isDeprecated?: BoolWithAggregatesFilter | boolean
-    productQAId?: StringWithAggregatesFilter | string
+    requestQAId?: StringWithAggregatesFilter | string
   }
 
   export type ClaimWhereInput = {
@@ -30100,8 +30104,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
-    productId?: StringFilter | string
-    product?: XOR<ProductRelationFilter, ProductWhereInput>
+    productRequestId?: StringFilter | string
+    productRequest?: XOR<ProductRequestRelationFilter, ProductRequestWhereInput>
     invitation?: InvitationListRelationFilter
     teamMember?: TeamMemberListRelationFilter
   }
@@ -30114,8 +30118,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
-    product?: ProductOrderByWithRelationInput
+    productRequestId?: SortOrder
+    productRequest?: ProductRequestOrderByWithRelationInput
     invitation?: InvitationOrderByRelationAggregateInput
     teamMember?: TeamMemberOrderByRelationAggregateInput
   }
@@ -30132,7 +30136,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    productRequestId?: SortOrder
     _count?: TeamCountOrderByAggregateInput
     _max?: TeamMaxOrderByAggregateInput
     _min?: TeamMinOrderByAggregateInput
@@ -30149,7 +30153,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     isDeprecated?: BoolWithAggregatesFilter | boolean
-    productId?: StringWithAggregatesFilter | string
+    productRequestId?: StringWithAggregatesFilter | string
   }
 
   export type TeamMemberWhereInput = {
@@ -30298,8 +30302,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
-    productId?: StringFilter | string
-    products?: XOR<ProductRelationFilter, ProductWhereInput>
+    productRequestId?: StringFilter | string
+    productRequests?: XOR<ProductRequestRelationFilter, ProductRequestWhereInput>
   }
 
   export type PaymentOrderByWithRelationInput = {
@@ -30311,8 +30315,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
-    products?: ProductOrderByWithRelationInput
+    productRequestId?: SortOrder
+    productRequests?: ProductRequestOrderByWithRelationInput
   }
 
   export type PaymentWhereUniqueInput = {
@@ -30328,7 +30332,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    productRequestId?: SortOrder
     _count?: PaymentCountOrderByAggregateInput
     _max?: PaymentMaxOrderByAggregateInput
     _min?: PaymentMinOrderByAggregateInput
@@ -30346,7 +30350,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     isDeprecated?: BoolWithAggregatesFilter | boolean
-    productId?: StringWithAggregatesFilter | string
+    productRequestId?: StringWithAggregatesFilter | string
   }
 
   export type ParterWhereInput = {
@@ -31144,7 +31148,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     teamMember?: TeamMemberCreateNestedManyWithoutUserInput
     account?: AccountCreateNestedManyWithoutUserInput
-    product?: ProductCreateNestedManyWithoutUserInput
+    productRequest?: ProductRequestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -31174,7 +31178,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
-    product?: ProductUncheckedCreateNestedManyWithoutUserInput
+    productRequest?: ProductRequestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -31204,7 +31208,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMember?: TeamMemberUpdateManyWithoutUserNestedInput
     account?: AccountUpdateManyWithoutUserNestedInput
-    product?: ProductUpdateManyWithoutUserNestedInput
+    productRequest?: ProductRequestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -31234,7 +31238,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMember?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    product?: ProductUncheckedUpdateManyWithoutUserNestedInput
+    productRequest?: ProductRequestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -31395,379 +31399,283 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceCategoryCreateInput = {
-    id?: string
-    name: string
-    description: string
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    services?: ServiceCreateNestedManyWithoutCategoryInput
-    form?: ServiceCategoryFormCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryUncheckedCreateInput = {
-    id?: string
-    name: string
-    description: string
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    services?: ServiceUncheckedCreateNestedManyWithoutCategoryInput
-    form?: ServiceCategoryFormUncheckedCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    services?: ServiceUpdateManyWithoutCategoryNestedInput
-    form?: ServiceCategoryFormUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type ServiceCategoryUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    services?: ServiceUncheckedUpdateManyWithoutCategoryNestedInput
-    form?: ServiceCategoryFormUncheckedUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type ServiceCategoryCreateManyInput = {
-    id?: string
-    name: string
-    description: string
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ServiceCategoryUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ServiceCategoryUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ServiceCategoryFormCreateInput = {
-    id?: string
-    title: string
-    description?: string | null
-    type?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    category: ServiceCategoryCreateNestedOneWithoutFormInput
-    subForm?: ServiceCategorySubFormCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryFormUncheckedCreateInput = {
-    id?: string
-    title: string
-    description?: string | null
-    type?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    serviceCategoryId: string
-    subForm?: ServiceCategorySubFormUncheckedCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryFormUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    category?: ServiceCategoryUpdateOneRequiredWithoutFormNestedInput
-    subForm?: ServiceCategorySubFormUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type ServiceCategoryFormUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    serviceCategoryId?: StringFieldUpdateOperationsInput | string
-    subForm?: ServiceCategorySubFormUncheckedUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type ServiceCategoryFormCreateManyInput = {
-    id?: string
-    title: string
-    description?: string | null
-    type?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    serviceCategoryId: string
-  }
-
-  export type ServiceCategoryFormUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type ServiceCategoryFormUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    serviceCategoryId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ServiceCategorySubFormCreateInput = {
-    id?: string
-    question?: string | null
-    type?: string | null
-    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
-    dependsOn?: string | null
-    allowOther?: boolean
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    category: ServiceCategoryFormCreateNestedOneWithoutSubFormInput
-  }
-
-  export type ServiceCategorySubFormUncheckedCreateInput = {
-    id?: string
-    question?: string | null
-    type?: string | null
-    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
-    dependsOn?: string | null
-    allowOther?: boolean
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    formId: string
-  }
-
-  export type ServiceCategorySubFormUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
-    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
-    allowOther?: BoolFieldUpdateOperationsInput | boolean
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    category?: ServiceCategoryFormUpdateOneRequiredWithoutSubFormNestedInput
-  }
-
-  export type ServiceCategorySubFormUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
-    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
-    allowOther?: BoolFieldUpdateOperationsInput | boolean
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    formId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ServiceCategorySubFormCreateManyInput = {
-    id?: string
-    question?: string | null
-    type?: string | null
-    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
-    dependsOn?: string | null
-    allowOther?: boolean
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    formId: string
-  }
-
-  export type ServiceCategorySubFormUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
-    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
-    allowOther?: BoolFieldUpdateOperationsInput | boolean
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type ServiceCategorySubFormUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
-    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
-    allowOther?: BoolFieldUpdateOperationsInput | boolean
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    formId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type ServiceCreateInput = {
     id?: string
     name: string
     description: string
-    country: string
-    currency: string
-    amount: number
-    timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
-    hasShares?: boolean
-    hasAgent?: boolean
-    hasOwner?: boolean
-    hasController?: boolean
-    controllerIsCalled?: string | null
-    OwnerIsCalled?: string | null
-    agentIsCalled?: string | null
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    isDeprecated?: boolean
-    category: ServiceCategoryCreateNestedOneWithoutServicesInput
     products?: ProductCreateNestedManyWithoutServiceInput
-    forms?: ServiceFormCreateNestedManyWithoutServiceInput
+    form?: ServiceFormCreateNestedManyWithoutServiceInput
   }
 
   export type ServiceUncheckedCreateInput = {
     id?: string
     name: string
     description: string
-    country: string
-    currency: string
-    amount: number
-    timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
-    hasShares?: boolean
-    hasAgent?: boolean
-    hasOwner?: boolean
-    hasController?: boolean
-    controllerIsCalled?: string | null
-    OwnerIsCalled?: string | null
-    agentIsCalled?: string | null
+    isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
-    isDeprecated?: boolean
-    serviceCategoryId: string
     products?: ProductUncheckedCreateNestedManyWithoutServiceInput
-    forms?: ServiceFormUncheckedCreateNestedManyWithoutServiceInput
+    form?: ServiceFormUncheckedCreateNestedManyWithoutServiceInput
   }
 
   export type ServiceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    currency?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    hasShares?: BoolFieldUpdateOperationsInput | boolean
-    hasAgent?: BoolFieldUpdateOperationsInput | boolean
-    hasOwner?: BoolFieldUpdateOperationsInput | boolean
-    hasController?: BoolFieldUpdateOperationsInput | boolean
-    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    category?: ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput
     products?: ProductUpdateManyWithoutServiceNestedInput
-    forms?: ServiceFormUpdateManyWithoutServiceNestedInput
+    form?: ServiceFormUpdateManyWithoutServiceNestedInput
   }
 
   export type ServiceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    currency?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    hasShares?: BoolFieldUpdateOperationsInput | boolean
-    hasAgent?: BoolFieldUpdateOperationsInput | boolean
-    hasOwner?: BoolFieldUpdateOperationsInput | boolean
-    hasController?: BoolFieldUpdateOperationsInput | boolean
-    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    serviceCategoryId?: StringFieldUpdateOperationsInput | string
     products?: ProductUncheckedUpdateManyWithoutServiceNestedInput
-    forms?: ServiceFormUncheckedUpdateManyWithoutServiceNestedInput
+    form?: ServiceFormUncheckedUpdateManyWithoutServiceNestedInput
   }
 
   export type ServiceCreateManyInput = {
+    id?: string
+    name: string
+    description: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ServiceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServiceFormCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    type?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    service: ServiceCreateNestedOneWithoutFormInput
+    subForm?: ServiceSubFormCreateNestedManyWithoutFormInput
+  }
+
+  export type ServiceFormUncheckedCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    type?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    serviceId: string
+    subForm?: ServiceSubFormUncheckedCreateNestedManyWithoutFormInput
+  }
+
+  export type ServiceFormUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    service?: ServiceUpdateOneRequiredWithoutFormNestedInput
+    subForm?: ServiceSubFormUpdateManyWithoutFormNestedInput
+  }
+
+  export type ServiceFormUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    serviceId?: StringFieldUpdateOperationsInput | string
+    subForm?: ServiceSubFormUncheckedUpdateManyWithoutFormNestedInput
+  }
+
+  export type ServiceFormCreateManyInput = {
+    id?: string
+    title: string
+    description?: string | null
+    type?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    serviceId: string
+  }
+
+  export type ServiceFormUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ServiceFormUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    serviceId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceSubFormCreateInput = {
+    id?: string
+    question?: string | null
+    type?: string | null
+    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    dependsOn?: string | null
+    allowOther?: boolean
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    form: ServiceFormCreateNestedOneWithoutSubFormInput
+  }
+
+  export type ServiceSubFormUncheckedCreateInput = {
+    id?: string
+    question?: string | null
+    type?: string | null
+    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    dependsOn?: string | null
+    allowOther?: boolean
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    formId: string
+  }
+
+  export type ServiceSubFormUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    form?: ServiceFormUpdateOneRequiredWithoutSubFormNestedInput
+  }
+
+  export type ServiceSubFormUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    formId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceSubFormCreateManyInput = {
+    id?: string
+    question?: string | null
+    type?: string | null
+    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    dependsOn?: string | null
+    allowOther?: boolean
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    formId: string
+  }
+
+  export type ServiceSubFormUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ServiceSubFormUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    formId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductCreateInput = {
     id?: string
     name: string
     description: string
@@ -31775,7 +31683,7 @@ export namespace Prisma {
     currency: string
     amount: number
     timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
+    feature?: ProductCreatefeatureInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -31786,330 +31694,354 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    serviceCategoryId: string
-  }
-
-  export type ServiceUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    currency?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    hasShares?: BoolFieldUpdateOperationsInput | boolean
-    hasAgent?: BoolFieldUpdateOperationsInput | boolean
-    hasOwner?: BoolFieldUpdateOperationsInput | boolean
-    hasController?: BoolFieldUpdateOperationsInput | boolean
-    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type ServiceUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    country?: StringFieldUpdateOperationsInput | string
-    currency?: StringFieldUpdateOperationsInput | string
-    amount?: IntFieldUpdateOperationsInput | number
-    timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
-    hasShares?: BoolFieldUpdateOperationsInput | boolean
-    hasAgent?: BoolFieldUpdateOperationsInput | boolean
-    hasOwner?: BoolFieldUpdateOperationsInput | boolean
-    hasController?: BoolFieldUpdateOperationsInput | boolean
-    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    serviceCategoryId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ServiceFormCreateInput = {
-    id?: string
-    title?: string | null
-    type?: string | null
-    description?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    isDeprecated?: boolean
-    updatedAt?: Date | string
-    service: ServiceCreateNestedOneWithoutFormsInput
-    serviceSubForm?: ServiceSubFormCreateNestedManyWithoutServiceFormInput
-  }
-
-  export type ServiceFormUncheckedCreateInput = {
-    id?: string
-    title?: string | null
-    type?: string | null
-    description?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    isDeprecated?: boolean
-    updatedAt?: Date | string
-    serviceId: string
-    serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
-  }
-
-  export type ServiceFormUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    service?: ServiceUpdateOneRequiredWithoutFormsNestedInput
-    serviceSubForm?: ServiceSubFormUpdateManyWithoutServiceFormNestedInput
-  }
-
-  export type ServiceFormUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: StringFieldUpdateOperationsInput | string
-    serviceSubForm?: ServiceSubFormUncheckedUpdateManyWithoutServiceFormNestedInput
-  }
-
-  export type ServiceFormCreateManyInput = {
-    id?: string
-    title?: string | null
-    type?: string | null
-    description?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    isDeprecated?: boolean
-    updatedAt?: Date | string
-    serviceId: string
-  }
-
-  export type ServiceFormUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ServiceFormUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ServiceSubFormCreateInput = {
-    id?: string
-    question?: string | null
-    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
-    type?: string | null
-    allowOther?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
-    dependsOn?: string | null
-    compulsory?: boolean
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    serviceForm: ServiceFormCreateNestedOneWithoutServiceSubFormInput
-  }
-
-  export type ServiceSubFormUncheckedCreateInput = {
-    id?: string
-    question?: string | null
-    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
-    type?: string | null
-    allowOther?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
-    dependsOn?: string | null
-    compulsory?: boolean
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    serviceFormId: string
-  }
-
-  export type ServiceSubFormUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    allowOther?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
-    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceForm?: ServiceFormUpdateOneRequiredWithoutServiceSubFormNestedInput
-  }
-
-  export type ServiceSubFormUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    allowOther?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
-    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceFormId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ServiceSubFormCreateManyInput = {
-    id?: string
-    question?: string | null
-    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
-    type?: string | null
-    allowOther?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
-    dependsOn?: string | null
-    compulsory?: boolean
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    serviceFormId: string
-  }
-
-  export type ServiceSubFormUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    allowOther?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
-    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ServiceSubFormUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    allowOther?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
-    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceFormId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ProductCreateInput = {
-    id?: string
-    email?: string | null
-    address?: string | null
-    paid?: boolean
-    completed?: boolean
-    status?: string
-    currentState?: ProductActivityStage
-    createdAt?: Date | string
-    isDeprecated?: boolean
-    updatedAt?: Date | string
-    Team?: TeamCreateNestedManyWithoutProductInput
-    service?: ServiceCreateNestedOneWithoutProductsInput
-    user: UserCreateNestedOneWithoutProductInput
-    Payment?: PaymentCreateNestedManyWithoutProductsInput
-    productQA?: ProductQACreateNestedManyWithoutProductsInput
+    service: ServiceCreateNestedOneWithoutProductsInput
+    request?: ProductRequestCreateNestedManyWithoutProductInput
+    form?: ProductFormCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
     id?: string
-    email?: string | null
-    address?: string | null
-    paid?: boolean
-    completed?: boolean
-    status?: string
-    currentState?: ProductActivityStage
+    name: string
+    description: string
+    country: string
+    currency: string
+    amount: number
+    timeline: string
+    feature?: ProductCreatefeatureInput | Enumerable<string>
+    hasShares?: boolean
+    hasAgent?: boolean
+    hasOwner?: boolean
+    hasController?: boolean
+    controllerIsCalled?: string | null
+    OwnerIsCalled?: string | null
+    agentIsCalled?: string | null
     createdAt?: Date | string
-    isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceId?: string | null
-    userId: string
-    Team?: TeamUncheckedCreateNestedManyWithoutProductInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutProductsInput
-    productQA?: ProductQAUncheckedCreateNestedManyWithoutProductsInput
+    isDeprecated?: boolean
+    serviceId: string
+    request?: ProductRequestUncheckedCreateNestedManyWithoutProductInput
+    form?: ProductFormUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    paid?: BoolFieldUpdateOperationsInput | boolean
-    completed?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    timeline?: StringFieldUpdateOperationsInput | string
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
+    hasShares?: BoolFieldUpdateOperationsInput | boolean
+    hasAgent?: BoolFieldUpdateOperationsInput | boolean
+    hasOwner?: BoolFieldUpdateOperationsInput | boolean
+    hasController?: BoolFieldUpdateOperationsInput | boolean
+    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Team?: TeamUpdateManyWithoutProductNestedInput
-    service?: ServiceUpdateOneWithoutProductsNestedInput
-    user?: UserUpdateOneRequiredWithoutProductNestedInput
-    Payment?: PaymentUpdateManyWithoutProductsNestedInput
-    productQA?: ProductQAUpdateManyWithoutProductsNestedInput
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    service?: ServiceUpdateOneRequiredWithoutProductsNestedInput
+    request?: ProductRequestUpdateManyWithoutProductNestedInput
+    form?: ProductFormUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    paid?: BoolFieldUpdateOperationsInput | boolean
-    completed?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    timeline?: StringFieldUpdateOperationsInput | string
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
+    hasShares?: BoolFieldUpdateOperationsInput | boolean
+    hasAgent?: BoolFieldUpdateOperationsInput | boolean
+    hasOwner?: BoolFieldUpdateOperationsInput | boolean
+    hasController?: BoolFieldUpdateOperationsInput | boolean
+    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: StringFieldUpdateOperationsInput | string
-    Team?: TeamUncheckedUpdateManyWithoutProductNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutProductsNestedInput
-    productQA?: ProductQAUncheckedUpdateManyWithoutProductsNestedInput
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    serviceId?: StringFieldUpdateOperationsInput | string
+    request?: ProductRequestUncheckedUpdateManyWithoutProductNestedInput
+    form?: ProductFormUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
+    id?: string
+    name: string
+    description: string
+    country: string
+    currency: string
+    amount: number
+    timeline: string
+    feature?: ProductCreatefeatureInput | Enumerable<string>
+    hasShares?: boolean
+    hasAgent?: boolean
+    hasOwner?: boolean
+    hasController?: boolean
+    controllerIsCalled?: string | null
+    OwnerIsCalled?: string | null
+    agentIsCalled?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    serviceId: string
+  }
+
+  export type ProductUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    timeline?: StringFieldUpdateOperationsInput | string
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
+    hasShares?: BoolFieldUpdateOperationsInput | boolean
+    hasAgent?: BoolFieldUpdateOperationsInput | boolean
+    hasOwner?: BoolFieldUpdateOperationsInput | boolean
+    hasController?: BoolFieldUpdateOperationsInput | boolean
+    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ProductUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    timeline?: StringFieldUpdateOperationsInput | string
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
+    hasShares?: BoolFieldUpdateOperationsInput | boolean
+    hasAgent?: BoolFieldUpdateOperationsInput | boolean
+    hasOwner?: BoolFieldUpdateOperationsInput | boolean
+    hasController?: BoolFieldUpdateOperationsInput | boolean
+    controllerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    OwnerIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    agentIsCalled?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    serviceId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductFormCreateInput = {
+    id?: string
+    title?: string | null
+    type?: string | null
+    description?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    isDeprecated?: boolean
+    updatedAt?: Date | string
+    product: ProductCreateNestedOneWithoutFormInput
+    productSubForm?: ProductSubFormCreateNestedManyWithoutFormInput
+  }
+
+  export type ProductFormUncheckedCreateInput = {
+    id?: string
+    title?: string | null
+    type?: string | null
+    description?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    isDeprecated?: boolean
+    updatedAt?: Date | string
+    productId: string
+    productSubForm?: ProductSubFormUncheckedCreateNestedManyWithoutFormInput
+  }
+
+  export type ProductFormUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutFormNestedInput
+    productSubForm?: ProductSubFormUpdateManyWithoutFormNestedInput
+  }
+
+  export type ProductFormUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productId?: StringFieldUpdateOperationsInput | string
+    productSubForm?: ProductSubFormUncheckedUpdateManyWithoutFormNestedInput
+  }
+
+  export type ProductFormCreateManyInput = {
+    id?: string
+    title?: string | null
+    type?: string | null
+    description?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    isDeprecated?: boolean
+    updatedAt?: Date | string
+    productId: string
+  }
+
+  export type ProductFormUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductFormUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductSubFormCreateInput = {
+    id?: string
+    question?: string | null
+    options?: ProductSubFormCreateoptionsInput | Enumerable<string>
+    type?: string | null
+    allowOther?: boolean
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    dependsOn?: string | null
+    compulsory?: boolean
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    form: ProductFormCreateNestedOneWithoutProductSubFormInput
+  }
+
+  export type ProductSubFormUncheckedCreateInput = {
+    id?: string
+    question?: string | null
+    options?: ProductSubFormCreateoptionsInput | Enumerable<string>
+    type?: string | null
+    allowOther?: boolean
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    dependsOn?: string | null
+    compulsory?: boolean
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    formId: string
+  }
+
+  export type ProductSubFormUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ProductSubFormUpdateoptionsInput | Enumerable<string>
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    form?: ProductFormUpdateOneRequiredWithoutProductSubFormNestedInput
+  }
+
+  export type ProductSubFormUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ProductSubFormUpdateoptionsInput | Enumerable<string>
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    formId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductSubFormCreateManyInput = {
+    id?: string
+    question?: string | null
+    options?: ProductSubFormCreateoptionsInput | Enumerable<string>
+    type?: string | null
+    allowOther?: boolean
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    dependsOn?: string | null
+    compulsory?: boolean
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    formId: string
+  }
+
+  export type ProductSubFormUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ProductSubFormUpdateoptionsInput | Enumerable<string>
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductSubFormUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ProductSubFormUpdateoptionsInput | Enumerable<string>
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    formId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductRequestCreateInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -32120,11 +32052,83 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceId?: string | null
+    Team?: TeamCreateNestedManyWithoutProductRequestInput
+    product?: ProductCreateNestedOneWithoutRequestInput
+    user: UserCreateNestedOneWithoutProductRequestInput
+    Payment?: PaymentCreateNestedManyWithoutProductRequestsInput
+    requestQA?: ProductRequestQACreateNestedManyWithoutRequestInput
+  }
+
+  export type ProductRequestUncheckedCreateInput = {
+    id?: string
+    email?: string | null
+    address?: string | null
+    paid?: boolean
+    completed?: boolean
+    status?: string
+    currentState?: ProductActivityStage
+    createdAt?: Date | string
+    isDeprecated?: boolean
+    updatedAt?: Date | string
+    productId?: string | null
+    userId: string
+    Team?: TeamUncheckedCreateNestedManyWithoutProductRequestInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutProductRequestsInput
+    requestQA?: ProductRequestQAUncheckedCreateNestedManyWithoutRequestInput
+  }
+
+  export type ProductRequestUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Team?: TeamUpdateManyWithoutProductRequestNestedInput
+    product?: ProductUpdateOneWithoutRequestNestedInput
+    user?: UserUpdateOneRequiredWithoutProductRequestNestedInput
+    Payment?: PaymentUpdateManyWithoutProductRequestsNestedInput
+    requestQA?: ProductRequestQAUpdateManyWithoutRequestNestedInput
+  }
+
+  export type ProductRequestUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    Team?: TeamUncheckedUpdateManyWithoutProductRequestNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutProductRequestsNestedInput
+    requestQA?: ProductRequestQAUncheckedUpdateManyWithoutRequestNestedInput
+  }
+
+  export type ProductRequestCreateManyInput = {
+    id?: string
+    email?: string | null
+    address?: string | null
+    paid?: boolean
+    completed?: boolean
+    status?: string
+    currentState?: ProductActivityStage
+    createdAt?: Date | string
+    isDeprecated?: boolean
+    updatedAt?: Date | string
+    productId?: string | null
     userId: string
   }
 
-  export type ProductUpdateManyMutationInput = {
+  export type ProductRequestUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32137,7 +32141,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ProductUncheckedUpdateManyInput = {
+  export type ProductRequestUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32148,192 +32152,192 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProductQACreateInput = {
+  export type ProductRequestQACreateInput = {
     id?: string
-    question?: string | null
-    answer?: ProductQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    products: ProductCreateNestedOneWithoutProductQAInput
-    productSubForm?: ProductQASubFormCreateNestedManyWithoutProductQAInput
+    request: ProductRequestCreateNestedOneWithoutRequestQAInput
+    subForm?: ProductRequestQASubFormCreateNestedManyWithoutRequestQAInput
   }
 
-  export type ProductQAUncheckedCreateInput = {
+  export type ProductRequestQAUncheckedCreateInput = {
     id?: string
-    question?: string | null
-    answer?: ProductQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productId: string
-    productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+    requestId: string
+    subForm?: ProductRequestQASubFormUncheckedCreateNestedManyWithoutRequestQAInput
   }
 
-  export type ProductQAUpdateInput = {
+  export type ProductRequestQAUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    products?: ProductUpdateOneRequiredWithoutProductQANestedInput
-    productSubForm?: ProductQASubFormUpdateManyWithoutProductQANestedInput
+    request?: ProductRequestUpdateOneRequiredWithoutRequestQANestedInput
+    subForm?: ProductRequestQASubFormUpdateManyWithoutRequestQANestedInput
   }
 
-  export type ProductQAUncheckedUpdateInput = {
+  export type ProductRequestQAUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productId?: StringFieldUpdateOperationsInput | string
-    productSubForm?: ProductQASubFormUncheckedUpdateManyWithoutProductQANestedInput
+    requestId?: StringFieldUpdateOperationsInput | string
+    subForm?: ProductRequestQASubFormUncheckedUpdateManyWithoutRequestQANestedInput
   }
 
-  export type ProductQACreateManyInput = {
+  export type ProductRequestQACreateManyInput = {
     id?: string
-    question?: string | null
-    answer?: ProductQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productId: string
+    requestId: string
   }
 
-  export type ProductQAUpdateManyMutationInput = {
+  export type ProductRequestQAUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ProductQAUncheckedUpdateManyInput = {
+  export type ProductRequestQAUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productId?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProductQASubFormCreateInput = {
+  export type ProductRequestQASubFormCreateInput = {
     id?: string
     question?: string | null
-    answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
-    productQA: ProductQACreateNestedOneWithoutProductSubFormInput
+    requestQA: ProductRequestQACreateNestedOneWithoutSubFormInput
   }
 
-  export type ProductQASubFormUncheckedCreateInput = {
+  export type ProductRequestQASubFormUncheckedCreateInput = {
     id?: string
     question?: string | null
-    answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
-    productQAId: string
+    requestQAId: string
   }
 
-  export type ProductQASubFormUpdateInput = {
+  export type ProductRequestQASubFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productQA?: ProductQAUpdateOneRequiredWithoutProductSubFormNestedInput
+    requestQA?: ProductRequestQAUpdateOneRequiredWithoutSubFormNestedInput
   }
 
-  export type ProductQASubFormUncheckedUpdateInput = {
+  export type ProductRequestQASubFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productQAId?: StringFieldUpdateOperationsInput | string
+    requestQAId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProductQASubFormCreateManyInput = {
+  export type ProductRequestQASubFormCreateManyInput = {
     id?: string
     question?: string | null
-    answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
-    productQAId: string
+    requestQAId: string
   }
 
-  export type ProductQASubFormUpdateManyMutationInput = {
+  export type ProductRequestQASubFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ProductQASubFormUncheckedUpdateManyInput = {
+  export type ProductRequestQASubFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productQAId?: StringFieldUpdateOperationsInput | string
+    requestQAId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ClaimCreateInput = {
@@ -32407,7 +32411,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    product: ProductCreateNestedOneWithoutTeamInput
+    productRequest: ProductRequestCreateNestedOneWithoutTeamInput
     invitation?: InvitationCreateNestedManyWithoutTeamInput
     teamMember?: TeamMemberCreateNestedManyWithoutTeamInput
   }
@@ -32420,7 +32424,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productId: string
+    productRequestId: string
     invitation?: InvitationUncheckedCreateNestedManyWithoutTeamInput
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
   }
@@ -32433,7 +32437,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    product?: ProductUpdateOneRequiredWithoutTeamNestedInput
+    productRequest?: ProductRequestUpdateOneRequiredWithoutTeamNestedInput
     invitation?: InvitationUpdateManyWithoutTeamNestedInput
     teamMember?: TeamMemberUpdateManyWithoutTeamNestedInput
   }
@@ -32446,7 +32450,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productId?: StringFieldUpdateOperationsInput | string
+    productRequestId?: StringFieldUpdateOperationsInput | string
     invitation?: InvitationUncheckedUpdateManyWithoutTeamNestedInput
     teamMember?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
   }
@@ -32459,7 +32463,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productId: string
+    productRequestId: string
   }
 
   export type TeamUpdateManyMutationInput = {
@@ -32480,7 +32484,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productId?: StringFieldUpdateOperationsInput | string
+    productRequestId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TeamMemberCreateInput = {
@@ -32664,7 +32668,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    products: ProductCreateNestedOneWithoutPaymentInput
+    productRequests: ProductRequestCreateNestedOneWithoutPaymentInput
   }
 
   export type PaymentUncheckedCreateInput = {
@@ -32676,7 +32680,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productId: string
+    productRequestId: string
   }
 
   export type PaymentUpdateInput = {
@@ -32688,7 +32692,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    products?: ProductUpdateOneRequiredWithoutPaymentNestedInput
+    productRequests?: ProductRequestUpdateOneRequiredWithoutPaymentNestedInput
   }
 
   export type PaymentUncheckedUpdateInput = {
@@ -32700,7 +32704,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productId?: StringFieldUpdateOperationsInput | string
+    productRequestId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PaymentCreateManyInput = {
@@ -32712,7 +32716,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productId: string
+    productRequestId: string
   }
 
   export type PaymentUpdateManyMutationInput = {
@@ -32735,7 +32739,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productId?: StringFieldUpdateOperationsInput | string
+    productRequestId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ParterCreateInput = {
@@ -33304,10 +33308,10 @@ export namespace Prisma {
     none?: AccountWhereInput
   }
 
-  export type ProductListRelationFilter = {
-    every?: ProductWhereInput
-    some?: ProductWhereInput
-    none?: ProductWhereInput
+  export type ProductRequestListRelationFilter = {
+    every?: ProductRequestWhereInput
+    some?: ProductRequestWhereInput
+    none?: ProductRequestWhereInput
   }
 
   export type TeamMemberOrderByRelationAggregateInput = {
@@ -33318,7 +33322,7 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type ProductOrderByRelationAggregateInput = {
+  export type ProductRequestOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -33430,27 +33434,27 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ServiceListRelationFilter = {
-    every?: ServiceWhereInput
-    some?: ServiceWhereInput
-    none?: ServiceWhereInput
+  export type ProductListRelationFilter = {
+    every?: ProductWhereInput
+    some?: ProductWhereInput
+    none?: ProductWhereInput
   }
 
-  export type ServiceCategoryFormListRelationFilter = {
-    every?: ServiceCategoryFormWhereInput
-    some?: ServiceCategoryFormWhereInput
-    none?: ServiceCategoryFormWhereInput
+  export type ServiceFormListRelationFilter = {
+    every?: ServiceFormWhereInput
+    some?: ServiceFormWhereInput
+    none?: ServiceFormWhereInput
   }
 
-  export type ServiceOrderByRelationAggregateInput = {
+  export type ProductOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ServiceCategoryFormOrderByRelationAggregateInput = {
+  export type ServiceFormOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ServiceCategoryCountOrderByAggregateInput = {
+  export type ServiceCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -33459,7 +33463,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ServiceCategoryMaxOrderByAggregateInput = {
+  export type ServiceMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -33468,7 +33472,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ServiceCategoryMinOrderByAggregateInput = {
+  export type ServiceMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -33477,22 +33481,22 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type ServiceCategoryRelationFilter = {
-    is?: ServiceCategoryWhereInput | null
-    isNot?: ServiceCategoryWhereInput | null
+  export type ServiceRelationFilter = {
+    is?: ServiceWhereInput | null
+    isNot?: ServiceWhereInput | null
   }
 
-  export type ServiceCategorySubFormListRelationFilter = {
-    every?: ServiceCategorySubFormWhereInput
-    some?: ServiceCategorySubFormWhereInput
-    none?: ServiceCategorySubFormWhereInput
+  export type ServiceSubFormListRelationFilter = {
+    every?: ServiceSubFormWhereInput
+    some?: ServiceSubFormWhereInput
+    none?: ServiceSubFormWhereInput
   }
 
-  export type ServiceCategorySubFormOrderByRelationAggregateInput = {
+  export type ServiceSubFormOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ServiceCategoryFormCountOrderByAggregateInput = {
+  export type ServiceFormCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
@@ -33501,10 +33505,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
+    serviceId?: SortOrder
   }
 
-  export type ServiceCategoryFormMaxOrderByAggregateInput = {
+  export type ServiceFormMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
@@ -33513,10 +33517,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
+    serviceId?: SortOrder
   }
 
-  export type ServiceCategoryFormMinOrderByAggregateInput = {
+  export type ServiceFormMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
@@ -33525,15 +33529,15 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
+    serviceId?: SortOrder
   }
 
-  export type ServiceCategoryFormRelationFilter = {
-    is?: ServiceCategoryFormWhereInput | null
-    isNot?: ServiceCategoryFormWhereInput | null
+  export type ServiceFormRelationFilter = {
+    is?: ServiceFormWhereInput | null
+    isNot?: ServiceFormWhereInput | null
   }
 
-  export type ServiceCategorySubFormCountOrderByAggregateInput = {
+  export type ServiceSubFormCountOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
@@ -33550,7 +33554,7 @@ export namespace Prisma {
     formId?: SortOrder
   }
 
-  export type ServiceCategorySubFormMaxOrderByAggregateInput = {
+  export type ServiceSubFormMaxOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
@@ -33566,7 +33570,7 @@ export namespace Prisma {
     formId?: SortOrder
   }
 
-  export type ServiceCategorySubFormMinOrderByAggregateInput = {
+  export type ServiceSubFormMinOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
@@ -33593,17 +33597,17 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type ServiceFormListRelationFilter = {
-    every?: ServiceFormWhereInput
-    some?: ServiceFormWhereInput
-    none?: ServiceFormWhereInput
+  export type ProductFormListRelationFilter = {
+    every?: ProductFormWhereInput
+    some?: ProductFormWhereInput
+    none?: ProductFormWhereInput
   }
 
-  export type ServiceFormOrderByRelationAggregateInput = {
+  export type ProductFormOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ServiceCountOrderByAggregateInput = {
+  export type ProductCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -33622,14 +33626,14 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
+    serviceId?: SortOrder
   }
 
-  export type ServiceAvgOrderByAggregateInput = {
+  export type ProductAvgOrderByAggregateInput = {
     amount?: SortOrder
   }
 
-  export type ServiceMaxOrderByAggregateInput = {
+  export type ProductMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -33647,10 +33651,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
+    serviceId?: SortOrder
   }
 
-  export type ServiceMinOrderByAggregateInput = {
+  export type ProductMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
@@ -33668,10 +33672,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    serviceCategoryId?: SortOrder
+    serviceId?: SortOrder
   }
 
-  export type ServiceSumOrderByAggregateInput = {
+  export type ProductSumOrderByAggregateInput = {
     amount?: SortOrder
   }
 
@@ -33691,22 +33695,22 @@ export namespace Prisma {
     _max?: NestedIntFilter
   }
 
-  export type ServiceRelationFilter = {
-    is?: ServiceWhereInput | null
-    isNot?: ServiceWhereInput | null
+  export type ProductRelationFilter = {
+    is?: ProductWhereInput | null
+    isNot?: ProductWhereInput | null
   }
 
-  export type ServiceSubFormListRelationFilter = {
-    every?: ServiceSubFormWhereInput
-    some?: ServiceSubFormWhereInput
-    none?: ServiceSubFormWhereInput
+  export type ProductSubFormListRelationFilter = {
+    every?: ProductSubFormWhereInput
+    some?: ProductSubFormWhereInput
+    none?: ProductSubFormWhereInput
   }
 
-  export type ServiceSubFormOrderByRelationAggregateInput = {
+  export type ProductSubFormOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ServiceFormCountOrderByAggregateInput = {
+  export type ProductFormCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     type?: SortOrder
@@ -33715,10 +33719,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrder
+    productId?: SortOrder
   }
 
-  export type ServiceFormMaxOrderByAggregateInput = {
+  export type ProductFormMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     type?: SortOrder
@@ -33727,10 +33731,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrder
+    productId?: SortOrder
   }
 
-  export type ServiceFormMinOrderByAggregateInput = {
+  export type ProductFormMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     type?: SortOrder
@@ -33739,15 +33743,15 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrder
+    productId?: SortOrder
   }
 
-  export type ServiceFormRelationFilter = {
-    is?: ServiceFormWhereInput | null
-    isNot?: ServiceFormWhereInput | null
+  export type ProductFormRelationFilter = {
+    is?: ProductFormWhereInput | null
+    isNot?: ProductFormWhereInput | null
   }
 
-  export type ServiceSubFormCountOrderByAggregateInput = {
+  export type ProductSubFormCountOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
     options?: SortOrder
@@ -33761,10 +33765,10 @@ export namespace Prisma {
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    serviceFormId?: SortOrder
+    formId?: SortOrder
   }
 
-  export type ServiceSubFormMaxOrderByAggregateInput = {
+  export type ProductSubFormMaxOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
@@ -33777,10 +33781,10 @@ export namespace Prisma {
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    serviceFormId?: SortOrder
+    formId?: SortOrder
   }
 
-  export type ServiceSubFormMinOrderByAggregateInput = {
+  export type ProductSubFormMinOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
@@ -33793,7 +33797,7 @@ export namespace Prisma {
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    serviceFormId?: SortOrder
+    formId?: SortOrder
   }
 
   export type EnumProductActivityStageFilter = {
@@ -33815,10 +33819,10 @@ export namespace Prisma {
     none?: PaymentWhereInput
   }
 
-  export type ProductQAListRelationFilter = {
-    every?: ProductQAWhereInput
-    some?: ProductQAWhereInput
-    none?: ProductQAWhereInput
+  export type ProductRequestQAListRelationFilter = {
+    every?: ProductRequestQAWhereInput
+    some?: ProductRequestQAWhereInput
+    none?: ProductRequestQAWhereInput
   }
 
   export type TeamOrderByRelationAggregateInput = {
@@ -33829,11 +33833,11 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type ProductQAOrderByRelationAggregateInput = {
+  export type ProductRequestQAOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ProductCountOrderByAggregateInput = {
+  export type ProductRequestCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     address?: SortOrder
@@ -33844,11 +33848,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrder
+    productId?: SortOrder
     userId?: SortOrder
   }
 
-  export type ProductMaxOrderByAggregateInput = {
+  export type ProductRequestMaxOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     address?: SortOrder
@@ -33859,11 +33863,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrder
+    productId?: SortOrder
     userId?: SortOrder
   }
 
-  export type ProductMinOrderByAggregateInput = {
+  export type ProductRequestMinOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     address?: SortOrder
@@ -33874,7 +33878,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeprecated?: SortOrder
     updatedAt?: SortOrder
-    serviceId?: SortOrder
+    productId?: SortOrder
     userId?: SortOrder
   }
 
@@ -33888,98 +33892,100 @@ export namespace Prisma {
     _max?: NestedEnumProductActivityStageFilter
   }
 
-  export type ProductRelationFilter = {
-    is?: ProductWhereInput | null
-    isNot?: ProductWhereInput | null
+  export type ProductRequestRelationFilter = {
+    is?: ProductRequestWhereInput | null
+    isNot?: ProductRequestWhereInput | null
   }
 
-  export type ProductQASubFormListRelationFilter = {
-    every?: ProductQASubFormWhereInput
-    some?: ProductQASubFormWhereInput
-    none?: ProductQASubFormWhereInput
+  export type ProductRequestQASubFormListRelationFilter = {
+    every?: ProductRequestQASubFormWhereInput
+    some?: ProductRequestQASubFormWhereInput
+    none?: ProductRequestQASubFormWhereInput
   }
 
-  export type ProductQASubFormOrderByRelationAggregateInput = {
+  export type ProductRequestQASubFormOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ProductQACountOrderByAggregateInput = {
+  export type ProductRequestQACountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
+    isGeneral?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    isDeprecated?: SortOrder
+    requestId?: SortOrder
+  }
+
+  export type ProductRequestQAMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
+    isGeneral?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    isDeprecated?: SortOrder
+    requestId?: SortOrder
+  }
+
+  export type ProductRequestQAMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    type?: SortOrder
+    compulsory?: SortOrder
+    isGeneral?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    isDeprecated?: SortOrder
+    requestId?: SortOrder
+  }
+
+  export type ProductRequestQARelationFilter = {
+    is?: ProductRequestQAWhereInput | null
+    isNot?: ProductRequestQAWhereInput | null
+  }
+
+  export type ProductRequestQASubFormCountOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
     answer?: SortOrder
     type?: SortOrder
-    compulsory?: SortOrder
-    isGeneral?: SortOrder
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    compulsory?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    requestQAId?: SortOrder
   }
 
-  export type ProductQAMaxOrderByAggregateInput = {
+  export type ProductRequestQASubFormMaxOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
-    compulsory?: SortOrder
-    isGeneral?: SortOrder
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    compulsory?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    requestQAId?: SortOrder
   }
 
-  export type ProductQAMinOrderByAggregateInput = {
+  export type ProductRequestQASubFormMinOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
     type?: SortOrder
-    compulsory?: SortOrder
-    isGeneral?: SortOrder
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    isDeprecated?: SortOrder
-    productId?: SortOrder
-  }
-
-  export type ProductQARelationFilter = {
-    is?: ProductQAWhereInput | null
-    isNot?: ProductQAWhereInput | null
-  }
-
-  export type ProductQASubFormCountOrderByAggregateInput = {
-    id?: SortOrder
-    question?: SortOrder
-    answer?: SortOrder
-    type?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
-    productQAId?: SortOrder
-  }
-
-  export type ProductQASubFormMaxOrderByAggregateInput = {
-    id?: SortOrder
-    question?: SortOrder
-    type?: SortOrder
-    compulsory?: SortOrder
-    isDeprecated?: SortOrder
-    productQAId?: SortOrder
-  }
-
-  export type ProductQASubFormMinOrderByAggregateInput = {
-    id?: SortOrder
-    question?: SortOrder
-    type?: SortOrder
-    compulsory?: SortOrder
-    isDeprecated?: SortOrder
-    productQAId?: SortOrder
+    requestQAId?: SortOrder
   }
 
   export type ClaimCountOrderByAggregateInput = {
@@ -34027,7 +34033,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    productRequestId?: SortOrder
   }
 
   export type TeamMaxOrderByAggregateInput = {
@@ -34038,7 +34044,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    productRequestId?: SortOrder
   }
 
   export type TeamMinOrderByAggregateInput = {
@@ -34049,7 +34055,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    productRequestId?: SortOrder
   }
 
   export type TeamRelationFilter = {
@@ -34149,7 +34155,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    productRequestId?: SortOrder
   }
 
   export type PaymentMaxOrderByAggregateInput = {
@@ -34161,7 +34167,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    productRequestId?: SortOrder
   }
 
   export type PaymentMinOrderByAggregateInput = {
@@ -34173,7 +34179,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isDeprecated?: SortOrder
-    productId?: SortOrder
+    productRequestId?: SortOrder
   }
 
   export type ParterCountOrderByAggregateInput = {
@@ -34340,11 +34346,11 @@ export namespace Prisma {
     connect?: Enumerable<AccountWhereUniqueInput>
   }
 
-  export type ProductCreateNestedManyWithoutUserInput = {
-    create?: XOR<Enumerable<ProductCreateWithoutUserInput>, Enumerable<ProductUncheckedCreateWithoutUserInput>>
-    connectOrCreate?: Enumerable<ProductCreateOrConnectWithoutUserInput>
-    createMany?: ProductCreateManyUserInputEnvelope
-    connect?: Enumerable<ProductWhereUniqueInput>
+  export type ProductRequestCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<ProductRequestCreateWithoutUserInput>, Enumerable<ProductRequestUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<ProductRequestCreateOrConnectWithoutUserInput>
+    createMany?: ProductRequestCreateManyUserInputEnvelope
+    connect?: Enumerable<ProductRequestWhereUniqueInput>
   }
 
   export type TeamMemberUncheckedCreateNestedManyWithoutUserInput = {
@@ -34361,11 +34367,11 @@ export namespace Prisma {
     connect?: Enumerable<AccountWhereUniqueInput>
   }
 
-  export type ProductUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<Enumerable<ProductCreateWithoutUserInput>, Enumerable<ProductUncheckedCreateWithoutUserInput>>
-    connectOrCreate?: Enumerable<ProductCreateOrConnectWithoutUserInput>
-    createMany?: ProductCreateManyUserInputEnvelope
-    connect?: Enumerable<ProductWhereUniqueInput>
+  export type ProductRequestUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<ProductRequestCreateWithoutUserInput>, Enumerable<ProductRequestUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<ProductRequestCreateOrConnectWithoutUserInput>
+    createMany?: ProductRequestCreateManyUserInputEnvelope
+    connect?: Enumerable<ProductRequestWhereUniqueInput>
   }
 
   export type UserUpdatepartnerPermissionInput = {
@@ -34411,18 +34417,18 @@ export namespace Prisma {
     deleteMany?: Enumerable<AccountScalarWhereInput>
   }
 
-  export type ProductUpdateManyWithoutUserNestedInput = {
-    create?: XOR<Enumerable<ProductCreateWithoutUserInput>, Enumerable<ProductUncheckedCreateWithoutUserInput>>
-    connectOrCreate?: Enumerable<ProductCreateOrConnectWithoutUserInput>
-    upsert?: Enumerable<ProductUpsertWithWhereUniqueWithoutUserInput>
-    createMany?: ProductCreateManyUserInputEnvelope
-    set?: Enumerable<ProductWhereUniqueInput>
-    disconnect?: Enumerable<ProductWhereUniqueInput>
-    delete?: Enumerable<ProductWhereUniqueInput>
-    connect?: Enumerable<ProductWhereUniqueInput>
-    update?: Enumerable<ProductUpdateWithWhereUniqueWithoutUserInput>
-    updateMany?: Enumerable<ProductUpdateManyWithWhereWithoutUserInput>
-    deleteMany?: Enumerable<ProductScalarWhereInput>
+  export type ProductRequestUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<ProductRequestCreateWithoutUserInput>, Enumerable<ProductRequestUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<ProductRequestCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<ProductRequestUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: ProductRequestCreateManyUserInputEnvelope
+    set?: Enumerable<ProductRequestWhereUniqueInput>
+    disconnect?: Enumerable<ProductRequestWhereUniqueInput>
+    delete?: Enumerable<ProductRequestWhereUniqueInput>
+    connect?: Enumerable<ProductRequestWhereUniqueInput>
+    update?: Enumerable<ProductRequestUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<ProductRequestUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<ProductRequestScalarWhereInput>
   }
 
   export type TeamMemberUncheckedUpdateManyWithoutUserNestedInput = {
@@ -34453,191 +34459,18 @@ export namespace Prisma {
     deleteMany?: Enumerable<AccountScalarWhereInput>
   }
 
-  export type ProductUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<Enumerable<ProductCreateWithoutUserInput>, Enumerable<ProductUncheckedCreateWithoutUserInput>>
-    connectOrCreate?: Enumerable<ProductCreateOrConnectWithoutUserInput>
-    upsert?: Enumerable<ProductUpsertWithWhereUniqueWithoutUserInput>
-    createMany?: ProductCreateManyUserInputEnvelope
-    set?: Enumerable<ProductWhereUniqueInput>
-    disconnect?: Enumerable<ProductWhereUniqueInput>
-    delete?: Enumerable<ProductWhereUniqueInput>
-    connect?: Enumerable<ProductWhereUniqueInput>
-    update?: Enumerable<ProductUpdateWithWhereUniqueWithoutUserInput>
-    updateMany?: Enumerable<ProductUpdateManyWithWhereWithoutUserInput>
-    deleteMany?: Enumerable<ProductScalarWhereInput>
-  }
-
-  export type ServiceCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<Enumerable<ServiceCreateWithoutCategoryInput>, Enumerable<ServiceUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCreateOrConnectWithoutCategoryInput>
-    createMany?: ServiceCreateManyCategoryInputEnvelope
-    connect?: Enumerable<ServiceWhereUniqueInput>
-  }
-
-  export type ServiceCategoryFormCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<Enumerable<ServiceCategoryFormCreateWithoutCategoryInput>, Enumerable<ServiceCategoryFormUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCategoryFormCreateOrConnectWithoutCategoryInput>
-    createMany?: ServiceCategoryFormCreateManyCategoryInputEnvelope
-    connect?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-  }
-
-  export type ServiceUncheckedCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<Enumerable<ServiceCreateWithoutCategoryInput>, Enumerable<ServiceUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCreateOrConnectWithoutCategoryInput>
-    createMany?: ServiceCreateManyCategoryInputEnvelope
-    connect?: Enumerable<ServiceWhereUniqueInput>
-  }
-
-  export type ServiceCategoryFormUncheckedCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<Enumerable<ServiceCategoryFormCreateWithoutCategoryInput>, Enumerable<ServiceCategoryFormUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCategoryFormCreateOrConnectWithoutCategoryInput>
-    createMany?: ServiceCategoryFormCreateManyCategoryInputEnvelope
-    connect?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-  }
-
-  export type ServiceUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<Enumerable<ServiceCreateWithoutCategoryInput>, Enumerable<ServiceUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCreateOrConnectWithoutCategoryInput>
-    upsert?: Enumerable<ServiceUpsertWithWhereUniqueWithoutCategoryInput>
-    createMany?: ServiceCreateManyCategoryInputEnvelope
-    set?: Enumerable<ServiceWhereUniqueInput>
-    disconnect?: Enumerable<ServiceWhereUniqueInput>
-    delete?: Enumerable<ServiceWhereUniqueInput>
-    connect?: Enumerable<ServiceWhereUniqueInput>
-    update?: Enumerable<ServiceUpdateWithWhereUniqueWithoutCategoryInput>
-    updateMany?: Enumerable<ServiceUpdateManyWithWhereWithoutCategoryInput>
-    deleteMany?: Enumerable<ServiceScalarWhereInput>
-  }
-
-  export type ServiceCategoryFormUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<Enumerable<ServiceCategoryFormCreateWithoutCategoryInput>, Enumerable<ServiceCategoryFormUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCategoryFormCreateOrConnectWithoutCategoryInput>
-    upsert?: Enumerable<ServiceCategoryFormUpsertWithWhereUniqueWithoutCategoryInput>
-    createMany?: ServiceCategoryFormCreateManyCategoryInputEnvelope
-    set?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-    disconnect?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-    delete?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-    connect?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-    update?: Enumerable<ServiceCategoryFormUpdateWithWhereUniqueWithoutCategoryInput>
-    updateMany?: Enumerable<ServiceCategoryFormUpdateManyWithWhereWithoutCategoryInput>
-    deleteMany?: Enumerable<ServiceCategoryFormScalarWhereInput>
-  }
-
-  export type ServiceUncheckedUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<Enumerable<ServiceCreateWithoutCategoryInput>, Enumerable<ServiceUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCreateOrConnectWithoutCategoryInput>
-    upsert?: Enumerable<ServiceUpsertWithWhereUniqueWithoutCategoryInput>
-    createMany?: ServiceCreateManyCategoryInputEnvelope
-    set?: Enumerable<ServiceWhereUniqueInput>
-    disconnect?: Enumerable<ServiceWhereUniqueInput>
-    delete?: Enumerable<ServiceWhereUniqueInput>
-    connect?: Enumerable<ServiceWhereUniqueInput>
-    update?: Enumerable<ServiceUpdateWithWhereUniqueWithoutCategoryInput>
-    updateMany?: Enumerable<ServiceUpdateManyWithWhereWithoutCategoryInput>
-    deleteMany?: Enumerable<ServiceScalarWhereInput>
-  }
-
-  export type ServiceCategoryFormUncheckedUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<Enumerable<ServiceCategoryFormCreateWithoutCategoryInput>, Enumerable<ServiceCategoryFormUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCategoryFormCreateOrConnectWithoutCategoryInput>
-    upsert?: Enumerable<ServiceCategoryFormUpsertWithWhereUniqueWithoutCategoryInput>
-    createMany?: ServiceCategoryFormCreateManyCategoryInputEnvelope
-    set?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-    disconnect?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-    delete?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-    connect?: Enumerable<ServiceCategoryFormWhereUniqueInput>
-    update?: Enumerable<ServiceCategoryFormUpdateWithWhereUniqueWithoutCategoryInput>
-    updateMany?: Enumerable<ServiceCategoryFormUpdateManyWithWhereWithoutCategoryInput>
-    deleteMany?: Enumerable<ServiceCategoryFormScalarWhereInput>
-  }
-
-  export type ServiceCategoryCreateNestedOneWithoutFormInput = {
-    create?: XOR<ServiceCategoryCreateWithoutFormInput, ServiceCategoryUncheckedCreateWithoutFormInput>
-    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutFormInput
-    connect?: ServiceCategoryWhereUniqueInput
-  }
-
-  export type ServiceCategorySubFormCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<Enumerable<ServiceCategorySubFormCreateWithoutCategoryInput>, Enumerable<ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCategorySubFormCreateOrConnectWithoutCategoryInput>
-    createMany?: ServiceCategorySubFormCreateManyCategoryInputEnvelope
-    connect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-  }
-
-  export type ServiceCategorySubFormUncheckedCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<Enumerable<ServiceCategorySubFormCreateWithoutCategoryInput>, Enumerable<ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCategorySubFormCreateOrConnectWithoutCategoryInput>
-    createMany?: ServiceCategorySubFormCreateManyCategoryInputEnvelope
-    connect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-  }
-
-  export type ServiceCategoryUpdateOneRequiredWithoutFormNestedInput = {
-    create?: XOR<ServiceCategoryCreateWithoutFormInput, ServiceCategoryUncheckedCreateWithoutFormInput>
-    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutFormInput
-    upsert?: ServiceCategoryUpsertWithoutFormInput
-    connect?: ServiceCategoryWhereUniqueInput
-    update?: XOR<ServiceCategoryUpdateWithoutFormInput, ServiceCategoryUncheckedUpdateWithoutFormInput>
-  }
-
-  export type ServiceCategorySubFormUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<Enumerable<ServiceCategorySubFormCreateWithoutCategoryInput>, Enumerable<ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCategorySubFormCreateOrConnectWithoutCategoryInput>
-    upsert?: Enumerable<ServiceCategorySubFormUpsertWithWhereUniqueWithoutCategoryInput>
-    createMany?: ServiceCategorySubFormCreateManyCategoryInputEnvelope
-    set?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-    disconnect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-    delete?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-    connect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-    update?: Enumerable<ServiceCategorySubFormUpdateWithWhereUniqueWithoutCategoryInput>
-    updateMany?: Enumerable<ServiceCategorySubFormUpdateManyWithWhereWithoutCategoryInput>
-    deleteMany?: Enumerable<ServiceCategorySubFormScalarWhereInput>
-  }
-
-  export type ServiceCategorySubFormUncheckedUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<Enumerable<ServiceCategorySubFormCreateWithoutCategoryInput>, Enumerable<ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>>
-    connectOrCreate?: Enumerable<ServiceCategorySubFormCreateOrConnectWithoutCategoryInput>
-    upsert?: Enumerable<ServiceCategorySubFormUpsertWithWhereUniqueWithoutCategoryInput>
-    createMany?: ServiceCategorySubFormCreateManyCategoryInputEnvelope
-    set?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-    disconnect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-    delete?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-    connect?: Enumerable<ServiceCategorySubFormWhereUniqueInput>
-    update?: Enumerable<ServiceCategorySubFormUpdateWithWhereUniqueWithoutCategoryInput>
-    updateMany?: Enumerable<ServiceCategorySubFormUpdateManyWithWhereWithoutCategoryInput>
-    deleteMany?: Enumerable<ServiceCategorySubFormScalarWhereInput>
-  }
-
-  export type ServiceCategorySubFormCreateoptionsInput = {
-    set: Enumerable<string>
-  }
-
-  export type ServiceCategoryFormCreateNestedOneWithoutSubFormInput = {
-    create?: XOR<ServiceCategoryFormCreateWithoutSubFormInput, ServiceCategoryFormUncheckedCreateWithoutSubFormInput>
-    connectOrCreate?: ServiceCategoryFormCreateOrConnectWithoutSubFormInput
-    connect?: ServiceCategoryFormWhereUniqueInput
-  }
-
-  export type ServiceCategorySubFormUpdateoptionsInput = {
-    set?: Enumerable<string>
-    push?: string | Enumerable<string>
-  }
-
-  export type ServiceCategoryFormUpdateOneRequiredWithoutSubFormNestedInput = {
-    create?: XOR<ServiceCategoryFormCreateWithoutSubFormInput, ServiceCategoryFormUncheckedCreateWithoutSubFormInput>
-    connectOrCreate?: ServiceCategoryFormCreateOrConnectWithoutSubFormInput
-    upsert?: ServiceCategoryFormUpsertWithoutSubFormInput
-    connect?: ServiceCategoryFormWhereUniqueInput
-    update?: XOR<ServiceCategoryFormUpdateWithoutSubFormInput, ServiceCategoryFormUncheckedUpdateWithoutSubFormInput>
-  }
-
-  export type ServiceCreatefeatureInput = {
-    set: Enumerable<string>
-  }
-
-  export type ServiceCategoryCreateNestedOneWithoutServicesInput = {
-    create?: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
-    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput
-    connect?: ServiceCategoryWhereUniqueInput
+  export type ProductRequestUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<ProductRequestCreateWithoutUserInput>, Enumerable<ProductRequestUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<ProductRequestCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<ProductRequestUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: ProductRequestCreateManyUserInputEnvelope
+    set?: Enumerable<ProductRequestWhereUniqueInput>
+    disconnect?: Enumerable<ProductRequestWhereUniqueInput>
+    delete?: Enumerable<ProductRequestWhereUniqueInput>
+    connect?: Enumerable<ProductRequestWhereUniqueInput>
+    update?: Enumerable<ProductRequestUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<ProductRequestUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<ProductRequestScalarWhereInput>
   }
 
   export type ProductCreateNestedManyWithoutServiceInput = {
@@ -34666,27 +34499,6 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<ServiceFormCreateOrConnectWithoutServiceInput>
     createMany?: ServiceFormCreateManyServiceInputEnvelope
     connect?: Enumerable<ServiceFormWhereUniqueInput>
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type ServiceUpdatefeatureInput = {
-    set?: Enumerable<string>
-    push?: string | Enumerable<string>
-  }
-
-  export type ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput = {
-    create?: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
-    connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput
-    upsert?: ServiceCategoryUpsertWithoutServicesInput
-    connect?: ServiceCategoryWhereUniqueInput
-    update?: XOR<ServiceCategoryUpdateWithoutServicesInput, ServiceCategoryUncheckedUpdateWithoutServicesInput>
   }
 
   export type ProductUpdateManyWithoutServiceNestedInput = {
@@ -34745,59 +34557,59 @@ export namespace Prisma {
     deleteMany?: Enumerable<ServiceFormScalarWhereInput>
   }
 
-  export type ServiceCreateNestedOneWithoutFormsInput = {
-    create?: XOR<ServiceCreateWithoutFormsInput, ServiceUncheckedCreateWithoutFormsInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutFormsInput
+  export type ServiceCreateNestedOneWithoutFormInput = {
+    create?: XOR<ServiceCreateWithoutFormInput, ServiceUncheckedCreateWithoutFormInput>
+    connectOrCreate?: ServiceCreateOrConnectWithoutFormInput
     connect?: ServiceWhereUniqueInput
   }
 
-  export type ServiceSubFormCreateNestedManyWithoutServiceFormInput = {
-    create?: XOR<Enumerable<ServiceSubFormCreateWithoutServiceFormInput>, Enumerable<ServiceSubFormUncheckedCreateWithoutServiceFormInput>>
-    connectOrCreate?: Enumerable<ServiceSubFormCreateOrConnectWithoutServiceFormInput>
-    createMany?: ServiceSubFormCreateManyServiceFormInputEnvelope
+  export type ServiceSubFormCreateNestedManyWithoutFormInput = {
+    create?: XOR<Enumerable<ServiceSubFormCreateWithoutFormInput>, Enumerable<ServiceSubFormUncheckedCreateWithoutFormInput>>
+    connectOrCreate?: Enumerable<ServiceSubFormCreateOrConnectWithoutFormInput>
+    createMany?: ServiceSubFormCreateManyFormInputEnvelope
     connect?: Enumerable<ServiceSubFormWhereUniqueInput>
   }
 
-  export type ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput = {
-    create?: XOR<Enumerable<ServiceSubFormCreateWithoutServiceFormInput>, Enumerable<ServiceSubFormUncheckedCreateWithoutServiceFormInput>>
-    connectOrCreate?: Enumerable<ServiceSubFormCreateOrConnectWithoutServiceFormInput>
-    createMany?: ServiceSubFormCreateManyServiceFormInputEnvelope
+  export type ServiceSubFormUncheckedCreateNestedManyWithoutFormInput = {
+    create?: XOR<Enumerable<ServiceSubFormCreateWithoutFormInput>, Enumerable<ServiceSubFormUncheckedCreateWithoutFormInput>>
+    connectOrCreate?: Enumerable<ServiceSubFormCreateOrConnectWithoutFormInput>
+    createMany?: ServiceSubFormCreateManyFormInputEnvelope
     connect?: Enumerable<ServiceSubFormWhereUniqueInput>
   }
 
-  export type ServiceUpdateOneRequiredWithoutFormsNestedInput = {
-    create?: XOR<ServiceCreateWithoutFormsInput, ServiceUncheckedCreateWithoutFormsInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutFormsInput
-    upsert?: ServiceUpsertWithoutFormsInput
+  export type ServiceUpdateOneRequiredWithoutFormNestedInput = {
+    create?: XOR<ServiceCreateWithoutFormInput, ServiceUncheckedCreateWithoutFormInput>
+    connectOrCreate?: ServiceCreateOrConnectWithoutFormInput
+    upsert?: ServiceUpsertWithoutFormInput
     connect?: ServiceWhereUniqueInput
-    update?: XOR<ServiceUpdateWithoutFormsInput, ServiceUncheckedUpdateWithoutFormsInput>
+    update?: XOR<ServiceUpdateWithoutFormInput, ServiceUncheckedUpdateWithoutFormInput>
   }
 
-  export type ServiceSubFormUpdateManyWithoutServiceFormNestedInput = {
-    create?: XOR<Enumerable<ServiceSubFormCreateWithoutServiceFormInput>, Enumerable<ServiceSubFormUncheckedCreateWithoutServiceFormInput>>
-    connectOrCreate?: Enumerable<ServiceSubFormCreateOrConnectWithoutServiceFormInput>
-    upsert?: Enumerable<ServiceSubFormUpsertWithWhereUniqueWithoutServiceFormInput>
-    createMany?: ServiceSubFormCreateManyServiceFormInputEnvelope
+  export type ServiceSubFormUpdateManyWithoutFormNestedInput = {
+    create?: XOR<Enumerable<ServiceSubFormCreateWithoutFormInput>, Enumerable<ServiceSubFormUncheckedCreateWithoutFormInput>>
+    connectOrCreate?: Enumerable<ServiceSubFormCreateOrConnectWithoutFormInput>
+    upsert?: Enumerable<ServiceSubFormUpsertWithWhereUniqueWithoutFormInput>
+    createMany?: ServiceSubFormCreateManyFormInputEnvelope
     set?: Enumerable<ServiceSubFormWhereUniqueInput>
     disconnect?: Enumerable<ServiceSubFormWhereUniqueInput>
     delete?: Enumerable<ServiceSubFormWhereUniqueInput>
     connect?: Enumerable<ServiceSubFormWhereUniqueInput>
-    update?: Enumerable<ServiceSubFormUpdateWithWhereUniqueWithoutServiceFormInput>
-    updateMany?: Enumerable<ServiceSubFormUpdateManyWithWhereWithoutServiceFormInput>
+    update?: Enumerable<ServiceSubFormUpdateWithWhereUniqueWithoutFormInput>
+    updateMany?: Enumerable<ServiceSubFormUpdateManyWithWhereWithoutFormInput>
     deleteMany?: Enumerable<ServiceSubFormScalarWhereInput>
   }
 
-  export type ServiceSubFormUncheckedUpdateManyWithoutServiceFormNestedInput = {
-    create?: XOR<Enumerable<ServiceSubFormCreateWithoutServiceFormInput>, Enumerable<ServiceSubFormUncheckedCreateWithoutServiceFormInput>>
-    connectOrCreate?: Enumerable<ServiceSubFormCreateOrConnectWithoutServiceFormInput>
-    upsert?: Enumerable<ServiceSubFormUpsertWithWhereUniqueWithoutServiceFormInput>
-    createMany?: ServiceSubFormCreateManyServiceFormInputEnvelope
+  export type ServiceSubFormUncheckedUpdateManyWithoutFormNestedInput = {
+    create?: XOR<Enumerable<ServiceSubFormCreateWithoutFormInput>, Enumerable<ServiceSubFormUncheckedCreateWithoutFormInput>>
+    connectOrCreate?: Enumerable<ServiceSubFormCreateOrConnectWithoutFormInput>
+    upsert?: Enumerable<ServiceSubFormUpsertWithWhereUniqueWithoutFormInput>
+    createMany?: ServiceSubFormCreateManyFormInputEnvelope
     set?: Enumerable<ServiceSubFormWhereUniqueInput>
     disconnect?: Enumerable<ServiceSubFormWhereUniqueInput>
     delete?: Enumerable<ServiceSubFormWhereUniqueInput>
     connect?: Enumerable<ServiceSubFormWhereUniqueInput>
-    update?: Enumerable<ServiceSubFormUpdateWithWhereUniqueWithoutServiceFormInput>
-    updateMany?: Enumerable<ServiceSubFormUpdateManyWithWhereWithoutServiceFormInput>
+    update?: Enumerable<ServiceSubFormUpdateWithWhereUniqueWithoutFormInput>
+    updateMany?: Enumerable<ServiceSubFormUpdateManyWithWhereWithoutFormInput>
     deleteMany?: Enumerable<ServiceSubFormScalarWhereInput>
   }
 
@@ -34805,9 +34617,9 @@ export namespace Prisma {
     set: Enumerable<string>
   }
 
-  export type ServiceFormCreateNestedOneWithoutServiceSubFormInput = {
-    create?: XOR<ServiceFormCreateWithoutServiceSubFormInput, ServiceFormUncheckedCreateWithoutServiceSubFormInput>
-    connectOrCreate?: ServiceFormCreateOrConnectWithoutServiceSubFormInput
+  export type ServiceFormCreateNestedOneWithoutSubFormInput = {
+    create?: XOR<ServiceFormCreateWithoutSubFormInput, ServiceFormUncheckedCreateWithoutSubFormInput>
+    connectOrCreate?: ServiceFormCreateOrConnectWithoutSubFormInput
     connect?: ServiceFormWhereUniqueInput
   }
 
@@ -34816,19 +34628,16 @@ export namespace Prisma {
     push?: string | Enumerable<string>
   }
 
-  export type ServiceFormUpdateOneRequiredWithoutServiceSubFormNestedInput = {
-    create?: XOR<ServiceFormCreateWithoutServiceSubFormInput, ServiceFormUncheckedCreateWithoutServiceSubFormInput>
-    connectOrCreate?: ServiceFormCreateOrConnectWithoutServiceSubFormInput
-    upsert?: ServiceFormUpsertWithoutServiceSubFormInput
+  export type ServiceFormUpdateOneRequiredWithoutSubFormNestedInput = {
+    create?: XOR<ServiceFormCreateWithoutSubFormInput, ServiceFormUncheckedCreateWithoutSubFormInput>
+    connectOrCreate?: ServiceFormCreateOrConnectWithoutSubFormInput
+    upsert?: ServiceFormUpsertWithoutSubFormInput
     connect?: ServiceFormWhereUniqueInput
-    update?: XOR<ServiceFormUpdateWithoutServiceSubFormInput, ServiceFormUncheckedUpdateWithoutServiceSubFormInput>
+    update?: XOR<ServiceFormUpdateWithoutSubFormInput, ServiceFormUncheckedUpdateWithoutSubFormInput>
   }
 
-  export type TeamCreateNestedManyWithoutProductInput = {
-    create?: XOR<Enumerable<TeamCreateWithoutProductInput>, Enumerable<TeamUncheckedCreateWithoutProductInput>>
-    connectOrCreate?: Enumerable<TeamCreateOrConnectWithoutProductInput>
-    createMany?: TeamCreateManyProductInputEnvelope
-    connect?: Enumerable<TeamWhereUniqueInput>
+  export type ProductCreatefeatureInput = {
+    set: Enumerable<string>
   }
 
   export type ServiceCreateNestedOneWithoutProductsInput = {
@@ -34837,245 +34646,433 @@ export namespace Prisma {
     connect?: ServiceWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutProductInput = {
-    create?: XOR<UserCreateWithoutProductInput, UserUncheckedCreateWithoutProductInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProductInput
-    connect?: UserWhereUniqueInput
+  export type ProductRequestCreateNestedManyWithoutProductInput = {
+    create?: XOR<Enumerable<ProductRequestCreateWithoutProductInput>, Enumerable<ProductRequestUncheckedCreateWithoutProductInput>>
+    connectOrCreate?: Enumerable<ProductRequestCreateOrConnectWithoutProductInput>
+    createMany?: ProductRequestCreateManyProductInputEnvelope
+    connect?: Enumerable<ProductRequestWhereUniqueInput>
   }
 
-  export type PaymentCreateNestedManyWithoutProductsInput = {
-    create?: XOR<Enumerable<PaymentCreateWithoutProductsInput>, Enumerable<PaymentUncheckedCreateWithoutProductsInput>>
-    connectOrCreate?: Enumerable<PaymentCreateOrConnectWithoutProductsInput>
-    createMany?: PaymentCreateManyProductsInputEnvelope
-    connect?: Enumerable<PaymentWhereUniqueInput>
+  export type ProductFormCreateNestedManyWithoutProductInput = {
+    create?: XOR<Enumerable<ProductFormCreateWithoutProductInput>, Enumerable<ProductFormUncheckedCreateWithoutProductInput>>
+    connectOrCreate?: Enumerable<ProductFormCreateOrConnectWithoutProductInput>
+    createMany?: ProductFormCreateManyProductInputEnvelope
+    connect?: Enumerable<ProductFormWhereUniqueInput>
   }
 
-  export type ProductQACreateNestedManyWithoutProductsInput = {
-    create?: XOR<Enumerable<ProductQACreateWithoutProductsInput>, Enumerable<ProductQAUncheckedCreateWithoutProductsInput>>
-    connectOrCreate?: Enumerable<ProductQACreateOrConnectWithoutProductsInput>
-    createMany?: ProductQACreateManyProductsInputEnvelope
-    connect?: Enumerable<ProductQAWhereUniqueInput>
+  export type ProductRequestUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<Enumerable<ProductRequestCreateWithoutProductInput>, Enumerable<ProductRequestUncheckedCreateWithoutProductInput>>
+    connectOrCreate?: Enumerable<ProductRequestCreateOrConnectWithoutProductInput>
+    createMany?: ProductRequestCreateManyProductInputEnvelope
+    connect?: Enumerable<ProductRequestWhereUniqueInput>
   }
 
-  export type TeamUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<Enumerable<TeamCreateWithoutProductInput>, Enumerable<TeamUncheckedCreateWithoutProductInput>>
-    connectOrCreate?: Enumerable<TeamCreateOrConnectWithoutProductInput>
-    createMany?: TeamCreateManyProductInputEnvelope
+  export type ProductFormUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<Enumerable<ProductFormCreateWithoutProductInput>, Enumerable<ProductFormUncheckedCreateWithoutProductInput>>
+    connectOrCreate?: Enumerable<ProductFormCreateOrConnectWithoutProductInput>
+    createMany?: ProductFormCreateManyProductInputEnvelope
+    connect?: Enumerable<ProductFormWhereUniqueInput>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type ProductUpdatefeatureInput = {
+    set?: Enumerable<string>
+    push?: string | Enumerable<string>
+  }
+
+  export type ServiceUpdateOneRequiredWithoutProductsNestedInput = {
+    create?: XOR<ServiceCreateWithoutProductsInput, ServiceUncheckedCreateWithoutProductsInput>
+    connectOrCreate?: ServiceCreateOrConnectWithoutProductsInput
+    upsert?: ServiceUpsertWithoutProductsInput
+    connect?: ServiceWhereUniqueInput
+    update?: XOR<ServiceUpdateWithoutProductsInput, ServiceUncheckedUpdateWithoutProductsInput>
+  }
+
+  export type ProductRequestUpdateManyWithoutProductNestedInput = {
+    create?: XOR<Enumerable<ProductRequestCreateWithoutProductInput>, Enumerable<ProductRequestUncheckedCreateWithoutProductInput>>
+    connectOrCreate?: Enumerable<ProductRequestCreateOrConnectWithoutProductInput>
+    upsert?: Enumerable<ProductRequestUpsertWithWhereUniqueWithoutProductInput>
+    createMany?: ProductRequestCreateManyProductInputEnvelope
+    set?: Enumerable<ProductRequestWhereUniqueInput>
+    disconnect?: Enumerable<ProductRequestWhereUniqueInput>
+    delete?: Enumerable<ProductRequestWhereUniqueInput>
+    connect?: Enumerable<ProductRequestWhereUniqueInput>
+    update?: Enumerable<ProductRequestUpdateWithWhereUniqueWithoutProductInput>
+    updateMany?: Enumerable<ProductRequestUpdateManyWithWhereWithoutProductInput>
+    deleteMany?: Enumerable<ProductRequestScalarWhereInput>
+  }
+
+  export type ProductFormUpdateManyWithoutProductNestedInput = {
+    create?: XOR<Enumerable<ProductFormCreateWithoutProductInput>, Enumerable<ProductFormUncheckedCreateWithoutProductInput>>
+    connectOrCreate?: Enumerable<ProductFormCreateOrConnectWithoutProductInput>
+    upsert?: Enumerable<ProductFormUpsertWithWhereUniqueWithoutProductInput>
+    createMany?: ProductFormCreateManyProductInputEnvelope
+    set?: Enumerable<ProductFormWhereUniqueInput>
+    disconnect?: Enumerable<ProductFormWhereUniqueInput>
+    delete?: Enumerable<ProductFormWhereUniqueInput>
+    connect?: Enumerable<ProductFormWhereUniqueInput>
+    update?: Enumerable<ProductFormUpdateWithWhereUniqueWithoutProductInput>
+    updateMany?: Enumerable<ProductFormUpdateManyWithWhereWithoutProductInput>
+    deleteMany?: Enumerable<ProductFormScalarWhereInput>
+  }
+
+  export type ProductRequestUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<Enumerable<ProductRequestCreateWithoutProductInput>, Enumerable<ProductRequestUncheckedCreateWithoutProductInput>>
+    connectOrCreate?: Enumerable<ProductRequestCreateOrConnectWithoutProductInput>
+    upsert?: Enumerable<ProductRequestUpsertWithWhereUniqueWithoutProductInput>
+    createMany?: ProductRequestCreateManyProductInputEnvelope
+    set?: Enumerable<ProductRequestWhereUniqueInput>
+    disconnect?: Enumerable<ProductRequestWhereUniqueInput>
+    delete?: Enumerable<ProductRequestWhereUniqueInput>
+    connect?: Enumerable<ProductRequestWhereUniqueInput>
+    update?: Enumerable<ProductRequestUpdateWithWhereUniqueWithoutProductInput>
+    updateMany?: Enumerable<ProductRequestUpdateManyWithWhereWithoutProductInput>
+    deleteMany?: Enumerable<ProductRequestScalarWhereInput>
+  }
+
+  export type ProductFormUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<Enumerable<ProductFormCreateWithoutProductInput>, Enumerable<ProductFormUncheckedCreateWithoutProductInput>>
+    connectOrCreate?: Enumerable<ProductFormCreateOrConnectWithoutProductInput>
+    upsert?: Enumerable<ProductFormUpsertWithWhereUniqueWithoutProductInput>
+    createMany?: ProductFormCreateManyProductInputEnvelope
+    set?: Enumerable<ProductFormWhereUniqueInput>
+    disconnect?: Enumerable<ProductFormWhereUniqueInput>
+    delete?: Enumerable<ProductFormWhereUniqueInput>
+    connect?: Enumerable<ProductFormWhereUniqueInput>
+    update?: Enumerable<ProductFormUpdateWithWhereUniqueWithoutProductInput>
+    updateMany?: Enumerable<ProductFormUpdateManyWithWhereWithoutProductInput>
+    deleteMany?: Enumerable<ProductFormScalarWhereInput>
+  }
+
+  export type ProductCreateNestedOneWithoutFormInput = {
+    create?: XOR<ProductCreateWithoutFormInput, ProductUncheckedCreateWithoutFormInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutFormInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type ProductSubFormCreateNestedManyWithoutFormInput = {
+    create?: XOR<Enumerable<ProductSubFormCreateWithoutFormInput>, Enumerable<ProductSubFormUncheckedCreateWithoutFormInput>>
+    connectOrCreate?: Enumerable<ProductSubFormCreateOrConnectWithoutFormInput>
+    createMany?: ProductSubFormCreateManyFormInputEnvelope
+    connect?: Enumerable<ProductSubFormWhereUniqueInput>
+  }
+
+  export type ProductSubFormUncheckedCreateNestedManyWithoutFormInput = {
+    create?: XOR<Enumerable<ProductSubFormCreateWithoutFormInput>, Enumerable<ProductSubFormUncheckedCreateWithoutFormInput>>
+    connectOrCreate?: Enumerable<ProductSubFormCreateOrConnectWithoutFormInput>
+    createMany?: ProductSubFormCreateManyFormInputEnvelope
+    connect?: Enumerable<ProductSubFormWhereUniqueInput>
+  }
+
+  export type ProductUpdateOneRequiredWithoutFormNestedInput = {
+    create?: XOR<ProductCreateWithoutFormInput, ProductUncheckedCreateWithoutFormInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutFormInput
+    upsert?: ProductUpsertWithoutFormInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<ProductUpdateWithoutFormInput, ProductUncheckedUpdateWithoutFormInput>
+  }
+
+  export type ProductSubFormUpdateManyWithoutFormNestedInput = {
+    create?: XOR<Enumerable<ProductSubFormCreateWithoutFormInput>, Enumerable<ProductSubFormUncheckedCreateWithoutFormInput>>
+    connectOrCreate?: Enumerable<ProductSubFormCreateOrConnectWithoutFormInput>
+    upsert?: Enumerable<ProductSubFormUpsertWithWhereUniqueWithoutFormInput>
+    createMany?: ProductSubFormCreateManyFormInputEnvelope
+    set?: Enumerable<ProductSubFormWhereUniqueInput>
+    disconnect?: Enumerable<ProductSubFormWhereUniqueInput>
+    delete?: Enumerable<ProductSubFormWhereUniqueInput>
+    connect?: Enumerable<ProductSubFormWhereUniqueInput>
+    update?: Enumerable<ProductSubFormUpdateWithWhereUniqueWithoutFormInput>
+    updateMany?: Enumerable<ProductSubFormUpdateManyWithWhereWithoutFormInput>
+    deleteMany?: Enumerable<ProductSubFormScalarWhereInput>
+  }
+
+  export type ProductSubFormUncheckedUpdateManyWithoutFormNestedInput = {
+    create?: XOR<Enumerable<ProductSubFormCreateWithoutFormInput>, Enumerable<ProductSubFormUncheckedCreateWithoutFormInput>>
+    connectOrCreate?: Enumerable<ProductSubFormCreateOrConnectWithoutFormInput>
+    upsert?: Enumerable<ProductSubFormUpsertWithWhereUniqueWithoutFormInput>
+    createMany?: ProductSubFormCreateManyFormInputEnvelope
+    set?: Enumerable<ProductSubFormWhereUniqueInput>
+    disconnect?: Enumerable<ProductSubFormWhereUniqueInput>
+    delete?: Enumerable<ProductSubFormWhereUniqueInput>
+    connect?: Enumerable<ProductSubFormWhereUniqueInput>
+    update?: Enumerable<ProductSubFormUpdateWithWhereUniqueWithoutFormInput>
+    updateMany?: Enumerable<ProductSubFormUpdateManyWithWhereWithoutFormInput>
+    deleteMany?: Enumerable<ProductSubFormScalarWhereInput>
+  }
+
+  export type ProductSubFormCreateoptionsInput = {
+    set: Enumerable<string>
+  }
+
+  export type ProductFormCreateNestedOneWithoutProductSubFormInput = {
+    create?: XOR<ProductFormCreateWithoutProductSubFormInput, ProductFormUncheckedCreateWithoutProductSubFormInput>
+    connectOrCreate?: ProductFormCreateOrConnectWithoutProductSubFormInput
+    connect?: ProductFormWhereUniqueInput
+  }
+
+  export type ProductSubFormUpdateoptionsInput = {
+    set?: Enumerable<string>
+    push?: string | Enumerable<string>
+  }
+
+  export type ProductFormUpdateOneRequiredWithoutProductSubFormNestedInput = {
+    create?: XOR<ProductFormCreateWithoutProductSubFormInput, ProductFormUncheckedCreateWithoutProductSubFormInput>
+    connectOrCreate?: ProductFormCreateOrConnectWithoutProductSubFormInput
+    upsert?: ProductFormUpsertWithoutProductSubFormInput
+    connect?: ProductFormWhereUniqueInput
+    update?: XOR<ProductFormUpdateWithoutProductSubFormInput, ProductFormUncheckedUpdateWithoutProductSubFormInput>
+  }
+
+  export type TeamCreateNestedManyWithoutProductRequestInput = {
+    create?: XOR<Enumerable<TeamCreateWithoutProductRequestInput>, Enumerable<TeamUncheckedCreateWithoutProductRequestInput>>
+    connectOrCreate?: Enumerable<TeamCreateOrConnectWithoutProductRequestInput>
+    createMany?: TeamCreateManyProductRequestInputEnvelope
     connect?: Enumerable<TeamWhereUniqueInput>
   }
 
-  export type PaymentUncheckedCreateNestedManyWithoutProductsInput = {
-    create?: XOR<Enumerable<PaymentCreateWithoutProductsInput>, Enumerable<PaymentUncheckedCreateWithoutProductsInput>>
-    connectOrCreate?: Enumerable<PaymentCreateOrConnectWithoutProductsInput>
-    createMany?: PaymentCreateManyProductsInputEnvelope
+  export type ProductCreateNestedOneWithoutRequestInput = {
+    create?: XOR<ProductCreateWithoutRequestInput, ProductUncheckedCreateWithoutRequestInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutRequestInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutProductRequestInput = {
+    create?: XOR<UserCreateWithoutProductRequestInput, UserUncheckedCreateWithoutProductRequestInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProductRequestInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PaymentCreateNestedManyWithoutProductRequestsInput = {
+    create?: XOR<Enumerable<PaymentCreateWithoutProductRequestsInput>, Enumerable<PaymentUncheckedCreateWithoutProductRequestsInput>>
+    connectOrCreate?: Enumerable<PaymentCreateOrConnectWithoutProductRequestsInput>
+    createMany?: PaymentCreateManyProductRequestsInputEnvelope
     connect?: Enumerable<PaymentWhereUniqueInput>
   }
 
-  export type ProductQAUncheckedCreateNestedManyWithoutProductsInput = {
-    create?: XOR<Enumerable<ProductQACreateWithoutProductsInput>, Enumerable<ProductQAUncheckedCreateWithoutProductsInput>>
-    connectOrCreate?: Enumerable<ProductQACreateOrConnectWithoutProductsInput>
-    createMany?: ProductQACreateManyProductsInputEnvelope
-    connect?: Enumerable<ProductQAWhereUniqueInput>
+  export type ProductRequestQACreateNestedManyWithoutRequestInput = {
+    create?: XOR<Enumerable<ProductRequestQACreateWithoutRequestInput>, Enumerable<ProductRequestQAUncheckedCreateWithoutRequestInput>>
+    connectOrCreate?: Enumerable<ProductRequestQACreateOrConnectWithoutRequestInput>
+    createMany?: ProductRequestQACreateManyRequestInputEnvelope
+    connect?: Enumerable<ProductRequestQAWhereUniqueInput>
+  }
+
+  export type TeamUncheckedCreateNestedManyWithoutProductRequestInput = {
+    create?: XOR<Enumerable<TeamCreateWithoutProductRequestInput>, Enumerable<TeamUncheckedCreateWithoutProductRequestInput>>
+    connectOrCreate?: Enumerable<TeamCreateOrConnectWithoutProductRequestInput>
+    createMany?: TeamCreateManyProductRequestInputEnvelope
+    connect?: Enumerable<TeamWhereUniqueInput>
+  }
+
+  export type PaymentUncheckedCreateNestedManyWithoutProductRequestsInput = {
+    create?: XOR<Enumerable<PaymentCreateWithoutProductRequestsInput>, Enumerable<PaymentUncheckedCreateWithoutProductRequestsInput>>
+    connectOrCreate?: Enumerable<PaymentCreateOrConnectWithoutProductRequestsInput>
+    createMany?: PaymentCreateManyProductRequestsInputEnvelope
+    connect?: Enumerable<PaymentWhereUniqueInput>
+  }
+
+  export type ProductRequestQAUncheckedCreateNestedManyWithoutRequestInput = {
+    create?: XOR<Enumerable<ProductRequestQACreateWithoutRequestInput>, Enumerable<ProductRequestQAUncheckedCreateWithoutRequestInput>>
+    connectOrCreate?: Enumerable<ProductRequestQACreateOrConnectWithoutRequestInput>
+    createMany?: ProductRequestQACreateManyRequestInputEnvelope
+    connect?: Enumerable<ProductRequestQAWhereUniqueInput>
   }
 
   export type EnumProductActivityStageFieldUpdateOperationsInput = {
     set?: ProductActivityStage
   }
 
-  export type TeamUpdateManyWithoutProductNestedInput = {
-    create?: XOR<Enumerable<TeamCreateWithoutProductInput>, Enumerable<TeamUncheckedCreateWithoutProductInput>>
-    connectOrCreate?: Enumerable<TeamCreateOrConnectWithoutProductInput>
-    upsert?: Enumerable<TeamUpsertWithWhereUniqueWithoutProductInput>
-    createMany?: TeamCreateManyProductInputEnvelope
+  export type TeamUpdateManyWithoutProductRequestNestedInput = {
+    create?: XOR<Enumerable<TeamCreateWithoutProductRequestInput>, Enumerable<TeamUncheckedCreateWithoutProductRequestInput>>
+    connectOrCreate?: Enumerable<TeamCreateOrConnectWithoutProductRequestInput>
+    upsert?: Enumerable<TeamUpsertWithWhereUniqueWithoutProductRequestInput>
+    createMany?: TeamCreateManyProductRequestInputEnvelope
     set?: Enumerable<TeamWhereUniqueInput>
     disconnect?: Enumerable<TeamWhereUniqueInput>
     delete?: Enumerable<TeamWhereUniqueInput>
     connect?: Enumerable<TeamWhereUniqueInput>
-    update?: Enumerable<TeamUpdateWithWhereUniqueWithoutProductInput>
-    updateMany?: Enumerable<TeamUpdateManyWithWhereWithoutProductInput>
+    update?: Enumerable<TeamUpdateWithWhereUniqueWithoutProductRequestInput>
+    updateMany?: Enumerable<TeamUpdateManyWithWhereWithoutProductRequestInput>
     deleteMany?: Enumerable<TeamScalarWhereInput>
   }
 
-  export type ServiceUpdateOneWithoutProductsNestedInput = {
-    create?: XOR<ServiceCreateWithoutProductsInput, ServiceUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: ServiceCreateOrConnectWithoutProductsInput
-    upsert?: ServiceUpsertWithoutProductsInput
+  export type ProductUpdateOneWithoutRequestNestedInput = {
+    create?: XOR<ProductCreateWithoutRequestInput, ProductUncheckedCreateWithoutRequestInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutRequestInput
+    upsert?: ProductUpsertWithoutRequestInput
     disconnect?: boolean
     delete?: boolean
-    connect?: ServiceWhereUniqueInput
-    update?: XOR<ServiceUpdateWithoutProductsInput, ServiceUncheckedUpdateWithoutProductsInput>
+    connect?: ProductWhereUniqueInput
+    update?: XOR<ProductUpdateWithoutRequestInput, ProductUncheckedUpdateWithoutRequestInput>
   }
 
-  export type UserUpdateOneRequiredWithoutProductNestedInput = {
-    create?: XOR<UserCreateWithoutProductInput, UserUncheckedCreateWithoutProductInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProductInput
-    upsert?: UserUpsertWithoutProductInput
+  export type UserUpdateOneRequiredWithoutProductRequestNestedInput = {
+    create?: XOR<UserCreateWithoutProductRequestInput, UserUncheckedCreateWithoutProductRequestInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProductRequestInput
+    upsert?: UserUpsertWithoutProductRequestInput
     connect?: UserWhereUniqueInput
-    update?: XOR<UserUpdateWithoutProductInput, UserUncheckedUpdateWithoutProductInput>
+    update?: XOR<UserUpdateWithoutProductRequestInput, UserUncheckedUpdateWithoutProductRequestInput>
   }
 
-  export type PaymentUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<Enumerable<PaymentCreateWithoutProductsInput>, Enumerable<PaymentUncheckedCreateWithoutProductsInput>>
-    connectOrCreate?: Enumerable<PaymentCreateOrConnectWithoutProductsInput>
-    upsert?: Enumerable<PaymentUpsertWithWhereUniqueWithoutProductsInput>
-    createMany?: PaymentCreateManyProductsInputEnvelope
+  export type PaymentUpdateManyWithoutProductRequestsNestedInput = {
+    create?: XOR<Enumerable<PaymentCreateWithoutProductRequestsInput>, Enumerable<PaymentUncheckedCreateWithoutProductRequestsInput>>
+    connectOrCreate?: Enumerable<PaymentCreateOrConnectWithoutProductRequestsInput>
+    upsert?: Enumerable<PaymentUpsertWithWhereUniqueWithoutProductRequestsInput>
+    createMany?: PaymentCreateManyProductRequestsInputEnvelope
     set?: Enumerable<PaymentWhereUniqueInput>
     disconnect?: Enumerable<PaymentWhereUniqueInput>
     delete?: Enumerable<PaymentWhereUniqueInput>
     connect?: Enumerable<PaymentWhereUniqueInput>
-    update?: Enumerable<PaymentUpdateWithWhereUniqueWithoutProductsInput>
-    updateMany?: Enumerable<PaymentUpdateManyWithWhereWithoutProductsInput>
+    update?: Enumerable<PaymentUpdateWithWhereUniqueWithoutProductRequestsInput>
+    updateMany?: Enumerable<PaymentUpdateManyWithWhereWithoutProductRequestsInput>
     deleteMany?: Enumerable<PaymentScalarWhereInput>
   }
 
-  export type ProductQAUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<Enumerable<ProductQACreateWithoutProductsInput>, Enumerable<ProductQAUncheckedCreateWithoutProductsInput>>
-    connectOrCreate?: Enumerable<ProductQACreateOrConnectWithoutProductsInput>
-    upsert?: Enumerable<ProductQAUpsertWithWhereUniqueWithoutProductsInput>
-    createMany?: ProductQACreateManyProductsInputEnvelope
-    set?: Enumerable<ProductQAWhereUniqueInput>
-    disconnect?: Enumerable<ProductQAWhereUniqueInput>
-    delete?: Enumerable<ProductQAWhereUniqueInput>
-    connect?: Enumerable<ProductQAWhereUniqueInput>
-    update?: Enumerable<ProductQAUpdateWithWhereUniqueWithoutProductsInput>
-    updateMany?: Enumerable<ProductQAUpdateManyWithWhereWithoutProductsInput>
-    deleteMany?: Enumerable<ProductQAScalarWhereInput>
+  export type ProductRequestQAUpdateManyWithoutRequestNestedInput = {
+    create?: XOR<Enumerable<ProductRequestQACreateWithoutRequestInput>, Enumerable<ProductRequestQAUncheckedCreateWithoutRequestInput>>
+    connectOrCreate?: Enumerable<ProductRequestQACreateOrConnectWithoutRequestInput>
+    upsert?: Enumerable<ProductRequestQAUpsertWithWhereUniqueWithoutRequestInput>
+    createMany?: ProductRequestQACreateManyRequestInputEnvelope
+    set?: Enumerable<ProductRequestQAWhereUniqueInput>
+    disconnect?: Enumerable<ProductRequestQAWhereUniqueInput>
+    delete?: Enumerable<ProductRequestQAWhereUniqueInput>
+    connect?: Enumerable<ProductRequestQAWhereUniqueInput>
+    update?: Enumerable<ProductRequestQAUpdateWithWhereUniqueWithoutRequestInput>
+    updateMany?: Enumerable<ProductRequestQAUpdateManyWithWhereWithoutRequestInput>
+    deleteMany?: Enumerable<ProductRequestQAScalarWhereInput>
   }
 
-  export type TeamUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<Enumerable<TeamCreateWithoutProductInput>, Enumerable<TeamUncheckedCreateWithoutProductInput>>
-    connectOrCreate?: Enumerable<TeamCreateOrConnectWithoutProductInput>
-    upsert?: Enumerable<TeamUpsertWithWhereUniqueWithoutProductInput>
-    createMany?: TeamCreateManyProductInputEnvelope
+  export type TeamUncheckedUpdateManyWithoutProductRequestNestedInput = {
+    create?: XOR<Enumerable<TeamCreateWithoutProductRequestInput>, Enumerable<TeamUncheckedCreateWithoutProductRequestInput>>
+    connectOrCreate?: Enumerable<TeamCreateOrConnectWithoutProductRequestInput>
+    upsert?: Enumerable<TeamUpsertWithWhereUniqueWithoutProductRequestInput>
+    createMany?: TeamCreateManyProductRequestInputEnvelope
     set?: Enumerable<TeamWhereUniqueInput>
     disconnect?: Enumerable<TeamWhereUniqueInput>
     delete?: Enumerable<TeamWhereUniqueInput>
     connect?: Enumerable<TeamWhereUniqueInput>
-    update?: Enumerable<TeamUpdateWithWhereUniqueWithoutProductInput>
-    updateMany?: Enumerable<TeamUpdateManyWithWhereWithoutProductInput>
+    update?: Enumerable<TeamUpdateWithWhereUniqueWithoutProductRequestInput>
+    updateMany?: Enumerable<TeamUpdateManyWithWhereWithoutProductRequestInput>
     deleteMany?: Enumerable<TeamScalarWhereInput>
   }
 
-  export type PaymentUncheckedUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<Enumerable<PaymentCreateWithoutProductsInput>, Enumerable<PaymentUncheckedCreateWithoutProductsInput>>
-    connectOrCreate?: Enumerable<PaymentCreateOrConnectWithoutProductsInput>
-    upsert?: Enumerable<PaymentUpsertWithWhereUniqueWithoutProductsInput>
-    createMany?: PaymentCreateManyProductsInputEnvelope
+  export type PaymentUncheckedUpdateManyWithoutProductRequestsNestedInput = {
+    create?: XOR<Enumerable<PaymentCreateWithoutProductRequestsInput>, Enumerable<PaymentUncheckedCreateWithoutProductRequestsInput>>
+    connectOrCreate?: Enumerable<PaymentCreateOrConnectWithoutProductRequestsInput>
+    upsert?: Enumerable<PaymentUpsertWithWhereUniqueWithoutProductRequestsInput>
+    createMany?: PaymentCreateManyProductRequestsInputEnvelope
     set?: Enumerable<PaymentWhereUniqueInput>
     disconnect?: Enumerable<PaymentWhereUniqueInput>
     delete?: Enumerable<PaymentWhereUniqueInput>
     connect?: Enumerable<PaymentWhereUniqueInput>
-    update?: Enumerable<PaymentUpdateWithWhereUniqueWithoutProductsInput>
-    updateMany?: Enumerable<PaymentUpdateManyWithWhereWithoutProductsInput>
+    update?: Enumerable<PaymentUpdateWithWhereUniqueWithoutProductRequestsInput>
+    updateMany?: Enumerable<PaymentUpdateManyWithWhereWithoutProductRequestsInput>
     deleteMany?: Enumerable<PaymentScalarWhereInput>
   }
 
-  export type ProductQAUncheckedUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<Enumerable<ProductQACreateWithoutProductsInput>, Enumerable<ProductQAUncheckedCreateWithoutProductsInput>>
-    connectOrCreate?: Enumerable<ProductQACreateOrConnectWithoutProductsInput>
-    upsert?: Enumerable<ProductQAUpsertWithWhereUniqueWithoutProductsInput>
-    createMany?: ProductQACreateManyProductsInputEnvelope
-    set?: Enumerable<ProductQAWhereUniqueInput>
-    disconnect?: Enumerable<ProductQAWhereUniqueInput>
-    delete?: Enumerable<ProductQAWhereUniqueInput>
-    connect?: Enumerable<ProductQAWhereUniqueInput>
-    update?: Enumerable<ProductQAUpdateWithWhereUniqueWithoutProductsInput>
-    updateMany?: Enumerable<ProductQAUpdateManyWithWhereWithoutProductsInput>
-    deleteMany?: Enumerable<ProductQAScalarWhereInput>
+  export type ProductRequestQAUncheckedUpdateManyWithoutRequestNestedInput = {
+    create?: XOR<Enumerable<ProductRequestQACreateWithoutRequestInput>, Enumerable<ProductRequestQAUncheckedCreateWithoutRequestInput>>
+    connectOrCreate?: Enumerable<ProductRequestQACreateOrConnectWithoutRequestInput>
+    upsert?: Enumerable<ProductRequestQAUpsertWithWhereUniqueWithoutRequestInput>
+    createMany?: ProductRequestQACreateManyRequestInputEnvelope
+    set?: Enumerable<ProductRequestQAWhereUniqueInput>
+    disconnect?: Enumerable<ProductRequestQAWhereUniqueInput>
+    delete?: Enumerable<ProductRequestQAWhereUniqueInput>
+    connect?: Enumerable<ProductRequestQAWhereUniqueInput>
+    update?: Enumerable<ProductRequestQAUpdateWithWhereUniqueWithoutRequestInput>
+    updateMany?: Enumerable<ProductRequestQAUpdateManyWithWhereWithoutRequestInput>
+    deleteMany?: Enumerable<ProductRequestQAScalarWhereInput>
   }
 
-  export type ProductQACreateanswerInput = {
+  export type ProductRequestCreateNestedOneWithoutRequestQAInput = {
+    create?: XOR<ProductRequestCreateWithoutRequestQAInput, ProductRequestUncheckedCreateWithoutRequestQAInput>
+    connectOrCreate?: ProductRequestCreateOrConnectWithoutRequestQAInput
+    connect?: ProductRequestWhereUniqueInput
+  }
+
+  export type ProductRequestQASubFormCreateNestedManyWithoutRequestQAInput = {
+    create?: XOR<Enumerable<ProductRequestQASubFormCreateWithoutRequestQAInput>, Enumerable<ProductRequestQASubFormUncheckedCreateWithoutRequestQAInput>>
+    connectOrCreate?: Enumerable<ProductRequestQASubFormCreateOrConnectWithoutRequestQAInput>
+    createMany?: ProductRequestQASubFormCreateManyRequestQAInputEnvelope
+    connect?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+  }
+
+  export type ProductRequestQASubFormUncheckedCreateNestedManyWithoutRequestQAInput = {
+    create?: XOR<Enumerable<ProductRequestQASubFormCreateWithoutRequestQAInput>, Enumerable<ProductRequestQASubFormUncheckedCreateWithoutRequestQAInput>>
+    connectOrCreate?: Enumerable<ProductRequestQASubFormCreateOrConnectWithoutRequestQAInput>
+    createMany?: ProductRequestQASubFormCreateManyRequestQAInputEnvelope
+    connect?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+  }
+
+  export type ProductRequestUpdateOneRequiredWithoutRequestQANestedInput = {
+    create?: XOR<ProductRequestCreateWithoutRequestQAInput, ProductRequestUncheckedCreateWithoutRequestQAInput>
+    connectOrCreate?: ProductRequestCreateOrConnectWithoutRequestQAInput
+    upsert?: ProductRequestUpsertWithoutRequestQAInput
+    connect?: ProductRequestWhereUniqueInput
+    update?: XOR<ProductRequestUpdateWithoutRequestQAInput, ProductRequestUncheckedUpdateWithoutRequestQAInput>
+  }
+
+  export type ProductRequestQASubFormUpdateManyWithoutRequestQANestedInput = {
+    create?: XOR<Enumerable<ProductRequestQASubFormCreateWithoutRequestQAInput>, Enumerable<ProductRequestQASubFormUncheckedCreateWithoutRequestQAInput>>
+    connectOrCreate?: Enumerable<ProductRequestQASubFormCreateOrConnectWithoutRequestQAInput>
+    upsert?: Enumerable<ProductRequestQASubFormUpsertWithWhereUniqueWithoutRequestQAInput>
+    createMany?: ProductRequestQASubFormCreateManyRequestQAInputEnvelope
+    set?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+    disconnect?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+    delete?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+    connect?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+    update?: Enumerable<ProductRequestQASubFormUpdateWithWhereUniqueWithoutRequestQAInput>
+    updateMany?: Enumerable<ProductRequestQASubFormUpdateManyWithWhereWithoutRequestQAInput>
+    deleteMany?: Enumerable<ProductRequestQASubFormScalarWhereInput>
+  }
+
+  export type ProductRequestQASubFormUncheckedUpdateManyWithoutRequestQANestedInput = {
+    create?: XOR<Enumerable<ProductRequestQASubFormCreateWithoutRequestQAInput>, Enumerable<ProductRequestQASubFormUncheckedCreateWithoutRequestQAInput>>
+    connectOrCreate?: Enumerable<ProductRequestQASubFormCreateOrConnectWithoutRequestQAInput>
+    upsert?: Enumerable<ProductRequestQASubFormUpsertWithWhereUniqueWithoutRequestQAInput>
+    createMany?: ProductRequestQASubFormCreateManyRequestQAInputEnvelope
+    set?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+    disconnect?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+    delete?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+    connect?: Enumerable<ProductRequestQASubFormWhereUniqueInput>
+    update?: Enumerable<ProductRequestQASubFormUpdateWithWhereUniqueWithoutRequestQAInput>
+    updateMany?: Enumerable<ProductRequestQASubFormUpdateManyWithWhereWithoutRequestQAInput>
+    deleteMany?: Enumerable<ProductRequestQASubFormScalarWhereInput>
+  }
+
+  export type ProductRequestQASubFormCreateanswerInput = {
     set: Enumerable<string>
   }
 
-  export type ProductCreateNestedOneWithoutProductQAInput = {
-    create?: XOR<ProductCreateWithoutProductQAInput, ProductUncheckedCreateWithoutProductQAInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutProductQAInput
-    connect?: ProductWhereUniqueInput
+  export type ProductRequestQACreateNestedOneWithoutSubFormInput = {
+    create?: XOR<ProductRequestQACreateWithoutSubFormInput, ProductRequestQAUncheckedCreateWithoutSubFormInput>
+    connectOrCreate?: ProductRequestQACreateOrConnectWithoutSubFormInput
+    connect?: ProductRequestQAWhereUniqueInput
   }
 
-  export type ProductQASubFormCreateNestedManyWithoutProductQAInput = {
-    create?: XOR<Enumerable<ProductQASubFormCreateWithoutProductQAInput>, Enumerable<ProductQASubFormUncheckedCreateWithoutProductQAInput>>
-    connectOrCreate?: Enumerable<ProductQASubFormCreateOrConnectWithoutProductQAInput>
-    createMany?: ProductQASubFormCreateManyProductQAInputEnvelope
-    connect?: Enumerable<ProductQASubFormWhereUniqueInput>
-  }
-
-  export type ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput = {
-    create?: XOR<Enumerable<ProductQASubFormCreateWithoutProductQAInput>, Enumerable<ProductQASubFormUncheckedCreateWithoutProductQAInput>>
-    connectOrCreate?: Enumerable<ProductQASubFormCreateOrConnectWithoutProductQAInput>
-    createMany?: ProductQASubFormCreateManyProductQAInputEnvelope
-    connect?: Enumerable<ProductQASubFormWhereUniqueInput>
-  }
-
-  export type ProductQAUpdateanswerInput = {
+  export type ProductRequestQASubFormUpdateanswerInput = {
     set?: Enumerable<string>
     push?: string | Enumerable<string>
   }
 
-  export type ProductUpdateOneRequiredWithoutProductQANestedInput = {
-    create?: XOR<ProductCreateWithoutProductQAInput, ProductUncheckedCreateWithoutProductQAInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutProductQAInput
-    upsert?: ProductUpsertWithoutProductQAInput
-    connect?: ProductWhereUniqueInput
-    update?: XOR<ProductUpdateWithoutProductQAInput, ProductUncheckedUpdateWithoutProductQAInput>
+  export type ProductRequestQAUpdateOneRequiredWithoutSubFormNestedInput = {
+    create?: XOR<ProductRequestQACreateWithoutSubFormInput, ProductRequestQAUncheckedCreateWithoutSubFormInput>
+    connectOrCreate?: ProductRequestQACreateOrConnectWithoutSubFormInput
+    upsert?: ProductRequestQAUpsertWithoutSubFormInput
+    connect?: ProductRequestQAWhereUniqueInput
+    update?: XOR<ProductRequestQAUpdateWithoutSubFormInput, ProductRequestQAUncheckedUpdateWithoutSubFormInput>
   }
 
-  export type ProductQASubFormUpdateManyWithoutProductQANestedInput = {
-    create?: XOR<Enumerable<ProductQASubFormCreateWithoutProductQAInput>, Enumerable<ProductQASubFormUncheckedCreateWithoutProductQAInput>>
-    connectOrCreate?: Enumerable<ProductQASubFormCreateOrConnectWithoutProductQAInput>
-    upsert?: Enumerable<ProductQASubFormUpsertWithWhereUniqueWithoutProductQAInput>
-    createMany?: ProductQASubFormCreateManyProductQAInputEnvelope
-    set?: Enumerable<ProductQASubFormWhereUniqueInput>
-    disconnect?: Enumerable<ProductQASubFormWhereUniqueInput>
-    delete?: Enumerable<ProductQASubFormWhereUniqueInput>
-    connect?: Enumerable<ProductQASubFormWhereUniqueInput>
-    update?: Enumerable<ProductQASubFormUpdateWithWhereUniqueWithoutProductQAInput>
-    updateMany?: Enumerable<ProductQASubFormUpdateManyWithWhereWithoutProductQAInput>
-    deleteMany?: Enumerable<ProductQASubFormScalarWhereInput>
-  }
-
-  export type ProductQASubFormUncheckedUpdateManyWithoutProductQANestedInput = {
-    create?: XOR<Enumerable<ProductQASubFormCreateWithoutProductQAInput>, Enumerable<ProductQASubFormUncheckedCreateWithoutProductQAInput>>
-    connectOrCreate?: Enumerable<ProductQASubFormCreateOrConnectWithoutProductQAInput>
-    upsert?: Enumerable<ProductQASubFormUpsertWithWhereUniqueWithoutProductQAInput>
-    createMany?: ProductQASubFormCreateManyProductQAInputEnvelope
-    set?: Enumerable<ProductQASubFormWhereUniqueInput>
-    disconnect?: Enumerable<ProductQASubFormWhereUniqueInput>
-    delete?: Enumerable<ProductQASubFormWhereUniqueInput>
-    connect?: Enumerable<ProductQASubFormWhereUniqueInput>
-    update?: Enumerable<ProductQASubFormUpdateWithWhereUniqueWithoutProductQAInput>
-    updateMany?: Enumerable<ProductQASubFormUpdateManyWithWhereWithoutProductQAInput>
-    deleteMany?: Enumerable<ProductQASubFormScalarWhereInput>
-  }
-
-  export type ProductQASubFormCreateanswerInput = {
-    set: Enumerable<string>
-  }
-
-  export type ProductQACreateNestedOneWithoutProductSubFormInput = {
-    create?: XOR<ProductQACreateWithoutProductSubFormInput, ProductQAUncheckedCreateWithoutProductSubFormInput>
-    connectOrCreate?: ProductQACreateOrConnectWithoutProductSubFormInput
-    connect?: ProductQAWhereUniqueInput
-  }
-
-  export type ProductQASubFormUpdateanswerInput = {
-    set?: Enumerable<string>
-    push?: string | Enumerable<string>
-  }
-
-  export type ProductQAUpdateOneRequiredWithoutProductSubFormNestedInput = {
-    create?: XOR<ProductQACreateWithoutProductSubFormInput, ProductQAUncheckedCreateWithoutProductSubFormInput>
-    connectOrCreate?: ProductQACreateOrConnectWithoutProductSubFormInput
-    upsert?: ProductQAUpsertWithoutProductSubFormInput
-    connect?: ProductQAWhereUniqueInput
-    update?: XOR<ProductQAUpdateWithoutProductSubFormInput, ProductQAUncheckedUpdateWithoutProductSubFormInput>
-  }
-
-  export type ProductCreateNestedOneWithoutTeamInput = {
-    create?: XOR<ProductCreateWithoutTeamInput, ProductUncheckedCreateWithoutTeamInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutTeamInput
-    connect?: ProductWhereUniqueInput
+  export type ProductRequestCreateNestedOneWithoutTeamInput = {
+    create?: XOR<ProductRequestCreateWithoutTeamInput, ProductRequestUncheckedCreateWithoutTeamInput>
+    connectOrCreate?: ProductRequestCreateOrConnectWithoutTeamInput
+    connect?: ProductRequestWhereUniqueInput
   }
 
   export type InvitationCreateNestedManyWithoutTeamInput = {
@@ -35106,12 +35103,12 @@ export namespace Prisma {
     connect?: Enumerable<TeamMemberWhereUniqueInput>
   }
 
-  export type ProductUpdateOneRequiredWithoutTeamNestedInput = {
-    create?: XOR<ProductCreateWithoutTeamInput, ProductUncheckedCreateWithoutTeamInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutTeamInput
-    upsert?: ProductUpsertWithoutTeamInput
-    connect?: ProductWhereUniqueInput
-    update?: XOR<ProductUpdateWithoutTeamInput, ProductUncheckedUpdateWithoutTeamInput>
+  export type ProductRequestUpdateOneRequiredWithoutTeamNestedInput = {
+    create?: XOR<ProductRequestCreateWithoutTeamInput, ProductRequestUncheckedCreateWithoutTeamInput>
+    connectOrCreate?: ProductRequestCreateOrConnectWithoutTeamInput
+    upsert?: ProductRequestUpsertWithoutTeamInput
+    connect?: ProductRequestWhereUniqueInput
+    update?: XOR<ProductRequestUpdateWithoutTeamInput, ProductRequestUncheckedUpdateWithoutTeamInput>
   }
 
   export type InvitationUpdateManyWithoutTeamNestedInput = {
@@ -35212,18 +35209,18 @@ export namespace Prisma {
     update?: XOR<TeamUpdateWithoutInvitationInput, TeamUncheckedUpdateWithoutInvitationInput>
   }
 
-  export type ProductCreateNestedOneWithoutPaymentInput = {
-    create?: XOR<ProductCreateWithoutPaymentInput, ProductUncheckedCreateWithoutPaymentInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutPaymentInput
-    connect?: ProductWhereUniqueInput
+  export type ProductRequestCreateNestedOneWithoutPaymentInput = {
+    create?: XOR<ProductRequestCreateWithoutPaymentInput, ProductRequestUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: ProductRequestCreateOrConnectWithoutPaymentInput
+    connect?: ProductRequestWhereUniqueInput
   }
 
-  export type ProductUpdateOneRequiredWithoutPaymentNestedInput = {
-    create?: XOR<ProductCreateWithoutPaymentInput, ProductUncheckedCreateWithoutPaymentInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutPaymentInput
-    upsert?: ProductUpsertWithoutPaymentInput
-    connect?: ProductWhereUniqueInput
-    update?: XOR<ProductUpdateWithoutPaymentInput, ProductUncheckedUpdateWithoutPaymentInput>
+  export type ProductRequestUpdateOneRequiredWithoutPaymentNestedInput = {
+    create?: XOR<ProductRequestCreateWithoutPaymentInput, ProductRequestUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: ProductRequestCreateOrConnectWithoutPaymentInput
+    upsert?: ProductRequestUpsertWithoutPaymentInput
+    connect?: ProductRequestWhereUniqueInput
+    update?: XOR<ProductRequestUpdateWithoutPaymentInput, ProductRequestUncheckedUpdateWithoutPaymentInput>
   }
 
   export type ParterCreateverificationDocumentInput = {
@@ -35615,7 +35612,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     teamMember?: TeamMemberCreateNestedManyWithoutUserInput
-    product?: ProductCreateNestedManyWithoutUserInput
+    productRequest?: ProductRequestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountInput = {
@@ -35644,7 +35641,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
-    product?: ProductUncheckedCreateNestedManyWithoutUserInput
+    productRequest?: ProductRequestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountInput = {
@@ -35683,7 +35680,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMember?: TeamMemberUpdateManyWithoutUserNestedInput
-    product?: ProductUpdateManyWithoutUserNestedInput
+    productRequest?: ProductRequestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountInput = {
@@ -35712,7 +35709,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMember?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
-    product?: ProductUncheckedUpdateManyWithoutUserNestedInput
+    productRequest?: ProductRequestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TeamMemberCreateWithoutUserInput = {
@@ -35779,7 +35776,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ProductCreateWithoutUserInput = {
+  export type ProductRequestCreateWithoutUserInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -35790,13 +35787,13 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    Team?: TeamCreateNestedManyWithoutProductInput
-    service?: ServiceCreateNestedOneWithoutProductsInput
-    Payment?: PaymentCreateNestedManyWithoutProductsInput
-    productQA?: ProductQACreateNestedManyWithoutProductsInput
+    Team?: TeamCreateNestedManyWithoutProductRequestInput
+    product?: ProductCreateNestedOneWithoutRequestInput
+    Payment?: PaymentCreateNestedManyWithoutProductRequestsInput
+    requestQA?: ProductRequestQACreateNestedManyWithoutRequestInput
   }
 
-  export type ProductUncheckedCreateWithoutUserInput = {
+  export type ProductRequestUncheckedCreateWithoutUserInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -35807,19 +35804,19 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceId?: string | null
-    Team?: TeamUncheckedCreateNestedManyWithoutProductInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutProductsInput
-    productQA?: ProductQAUncheckedCreateNestedManyWithoutProductsInput
+    productId?: string | null
+    Team?: TeamUncheckedCreateNestedManyWithoutProductRequestInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutProductRequestsInput
+    requestQA?: ProductRequestQAUncheckedCreateNestedManyWithoutRequestInput
   }
 
-  export type ProductCreateOrConnectWithoutUserInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput>
+  export type ProductRequestCreateOrConnectWithoutUserInput = {
+    where: ProductRequestWhereUniqueInput
+    create: XOR<ProductRequestCreateWithoutUserInput, ProductRequestUncheckedCreateWithoutUserInput>
   }
 
-  export type ProductCreateManyUserInputEnvelope = {
-    data: Enumerable<ProductCreateManyUserInput>
+  export type ProductRequestCreateManyUserInputEnvelope = {
+    data: Enumerable<ProductRequestCreateManyUserInput>
     skipDuplicates?: boolean
   }
 
@@ -35885,26 +35882,26 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter | Date | string
   }
 
-  export type ProductUpsertWithWhereUniqueWithoutUserInput = {
-    where: ProductWhereUniqueInput
-    update: XOR<ProductUpdateWithoutUserInput, ProductUncheckedUpdateWithoutUserInput>
-    create: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput>
+  export type ProductRequestUpsertWithWhereUniqueWithoutUserInput = {
+    where: ProductRequestWhereUniqueInput
+    update: XOR<ProductRequestUpdateWithoutUserInput, ProductRequestUncheckedUpdateWithoutUserInput>
+    create: XOR<ProductRequestCreateWithoutUserInput, ProductRequestUncheckedCreateWithoutUserInput>
   }
 
-  export type ProductUpdateWithWhereUniqueWithoutUserInput = {
-    where: ProductWhereUniqueInput
-    data: XOR<ProductUpdateWithoutUserInput, ProductUncheckedUpdateWithoutUserInput>
+  export type ProductRequestUpdateWithWhereUniqueWithoutUserInput = {
+    where: ProductRequestWhereUniqueInput
+    data: XOR<ProductRequestUpdateWithoutUserInput, ProductRequestUncheckedUpdateWithoutUserInput>
   }
 
-  export type ProductUpdateManyWithWhereWithoutUserInput = {
-    where: ProductScalarWhereInput
-    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutProductInput>
+  export type ProductRequestUpdateManyWithWhereWithoutUserInput = {
+    where: ProductRequestScalarWhereInput
+    data: XOR<ProductRequestUpdateManyMutationInput, ProductRequestUncheckedUpdateManyWithoutProductRequestInput>
   }
 
-  export type ProductScalarWhereInput = {
-    AND?: Enumerable<ProductScalarWhereInput>
-    OR?: Enumerable<ProductScalarWhereInput>
-    NOT?: Enumerable<ProductScalarWhereInput>
+  export type ProductRequestScalarWhereInput = {
+    AND?: Enumerable<ProductRequestScalarWhereInput>
+    OR?: Enumerable<ProductRequestScalarWhereInput>
+    NOT?: Enumerable<ProductRequestScalarWhereInput>
     id?: StringFilter | string
     email?: StringNullableFilter | string | null
     address?: StringNullableFilter | string | null
@@ -35915,415 +35912,54 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
     updatedAt?: DateTimeFilter | Date | string
-    serviceId?: StringNullableFilter | string | null
+    productId?: StringNullableFilter | string | null
     userId?: StringFilter | string
-  }
-
-  export type ServiceCreateWithoutCategoryInput = {
-    id?: string
-    name: string
-    description: string
-    country: string
-    currency: string
-    amount: number
-    timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
-    hasShares?: boolean
-    hasAgent?: boolean
-    hasOwner?: boolean
-    hasController?: boolean
-    controllerIsCalled?: string | null
-    OwnerIsCalled?: string | null
-    agentIsCalled?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    products?: ProductCreateNestedManyWithoutServiceInput
-    forms?: ServiceFormCreateNestedManyWithoutServiceInput
-  }
-
-  export type ServiceUncheckedCreateWithoutCategoryInput = {
-    id?: string
-    name: string
-    description: string
-    country: string
-    currency: string
-    amount: number
-    timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
-    hasShares?: boolean
-    hasAgent?: boolean
-    hasOwner?: boolean
-    hasController?: boolean
-    controllerIsCalled?: string | null
-    OwnerIsCalled?: string | null
-    agentIsCalled?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    products?: ProductUncheckedCreateNestedManyWithoutServiceInput
-    forms?: ServiceFormUncheckedCreateNestedManyWithoutServiceInput
-  }
-
-  export type ServiceCreateOrConnectWithoutCategoryInput = {
-    where: ServiceWhereUniqueInput
-    create: XOR<ServiceCreateWithoutCategoryInput, ServiceUncheckedCreateWithoutCategoryInput>
-  }
-
-  export type ServiceCreateManyCategoryInputEnvelope = {
-    data: Enumerable<ServiceCreateManyCategoryInput>
-    skipDuplicates?: boolean
-  }
-
-  export type ServiceCategoryFormCreateWithoutCategoryInput = {
-    id?: string
-    title: string
-    description?: string | null
-    type?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    subForm?: ServiceCategorySubFormCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryFormUncheckedCreateWithoutCategoryInput = {
-    id?: string
-    title: string
-    description?: string | null
-    type?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    subForm?: ServiceCategorySubFormUncheckedCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryFormCreateOrConnectWithoutCategoryInput = {
-    where: ServiceCategoryFormWhereUniqueInput
-    create: XOR<ServiceCategoryFormCreateWithoutCategoryInput, ServiceCategoryFormUncheckedCreateWithoutCategoryInput>
-  }
-
-  export type ServiceCategoryFormCreateManyCategoryInputEnvelope = {
-    data: Enumerable<ServiceCategoryFormCreateManyCategoryInput>
-    skipDuplicates?: boolean
-  }
-
-  export type ServiceUpsertWithWhereUniqueWithoutCategoryInput = {
-    where: ServiceWhereUniqueInput
-    update: XOR<ServiceUpdateWithoutCategoryInput, ServiceUncheckedUpdateWithoutCategoryInput>
-    create: XOR<ServiceCreateWithoutCategoryInput, ServiceUncheckedCreateWithoutCategoryInput>
-  }
-
-  export type ServiceUpdateWithWhereUniqueWithoutCategoryInput = {
-    where: ServiceWhereUniqueInput
-    data: XOR<ServiceUpdateWithoutCategoryInput, ServiceUncheckedUpdateWithoutCategoryInput>
-  }
-
-  export type ServiceUpdateManyWithWhereWithoutCategoryInput = {
-    where: ServiceScalarWhereInput
-    data: XOR<ServiceUpdateManyMutationInput, ServiceUncheckedUpdateManyWithoutServicesInput>
-  }
-
-  export type ServiceScalarWhereInput = {
-    AND?: Enumerable<ServiceScalarWhereInput>
-    OR?: Enumerable<ServiceScalarWhereInput>
-    NOT?: Enumerable<ServiceScalarWhereInput>
-    id?: StringFilter | string
-    name?: StringFilter | string
-    description?: StringFilter | string
-    country?: StringFilter | string
-    currency?: StringFilter | string
-    amount?: IntFilter | number
-    timeline?: StringFilter | string
-    feature?: StringNullableListFilter
-    hasShares?: BoolFilter | boolean
-    hasAgent?: BoolFilter | boolean
-    hasOwner?: BoolFilter | boolean
-    hasController?: BoolFilter | boolean
-    controllerIsCalled?: StringNullableFilter | string | null
-    OwnerIsCalled?: StringNullableFilter | string | null
-    agentIsCalled?: StringNullableFilter | string | null
-    createdAt?: DateTimeFilter | Date | string
-    updatedAt?: DateTimeFilter | Date | string
-    isDeprecated?: BoolFilter | boolean
-    serviceCategoryId?: StringFilter | string
-  }
-
-  export type ServiceCategoryFormUpsertWithWhereUniqueWithoutCategoryInput = {
-    where: ServiceCategoryFormWhereUniqueInput
-    update: XOR<ServiceCategoryFormUpdateWithoutCategoryInput, ServiceCategoryFormUncheckedUpdateWithoutCategoryInput>
-    create: XOR<ServiceCategoryFormCreateWithoutCategoryInput, ServiceCategoryFormUncheckedCreateWithoutCategoryInput>
-  }
-
-  export type ServiceCategoryFormUpdateWithWhereUniqueWithoutCategoryInput = {
-    where: ServiceCategoryFormWhereUniqueInput
-    data: XOR<ServiceCategoryFormUpdateWithoutCategoryInput, ServiceCategoryFormUncheckedUpdateWithoutCategoryInput>
-  }
-
-  export type ServiceCategoryFormUpdateManyWithWhereWithoutCategoryInput = {
-    where: ServiceCategoryFormScalarWhereInput
-    data: XOR<ServiceCategoryFormUpdateManyMutationInput, ServiceCategoryFormUncheckedUpdateManyWithoutFormInput>
-  }
-
-  export type ServiceCategoryFormScalarWhereInput = {
-    AND?: Enumerable<ServiceCategoryFormScalarWhereInput>
-    OR?: Enumerable<ServiceCategoryFormScalarWhereInput>
-    NOT?: Enumerable<ServiceCategoryFormScalarWhereInput>
-    id?: StringFilter | string
-    title?: StringFilter | string
-    description?: StringNullableFilter | string | null
-    type?: StringNullableFilter | string | null
-    compulsory?: BoolFilter | boolean
-    createdAt?: DateTimeFilter | Date | string
-    updatedAt?: DateTimeFilter | Date | string
-    isDeprecated?: BoolFilter | boolean
-    serviceCategoryId?: StringFilter | string
-  }
-
-  export type ServiceCategoryCreateWithoutFormInput = {
-    id?: string
-    name: string
-    description: string
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    services?: ServiceCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryUncheckedCreateWithoutFormInput = {
-    id?: string
-    name: string
-    description: string
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    services?: ServiceUncheckedCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryCreateOrConnectWithoutFormInput = {
-    where: ServiceCategoryWhereUniqueInput
-    create: XOR<ServiceCategoryCreateWithoutFormInput, ServiceCategoryUncheckedCreateWithoutFormInput>
-  }
-
-  export type ServiceCategorySubFormCreateWithoutCategoryInput = {
-    id?: string
-    question?: string | null
-    type?: string | null
-    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
-    dependsOn?: string | null
-    allowOther?: boolean
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-  }
-
-  export type ServiceCategorySubFormUncheckedCreateWithoutCategoryInput = {
-    id?: string
-    question?: string | null
-    type?: string | null
-    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
-    dependsOn?: string | null
-    allowOther?: boolean
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-  }
-
-  export type ServiceCategorySubFormCreateOrConnectWithoutCategoryInput = {
-    where: ServiceCategorySubFormWhereUniqueInput
-    create: XOR<ServiceCategorySubFormCreateWithoutCategoryInput, ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>
-  }
-
-  export type ServiceCategorySubFormCreateManyCategoryInputEnvelope = {
-    data: Enumerable<ServiceCategorySubFormCreateManyCategoryInput>
-    skipDuplicates?: boolean
-  }
-
-  export type ServiceCategoryUpsertWithoutFormInput = {
-    update: XOR<ServiceCategoryUpdateWithoutFormInput, ServiceCategoryUncheckedUpdateWithoutFormInput>
-    create: XOR<ServiceCategoryCreateWithoutFormInput, ServiceCategoryUncheckedCreateWithoutFormInput>
-  }
-
-  export type ServiceCategoryUpdateWithoutFormInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    services?: ServiceUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type ServiceCategoryUncheckedUpdateWithoutFormInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    services?: ServiceUncheckedUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type ServiceCategorySubFormUpsertWithWhereUniqueWithoutCategoryInput = {
-    where: ServiceCategorySubFormWhereUniqueInput
-    update: XOR<ServiceCategorySubFormUpdateWithoutCategoryInput, ServiceCategorySubFormUncheckedUpdateWithoutCategoryInput>
-    create: XOR<ServiceCategorySubFormCreateWithoutCategoryInput, ServiceCategorySubFormUncheckedCreateWithoutCategoryInput>
-  }
-
-  export type ServiceCategorySubFormUpdateWithWhereUniqueWithoutCategoryInput = {
-    where: ServiceCategorySubFormWhereUniqueInput
-    data: XOR<ServiceCategorySubFormUpdateWithoutCategoryInput, ServiceCategorySubFormUncheckedUpdateWithoutCategoryInput>
-  }
-
-  export type ServiceCategorySubFormUpdateManyWithWhereWithoutCategoryInput = {
-    where: ServiceCategorySubFormScalarWhereInput
-    data: XOR<ServiceCategorySubFormUpdateManyMutationInput, ServiceCategorySubFormUncheckedUpdateManyWithoutSubFormInput>
-  }
-
-  export type ServiceCategorySubFormScalarWhereInput = {
-    AND?: Enumerable<ServiceCategorySubFormScalarWhereInput>
-    OR?: Enumerable<ServiceCategorySubFormScalarWhereInput>
-    NOT?: Enumerable<ServiceCategorySubFormScalarWhereInput>
-    id?: StringFilter | string
-    question?: StringNullableFilter | string | null
-    type?: StringNullableFilter | string | null
-    options?: StringNullableListFilter
-    fileName?: StringNullableFilter | string | null
-    fileType?: StringNullableFilter | string | null
-    fileLink?: StringNullableFilter | string | null
-    dependsOn?: StringNullableFilter | string | null
-    allowOther?: BoolFilter | boolean
-    compulsory?: BoolFilter | boolean
-    createdAt?: DateTimeFilter | Date | string
-    updatedAt?: DateTimeFilter | Date | string
-    isDeprecated?: BoolFilter | boolean
-    formId?: StringFilter | string
-  }
-
-  export type ServiceCategoryFormCreateWithoutSubFormInput = {
-    id?: string
-    title: string
-    description?: string | null
-    type?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    category: ServiceCategoryCreateNestedOneWithoutFormInput
-  }
-
-  export type ServiceCategoryFormUncheckedCreateWithoutSubFormInput = {
-    id?: string
-    title: string
-    description?: string | null
-    type?: string | null
-    compulsory?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isDeprecated?: boolean
-    serviceCategoryId: string
-  }
-
-  export type ServiceCategoryFormCreateOrConnectWithoutSubFormInput = {
-    where: ServiceCategoryFormWhereUniqueInput
-    create: XOR<ServiceCategoryFormCreateWithoutSubFormInput, ServiceCategoryFormUncheckedCreateWithoutSubFormInput>
-  }
-
-  export type ServiceCategoryFormUpsertWithoutSubFormInput = {
-    update: XOR<ServiceCategoryFormUpdateWithoutSubFormInput, ServiceCategoryFormUncheckedUpdateWithoutSubFormInput>
-    create: XOR<ServiceCategoryFormCreateWithoutSubFormInput, ServiceCategoryFormUncheckedCreateWithoutSubFormInput>
-  }
-
-  export type ServiceCategoryFormUpdateWithoutSubFormInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    category?: ServiceCategoryUpdateOneRequiredWithoutFormNestedInput
-  }
-
-  export type ServiceCategoryFormUncheckedUpdateWithoutSubFormInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    type?: NullableStringFieldUpdateOperationsInput | string | null
-    compulsory?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    serviceCategoryId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ServiceCategoryCreateWithoutServicesInput = {
-    id?: string
-    name: string
-    description: string
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    form?: ServiceCategoryFormCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryUncheckedCreateWithoutServicesInput = {
-    id?: string
-    name: string
-    description: string
-    isDeprecated?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    form?: ServiceCategoryFormUncheckedCreateNestedManyWithoutCategoryInput
-  }
-
-  export type ServiceCategoryCreateOrConnectWithoutServicesInput = {
-    where: ServiceCategoryWhereUniqueInput
-    create: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
   }
 
   export type ProductCreateWithoutServiceInput = {
     id?: string
-    email?: string | null
-    address?: string | null
-    paid?: boolean
-    completed?: boolean
-    status?: string
-    currentState?: ProductActivityStage
+    name: string
+    description: string
+    country: string
+    currency: string
+    amount: number
+    timeline: string
+    feature?: ProductCreatefeatureInput | Enumerable<string>
+    hasShares?: boolean
+    hasAgent?: boolean
+    hasOwner?: boolean
+    hasController?: boolean
+    controllerIsCalled?: string | null
+    OwnerIsCalled?: string | null
+    agentIsCalled?: string | null
     createdAt?: Date | string
-    isDeprecated?: boolean
     updatedAt?: Date | string
-    Team?: TeamCreateNestedManyWithoutProductInput
-    user: UserCreateNestedOneWithoutProductInput
-    Payment?: PaymentCreateNestedManyWithoutProductsInput
-    productQA?: ProductQACreateNestedManyWithoutProductsInput
+    isDeprecated?: boolean
+    request?: ProductRequestCreateNestedManyWithoutProductInput
+    form?: ProductFormCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutServiceInput = {
     id?: string
-    email?: string | null
-    address?: string | null
-    paid?: boolean
-    completed?: boolean
-    status?: string
-    currentState?: ProductActivityStage
+    name: string
+    description: string
+    country: string
+    currency: string
+    amount: number
+    timeline: string
+    feature?: ProductCreatefeatureInput | Enumerable<string>
+    hasShares?: boolean
+    hasAgent?: boolean
+    hasOwner?: boolean
+    hasController?: boolean
+    controllerIsCalled?: string | null
+    OwnerIsCalled?: string | null
+    agentIsCalled?: string | null
     createdAt?: Date | string
-    isDeprecated?: boolean
     updatedAt?: Date | string
-    userId: string
-    Team?: TeamUncheckedCreateNestedManyWithoutProductInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutProductsInput
-    productQA?: ProductQAUncheckedCreateNestedManyWithoutProductsInput
+    isDeprecated?: boolean
+    request?: ProductRequestUncheckedCreateNestedManyWithoutProductInput
+    form?: ProductFormUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutServiceInput = {
@@ -36338,26 +35974,26 @@ export namespace Prisma {
 
   export type ServiceFormCreateWithoutServiceInput = {
     id?: string
-    title?: string | null
-    type?: string | null
+    title: string
     description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
-    isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceSubForm?: ServiceSubFormCreateNestedManyWithoutServiceFormInput
+    isDeprecated?: boolean
+    subForm?: ServiceSubFormCreateNestedManyWithoutFormInput
   }
 
   export type ServiceFormUncheckedCreateWithoutServiceInput = {
     id?: string
-    title?: string | null
-    type?: string | null
+    title: string
     description?: string | null
+    type?: string | null
     compulsory?: boolean
     createdAt?: Date | string
-    isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
+    isDeprecated?: boolean
+    subForm?: ServiceSubFormUncheckedCreateNestedManyWithoutFormInput
   }
 
   export type ServiceFormCreateOrConnectWithoutServiceInput = {
@@ -36368,31 +36004,6 @@ export namespace Prisma {
   export type ServiceFormCreateManyServiceInputEnvelope = {
     data: Enumerable<ServiceFormCreateManyServiceInput>
     skipDuplicates?: boolean
-  }
-
-  export type ServiceCategoryUpsertWithoutServicesInput = {
-    update: XOR<ServiceCategoryUpdateWithoutServicesInput, ServiceCategoryUncheckedUpdateWithoutServicesInput>
-    create: XOR<ServiceCategoryCreateWithoutServicesInput, ServiceCategoryUncheckedCreateWithoutServicesInput>
-  }
-
-  export type ServiceCategoryUpdateWithoutServicesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    form?: ServiceCategoryFormUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type ServiceCategoryUncheckedUpdateWithoutServicesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    form?: ServiceCategoryFormUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type ProductUpsertWithWhereUniqueWithoutServiceInput = {
@@ -36411,6 +36022,31 @@ export namespace Prisma {
     data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutProductsInput>
   }
 
+  export type ProductScalarWhereInput = {
+    AND?: Enumerable<ProductScalarWhereInput>
+    OR?: Enumerable<ProductScalarWhereInput>
+    NOT?: Enumerable<ProductScalarWhereInput>
+    id?: StringFilter | string
+    name?: StringFilter | string
+    description?: StringFilter | string
+    country?: StringFilter | string
+    currency?: StringFilter | string
+    amount?: IntFilter | number
+    timeline?: StringFilter | string
+    feature?: StringNullableListFilter
+    hasShares?: BoolFilter | boolean
+    hasAgent?: BoolFilter | boolean
+    hasOwner?: BoolFilter | boolean
+    hasController?: BoolFilter | boolean
+    controllerIsCalled?: StringNullableFilter | string | null
+    OwnerIsCalled?: StringNullableFilter | string | null
+    agentIsCalled?: StringNullableFilter | string | null
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
+    serviceId?: StringFilter | string
+  }
+
   export type ServiceFormUpsertWithWhereUniqueWithoutServiceInput = {
     where: ServiceFormWhereUniqueInput
     update: XOR<ServiceFormUpdateWithoutServiceInput, ServiceFormUncheckedUpdateWithoutServiceInput>
@@ -36424,13 +36060,374 @@ export namespace Prisma {
 
   export type ServiceFormUpdateManyWithWhereWithoutServiceInput = {
     where: ServiceFormScalarWhereInput
-    data: XOR<ServiceFormUpdateManyMutationInput, ServiceFormUncheckedUpdateManyWithoutFormsInput>
+    data: XOR<ServiceFormUpdateManyMutationInput, ServiceFormUncheckedUpdateManyWithoutFormInput>
   }
 
   export type ServiceFormScalarWhereInput = {
     AND?: Enumerable<ServiceFormScalarWhereInput>
     OR?: Enumerable<ServiceFormScalarWhereInput>
     NOT?: Enumerable<ServiceFormScalarWhereInput>
+    id?: StringFilter | string
+    title?: StringFilter | string
+    description?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
+    compulsory?: BoolFilter | boolean
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
+    serviceId?: StringFilter | string
+  }
+
+  export type ServiceCreateWithoutFormInput = {
+    id?: string
+    name: string
+    description: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductCreateNestedManyWithoutServiceInput
+  }
+
+  export type ServiceUncheckedCreateWithoutFormInput = {
+    id?: string
+    name: string
+    description: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    products?: ProductUncheckedCreateNestedManyWithoutServiceInput
+  }
+
+  export type ServiceCreateOrConnectWithoutFormInput = {
+    where: ServiceWhereUniqueInput
+    create: XOR<ServiceCreateWithoutFormInput, ServiceUncheckedCreateWithoutFormInput>
+  }
+
+  export type ServiceSubFormCreateWithoutFormInput = {
+    id?: string
+    question?: string | null
+    type?: string | null
+    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    dependsOn?: string | null
+    allowOther?: boolean
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+  }
+
+  export type ServiceSubFormUncheckedCreateWithoutFormInput = {
+    id?: string
+    question?: string | null
+    type?: string | null
+    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    dependsOn?: string | null
+    allowOther?: boolean
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+  }
+
+  export type ServiceSubFormCreateOrConnectWithoutFormInput = {
+    where: ServiceSubFormWhereUniqueInput
+    create: XOR<ServiceSubFormCreateWithoutFormInput, ServiceSubFormUncheckedCreateWithoutFormInput>
+  }
+
+  export type ServiceSubFormCreateManyFormInputEnvelope = {
+    data: Enumerable<ServiceSubFormCreateManyFormInput>
+    skipDuplicates?: boolean
+  }
+
+  export type ServiceUpsertWithoutFormInput = {
+    update: XOR<ServiceUpdateWithoutFormInput, ServiceUncheckedUpdateWithoutFormInput>
+    create: XOR<ServiceCreateWithoutFormInput, ServiceUncheckedCreateWithoutFormInput>
+  }
+
+  export type ServiceUpdateWithoutFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUpdateManyWithoutServiceNestedInput
+  }
+
+  export type ServiceUncheckedUpdateWithoutFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    products?: ProductUncheckedUpdateManyWithoutServiceNestedInput
+  }
+
+  export type ServiceSubFormUpsertWithWhereUniqueWithoutFormInput = {
+    where: ServiceSubFormWhereUniqueInput
+    update: XOR<ServiceSubFormUpdateWithoutFormInput, ServiceSubFormUncheckedUpdateWithoutFormInput>
+    create: XOR<ServiceSubFormCreateWithoutFormInput, ServiceSubFormUncheckedCreateWithoutFormInput>
+  }
+
+  export type ServiceSubFormUpdateWithWhereUniqueWithoutFormInput = {
+    where: ServiceSubFormWhereUniqueInput
+    data: XOR<ServiceSubFormUpdateWithoutFormInput, ServiceSubFormUncheckedUpdateWithoutFormInput>
+  }
+
+  export type ServiceSubFormUpdateManyWithWhereWithoutFormInput = {
+    where: ServiceSubFormScalarWhereInput
+    data: XOR<ServiceSubFormUpdateManyMutationInput, ServiceSubFormUncheckedUpdateManyWithoutSubFormInput>
+  }
+
+  export type ServiceSubFormScalarWhereInput = {
+    AND?: Enumerable<ServiceSubFormScalarWhereInput>
+    OR?: Enumerable<ServiceSubFormScalarWhereInput>
+    NOT?: Enumerable<ServiceSubFormScalarWhereInput>
+    id?: StringFilter | string
+    question?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
+    options?: StringNullableListFilter
+    fileName?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
+    dependsOn?: StringNullableFilter | string | null
+    allowOther?: BoolFilter | boolean
+    compulsory?: BoolFilter | boolean
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+    isDeprecated?: BoolFilter | boolean
+    formId?: StringFilter | string
+  }
+
+  export type ServiceFormCreateWithoutSubFormInput = {
+    id?: string
+    title: string
+    description?: string | null
+    type?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    service: ServiceCreateNestedOneWithoutFormInput
+  }
+
+  export type ServiceFormUncheckedCreateWithoutSubFormInput = {
+    id?: string
+    title: string
+    description?: string | null
+    type?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    serviceId: string
+  }
+
+  export type ServiceFormCreateOrConnectWithoutSubFormInput = {
+    where: ServiceFormWhereUniqueInput
+    create: XOR<ServiceFormCreateWithoutSubFormInput, ServiceFormUncheckedCreateWithoutSubFormInput>
+  }
+
+  export type ServiceFormUpsertWithoutSubFormInput = {
+    update: XOR<ServiceFormUpdateWithoutSubFormInput, ServiceFormUncheckedUpdateWithoutSubFormInput>
+    create: XOR<ServiceFormCreateWithoutSubFormInput, ServiceFormUncheckedCreateWithoutSubFormInput>
+  }
+
+  export type ServiceFormUpdateWithoutSubFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    service?: ServiceUpdateOneRequiredWithoutFormNestedInput
+  }
+
+  export type ServiceFormUncheckedUpdateWithoutSubFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    serviceId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceCreateWithoutProductsInput = {
+    id?: string
+    name: string
+    description: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    form?: ServiceFormCreateNestedManyWithoutServiceInput
+  }
+
+  export type ServiceUncheckedCreateWithoutProductsInput = {
+    id?: string
+    name: string
+    description: string
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    form?: ServiceFormUncheckedCreateNestedManyWithoutServiceInput
+  }
+
+  export type ServiceCreateOrConnectWithoutProductsInput = {
+    where: ServiceWhereUniqueInput
+    create: XOR<ServiceCreateWithoutProductsInput, ServiceUncheckedCreateWithoutProductsInput>
+  }
+
+  export type ProductRequestCreateWithoutProductInput = {
+    id?: string
+    email?: string | null
+    address?: string | null
+    paid?: boolean
+    completed?: boolean
+    status?: string
+    currentState?: ProductActivityStage
+    createdAt?: Date | string
+    isDeprecated?: boolean
+    updatedAt?: Date | string
+    Team?: TeamCreateNestedManyWithoutProductRequestInput
+    user: UserCreateNestedOneWithoutProductRequestInput
+    Payment?: PaymentCreateNestedManyWithoutProductRequestsInput
+    requestQA?: ProductRequestQACreateNestedManyWithoutRequestInput
+  }
+
+  export type ProductRequestUncheckedCreateWithoutProductInput = {
+    id?: string
+    email?: string | null
+    address?: string | null
+    paid?: boolean
+    completed?: boolean
+    status?: string
+    currentState?: ProductActivityStage
+    createdAt?: Date | string
+    isDeprecated?: boolean
+    updatedAt?: Date | string
+    userId: string
+    Team?: TeamUncheckedCreateNestedManyWithoutProductRequestInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutProductRequestsInput
+    requestQA?: ProductRequestQAUncheckedCreateNestedManyWithoutRequestInput
+  }
+
+  export type ProductRequestCreateOrConnectWithoutProductInput = {
+    where: ProductRequestWhereUniqueInput
+    create: XOR<ProductRequestCreateWithoutProductInput, ProductRequestUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductRequestCreateManyProductInputEnvelope = {
+    data: Enumerable<ProductRequestCreateManyProductInput>
+    skipDuplicates?: boolean
+  }
+
+  export type ProductFormCreateWithoutProductInput = {
+    id?: string
+    title?: string | null
+    type?: string | null
+    description?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    isDeprecated?: boolean
+    updatedAt?: Date | string
+    productSubForm?: ProductSubFormCreateNestedManyWithoutFormInput
+  }
+
+  export type ProductFormUncheckedCreateWithoutProductInput = {
+    id?: string
+    title?: string | null
+    type?: string | null
+    description?: string | null
+    compulsory?: boolean
+    createdAt?: Date | string
+    isDeprecated?: boolean
+    updatedAt?: Date | string
+    productSubForm?: ProductSubFormUncheckedCreateNestedManyWithoutFormInput
+  }
+
+  export type ProductFormCreateOrConnectWithoutProductInput = {
+    where: ProductFormWhereUniqueInput
+    create: XOR<ProductFormCreateWithoutProductInput, ProductFormUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductFormCreateManyProductInputEnvelope = {
+    data: Enumerable<ProductFormCreateManyProductInput>
+    skipDuplicates?: boolean
+  }
+
+  export type ServiceUpsertWithoutProductsInput = {
+    update: XOR<ServiceUpdateWithoutProductsInput, ServiceUncheckedUpdateWithoutProductsInput>
+    create: XOR<ServiceCreateWithoutProductsInput, ServiceUncheckedCreateWithoutProductsInput>
+  }
+
+  export type ServiceUpdateWithoutProductsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    form?: ServiceFormUpdateManyWithoutServiceNestedInput
+  }
+
+  export type ServiceUncheckedUpdateWithoutProductsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    form?: ServiceFormUncheckedUpdateManyWithoutServiceNestedInput
+  }
+
+  export type ProductRequestUpsertWithWhereUniqueWithoutProductInput = {
+    where: ProductRequestWhereUniqueInput
+    update: XOR<ProductRequestUpdateWithoutProductInput, ProductRequestUncheckedUpdateWithoutProductInput>
+    create: XOR<ProductRequestCreateWithoutProductInput, ProductRequestUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductRequestUpdateWithWhereUniqueWithoutProductInput = {
+    where: ProductRequestWhereUniqueInput
+    data: XOR<ProductRequestUpdateWithoutProductInput, ProductRequestUncheckedUpdateWithoutProductInput>
+  }
+
+  export type ProductRequestUpdateManyWithWhereWithoutProductInput = {
+    where: ProductRequestScalarWhereInput
+    data: XOR<ProductRequestUpdateManyMutationInput, ProductRequestUncheckedUpdateManyWithoutRequestInput>
+  }
+
+  export type ProductFormUpsertWithWhereUniqueWithoutProductInput = {
+    where: ProductFormWhereUniqueInput
+    update: XOR<ProductFormUpdateWithoutProductInput, ProductFormUncheckedUpdateWithoutProductInput>
+    create: XOR<ProductFormCreateWithoutProductInput, ProductFormUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductFormUpdateWithWhereUniqueWithoutProductInput = {
+    where: ProductFormWhereUniqueInput
+    data: XOR<ProductFormUpdateWithoutProductInput, ProductFormUncheckedUpdateWithoutProductInput>
+  }
+
+  export type ProductFormUpdateManyWithWhereWithoutProductInput = {
+    where: ProductFormScalarWhereInput
+    data: XOR<ProductFormUpdateManyMutationInput, ProductFormUncheckedUpdateManyWithoutFormInput>
+  }
+
+  export type ProductFormScalarWhereInput = {
+    AND?: Enumerable<ProductFormScalarWhereInput>
+    OR?: Enumerable<ProductFormScalarWhereInput>
+    NOT?: Enumerable<ProductFormScalarWhereInput>
     id?: StringFilter | string
     title?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
@@ -36439,10 +36436,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
     updatedAt?: DateTimeFilter | Date | string
-    serviceId?: StringFilter | string
+    productId?: StringFilter | string
   }
 
-  export type ServiceCreateWithoutFormsInput = {
+  export type ProductCreateWithoutFormInput = {
     id?: string
     name: string
     description: string
@@ -36450,7 +36447,7 @@ export namespace Prisma {
     currency: string
     amount: number
     timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
+    feature?: ProductCreatefeatureInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36461,11 +36458,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    category: ServiceCategoryCreateNestedOneWithoutServicesInput
-    products?: ProductCreateNestedManyWithoutServiceInput
+    service: ServiceCreateNestedOneWithoutProductsInput
+    request?: ProductRequestCreateNestedManyWithoutProductInput
   }
 
-  export type ServiceUncheckedCreateWithoutFormsInput = {
+  export type ProductUncheckedCreateWithoutFormInput = {
     id?: string
     name: string
     description: string
@@ -36473,7 +36470,7 @@ export namespace Prisma {
     currency: string
     amount: number
     timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
+    feature?: ProductCreatefeatureInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36484,19 +36481,19 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    serviceCategoryId: string
-    products?: ProductUncheckedCreateNestedManyWithoutServiceInput
+    serviceId: string
+    request?: ProductRequestUncheckedCreateNestedManyWithoutProductInput
   }
 
-  export type ServiceCreateOrConnectWithoutFormsInput = {
-    where: ServiceWhereUniqueInput
-    create: XOR<ServiceCreateWithoutFormsInput, ServiceUncheckedCreateWithoutFormsInput>
+  export type ProductCreateOrConnectWithoutFormInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutFormInput, ProductUncheckedCreateWithoutFormInput>
   }
 
-  export type ServiceSubFormCreateWithoutServiceFormInput = {
+  export type ProductSubFormCreateWithoutFormInput = {
     id?: string
     question?: string | null
-    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    options?: ProductSubFormCreateoptionsInput | Enumerable<string>
     type?: string | null
     allowOther?: boolean
     fileName?: string | null
@@ -36509,10 +36506,10 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ServiceSubFormUncheckedCreateWithoutServiceFormInput = {
+  export type ProductSubFormUncheckedCreateWithoutFormInput = {
     id?: string
     question?: string | null
-    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    options?: ProductSubFormCreateoptionsInput | Enumerable<string>
     type?: string | null
     allowOther?: boolean
     fileName?: string | null
@@ -36525,22 +36522,22 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ServiceSubFormCreateOrConnectWithoutServiceFormInput = {
-    where: ServiceSubFormWhereUniqueInput
-    create: XOR<ServiceSubFormCreateWithoutServiceFormInput, ServiceSubFormUncheckedCreateWithoutServiceFormInput>
+  export type ProductSubFormCreateOrConnectWithoutFormInput = {
+    where: ProductSubFormWhereUniqueInput
+    create: XOR<ProductSubFormCreateWithoutFormInput, ProductSubFormUncheckedCreateWithoutFormInput>
   }
 
-  export type ServiceSubFormCreateManyServiceFormInputEnvelope = {
-    data: Enumerable<ServiceSubFormCreateManyServiceFormInput>
+  export type ProductSubFormCreateManyFormInputEnvelope = {
+    data: Enumerable<ProductSubFormCreateManyFormInput>
     skipDuplicates?: boolean
   }
 
-  export type ServiceUpsertWithoutFormsInput = {
-    update: XOR<ServiceUpdateWithoutFormsInput, ServiceUncheckedUpdateWithoutFormsInput>
-    create: XOR<ServiceCreateWithoutFormsInput, ServiceUncheckedCreateWithoutFormsInput>
+  export type ProductUpsertWithoutFormInput = {
+    update: XOR<ProductUpdateWithoutFormInput, ProductUncheckedUpdateWithoutFormInput>
+    create: XOR<ProductCreateWithoutFormInput, ProductUncheckedCreateWithoutFormInput>
   }
 
-  export type ServiceUpdateWithoutFormsInput = {
+  export type ProductUpdateWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -36548,7 +36545,7 @@ export namespace Prisma {
     currency?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -36559,11 +36556,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    category?: ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput
-    products?: ProductUpdateManyWithoutServiceNestedInput
+    service?: ServiceUpdateOneRequiredWithoutProductsNestedInput
+    request?: ProductRequestUpdateManyWithoutProductNestedInput
   }
 
-  export type ServiceUncheckedUpdateWithoutFormsInput = {
+  export type ProductUncheckedUpdateWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -36571,7 +36568,7 @@ export namespace Prisma {
     currency?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -36582,30 +36579,30 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    serviceCategoryId?: StringFieldUpdateOperationsInput | string
-    products?: ProductUncheckedUpdateManyWithoutServiceNestedInput
+    serviceId?: StringFieldUpdateOperationsInput | string
+    request?: ProductRequestUncheckedUpdateManyWithoutProductNestedInput
   }
 
-  export type ServiceSubFormUpsertWithWhereUniqueWithoutServiceFormInput = {
-    where: ServiceSubFormWhereUniqueInput
-    update: XOR<ServiceSubFormUpdateWithoutServiceFormInput, ServiceSubFormUncheckedUpdateWithoutServiceFormInput>
-    create: XOR<ServiceSubFormCreateWithoutServiceFormInput, ServiceSubFormUncheckedCreateWithoutServiceFormInput>
+  export type ProductSubFormUpsertWithWhereUniqueWithoutFormInput = {
+    where: ProductSubFormWhereUniqueInput
+    update: XOR<ProductSubFormUpdateWithoutFormInput, ProductSubFormUncheckedUpdateWithoutFormInput>
+    create: XOR<ProductSubFormCreateWithoutFormInput, ProductSubFormUncheckedCreateWithoutFormInput>
   }
 
-  export type ServiceSubFormUpdateWithWhereUniqueWithoutServiceFormInput = {
-    where: ServiceSubFormWhereUniqueInput
-    data: XOR<ServiceSubFormUpdateWithoutServiceFormInput, ServiceSubFormUncheckedUpdateWithoutServiceFormInput>
+  export type ProductSubFormUpdateWithWhereUniqueWithoutFormInput = {
+    where: ProductSubFormWhereUniqueInput
+    data: XOR<ProductSubFormUpdateWithoutFormInput, ProductSubFormUncheckedUpdateWithoutFormInput>
   }
 
-  export type ServiceSubFormUpdateManyWithWhereWithoutServiceFormInput = {
-    where: ServiceSubFormScalarWhereInput
-    data: XOR<ServiceSubFormUpdateManyMutationInput, ServiceSubFormUncheckedUpdateManyWithoutServiceSubFormInput>
+  export type ProductSubFormUpdateManyWithWhereWithoutFormInput = {
+    where: ProductSubFormScalarWhereInput
+    data: XOR<ProductSubFormUpdateManyMutationInput, ProductSubFormUncheckedUpdateManyWithoutProductSubFormInput>
   }
 
-  export type ServiceSubFormScalarWhereInput = {
-    AND?: Enumerable<ServiceSubFormScalarWhereInput>
-    OR?: Enumerable<ServiceSubFormScalarWhereInput>
-    NOT?: Enumerable<ServiceSubFormScalarWhereInput>
+  export type ProductSubFormScalarWhereInput = {
+    AND?: Enumerable<ProductSubFormScalarWhereInput>
+    OR?: Enumerable<ProductSubFormScalarWhereInput>
+    NOT?: Enumerable<ProductSubFormScalarWhereInput>
     id?: StringFilter | string
     question?: StringNullableFilter | string | null
     options?: StringNullableListFilter
@@ -36619,10 +36616,10 @@ export namespace Prisma {
     isDeprecated?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
-    serviceFormId?: StringFilter | string
+    formId?: StringFilter | string
   }
 
-  export type ServiceFormCreateWithoutServiceSubFormInput = {
+  export type ProductFormCreateWithoutProductSubFormInput = {
     id?: string
     title?: string | null
     type?: string | null
@@ -36631,10 +36628,10 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    service: ServiceCreateNestedOneWithoutFormsInput
+    product: ProductCreateNestedOneWithoutFormInput
   }
 
-  export type ServiceFormUncheckedCreateWithoutServiceSubFormInput = {
+  export type ProductFormUncheckedCreateWithoutProductSubFormInput = {
     id?: string
     title?: string | null
     type?: string | null
@@ -36643,20 +36640,20 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceId: string
+    productId: string
   }
 
-  export type ServiceFormCreateOrConnectWithoutServiceSubFormInput = {
-    where: ServiceFormWhereUniqueInput
-    create: XOR<ServiceFormCreateWithoutServiceSubFormInput, ServiceFormUncheckedCreateWithoutServiceSubFormInput>
+  export type ProductFormCreateOrConnectWithoutProductSubFormInput = {
+    where: ProductFormWhereUniqueInput
+    create: XOR<ProductFormCreateWithoutProductSubFormInput, ProductFormUncheckedCreateWithoutProductSubFormInput>
   }
 
-  export type ServiceFormUpsertWithoutServiceSubFormInput = {
-    update: XOR<ServiceFormUpdateWithoutServiceSubFormInput, ServiceFormUncheckedUpdateWithoutServiceSubFormInput>
-    create: XOR<ServiceFormCreateWithoutServiceSubFormInput, ServiceFormUncheckedCreateWithoutServiceSubFormInput>
+  export type ProductFormUpsertWithoutProductSubFormInput = {
+    update: XOR<ProductFormUpdateWithoutProductSubFormInput, ProductFormUncheckedUpdateWithoutProductSubFormInput>
+    create: XOR<ProductFormCreateWithoutProductSubFormInput, ProductFormUncheckedCreateWithoutProductSubFormInput>
   }
 
-  export type ServiceFormUpdateWithoutServiceSubFormInput = {
+  export type ProductFormUpdateWithoutProductSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36665,10 +36662,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    service?: ServiceUpdateOneRequiredWithoutFormsNestedInput
+    product?: ProductUpdateOneRequiredWithoutFormNestedInput
   }
 
-  export type ServiceFormUncheckedUpdateWithoutServiceSubFormInput = {
+  export type ProductFormUncheckedUpdateWithoutProductSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
@@ -36677,10 +36674,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type TeamCreateWithoutProductInput = {
+  export type TeamCreateWithoutProductRequestInput = {
     id?: string
     name: string
     slug: string
@@ -36692,7 +36689,7 @@ export namespace Prisma {
     teamMember?: TeamMemberCreateNestedManyWithoutTeamInput
   }
 
-  export type TeamUncheckedCreateWithoutProductInput = {
+  export type TeamUncheckedCreateWithoutProductRequestInput = {
     id?: string
     name: string
     slug: string
@@ -36704,17 +36701,17 @@ export namespace Prisma {
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
   }
 
-  export type TeamCreateOrConnectWithoutProductInput = {
+  export type TeamCreateOrConnectWithoutProductRequestInput = {
     where: TeamWhereUniqueInput
-    create: XOR<TeamCreateWithoutProductInput, TeamUncheckedCreateWithoutProductInput>
+    create: XOR<TeamCreateWithoutProductRequestInput, TeamUncheckedCreateWithoutProductRequestInput>
   }
 
-  export type TeamCreateManyProductInputEnvelope = {
-    data: Enumerable<TeamCreateManyProductInput>
+  export type TeamCreateManyProductRequestInputEnvelope = {
+    data: Enumerable<TeamCreateManyProductRequestInput>
     skipDuplicates?: boolean
   }
 
-  export type ServiceCreateWithoutProductsInput = {
+  export type ProductCreateWithoutRequestInput = {
     id?: string
     name: string
     description: string
@@ -36722,7 +36719,7 @@ export namespace Prisma {
     currency: string
     amount: number
     timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
+    feature?: ProductCreatefeatureInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36733,11 +36730,11 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    category: ServiceCategoryCreateNestedOneWithoutServicesInput
-    forms?: ServiceFormCreateNestedManyWithoutServiceInput
+    service: ServiceCreateNestedOneWithoutProductsInput
+    form?: ProductFormCreateNestedManyWithoutProductInput
   }
 
-  export type ServiceUncheckedCreateWithoutProductsInput = {
+  export type ProductUncheckedCreateWithoutRequestInput = {
     id?: string
     name: string
     description: string
@@ -36745,7 +36742,7 @@ export namespace Prisma {
     currency: string
     amount: number
     timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
+    feature?: ProductCreatefeatureInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36756,16 +36753,16 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    serviceCategoryId: string
-    forms?: ServiceFormUncheckedCreateNestedManyWithoutServiceInput
+    serviceId: string
+    form?: ProductFormUncheckedCreateNestedManyWithoutProductInput
   }
 
-  export type ServiceCreateOrConnectWithoutProductsInput = {
-    where: ServiceWhereUniqueInput
-    create: XOR<ServiceCreateWithoutProductsInput, ServiceUncheckedCreateWithoutProductsInput>
+  export type ProductCreateOrConnectWithoutRequestInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutRequestInput, ProductUncheckedCreateWithoutRequestInput>
   }
 
-  export type UserCreateWithoutProductInput = {
+  export type UserCreateWithoutProductRequestInput = {
     id?: string
     fullName: string
     username?: string | null
@@ -36794,7 +36791,7 @@ export namespace Prisma {
     account?: AccountCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutProductInput = {
+  export type UserUncheckedCreateWithoutProductRequestInput = {
     id?: string
     fullName: string
     username?: string | null
@@ -36823,12 +36820,12 @@ export namespace Prisma {
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutProductInput = {
+  export type UserCreateOrConnectWithoutProductRequestInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutProductInput, UserUncheckedCreateWithoutProductInput>
+    create: XOR<UserCreateWithoutProductRequestInput, UserUncheckedCreateWithoutProductRequestInput>
   }
 
-  export type PaymentCreateWithoutProductsInput = {
+  export type PaymentCreateWithoutProductRequestsInput = {
     id?: string
     provider: string
     transactionId: string
@@ -36839,7 +36836,7 @@ export namespace Prisma {
     isDeprecated?: boolean
   }
 
-  export type PaymentUncheckedCreateWithoutProductsInput = {
+  export type PaymentUncheckedCreateWithoutProductRequestsInput = {
     id?: string
     provider: string
     transactionId: string
@@ -36850,70 +36847,64 @@ export namespace Prisma {
     isDeprecated?: boolean
   }
 
-  export type PaymentCreateOrConnectWithoutProductsInput = {
+  export type PaymentCreateOrConnectWithoutProductRequestsInput = {
     where: PaymentWhereUniqueInput
-    create: XOR<PaymentCreateWithoutProductsInput, PaymentUncheckedCreateWithoutProductsInput>
+    create: XOR<PaymentCreateWithoutProductRequestsInput, PaymentUncheckedCreateWithoutProductRequestsInput>
   }
 
-  export type PaymentCreateManyProductsInputEnvelope = {
-    data: Enumerable<PaymentCreateManyProductsInput>
+  export type PaymentCreateManyProductRequestsInputEnvelope = {
+    data: Enumerable<PaymentCreateManyProductRequestsInput>
     skipDuplicates?: boolean
   }
 
-  export type ProductQACreateWithoutProductsInput = {
+  export type ProductRequestQACreateWithoutRequestInput = {
     id?: string
-    question?: string | null
-    answer?: ProductQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productSubForm?: ProductQASubFormCreateNestedManyWithoutProductQAInput
+    subForm?: ProductRequestQASubFormCreateNestedManyWithoutRequestQAInput
   }
 
-  export type ProductQAUncheckedCreateWithoutProductsInput = {
+  export type ProductRequestQAUncheckedCreateWithoutRequestInput = {
     id?: string
-    question?: string | null
-    answer?: ProductQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+    subForm?: ProductRequestQASubFormUncheckedCreateNestedManyWithoutRequestQAInput
   }
 
-  export type ProductQACreateOrConnectWithoutProductsInput = {
-    where: ProductQAWhereUniqueInput
-    create: XOR<ProductQACreateWithoutProductsInput, ProductQAUncheckedCreateWithoutProductsInput>
+  export type ProductRequestQACreateOrConnectWithoutRequestInput = {
+    where: ProductRequestQAWhereUniqueInput
+    create: XOR<ProductRequestQACreateWithoutRequestInput, ProductRequestQAUncheckedCreateWithoutRequestInput>
   }
 
-  export type ProductQACreateManyProductsInputEnvelope = {
-    data: Enumerable<ProductQACreateManyProductsInput>
+  export type ProductRequestQACreateManyRequestInputEnvelope = {
+    data: Enumerable<ProductRequestQACreateManyRequestInput>
     skipDuplicates?: boolean
   }
 
-  export type TeamUpsertWithWhereUniqueWithoutProductInput = {
+  export type TeamUpsertWithWhereUniqueWithoutProductRequestInput = {
     where: TeamWhereUniqueInput
-    update: XOR<TeamUpdateWithoutProductInput, TeamUncheckedUpdateWithoutProductInput>
-    create: XOR<TeamCreateWithoutProductInput, TeamUncheckedCreateWithoutProductInput>
+    update: XOR<TeamUpdateWithoutProductRequestInput, TeamUncheckedUpdateWithoutProductRequestInput>
+    create: XOR<TeamCreateWithoutProductRequestInput, TeamUncheckedCreateWithoutProductRequestInput>
   }
 
-  export type TeamUpdateWithWhereUniqueWithoutProductInput = {
+  export type TeamUpdateWithWhereUniqueWithoutProductRequestInput = {
     where: TeamWhereUniqueInput
-    data: XOR<TeamUpdateWithoutProductInput, TeamUncheckedUpdateWithoutProductInput>
+    data: XOR<TeamUpdateWithoutProductRequestInput, TeamUncheckedUpdateWithoutProductRequestInput>
   }
 
-  export type TeamUpdateManyWithWhereWithoutProductInput = {
+  export type TeamUpdateManyWithWhereWithoutProductRequestInput = {
     where: TeamScalarWhereInput
     data: XOR<TeamUpdateManyMutationInput, TeamUncheckedUpdateManyWithoutTeamInput>
   }
@@ -36929,15 +36920,15 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
-    productId?: StringFilter | string
+    productRequestId?: StringFilter | string
   }
 
-  export type ServiceUpsertWithoutProductsInput = {
-    update: XOR<ServiceUpdateWithoutProductsInput, ServiceUncheckedUpdateWithoutProductsInput>
-    create: XOR<ServiceCreateWithoutProductsInput, ServiceUncheckedCreateWithoutProductsInput>
+  export type ProductUpsertWithoutRequestInput = {
+    update: XOR<ProductUpdateWithoutRequestInput, ProductUncheckedUpdateWithoutRequestInput>
+    create: XOR<ProductCreateWithoutRequestInput, ProductUncheckedCreateWithoutRequestInput>
   }
 
-  export type ServiceUpdateWithoutProductsInput = {
+  export type ProductUpdateWithoutRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -36945,7 +36936,7 @@ export namespace Prisma {
     currency?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -36956,11 +36947,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    category?: ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput
-    forms?: ServiceFormUpdateManyWithoutServiceNestedInput
+    service?: ServiceUpdateOneRequiredWithoutProductsNestedInput
+    form?: ProductFormUpdateManyWithoutProductNestedInput
   }
 
-  export type ServiceUncheckedUpdateWithoutProductsInput = {
+  export type ProductUncheckedUpdateWithoutRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -36968,7 +36959,7 @@ export namespace Prisma {
     currency?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -36979,16 +36970,16 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    serviceCategoryId?: StringFieldUpdateOperationsInput | string
-    forms?: ServiceFormUncheckedUpdateManyWithoutServiceNestedInput
+    serviceId?: StringFieldUpdateOperationsInput | string
+    form?: ProductFormUncheckedUpdateManyWithoutProductNestedInput
   }
 
-  export type UserUpsertWithoutProductInput = {
-    update: XOR<UserUpdateWithoutProductInput, UserUncheckedUpdateWithoutProductInput>
-    create: XOR<UserCreateWithoutProductInput, UserUncheckedCreateWithoutProductInput>
+  export type UserUpsertWithoutProductRequestInput = {
+    update: XOR<UserUpdateWithoutProductRequestInput, UserUncheckedUpdateWithoutProductRequestInput>
+    create: XOR<UserCreateWithoutProductRequestInput, UserUncheckedCreateWithoutProductRequestInput>
   }
 
-  export type UserUpdateWithoutProductInput = {
+  export type UserUpdateWithoutProductRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37017,7 +37008,7 @@ export namespace Prisma {
     account?: AccountUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutProductInput = {
+  export type UserUncheckedUpdateWithoutProductRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37046,18 +37037,18 @@ export namespace Prisma {
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type PaymentUpsertWithWhereUniqueWithoutProductsInput = {
+  export type PaymentUpsertWithWhereUniqueWithoutProductRequestsInput = {
     where: PaymentWhereUniqueInput
-    update: XOR<PaymentUpdateWithoutProductsInput, PaymentUncheckedUpdateWithoutProductsInput>
-    create: XOR<PaymentCreateWithoutProductsInput, PaymentUncheckedCreateWithoutProductsInput>
+    update: XOR<PaymentUpdateWithoutProductRequestsInput, PaymentUncheckedUpdateWithoutProductRequestsInput>
+    create: XOR<PaymentCreateWithoutProductRequestsInput, PaymentUncheckedCreateWithoutProductRequestsInput>
   }
 
-  export type PaymentUpdateWithWhereUniqueWithoutProductsInput = {
+  export type PaymentUpdateWithWhereUniqueWithoutProductRequestsInput = {
     where: PaymentWhereUniqueInput
-    data: XOR<PaymentUpdateWithoutProductsInput, PaymentUncheckedUpdateWithoutProductsInput>
+    data: XOR<PaymentUpdateWithoutProductRequestsInput, PaymentUncheckedUpdateWithoutProductRequestsInput>
   }
 
-  export type PaymentUpdateManyWithWhereWithoutProductsInput = {
+  export type PaymentUpdateManyWithWhereWithoutProductRequestsInput = {
     where: PaymentScalarWhereInput
     data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyWithoutPaymentInput>
   }
@@ -37074,45 +37065,42 @@ export namespace Prisma {
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
-    productId?: StringFilter | string
+    productRequestId?: StringFilter | string
   }
 
-  export type ProductQAUpsertWithWhereUniqueWithoutProductsInput = {
-    where: ProductQAWhereUniqueInput
-    update: XOR<ProductQAUpdateWithoutProductsInput, ProductQAUncheckedUpdateWithoutProductsInput>
-    create: XOR<ProductQACreateWithoutProductsInput, ProductQAUncheckedCreateWithoutProductsInput>
+  export type ProductRequestQAUpsertWithWhereUniqueWithoutRequestInput = {
+    where: ProductRequestQAWhereUniqueInput
+    update: XOR<ProductRequestQAUpdateWithoutRequestInput, ProductRequestQAUncheckedUpdateWithoutRequestInput>
+    create: XOR<ProductRequestQACreateWithoutRequestInput, ProductRequestQAUncheckedCreateWithoutRequestInput>
   }
 
-  export type ProductQAUpdateWithWhereUniqueWithoutProductsInput = {
-    where: ProductQAWhereUniqueInput
-    data: XOR<ProductQAUpdateWithoutProductsInput, ProductQAUncheckedUpdateWithoutProductsInput>
+  export type ProductRequestQAUpdateWithWhereUniqueWithoutRequestInput = {
+    where: ProductRequestQAWhereUniqueInput
+    data: XOR<ProductRequestQAUpdateWithoutRequestInput, ProductRequestQAUncheckedUpdateWithoutRequestInput>
   }
 
-  export type ProductQAUpdateManyWithWhereWithoutProductsInput = {
-    where: ProductQAScalarWhereInput
-    data: XOR<ProductQAUpdateManyMutationInput, ProductQAUncheckedUpdateManyWithoutProductQAInput>
+  export type ProductRequestQAUpdateManyWithWhereWithoutRequestInput = {
+    where: ProductRequestQAScalarWhereInput
+    data: XOR<ProductRequestQAUpdateManyMutationInput, ProductRequestQAUncheckedUpdateManyWithoutRequestQAInput>
   }
 
-  export type ProductQAScalarWhereInput = {
-    AND?: Enumerable<ProductQAScalarWhereInput>
-    OR?: Enumerable<ProductQAScalarWhereInput>
-    NOT?: Enumerable<ProductQAScalarWhereInput>
+  export type ProductRequestQAScalarWhereInput = {
+    AND?: Enumerable<ProductRequestQAScalarWhereInput>
+    OR?: Enumerable<ProductRequestQAScalarWhereInput>
+    NOT?: Enumerable<ProductRequestQAScalarWhereInput>
     id?: StringFilter | string
-    question?: StringNullableFilter | string | null
-    answer?: StringNullableListFilter
+    title?: StringNullableFilter | string | null
+    description?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isGeneral?: BoolFilter | boolean
-    fileName?: StringNullableFilter | string | null
-    fileType?: StringNullableFilter | string | null
-    fileLink?: StringNullableFilter | string | null
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
     isDeprecated?: BoolFilter | boolean
-    productId?: StringFilter | string
+    requestId?: StringFilter | string
   }
 
-  export type ProductCreateWithoutProductQAInput = {
+  export type ProductRequestCreateWithoutRequestQAInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -37123,13 +37111,13 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    Team?: TeamCreateNestedManyWithoutProductInput
-    service?: ServiceCreateNestedOneWithoutProductsInput
-    user: UserCreateNestedOneWithoutProductInput
-    Payment?: PaymentCreateNestedManyWithoutProductsInput
+    Team?: TeamCreateNestedManyWithoutProductRequestInput
+    product?: ProductCreateNestedOneWithoutRequestInput
+    user: UserCreateNestedOneWithoutProductRequestInput
+    Payment?: PaymentCreateNestedManyWithoutProductRequestsInput
   }
 
-  export type ProductUncheckedCreateWithoutProductQAInput = {
+  export type ProductRequestUncheckedCreateWithoutRequestQAInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -37140,51 +37128,57 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceId?: string | null
+    productId?: string | null
     userId: string
-    Team?: TeamUncheckedCreateNestedManyWithoutProductInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutProductsInput
+    Team?: TeamUncheckedCreateNestedManyWithoutProductRequestInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutProductRequestsInput
   }
 
-  export type ProductCreateOrConnectWithoutProductQAInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutProductQAInput, ProductUncheckedCreateWithoutProductQAInput>
+  export type ProductRequestCreateOrConnectWithoutRequestQAInput = {
+    where: ProductRequestWhereUniqueInput
+    create: XOR<ProductRequestCreateWithoutRequestQAInput, ProductRequestUncheckedCreateWithoutRequestQAInput>
   }
 
-  export type ProductQASubFormCreateWithoutProductQAInput = {
+  export type ProductRequestQASubFormCreateWithoutRequestQAInput = {
     id?: string
     question?: string | null
-    answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
   }
 
-  export type ProductQASubFormUncheckedCreateWithoutProductQAInput = {
+  export type ProductRequestQASubFormUncheckedCreateWithoutRequestQAInput = {
     id?: string
     question?: string | null
-    answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
   }
 
-  export type ProductQASubFormCreateOrConnectWithoutProductQAInput = {
-    where: ProductQASubFormWhereUniqueInput
-    create: XOR<ProductQASubFormCreateWithoutProductQAInput, ProductQASubFormUncheckedCreateWithoutProductQAInput>
+  export type ProductRequestQASubFormCreateOrConnectWithoutRequestQAInput = {
+    where: ProductRequestQASubFormWhereUniqueInput
+    create: XOR<ProductRequestQASubFormCreateWithoutRequestQAInput, ProductRequestQASubFormUncheckedCreateWithoutRequestQAInput>
   }
 
-  export type ProductQASubFormCreateManyProductQAInputEnvelope = {
-    data: Enumerable<ProductQASubFormCreateManyProductQAInput>
+  export type ProductRequestQASubFormCreateManyRequestQAInputEnvelope = {
+    data: Enumerable<ProductRequestQASubFormCreateManyRequestQAInput>
     skipDuplicates?: boolean
   }
 
-  export type ProductUpsertWithoutProductQAInput = {
-    update: XOR<ProductUpdateWithoutProductQAInput, ProductUncheckedUpdateWithoutProductQAInput>
-    create: XOR<ProductCreateWithoutProductQAInput, ProductUncheckedCreateWithoutProductQAInput>
+  export type ProductRequestUpsertWithoutRequestQAInput = {
+    update: XOR<ProductRequestUpdateWithoutRequestQAInput, ProductRequestUncheckedUpdateWithoutRequestQAInput>
+    create: XOR<ProductRequestCreateWithoutRequestQAInput, ProductRequestUncheckedCreateWithoutRequestQAInput>
   }
 
-  export type ProductUpdateWithoutProductQAInput = {
+  export type ProductRequestUpdateWithoutRequestQAInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37195,13 +37189,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Team?: TeamUpdateManyWithoutProductNestedInput
-    service?: ServiceUpdateOneWithoutProductsNestedInput
-    user?: UserUpdateOneRequiredWithoutProductNestedInput
-    Payment?: PaymentUpdateManyWithoutProductsNestedInput
+    Team?: TeamUpdateManyWithoutProductRequestNestedInput
+    product?: ProductUpdateOneWithoutRequestNestedInput
+    user?: UserUpdateOneRequiredWithoutProductRequestNestedInput
+    Payment?: PaymentUpdateManyWithoutProductRequestsNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutProductQAInput = {
+  export type ProductRequestUncheckedUpdateWithoutRequestQAInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37212,116 +37206,107 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
-    Team?: TeamUncheckedUpdateManyWithoutProductNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutProductsNestedInput
+    Team?: TeamUncheckedUpdateManyWithoutProductRequestNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutProductRequestsNestedInput
   }
 
-  export type ProductQASubFormUpsertWithWhereUniqueWithoutProductQAInput = {
-    where: ProductQASubFormWhereUniqueInput
-    update: XOR<ProductQASubFormUpdateWithoutProductQAInput, ProductQASubFormUncheckedUpdateWithoutProductQAInput>
-    create: XOR<ProductQASubFormCreateWithoutProductQAInput, ProductQASubFormUncheckedCreateWithoutProductQAInput>
+  export type ProductRequestQASubFormUpsertWithWhereUniqueWithoutRequestQAInput = {
+    where: ProductRequestQASubFormWhereUniqueInput
+    update: XOR<ProductRequestQASubFormUpdateWithoutRequestQAInput, ProductRequestQASubFormUncheckedUpdateWithoutRequestQAInput>
+    create: XOR<ProductRequestQASubFormCreateWithoutRequestQAInput, ProductRequestQASubFormUncheckedCreateWithoutRequestQAInput>
   }
 
-  export type ProductQASubFormUpdateWithWhereUniqueWithoutProductQAInput = {
-    where: ProductQASubFormWhereUniqueInput
-    data: XOR<ProductQASubFormUpdateWithoutProductQAInput, ProductQASubFormUncheckedUpdateWithoutProductQAInput>
+  export type ProductRequestQASubFormUpdateWithWhereUniqueWithoutRequestQAInput = {
+    where: ProductRequestQASubFormWhereUniqueInput
+    data: XOR<ProductRequestQASubFormUpdateWithoutRequestQAInput, ProductRequestQASubFormUncheckedUpdateWithoutRequestQAInput>
   }
 
-  export type ProductQASubFormUpdateManyWithWhereWithoutProductQAInput = {
-    where: ProductQASubFormScalarWhereInput
-    data: XOR<ProductQASubFormUpdateManyMutationInput, ProductQASubFormUncheckedUpdateManyWithoutProductSubFormInput>
+  export type ProductRequestQASubFormUpdateManyWithWhereWithoutRequestQAInput = {
+    where: ProductRequestQASubFormScalarWhereInput
+    data: XOR<ProductRequestQASubFormUpdateManyMutationInput, ProductRequestQASubFormUncheckedUpdateManyWithoutSubFormInput>
   }
 
-  export type ProductQASubFormScalarWhereInput = {
-    AND?: Enumerable<ProductQASubFormScalarWhereInput>
-    OR?: Enumerable<ProductQASubFormScalarWhereInput>
-    NOT?: Enumerable<ProductQASubFormScalarWhereInput>
+  export type ProductRequestQASubFormScalarWhereInput = {
+    AND?: Enumerable<ProductRequestQASubFormScalarWhereInput>
+    OR?: Enumerable<ProductRequestQASubFormScalarWhereInput>
+    NOT?: Enumerable<ProductRequestQASubFormScalarWhereInput>
     id?: StringFilter | string
     question?: StringNullableFilter | string | null
     answer?: StringNullableListFilter
     type?: StringNullableFilter | string | null
+    fileName?: StringNullableFilter | string | null
+    fileType?: StringNullableFilter | string | null
+    fileLink?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
-    productQAId?: StringFilter | string
+    requestQAId?: StringFilter | string
   }
 
-  export type ProductQACreateWithoutProductSubFormInput = {
+  export type ProductRequestQACreateWithoutSubFormInput = {
     id?: string
-    question?: string | null
-    answer?: ProductQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    products: ProductCreateNestedOneWithoutProductQAInput
+    request: ProductRequestCreateNestedOneWithoutRequestQAInput
   }
 
-  export type ProductQAUncheckedCreateWithoutProductSubFormInput = {
+  export type ProductRequestQAUncheckedCreateWithoutSubFormInput = {
     id?: string
-    question?: string | null
-    answer?: ProductQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productId: string
+    requestId: string
   }
 
-  export type ProductQACreateOrConnectWithoutProductSubFormInput = {
-    where: ProductQAWhereUniqueInput
-    create: XOR<ProductQACreateWithoutProductSubFormInput, ProductQAUncheckedCreateWithoutProductSubFormInput>
+  export type ProductRequestQACreateOrConnectWithoutSubFormInput = {
+    where: ProductRequestQAWhereUniqueInput
+    create: XOR<ProductRequestQACreateWithoutSubFormInput, ProductRequestQAUncheckedCreateWithoutSubFormInput>
   }
 
-  export type ProductQAUpsertWithoutProductSubFormInput = {
-    update: XOR<ProductQAUpdateWithoutProductSubFormInput, ProductQAUncheckedUpdateWithoutProductSubFormInput>
-    create: XOR<ProductQACreateWithoutProductSubFormInput, ProductQAUncheckedCreateWithoutProductSubFormInput>
+  export type ProductRequestQAUpsertWithoutSubFormInput = {
+    update: XOR<ProductRequestQAUpdateWithoutSubFormInput, ProductRequestQAUncheckedUpdateWithoutSubFormInput>
+    create: XOR<ProductRequestQACreateWithoutSubFormInput, ProductRequestQAUncheckedCreateWithoutSubFormInput>
   }
 
-  export type ProductQAUpdateWithoutProductSubFormInput = {
+  export type ProductRequestQAUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    products?: ProductUpdateOneRequiredWithoutProductQANestedInput
+    request?: ProductRequestUpdateOneRequiredWithoutRequestQANestedInput
   }
 
-  export type ProductQAUncheckedUpdateWithoutProductSubFormInput = {
+  export type ProductRequestQAUncheckedUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productId?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ProductCreateWithoutTeamInput = {
+  export type ProductRequestCreateWithoutTeamInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -37332,13 +37317,13 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    service?: ServiceCreateNestedOneWithoutProductsInput
-    user: UserCreateNestedOneWithoutProductInput
-    Payment?: PaymentCreateNestedManyWithoutProductsInput
-    productQA?: ProductQACreateNestedManyWithoutProductsInput
+    product?: ProductCreateNestedOneWithoutRequestInput
+    user: UserCreateNestedOneWithoutProductRequestInput
+    Payment?: PaymentCreateNestedManyWithoutProductRequestsInput
+    requestQA?: ProductRequestQACreateNestedManyWithoutRequestInput
   }
 
-  export type ProductUncheckedCreateWithoutTeamInput = {
+  export type ProductRequestUncheckedCreateWithoutTeamInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -37349,15 +37334,15 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceId?: string | null
+    productId?: string | null
     userId: string
-    Payment?: PaymentUncheckedCreateNestedManyWithoutProductsInput
-    productQA?: ProductQAUncheckedCreateNestedManyWithoutProductsInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutProductRequestsInput
+    requestQA?: ProductRequestQAUncheckedCreateNestedManyWithoutRequestInput
   }
 
-  export type ProductCreateOrConnectWithoutTeamInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutTeamInput, ProductUncheckedCreateWithoutTeamInput>
+  export type ProductRequestCreateOrConnectWithoutTeamInput = {
+    where: ProductRequestWhereUniqueInput
+    create: XOR<ProductRequestCreateWithoutTeamInput, ProductRequestUncheckedCreateWithoutTeamInput>
   }
 
   export type InvitationCreateWithoutTeamInput = {
@@ -37426,12 +37411,12 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ProductUpsertWithoutTeamInput = {
-    update: XOR<ProductUpdateWithoutTeamInput, ProductUncheckedUpdateWithoutTeamInput>
-    create: XOR<ProductCreateWithoutTeamInput, ProductUncheckedCreateWithoutTeamInput>
+  export type ProductRequestUpsertWithoutTeamInput = {
+    update: XOR<ProductRequestUpdateWithoutTeamInput, ProductRequestUncheckedUpdateWithoutTeamInput>
+    create: XOR<ProductRequestCreateWithoutTeamInput, ProductRequestUncheckedCreateWithoutTeamInput>
   }
 
-  export type ProductUpdateWithoutTeamInput = {
+  export type ProductRequestUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37442,13 +37427,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    service?: ServiceUpdateOneWithoutProductsNestedInput
-    user?: UserUpdateOneRequiredWithoutProductNestedInput
-    Payment?: PaymentUpdateManyWithoutProductsNestedInput
-    productQA?: ProductQAUpdateManyWithoutProductsNestedInput
+    product?: ProductUpdateOneWithoutRequestNestedInput
+    user?: UserUpdateOneRequiredWithoutProductRequestNestedInput
+    Payment?: PaymentUpdateManyWithoutProductRequestsNestedInput
+    requestQA?: ProductRequestQAUpdateManyWithoutRequestNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutTeamInput = {
+  export type ProductRequestUncheckedUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37459,10 +37444,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
-    Payment?: PaymentUncheckedUpdateManyWithoutProductsNestedInput
-    productQA?: ProductQAUncheckedUpdateManyWithoutProductsNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutProductRequestsNestedInput
+    requestQA?: ProductRequestQAUncheckedUpdateManyWithoutRequestNestedInput
   }
 
   export type InvitationUpsertWithWhereUniqueWithoutTeamInput = {
@@ -37520,7 +37505,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    product: ProductCreateNestedOneWithoutTeamInput
+    productRequest: ProductRequestCreateNestedOneWithoutTeamInput
     invitation?: InvitationCreateNestedManyWithoutTeamInput
   }
 
@@ -37532,7 +37517,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productId: string
+    productRequestId: string
     invitation?: InvitationUncheckedCreateNestedManyWithoutTeamInput
   }
 
@@ -37567,7 +37552,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountCreateNestedManyWithoutUserInput
-    product?: ProductCreateNestedManyWithoutUserInput
+    productRequest?: ProductRequestCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTeamMemberInput = {
@@ -37596,7 +37581,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
-    product?: ProductUncheckedCreateNestedManyWithoutUserInput
+    productRequest?: ProductRequestUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTeamMemberInput = {
@@ -37617,7 +37602,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    product?: ProductUpdateOneRequiredWithoutTeamNestedInput
+    productRequest?: ProductRequestUpdateOneRequiredWithoutTeamNestedInput
     invitation?: InvitationUpdateManyWithoutTeamNestedInput
   }
 
@@ -37629,7 +37614,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productId?: StringFieldUpdateOperationsInput | string
+    productRequestId?: StringFieldUpdateOperationsInput | string
     invitation?: InvitationUncheckedUpdateManyWithoutTeamNestedInput
   }
 
@@ -37664,7 +37649,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUpdateManyWithoutUserNestedInput
-    product?: ProductUpdateManyWithoutUserNestedInput
+    productRequest?: ProductRequestUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeamMemberInput = {
@@ -37693,7 +37678,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    product?: ProductUncheckedUpdateManyWithoutUserNestedInput
+    productRequest?: ProductRequestUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TeamCreateWithoutInvitationInput = {
@@ -37704,7 +37689,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    product: ProductCreateNestedOneWithoutTeamInput
+    productRequest: ProductRequestCreateNestedOneWithoutTeamInput
     teamMember?: TeamMemberCreateNestedManyWithoutTeamInput
   }
 
@@ -37716,7 +37701,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
-    productId: string
+    productRequestId: string
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutTeamInput
   }
 
@@ -37738,7 +37723,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    product?: ProductUpdateOneRequiredWithoutTeamNestedInput
+    productRequest?: ProductRequestUpdateOneRequiredWithoutTeamNestedInput
     teamMember?: TeamMemberUpdateManyWithoutTeamNestedInput
   }
 
@@ -37750,11 +37735,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productId?: StringFieldUpdateOperationsInput | string
+    productRequestId?: StringFieldUpdateOperationsInput | string
     teamMember?: TeamMemberUncheckedUpdateManyWithoutTeamNestedInput
   }
 
-  export type ProductCreateWithoutPaymentInput = {
+  export type ProductRequestCreateWithoutPaymentInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -37765,13 +37750,13 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    Team?: TeamCreateNestedManyWithoutProductInput
-    service?: ServiceCreateNestedOneWithoutProductsInput
-    user: UserCreateNestedOneWithoutProductInput
-    productQA?: ProductQACreateNestedManyWithoutProductsInput
+    Team?: TeamCreateNestedManyWithoutProductRequestInput
+    product?: ProductCreateNestedOneWithoutRequestInput
+    user: UserCreateNestedOneWithoutProductRequestInput
+    requestQA?: ProductRequestQACreateNestedManyWithoutRequestInput
   }
 
-  export type ProductUncheckedCreateWithoutPaymentInput = {
+  export type ProductRequestUncheckedCreateWithoutPaymentInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -37782,23 +37767,23 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceId?: string | null
+    productId?: string | null
     userId: string
-    Team?: TeamUncheckedCreateNestedManyWithoutProductInput
-    productQA?: ProductQAUncheckedCreateNestedManyWithoutProductsInput
+    Team?: TeamUncheckedCreateNestedManyWithoutProductRequestInput
+    requestQA?: ProductRequestQAUncheckedCreateNestedManyWithoutRequestInput
   }
 
-  export type ProductCreateOrConnectWithoutPaymentInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutPaymentInput, ProductUncheckedCreateWithoutPaymentInput>
+  export type ProductRequestCreateOrConnectWithoutPaymentInput = {
+    where: ProductRequestWhereUniqueInput
+    create: XOR<ProductRequestCreateWithoutPaymentInput, ProductRequestUncheckedCreateWithoutPaymentInput>
   }
 
-  export type ProductUpsertWithoutPaymentInput = {
-    update: XOR<ProductUpdateWithoutPaymentInput, ProductUncheckedUpdateWithoutPaymentInput>
-    create: XOR<ProductCreateWithoutPaymentInput, ProductUncheckedCreateWithoutPaymentInput>
+  export type ProductRequestUpsertWithoutPaymentInput = {
+    update: XOR<ProductRequestUpdateWithoutPaymentInput, ProductRequestUncheckedUpdateWithoutPaymentInput>
+    create: XOR<ProductRequestCreateWithoutPaymentInput, ProductRequestUncheckedCreateWithoutPaymentInput>
   }
 
-  export type ProductUpdateWithoutPaymentInput = {
+  export type ProductRequestUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37809,13 +37794,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Team?: TeamUpdateManyWithoutProductNestedInput
-    service?: ServiceUpdateOneWithoutProductsNestedInput
-    user?: UserUpdateOneRequiredWithoutProductNestedInput
-    productQA?: ProductQAUpdateManyWithoutProductsNestedInput
+    Team?: TeamUpdateManyWithoutProductRequestNestedInput
+    product?: ProductUpdateOneWithoutRequestNestedInput
+    user?: UserUpdateOneRequiredWithoutProductRequestNestedInput
+    requestQA?: ProductRequestQAUpdateManyWithoutRequestNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutPaymentInput = {
+  export type ProductRequestUncheckedUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37826,10 +37811,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: StringFieldUpdateOperationsInput | string
-    Team?: TeamUncheckedUpdateManyWithoutProductNestedInput
-    productQA?: ProductQAUncheckedUpdateManyWithoutProductsNestedInput
+    Team?: TeamUncheckedUpdateManyWithoutProductRequestNestedInput
+    requestQA?: ProductRequestQAUncheckedUpdateManyWithoutRequestNestedInput
   }
 
   export type CollaboratorDocumentCreateManyCollaboratorInput = {
@@ -37894,7 +37879,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ProductCreateManyUserInput = {
+  export type ProductRequestCreateManyUserInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -37905,7 +37890,7 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeprecated?: boolean
     updatedAt?: Date | string
-    serviceId?: string | null
+    productId?: string | null
   }
 
   export type TeamMemberUpdateWithoutUserInput = {
@@ -37974,7 +37959,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ProductUpdateWithoutUserInput = {
+  export type ProductRequestUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -37985,13 +37970,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Team?: TeamUpdateManyWithoutProductNestedInput
-    service?: ServiceUpdateOneWithoutProductsNestedInput
-    Payment?: PaymentUpdateManyWithoutProductsNestedInput
-    productQA?: ProductQAUpdateManyWithoutProductsNestedInput
+    Team?: TeamUpdateManyWithoutProductRequestNestedInput
+    product?: ProductUpdateOneWithoutRequestNestedInput
+    Payment?: PaymentUpdateManyWithoutProductRequestsNestedInput
+    requestQA?: ProductRequestQAUpdateManyWithoutRequestNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutUserInput = {
+  export type ProductRequestUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38002,13 +37987,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: NullableStringFieldUpdateOperationsInput | string | null
-    Team?: TeamUncheckedUpdateManyWithoutProductNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutProductsNestedInput
-    productQA?: ProductQAUncheckedUpdateManyWithoutProductsNestedInput
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
+    Team?: TeamUncheckedUpdateManyWithoutProductRequestNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutProductRequestsNestedInput
+    requestQA?: ProductRequestQAUncheckedUpdateManyWithoutRequestNestedInput
   }
 
-  export type ProductUncheckedUpdateManyWithoutProductInput = {
+  export type ProductRequestUncheckedUpdateManyWithoutProductRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38019,10 +38004,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    productId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ServiceCreateManyCategoryInput = {
+  export type ProductCreateManyServiceInput = {
     id?: string
     name: string
     description: string
@@ -38030,7 +38015,7 @@ export namespace Prisma {
     currency: string
     amount: number
     timeline: string
-    feature?: ServiceCreatefeatureInput | Enumerable<string>
+    feature?: ProductCreatefeatureInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -38043,7 +38028,7 @@ export namespace Prisma {
     isDeprecated?: boolean
   }
 
-  export type ServiceCategoryFormCreateManyCategoryInput = {
+  export type ServiceFormCreateManyServiceInput = {
     id?: string
     title: string
     description?: string | null
@@ -38054,7 +38039,7 @@ export namespace Prisma {
     isDeprecated?: boolean
   }
 
-  export type ServiceUpdateWithoutCategoryInput = {
+  export type ProductUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -38062,7 +38047,7 @@ export namespace Prisma {
     currency?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -38073,11 +38058,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    products?: ProductUpdateManyWithoutServiceNestedInput
-    forms?: ServiceFormUpdateManyWithoutServiceNestedInput
+    request?: ProductRequestUpdateManyWithoutProductNestedInput
+    form?: ProductFormUpdateManyWithoutProductNestedInput
   }
 
-  export type ServiceUncheckedUpdateWithoutCategoryInput = {
+  export type ProductUncheckedUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -38085,7 +38070,7 @@ export namespace Prisma {
     currency?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -38096,11 +38081,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    products?: ProductUncheckedUpdateManyWithoutServiceNestedInput
-    forms?: ServiceFormUncheckedUpdateManyWithoutServiceNestedInput
+    request?: ProductRequestUncheckedUpdateManyWithoutProductNestedInput
+    form?: ProductFormUncheckedUpdateManyWithoutProductNestedInput
   }
 
-  export type ServiceUncheckedUpdateManyWithoutServicesInput = {
+  export type ProductUncheckedUpdateManyWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -38108,7 +38093,7 @@ export namespace Prisma {
     currency?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
-    feature?: ServiceUpdatefeatureInput | Enumerable<string>
+    feature?: ProductUpdatefeatureInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -38121,7 +38106,7 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ServiceCategoryFormUpdateWithoutCategoryInput = {
+  export type ServiceFormUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38130,10 +38115,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    subForm?: ServiceCategorySubFormUpdateManyWithoutCategoryNestedInput
+    subForm?: ServiceSubFormUpdateManyWithoutFormNestedInput
   }
 
-  export type ServiceCategoryFormUncheckedUpdateWithoutCategoryInput = {
+  export type ServiceFormUncheckedUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38142,10 +38127,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    subForm?: ServiceCategorySubFormUncheckedUpdateManyWithoutCategoryNestedInput
+    subForm?: ServiceSubFormUncheckedUpdateManyWithoutFormNestedInput
   }
 
-  export type ServiceCategoryFormUncheckedUpdateManyWithoutFormInput = {
+  export type ServiceFormUncheckedUpdateManyWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38156,11 +38141,11 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ServiceCategorySubFormCreateManyCategoryInput = {
+  export type ServiceSubFormCreateManyFormInput = {
     id?: string
     question?: string | null
     type?: string | null
-    options?: ServiceCategorySubFormCreateoptionsInput | Enumerable<string>
+    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
@@ -38172,11 +38157,11 @@ export namespace Prisma {
     isDeprecated?: boolean
   }
 
-  export type ServiceCategorySubFormUpdateWithoutCategoryInput = {
+  export type ServiceSubFormUpdateWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38188,11 +38173,11 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ServiceCategorySubFormUncheckedUpdateWithoutCategoryInput = {
+  export type ServiceSubFormUncheckedUpdateWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38204,11 +38189,11 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ServiceCategorySubFormUncheckedUpdateManyWithoutSubFormInput = {
+  export type ServiceSubFormUncheckedUpdateManyWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceCategorySubFormUpdateoptionsInput | Enumerable<string>
+    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38220,7 +38205,7 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ProductCreateManyServiceInput = {
+  export type ProductRequestCreateManyProductInput = {
     id?: string
     email?: string | null
     address?: string | null
@@ -38234,7 +38219,7 @@ export namespace Prisma {
     userId: string
   }
 
-  export type ServiceFormCreateManyServiceInput = {
+  export type ProductFormCreateManyProductInput = {
     id?: string
     title?: string | null
     type?: string | null
@@ -38245,7 +38230,7 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ProductUpdateWithoutServiceInput = {
+  export type ProductRequestUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38256,30 +38241,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Team?: TeamUpdateManyWithoutProductNestedInput
-    user?: UserUpdateOneRequiredWithoutProductNestedInput
-    Payment?: PaymentUpdateManyWithoutProductsNestedInput
-    productQA?: ProductQAUpdateManyWithoutProductsNestedInput
+    Team?: TeamUpdateManyWithoutProductRequestNestedInput
+    user?: UserUpdateOneRequiredWithoutProductRequestNestedInput
+    Payment?: PaymentUpdateManyWithoutProductRequestsNestedInput
+    requestQA?: ProductRequestQAUpdateManyWithoutRequestNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutServiceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    paid?: BoolFieldUpdateOperationsInput | boolean
-    completed?: BoolFieldUpdateOperationsInput | boolean
-    status?: StringFieldUpdateOperationsInput | string
-    currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: StringFieldUpdateOperationsInput | string
-    Team?: TeamUncheckedUpdateManyWithoutProductNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutProductsNestedInput
-    productQA?: ProductQAUncheckedUpdateManyWithoutProductsNestedInput
-  }
-
-  export type ProductUncheckedUpdateManyWithoutProductsInput = {
+  export type ProductRequestUncheckedUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38291,9 +38259,26 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    Team?: TeamUncheckedUpdateManyWithoutProductRequestNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutProductRequestsNestedInput
+    requestQA?: ProductRequestQAUncheckedUpdateManyWithoutRequestNestedInput
   }
 
-  export type ServiceFormUpdateWithoutServiceInput = {
+  export type ProductRequestUncheckedUpdateManyWithoutRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    paid?: BoolFieldUpdateOperationsInput | boolean
+    completed?: BoolFieldUpdateOperationsInput | boolean
+    status?: StringFieldUpdateOperationsInput | string
+    currentState?: EnumProductActivityStageFieldUpdateOperationsInput | ProductActivityStage
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductFormUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38302,10 +38287,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceSubForm?: ServiceSubFormUpdateManyWithoutServiceFormNestedInput
+    productSubForm?: ProductSubFormUpdateManyWithoutFormNestedInput
   }
 
-  export type ServiceFormUncheckedUpdateWithoutServiceInput = {
+  export type ProductFormUncheckedUpdateWithoutProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38314,10 +38299,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serviceSubForm?: ServiceSubFormUncheckedUpdateManyWithoutServiceFormNestedInput
+    productSubForm?: ProductSubFormUncheckedUpdateManyWithoutFormNestedInput
   }
 
-  export type ServiceFormUncheckedUpdateManyWithoutFormsInput = {
+  export type ProductFormUncheckedUpdateManyWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38328,10 +38313,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceSubFormCreateManyServiceFormInput = {
+  export type ProductSubFormCreateManyFormInput = {
     id?: string
     question?: string | null
-    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    options?: ProductSubFormCreateoptionsInput | Enumerable<string>
     type?: string | null
     allowOther?: boolean
     fileName?: string | null
@@ -38344,10 +38329,10 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ServiceSubFormUpdateWithoutServiceFormInput = {
+  export type ProductSubFormUpdateWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
+    options?: ProductSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38360,10 +38345,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceSubFormUncheckedUpdateWithoutServiceFormInput = {
+  export type ProductSubFormUncheckedUpdateWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
+    options?: ProductSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38376,10 +38361,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ServiceSubFormUncheckedUpdateManyWithoutServiceSubFormInput = {
+  export type ProductSubFormUncheckedUpdateManyWithoutProductSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
+    options?: ProductSubFormUpdateoptionsInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
@@ -38392,7 +38377,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TeamCreateManyProductInput = {
+  export type TeamCreateManyProductRequestInput = {
     id?: string
     name: string
     slug: string
@@ -38402,7 +38387,7 @@ export namespace Prisma {
     isDeprecated?: boolean
   }
 
-  export type PaymentCreateManyProductsInput = {
+  export type PaymentCreateManyProductRequestsInput = {
     id?: string
     provider: string
     transactionId: string
@@ -38413,22 +38398,19 @@ export namespace Prisma {
     isDeprecated?: boolean
   }
 
-  export type ProductQACreateManyProductsInput = {
+  export type ProductRequestQACreateManyRequestInput = {
     id?: string
-    question?: string | null
-    answer?: ProductQACreateanswerInput | Enumerable<string>
+    title?: string | null
+    description?: string | null
     type?: string | null
     compulsory?: boolean
     isGeneral?: boolean
-    fileName?: string | null
-    fileType?: string | null
-    fileLink?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
   }
 
-  export type TeamUpdateWithoutProductInput = {
+  export type TeamUpdateWithoutProductRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -38440,7 +38422,7 @@ export namespace Prisma {
     teamMember?: TeamMemberUpdateManyWithoutTeamNestedInput
   }
 
-  export type TeamUncheckedUpdateWithoutProductInput = {
+  export type TeamUncheckedUpdateWithoutProductRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -38462,7 +38444,7 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type PaymentUpdateWithoutProductsInput = {
+  export type PaymentUpdateWithoutProductRequestsInput = {
     id?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     transactionId?: StringFieldUpdateOperationsInput | string
@@ -38473,7 +38455,7 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type PaymentUncheckedUpdateWithoutProductsInput = {
+  export type PaymentUncheckedUpdateWithoutProductRequestsInput = {
     id?: StringFieldUpdateOperationsInput | string
     provider?: StringFieldUpdateOperationsInput | string
     transactionId?: StringFieldUpdateOperationsInput | string
@@ -38495,85 +38477,88 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ProductQAUpdateWithoutProductsInput = {
+  export type ProductRequestQAUpdateWithoutRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productSubForm?: ProductQASubFormUpdateManyWithoutProductQANestedInput
+    subForm?: ProductRequestQASubFormUpdateManyWithoutRequestQANestedInput
   }
 
-  export type ProductQAUncheckedUpdateWithoutProductsInput = {
+  export type ProductRequestQAUncheckedUpdateWithoutRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
-    productSubForm?: ProductQASubFormUncheckedUpdateManyWithoutProductQANestedInput
+    subForm?: ProductRequestQASubFormUncheckedUpdateManyWithoutRequestQANestedInput
   }
 
-  export type ProductQAUncheckedUpdateManyWithoutProductQAInput = {
+  export type ProductRequestQAUncheckedUpdateManyWithoutRequestQAInput = {
     id?: StringFieldUpdateOperationsInput | string
-    question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQAUpdateanswerInput | Enumerable<string>
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isGeneral?: BoolFieldUpdateOperationsInput | boolean
-    fileName?: NullableStringFieldUpdateOperationsInput | string | null
-    fileType?: NullableStringFieldUpdateOperationsInput | string | null
-    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ProductQASubFormCreateManyProductQAInput = {
+  export type ProductRequestQASubFormCreateManyRequestQAInput = {
     id?: string
     question?: string | null
-    answer?: ProductQASubFormCreateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormCreateanswerInput | Enumerable<string>
     type?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
   }
 
-  export type ProductQASubFormUpdateWithoutProductQAInput = {
+  export type ProductRequestQASubFormUpdateWithoutRequestQAInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ProductQASubFormUncheckedUpdateWithoutProductQAInput = {
+  export type ProductRequestQASubFormUncheckedUpdateWithoutRequestQAInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ProductQASubFormUncheckedUpdateManyWithoutProductSubFormInput = {
+  export type ProductRequestQASubFormUncheckedUpdateManyWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
     question?: NullableStringFieldUpdateOperationsInput | string | null
-    answer?: ProductQASubFormUpdateanswerInput | Enumerable<string>
+    answer?: ProductRequestQASubFormUpdateanswerInput | Enumerable<string>
     type?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
