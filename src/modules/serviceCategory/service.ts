@@ -237,7 +237,11 @@ const getAllServiceForm = async (
         isDeprecated: false,
       },
       include: {
-        subForm: true,
+        subForm: {
+          where: {
+            isDeprecated: false,
+          },
+        },
       },
     });
     if (!category) {
@@ -268,7 +272,11 @@ const getServiceForm = async (id: string): Promise<ServiceFormResponse> => {
         id: id,
       },
       include: {
-        subForm: true,
+        subForm: {
+          where: {
+            isDeprecated: false,
+          },
+        },
       },
     });
 

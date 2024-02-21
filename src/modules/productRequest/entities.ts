@@ -3,7 +3,12 @@ export interface ProductRequestPayload {
   productId: string;
 }
 export interface FormPayload {
-  form: FormData[];
+  title?: string;
+  type?: string;
+  description?: string;
+  compulsory?: boolean;
+  isGeneral: boolean;
+  subForm: FormData[];
 }
 
 export interface FormData {
@@ -11,14 +16,10 @@ export interface FormData {
   answer: string[];
   type: string;
   compulsory: boolean;
-  isGeneral: boolean;
   file: FileData;
-  subForm: boolean;
-  profile: ProfileData[];
 }
 export interface FileData {
   name: string;
-  description: string;
   link: string;
   type: string;
 }
@@ -69,5 +70,13 @@ export interface ProductRequestQAData {
 export interface ProductRequestQAResponse {
   message: string;
   statusCode: 200;
-  data: ProductRequestQAData | ProductRequestQAData[];
+  data: FormResponse | FormResponse[];
+}
+
+export interface FormResponse {
+  title?: string | null;
+  type?: string | null;
+  description?: string | null;
+  compulsory?: boolean;
+  isGeneral?: boolean;
 }

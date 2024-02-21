@@ -753,9 +753,29 @@ const options: OpenAPIDefinition = {
           type: "object",
           require: ["form"],
           properties: {
-            form: {
+            title: {
+              type: "string",
+              description: "the form titel",
+            },
+            description: {
+              type: "string",
+              description: "description of the form",
+            },
+            type: {
+              type: "string",
+              description: "type of the answer to be provided",
+            },
+            compulsory: {
+              type: "boolean",
+              description: "compulsory question",
+            },
+            isGeneral: {
+              type: "boolean",
+              description: "is a general question?",
+            },
+            subForm: {
               type: "array",
-              description: "The question of the service selected",
+              description: "The question of the profile selected",
               items: {
                 type: "object",
                 require: ["question", "answer", "type", "compulsory"],
@@ -776,40 +796,6 @@ const options: OpenAPIDefinition = {
                     type: "boolean",
                     description: "compulsory question",
                   },
-                  isGeneral: {
-                    type: "boolean",
-                    description: "is a general question?",
-                  },
-                  subForm: {
-                    type: "boolean",
-                    description: "flag to add subform",
-                  },
-                  profile: {
-                    type: "array",
-                    description: "The question of the profile selected",
-                    items: {
-                      type: "object",
-                      require: ["question", "answer", "type", "compulsory"],
-                      properties: {
-                        question: {
-                          type: "string",
-                          description: "the form question",
-                        },
-                        answer: {
-                          type: "array",
-                          description: "answer to the question",
-                        },
-                        type: {
-                          type: "string",
-                          description: "type of the answer to be provided",
-                        },
-                        compulsory: {
-                          type: "boolean",
-                          description: "compulsory question",
-                        },
-                      },
-                    },
-                  },
                   file: {
                     type: "object",
                     description: "The question of the profile selected",
@@ -817,10 +803,6 @@ const options: OpenAPIDefinition = {
                       name: {
                         type: "string",
                         description: "Name of the file",
-                      },
-                      description: {
-                        type: "string",
-                        description: "Description of the file",
                       },
                       link: {
                         type: "string",
@@ -2335,34 +2317,58 @@ const options: OpenAPIDefinition = {
           },
         },
       },
-      // "/productRequest/productId": {
-      //   post: {
-      //     tags: ["Product Request"],
-      //     summary: "Add service ID to the product",
-      //     description: "Add service ID to the product",
 
-      //     requestBody: {
-      //       // expected request body
-      //       content: {
-      //         // content-type
-      //         "application/json": {
-      //           schema: {
-      //             $ref: "#/components/schemas/ProductServiceId", //
-      //           },
-      //         },
-      //       },
-      //     },
-      //     produces: ["application/json"],
-      //     responses: {
-      //       200: {
-      //         description: "New user product is created",
-      //         schema: {
-      //           $ref: "#/components/schemas/ProductServiceId",
-      //         },
-      //       },
-      //     },
-      //   },
-      // },
+      "/productRequest/service/form/{requestId}": {
+        post: {
+          tags: ["Product Request"],
+          summary: "Get all general forms of a request",
+          description: "Add service ID to the product",
+          parameters: [
+            {
+              name: "requestId",
+              in: "path",
+              required: true,
+              description: "ID of request to be fetched",
+              type: "string",
+            },
+          ],
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New user product is created",
+              schema: {
+                $ref: "#/components/schemas/ProductServiceId",
+              },
+            },
+          },
+        },
+      },
+
+      "/productRequest/product/form/{requestId}": {
+        post: {
+          tags: ["Product Request"],
+          summary: "Get all product forms of a request",
+          description: "Add service ID to the product",
+          parameters: [
+            {
+              name: "requestId",
+              in: "path",
+              required: true,
+              description: "ID of request to be fetched",
+              type: "string",
+            },
+          ],
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New user product is created",
+              schema: {
+                $ref: "#/components/schemas/ProductServiceId",
+              },
+            },
+          },
+        },
+      },
 
       "/productRequest/submission/{requestId}": {
         post: {

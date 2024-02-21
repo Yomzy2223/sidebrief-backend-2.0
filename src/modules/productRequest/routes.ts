@@ -13,7 +13,8 @@ import {
   CreateProductRequest,
   GetAllProductRequestQA,
   GetAllProductRequestsByUserId,
-  GetAllProductsQA,
+  GetAllRequestProdcutQA,
+  GetAllRequestServiceQA,
   GetProductRequestById,
   ProductRequestSubmission,
   GetAllProductRequestQAByQuestion,
@@ -43,7 +44,8 @@ router.post(
   // validator(producQACredentials),
   AddProductRequestQA
 );
-// router.get("/form/:requestId", GetAllProductsQA);
+router.get("/service/form/:requestId", GetAllRequestServiceQA);
+router.get("/product/form/:requestId", GetAllRequestProdcutQA);
 router.get("/form/:requestId", GetAllProductRequestQA);
 router.get("/formByQuestion", GetAllProductRequestQAByQuestion);
 router.post("/submission/:requestId", userAuth, ProductRequestSubmission);

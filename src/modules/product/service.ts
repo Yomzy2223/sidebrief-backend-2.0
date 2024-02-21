@@ -352,7 +352,11 @@ const getProductFormByProduct = async (
         },
       },
       include: {
-        productSubForm: true,
+        productSubForm: {
+          where: {
+            isDeprecated: false,
+          },
+        },
       },
     });
 

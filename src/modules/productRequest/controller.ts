@@ -3,7 +3,8 @@ import {
   addProductId,
   createProductRequestQA,
   getAllProductRequestQA,
-  getAllProductQA,
+  getAllRequestProductQA,
+  getAllRequestServiceQA,
   getProductRequestById,
   initializeProductRequest,
   submitProductRequest,
@@ -117,11 +118,7 @@ const AddProductRequestQA = async (
     // pass the payload to the service
     // return data back to client
     const requestId = req.params.requestId;
-    const payload = req.body;
-
-    const ProductRequestQAPayload = {
-      form: payload.form,
-    };
+    const ProductRequestQAPayload = req.body;
 
     const ProductRequest = await createProductRequestQA(
       ProductRequestQAPayload,
@@ -137,7 +134,7 @@ const AddProductRequestQA = async (
 };
 
 //get all service QA
-const GetAllProductsQA = async (
+const GetAllRequestServiceQA = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -146,7 +143,27 @@ const GetAllProductsQA = async (
     // get the service category list
     // return response to the client
     const requestId = req.params.requestId;
-    const ProductQA = await getAllProductQA(requestId);
+    const serviceQA = await getAllRequestServiceQA(requestId);
+
+    return res
+      .status(serviceQA.statusCode)
+      .json({ message: serviceQA.message, data: serviceQA.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get all service QA
+const GetAllRequestProdcutQA = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the service category list
+    // return response to the client
+    const requestId = req.params.requestId;
+    const ProductQA = await getAllRequestProductQA(requestId);
 
     return res
       .status(ProductQA.statusCode)
@@ -244,7 +261,8 @@ const GetAllProductRequestsByServiceId = async (
 export {
   CreateProductRequest,
   AddProductRequestQA,
-  GetAllProductsQA,
+  GetAllRequestProdcutQA,
+  GetAllRequestServiceQA,
   GetAllProductRequestQA,
   GetAllProductRequestsByUserId,
   ProductRequestSubmission,
