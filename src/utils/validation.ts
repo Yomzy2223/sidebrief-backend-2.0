@@ -59,31 +59,29 @@ const bankSchema = {
 
 const validateBank = validate.compile(bankSchema);
 
-const serviceCategorySchema = {
+const serviceSchema = {
   name: { type: "string", min: 3, max: 100 },
   description: { type: "string", min: 3, max: 255 },
 };
 
-const validateServiceCategory = validate.compile(serviceCategorySchema);
+const validateService = validate.compile(serviceSchema);
 
 // service category form
 
-const serviceCategoryFormSchema = {
+const serviceFormSchema = {
   title: { type: "string", min: 3, max: 255 },
   description: { type: "string", min: 3, max: 255 },
   type: { type: "string", min: 3, max: 2550 },
 };
 
-const validateServiceCategoryForm = validate.compile(serviceCategoryFormSchema);
+const validateServiceForm = validate.compile(serviceFormSchema);
 
-const serviceCategorySubFormSchema = {
+const serviceSubFormSchema = {
   question: { type: "string", min: 3, max: 255 },
   type: { type: "string", min: 3, max: 100 },
 };
 
-const validateServiceCategorySubForm = validate.compile(
-  serviceCategorySubFormSchema
-);
+const validateServiceSubForm = validate.compile(serviceSubFormSchema);
 
 //user password rest
 const resetSchema = {
@@ -141,8 +139,8 @@ export {
   validateUserCredentials,
   validateStaff,
   validateBank,
-  validateServiceCategory,
-  validateServiceCategoryForm,
+  validateService,
+  validateServiceForm,
   validateResetCredentials,
   validateUserUpdateCredentials,
   validateCollaborator,
@@ -151,5 +149,5 @@ export {
   validateEmail,
   validateUserWithGoogle,
   validateUserWithGoogleCredentials,
-  validateServiceCategorySubForm,
+  validateServiceSubForm,
 };

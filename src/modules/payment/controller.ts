@@ -5,6 +5,7 @@ import {
   makePayment,
   validateCharge,
   webhook,
+  makePaymentWithPaystack,
 } from "./service";
 
 const MakePayment = async (req: Request, res: Response) => {
@@ -23,7 +24,7 @@ const MakePayment = async (req: Request, res: Response) => {
       account_bank: payload.account_bank,
       type: payload.type,
       productId: payload.productId,
-      serviceId: payload.serviceId,
+      requestId: payload.requestId,
     };
 
     const payment = await makePayment(transactionPayload);
@@ -80,4 +81,33 @@ const ValidateOtp = async (req: Request, res: Response) => {
   } catch (error) {}
 };
 
-export { MakePayment, FlutterWebhook, ConfirmPayment, ValidateOtp };
+const MakePaymentWithPaystack = async (req: Request, res: Response) => {
+  try {
+    const payload: PaymentPayload = req.body;
+
+    const transactionPayload = {
+      email: payload.email,
+      currency: payload.currency,
+      amount: payload.amount,
+      card_number: payload.card_number,
+      cvv: payload.card_number,
+      card_pin: payload.card_pin,
+      expiry_month: payload.expiry_month,
+      expiry_year: payload.expiry_year,
+      account_bank: payload.account_bank,
+      type: payload.type,
+      productId: payload.productId,
+      requestId: payload.requestId,
+    };
+
+    const payment = await makePaymentWithPaystack(transactionPayload);
+    console.log("sdfs", payment);
+  } catch (error) {}
+};
+export {
+  MakePayment,
+  FlutterWebhook,
+  ConfirmPayment,
+  ValidateOtp,
+  MakePaymentWithPaystack,
+};

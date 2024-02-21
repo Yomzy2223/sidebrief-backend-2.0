@@ -3,7 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "./generated/client2"
+  output = "./generated/main"
 }
 
 datasource db {
@@ -145,7 +145,7 @@ model User {
       staffPermission String[]
       userPermission  String[]
       account Account[]
-      product Product[]
+      productRequest ProductRequest[]
       isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
@@ -161,18 +161,18 @@ model UserDocument {
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
 }
-model ServiceCategory {
+model Service {
       id String @id @default(uuid())
       name String @unique
       description String
       isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      services Service[]
-      form ServiceCategoryForm[]
+      products Product[]
+      form ServiceForm[]
 }
 
-model ServiceCategoryForm {  
+model ServiceForm {  
   id String @id @default(uuid())
   title String @unique
   description String?
@@ -181,12 +181,12 @@ model ServiceCategoryForm {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   isDeprecated Boolean   @default(false)
-  category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
-  serviceCategoryId String
-  subForm ServiceCategorySubForm[]
+  service Service @relation(fields: [serviceId], references: [id])
+  serviceId String
+  subForm ServiceSubForm[]
 }
 
-model ServiceCategorySubForm {  
+model ServiceSubForm {  
   id String @id @default(uuid())
   question String?
   type String?
@@ -200,10 +200,10 @@ model ServiceCategorySubForm {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   isDeprecated Boolean   @default(false)
-  category ServiceCategoryForm @relation(fields: [formId], references: [id])
+  form ServiceForm @relation(fields: [formId], references: [id])
   formId String
 }
-model Service {
+model Product {
       id String @id @default(uuid())
       name String
       description String
@@ -222,12 +222,12 @@ model Service {
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       isDeprecated Boolean   @default(false)
-      category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
-      serviceCategoryId String
-      products Product[]
-      forms ServiceForm[]
+      service Service @relation(fields: [serviceId], references: [id])
+      serviceId String
+      request ProductRequest[]
+      form ProductForm[]
 }
-model ServiceForm {  
+model ProductForm {  
   id String @id @default(uuid())
   title String? 
   type String?
@@ -236,11 +236,11 @@ model ServiceForm {
   createdAt DateTime @default(now())
   isDeprecated Boolean   @default(false)
   updatedAt DateTime @default(now())
-  service Service @relation(fields: [serviceId], references: [id])
-  serviceId String
-  serviceSubForm ServiceSubForm[]
+  product Product @relation(fields: [productId], references: [id])
+  productId String
+  productSubForm ProductSubForm[]
 }
-model ServiceSubForm {
+model ProductSubForm {
   id String @id @default(uuid())
   question String?
   options String[]
@@ -254,11 +254,11 @@ model ServiceSubForm {
   isDeprecated Boolean   @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-  serviceForm ServiceForm @relation(fields: [serviceFormId], references: [id])
-  serviceFormId String
+  form ProductForm @relation(fields: [formId], references: [id])
+  formId String
 
 }
-model Product {
+model ProductRequest {
       id String @id @default(uuid())
       email String?
       address String?
@@ -270,14 +270,14 @@ model Product {
       createdAt DateTime @default(now())
       isDeprecated Boolean   @default(false)
       updatedAt DateTime @default(now())
-      service Service? @relation(fields: [serviceId], references: [id])
+      product Product? @relation(fields: [productId], references: [id])
       user User @relation(fields: [userId], references: [id])
-      serviceId String?
+      productId String?
       userId String
       Payment Payment[]
-      productQA ProductQA[]
+      requestQA ProductRequestQA[]
 }
-model ProductQA {  
+model ProductRequestQA {  
   id String @id @default(uuid())
   question String?
   answer String[]
@@ -290,21 +290,21 @@ model ProductQA {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   isDeprecated Boolean   @default(false)
-  products Product @relation(fields: [productId], references: [id])
-  productId String
-  productSubForm ProductQASubForm[]
+  request ProductRequest @relation(fields: [requestId], references: [id])
+  requestId String
+  subForm ProductRequestQASubForm[]
 }
 
 
-model ProductQASubForm {
+model ProductRequestQASubForm {
   id String @id @default(uuid())
   question String?
   answer String[]
   type String?
   compulsory Boolean @default(false)
   isDeprecated Boolean   @default(false)
-  productQA ProductQA @relation(fields: [productQAId], references: [id])
-  productQAId String
+  requestQA ProductRequestQA @relation(fields: [requestQAId], references: [id])
+  requestQAId String
 
 }
 model Claim {
@@ -323,8 +323,8 @@ model Team {
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       isDeprecated Boolean   @default(false)
-      product Product @relation(fields: [productId], references: [id])
-      productId String
+      productRequest ProductRequest @relation(fields: [productRequestId], references: [id])
+      productRequestId String
       invitation Invitation[]
 teamMember TeamMember[]
 }
@@ -366,8 +366,8 @@ model Payment  {
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
       isDeprecated Boolean   @default(false)
-      products Product @relation(fields: [productId], references: [id])
-      productId String
+      productRequests ProductRequest @relation(fields: [productRequestId], references: [id])
+      productRequestId String
 }
 
 model Parter {

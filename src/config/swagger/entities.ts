@@ -273,7 +273,7 @@ interface ProductServiceId {
   type: string;
   require: string[];
   properties: {
-    serviceId: Props;
+    requestId: Props;
     productId: Props;
   };
 }
@@ -332,7 +332,7 @@ interface GetProductQAByQuestion {
   require: string[];
   properties: {
     question: Props;
-    productId: Props;
+    requestId: Props;
   };
 }
 interface AddProductQA {
@@ -398,7 +398,7 @@ export interface PaymentInitialization {
     account_bank: Props;
     type: Props;
     productId: Props;
-    serviceId: Props;
+    requestId: Props;
   };
 }
 
@@ -407,7 +407,7 @@ export interface PaymentConfirmation {
   require: string[];
   properties: {
     email?: Props;
-    productId?: Props;
+    requestId?: Props;
   };
 }
 

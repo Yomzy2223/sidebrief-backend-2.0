@@ -1,72 +1,118 @@
 export interface ProductPayload {
-  userId: string;
-}
-export interface FormPayload {
-  form: FormData[];
-}
-
-export interface FormData {
-  question: string;
-  answer: string[];
-  type: string;
-  compulsory: boolean;
-  isGeneral: boolean;
-  file: FileData;
-  subForm: boolean;
-  profile: ProfileData[];
-}
-export interface FileData {
   name: string;
   description: string;
-  link: string;
-  type: string;
+  country: string;
+  currency: string;
+  amount: number;
+  timeline: string;
+  feature: string[];
+  serviceId: string;
 }
 
-export interface ProfileData {
-  question: string;
-  answer: string[];
-  type: string;
-  compulsory: boolean;
-}
-export interface UpdateProductServiceIdPayload {
+export interface ProductData {
+  id: string;
+  name: string;
+  description: string;
+  country: string;
+  currency: string;
+  amount: number;
+  timeline: string;
+  feature: string[];
   serviceId: string;
+}
+
+export interface ProductResponse {
+  statusCode: number;
+  message: string;
+  data: ProductData | ProductData[];
+}
+
+export interface ProductFormPayload {
+  title: string;
+  type?: string;
+  description?: string;
+  compulsory?: boolean;
   productId: string;
 }
-export interface ProductData {
-  id?: string;
-  country?: string;
-  email?: string | null;
-  address?: string | null;
-  paid?: Boolean;
-  userId?: string;
-  completed?: Boolean;
-  status?: string;
-  currentState?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-  serviceId?: string | null;
-}
-export interface ProductResponse {
-  message: string;
-  statusCode: 200;
-  data: ProductData | ProductData[] | null;
-}
-export interface ProductWithoutDataResponse {
-  message: string;
-  statusCode: 200;
+
+export interface UpdateProductFormPayload {
+  title?: string;
+  type?: string;
+  description?: string;
+  compulsory?: boolean;
 }
 
-export interface ProductQAData {
-  id: string;
-  question: string | null;
-  answer?: string[];
-  isGeneral?: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
-  productId?: string;
+export interface SubFormPayload {
+  subForm: boolean;
+  form: FormData[];
 }
-export interface ProductQAResponse {
+export interface FormData {
+  question?: string;
+  options: string[];
+  type?: string;
+  compulsory: boolean;
+  file?: {
+    name?: string;
+    description?: string;
+    link?: string;
+    type?: string;
+  };
+}
+
+export interface ProductFormData {
+  id: string;
+  title: string | null;
+  type: string | null;
+  description: string | null;
+  productId: string;
+}
+
+export interface ProductFormResponse {
+  statusCode: number;
   message: string;
-  statusCode: 200;
-  data: ProductQAData | ProductQAData[];
+  data: ProductFormData | ProductFormData[];
+}
+
+export interface ProductSubFormPayload {
+  question?: string;
+  type?: string;
+  options?: string[];
+  formId: string;
+  compulsory?: boolean;
+  fileName?: string;
+  fileType?: string;
+  dependsOn?: string;
+  allowOther?: boolean;
+  fileLink?: string;
+}
+
+export interface UpdateProductSubFormPayload {
+  question?: string;
+  type?: string;
+  options?: string[];
+  compulsory?: boolean;
+  fileName?: string;
+  fileType?: string;
+  dependsOn?: string;
+  allowOther?: boolean;
+  fileLink?: string;
+}
+
+export interface ProductSubFormResponseData {
+  question?: string | null;
+  type?: string | null;
+  options?: string[];
+  formId: string;
+  compulsory?: boolean;
+  fileName?: string | null;
+  fileType?: string | null;
+  dependsOn?: string | null;
+  allowOther?: boolean | null;
+  fileLink?: string | null;
+}
+
+export interface ProductSubFormResponse {
+  statusCode: number;
+  message: string;
+  data: ProductSubFormResponseData | ProductSubFormResponseData[];
 }

@@ -1,45 +1,45 @@
 import { Request, Response, NextFunction } from "express";
 import {
-  saveServiceCategory,
-  getAllServiceCategory,
-  getServiceCategory,
-  updateServiceCategory,
-  removeServiceCategory,
-  saveServiceCategoryForm,
-  getAllServiceCategoryForm,
-  updateServiceCategoryForm,
-  getServiceCategoryForm,
-  removeServiceCategoryForm,
-  saveServiceCategorySubForm,
-  getServiceCategorySubForm,
-  getAllServiceCategorySubForm,
-  updateServiceCategorySubForm,
-  removeServiceCategorySubForm,
+  saveService,
+  getAllService,
+  getService,
+  updateService,
+  removeService,
+  saveServiceForm,
+  getAllServiceForm,
+  updateServiceForm,
+  getServiceForm,
+  removeServiceForm,
+  saveServiceSubForm,
+  getServiceSubForm,
+  getAllServiceSubForm,
+  updateServiceSubForm,
+  removeServiceSubForm,
 } from "./service";
 import {
-  ServiceCategoryFormPayload,
-  ServiceCategorySubFormPayload,
-  UpdateServiceCategoryFormPayload,
-  UpdateServiceCategorySubFormPayload,
+  ServiceFormPayload,
+  ServiceSubFormPayload,
+  UpdateServiceFormPayload,
+  UpdateServiceSubFormPayload,
 } from "./entities";
 
 // create a new service category
-const ServiceCategoryCreator = async (
+const ServiceCreator = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     // get the validated payload from the the request body
-    // send the validated payload to addServiceCategory service
+    // send the validated payload to addService service
     // return response to the client
 
-    const serviceCategoryPayload = req.body;
+    const servicePayload = req.body;
     const values = {
-      name: serviceCategoryPayload.name.toLowerCase(),
-      description: serviceCategoryPayload.description,
+      name: servicePayload.name.toLowerCase(),
+      description: servicePayload.description,
     };
-    const category = await saveServiceCategory(values);
+    const category = await saveService(values);
 
     return res.status(category.statusCode).json(category);
   } catch (error) {
@@ -47,8 +47,8 @@ const ServiceCategoryCreator = async (
   }
 };
 
-//get all service categories
-const ServiceCategoriesFetcher = async (
+//get all services
+const ServicesFetcher = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -57,7 +57,7 @@ const ServiceCategoriesFetcher = async (
     // get the service category list
     // return response to the client
 
-    const categories = await getAllServiceCategory();
+    const categories = await getAllService();
 
     return res.status(categories.statusCode).json(categories);
   } catch (error) {
@@ -65,8 +65,8 @@ const ServiceCategoriesFetcher = async (
   }
 };
 
-//get a service category with id
-const ServiceCategoryFetcher = async (
+//get a service  with id
+const ServiceFetcher = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -77,7 +77,7 @@ const ServiceCategoryFetcher = async (
     // return service category to client
 
     const id: string = req.params.id;
-    const category = await getServiceCategory(id);
+    const category = await getService(id);
 
     return res.status(category.statusCode).json(category);
   } catch (error) {
@@ -85,8 +85,8 @@ const ServiceCategoryFetcher = async (
   }
 };
 
-//update a service category
-const ServiceCategoryModifier = async (
+//update a service
+const ServiceModifier = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -98,12 +98,12 @@ const ServiceCategoryModifier = async (
     // return response
 
     const id: string = req.params.id;
-    const serviceCategoryPayload = req.body;
+    const servicePayload = req.body;
     const values = {
-      name: serviceCategoryPayload.name,
-      description: serviceCategoryPayload.description,
+      name: servicePayload.name,
+      description: servicePayload.description,
     };
-    const category = await updateServiceCategory(id, values);
+    const category = await updateService(id, values);
 
     return res
       .status(category.statusCode)
@@ -114,7 +114,7 @@ const ServiceCategoryModifier = async (
 };
 
 //delete a service category
-const ServiceCategoryRemover = async (
+const ServiceRemover = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -125,7 +125,7 @@ const ServiceCategoryRemover = async (
     //return response to the client
 
     const id: string = req.params.id;
-    const deleteCategory = await removeServiceCategory(id);
+    const deleteCategory = await removeService(id);
 
     return res
       .status(deleteCategory.statusCode)
@@ -136,7 +136,7 @@ const ServiceCategoryRemover = async (
 };
 
 // create a new service category
-const ServiceCategoryFormCreator = async (
+const ServiceFormCreator = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -144,19 +144,19 @@ const ServiceCategoryFormCreator = async (
   try {
     // get the validated payload from the the request body
     // get the service category id from the the request params
-    // send the validated payload and the category id to saveServiceCategoryForm service
+    // send the validated payload and the category id to saveServiceForm service
     // return response to the client
 
-    const serviceCategoryId = req.params.serviceCategoryId;
-    const serviceCategoryPayload = req.body;
-    const values: ServiceCategoryFormPayload = {
-      title: serviceCategoryPayload.title,
-      type: serviceCategoryPayload.type,
-      description: serviceCategoryPayload.description,
-      compulsory: serviceCategoryPayload.compulsory,
-      serviceCategoryId: serviceCategoryId,
+    const serviceId = req.params.serviceId;
+    const servicePayload = req.body;
+    const values: ServiceFormPayload = {
+      title: servicePayload.title,
+      type: servicePayload.type,
+      description: servicePayload.description,
+      compulsory: servicePayload.compulsory,
+      serviceId: servicePayload.serviceId,
     };
-    const category = await saveServiceCategoryForm(values, serviceCategoryId);
+    const category = await saveServiceForm(values, serviceId);
 
     return res.status(category.statusCode).json(category);
   } catch (error) {
@@ -165,7 +165,7 @@ const ServiceCategoryFormCreator = async (
 };
 
 //get all service category forms
-const ServiceCategoryFormFetcher = async (
+const ServiceFormsFetcher = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -173,8 +173,8 @@ const ServiceCategoryFormFetcher = async (
   try {
     // get the service category list
     // return response to the client
-    const serviceCategoryId = req.params.serviceCategoryId;
-    const categories = await getAllServiceCategoryForm(serviceCategoryId);
+    const serviceId = req.params.serviceId;
+    const categories = await getAllServiceForm(serviceId);
 
     return res.status(categories.statusCode).json(categories);
   } catch (error) {
@@ -183,7 +183,7 @@ const ServiceCategoryFormFetcher = async (
 };
 
 // create a new service category
-const ServiceCategoryFormModifier = async (
+const ServiceFormModifier = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -191,21 +191,18 @@ const ServiceCategoryFormModifier = async (
   try {
     // get the validated payload from the the request body
     // get the service category id from the the request params
-    // send the validated payload and the category id to saveServiceCategoryForm service
+    // send the validated payload and the category id to saveServiceForm service
     // return response to the client
 
-    const serviceCategoryFormId = req.params.id;
-    const serviceCategoryPayload: UpdateServiceCategoryFormPayload = req.body;
+    const serviceFormId = req.params.id;
+    const servicePayload: UpdateServiceFormPayload = req.body;
     const values = {
-      title: serviceCategoryPayload.title,
-      type: serviceCategoryPayload.type,
-      description: serviceCategoryPayload.description,
-      compulsory: serviceCategoryPayload.compulsory,
+      title: servicePayload.title,
+      type: servicePayload.type,
+      description: servicePayload.description,
+      compulsory: servicePayload.compulsory,
     };
-    const category = await updateServiceCategoryForm(
-      values,
-      serviceCategoryFormId
-    );
+    const category = await updateServiceForm(values, serviceFormId);
 
     return res
       .status(category.statusCode)
@@ -216,7 +213,7 @@ const ServiceCategoryFormModifier = async (
 };
 
 //get a service category form with id
-const ServiceACategoryFormFetcher = async (
+const ServiceFormFetcher = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -227,7 +224,7 @@ const ServiceACategoryFormFetcher = async (
     // return service category form to client
 
     const id: string = req.params.id;
-    const category = await getServiceCategoryForm(id);
+    const category = await getServiceForm(id);
     return res
       .status(category.statusCode)
       .json({ message: category.message, data: category.data });
@@ -236,7 +233,7 @@ const ServiceACategoryFormFetcher = async (
   }
 };
 
-const ServiceCategoryFormRemover = async (
+const ServiceFormRemover = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -247,7 +244,7 @@ const ServiceCategoryFormRemover = async (
     //return response to the client
 
     const id: string = req.params.id;
-    const deleteCategory = await removeServiceCategoryForm(id);
+    const deleteCategory = await removeServiceForm(id);
 
     return res
       .status(deleteCategory.statusCode)
@@ -258,7 +255,7 @@ const ServiceCategoryFormRemover = async (
 };
 
 // create a new service category sub form
-const ServiceCategorySubFormCreator = async (
+const ServiceSubFormCreator = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -266,25 +263,25 @@ const ServiceCategorySubFormCreator = async (
   try {
     // get the validated payload from the the request body
     // get the service category id from the the request params
-    // send the validated payload and the category id to saveServiceCategoryForm service
+    // send the validated payload and the category id to saveServiceForm service
     // return response to the client
 
     const formId = req.params.formId;
-    const serviceCategoryPayload = req.body;
+    const servicePayload = req.body;
 
-    const values: ServiceCategorySubFormPayload = {
-      question: serviceCategoryPayload?.question,
-      type: serviceCategoryPayload?.type,
-      options: serviceCategoryPayload?.options,
-      compulsory: serviceCategoryPayload?.compulsory,
-      fileName: serviceCategoryPayload?.fileName,
-      fileLink: serviceCategoryPayload?.fileLink,
-      fileType: serviceCategoryPayload?.fileType,
-      allowOther: serviceCategoryPayload?.allowOther,
-      dependsOn: serviceCategoryPayload?.dependsOn,
+    const values: ServiceSubFormPayload = {
+      question: servicePayload?.question,
+      type: servicePayload?.type,
+      options: servicePayload?.options,
+      compulsory: servicePayload?.compulsory,
+      fileName: servicePayload?.fileName,
+      fileLink: servicePayload?.fileLink,
+      fileType: servicePayload?.fileType,
+      allowOther: servicePayload?.allowOther,
+      dependsOn: servicePayload?.dependsOn,
       formId: formId,
     };
-    const category = await saveServiceCategorySubForm(values, formId);
+    const category = await saveServiceSubForm(values, formId);
 
     return res.status(category.statusCode).json(category);
   } catch (error) {
@@ -293,7 +290,7 @@ const ServiceCategorySubFormCreator = async (
 };
 
 //get all service category forms
-const ServiceCategorySubFormFetcher = async (
+const ServiceSubFormFetcher = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -302,7 +299,7 @@ const ServiceCategorySubFormFetcher = async (
     // get the service category list
     // return response to the client
     const formId = req.params.formId;
-    const categories = await getAllServiceCategorySubForm(formId);
+    const categories = await getAllServiceSubForm(formId);
 
     return res.status(categories.statusCode).json(categories);
   } catch (error) {
@@ -311,7 +308,7 @@ const ServiceCategorySubFormFetcher = async (
 };
 
 // create a new service category
-const ServiceCategorySubFormModifier = async (
+const ServiceSubFormModifier = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -319,24 +316,23 @@ const ServiceCategorySubFormModifier = async (
   try {
     // get the validated payload from the the request body
     // get the service category id from the the request params
-    // send the validated payload and the category id to saveServiceCategoryForm service
+    // send the validated payload and the category id to saveServiceForm service
     // return response to the client
 
     const subFormId = req.params.id;
-    const serviceCategoryPayload: UpdateServiceCategorySubFormPayload =
-      req.body;
+    const servicePayload: UpdateServiceSubFormPayload = req.body;
     const values = {
-      question: serviceCategoryPayload?.question,
-      type: serviceCategoryPayload?.type,
-      options: serviceCategoryPayload?.options,
-      compulsory: serviceCategoryPayload?.compulsory,
-      fileName: serviceCategoryPayload?.fileName,
-      allowOther: serviceCategoryPayload?.allowOther,
-      dependsOn: serviceCategoryPayload?.dependsOn,
-      fileLink: serviceCategoryPayload?.fileLink,
-      fileType: serviceCategoryPayload?.fileType,
+      question: servicePayload?.question,
+      type: servicePayload?.type,
+      options: servicePayload?.options,
+      compulsory: servicePayload?.compulsory,
+      fileName: servicePayload?.fileName,
+      allowOther: servicePayload?.allowOther,
+      dependsOn: servicePayload?.dependsOn,
+      fileLink: servicePayload?.fileLink,
+      fileType: servicePayload?.fileType,
     };
-    const category = await updateServiceCategorySubForm(values, subFormId);
+    const category = await updateServiceSubForm(values, subFormId);
 
     return res
       .status(category.statusCode)
@@ -358,7 +354,7 @@ const ServiceACategorySubFormFetcher = async (
     // return service category form to client
 
     const id: string = req.params.id;
-    const category = await getServiceCategorySubForm(id);
+    const category = await getServiceSubForm(id);
 
     return res.status(category.statusCode).json(category);
   } catch (error) {
@@ -366,7 +362,7 @@ const ServiceACategorySubFormFetcher = async (
   }
 };
 
-const ServiceCategorySubFormRemover = async (
+const ServiceSubFormRemover = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -377,7 +373,7 @@ const ServiceCategorySubFormRemover = async (
     //return response to the client
 
     const id: string = req.params.id;
-    const deleteCategory = await removeServiceCategorySubForm(id);
+    const deleteCategory = await removeServiceSubForm(id);
 
     return res
       .status(deleteCategory.statusCode)
@@ -388,19 +384,19 @@ const ServiceCategorySubFormRemover = async (
 };
 
 export {
-  ServiceCategoryCreator,
-  ServiceCategoriesFetcher,
-  ServiceCategoryFetcher,
-  ServiceCategoryModifier,
-  ServiceCategoryRemover,
-  ServiceCategoryFormCreator,
-  ServiceCategoryFormFetcher,
-  ServiceCategoryFormModifier,
-  ServiceACategoryFormFetcher,
-  ServiceCategoryFormRemover,
-  ServiceCategorySubFormCreator,
-  ServiceCategorySubFormFetcher,
-  ServiceCategorySubFormModifier,
+  ServiceCreator,
+  ServicesFetcher,
+  ServiceFetcher,
+  ServiceModifier,
+  ServiceRemover,
+  ServiceFormCreator,
+  ServiceFormsFetcher,
+  ServiceFormModifier,
+  ServiceFormFetcher,
+  ServiceFormRemover,
+  ServiceSubFormCreator,
+  ServiceSubFormFetcher,
+  ServiceSubFormModifier,
   ServiceACategorySubFormFetcher,
-  ServiceCategorySubFormRemover,
+  ServiceSubFormRemover,
 };
