@@ -9,6 +9,7 @@ import {
   submitProductRequest,
   getAllProductRequestQAByQuestion,
   getAllProductRequestsByUserId,
+  getAllProductRequestsByServiceId,
 } from "./service";
 
 //get a user with id
@@ -218,6 +219,28 @@ const ProductRequestSubmission = async (
     next(error);
   }
 };
+
+//get all ProductRequests by service ID
+const GetAllProductRequestsByServiceId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the ProductRequests list
+    // return response to the client
+    const serviceId = req.params.serviceId;
+    const ProductRequests = await getAllProductRequestsByServiceId(serviceId);
+
+    return res.status(ProductRequests.statusCode).json({
+      message: ProductRequests.message,
+      data: ProductRequests.data,
+      statusCode: ProductRequests.statusCode,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export {
   CreateProductRequest,
   AddProductRequestQA,
@@ -228,4 +251,5 @@ export {
   AddProductId,
   GetProductRequestById,
   GetAllProductRequestQAByQuestion,
+  GetAllProductRequestsByServiceId,
 };

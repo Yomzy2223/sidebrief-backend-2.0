@@ -17,6 +17,7 @@ import {
   GetProductRequestById,
   ProductRequestSubmission,
   GetAllProductRequestQAByQuestion,
+  GetAllProductRequestsByServiceId,
 } from "./controller";
 const router = express.Router();
 
@@ -26,8 +27,9 @@ router.post(
   validator(initializeProductRequestCredentials),
   CreateProductRequest
 );
-router.get("user/:userId", userAuth, GetAllProductRequestsByUserId);
+router.get("/user/:userId", userAuth, GetAllProductRequestsByUserId);
 router.get("/:id", GetProductRequestById);
+router.get("/service/:serviceId", GetAllProductRequestsByServiceId);
 
 router.post(
   "/productId",

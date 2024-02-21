@@ -513,6 +513,43 @@ const submitProductRequest = async (
   }
 };
 
+//get all productRequests by service ID
+const getAllProductRequestsByServiceId = async (
+  serviceId: string
+): Promise<ProductRequestResponse> => {
+  //  get the productRequests list from the table
+  //  return the productRequests list to the productRequests controller
+  try {
+    const products = await prisma.product.findMany({
+      where: {
+        serviceId: serviceId,
+      },
+      include: {
+        request: true,
+      },
+    });
+    if (!products) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    // map the list to return only product Requests
+    const productRequests = products.flatMap((product) => product.request);
+
+    const response: ProductRequestResponse = {
+      message: "User Product Requests fetched successfully",
+      data: productRequests,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   initializeProductRequest,
   createProductRequestQA,
@@ -524,4 +561,5 @@ export {
   addProductId,
   getProductRequestById,
   getAllProductRequestQAByQuestion,
+  getAllProductRequestsByServiceId,
 };

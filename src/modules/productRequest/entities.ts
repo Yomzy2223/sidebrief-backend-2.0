@@ -45,7 +45,7 @@ export interface ProductRequestData {
   currentState?: string;
   createdAt?: Date;
   updatedAt?: Date;
-  serviceId?: string | null;
+  productId?: string | null;
 }
 export interface ProductRequestResponse {
   message: string;
