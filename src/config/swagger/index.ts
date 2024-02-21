@@ -2233,6 +2233,32 @@ const options: OpenAPIDefinition = {
         },
       },
 
+      "/productRequest/service/{serviceId}": {
+        post: {
+          tags: ["Product Request"],
+          summary: "Get all general forms of a request",
+          description: "Add service ID to the product",
+          parameters: [
+            {
+              name: "serviceId",
+              in: "path",
+              required: true,
+              description: "ID of service to be fetched",
+              type: "string",
+            },
+          ],
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New user product is created",
+              schema: {
+                $ref: "#/components/schemas/ProductServiceId",
+              },
+            },
+          },
+        },
+      },
+
       "/productRequest/form/{requestId}": {
         post: {
           tags: ["Product Request"],
