@@ -154,7 +154,7 @@ const ServiceFormCreator = async (
       type: servicePayload.type,
       description: servicePayload.description,
       compulsory: servicePayload.compulsory,
-      serviceId: servicePayload.serviceId,
+      serviceId: serviceId,
     };
     const category = await saveServiceForm(values, serviceId);
 
