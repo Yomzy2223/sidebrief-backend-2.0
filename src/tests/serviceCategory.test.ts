@@ -28,7 +28,7 @@ describe("Testing all service endpoints", () => {
     expect(userResponse.body.message).toBe("Login successfully");
     userToken = userResponse.body.data.token;
 
-    await prisma.serviceCategory.delete({
+    await prisma.service.delete({
       where: {
         name: "test",
       },

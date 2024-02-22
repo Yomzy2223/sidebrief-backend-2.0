@@ -545,7 +545,7 @@ const getAllProductRequestsByServiceId = async (
       };
     }
     // map the list to return only product Requests
-    const productRequests = products.flatMap((product) => product.request);
+    const productRequests = products.flatMap((product) => product?.request);
 
     const response: ProductRequestResponse = {
       message: "User Product Requests fetched successfully",

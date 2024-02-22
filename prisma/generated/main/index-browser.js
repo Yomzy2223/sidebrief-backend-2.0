@@ -462,7 +462,7 @@ exports.Prisma.NullsOrder = {
 exports.ProductActivityStage = {
   START: 'START',
   PAYMENT: 'PAYMENT',
-  PRORIETOR: 'PRORIETOR',
+  PROPRIETOR: 'PROPRIETOR',
   REVIEW: 'REVIEW'
 };
 
