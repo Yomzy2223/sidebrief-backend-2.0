@@ -659,7 +659,7 @@ export type Parter = runtime.Types.DefaultSelection<ParterPayload>
 export const ProductActivityStage: {
   START: 'START',
   PAYMENT: 'PAYMENT',
-  PRORIETOR: 'PRORIETOR',
+  PROPRIETOR: 'PROPRIETOR',
   REVIEW: 'REVIEW'
 };
 

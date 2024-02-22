@@ -14,7 +14,7 @@ datasource db {
 enum ProductActivityStage {
   START
   PAYMENT
-  PRORIETOR
+  PROPRIETOR
   REVIEW
 }
 

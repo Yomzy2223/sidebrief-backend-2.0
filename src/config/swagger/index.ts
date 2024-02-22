@@ -1494,7 +1494,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/formByService/{productId}": {
+      "/product/formByProduct/{productId}": {
         get: {
           summary: "Get all service forms with service ID",
           tags: ["Product"],
@@ -2234,7 +2234,7 @@ const options: OpenAPIDefinition = {
       },
 
       "/productRequest/service/{serviceId}": {
-        post: {
+        get: {
           tags: ["Product Request"],
           summary: "Get all general forms of a request",
           description: "Add service ID to the product",
@@ -2345,7 +2345,7 @@ const options: OpenAPIDefinition = {
       },
 
       "/productRequest/service/form/{requestId}": {
-        post: {
+        get: {
           tags: ["Product Request"],
           summary: "Get all general forms of a request",
           description: "Add service ID to the product",
@@ -2371,7 +2371,7 @@ const options: OpenAPIDefinition = {
       },
 
       "/productRequest/product/form/{requestId}": {
-        post: {
+        get: {
           tags: ["Product Request"],
           summary: "Get all product forms of a request",
           description: "Add service ID to the product",
