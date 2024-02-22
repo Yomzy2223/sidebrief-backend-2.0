@@ -247,7 +247,14 @@ const GetAllProductRequestsByServiceId = async (
     // get the ProductRequests list
     // return response to the client
     const serviceId = req.params.serviceId;
-    const ProductRequests = await getAllProductRequestsByServiceId(serviceId);
+    const page = parseInt(req.query.page as string) || 1; // Default to page 1 if not provided
+    const pageSize = parseInt(req.query.pageSize as string) || 10; // Default to 10 items per page if not provided
+
+    const ProductRequests = await getAllProductRequestsByServiceId(
+      serviceId,
+      page,
+      pageSize
+    );
 
     return res.status(ProductRequests.statusCode).json({
       message: ProductRequests.message,
