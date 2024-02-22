@@ -520,7 +520,9 @@ const submitProductRequest = async (
 
 //get all productRequests by service ID
 const getAllProductRequestsByServiceId = async (
-  serviceId: string
+  serviceId: string,
+  page: number = 1,
+  pageSize: number = 10
 ): Promise<ProductRequestResponse> => {
   //  get the productRequests list from the table
   //  return the productRequests list to the productRequests controller
@@ -532,6 +534,8 @@ const getAllProductRequestsByServiceId = async (
       include: {
         request: true,
       },
+      skip: (page - 1) * pageSize, // Calculate the number of items to skip based on page number
+      take: pageSize, // Limit the number of items returned per page
     });
     if (!products) {
       return {

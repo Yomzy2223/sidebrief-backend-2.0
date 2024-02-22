@@ -14,7 +14,7 @@ import {
 
 router.post("/", staffAuth, validator(validateCountry), CreateCountry);
 router.get("/", GetCountries);
-router.get("/:id", userAuth, GetCountry);
+router.get("/:id", GetCountry);
 router.put("/:id", staffAuth, validator(validateCountry), UpdateCountry);
 router.delete("/:id", staffAuth, DeleteCountry);
 
