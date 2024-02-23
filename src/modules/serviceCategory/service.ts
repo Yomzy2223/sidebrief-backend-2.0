@@ -58,6 +58,9 @@ const getAllService = async (): Promise<ServiceResponse> => {
       where: {
         isDeprecated: false,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     if (!category) {
       return {
@@ -197,7 +200,7 @@ const saveServiceForm = async (
     }
 
     const checkServiceForm = await prisma.serviceForm.findFirst({
-      where: { title: servicePayload.title },
+      where: { title: servicePayload.title, isDeprecated: false },
     });
     if (checkServiceForm) {
       throw new BadRequest("Service form with this title already exists");
@@ -235,6 +238,9 @@ const getAllServiceForm = async (
       where: {
         serviceId: serviceId,
         isDeprecated: false,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
       include: {
         subForm: {
@@ -413,6 +419,9 @@ const getAllServiceSubForm = async (
       where: {
         formId: formId,
         isDeprecated: false,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
     if (!category) {
