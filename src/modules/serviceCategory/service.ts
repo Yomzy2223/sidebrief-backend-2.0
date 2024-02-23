@@ -196,7 +196,7 @@ const saveServiceForm = async (
       throw new BadRequest("Service does not exist");
     }
 
-    const checkServiceForm = await prisma.serviceForm.findUnique({
+    const checkServiceForm = await prisma.serviceForm.findFirst({
       where: { title: servicePayload.title },
     });
     if (checkServiceForm) {
@@ -314,7 +314,7 @@ const updateServiceForm = async (
     if (!category) {
       throw new BadRequest("Service Form not found!.");
     }
-
+    console.log(servicePayload);
     const updateCategory = await prisma.serviceForm.update({
       where: {
         id: id,
@@ -327,7 +327,7 @@ const updateServiceForm = async (
     }
 
     return {
-      message: "Service updated successfully",
+      message: "Service form updated successfully",
       data: updateCategory,
       statusCode: 200,
     };

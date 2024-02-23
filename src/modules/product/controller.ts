@@ -188,8 +188,7 @@ const ProductFormsFetcher = async (
   next: NextFunction
 ) => {
   try {
-    const productId = req.params.productId;
-    const serviceForm = await getAllProductForm(productId);
+    const serviceForm = await getAllProductForm();
     return res.status(serviceForm.statusCode).json(serviceForm);
   } catch (error) {
     next(error);
@@ -249,17 +248,13 @@ const ProductFormModifier = async (
     const id: string = req.params.id;
     const serviceFormPayload = req.body;
     const values = {
-      question: serviceFormPayload.question,
+      title: serviceFormPayload.title,
       type: serviceFormPayload.type,
-      compulsory: serviceFormPayload.compulsory,
       description: serviceFormPayload.description,
-    };
-    const subForm = {
-      subForm: serviceFormPayload.subForm,
-      form: serviceFormPayload.form,
+      compulsory: serviceFormPayload.compulsory,
     };
 
-    const service = await updateProductForm(id, values, subForm);
+    const service = await updateProductForm(id, values);
     return res.status(service.statusCode).json(service);
   } catch (error) {
     next(error);

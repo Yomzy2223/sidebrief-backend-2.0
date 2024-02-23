@@ -173,36 +173,36 @@ model Service {
 }
 
 model ServiceForm {  
-  id String @id @default(uuid())
-  title String @unique
-  description String?
-  type String?
-  compulsory Boolean @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  isDeprecated Boolean   @default(false)
-  service Service @relation(fields: [serviceId], references: [id])
-  serviceId String
-  subForm ServiceSubForm[]
+      id String @id @default(uuid())
+      title String?
+      description String?
+      type String?
+      compulsory Boolean @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
+      service Service @relation(fields: [serviceId], references: [id])
+      serviceId String
+      subForm ServiceSubForm[]
 }
 
 model ServiceSubForm {  
-  id String @id @default(uuid())
-  question String?
-  type String?
-  options String[]
-  fileName String?
-  fileType String?
-  fileLink String?
-  dependsOn String?
-  allowOther Boolean @default(false)
-  compulsory Boolean @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  isDeprecated Boolean   @default(false)
-  form ServiceForm @relation(fields: [formId], references: [id])
-  formId String
-}
+      id String @id @default(uuid())
+      question String?
+      type String?
+      options String[]
+      fileName String?
+      fileType String?
+      fileLink String?
+      dependsOn String?
+      allowOther Boolean @default(false)
+      compulsory Boolean @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
+      form ServiceForm @relation(fields: [formId], references: [id])
+      formId String
+      }
 model Product {
       id String @id @default(uuid())
       name String
@@ -228,34 +228,34 @@ model Product {
       form ProductForm[]
 }
 model ProductForm {  
-  id String @id @default(uuid())
-  title String? 
-  type String?
-  description String?
-  compulsory Boolean @default(false)
-  createdAt DateTime @default(now())
-  isDeprecated Boolean   @default(false)
-  updatedAt DateTime @default(now())
-  product Product @relation(fields: [productId], references: [id])
-  productId String
-  productSubForm ProductSubForm[]
+      id String @id @default(uuid())
+      title String? 
+      type String?
+      description String?
+      compulsory Boolean @default(false)
+      createdAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
+      updatedAt DateTime @default(now())
+      product Product @relation(fields: [productId], references: [id])
+      productId String
+      productSubForm ProductSubForm[]
 }
 model ProductSubForm {
-  id String @id @default(uuid())
-  question String?
-  options String[]
-  type String?
-  allowOther Boolean @default(false)
-  fileName String?
-  fileType String?
-  fileLink String?
-  dependsOn String?
-  compulsory Boolean @default(false)
-  isDeprecated Boolean   @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  form ProductForm @relation(fields: [formId], references: [id])
-  formId String
+      id String @id @default(uuid())
+      question String?
+      options String[]
+      type String?
+      allowOther Boolean @default(false)
+      fileName String?
+      fileType String?
+      fileLink String?
+      dependsOn String?
+      compulsory Boolean @default(false)
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      form ProductForm @relation(fields: [formId], references: [id])
+      formId String
 
 }
 model ProductRequest {
@@ -278,33 +278,33 @@ model ProductRequest {
       requestQA ProductRequestQA[]
 }
 model ProductRequestQA {  
-  id String @id @default(uuid())
-  title String? 
-  description String?
-  type String?
-  compulsory Boolean @default(false)
-  isGeneral Boolean @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  isDeprecated Boolean   @default(false)
-  request ProductRequest @relation(fields: [requestId], references: [id])
-  requestId String
-  subForm ProductRequestQASubForm[]
+      id String @id @default(uuid())
+      title String? 
+      description String?
+      type String?
+      compulsory Boolean @default(false)
+      isGeneral Boolean @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
+      request ProductRequest @relation(fields: [requestId], references: [id])
+      requestId String
+      subForm ProductRequestQASubForm[]
 }
 
 
 model ProductRequestQASubForm {
-  id String @id @default(uuid())
-  question String?
-  answer String[]
-  type String?
-  fileName String?
-  fileType String?
-  fileLink String?
-  compulsory Boolean @default(false)
-  isDeprecated Boolean   @default(false)
-  requestQA ProductRequestQA @relation(fields: [requestQAId], references: [id])
-  requestQAId String
+      id String @id @default(uuid())
+      question String?
+      answer String[]
+      type String?
+      fileName String?
+      fileType String?
+      fileLink String?
+      compulsory Boolean @default(false)
+      isDeprecated Boolean   @default(false)
+      requestQA ProductRequestQA @relation(fields: [requestQAId], references: [id])
+      requestQAId String
 
 }
 model Claim {
@@ -326,7 +326,7 @@ model Team {
       productRequest ProductRequest @relation(fields: [productRequestId], references: [id])
       productRequestId String
       invitation Invitation[]
-teamMember TeamMember[]
+      teamMember TeamMember[]
 }
 
 model TeamMember {

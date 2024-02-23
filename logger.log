@@ -7261,3 +7261,31 @@ info: Label: 22-Feb-2024 10:15:56: Service form created successfully
 info: Label: 23-Feb-2024 08:30:29: User with string@gmail.com signed in successfully.
 error: Label: 23-Feb-2024 09:39:52: Service with this Id does not exist with error Error: Service with this Id does not exist occurred when GET /productRequest/service/24534523452?page=1&pageSize=10 was called
 error: Label: 23-Feb-2024 11:50:25: Product not found!. with error Error: Product not found!. occurred when GET /products/4678cda0-fb37-4fd8-9991-6bdb7650951d was called
+info: Label: 23-Feb-2024 16:28:47: User with string@gmail.com signed in successfully.
+error: Label: 23-Feb-2024 16:33:31: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceForm.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:318:53
+
+  315   throw new BadRequest("Service Form not found!.");
+  316 }
+  317 
+→ 318 const updateCategory = await prisma.serviceForm.update(
+Unique constraint failed on the fields: (`title`) occurred when PUT /services/form/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 23-Feb-2024 16:37:56: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceForm.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:318:53
+
+  315   throw new BadRequest("Service Form not found!.");
+  316 }
+  317 
+→ 318 const updateCategory = await prisma.serviceForm.update(
+Unique constraint failed on the fields: (`title`) occurred when PUT /services/form/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 23-Feb-2024 16:39:12: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceForm.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:318:53
+
+  315   throw new BadRequest("Service Form not found!.");
+  316 }
+  317 console.log(servicePayload);
+→ 318 const updateCategory = await prisma.serviceForm.update(
+Unique constraint failed on the fields: (`title`) occurred when PUT /services/form/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called

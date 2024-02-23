@@ -287,7 +287,7 @@ export type ServiceFormPayload<ExtArgs extends $Extensions.Args = $Extensions.De
   }
   scalars: $Extensions.GetResult<{
     id: string
-    title: string
+    title: string | null
     description: string | null
     type: string | null
     compulsory: boolean
@@ -14443,7 +14443,7 @@ export namespace Prisma {
 
   export type ServiceFormGroupByOutputType = {
     id: string
-    title: string
+    title: string | null
     description: string | null
     type: string | null
     compulsory: boolean
@@ -29424,7 +29424,7 @@ export namespace Prisma {
     OR?: Enumerable<ServiceFormWhereInput>
     NOT?: Enumerable<ServiceFormWhereInput>
     id?: StringFilter | string
-    title?: StringFilter | string
+    title?: StringNullableFilter | string | null
     description?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
@@ -29438,7 +29438,7 @@ export namespace Prisma {
 
   export type ServiceFormOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrder
+    title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
@@ -29452,12 +29452,11 @@ export namespace Prisma {
 
   export type ServiceFormWhereUniqueInput = {
     id?: string
-    title?: string
   }
 
   export type ServiceFormOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrder
+    title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     type?: SortOrderInput | SortOrder
     compulsory?: SortOrder
@@ -29475,7 +29474,7 @@ export namespace Prisma {
     OR?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
     NOT?: Enumerable<ServiceFormScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    title?: StringWithAggregatesFilter | string
+    title?: StringNullableWithAggregatesFilter | string | null
     description?: StringNullableWithAggregatesFilter | string | null
     type?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
@@ -31472,7 +31471,7 @@ export namespace Prisma {
 
   export type ServiceFormCreateInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     type?: string | null
     compulsory?: boolean
@@ -31485,7 +31484,7 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedCreateInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     type?: string | null
     compulsory?: boolean
@@ -31498,7 +31497,7 @@ export namespace Prisma {
 
   export type ServiceFormUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -31511,7 +31510,7 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -31524,7 +31523,7 @@ export namespace Prisma {
 
   export type ServiceFormCreateManyInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     type?: string | null
     compulsory?: boolean
@@ -31536,7 +31535,7 @@ export namespace Prisma {
 
   export type ServiceFormUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -31547,7 +31546,7 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -35974,7 +35973,7 @@ export namespace Prisma {
 
   export type ServiceFormCreateWithoutServiceInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     type?: string | null
     compulsory?: boolean
@@ -35986,7 +35985,7 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedCreateWithoutServiceInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     type?: string | null
     compulsory?: boolean
@@ -36068,7 +36067,7 @@ export namespace Prisma {
     OR?: Enumerable<ServiceFormScalarWhereInput>
     NOT?: Enumerable<ServiceFormScalarWhereInput>
     id?: StringFilter | string
-    title?: StringFilter | string
+    title?: StringNullableFilter | string | null
     description?: StringNullableFilter | string | null
     type?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
@@ -36208,7 +36207,7 @@ export namespace Prisma {
 
   export type ServiceFormCreateWithoutSubFormInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     type?: string | null
     compulsory?: boolean
@@ -36220,7 +36219,7 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedCreateWithoutSubFormInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     type?: string | null
     compulsory?: boolean
@@ -36242,7 +36241,7 @@ export namespace Prisma {
 
   export type ServiceFormUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -36254,7 +36253,7 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateWithoutSubFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -38030,7 +38029,7 @@ export namespace Prisma {
 
   export type ServiceFormCreateManyServiceInput = {
     id?: string
-    title: string
+    title?: string | null
     description?: string | null
     type?: string | null
     compulsory?: boolean
@@ -38108,7 +38107,7 @@ export namespace Prisma {
 
   export type ServiceFormUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -38120,7 +38119,7 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateWithoutServiceInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -38132,7 +38131,7 @@ export namespace Prisma {
 
   export type ServiceFormUncheckedUpdateManyWithoutFormInput = {
     id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     type?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean

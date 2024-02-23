@@ -1422,14 +1422,6 @@ const options: OpenAPIDefinition = {
               description: "ID of product service",
               type: "string",
             },
-            {
-              name: "productServices",
-              in: "body",
-              description: " new properties of the product service",
-              schema: {
-                $ref: "#/components/schemas/ProductServices",
-              },
-            },
           ],
 
           requestBody: {
