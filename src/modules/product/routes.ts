@@ -82,5 +82,5 @@ router.put(
 
   ProductSubFormModifier
 );
-router.delete("/:id", staffAuth, ProductSubFormRemover);
+router.delete("/subform/:id", staffAuth, ProductSubFormRemover);
 export default router;
