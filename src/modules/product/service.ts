@@ -445,7 +445,7 @@ const removeProductForm = async (id: string) => {
         id: id,
       },
       data: {
-        isDeprecated: false,
+        isDeprecated: true,
       },
     });
 
