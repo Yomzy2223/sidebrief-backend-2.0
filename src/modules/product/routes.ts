@@ -37,7 +37,7 @@ router.post(
 router.get("/", ProductsFetcher);
 router.get("/:id", ProductFetcher);
 router.get(
-  "/Service/:serviceId",
+  "/service/:serviceId",
 
   ProductByServiceFetcher
 );
