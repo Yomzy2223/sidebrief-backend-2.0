@@ -527,6 +527,13 @@ const getAllProductRequestsByServiceId = async (
   //  get the productRequests list from the table
   //  return the productRequests list to the productRequests controller
   try {
+    const checkService = await prisma.service.findUnique({
+      where: { id: serviceId },
+    });
+    if (!checkService) {
+      throw new BadRequest("Service with this Id does not exist");
+    }
+
     const products = await prisma.product.findMany({
       where: {
         serviceId: serviceId,
@@ -537,6 +544,7 @@ const getAllProductRequestsByServiceId = async (
       skip: (page - 1) * pageSize, // Calculate the number of items to skip based on page number
       take: pageSize, // Limit the number of items returned per page
     });
+    console.log(products);
     if (!products) {
       return {
         message: "Empty Data",
