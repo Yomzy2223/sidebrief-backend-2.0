@@ -2236,8 +2236,8 @@ const options: OpenAPIDefinition = {
       "/productRequest/service/{serviceId}": {
         get: {
           tags: ["Product Request"],
-          summary: "Get all general forms of a request",
-          description: "Add service ID to the product",
+          summary: "Get all product request by a given service ID",
+          description: "Get all product request by a given service ID",
           parameters: [
             {
               name: "serviceId",
@@ -2245,6 +2245,18 @@ const options: OpenAPIDefinition = {
               required: true,
               description: "ID of service to be fetched",
               type: "string",
+            },
+            {
+              name: "page",
+              in: "query",
+              type: "integer",
+              description: "the page of the list",
+            },
+            {
+              name: "pageSize",
+              in: "query",
+              type: "integer",
+              description: "the page of the list",
             },
           ],
           produces: ["application/json"],
