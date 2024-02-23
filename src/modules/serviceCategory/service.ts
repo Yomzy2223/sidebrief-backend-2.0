@@ -58,6 +58,9 @@ const getAllService = async (): Promise<ServiceResponse> => {
       where: {
         isDeprecated: false,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     if (!category) {
       return {
@@ -236,6 +239,9 @@ const getAllServiceForm = async (
         serviceId: serviceId,
         isDeprecated: false,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
       include: {
         subForm: {
           where: {
@@ -413,6 +419,9 @@ const getAllServiceSubForm = async (
       where: {
         formId: formId,
         isDeprecated: false,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
     if (!category) {

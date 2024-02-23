@@ -284,6 +284,9 @@ const getAllProductForm = async (): Promise<ProductFormResponse> => {
           isDeprecated: false,
         },
       },
+      orderBy: {
+        createdAt: "desc",
+      },
       include: {
         productSubForm: {
           where: {
@@ -354,6 +357,9 @@ const getProductFormByProduct = async (
         product: {
           isDeprecated: false,
         },
+      },
+      orderBy: {
+        createdAt: "desc",
       },
       include: {
         productSubForm: {
@@ -507,6 +513,9 @@ const getAllProductSubForm = async (
       where: {
         formId: formId,
         isDeprecated: false,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
     if (!category) {
