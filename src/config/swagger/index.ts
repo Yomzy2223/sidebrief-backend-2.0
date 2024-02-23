@@ -1289,7 +1289,7 @@ const options: OpenAPIDefinition = {
       },
 
       // Product
-      "/product/{serviceId}": {
+      "/products/{serviceId}": {
         post: {
           tags: ["Product"],
           summary: "Create a new product service with service category ID",
@@ -1327,7 +1327,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/allByServiceCategory/{serviceId}": {
+      "/products/allByServiceCategory/{serviceId}": {
         get: {
           summary: "Get all product service with service category ID",
           tags: ["Product"],
@@ -1351,7 +1351,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product": {
+      "/products": {
         get: {
           tags: ["Product"],
           summary: "Get all product services ",
@@ -1366,7 +1366,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/{id}": {
+      "/products/{id}": {
         get: {
           summary: "Get a product service with given ID",
           tags: ["Product"],
@@ -1456,7 +1456,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/form/{productId}": {
+      "/products/form/{productId}": {
         post: {
           tags: ["Product"],
           summary: "Create a new product service form with service ID",
@@ -1494,7 +1494,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/formByProduct/{productId}": {
+      "/products/formByProduct/{productId}": {
         get: {
           summary: "Get all service forms with service ID",
           tags: ["Product"],
@@ -1518,7 +1518,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/form/{id}": {
+      "/products/form/{id}": {
         get: {
           summary: "Get a product service with given ID",
           tags: ["Product"],
@@ -1598,7 +1598,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/form/all": {
+      "/products/form/all": {
         get: {
           tags: ["Product"],
           summary: "Get all service forms ",
@@ -1613,7 +1613,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/subform/{formId}": {
+      "/products/subform/{formId}": {
         post: {
           tags: ["Product"],
           summary: "Create a new service sub form",
@@ -1650,7 +1650,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/subforms/{formId}": {
+      "/products/subforms/{formId}": {
         get: {
           summary: "Get all service sub forms under a service category",
           tags: ["Product"],
@@ -1674,7 +1674,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/product/subform/{id}": {
+      "/products/subform/{id}": {
         get: {
           summary: "Get a service sub form with given ID",
           tags: ["Product"],
