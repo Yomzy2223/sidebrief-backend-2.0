@@ -242,7 +242,7 @@ const saveProductForm = async (
     }
 
     const checkServiceForm = await prisma.productForm.findFirst({
-      where: { title: productFormPayload.title },
+      where: { title: productFormPayload.title, isDeprecated: false },
     });
     if (checkServiceForm) {
       throw new BadRequest("Product form with this title already exists");
