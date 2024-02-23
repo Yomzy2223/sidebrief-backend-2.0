@@ -1327,7 +1327,7 @@ const options: OpenAPIDefinition = {
         },
       },
 
-      "/products/allByServiceCategory/{serviceId}": {
+      "/products/service/{serviceId}": {
         get: {
           summary: "Get all product service with service category ID",
           tags: ["Product"],
