@@ -273,18 +273,22 @@ const saveProductForm = async (
 
 // get all product form
 
-const getAllProductForm = async (
-  productId: string
-): Promise<ProductFormResponse> => {
+const getAllProductForm = async (): Promise<ProductFormResponse> => {
   //  get the product form  list from the table
   //  return the product form list to the product form controller
   try {
     const service = await prisma.productForm.findMany({
       where: {
-        productId: productId,
         isDeprecated: false,
         product: {
           isDeprecated: false,
+        },
+      },
+      include: {
+        productSubForm: {
+          where: {
+            isDeprecated: false,
+          },
         },
       },
     });
@@ -378,8 +382,7 @@ const getProductFormByProduct = async (
 // update product form
 const updateProductForm = async (
   id: string,
-  productFormPayload: UpdateProductFormPayload,
-  subForm: SubFormPayload
+  productFormPayload: UpdateProductFormPayload
 ) => {
   // take both id and service form payload from the product form category controller
   //  check if the product form exists
@@ -397,46 +400,20 @@ const updateProductForm = async (
       throw new BadRequest("Product form not found!");
     }
 
-    const data = {
-      ...productFormPayload,
-      serviceId: checkServiceForm.productId,
-    };
-
     const updateServiceForm = await prisma.productForm.update({
       where: {
         id: id,
       },
-      data: data,
+      data: productFormPayload,
     });
 
     if (!updateServiceForm) {
       throw new BadRequest("Error occurred while updating Product form!.");
     }
 
-    if (subForm.subForm) {
-      const subServiceForm = subForm.form.map((data: FormData) => ({
-        question: data.question,
-        options: data.options,
-        type: data.type,
-        compulsory: data.compulsory,
-        fileName: data?.file?.name,
-        fileDescription: data?.file?.description,
-        fileLink: data?.file?.link,
-        fileType: data?.file?.type,
-      }));
-
-      const productQA = await prisma.productSubForm.updateMany({
-        data: subServiceForm,
-      });
-
-      if (!productQA) {
-        throw new BadRequest(
-          "Error occured while updating this Product Sub Form"
-        );
-      }
-    }
     return {
-      message: "Product form updated successfully!.",
+      message: "Product form updated successfully",
+      data: updateServiceForm,
       statusCode: 200,
     };
   } catch (error) {
