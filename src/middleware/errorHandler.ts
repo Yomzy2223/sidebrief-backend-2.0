@@ -8,7 +8,7 @@ const ErrorHandler = (
   next: NextFunction
 ) => {
   const errStatus = err?.statusCode || 500;
-
+  console.log(err);
   const errMessage = errStatus === 500 ? "Error occured" : err?.message;
   logger.error({
     message: `${errMessage} with error ${err} occurred when ${req.method} ${req.originalUrl} was called`,
