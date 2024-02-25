@@ -245,7 +245,16 @@ const saveProductForm = async (
       where: { title: productFormPayload.title, isDeprecated: false },
     });
     if (checkServiceForm) {
-      throw new BadRequest("Product form with this title already exists");
+      throw new BadRequest("Product form with this title already exists.");
+    }
+
+    const checkServiceDeletedForm = await prisma.productForm.findFirst({
+      where: { title: productFormPayload.title, isDeprecated: true },
+    });
+    if (checkServiceDeletedForm) {
+      throw new BadRequest(
+        "Product form with this title already exists, please restrore from trash"
+      );
     }
 
     const serviceForm = await prisma.productForm.create({
@@ -285,7 +294,7 @@ const getAllProductForm = async (): Promise<ProductFormResponse> => {
         },
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
       include: {
         productSubForm: {
@@ -359,7 +368,7 @@ const getProductFormByProduct = async (
         },
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
       include: {
         productSubForm: {
@@ -479,6 +488,24 @@ const saveProductSubForm = async (
       throw new BadRequest("Product form does not exist");
     }
 
+    const checkServiceForm = await prisma.productSubForm.findFirst({
+      where: { question: productCategoryPayload.question, isDeprecated: false },
+    });
+    if (checkServiceForm) {
+      throw new BadRequest(
+        "Product sub form with this question already exists"
+      );
+    }
+
+    const checkServiceDeletedForm = await prisma.productSubForm.findFirst({
+      where: { question: productCategoryPayload.question, isDeprecated: true },
+    });
+    if (checkServiceDeletedForm) {
+      throw new BadRequest(
+        "Product sub form with this question already exists, please restrore from trash"
+      );
+    }
+
     const categoryForm = await prisma.productSubForm.create({
       data: productCategoryPayload,
     });
@@ -515,7 +542,7 @@ const getAllProductSubForm = async (
         isDeprecated: false,
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
     });
     if (!category) {
@@ -631,6 +658,7 @@ const removeProductSubForm = async (id: string) => {
     throw error;
   }
 };
+
 export {
   getAllProductService,
   getProductByService,

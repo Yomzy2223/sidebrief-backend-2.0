@@ -544,7 +544,7 @@ const getAllProductRequestsByServiceId = async (
       skip: (page - 1) * pageSize, // Calculate the number of items to skip based on page number
       take: pageSize, // Limit the number of items returned per page
     });
-    console.log(products);
+
     if (!products) {
       return {
         message: "Empty Data",
@@ -567,6 +567,45 @@ const getAllProductRequestsByServiceId = async (
   }
 };
 
+const getProductRequestByCountry = async (country: string) => {
+  //take country from the controller
+  //check for the list
+  //return response to the controller
+
+  try {
+    const products = await prisma.product.findMany({
+      where: {
+        country: country,
+      },
+      include: {
+        request: {
+          where: {
+            completed: false,
+          },
+        },
+      },
+    });
+    const requests = products.map((product) => product.request);
+
+    if (requests.length === 0) {
+      return {
+        message: "No record found!",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    return {
+      message: `${
+        country.charAt(0).toUpperCase() + country.slice(1)
+      } product request fetched successfully`,
+      data: requests,
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   initializeProductRequest,
   createProductRequestQA,
@@ -580,4 +619,5 @@ export {
   getProductRequestById,
   getAllProductRequestQAByQuestion,
   getAllProductRequestsByServiceId,
+  getProductRequestByCountry,
 };

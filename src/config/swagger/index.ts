@@ -2256,7 +2256,33 @@ const options: OpenAPIDefinition = {
             200: {
               description: "New user product is created",
               schema: {
-                $ref: "#/components/schemas/ProductServiceId",
+                $ref: "#/components/schemas/AddProductQA",
+              },
+            },
+          },
+        },
+      },
+
+      "/productRequest/country/{country}": {
+        get: {
+          tags: ["Product Request"],
+          summary: "Get all completed product request by a country",
+          description: "Get all product request by a country",
+          parameters: [
+            {
+              name: "country",
+              in: "path",
+              required: true,
+              description: "country to be fetched",
+              type: "string",
+            },
+          ],
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "Product request is fetched",
+              schema: {
+                $ref: "#/components/schemas/AddProductQA",
               },
             },
           },

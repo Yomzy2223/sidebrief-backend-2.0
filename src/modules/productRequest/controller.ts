@@ -11,6 +11,7 @@ import {
   getAllProductRequestQAByQuestion,
   getAllProductRequestsByUserId,
   getAllProductRequestsByServiceId,
+  getProductRequestByCountry,
 } from "./service";
 
 //get a user with id
@@ -265,6 +266,29 @@ const GetAllProductRequestsByServiceId = async (
     next(error);
   }
 };
+
+//get all ProductRequests by service ID
+const GetAllProductRequestsByCountry = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the ProductRequests list
+    // return response to the client
+    const country = req.params.country;
+
+    const ProductRequests = await getProductRequestByCountry(country);
+
+    return res.status(ProductRequests.statusCode).json({
+      message: ProductRequests.message,
+      data: ProductRequests.data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   CreateProductRequest,
   AddProductRequestQA,
@@ -277,4 +301,5 @@ export {
   GetProductRequestById,
   GetAllProductRequestQAByQuestion,
   GetAllProductRequestsByServiceId,
+  GetAllProductRequestsByCountry,
 };
