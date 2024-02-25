@@ -7289,3 +7289,157 @@ Invalid `prisma.serviceForm.update()` invocation in
   317 console.log(servicePayload);
 → 318 const updateCategory = await prisma.serviceForm.update(
 Unique constraint failed on the fields: (`title`) occurred when PUT /services/form/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 25-Feb-2024 14:51:41: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 14:57:25: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 14:58:03: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 14:59:23: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:00:11: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:00:49: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:57:43
+
+  54 //  get the service category list from the table
+  55 //  return the service category list to the service category controller
+  56 try {
+→ 57   const category = await prisma.service.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services was called
+error: Label: 25-Feb-2024 15:01:50: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:03:22: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:09:23: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:11:29: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:14:42: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:17:14: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:18:23: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:20:05: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
