@@ -489,7 +489,11 @@ const saveProductSubForm = async (
     }
 
     const checkServiceForm = await prisma.productSubForm.findFirst({
-      where: { question: productCategoryPayload.question, isDeprecated: false },
+      where: {
+        question: productCategoryPayload.question,
+        isDeprecated: false,
+        formId: formId,
+      },
     });
     if (checkServiceForm) {
       throw new BadRequest(
@@ -498,7 +502,11 @@ const saveProductSubForm = async (
     }
 
     const checkServiceDeletedForm = await prisma.productSubForm.findFirst({
-      where: { question: productCategoryPayload.question, isDeprecated: true },
+      where: {
+        question: productCategoryPayload.question,
+        isDeprecated: true,
+        formId: formId,
+      },
     });
     if (checkServiceDeletedForm) {
       throw new BadRequest(
