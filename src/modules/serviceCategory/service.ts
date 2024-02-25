@@ -59,7 +59,7 @@ const getAllService = async (): Promise<ServiceResponse> => {
         isDeprecated: false,
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
     });
     if (!category) {
@@ -240,7 +240,7 @@ const getAllServiceForm = async (
         isDeprecated: false,
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
       include: {
         subForm: {
@@ -421,7 +421,7 @@ const getAllServiceSubForm = async (
         isDeprecated: false,
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
     });
     if (!category) {

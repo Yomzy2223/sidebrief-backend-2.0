@@ -19,6 +19,7 @@ import {
   ProductRequestSubmission,
   GetAllProductRequestQAByQuestion,
   GetAllProductRequestsByServiceId,
+  GetAllProductRequestsByCountry,
 } from "./controller";
 const router = express.Router();
 
@@ -31,6 +32,7 @@ router.post(
 router.get("/user/:userId", userAuth, GetAllProductRequestsByUserId);
 router.get("/:id", GetProductRequestById);
 router.get("/service/:serviceId", GetAllProductRequestsByServiceId);
+router.get("/country/:country", GetAllProductRequestsByCountry);
 
 router.post(
   "/productId",

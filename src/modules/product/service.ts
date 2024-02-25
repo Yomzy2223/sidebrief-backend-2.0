@@ -285,7 +285,7 @@ const getAllProductForm = async (): Promise<ProductFormResponse> => {
         },
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
       include: {
         productSubForm: {
@@ -359,7 +359,7 @@ const getProductFormByProduct = async (
         },
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
       include: {
         productSubForm: {
@@ -515,7 +515,7 @@ const getAllProductSubForm = async (
         isDeprecated: false,
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: "asc",
       },
     });
     if (!category) {
@@ -631,6 +631,7 @@ const removeProductSubForm = async (id: string) => {
     throw error;
   }
 };
+
 export {
   getAllProductService,
   getProductByService,

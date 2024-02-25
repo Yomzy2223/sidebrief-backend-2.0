@@ -567,6 +567,39 @@ const getAllProductRequestsByServiceId = async (
   }
 };
 
+const getProductRequestByCountry = async (country: string) => {
+  //take country from the controller
+  //check for the list
+  //return response to the controller
+
+  try {
+    const findProductRequest = await prisma.productRequest.findMany({
+      where: {
+        // completed: true,
+        product: {
+          country: country,
+        },
+      },
+    });
+
+    if (!findProductRequest) {
+      return {
+        message: "No record found!",
+        statusCode: 200,
+        data: [],
+      };
+    }
+
+    return {
+      message: "Product sub form deleted successfully",
+      data: findProductRequest,
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   initializeProductRequest,
   createProductRequestQA,
@@ -580,4 +613,5 @@ export {
   getProductRequestById,
   getAllProductRequestQAByQuestion,
   getAllProductRequestsByServiceId,
+  getProductRequestByCountry,
 };
