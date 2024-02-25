@@ -245,7 +245,16 @@ const saveProductForm = async (
       where: { title: productFormPayload.title, isDeprecated: false },
     });
     if (checkServiceForm) {
-      throw new BadRequest("Product form with this title already exists");
+      throw new BadRequest("Product form with this title already exists.");
+    }
+
+    const checkServiceDeletedForm = await prisma.productForm.findFirst({
+      where: { title: productFormPayload.title, isDeprecated: true },
+    });
+    if (checkServiceDeletedForm) {
+      throw new BadRequest(
+        "Product form with this title already exists, please restrore from trash"
+      );
     }
 
     const serviceForm = await prisma.productForm.create({
@@ -477,6 +486,24 @@ const saveProductSubForm = async (
     });
     if (!checkService) {
       throw new BadRequest("Product form does not exist");
+    }
+
+    const checkServiceForm = await prisma.productSubForm.findFirst({
+      where: { question: productCategoryPayload.question, isDeprecated: false },
+    });
+    if (checkServiceForm) {
+      throw new BadRequest(
+        "Product sub form with this question already exists"
+      );
+    }
+
+    const checkServiceDeletedForm = await prisma.productSubForm.findFirst({
+      where: { question: productCategoryPayload.question, isDeprecated: true },
+    });
+    if (checkServiceDeletedForm) {
+      throw new BadRequest(
+        "Product sub form with this question already exists, please restrore from trash"
+      );
     }
 
     const categoryForm = await prisma.productSubForm.create({

@@ -206,6 +206,15 @@ const saveServiceForm = async (
       throw new BadRequest("Service form with this title already exists");
     }
 
+    const checkServiceDeletedForm = await prisma.serviceForm.findFirst({
+      where: { title: servicePayload.title, isDeprecated: true },
+    });
+    if (checkServiceDeletedForm) {
+      throw new BadRequest(
+        "Service form with this title already exists, please restore from trash"
+      );
+    }
+
     const categoryForm = await prisma.serviceForm.create({
       data: servicePayload,
     });
@@ -383,6 +392,22 @@ const saveServiceSubForm = async (
     });
     if (!checkService) {
       throw new BadRequest("Service form does not exist");
+    }
+
+    const checkServiceForm = await prisma.serviceSubForm.findFirst({
+      where: { question: servicePayload.question, isDeprecated: false },
+    });
+    if (checkServiceForm) {
+      throw new BadRequest("Service form with this title already exists");
+    }
+
+    const checkServiceDeletedForm = await prisma.serviceSubForm.findFirst({
+      where: { question: servicePayload.question, isDeprecated: true },
+    });
+    if (checkServiceDeletedForm) {
+      throw new BadRequest(
+        "Service form with this title already exists, please restore from trash"
+      );
     }
 
     const categoryForm = await prisma.serviceSubForm.create({
