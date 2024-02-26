@@ -52,7 +52,7 @@ router.put(
   validator(validateServiceForm),
   ServiceFormModifier
 );
-router.delete("/:id", staffAuth, ServiceFormRemover);
+router.delete("form/:id", staffAuth, ServiceFormRemover);
 
 router.post(
   "/subform/:formId",
@@ -69,5 +69,5 @@ router.put(
   validator(validateServiceSubForm),
   ServiceSubFormModifier
 );
-router.delete("/:id", staffAuth, ServiceSubFormRemover);
+router.delete("/subform/:id", staffAuth, ServiceSubFormRemover);
 export default router;
