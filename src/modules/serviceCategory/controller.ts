@@ -15,6 +15,8 @@ import {
   getAllServiceSubForm,
   updateServiceSubForm,
   removeServiceSubForm,
+  trashedService,
+  trashedServiceForm,
 } from "./service";
 import {
   ServiceFormPayload,
@@ -383,6 +385,41 @@ const ServiceSubFormRemover = async (
   }
 };
 
+//get all transhed services
+const TrashedServicesFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the service category list
+    // return response to the client
+
+    const categories = await trashedService();
+
+    return res.status(categories.statusCode).json(categories);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get all transhed services form
+const TrashedServicesFormFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the service category list
+    // return response to the client
+    const categories = await trashedServiceForm();
+
+    return res.status(categories.statusCode).json(categories);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   ServiceCreator,
   ServicesFetcher,
@@ -399,4 +436,6 @@ export {
   ServiceSubFormModifier,
   ServiceACategorySubFormFetcher,
   ServiceSubFormRemover,
+  TrashedServicesFetcher,
+  TrashedServicesFormFetcher,
 };

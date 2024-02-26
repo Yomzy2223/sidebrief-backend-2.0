@@ -130,6 +130,7 @@ const AddProductRequestQA = async (
       .status(ProductRequest.statusCode)
       .json({ message: ProductRequest.message, data: ProductRequest.data });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };

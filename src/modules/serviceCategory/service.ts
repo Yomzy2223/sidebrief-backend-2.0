@@ -405,25 +405,11 @@ const saveServiceSubForm = async (
     const checkServiceForm = await prisma.serviceSubForm.findFirst({
       where: {
         question: servicePayload.question,
-        isDeprecated: false,
         formId: formId,
       },
     });
     if (checkServiceForm) {
       throw new BadRequest("Service form with this title already exists");
-    }
-
-    const checkServiceDeletedForm = await prisma.serviceSubForm.findFirst({
-      where: {
-        question: servicePayload.question,
-        isDeprecated: true,
-        formId: formId,
-      },
-    });
-    if (checkServiceDeletedForm) {
-      throw new BadRequest(
-        "Service form with this title already exists, please restore from trash"
-      );
     }
 
     const categoryForm = await prisma.serviceSubForm.create({
@@ -558,18 +544,11 @@ const removeServiceSubForm = async (id: string) => {
   //return response to the service category controller
 
   try {
-    const deleteCategory = await prisma.serviceSubForm.update({
+    const deleteCategory = await prisma.serviceSubForm.delete({
       where: {
         id: id,
       },
-      data: {
-        isDeprecated: true,
-      },
     });
-    if (!deleteCategory) {
-      throw new BadRequest("Service sub form not found!.");
-    }
-
     return {
       message: "Service sub form deleted successfully",
       statusCode: 200,
@@ -578,6 +557,84 @@ const removeServiceSubForm = async (id: string) => {
     throw error;
   }
 };
+
+const trashedService = async (): Promise<ServiceResponse> => {
+  //  get the service category list from the table
+  //  return the service category list to the service category controller
+  try {
+    const category = await prisma.service.findMany({
+      where: {
+        isDeprecated: true,
+      },
+    });
+    if (!category) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ServiceResponse = {
+      message: "Trashed service fetched successfully",
+      data: category,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const removeServiceP = async (id: string) => {
+  //take id from the service category controller
+  //check if the service category exists
+  //remove the service category from the record
+  //return response to the service category controller
+
+  try {
+    const deleteCategory = await prisma.service.delete({
+      where: {
+        id: id,
+      },
+    });
+    return {
+      message: "Service form deleted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const trashedServiceForm = async (): Promise<ServiceFormResponse> => {
+  //  get the service category list from the table
+  //  return the service category list to the service category controller
+  try {
+    const category = await prisma.serviceForm.findMany({
+      where: {
+        isDeprecated: true,
+      },
+    });
+    if (!category) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ServiceFormResponse = {
+      message: "Trashed service forms fetched successfully",
+      data: category,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   saveService,
   getAllService,
@@ -594,4 +651,6 @@ export {
   getAllServiceSubForm,
   updateServiceSubForm,
   removeServiceSubForm,
+  trashedService,
+  trashedServiceForm,
 };

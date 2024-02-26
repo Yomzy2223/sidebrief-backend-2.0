@@ -269,7 +269,7 @@ const createProductRequestQA = async (
       );
     }
 
-    const productRequestForm = productRequestQAPayload.subForm.map(
+    const productRequestForm = productRequestQAPayload?.subForm?.map(
       (data: FormData) => ({
         question: data.question,
         answer: data.answer,
@@ -585,7 +585,7 @@ const getProductRequestByCountry = async (country: string) => {
         },
       },
     });
-    const requests = products.map((product) => product.request);
+    const requests = products?.map((product) => product.request);
 
     if (requests.length === 0) {
       return {

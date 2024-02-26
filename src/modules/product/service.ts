@@ -499,26 +499,12 @@ const saveProductSubForm = async (
     const checkServiceForm = await prisma.productSubForm.findFirst({
       where: {
         question: productCategoryPayload.question,
-        isDeprecated: false,
         formId: formId,
       },
     });
     if (checkServiceForm) {
       throw new BadRequest(
         "Product sub form with this question already exists"
-      );
-    }
-
-    const checkServiceDeletedForm = await prisma.productSubForm.findFirst({
-      where: {
-        question: productCategoryPayload.question,
-        isDeprecated: true,
-        formId: formId,
-      },
-    });
-    if (checkServiceDeletedForm) {
-      throw new BadRequest(
-        "Product sub form with this question already exists, please restrore from trash"
       );
     }
 
@@ -654,22 +640,72 @@ const removeProductSubForm = async (id: string) => {
   //return response to the service category controller
 
   try {
-    const deleteCategory = await prisma.productSubForm.update({
+    const deleteCategory = await prisma.productSubForm.delete({
       where: {
         id: id,
       },
-      data: {
-        isDeprecated: true,
-      },
     });
-    if (!deleteCategory) {
-      throw new BadRequest("Product sub form not found!.");
-    }
 
     return {
       message: "Product sub form deleted successfully",
       statusCode: 200,
     };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const trashedProduct = async (): Promise<ProductResponse> => {
+  //  get the service category list from the table
+  //  return the service category list to the service category controller
+  try {
+    const product = await prisma.product.findMany({
+      where: {
+        isDeprecated: true,
+      },
+    });
+    if (!product) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ProductResponse = {
+      message: "Trashed product fetched successfully",
+      data: product,
+      statusCode: 200,
+    };
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const trashedProductForm = async (): Promise<ProductFormResponse> => {
+  //  get the service category list from the table
+  //  return the service category list to the service category controller
+  try {
+    const product = await prisma.productForm.findMany({
+      where: {
+        isDeprecated: true,
+      },
+    });
+    if (!product) {
+      return {
+        message: "Empty Data",
+        statusCode: 200,
+        data: [],
+      };
+    }
+    const response: ProductFormResponse = {
+      message: "Trashed product fetched successfully",
+      data: product,
+      statusCode: 200,
+    };
+
+    return response;
   } catch (error) {
     throw error;
   }
@@ -693,4 +729,6 @@ export {
   getAllProductSubForm,
   updateProductSubForm,
   removeProductSubForm,
+  trashedProduct,
+  trashedProductForm,
 };
