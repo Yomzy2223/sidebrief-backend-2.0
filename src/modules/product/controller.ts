@@ -17,6 +17,8 @@ import {
   getAllProductSubForm,
   updateProductSubForm,
   removeProductSubForm,
+  trashedProduct,
+  trashedProductForm,
 } from "./service";
 import { ProductSubFormPayload, UpdateProductSubFormPayload } from "./entities";
 
@@ -408,6 +410,42 @@ const ProductSubFormRemover = async (
     next(error);
   }
 };
+
+//get all transhed services
+const TrashedProductFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the service category list
+    // return response to the client
+
+    const categories = await trashedProduct();
+
+    return res.status(categories.statusCode).json(categories);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//get all transhed services form
+const TrashedProductFormFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the service category list
+    // return response to the client
+    const categories = await trashedProductForm();
+
+    return res.status(categories.statusCode).json(categories);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   ProductCreator,
   ProductByServiceFetcher,
@@ -426,4 +464,6 @@ export {
   ProductSubFormFetcher,
   ProductSubFormModifier,
   ProductSubFormRemover,
+  TrashedProductFetcher,
+  TrashedProductFormFetcher,
 };

@@ -25,6 +25,8 @@ import {
   ProductSubFormFetcher,
   ProductSubFormModifier,
   ProductSubFormRemover,
+  TrashedProductFetcher,
+  TrashedProductFormFetcher,
 } from "./controller";
 
 // Product  route
@@ -83,4 +85,6 @@ router.put(
   ProductSubFormModifier
 );
 router.delete("/subform/:id", staffAuth, ProductSubFormRemover);
+router.get("/trashed/list", staffAuth, TrashedProductFetcher);
+router.get("/trashed/form", staffAuth, TrashedProductFormFetcher);
 export default router;

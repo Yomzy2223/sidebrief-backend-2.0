@@ -24,6 +24,8 @@ import {
   ServiceSubFormModifier,
   ServiceACategorySubFormFetcher,
   ServiceSubFormRemover,
+  TrashedServicesFetcher,
+  TrashedServicesFormFetcher,
 } from "./controller";
 
 router.post("/", staffAuth, validator(validateService), ServiceCreator);
@@ -70,4 +72,8 @@ router.put(
   ServiceSubFormModifier
 );
 router.delete("/subform/:id", staffAuth, ServiceSubFormRemover);
+
+router.get("/trashed/list", staffAuth,TrashedServicesFetcher);
+router.get("/trashed/form", staffAuth,TrashedServicesFormFetcher);
+
 export default router;

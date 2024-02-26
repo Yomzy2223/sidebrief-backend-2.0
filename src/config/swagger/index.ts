@@ -1366,6 +1366,36 @@ const options: OpenAPIDefinition = {
         },
       },
 
+      "/products/trashed/list": {
+        get: {
+          tags: ["Product"],
+          summary: "Get all trashed products ",
+          responses: {
+            200: {
+              description: "Product services gotten successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
+      "/products/trashed/form": {
+        get: {
+          tags: ["Product"],
+          summary: "Get all trashed product forms ",
+          responses: {
+            200: {
+              description: "Product services gotten successfully",
+              schema: {
+                $ref: "#/components/schemas/ProductServices",
+              },
+            },
+          },
+        },
+      },
+
       "/products/{id}": {
         get: {
           summary: "Get a product service with given ID",
@@ -2141,6 +2171,35 @@ const options: OpenAPIDefinition = {
               description: "Service sub form is updated",
               schema: {
                 $ref: "#/components/schemas/ServiceCategorySubForm",
+              },
+            },
+          },
+        },
+      },
+
+      "/services/trashed/list": {
+        get: {
+          tags: ["Service"],
+          summary: "Get all trashed services in system",
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategory",
+              },
+            },
+          },
+        },
+      },
+      "/services/trashed/form": {
+        get: {
+          tags: ["Service"],
+          summary: "Get all trashed service forms in system",
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategory",
               },
             },
           },
