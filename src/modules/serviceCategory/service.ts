@@ -200,14 +200,22 @@ const saveServiceForm = async (
     }
 
     const checkServiceForm = await prisma.serviceForm.findFirst({
-      where: { title: servicePayload.title, isDeprecated: false },
+      where: {
+        title: servicePayload.title,
+        isDeprecated: false,
+        serviceId: serviceId,
+      },
     });
     if (checkServiceForm) {
       throw new BadRequest("Service form with this title already exists");
     }
 
     const checkServiceDeletedForm = await prisma.serviceForm.findFirst({
-      where: { title: servicePayload.title, isDeprecated: true },
+      where: {
+        title: servicePayload.title,
+        isDeprecated: true,
+        serviceId: serviceId,
+      },
     });
     if (checkServiceDeletedForm) {
       throw new BadRequest(
