@@ -7449,3 +7449,14 @@ error: Label: 26-Feb-2024 17:29:00: Service not found!. with error Error: Servic
 error: Label: 26-Feb-2024 17:31:47: Service not found!. with error Error: Service not found!. occurred when GET /services/trashed was called
 error: Label: 26-Feb-2024 17:32:06: Product not found!. with error Error: Product not found!. occurred when GET /products/trashed was called
 info: Label: 26-Feb-2024 17:41:43: Form saved successfully for Product Request with 0ceaa01d-e7b0-4c6e-bd3a-9b4a7a47ccfe 
+error: Label: 27-Feb-2024 10:52:30: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequestQA.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:401:53
+
+  398 //  get the all the productRequest QA
+  399 //  return the  list to the productRequest QA controller
+  400 try {
+→ 401   const GeneralQA = await prisma.productRequestQA.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/form/0ceaa01d-e7b0-4c6e-bd3a-9b4a7a47ccfe was called
