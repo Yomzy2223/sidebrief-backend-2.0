@@ -402,6 +402,9 @@ const getAllProductRequestQA = async (
       where: {
         requestId: requestId,
       },
+      include: {
+        subForm: true,
+      },
     });
     if (!GeneralQA) {
       return {
