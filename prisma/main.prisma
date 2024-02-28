@@ -194,6 +194,7 @@ model ServiceSubForm {
       fileName String?
       fileType String?
       fileLink String?
+      fileSize String?
       dependsOn String?
       allowOther Boolean @default(false)
       compulsory Boolean @default(false)
@@ -202,6 +203,7 @@ model ServiceSubForm {
       isDeprecated Boolean   @default(false)
       form ServiceForm @relation(fields: [formId], references: [id])
       formId String
+      dependant SubFormDependant[]
       }
 model Product {
       id String @id @default(uuid())
@@ -249,6 +251,7 @@ model ProductSubForm {
       fileName String?
       fileType String?
       fileLink String?
+      fileSize String?
       dependsOn String?
       compulsory Boolean @default(false)
       isDeprecated Boolean   @default(false)
@@ -256,8 +259,23 @@ model ProductSubForm {
       updatedAt DateTime @default(now())
       form ProductForm @relation(fields: [formId], references: [id])
       formId String
+      dependant SubFormDependant[]
 
 }
+
+model SubFormDependant {
+      id String @id @default(uuid())
+      field String?
+      options String[]
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      productSubForm ProductSubForm? @relation(fields: [productSubFormId], references: [id])
+      productSubFormId String?
+      serviceSubForm ServiceSubForm? @relation(fields: [serviceSubFormId], references: [id])
+      serviceSubFormId String?
+}
+
 model ProductRequest {
       id String @id @default(uuid())
       email String?
@@ -301,6 +319,7 @@ model ProductRequestQASubForm {
       fileName String?
       fileType String?
       fileLink String?
+      fileSize String?
       compulsory Boolean @default(false)
       isDeprecated Boolean   @default(false)
       requestQA ProductRequestQA @relation(fields: [requestQAId], references: [id])

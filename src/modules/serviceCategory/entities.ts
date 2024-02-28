@@ -32,7 +32,12 @@ export interface ServiceSubFormPayload {
   fileType?: string;
   allowOther?: boolean;
   fileLink?: string;
-  dependsOn?: string;
+  fileSize?: string;
+}
+
+export interface Dependant {
+  field?: string;
+  options?: string[];
 }
 
 export interface ServiceFormData {
@@ -80,4 +85,5 @@ export interface UpdateServiceSubFormPayload {
   dependsOn?: string;
   allowOther?: boolean;
   fileLink?: string;
+  fileSize: string;
 }

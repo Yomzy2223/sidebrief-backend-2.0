@@ -308,6 +308,7 @@ export type ServiceSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
   name: "ServiceSubForm"
   objects: {
     form: ServiceFormPayload<ExtArgs>
+    dependant: SubFormDependantPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -317,6 +318,7 @@ export type ServiceSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     dependsOn: string | null
     allowOther: boolean
     compulsory: boolean
@@ -398,6 +400,7 @@ export type ProductSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
   name: "ProductSubForm"
   objects: {
     form: ProductFormPayload<ExtArgs>
+    dependant: SubFormDependantPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -408,6 +411,7 @@ export type ProductSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     dependsOn: string | null
     compulsory: boolean
     isDeprecated: boolean
@@ -423,6 +427,30 @@ export type ProductSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
  * 
  */
 export type ProductSubForm = runtime.Types.DefaultSelection<ProductSubFormPayload>
+export type SubFormDependantPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  name: "SubFormDependant"
+  objects: {
+    productSubForm: ProductSubFormPayload<ExtArgs> | null
+    serviceSubForm: ServiceSubFormPayload<ExtArgs> | null
+  }
+  scalars: $Extensions.GetResult<{
+    id: string
+    field: string | null
+    options: string[]
+    isDeprecated: boolean
+    createdAt: Date
+    updatedAt: Date
+    productSubFormId: string | null
+    serviceSubFormId: string | null
+  }, ExtArgs["result"]["subFormDependant"]>
+  composites: {}
+}
+
+/**
+ * Model SubFormDependant
+ * 
+ */
+export type SubFormDependant = runtime.Types.DefaultSelection<SubFormDependantPayload>
 export type ProductRequestPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
   name: "ProductRequest"
   objects: {
@@ -493,6 +521,7 @@ export type ProductRequestQASubFormPayload<ExtArgs extends $Extensions.Args = $E
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     compulsory: boolean
     isDeprecated: boolean
     requestQAId: string
@@ -950,6 +979,16 @@ export class PrismaClient<
     * ```
     */
   get productSubForm(): Prisma.ProductSubFormDelegate<GlobalReject, ExtArgs>;
+
+  /**
+   * `prisma.subFormDependant`: Exposes CRUD operations for the **SubFormDependant** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SubFormDependants
+    * const subFormDependants = await prisma.subFormDependant.findMany()
+    * ```
+    */
+  get subFormDependant(): Prisma.SubFormDependantDelegate<GlobalReject, ExtArgs>;
 
   /**
    * `prisma.productRequest`: Exposes CRUD operations for the **ProductRequest** model.
@@ -1539,6 +1578,7 @@ export namespace Prisma {
     Product: 'Product',
     ProductForm: 'ProductForm',
     ProductSubForm: 'ProductSubForm',
+    SubFormDependant: 'SubFormDependant',
     ProductRequest: 'ProductRequest',
     ProductRequestQA: 'ProductRequestQA',
     ProductRequestQASubForm: 'ProductRequestQASubForm',
@@ -1564,7 +1604,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'staff' | 'collaborator' | 'collaboratorDocument' | 'reward' | 'country' | 'bank' | 'notification' | 'account' | 'user' | 'userDocument' | 'service' | 'serviceForm' | 'serviceSubForm' | 'product' | 'productForm' | 'productSubForm' | 'productRequest' | 'productRequestQA' | 'productRequestQASubForm' | 'claim' | 'team' | 'teamMember' | 'invitation' | 'payment' | 'parter'
+      modelProps: 'staff' | 'collaborator' | 'collaboratorDocument' | 'reward' | 'country' | 'bank' | 'notification' | 'account' | 'user' | 'userDocument' | 'service' | 'serviceForm' | 'serviceSubForm' | 'product' | 'productForm' | 'productSubForm' | 'subFormDependant' | 'productRequest' | 'productRequestQA' | 'productRequestQASubForm' | 'claim' | 'team' | 'teamMember' | 'invitation' | 'payment' | 'parter'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -2608,6 +2648,71 @@ export namespace Prisma {
           }
         }
       }
+      SubFormDependant: {
+        payload: SubFormDependantPayload<ExtArgs>
+        operations: {
+          findUnique: {
+            args: Prisma.SubFormDependantFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<SubFormDependantPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SubFormDependantFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<SubFormDependantPayload>
+          }
+          findFirst: {
+            args: Prisma.SubFormDependantFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<SubFormDependantPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SubFormDependantFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<SubFormDependantPayload>
+          }
+          findMany: {
+            args: Prisma.SubFormDependantFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<SubFormDependantPayload>[]
+          }
+          create: {
+            args: Prisma.SubFormDependantCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<SubFormDependantPayload>
+          }
+          createMany: {
+            args: Prisma.SubFormDependantCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.SubFormDependantDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<SubFormDependantPayload>
+          }
+          update: {
+            args: Prisma.SubFormDependantUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<SubFormDependantPayload>
+          }
+          deleteMany: {
+            args: Prisma.SubFormDependantDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SubFormDependantUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.SubFormDependantUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<SubFormDependantPayload>
+          }
+          aggregate: {
+            args: Prisma.SubFormDependantAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateSubFormDependant>
+          }
+          groupBy: {
+            args: Prisma.SubFormDependantGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<SubFormDependantGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SubFormDependantCountArgs<ExtArgs>,
+            result: $Utils.Optional<SubFormDependantCountAggregateOutputType> | number
+          }
+        }
+      }
       ProductRequest: {
         payload: ProductRequestPayload<ExtArgs>
         operations: {
@@ -3540,6 +3645,41 @@ export namespace Prisma {
 
 
   /**
+   * Count Type ServiceSubFormCountOutputType
+   */
+
+
+  export type ServiceSubFormCountOutputType = {
+    dependant: number
+  }
+
+  export type ServiceSubFormCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    dependant?: boolean | ServiceSubFormCountOutputTypeCountDependantArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * ServiceSubFormCountOutputType without action
+   */
+  export type ServiceSubFormCountOutputTypeArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServiceSubFormCountOutputType
+     */
+    select?: ServiceSubFormCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * ServiceSubFormCountOutputType without action
+   */
+  export type ServiceSubFormCountOutputTypeCountDependantArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: SubFormDependantWhereInput
+  }
+
+
+
+  /**
    * Count Type ProductCountOutputType
    */
 
@@ -3615,6 +3755,41 @@ export namespace Prisma {
    */
   export type ProductFormCountOutputTypeCountProductSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: ProductSubFormWhereInput
+  }
+
+
+
+  /**
+   * Count Type ProductSubFormCountOutputType
+   */
+
+
+  export type ProductSubFormCountOutputType = {
+    dependant: number
+  }
+
+  export type ProductSubFormCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    dependant?: boolean | ProductSubFormCountOutputTypeCountDependantArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * ProductSubFormCountOutputType without action
+   */
+  export type ProductSubFormCountOutputTypeArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductSubFormCountOutputType
+     */
+    select?: ProductSubFormCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * ProductSubFormCountOutputType without action
+   */
+  export type ProductSubFormCountOutputTypeCountDependantArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: SubFormDependantWhereInput
   }
 
 
@@ -15287,6 +15462,7 @@ export namespace Prisma {
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     dependsOn: string | null
     allowOther: boolean | null
     compulsory: boolean | null
@@ -15303,6 +15479,7 @@ export namespace Prisma {
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     dependsOn: string | null
     allowOther: boolean | null
     compulsory: boolean | null
@@ -15320,6 +15497,7 @@ export namespace Prisma {
     fileName: number
     fileType: number
     fileLink: number
+    fileSize: number
     dependsOn: number
     allowOther: number
     compulsory: number
@@ -15338,6 +15516,7 @@ export namespace Prisma {
     fileName?: true
     fileType?: true
     fileLink?: true
+    fileSize?: true
     dependsOn?: true
     allowOther?: true
     compulsory?: true
@@ -15354,6 +15533,7 @@ export namespace Prisma {
     fileName?: true
     fileType?: true
     fileLink?: true
+    fileSize?: true
     dependsOn?: true
     allowOther?: true
     compulsory?: true
@@ -15371,6 +15551,7 @@ export namespace Prisma {
     fileName?: true
     fileType?: true
     fileLink?: true
+    fileSize?: true
     dependsOn?: true
     allowOther?: true
     compulsory?: true
@@ -15462,6 +15643,7 @@ export namespace Prisma {
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     dependsOn: string | null
     allowOther: boolean
     compulsory: boolean
@@ -15496,6 +15678,7 @@ export namespace Prisma {
     fileName?: boolean
     fileType?: boolean
     fileLink?: boolean
+    fileSize?: boolean
     dependsOn?: boolean
     allowOther?: boolean
     compulsory?: boolean
@@ -15504,6 +15687,8 @@ export namespace Prisma {
     isDeprecated?: boolean
     formId?: boolean
     form?: boolean | ServiceFormArgs<ExtArgs>
+    dependant?: boolean | ServiceSubForm$dependantArgs<ExtArgs>
+    _count?: boolean | ServiceSubFormCountOutputTypeArgs<ExtArgs>
   }, ExtArgs["result"]["serviceSubForm"]>
 
   export type ServiceSubFormSelectScalar = {
@@ -15514,6 +15699,7 @@ export namespace Prisma {
     fileName?: boolean
     fileType?: boolean
     fileLink?: boolean
+    fileSize?: boolean
     dependsOn?: boolean
     allowOther?: boolean
     compulsory?: boolean
@@ -15525,6 +15711,8 @@ export namespace Prisma {
 
   export type ServiceSubFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     form?: boolean | ServiceFormArgs<ExtArgs>
+    dependant?: boolean | ServiceSubForm$dependantArgs<ExtArgs>
+    _count?: boolean | ServiceSubFormCountOutputTypeArgs<ExtArgs>
   }
 
 
@@ -15899,6 +16087,8 @@ export namespace Prisma {
 
     form<T extends ServiceFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceFormArgs<ExtArgs>>): Prisma__ServiceFormClient<$Types.GetResult<ServiceFormPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
+    dependant<T extends ServiceSubForm$dependantArgs<ExtArgs> = {}>(args?: Subset<T, ServiceSubForm$dependantArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'findMany', never>| Null>;
+
     private get _document();
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -16251,6 +16441,27 @@ export namespace Prisma {
      * Filter which ServiceSubForms to delete
      */
     where?: ServiceSubFormWhereInput
+  }
+
+
+  /**
+   * ServiceSubForm.dependant
+   */
+  export type ServiceSubForm$dependantArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    where?: SubFormDependantWhereInput
+    orderBy?: Enumerable<SubFormDependantOrderByWithRelationInput>
+    cursor?: SubFormDependantWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<SubFormDependantScalarFieldEnum>
   }
 
 
@@ -18408,6 +18619,7 @@ export namespace Prisma {
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     dependsOn: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
@@ -18424,6 +18636,7 @@ export namespace Prisma {
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     dependsOn: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
@@ -18441,6 +18654,7 @@ export namespace Prisma {
     fileName: number
     fileType: number
     fileLink: number
+    fileSize: number
     dependsOn: number
     compulsory: number
     isDeprecated: number
@@ -18459,6 +18673,7 @@ export namespace Prisma {
     fileName?: true
     fileType?: true
     fileLink?: true
+    fileSize?: true
     dependsOn?: true
     compulsory?: true
     isDeprecated?: true
@@ -18475,6 +18690,7 @@ export namespace Prisma {
     fileName?: true
     fileType?: true
     fileLink?: true
+    fileSize?: true
     dependsOn?: true
     compulsory?: true
     isDeprecated?: true
@@ -18492,6 +18708,7 @@ export namespace Prisma {
     fileName?: true
     fileType?: true
     fileLink?: true
+    fileSize?: true
     dependsOn?: true
     compulsory?: true
     isDeprecated?: true
@@ -18583,6 +18800,7 @@ export namespace Prisma {
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     dependsOn: string | null
     compulsory: boolean
     isDeprecated: boolean
@@ -18617,6 +18835,7 @@ export namespace Prisma {
     fileName?: boolean
     fileType?: boolean
     fileLink?: boolean
+    fileSize?: boolean
     dependsOn?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
@@ -18624,6 +18843,8 @@ export namespace Prisma {
     updatedAt?: boolean
     formId?: boolean
     form?: boolean | ProductFormArgs<ExtArgs>
+    dependant?: boolean | ProductSubForm$dependantArgs<ExtArgs>
+    _count?: boolean | ProductSubFormCountOutputTypeArgs<ExtArgs>
   }, ExtArgs["result"]["productSubForm"]>
 
   export type ProductSubFormSelectScalar = {
@@ -18635,6 +18856,7 @@ export namespace Prisma {
     fileName?: boolean
     fileType?: boolean
     fileLink?: boolean
+    fileSize?: boolean
     dependsOn?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
@@ -18645,6 +18867,8 @@ export namespace Prisma {
 
   export type ProductSubFormInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     form?: boolean | ProductFormArgs<ExtArgs>
+    dependant?: boolean | ProductSubForm$dependantArgs<ExtArgs>
+    _count?: boolean | ProductSubFormCountOutputTypeArgs<ExtArgs>
   }
 
 
@@ -19019,6 +19243,8 @@ export namespace Prisma {
 
     form<T extends ProductFormArgs<ExtArgs> = {}>(args?: Subset<T, ProductFormArgs<ExtArgs>>): Prisma__ProductFormClient<$Types.GetResult<ProductFormPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
+    dependant<T extends ProductSubForm$dependantArgs<ExtArgs> = {}>(args?: Subset<T, ProductSubForm$dependantArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'findMany', never>| Null>;
+
     private get _document();
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -19375,6 +19601,27 @@ export namespace Prisma {
 
 
   /**
+   * ProductSubForm.dependant
+   */
+  export type ProductSubForm$dependantArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    where?: SubFormDependantWhereInput
+    orderBy?: Enumerable<SubFormDependantOrderByWithRelationInput>
+    cursor?: SubFormDependantWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<SubFormDependantScalarFieldEnum>
+  }
+
+
+  /**
    * ProductSubForm without action
    */
   export type ProductSubFormArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
@@ -19386,6 +19633,957 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: ProductSubFormInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model SubFormDependant
+   */
+
+
+  export type AggregateSubFormDependant = {
+    _count: SubFormDependantCountAggregateOutputType | null
+    _min: SubFormDependantMinAggregateOutputType | null
+    _max: SubFormDependantMaxAggregateOutputType | null
+  }
+
+  export type SubFormDependantMinAggregateOutputType = {
+    id: string | null
+    field: string | null
+    isDeprecated: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    productSubFormId: string | null
+    serviceSubFormId: string | null
+  }
+
+  export type SubFormDependantMaxAggregateOutputType = {
+    id: string | null
+    field: string | null
+    isDeprecated: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    productSubFormId: string | null
+    serviceSubFormId: string | null
+  }
+
+  export type SubFormDependantCountAggregateOutputType = {
+    id: number
+    field: number
+    options: number
+    isDeprecated: number
+    createdAt: number
+    updatedAt: number
+    productSubFormId: number
+    serviceSubFormId: number
+    _all: number
+  }
+
+
+  export type SubFormDependantMinAggregateInputType = {
+    id?: true
+    field?: true
+    isDeprecated?: true
+    createdAt?: true
+    updatedAt?: true
+    productSubFormId?: true
+    serviceSubFormId?: true
+  }
+
+  export type SubFormDependantMaxAggregateInputType = {
+    id?: true
+    field?: true
+    isDeprecated?: true
+    createdAt?: true
+    updatedAt?: true
+    productSubFormId?: true
+    serviceSubFormId?: true
+  }
+
+  export type SubFormDependantCountAggregateInputType = {
+    id?: true
+    field?: true
+    options?: true
+    isDeprecated?: true
+    createdAt?: true
+    updatedAt?: true
+    productSubFormId?: true
+    serviceSubFormId?: true
+    _all?: true
+  }
+
+  export type SubFormDependantAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SubFormDependant to aggregate.
+     */
+    where?: SubFormDependantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubFormDependants to fetch.
+     */
+    orderBy?: Enumerable<SubFormDependantOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SubFormDependantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubFormDependants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubFormDependants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SubFormDependants
+    **/
+    _count?: true | SubFormDependantCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SubFormDependantMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SubFormDependantMaxAggregateInputType
+  }
+
+  export type GetSubFormDependantAggregateType<T extends SubFormDependantAggregateArgs> = {
+        [P in keyof T & keyof AggregateSubFormDependant]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSubFormDependant[P]>
+      : GetScalarType<T[P], AggregateSubFormDependant[P]>
+  }
+
+
+
+
+  export type SubFormDependantGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: SubFormDependantWhereInput
+    orderBy?: Enumerable<SubFormDependantOrderByWithAggregationInput>
+    by: SubFormDependantScalarFieldEnum[]
+    having?: SubFormDependantScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SubFormDependantCountAggregateInputType | true
+    _min?: SubFormDependantMinAggregateInputType
+    _max?: SubFormDependantMaxAggregateInputType
+  }
+
+
+  export type SubFormDependantGroupByOutputType = {
+    id: string
+    field: string | null
+    options: string[]
+    isDeprecated: boolean
+    createdAt: Date
+    updatedAt: Date
+    productSubFormId: string | null
+    serviceSubFormId: string | null
+    _count: SubFormDependantCountAggregateOutputType | null
+    _min: SubFormDependantMinAggregateOutputType | null
+    _max: SubFormDependantMaxAggregateOutputType | null
+  }
+
+  type GetSubFormDependantGroupByPayload<T extends SubFormDependantGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickArray<SubFormDependantGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SubFormDependantGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SubFormDependantGroupByOutputType[P]>
+            : GetScalarType<T[P], SubFormDependantGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SubFormDependantSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    field?: boolean
+    options?: boolean
+    isDeprecated?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    productSubFormId?: boolean
+    serviceSubFormId?: boolean
+    productSubForm?: boolean | ProductSubFormArgs<ExtArgs>
+    serviceSubForm?: boolean | ServiceSubFormArgs<ExtArgs>
+  }, ExtArgs["result"]["subFormDependant"]>
+
+  export type SubFormDependantSelectScalar = {
+    id?: boolean
+    field?: boolean
+    options?: boolean
+    isDeprecated?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    productSubFormId?: boolean
+    serviceSubFormId?: boolean
+  }
+
+  export type SubFormDependantInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    productSubForm?: boolean | ProductSubFormArgs<ExtArgs>
+    serviceSubForm?: boolean | ServiceSubFormArgs<ExtArgs>
+  }
+
+
+  type SubFormDependantGetPayload<S extends boolean | null | undefined | SubFormDependantArgs> = $Types.GetResult<SubFormDependantPayload, S>
+
+  type SubFormDependantCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<SubFormDependantFindManyArgs, 'select' | 'include'> & {
+      select?: SubFormDependantCountAggregateInputType | true
+    }
+
+  export interface SubFormDependantDelegate<GlobalRejectSettings extends Prisma.RejectOnNotFound | Prisma.RejectPerOperation | false | undefined, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SubFormDependant'], meta: { name: 'SubFormDependant' } }
+    /**
+     * Find zero or one SubFormDependant that matches the filter.
+     * @param {SubFormDependantFindUniqueArgs} args - Arguments to find a SubFormDependant
+     * @example
+     * // Get one SubFormDependant
+     * const subFormDependant = await prisma.subFormDependant.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends SubFormDependantFindUniqueArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args: SelectSubset<T, SubFormDependantFindUniqueArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findUnique', 'SubFormDependant'> extends True ? Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'findUnique', never>, never, ExtArgs> : Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'findUnique', never> | null, null, ExtArgs>
+
+    /**
+     * Find one SubFormDependant that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {SubFormDependantFindUniqueOrThrowArgs} args - Arguments to find a SubFormDependant
+     * @example
+     * // Get one SubFormDependant
+     * const subFormDependant = await prisma.subFormDependant.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends SubFormDependantFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SubFormDependantFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'findUniqueOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find the first SubFormDependant that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubFormDependantFindFirstArgs} args - Arguments to find a SubFormDependant
+     * @example
+     * // Get one SubFormDependant
+     * const subFormDependant = await prisma.subFormDependant.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends SubFormDependantFindFirstArgs<ExtArgs>, LocalRejectSettings = T["rejectOnNotFound"] extends RejectOnNotFound ? T['rejectOnNotFound'] : undefined>(
+      args?: SelectSubset<T, SubFormDependantFindFirstArgs<ExtArgs>>
+    ): HasReject<GlobalRejectSettings, LocalRejectSettings, 'findFirst', 'SubFormDependant'> extends True ? Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'findFirst', never>, never, ExtArgs> : Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'findFirst', never> | null, null, ExtArgs>
+
+    /**
+     * Find the first SubFormDependant that matches the filter or
+     * throw `NotFoundError` if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubFormDependantFindFirstOrThrowArgs} args - Arguments to find a SubFormDependant
+     * @example
+     * // Get one SubFormDependant
+     * const subFormDependant = await prisma.subFormDependant.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends SubFormDependantFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, SubFormDependantFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'findFirstOrThrow', never>, never, ExtArgs>
+
+    /**
+     * Find zero or more SubFormDependants that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubFormDependantFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SubFormDependants
+     * const subFormDependants = await prisma.subFormDependant.findMany()
+     * 
+     * // Get first 10 SubFormDependants
+     * const subFormDependants = await prisma.subFormDependant.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const subFormDependantWithIdOnly = await prisma.subFormDependant.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends SubFormDependantFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SubFormDependantFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'findMany', never>>
+
+    /**
+     * Create a SubFormDependant.
+     * @param {SubFormDependantCreateArgs} args - Arguments to create a SubFormDependant.
+     * @example
+     * // Create one SubFormDependant
+     * const SubFormDependant = await prisma.subFormDependant.create({
+     *   data: {
+     *     // ... data to create a SubFormDependant
+     *   }
+     * })
+     * 
+    **/
+    create<T extends SubFormDependantCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, SubFormDependantCreateArgs<ExtArgs>>
+    ): Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'create', never>, never, ExtArgs>
+
+    /**
+     * Create many SubFormDependants.
+     *     @param {SubFormDependantCreateManyArgs} args - Arguments to create many SubFormDependants.
+     *     @example
+     *     // Create many SubFormDependants
+     *     const subFormDependant = await prisma.subFormDependant.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends SubFormDependantCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SubFormDependantCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a SubFormDependant.
+     * @param {SubFormDependantDeleteArgs} args - Arguments to delete one SubFormDependant.
+     * @example
+     * // Delete one SubFormDependant
+     * const SubFormDependant = await prisma.subFormDependant.delete({
+     *   where: {
+     *     // ... filter to delete one SubFormDependant
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends SubFormDependantDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, SubFormDependantDeleteArgs<ExtArgs>>
+    ): Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'delete', never>, never, ExtArgs>
+
+    /**
+     * Update one SubFormDependant.
+     * @param {SubFormDependantUpdateArgs} args - Arguments to update one SubFormDependant.
+     * @example
+     * // Update one SubFormDependant
+     * const subFormDependant = await prisma.subFormDependant.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends SubFormDependantUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, SubFormDependantUpdateArgs<ExtArgs>>
+    ): Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'update', never>, never, ExtArgs>
+
+    /**
+     * Delete zero or more SubFormDependants.
+     * @param {SubFormDependantDeleteManyArgs} args - Arguments to filter SubFormDependants to delete.
+     * @example
+     * // Delete a few SubFormDependants
+     * const { count } = await prisma.subFormDependant.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends SubFormDependantDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, SubFormDependantDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SubFormDependants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubFormDependantUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SubFormDependants
+     * const subFormDependant = await prisma.subFormDependant.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends SubFormDependantUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, SubFormDependantUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one SubFormDependant.
+     * @param {SubFormDependantUpsertArgs} args - Arguments to update or create a SubFormDependant.
+     * @example
+     * // Update or create a SubFormDependant
+     * const subFormDependant = await prisma.subFormDependant.upsert({
+     *   create: {
+     *     // ... data to create a SubFormDependant
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SubFormDependant we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends SubFormDependantUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, SubFormDependantUpsertArgs<ExtArgs>>
+    ): Prisma__SubFormDependantClient<$Types.GetResult<SubFormDependantPayload<ExtArgs>, T, 'upsert', never>, never, ExtArgs>
+
+    /**
+     * Count the number of SubFormDependants.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubFormDependantCountArgs} args - Arguments to filter SubFormDependants to count.
+     * @example
+     * // Count the number of SubFormDependants
+     * const count = await prisma.subFormDependant.count({
+     *   where: {
+     *     // ... the filter for the SubFormDependants we want to count
+     *   }
+     * })
+    **/
+    count<T extends SubFormDependantCountArgs>(
+      args?: Subset<T, SubFormDependantCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SubFormDependantCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SubFormDependant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubFormDependantAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SubFormDependantAggregateArgs>(args: Subset<T, SubFormDependantAggregateArgs>): Prisma.PrismaPromise<GetSubFormDependantAggregateType<T>>
+
+    /**
+     * Group by SubFormDependant.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SubFormDependantGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SubFormDependantGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SubFormDependantGroupByArgs['orderBy'] }
+        : { orderBy?: SubFormDependantGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends TupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SubFormDependantGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSubFormDependantGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SubFormDependant.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export class Prisma__SubFormDependantClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> implements Prisma.PrismaPromise<T> {
+    private readonly _dmmf;
+    private readonly _queryType;
+    private readonly _rootField;
+    private readonly _clientMethod;
+    private readonly _args;
+    private readonly _dataPath;
+    private readonly _errorFormat;
+    private readonly _measurePerformance?;
+    private _isList;
+    private _callsite;
+    private _requestPromise?;
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+    constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
+
+    productSubForm<T extends ProductSubFormArgs<ExtArgs> = {}>(args?: Subset<T, ProductSubFormArgs<ExtArgs>>): Prisma__ProductSubFormClient<$Types.GetResult<ProductSubFormPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+
+    serviceSubForm<T extends ServiceSubFormArgs<ExtArgs> = {}>(args?: Subset<T, ServiceSubFormArgs<ExtArgs>>): Prisma__ServiceSubFormClient<$Types.GetResult<ServiceSubFormPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
+
+    private get _document();
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): Promise<T>;
+  }
+
+
+
+  // Custom InputTypes
+
+  /**
+   * SubFormDependant base type for findUnique actions
+   */
+  export type SubFormDependantFindUniqueArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    /**
+     * Filter, which SubFormDependant to fetch.
+     */
+    where: SubFormDependantWhereUniqueInput
+  }
+
+  /**
+   * SubFormDependant findUnique
+   */
+  export interface SubFormDependantFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends SubFormDependantFindUniqueArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findUniqueOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * SubFormDependant findUniqueOrThrow
+   */
+  export type SubFormDependantFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    /**
+     * Filter, which SubFormDependant to fetch.
+     */
+    where: SubFormDependantWhereUniqueInput
+  }
+
+
+  /**
+   * SubFormDependant base type for findFirst actions
+   */
+  export type SubFormDependantFindFirstArgsBase<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    /**
+     * Filter, which SubFormDependant to fetch.
+     */
+    where?: SubFormDependantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubFormDependants to fetch.
+     */
+    orderBy?: Enumerable<SubFormDependantOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SubFormDependants.
+     */
+    cursor?: SubFormDependantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubFormDependants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubFormDependants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SubFormDependants.
+     */
+    distinct?: Enumerable<SubFormDependantScalarFieldEnum>
+  }
+
+  /**
+   * SubFormDependant findFirst
+   */
+  export interface SubFormDependantFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends SubFormDependantFindFirstArgsBase<ExtArgs> {
+   /**
+    * Throw an Error if query returns no results
+    * @deprecated since 4.0.0: use `findFirstOrThrow` method instead
+    */
+    rejectOnNotFound?: RejectOnNotFound
+  }
+      
+
+  /**
+   * SubFormDependant findFirstOrThrow
+   */
+  export type SubFormDependantFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    /**
+     * Filter, which SubFormDependant to fetch.
+     */
+    where?: SubFormDependantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubFormDependants to fetch.
+     */
+    orderBy?: Enumerable<SubFormDependantOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SubFormDependants.
+     */
+    cursor?: SubFormDependantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubFormDependants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubFormDependants.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SubFormDependants.
+     */
+    distinct?: Enumerable<SubFormDependantScalarFieldEnum>
+  }
+
+
+  /**
+   * SubFormDependant findMany
+   */
+  export type SubFormDependantFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    /**
+     * Filter, which SubFormDependants to fetch.
+     */
+    where?: SubFormDependantWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SubFormDependants to fetch.
+     */
+    orderBy?: Enumerable<SubFormDependantOrderByWithRelationInput>
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SubFormDependants.
+     */
+    cursor?: SubFormDependantWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SubFormDependants from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SubFormDependants.
+     */
+    skip?: number
+    distinct?: Enumerable<SubFormDependantScalarFieldEnum>
+  }
+
+
+  /**
+   * SubFormDependant create
+   */
+  export type SubFormDependantCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SubFormDependant.
+     */
+    data?: XOR<SubFormDependantCreateInput, SubFormDependantUncheckedCreateInput>
+  }
+
+
+  /**
+   * SubFormDependant createMany
+   */
+  export type SubFormDependantCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SubFormDependants.
+     */
+    data: Enumerable<SubFormDependantCreateManyInput>
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * SubFormDependant update
+   */
+  export type SubFormDependantUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SubFormDependant.
+     */
+    data: XOR<SubFormDependantUpdateInput, SubFormDependantUncheckedUpdateInput>
+    /**
+     * Choose, which SubFormDependant to update.
+     */
+    where: SubFormDependantWhereUniqueInput
+  }
+
+
+  /**
+   * SubFormDependant updateMany
+   */
+  export type SubFormDependantUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SubFormDependants.
+     */
+    data: XOR<SubFormDependantUpdateManyMutationInput, SubFormDependantUncheckedUpdateManyInput>
+    /**
+     * Filter which SubFormDependants to update
+     */
+    where?: SubFormDependantWhereInput
+  }
+
+
+  /**
+   * SubFormDependant upsert
+   */
+  export type SubFormDependantUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SubFormDependant to update in case it exists.
+     */
+    where: SubFormDependantWhereUniqueInput
+    /**
+     * In case the SubFormDependant found by the `where` argument doesn't exist, create a new SubFormDependant with this data.
+     */
+    create: XOR<SubFormDependantCreateInput, SubFormDependantUncheckedCreateInput>
+    /**
+     * In case the SubFormDependant was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SubFormDependantUpdateInput, SubFormDependantUncheckedUpdateInput>
+  }
+
+
+  /**
+   * SubFormDependant delete
+   */
+  export type SubFormDependantDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
+    /**
+     * Filter which SubFormDependant to delete.
+     */
+    where: SubFormDependantWhereUniqueInput
+  }
+
+
+  /**
+   * SubFormDependant deleteMany
+   */
+  export type SubFormDependantDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SubFormDependants to delete
+     */
+    where?: SubFormDependantWhereInput
+  }
+
+
+  /**
+   * SubFormDependant without action
+   */
+  export type SubFormDependantArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SubFormDependant
+     */
+    select?: SubFormDependantSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: SubFormDependantInclude<ExtArgs> | null
   }
 
 
@@ -21472,6 +22670,7 @@ export namespace Prisma {
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
     requestQAId: string | null
@@ -21484,6 +22683,7 @@ export namespace Prisma {
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
     requestQAId: string | null
@@ -21497,6 +22697,7 @@ export namespace Prisma {
     fileName: number
     fileType: number
     fileLink: number
+    fileSize: number
     compulsory: number
     isDeprecated: number
     requestQAId: number
@@ -21511,6 +22712,7 @@ export namespace Prisma {
     fileName?: true
     fileType?: true
     fileLink?: true
+    fileSize?: true
     compulsory?: true
     isDeprecated?: true
     requestQAId?: true
@@ -21523,6 +22725,7 @@ export namespace Prisma {
     fileName?: true
     fileType?: true
     fileLink?: true
+    fileSize?: true
     compulsory?: true
     isDeprecated?: true
     requestQAId?: true
@@ -21536,6 +22739,7 @@ export namespace Prisma {
     fileName?: true
     fileType?: true
     fileLink?: true
+    fileSize?: true
     compulsory?: true
     isDeprecated?: true
     requestQAId?: true
@@ -21623,6 +22827,7 @@ export namespace Prisma {
     fileName: string | null
     fileType: string | null
     fileLink: string | null
+    fileSize: string | null
     compulsory: boolean
     isDeprecated: boolean
     requestQAId: string
@@ -21653,6 +22858,7 @@ export namespace Prisma {
     fileName?: boolean
     fileType?: boolean
     fileLink?: boolean
+    fileSize?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
     requestQAId?: boolean
@@ -21667,6 +22873,7 @@ export namespace Prisma {
     fileName?: boolean
     fileType?: boolean
     fileLink?: boolean
+    fileSize?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
     requestQAId?: boolean
@@ -28432,6 +29639,7 @@ export namespace Prisma {
     fileName: 'fileName',
     fileType: 'fileType',
     fileLink: 'fileLink',
+    fileSize: 'fileSize',
     dependsOn: 'dependsOn',
     allowOther: 'allowOther',
     compulsory: 'compulsory',
@@ -28493,6 +29701,7 @@ export namespace Prisma {
     fileName: 'fileName',
     fileType: 'fileType',
     fileLink: 'fileLink',
+    fileSize: 'fileSize',
     dependsOn: 'dependsOn',
     compulsory: 'compulsory',
     isDeprecated: 'isDeprecated',
@@ -28502,6 +29711,20 @@ export namespace Prisma {
   };
 
   export type ProductSubFormScalarFieldEnum = (typeof ProductSubFormScalarFieldEnum)[keyof typeof ProductSubFormScalarFieldEnum]
+
+
+  export const SubFormDependantScalarFieldEnum: {
+    id: 'id',
+    field: 'field',
+    options: 'options',
+    isDeprecated: 'isDeprecated',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    productSubFormId: 'productSubFormId',
+    serviceSubFormId: 'serviceSubFormId'
+  };
+
+  export type SubFormDependantScalarFieldEnum = (typeof SubFormDependantScalarFieldEnum)[keyof typeof SubFormDependantScalarFieldEnum]
 
 
   export const ProductRequestScalarFieldEnum: {
@@ -28546,6 +29769,7 @@ export namespace Prisma {
     fileName: 'fileName',
     fileType: 'fileType',
     fileLink: 'fileLink',
+    fileSize: 'fileSize',
     compulsory: 'compulsory',
     isDeprecated: 'isDeprecated',
     requestQAId: 'requestQAId'
@@ -29495,6 +30719,7 @@ export namespace Prisma {
     fileName?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    fileSize?: StringNullableFilter | string | null
     dependsOn?: StringNullableFilter | string | null
     allowOther?: BoolFilter | boolean
     compulsory?: BoolFilter | boolean
@@ -29503,6 +30728,7 @@ export namespace Prisma {
     isDeprecated?: BoolFilter | boolean
     formId?: StringFilter | string
     form?: XOR<ServiceFormRelationFilter, ServiceFormWhereInput>
+    dependant?: SubFormDependantListRelationFilter
   }
 
   export type ServiceSubFormOrderByWithRelationInput = {
@@ -29513,6 +30739,7 @@ export namespace Prisma {
     fileName?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
     dependsOn?: SortOrderInput | SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
@@ -29521,6 +30748,7 @@ export namespace Prisma {
     isDeprecated?: SortOrder
     formId?: SortOrder
     form?: ServiceFormOrderByWithRelationInput
+    dependant?: SubFormDependantOrderByRelationAggregateInput
   }
 
   export type ServiceSubFormWhereUniqueInput = {
@@ -29535,6 +30763,7 @@ export namespace Prisma {
     fileName?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
     dependsOn?: SortOrderInput | SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
@@ -29558,6 +30787,7 @@ export namespace Prisma {
     fileName?: StringNullableWithAggregatesFilter | string | null
     fileType?: StringNullableWithAggregatesFilter | string | null
     fileLink?: StringNullableWithAggregatesFilter | string | null
+    fileSize?: StringNullableWithAggregatesFilter | string | null
     dependsOn?: StringNullableWithAggregatesFilter | string | null
     allowOther?: BoolWithAggregatesFilter | boolean
     compulsory?: BoolWithAggregatesFilter | boolean
@@ -29753,6 +30983,7 @@ export namespace Prisma {
     fileName?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    fileSize?: StringNullableFilter | string | null
     dependsOn?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
@@ -29760,6 +30991,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter | Date | string
     formId?: StringFilter | string
     form?: XOR<ProductFormRelationFilter, ProductFormWhereInput>
+    dependant?: SubFormDependantListRelationFilter
   }
 
   export type ProductSubFormOrderByWithRelationInput = {
@@ -29771,6 +31003,7 @@ export namespace Prisma {
     fileName?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
     dependsOn?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
@@ -29778,6 +31011,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     formId?: SortOrder
     form?: ProductFormOrderByWithRelationInput
+    dependant?: SubFormDependantOrderByRelationAggregateInput
   }
 
   export type ProductSubFormWhereUniqueInput = {
@@ -29793,6 +31027,7 @@ export namespace Prisma {
     fileName?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
     dependsOn?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
@@ -29816,12 +31051,74 @@ export namespace Prisma {
     fileName?: StringNullableWithAggregatesFilter | string | null
     fileType?: StringNullableWithAggregatesFilter | string | null
     fileLink?: StringNullableWithAggregatesFilter | string | null
+    fileSize?: StringNullableWithAggregatesFilter | string | null
     dependsOn?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     isDeprecated?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
     formId?: StringWithAggregatesFilter | string
+  }
+
+  export type SubFormDependantWhereInput = {
+    AND?: Enumerable<SubFormDependantWhereInput>
+    OR?: Enumerable<SubFormDependantWhereInput>
+    NOT?: Enumerable<SubFormDependantWhereInput>
+    id?: StringFilter | string
+    field?: StringNullableFilter | string | null
+    options?: StringNullableListFilter
+    isDeprecated?: BoolFilter | boolean
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+    productSubFormId?: StringNullableFilter | string | null
+    serviceSubFormId?: StringNullableFilter | string | null
+    productSubForm?: XOR<ProductSubFormRelationFilter, ProductSubFormWhereInput> | null
+    serviceSubForm?: XOR<ServiceSubFormRelationFilter, ServiceSubFormWhereInput> | null
+  }
+
+  export type SubFormDependantOrderByWithRelationInput = {
+    id?: SortOrder
+    field?: SortOrderInput | SortOrder
+    options?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    productSubFormId?: SortOrderInput | SortOrder
+    serviceSubFormId?: SortOrderInput | SortOrder
+    productSubForm?: ProductSubFormOrderByWithRelationInput
+    serviceSubForm?: ServiceSubFormOrderByWithRelationInput
+  }
+
+  export type SubFormDependantWhereUniqueInput = {
+    id?: string
+  }
+
+  export type SubFormDependantOrderByWithAggregationInput = {
+    id?: SortOrder
+    field?: SortOrderInput | SortOrder
+    options?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    productSubFormId?: SortOrderInput | SortOrder
+    serviceSubFormId?: SortOrderInput | SortOrder
+    _count?: SubFormDependantCountOrderByAggregateInput
+    _max?: SubFormDependantMaxOrderByAggregateInput
+    _min?: SubFormDependantMinOrderByAggregateInput
+  }
+
+  export type SubFormDependantScalarWhereWithAggregatesInput = {
+    AND?: Enumerable<SubFormDependantScalarWhereWithAggregatesInput>
+    OR?: Enumerable<SubFormDependantScalarWhereWithAggregatesInput>
+    NOT?: Enumerable<SubFormDependantScalarWhereWithAggregatesInput>
+    id?: StringWithAggregatesFilter | string
+    field?: StringNullableWithAggregatesFilter | string | null
+    options?: StringNullableListFilter
+    isDeprecated?: BoolWithAggregatesFilter | boolean
+    createdAt?: DateTimeWithAggregatesFilter | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    productSubFormId?: StringNullableWithAggregatesFilter | string | null
+    serviceSubFormId?: StringNullableWithAggregatesFilter | string | null
   }
 
   export type ProductRequestWhereInput = {
@@ -29987,6 +31284,7 @@ export namespace Prisma {
     fileName?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    fileSize?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
     requestQAId?: StringFilter | string
@@ -30001,6 +31299,7 @@ export namespace Prisma {
     fileName?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -30019,6 +31318,7 @@ export namespace Prisma {
     fileName?: SortOrderInput | SortOrder
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -30038,6 +31338,7 @@ export namespace Prisma {
     fileName?: StringNullableWithAggregatesFilter | string | null
     fileType?: StringNullableWithAggregatesFilter | string | null
     fileLink?: StringNullableWithAggregatesFilter | string | null
+    fileSize?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     isDeprecated?: BoolWithAggregatesFilter | boolean
     requestQAId?: StringWithAggregatesFilter | string
@@ -31564,6 +32865,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     allowOther?: boolean
     compulsory?: boolean
@@ -31571,6 +32873,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isDeprecated?: boolean
     form: ServiceFormCreateNestedOneWithoutSubFormInput
+    dependant?: SubFormDependantCreateNestedManyWithoutServiceSubFormInput
   }
 
   export type ServiceSubFormUncheckedCreateInput = {
@@ -31581,6 +32884,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     allowOther?: boolean
     compulsory?: boolean
@@ -31588,6 +32892,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isDeprecated?: boolean
     formId: string
+    dependant?: SubFormDependantUncheckedCreateNestedManyWithoutServiceSubFormInput
   }
 
   export type ServiceSubFormUpdateInput = {
@@ -31598,6 +32903,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -31605,6 +32911,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     form?: ServiceFormUpdateOneRequiredWithoutSubFormNestedInput
+    dependant?: SubFormDependantUpdateManyWithoutServiceSubFormNestedInput
   }
 
   export type ServiceSubFormUncheckedUpdateInput = {
@@ -31615,6 +32922,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -31622,6 +32930,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     formId?: StringFieldUpdateOperationsInput | string
+    dependant?: SubFormDependantUncheckedUpdateManyWithoutServiceSubFormNestedInput
   }
 
   export type ServiceSubFormCreateManyInput = {
@@ -31632,6 +32941,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     allowOther?: boolean
     compulsory?: boolean
@@ -31649,6 +32959,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -31665,6 +32976,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
@@ -31931,12 +33243,14 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     form: ProductFormCreateNestedOneWithoutProductSubFormInput
+    dependant?: SubFormDependantCreateNestedManyWithoutProductSubFormInput
   }
 
   export type ProductSubFormUncheckedCreateInput = {
@@ -31948,12 +33262,14 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     formId: string
+    dependant?: SubFormDependantUncheckedCreateNestedManyWithoutProductSubFormInput
   }
 
   export type ProductSubFormUpdateInput = {
@@ -31965,12 +33281,14 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     form?: ProductFormUpdateOneRequiredWithoutProductSubFormNestedInput
+    dependant?: SubFormDependantUpdateManyWithoutProductSubFormNestedInput
   }
 
   export type ProductSubFormUncheckedUpdateInput = {
@@ -31982,12 +33300,14 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     formId?: StringFieldUpdateOperationsInput | string
+    dependant?: SubFormDependantUncheckedUpdateManyWithoutProductSubFormNestedInput
   }
 
   export type ProductSubFormCreateManyInput = {
@@ -31999,6 +33319,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
@@ -32016,6 +33337,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
@@ -32032,12 +33354,88 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     formId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubFormDependantCreateInput = {
+    id?: string
+    field?: string | null
+    options?: SubFormDependantCreateoptionsInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    productSubForm?: ProductSubFormCreateNestedOneWithoutDependantInput
+    serviceSubForm?: ServiceSubFormCreateNestedOneWithoutDependantInput
+  }
+
+  export type SubFormDependantUncheckedCreateInput = {
+    id?: string
+    field?: string | null
+    options?: SubFormDependantCreateoptionsInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    productSubFormId?: string | null
+    serviceSubFormId?: string | null
+  }
+
+  export type SubFormDependantUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    field?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: SubFormDependantUpdateoptionsInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productSubForm?: ProductSubFormUpdateOneWithoutDependantNestedInput
+    serviceSubForm?: ServiceSubFormUpdateOneWithoutDependantNestedInput
+  }
+
+  export type SubFormDependantUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    field?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: SubFormDependantUpdateoptionsInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productSubFormId?: NullableStringFieldUpdateOperationsInput | string | null
+    serviceSubFormId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SubFormDependantCreateManyInput = {
+    id?: string
+    field?: string | null
+    options?: SubFormDependantCreateoptionsInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    productSubFormId?: string | null
+    serviceSubFormId?: string | null
+  }
+
+  export type SubFormDependantUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    field?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: SubFormDependantUpdateoptionsInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubFormDependantUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    field?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: SubFormDependantUpdateoptionsInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productSubFormId?: NullableStringFieldUpdateOperationsInput | string | null
+    serviceSubFormId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProductRequestCreateInput = {
@@ -32257,6 +33655,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     requestQA: ProductRequestQACreateNestedOneWithoutSubFormInput
@@ -32270,6 +33669,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     requestQAId: string
@@ -32283,6 +33683,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     requestQA?: ProductRequestQAUpdateOneRequiredWithoutSubFormNestedInput
@@ -32296,6 +33697,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     requestQAId?: StringFieldUpdateOperationsInput | string
@@ -32309,6 +33711,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     requestQAId: string
@@ -32322,6 +33725,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -32334,6 +33738,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     requestQAId?: StringFieldUpdateOperationsInput | string
@@ -33536,6 +34941,16 @@ export namespace Prisma {
     isNot?: ServiceFormWhereInput | null
   }
 
+  export type SubFormDependantListRelationFilter = {
+    every?: SubFormDependantWhereInput
+    some?: SubFormDependantWhereInput
+    none?: SubFormDependantWhereInput
+  }
+
+  export type SubFormDependantOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ServiceSubFormCountOrderByAggregateInput = {
     id?: SortOrder
     question?: SortOrder
@@ -33544,6 +34959,7 @@ export namespace Prisma {
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    fileSize?: SortOrder
     dependsOn?: SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
@@ -33560,6 +34976,7 @@ export namespace Prisma {
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    fileSize?: SortOrder
     dependsOn?: SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
@@ -33576,6 +34993,7 @@ export namespace Prisma {
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    fileSize?: SortOrder
     dependsOn?: SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
@@ -33759,6 +35177,7 @@ export namespace Prisma {
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    fileSize?: SortOrder
     dependsOn?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
@@ -33775,6 +35194,7 @@ export namespace Prisma {
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    fileSize?: SortOrder
     dependsOn?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
@@ -33791,12 +35211,54 @@ export namespace Prisma {
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    fileSize?: SortOrder
     dependsOn?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     formId?: SortOrder
+  }
+
+  export type ProductSubFormRelationFilter = {
+    is?: ProductSubFormWhereInput | null
+    isNot?: ProductSubFormWhereInput | null
+  }
+
+  export type ServiceSubFormRelationFilter = {
+    is?: ServiceSubFormWhereInput | null
+    isNot?: ServiceSubFormWhereInput | null
+  }
+
+  export type SubFormDependantCountOrderByAggregateInput = {
+    id?: SortOrder
+    field?: SortOrder
+    options?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    productSubFormId?: SortOrder
+    serviceSubFormId?: SortOrder
+  }
+
+  export type SubFormDependantMaxOrderByAggregateInput = {
+    id?: SortOrder
+    field?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    productSubFormId?: SortOrder
+    serviceSubFormId?: SortOrder
+  }
+
+  export type SubFormDependantMinOrderByAggregateInput = {
+    id?: SortOrder
+    field?: SortOrder
+    isDeprecated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    productSubFormId?: SortOrder
+    serviceSubFormId?: SortOrder
   }
 
   export type EnumProductActivityStageFilter = {
@@ -33958,6 +35420,7 @@ export namespace Prisma {
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    fileSize?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -33970,6 +35433,7 @@ export namespace Prisma {
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    fileSize?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -33982,6 +35446,7 @@ export namespace Prisma {
     fileName?: SortOrder
     fileType?: SortOrder
     fileLink?: SortOrder
+    fileSize?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     requestQAId?: SortOrder
@@ -34622,6 +36087,20 @@ export namespace Prisma {
     connect?: ServiceFormWhereUniqueInput
   }
 
+  export type SubFormDependantCreateNestedManyWithoutServiceSubFormInput = {
+    create?: XOR<Enumerable<SubFormDependantCreateWithoutServiceSubFormInput>, Enumerable<SubFormDependantUncheckedCreateWithoutServiceSubFormInput>>
+    connectOrCreate?: Enumerable<SubFormDependantCreateOrConnectWithoutServiceSubFormInput>
+    createMany?: SubFormDependantCreateManyServiceSubFormInputEnvelope
+    connect?: Enumerable<SubFormDependantWhereUniqueInput>
+  }
+
+  export type SubFormDependantUncheckedCreateNestedManyWithoutServiceSubFormInput = {
+    create?: XOR<Enumerable<SubFormDependantCreateWithoutServiceSubFormInput>, Enumerable<SubFormDependantUncheckedCreateWithoutServiceSubFormInput>>
+    connectOrCreate?: Enumerable<SubFormDependantCreateOrConnectWithoutServiceSubFormInput>
+    createMany?: SubFormDependantCreateManyServiceSubFormInputEnvelope
+    connect?: Enumerable<SubFormDependantWhereUniqueInput>
+  }
+
   export type ServiceSubFormUpdateoptionsInput = {
     set?: Enumerable<string>
     push?: string | Enumerable<string>
@@ -34633,6 +36112,34 @@ export namespace Prisma {
     upsert?: ServiceFormUpsertWithoutSubFormInput
     connect?: ServiceFormWhereUniqueInput
     update?: XOR<ServiceFormUpdateWithoutSubFormInput, ServiceFormUncheckedUpdateWithoutSubFormInput>
+  }
+
+  export type SubFormDependantUpdateManyWithoutServiceSubFormNestedInput = {
+    create?: XOR<Enumerable<SubFormDependantCreateWithoutServiceSubFormInput>, Enumerable<SubFormDependantUncheckedCreateWithoutServiceSubFormInput>>
+    connectOrCreate?: Enumerable<SubFormDependantCreateOrConnectWithoutServiceSubFormInput>
+    upsert?: Enumerable<SubFormDependantUpsertWithWhereUniqueWithoutServiceSubFormInput>
+    createMany?: SubFormDependantCreateManyServiceSubFormInputEnvelope
+    set?: Enumerable<SubFormDependantWhereUniqueInput>
+    disconnect?: Enumerable<SubFormDependantWhereUniqueInput>
+    delete?: Enumerable<SubFormDependantWhereUniqueInput>
+    connect?: Enumerable<SubFormDependantWhereUniqueInput>
+    update?: Enumerable<SubFormDependantUpdateWithWhereUniqueWithoutServiceSubFormInput>
+    updateMany?: Enumerable<SubFormDependantUpdateManyWithWhereWithoutServiceSubFormInput>
+    deleteMany?: Enumerable<SubFormDependantScalarWhereInput>
+  }
+
+  export type SubFormDependantUncheckedUpdateManyWithoutServiceSubFormNestedInput = {
+    create?: XOR<Enumerable<SubFormDependantCreateWithoutServiceSubFormInput>, Enumerable<SubFormDependantUncheckedCreateWithoutServiceSubFormInput>>
+    connectOrCreate?: Enumerable<SubFormDependantCreateOrConnectWithoutServiceSubFormInput>
+    upsert?: Enumerable<SubFormDependantUpsertWithWhereUniqueWithoutServiceSubFormInput>
+    createMany?: SubFormDependantCreateManyServiceSubFormInputEnvelope
+    set?: Enumerable<SubFormDependantWhereUniqueInput>
+    disconnect?: Enumerable<SubFormDependantWhereUniqueInput>
+    delete?: Enumerable<SubFormDependantWhereUniqueInput>
+    connect?: Enumerable<SubFormDependantWhereUniqueInput>
+    update?: Enumerable<SubFormDependantUpdateWithWhereUniqueWithoutServiceSubFormInput>
+    updateMany?: Enumerable<SubFormDependantUpdateManyWithWhereWithoutServiceSubFormInput>
+    deleteMany?: Enumerable<SubFormDependantScalarWhereInput>
   }
 
   export type ProductCreatefeatureInput = {
@@ -34816,6 +36323,20 @@ export namespace Prisma {
     connect?: ProductFormWhereUniqueInput
   }
 
+  export type SubFormDependantCreateNestedManyWithoutProductSubFormInput = {
+    create?: XOR<Enumerable<SubFormDependantCreateWithoutProductSubFormInput>, Enumerable<SubFormDependantUncheckedCreateWithoutProductSubFormInput>>
+    connectOrCreate?: Enumerable<SubFormDependantCreateOrConnectWithoutProductSubFormInput>
+    createMany?: SubFormDependantCreateManyProductSubFormInputEnvelope
+    connect?: Enumerable<SubFormDependantWhereUniqueInput>
+  }
+
+  export type SubFormDependantUncheckedCreateNestedManyWithoutProductSubFormInput = {
+    create?: XOR<Enumerable<SubFormDependantCreateWithoutProductSubFormInput>, Enumerable<SubFormDependantUncheckedCreateWithoutProductSubFormInput>>
+    connectOrCreate?: Enumerable<SubFormDependantCreateOrConnectWithoutProductSubFormInput>
+    createMany?: SubFormDependantCreateManyProductSubFormInputEnvelope
+    connect?: Enumerable<SubFormDependantWhereUniqueInput>
+  }
+
   export type ProductSubFormUpdateoptionsInput = {
     set?: Enumerable<string>
     push?: string | Enumerable<string>
@@ -34827,6 +36348,75 @@ export namespace Prisma {
     upsert?: ProductFormUpsertWithoutProductSubFormInput
     connect?: ProductFormWhereUniqueInput
     update?: XOR<ProductFormUpdateWithoutProductSubFormInput, ProductFormUncheckedUpdateWithoutProductSubFormInput>
+  }
+
+  export type SubFormDependantUpdateManyWithoutProductSubFormNestedInput = {
+    create?: XOR<Enumerable<SubFormDependantCreateWithoutProductSubFormInput>, Enumerable<SubFormDependantUncheckedCreateWithoutProductSubFormInput>>
+    connectOrCreate?: Enumerable<SubFormDependantCreateOrConnectWithoutProductSubFormInput>
+    upsert?: Enumerable<SubFormDependantUpsertWithWhereUniqueWithoutProductSubFormInput>
+    createMany?: SubFormDependantCreateManyProductSubFormInputEnvelope
+    set?: Enumerable<SubFormDependantWhereUniqueInput>
+    disconnect?: Enumerable<SubFormDependantWhereUniqueInput>
+    delete?: Enumerable<SubFormDependantWhereUniqueInput>
+    connect?: Enumerable<SubFormDependantWhereUniqueInput>
+    update?: Enumerable<SubFormDependantUpdateWithWhereUniqueWithoutProductSubFormInput>
+    updateMany?: Enumerable<SubFormDependantUpdateManyWithWhereWithoutProductSubFormInput>
+    deleteMany?: Enumerable<SubFormDependantScalarWhereInput>
+  }
+
+  export type SubFormDependantUncheckedUpdateManyWithoutProductSubFormNestedInput = {
+    create?: XOR<Enumerable<SubFormDependantCreateWithoutProductSubFormInput>, Enumerable<SubFormDependantUncheckedCreateWithoutProductSubFormInput>>
+    connectOrCreate?: Enumerable<SubFormDependantCreateOrConnectWithoutProductSubFormInput>
+    upsert?: Enumerable<SubFormDependantUpsertWithWhereUniqueWithoutProductSubFormInput>
+    createMany?: SubFormDependantCreateManyProductSubFormInputEnvelope
+    set?: Enumerable<SubFormDependantWhereUniqueInput>
+    disconnect?: Enumerable<SubFormDependantWhereUniqueInput>
+    delete?: Enumerable<SubFormDependantWhereUniqueInput>
+    connect?: Enumerable<SubFormDependantWhereUniqueInput>
+    update?: Enumerable<SubFormDependantUpdateWithWhereUniqueWithoutProductSubFormInput>
+    updateMany?: Enumerable<SubFormDependantUpdateManyWithWhereWithoutProductSubFormInput>
+    deleteMany?: Enumerable<SubFormDependantScalarWhereInput>
+  }
+
+  export type SubFormDependantCreateoptionsInput = {
+    set: Enumerable<string>
+  }
+
+  export type ProductSubFormCreateNestedOneWithoutDependantInput = {
+    create?: XOR<ProductSubFormCreateWithoutDependantInput, ProductSubFormUncheckedCreateWithoutDependantInput>
+    connectOrCreate?: ProductSubFormCreateOrConnectWithoutDependantInput
+    connect?: ProductSubFormWhereUniqueInput
+  }
+
+  export type ServiceSubFormCreateNestedOneWithoutDependantInput = {
+    create?: XOR<ServiceSubFormCreateWithoutDependantInput, ServiceSubFormUncheckedCreateWithoutDependantInput>
+    connectOrCreate?: ServiceSubFormCreateOrConnectWithoutDependantInput
+    connect?: ServiceSubFormWhereUniqueInput
+  }
+
+  export type SubFormDependantUpdateoptionsInput = {
+    set?: Enumerable<string>
+    push?: string | Enumerable<string>
+  }
+
+  export type ProductSubFormUpdateOneWithoutDependantNestedInput = {
+    create?: XOR<ProductSubFormCreateWithoutDependantInput, ProductSubFormUncheckedCreateWithoutDependantInput>
+    connectOrCreate?: ProductSubFormCreateOrConnectWithoutDependantInput
+    upsert?: ProductSubFormUpsertWithoutDependantInput
+    disconnect?: boolean
+    delete?: boolean
+    connect?: ProductSubFormWhereUniqueInput
+    update?: XOR<ProductSubFormUpdateWithoutDependantInput, ProductSubFormUncheckedUpdateWithoutDependantInput>
+  }
+
+  export type ServiceSubFormUpdateOneWithoutDependantNestedInput = {
+    create?: XOR<ServiceSubFormCreateWithoutDependantInput, ServiceSubFormUncheckedCreateWithoutDependantInput>
+    connectOrCreate?: ServiceSubFormCreateOrConnectWithoutDependantInput
+    upsert?: ServiceSubFormUpsertWithoutDependantInput
+    disconnect?: boolean
+    delete?: boolean
+    connect?: ServiceSubFormWhereUniqueInput
+    update?: XOR<ServiceSubFormUpdateWithoutDependantInput, ServiceSubFormUncheckedUpdateWithoutDependantInput>
   }
 
   export type TeamCreateNestedManyWithoutProductRequestInput = {
@@ -36110,12 +37700,14 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
+    dependant?: SubFormDependantCreateNestedManyWithoutServiceSubFormInput
   }
 
   export type ServiceSubFormUncheckedCreateWithoutFormInput = {
@@ -36126,12 +37718,14 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     isDeprecated?: boolean
+    dependant?: SubFormDependantUncheckedCreateNestedManyWithoutServiceSubFormInput
   }
 
   export type ServiceSubFormCreateOrConnectWithoutFormInput = {
@@ -36196,6 +37790,7 @@ export namespace Prisma {
     fileName?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    fileSize?: StringNullableFilter | string | null
     dependsOn?: StringNullableFilter | string | null
     allowOther?: BoolFilter | boolean
     compulsory?: BoolFilter | boolean
@@ -36234,6 +37829,36 @@ export namespace Prisma {
     create: XOR<ServiceFormCreateWithoutSubFormInput, ServiceFormUncheckedCreateWithoutSubFormInput>
   }
 
+  export type SubFormDependantCreateWithoutServiceSubFormInput = {
+    id?: string
+    field?: string | null
+    options?: SubFormDependantCreateoptionsInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    productSubForm?: ProductSubFormCreateNestedOneWithoutDependantInput
+  }
+
+  export type SubFormDependantUncheckedCreateWithoutServiceSubFormInput = {
+    id?: string
+    field?: string | null
+    options?: SubFormDependantCreateoptionsInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    productSubFormId?: string | null
+  }
+
+  export type SubFormDependantCreateOrConnectWithoutServiceSubFormInput = {
+    where: SubFormDependantWhereUniqueInput
+    create: XOR<SubFormDependantCreateWithoutServiceSubFormInput, SubFormDependantUncheckedCreateWithoutServiceSubFormInput>
+  }
+
+  export type SubFormDependantCreateManyServiceSubFormInputEnvelope = {
+    data: Enumerable<SubFormDependantCreateManyServiceSubFormInput>
+    skipDuplicates?: boolean
+  }
+
   export type ServiceFormUpsertWithoutSubFormInput = {
     update: XOR<ServiceFormUpdateWithoutSubFormInput, ServiceFormUncheckedUpdateWithoutSubFormInput>
     create: XOR<ServiceFormCreateWithoutSubFormInput, ServiceFormUncheckedCreateWithoutSubFormInput>
@@ -36261,6 +37886,36 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     serviceId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubFormDependantUpsertWithWhereUniqueWithoutServiceSubFormInput = {
+    where: SubFormDependantWhereUniqueInput
+    update: XOR<SubFormDependantUpdateWithoutServiceSubFormInput, SubFormDependantUncheckedUpdateWithoutServiceSubFormInput>
+    create: XOR<SubFormDependantCreateWithoutServiceSubFormInput, SubFormDependantUncheckedCreateWithoutServiceSubFormInput>
+  }
+
+  export type SubFormDependantUpdateWithWhereUniqueWithoutServiceSubFormInput = {
+    where: SubFormDependantWhereUniqueInput
+    data: XOR<SubFormDependantUpdateWithoutServiceSubFormInput, SubFormDependantUncheckedUpdateWithoutServiceSubFormInput>
+  }
+
+  export type SubFormDependantUpdateManyWithWhereWithoutServiceSubFormInput = {
+    where: SubFormDependantScalarWhereInput
+    data: XOR<SubFormDependantUpdateManyMutationInput, SubFormDependantUncheckedUpdateManyWithoutDependantInput>
+  }
+
+  export type SubFormDependantScalarWhereInput = {
+    AND?: Enumerable<SubFormDependantScalarWhereInput>
+    OR?: Enumerable<SubFormDependantScalarWhereInput>
+    NOT?: Enumerable<SubFormDependantScalarWhereInput>
+    id?: StringFilter | string
+    field?: StringNullableFilter | string | null
+    options?: StringNullableListFilter
+    isDeprecated?: BoolFilter | boolean
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+    productSubFormId?: StringNullableFilter | string | null
+    serviceSubFormId?: StringNullableFilter | string | null
   }
 
   export type ServiceCreateWithoutProductsInput = {
@@ -36498,11 +38153,13 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    dependant?: SubFormDependantCreateNestedManyWithoutProductSubFormInput
   }
 
   export type ProductSubFormUncheckedCreateWithoutFormInput = {
@@ -36514,11 +38171,13 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    dependant?: SubFormDependantUncheckedCreateNestedManyWithoutProductSubFormInput
   }
 
   export type ProductSubFormCreateOrConnectWithoutFormInput = {
@@ -36610,6 +38269,7 @@ export namespace Prisma {
     fileName?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    fileSize?: StringNullableFilter | string | null
     dependsOn?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
@@ -36647,6 +38307,36 @@ export namespace Prisma {
     create: XOR<ProductFormCreateWithoutProductSubFormInput, ProductFormUncheckedCreateWithoutProductSubFormInput>
   }
 
+  export type SubFormDependantCreateWithoutProductSubFormInput = {
+    id?: string
+    field?: string | null
+    options?: SubFormDependantCreateoptionsInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    serviceSubForm?: ServiceSubFormCreateNestedOneWithoutDependantInput
+  }
+
+  export type SubFormDependantUncheckedCreateWithoutProductSubFormInput = {
+    id?: string
+    field?: string | null
+    options?: SubFormDependantCreateoptionsInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    serviceSubFormId?: string | null
+  }
+
+  export type SubFormDependantCreateOrConnectWithoutProductSubFormInput = {
+    where: SubFormDependantWhereUniqueInput
+    create: XOR<SubFormDependantCreateWithoutProductSubFormInput, SubFormDependantUncheckedCreateWithoutProductSubFormInput>
+  }
+
+  export type SubFormDependantCreateManyProductSubFormInputEnvelope = {
+    data: Enumerable<SubFormDependantCreateManyProductSubFormInput>
+    skipDuplicates?: boolean
+  }
+
   export type ProductFormUpsertWithoutProductSubFormInput = {
     update: XOR<ProductFormUpdateWithoutProductSubFormInput, ProductFormUncheckedUpdateWithoutProductSubFormInput>
     create: XOR<ProductFormCreateWithoutProductSubFormInput, ProductFormUncheckedCreateWithoutProductSubFormInput>
@@ -36674,6 +38364,186 @@ export namespace Prisma {
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SubFormDependantUpsertWithWhereUniqueWithoutProductSubFormInput = {
+    where: SubFormDependantWhereUniqueInput
+    update: XOR<SubFormDependantUpdateWithoutProductSubFormInput, SubFormDependantUncheckedUpdateWithoutProductSubFormInput>
+    create: XOR<SubFormDependantCreateWithoutProductSubFormInput, SubFormDependantUncheckedCreateWithoutProductSubFormInput>
+  }
+
+  export type SubFormDependantUpdateWithWhereUniqueWithoutProductSubFormInput = {
+    where: SubFormDependantWhereUniqueInput
+    data: XOR<SubFormDependantUpdateWithoutProductSubFormInput, SubFormDependantUncheckedUpdateWithoutProductSubFormInput>
+  }
+
+  export type SubFormDependantUpdateManyWithWhereWithoutProductSubFormInput = {
+    where: SubFormDependantScalarWhereInput
+    data: XOR<SubFormDependantUpdateManyMutationInput, SubFormDependantUncheckedUpdateManyWithoutDependantInput>
+  }
+
+  export type ProductSubFormCreateWithoutDependantInput = {
+    id?: string
+    question?: string | null
+    options?: ProductSubFormCreateoptionsInput | Enumerable<string>
+    type?: string | null
+    allowOther?: boolean
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    fileSize?: string | null
+    dependsOn?: string | null
+    compulsory?: boolean
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    form: ProductFormCreateNestedOneWithoutProductSubFormInput
+  }
+
+  export type ProductSubFormUncheckedCreateWithoutDependantInput = {
+    id?: string
+    question?: string | null
+    options?: ProductSubFormCreateoptionsInput | Enumerable<string>
+    type?: string | null
+    allowOther?: boolean
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    fileSize?: string | null
+    dependsOn?: string | null
+    compulsory?: boolean
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    formId: string
+  }
+
+  export type ProductSubFormCreateOrConnectWithoutDependantInput = {
+    where: ProductSubFormWhereUniqueInput
+    create: XOR<ProductSubFormCreateWithoutDependantInput, ProductSubFormUncheckedCreateWithoutDependantInput>
+  }
+
+  export type ServiceSubFormCreateWithoutDependantInput = {
+    id?: string
+    question?: string | null
+    type?: string | null
+    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    fileSize?: string | null
+    dependsOn?: string | null
+    allowOther?: boolean
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    form: ServiceFormCreateNestedOneWithoutSubFormInput
+  }
+
+  export type ServiceSubFormUncheckedCreateWithoutDependantInput = {
+    id?: string
+    question?: string | null
+    type?: string | null
+    options?: ServiceSubFormCreateoptionsInput | Enumerable<string>
+    fileName?: string | null
+    fileType?: string | null
+    fileLink?: string | null
+    fileSize?: string | null
+    dependsOn?: string | null
+    allowOther?: boolean
+    compulsory?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isDeprecated?: boolean
+    formId: string
+  }
+
+  export type ServiceSubFormCreateOrConnectWithoutDependantInput = {
+    where: ServiceSubFormWhereUniqueInput
+    create: XOR<ServiceSubFormCreateWithoutDependantInput, ServiceSubFormUncheckedCreateWithoutDependantInput>
+  }
+
+  export type ProductSubFormUpsertWithoutDependantInput = {
+    update: XOR<ProductSubFormUpdateWithoutDependantInput, ProductSubFormUncheckedUpdateWithoutDependantInput>
+    create: XOR<ProductSubFormCreateWithoutDependantInput, ProductSubFormUncheckedCreateWithoutDependantInput>
+  }
+
+  export type ProductSubFormUpdateWithoutDependantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ProductSubFormUpdateoptionsInput | Enumerable<string>
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    form?: ProductFormUpdateOneRequiredWithoutProductSubFormNestedInput
+  }
+
+  export type ProductSubFormUncheckedUpdateWithoutDependantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ProductSubFormUpdateoptionsInput | Enumerable<string>
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    formId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServiceSubFormUpsertWithoutDependantInput = {
+    update: XOR<ServiceSubFormUpdateWithoutDependantInput, ServiceSubFormUncheckedUpdateWithoutDependantInput>
+    create: XOR<ServiceSubFormCreateWithoutDependantInput, ServiceSubFormUncheckedCreateWithoutDependantInput>
+  }
+
+  export type ServiceSubFormUpdateWithoutDependantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    form?: ServiceFormUpdateOneRequiredWithoutSubFormNestedInput
+  }
+
+  export type ServiceSubFormUncheckedUpdateWithoutDependantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    question?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: ServiceSubFormUpdateoptionsInput | Enumerable<string>
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
+    allowOther?: BoolFieldUpdateOperationsInput | boolean
+    compulsory?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    formId?: StringFieldUpdateOperationsInput | string
   }
 
   export type TeamCreateWithoutProductRequestInput = {
@@ -37146,6 +39016,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
   }
@@ -37158,6 +39029,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
   }
@@ -37238,6 +39110,7 @@ export namespace Prisma {
     fileName?: StringNullableFilter | string | null
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
+    fileSize?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
     requestQAId?: StringFilter | string
@@ -38148,6 +40021,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     allowOther?: boolean
     compulsory?: boolean
@@ -38164,12 +40038,14 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    dependant?: SubFormDependantUpdateManyWithoutServiceSubFormNestedInput
   }
 
   export type ServiceSubFormUncheckedUpdateWithoutFormInput = {
@@ -38180,12 +40056,14 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    dependant?: SubFormDependantUncheckedUpdateManyWithoutServiceSubFormNestedInput
   }
 
   export type ServiceSubFormUncheckedUpdateManyWithoutSubFormInput = {
@@ -38196,12 +40074,53 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SubFormDependantCreateManyServiceSubFormInput = {
+    id?: string
+    field?: string | null
+    options?: SubFormDependantCreateoptionsInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    productSubFormId?: string | null
+  }
+
+  export type SubFormDependantUpdateWithoutServiceSubFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    field?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: SubFormDependantUpdateoptionsInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productSubForm?: ProductSubFormUpdateOneWithoutDependantNestedInput
+  }
+
+  export type SubFormDependantUncheckedUpdateWithoutServiceSubFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    field?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: SubFormDependantUpdateoptionsInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productSubFormId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SubFormDependantUncheckedUpdateManyWithoutDependantInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    field?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: SubFormDependantUpdateoptionsInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productSubFormId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProductRequestCreateManyProductInput = {
@@ -38321,6 +40240,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     dependsOn?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
@@ -38337,11 +40257,13 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dependant?: SubFormDependantUpdateManyWithoutProductSubFormNestedInput
   }
 
   export type ProductSubFormUncheckedUpdateWithoutFormInput = {
@@ -38353,11 +40275,13 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dependant?: SubFormDependantUncheckedUpdateManyWithoutProductSubFormNestedInput
   }
 
   export type ProductSubFormUncheckedUpdateManyWithoutProductSubFormInput = {
@@ -38369,11 +40293,42 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependsOn?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SubFormDependantCreateManyProductSubFormInput = {
+    id?: string
+    field?: string | null
+    options?: SubFormDependantCreateoptionsInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    serviceSubFormId?: string | null
+  }
+
+  export type SubFormDependantUpdateWithoutProductSubFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    field?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: SubFormDependantUpdateoptionsInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serviceSubForm?: ServiceSubFormUpdateOneWithoutDependantNestedInput
+  }
+
+  export type SubFormDependantUncheckedUpdateWithoutProductSubFormInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    field?: NullableStringFieldUpdateOperationsInput | string | null
+    options?: SubFormDependantUpdateoptionsInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serviceSubFormId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TeamCreateManyProductRequestInput = {
@@ -38522,6 +40477,7 @@ export namespace Prisma {
     fileName?: string | null
     fileType?: string | null
     fileLink?: string | null
+    fileSize?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
   }
@@ -38534,6 +40490,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -38546,6 +40503,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -38558,6 +40516,7 @@ export namespace Prisma {
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
   }

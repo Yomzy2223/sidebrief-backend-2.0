@@ -277,6 +277,7 @@ const createProductRequestQA = async (
         compulsory: data.compulsory,
         fileName: data?.file?.name,
         fileLink: data?.file?.link,
+        fileSize: data?.file?.size,
         fileType: data?.file?.type,
         requestQAId: createproductRequestFormData.id,
       })

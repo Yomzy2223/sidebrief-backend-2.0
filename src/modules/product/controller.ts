@@ -20,7 +20,11 @@ import {
   trashedProduct,
   trashedProductForm,
 } from "./service";
-import { ProductSubFormPayload, UpdateProductSubFormPayload } from "./entities";
+import {
+  Dependant,
+  ProductSubFormPayload,
+  UpdateProductSubFormPayload,
+} from "./entities";
 
 // create a new product service
 const ProductCreator = async (
@@ -306,12 +310,14 @@ const ProductSubFormCreator = async (
       compulsory: serviceCategoryPayload?.compulsory,
       fileName: serviceCategoryPayload?.fileName,
       allowOther: serviceCategoryPayload?.allowOther,
-      dependsOn: serviceCategoryPayload?.dependsOn,
       fileLink: serviceCategoryPayload?.fileLink,
       fileType: serviceCategoryPayload?.fileType,
+      fileSize: serviceCategoryPayload?.fileSize,
       formId: formId,
     };
-    const service = await saveProductSubForm(values, formId);
+
+    const dependantValue: Dependant[] = serviceCategoryPayload?.dependsOn;
+    const service = await saveProductSubForm(values, dependantValue, formId);
 
     return res.status(service.statusCode).json(service);
   } catch (error) {
@@ -358,9 +364,9 @@ const ProductSubFormModifier = async (
       compulsory: serviceCategoryPayload?.compulsory,
       fileName: serviceCategoryPayload?.fileName,
       fileLink: serviceCategoryPayload?.fileLink,
+      fileSize: serviceCategoryPayload?.fileSize,
       fileType: serviceCategoryPayload?.fileType,
       allowOther: serviceCategoryPayload?.allowOther,
-      dependsOn: serviceCategoryPayload?.dependsOn,
     };
     const category = await updateProductSubForm(values, subFormId);
 

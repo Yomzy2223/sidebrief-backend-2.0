@@ -7460,3 +7460,80 @@ Invalid `prisma.productRequestQA.findMany()` invocation in
 Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
 
 Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/form/0ceaa01d-e7b0-4c6e-bd3a-9b4a7a47ccfe was called
+error: Label: 28-Feb-2024 16:33:05: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.subFormDependant.createMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:431:60
+
+  428   productSubFormId: serviceSubForm.id,
+  429 }));
+  430 
+→ 431 const subFormDependant = await prisma.subFormDependant.createMany(
+Foreign key constraint failed on the field: `SubFormDependant_productSubFormId_fkey (index)` occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:34:22: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:400:51
+
+  397 //   //add the new service category to the table
+  398 
+  399 try {
+→ 400   const checkService = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:34:37: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:400:51
+
+  397 //   //add the new service category to the table
+  398 
+  399 try {
+→ 400   const checkService = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:34:48: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:400:51
+
+  397 //   //add the new service category to the table
+  398 
+  399 try {
+→ 400   const checkService = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:34:56: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:400:51
+
+  397 //   //add the new service category to the table
+  398 
+  399 try {
+→ 400   const checkService = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:35:05: Service form with this title already exists with error Error: Service form with this title already exists occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:35:20: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.subFormDependant.createMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:431:60
+
+  428   productSubFormId: serviceSubForm.id,
+  429 }));
+  430 console.log(dependantValue);
+→ 431 const subFormDependant = await prisma.subFormDependant.createMany(
+Foreign key constraint failed on the field: `SubFormDependant_productSubFormId_fkey (index)` occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:36:58: Service form with this title already exists with error Error: Service form with this title already exists occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+info: Label: 28-Feb-2024 16:37:06: service sub form created successfully
+error: Label: 28-Feb-2024 16:38:24: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/product/service.ts:64:42
+
+  61 //  get the product service  list from the table
+  62 //  return the product service list to the product service controller
+  63 try {
+→ 64   const service = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /products was called
+info: Label: 28-Feb-2024 16:39:32: Product sub form created successfully

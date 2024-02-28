@@ -9,6 +9,7 @@ import {
   SubFormPayload,
   UpdateProductFormPayload,
   UpdateProductSubFormPayload,
+  Dependant,
 } from "./entities";
 
 import { PrismaClient } from "../../../prisma/generated/main";
@@ -484,6 +485,7 @@ const removeProductForm = async (id: string) => {
 //create product sub form product
 const saveProductSubForm = async (
   productCategoryPayload: ProductSubFormPayload,
+  dependsOn: Dependant[],
   formId: string
 ): Promise<ProductSubFormResponse> => {
   //   //add the new service category to the table
@@ -508,21 +510,47 @@ const saveProductSubForm = async (
       );
     }
 
-    const categoryForm = await prisma.productSubForm.create({
+    const productSubForm = await prisma.productSubForm.create({
       data: productCategoryPayload,
     });
-    if (!categoryForm) {
+    if (!productSubForm) {
       throw new BadRequest(
         "Error occured while creating this Product sub form"
       );
     }
+    const dependantValue = dependsOn?.map((data: Dependant) => ({
+      field: data?.field,
+      options: data?.options,
+      productSubFormId: productSubForm.id,
+    }));
 
+    const subFormDependant = await prisma.subFormDependant.createMany({
+      data: dependantValue,
+      skipDuplicates: true,
+    });
+    if (!subFormDependant) {
+      throw new BadRequest("Error occured while saving dependants");
+    }
     logger.info({
       message: `Product sub form created successfully`,
     });
+
+    const subForm = await prisma.productSubForm.findUnique({
+      where: {
+        id: productSubForm.id,
+      },
+      include: {
+        dependant: true,
+      },
+    });
+
+    if (!subForm) {
+      throw new BadRequest("Error occured while getting Product Sub Form");
+    }
+
     const response: ProductSubFormResponse = {
       message: "Product sub form created successfully",
-      data: categoryForm,
+      data: subForm,
       statusCode: 200,
     };
     return response;

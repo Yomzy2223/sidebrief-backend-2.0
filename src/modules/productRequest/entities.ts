@@ -22,6 +22,7 @@ export interface FileData {
   name: string;
   link: string;
   type: string;
+  size: string;
 }
 
 export interface ProfileData {
