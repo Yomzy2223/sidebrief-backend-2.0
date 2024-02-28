@@ -1,4 +1,5 @@
 import {
+  Dependant,
   ServiceFormPayload,
   ServiceFormResponse,
   ServicePayload,
@@ -12,7 +13,7 @@ import {
 import { PrismaClient } from "../../../prisma/generated/main";
 import logger from "../../config/logger";
 const prisma = new PrismaClient();
-import { BadRequest } from "../../utils/requestErrors";
+import { BadRequest, NotFound } from "../../utils/requestErrors";
 
 //create service category service
 const saveService = async (
@@ -390,6 +391,7 @@ const removeServiceForm = async (id: string) => {
 //create service category service
 const saveServiceSubForm = async (
   servicePayload: ServiceSubFormPayload,
+  dependsOn: Dependant[],
   formId: string
 ): Promise<ServiceSubFormResponse> => {
   //   //add the new service category to the table
@@ -412,21 +414,47 @@ const saveServiceSubForm = async (
       throw new BadRequest("Service form with this title already exists");
     }
 
-    const categoryForm = await prisma.serviceSubForm.create({
+    const serviceSubForm = await prisma.serviceSubForm.create({
       data: servicePayload,
     });
-    if (!categoryForm) {
+    if (!serviceSubForm) {
       throw new BadRequest(
         "Error occured while creating this service sub form"
       );
+    }
+    const dependantValue = dependsOn?.map((data: Dependant) => ({
+      field: data?.field,
+      options: data?.options,
+      serviceSubFormId: serviceSubForm.id,
+    }));
+    const subFormDependant = await prisma.subFormDependant.createMany({
+      data: dependantValue,
+      skipDuplicates: true,
+    });
+    if (!subFormDependant) {
+      throw new BadRequest("Error occured while saving dependants");
     }
 
     logger.info({
       message: `service sub form created successfully`,
     });
+
+    const subForm = await prisma.serviceSubForm.findUnique({
+      where: {
+        id: serviceSubForm.id,
+      },
+      include: {
+        dependant: true,
+      },
+    });
+
+    if (!subForm) {
+      throw new NotFound("Error occured while getting service sub form");
+    }
+
     const response: ServiceSubFormResponse = {
       message: "Service sub form created successfully",
-      data: categoryForm,
+      data: subForm,
       statusCode: 200,
     };
     return response;

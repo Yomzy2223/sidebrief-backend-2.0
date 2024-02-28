@@ -683,9 +683,28 @@ const options: OpenAPIDefinition = {
               type: "string",
               description: "type of the file",
             },
-            dependsOn: {
+            fileSize: {
               type: "string",
-              description: "depends on ?",
+              description: "size of the file",
+            },
+            dependsOn: {
+              require: ["field", "options"],
+              type: "array",
+              description: "The question of the profile selected",
+              items: {
+                type: "object",
+                require: ["question", "answer", "type", "compulsory"],
+                properties: {
+                  field: {
+                    type: "string",
+                    description: "field name",
+                  },
+                  options: {
+                    type: "array",
+                    description: "option",
+                  },
+                },
+              },
             },
           },
         },
@@ -720,12 +739,31 @@ const options: OpenAPIDefinition = {
               description: "allow other answer",
             },
             dependsOn: {
-              type: "string",
-              description: "depends on?",
+              type: "array",
+              description: "The question of the profile selected",
+              require: ["field", "options"],
+              items: {
+                type: "object",
+                require: ["question", "answer", "type", "compulsory"],
+                properties: {
+                  field: {
+                    type: "string",
+                    description: "field name",
+                  },
+                  options: {
+                    type: "array",
+                    description: "option",
+                  },
+                },
+              },
             },
             fileLink: {
               type: "string",
               description: "link of the file",
+            },
+            fileSize: {
+              type: "string",
+              description: "size of the file",
             },
             fileType: {
               type: "string",
@@ -808,12 +846,16 @@ const options: OpenAPIDefinition = {
                         type: "string",
                         description: "Link to the file",
                       },
+                      size: {
+                        type: "string",
+                        description: "Size of the file",
+                      },
                       type: {
                         type: "string",
                         description: "Type of the file",
                       },
                     },
-                    require: ["name", "description", "link", "type"],
+                    require: ["name", "description", "link", "type", "size"],
                   },
                 },
               },

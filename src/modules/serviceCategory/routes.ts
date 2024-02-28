@@ -58,7 +58,7 @@ router.delete("/form/:id", staffAuth, ServiceFormRemover);
 
 router.post(
   "/subform/:formId",
-  staffAuth,
+  // staffAuth,
   // validator(validateServiceSubForm),
   ServiceSubFormCreator
 );
@@ -73,7 +73,7 @@ router.put(
 );
 router.delete("/subform/:id", staffAuth, ServiceSubFormRemover);
 
-router.get("/trashed/list", staffAuth,TrashedServicesFetcher);
-router.get("/trashed/form", staffAuth,TrashedServicesFormFetcher);
+router.get("/trashed/list", staffAuth, TrashedServicesFetcher);
+router.get("/trashed/form", staffAuth, TrashedServicesFormFetcher);
 
 export default router;

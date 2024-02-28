@@ -55,6 +55,7 @@ export interface FormData {
     name?: string;
     description?: string;
     link?: string;
+    size?: number;
     type?: string;
   };
 }
@@ -81,9 +82,13 @@ export interface ProductSubFormPayload {
   compulsory?: boolean;
   fileName?: string;
   fileType?: string;
-  dependsOn?: string;
   allowOther?: boolean;
   fileLink?: string;
+  fileSize?: string;
+}
+export interface Dependant {
+  field?: string;
+  options?: string[];
 }
 
 export interface UpdateProductSubFormPayload {
@@ -93,9 +98,9 @@ export interface UpdateProductSubFormPayload {
   compulsory?: boolean;
   fileName?: string;
   fileType?: string;
-  dependsOn?: string;
   allowOther?: boolean;
   fileLink?: string;
+  fileSize?: string;
 }
 
 export interface ProductSubFormResponseData {
@@ -109,6 +114,7 @@ export interface ProductSubFormResponseData {
   dependsOn?: string | null;
   allowOther?: boolean | null;
   fileLink?: string | null;
+  fileSize?: string | null;
 }
 
 export interface ProductSubFormResponse {

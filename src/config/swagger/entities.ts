@@ -300,8 +300,21 @@ interface ServiceCategorySubForm {
     allowOther: Props;
     fileName: Props;
     fileLink: Props;
+    fileSize: Props;
     fileType: Props;
-    dependsOn: Props;
+    dependsOn: {
+      type: string;
+      description: string;
+      require: string[];
+      items: {
+        type: string;
+        require: string[];
+        properties: {
+          field: Props;
+          options: Props;
+        };
+      };
+    };
   };
 }
 
@@ -314,9 +327,23 @@ interface ServiceSubForm {
     type: Props;
     compulsory: Props;
     fileName: Props;
-    dependsOn: Props;
+    dependsOn: {
+      type: string;
+      description: string;
+      require: string[];
+      items: {
+        type: string;
+        require: string[];
+        properties: {
+          field: Props;
+          options: Props;
+        };
+      };
+    };
+
     allowOther: Props;
     fileLink: Props;
+    fileSize: Props;
     fileType: Props;
   };
 }
@@ -364,6 +391,7 @@ interface AddProductQA {
             properties: {
               name: Props;
               link: Props;
+              size: Props;
               type: Props;
             };
           };

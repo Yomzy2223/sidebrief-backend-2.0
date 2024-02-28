@@ -19,6 +19,7 @@ import {
   trashedServiceForm,
 } from "./service";
 import {
+  Dependant,
   ServiceFormPayload,
   ServiceSubFormPayload,
   UpdateServiceFormPayload,
@@ -279,11 +280,12 @@ const ServiceSubFormCreator = async (
       fileName: servicePayload?.fileName,
       fileLink: servicePayload?.fileLink,
       fileType: servicePayload?.fileType,
+      fileSize: servicePayload?.fileSize,
       allowOther: servicePayload?.allowOther,
-      dependsOn: servicePayload?.dependsOn,
       formId: formId,
     };
-    const category = await saveServiceSubForm(values, formId);
+    const dependantValue: Dependant[] = servicePayload?.dependsOn;
+    const category = await saveServiceSubForm(values, dependantValue, formId);
 
     return res.status(category.statusCode).json(category);
   } catch (error) {
@@ -332,6 +334,7 @@ const ServiceSubFormModifier = async (
       allowOther: servicePayload?.allowOther,
       dependsOn: servicePayload?.dependsOn,
       fileLink: servicePayload?.fileLink,
+      fileSize: servicePayload?.fileSize,
       fileType: servicePayload?.fileType,
     };
     const category = await updateServiceSubForm(values, subFormId);

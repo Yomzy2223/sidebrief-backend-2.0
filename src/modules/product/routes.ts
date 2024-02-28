@@ -71,7 +71,7 @@ router.delete("/form/:id", staffAuth, ProductFormRemover);
 
 router.post(
   "/subform/:formId",
-  staffAuth,
+  // staffAuth,
 
   ProductSubFormCreator
 );
