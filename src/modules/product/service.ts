@@ -310,6 +310,9 @@ const getAllProductForm = async (): Promise<ProductFormResponse> => {
           where: {
             isDeprecated: false,
           },
+          include: {
+            dependant: true,
+          },
         },
       },
     });
@@ -383,6 +386,9 @@ const getProductFormByProduct = async (
         productSubForm: {
           where: {
             isDeprecated: false,
+          },
+          include: {
+            dependant: true,
           },
         },
       },

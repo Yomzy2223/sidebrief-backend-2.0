@@ -265,6 +265,9 @@ const getAllServiceForm = async (
           where: {
             isDeprecated: false,
           },
+          include: {
+            dependant: true,
+          },
         },
       },
     });
@@ -299,6 +302,9 @@ const getServiceForm = async (id: string): Promise<ServiceFormResponse> => {
         subForm: {
           where: {
             isDeprecated: false,
+          },
+          include: {
+            dependant: true,
           },
         },
       },
