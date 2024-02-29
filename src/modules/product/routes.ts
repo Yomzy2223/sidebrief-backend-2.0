@@ -80,7 +80,7 @@ router.get("/subform/:id", ProductSubFormFetcher);
 
 router.put(
   "/subform/:id",
-  staffAuth,
+  // staffAuth,
 
   ProductSubFormModifier
 );

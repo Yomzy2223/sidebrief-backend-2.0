@@ -313,8 +313,8 @@ const ProductSubFormCreator = async (
       fileLink: serviceCategoryPayload?.fileLink,
       fileType: serviceCategoryPayload?.fileType,
       fileSize: serviceCategoryPayload?.fileSize,
-      dependentField: serviceCategoryPayload?.dependsOn?.dependentField,
-      dependentOptions: serviceCategoryPayload?.dependsOn?.dependentOptions,
+      dependentField: serviceCategoryPayload?.dependsOn?.field,
+      dependentOptions: serviceCategoryPayload?.dependsOn?.options,
       formId: formId,
     };
 
@@ -368,9 +368,10 @@ const ProductSubFormModifier = async (
       fileSize: serviceCategoryPayload?.fileSize,
       fileType: serviceCategoryPayload?.fileType,
       allowOther: serviceCategoryPayload?.allowOther,
-      dependentField: serviceCategoryPayload?.dependsOn?.dependentField,
-      dependentOptions: serviceCategoryPayload?.dependsOn?.dependentOptions,
+      dependentField: serviceCategoryPayload?.dependsOn?.field,
+      dependentOptions: serviceCategoryPayload?.dependsOn?.options,
     };
+
     const category = await updateProductSubForm(values, subFormId);
 
     return res.status(category.statusCode).json(category);

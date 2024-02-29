@@ -282,8 +282,8 @@ const ServiceSubFormCreator = async (
       fileType: servicePayload?.fileType,
       fileSize: servicePayload?.fileSize,
       allowOther: servicePayload?.allowOther,
-      dependentField: servicePayload?.dependsOn?.dependentField,
-      dependentOptions: servicePayload?.dependsOn?.dependentOptions,
+      dependentField: servicePayload?.dependsOn?.field,
+      dependentOptions: servicePayload?.dependsOn?.options,
       formId: formId,
     };
 
@@ -326,8 +326,8 @@ const ServiceSubFormModifier = async (
     // return response to the client
 
     const subFormId = req.params.id;
-    const servicePayload: UpdateServiceSubFormPayload = req.body;
-    const values = {
+    const servicePayload = req.body;
+    const values: UpdateServiceSubFormPayload = {
       question: servicePayload?.question,
       type: servicePayload?.type,
       options: servicePayload?.options,
@@ -337,6 +337,8 @@ const ServiceSubFormModifier = async (
       fileLink: servicePayload?.fileLink,
       fileSize: servicePayload?.fileSize,
       fileType: servicePayload?.fileType,
+      dependentField: servicePayload?.dependsOn?.field,
+      dependentOptions: servicePayload?.dependsOn?.options,
     };
     const category = await updateServiceSubForm(values, subFormId);
 

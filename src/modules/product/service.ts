@@ -295,7 +295,7 @@ const getAllProductForm = async (): Promise<ProductFormResponse> => {
   //  get the product form  list from the table
   //  return the product form list to the product form controller
   try {
-    const service = await prisma.productForm.findMany({
+    const productForm = await prisma.productForm.findMany({
       where: {
         isDeprecated: false,
         product: {
@@ -313,16 +313,41 @@ const getAllProductForm = async (): Promise<ProductFormResponse> => {
         },
       },
     });
-    if (!service) {
+    if (!productForm) {
       return {
         message: "Empty Data",
         statusCode: 200,
         data: [],
       };
     }
+
+    const modifiedData = productForm.map((item) => ({
+      ...item,
+      productSubForm: item.productSubForm.map((subForm) => ({
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      })),
+    }));
+
     const response: ProductFormResponse = {
       message: "Product forms fetched successfully",
-      data: service,
+      data: modifiedData,
       statusCode: 200,
     };
 
@@ -338,19 +363,50 @@ const getProductForm = async (id: string): Promise<ProductFormResponse> => {
   // return the product form to the product form controller
 
   try {
-    const serviceForm = await prisma.productForm.findUnique({
+    const productForm = await prisma.productForm.findUnique({
       where: {
         id: id,
       },
+      include: {
+        productSubForm: {
+          where: {
+            isDeprecated: false,
+          },
+        },
+      },
     });
 
-    if (!serviceForm) {
+    if (!productForm) {
       throw new BadRequest("Product form not found!.");
     }
 
+    const modifiedData = {
+      ...productForm,
+      productSubForm: productForm.productSubForm.map((subForm) => ({
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      })),
+    };
+
     const response: ProductFormResponse = {
       message: "Product form fetched successfully",
-      data: serviceForm,
+      data: modifiedData,
       statusCode: 200,
     };
     return response;
@@ -703,7 +759,6 @@ const updateProductSubForm = async (
       },
       data: serviceCategorySubFormPayload,
     });
-
     if (!subForm) {
       throw new BadRequest("Error occured while updating product sub form!.");
     }
