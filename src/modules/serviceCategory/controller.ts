@@ -282,10 +282,12 @@ const ServiceSubFormCreator = async (
       fileType: servicePayload?.fileType,
       fileSize: servicePayload?.fileSize,
       allowOther: servicePayload?.allowOther,
+      dependentField: servicePayload?.dependsOn?.dependentField,
+      dependentOptions: servicePayload?.dependsOn?.dependentOptions,
       formId: formId,
     };
-    const dependantValue: Dependant[] = servicePayload?.dependsOn;
-    const category = await saveServiceSubForm(values, dependantValue, formId);
+
+    const category = await saveServiceSubForm(values, formId);
 
     return res.status(category.statusCode).json(category);
   } catch (error) {

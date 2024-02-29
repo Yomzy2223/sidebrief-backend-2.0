@@ -85,6 +85,8 @@ export interface ProductSubFormPayload {
   allowOther?: boolean;
   fileLink?: string;
   fileSize?: string;
+  dependentField?: string;
+  dependentOptions?: string[];
 }
 export interface Dependant {
   field?: string;
@@ -101,20 +103,29 @@ export interface UpdateProductSubFormPayload {
   allowOther?: boolean;
   fileLink?: string;
   fileSize?: string;
+  dependentField: string;
+  dependentOptions: string[];
 }
 
 export interface ProductSubFormResponseData {
-  question?: string | null;
-  type?: string | null;
-  options?: string[];
-  formId: string;
-  compulsory?: boolean;
-  fileName?: string | null;
-  fileType?: string | null;
-  dependsOn?: any[];
-  allowOther?: boolean | null;
-  fileLink?: string | null;
-  fileSize?: string | null;
+  id: string;
+  question: string | null;
+  type: string | null;
+  options: string[];
+  formId: string | null;
+  compulsory: Boolean;
+  fileName: string | null;
+  fileLink: string | null;
+  fileType: string | null;
+  fileSize: string | null;
+  allowOther: Boolean;
+  dependsOn: {
+    field: string | null;
+    options: string[];
+  };
+  createdAt: Date | null;
+  updatedAt: Date | null;
+  isDeprecated: boolean;
 }
 
 export interface ProductSubFormResponse {

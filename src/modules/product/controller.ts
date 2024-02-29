@@ -313,11 +313,12 @@ const ProductSubFormCreator = async (
       fileLink: serviceCategoryPayload?.fileLink,
       fileType: serviceCategoryPayload?.fileType,
       fileSize: serviceCategoryPayload?.fileSize,
+      dependentField: serviceCategoryPayload?.dependsOn?.dependentField,
+      dependentOptions: serviceCategoryPayload?.dependsOn?.dependentOptions,
       formId: formId,
     };
 
-    const dependantValue: Dependant[] = serviceCategoryPayload?.dependsOn;
-    const service = await saveProductSubForm(values, dependantValue, formId);
+    const service = await saveProductSubForm(values, formId);
 
     return res.status(service.statusCode).json(service);
   } catch (error) {
@@ -356,8 +357,8 @@ const ProductSubFormModifier = async (
     // return response to the client
 
     const subFormId = req.params.id;
-    const serviceCategoryPayload: UpdateProductSubFormPayload = req.body;
-    const values = {
+    const serviceCategoryPayload = req.body;
+    const values: UpdateProductSubFormPayload = {
       question: serviceCategoryPayload?.question,
       type: serviceCategoryPayload?.type,
       options: serviceCategoryPayload?.options,
@@ -367,6 +368,8 @@ const ProductSubFormModifier = async (
       fileSize: serviceCategoryPayload?.fileSize,
       fileType: serviceCategoryPayload?.fileType,
       allowOther: serviceCategoryPayload?.allowOther,
+      dependentField: serviceCategoryPayload?.dependsOn?.dependentField,
+      dependentOptions: serviceCategoryPayload?.dependsOn?.dependentOptions,
     };
     const category = await updateProductSubForm(values, subFormId);
 

@@ -4,6 +4,7 @@ import {
   ServiceFormResponse,
   ServicePayload,
   ServiceResponse,
+  ServiceSubFormData,
   ServiceSubFormPayload,
   ServiceSubFormResponse,
   UpdateServiceFormPayload,
@@ -252,7 +253,7 @@ const getAllServiceForm = async (
   //  get the service category list from the table
   //  return the service category list to the service category controller
   try {
-    const category = await prisma.serviceForm.findMany({
+    const serviceForm = await prisma.serviceForm.findMany({
       where: {
         serviceId: serviceId,
         isDeprecated: false,
@@ -265,22 +266,44 @@ const getAllServiceForm = async (
           where: {
             isDeprecated: false,
           },
-          include: {
-            dependsOn: true,
-          },
         },
       },
     });
-    if (!category) {
+    if (!serviceForm) {
       return {
         message: "Empty Data",
         statusCode: 200,
         data: [],
       };
     }
+
+    const modifiedData = serviceForm.map((item) => ({
+      ...item,
+      subForm: item.subForm.map((subForm) => ({
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      })),
+    }));
+
     const response: ServiceFormResponse = {
       message: "Service forms fetched successfully",
-      data: category,
+      data: modifiedData,
       statusCode: 200,
     };
 
@@ -302,9 +325,6 @@ const getServiceForm = async (id: string): Promise<ServiceFormResponse> => {
         subForm: {
           where: {
             isDeprecated: false,
-          },
-          include: {
-            dependsOn: true,
           },
         },
       },
@@ -397,7 +417,6 @@ const removeServiceForm = async (id: string) => {
 //create service category service
 const saveServiceSubForm = async (
   servicePayload: ServiceSubFormPayload,
-  dependsOn: Dependant[],
   formId: string
 ): Promise<ServiceSubFormResponse> => {
   //   //add the new service category to the table
@@ -420,47 +439,41 @@ const saveServiceSubForm = async (
       throw new BadRequest("Service form with this title already exists");
     }
 
-    const serviceSubForm = await prisma.serviceSubForm.create({
+    const subForm = await prisma.serviceSubForm.create({
       data: servicePayload,
     });
-    if (!serviceSubForm) {
+    if (!subForm) {
       throw new BadRequest(
         "Error occured while creating this service sub form"
       );
-    }
-    const dependantValue = dependsOn?.map((data: Dependant) => ({
-      field: data?.field,
-      options: data?.options,
-      serviceSubFormId: serviceSubForm.id,
-    }));
-    const subFormDependant = await prisma.subFormDependant.createMany({
-      data: dependantValue,
-      skipDuplicates: true,
-    });
-    if (!subFormDependant) {
-      throw new BadRequest("Error occured while saving dependants");
     }
 
     logger.info({
       message: `service sub form created successfully`,
     });
 
-    const subForm = await prisma.serviceSubForm.findUnique({
-      where: {
-        id: serviceSubForm.id,
-      },
-      include: {
-        dependsOn: true,
-      },
-    });
-
-    if (!subForm) {
-      throw new NotFound("Error occured while getting service sub form");
-    }
-
     const response: ServiceSubFormResponse = {
       message: "Service sub form created successfully",
-      data: subForm,
+      data: {
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      },
       statusCode: 200,
     };
     return response;
@@ -470,13 +483,11 @@ const saveServiceSubForm = async (
 };
 
 //get all service category service
-const getAllServiceSubForm = async (
-  formId: string
-): Promise<ServiceSubFormResponse> => {
+const getAllServiceSubForm = async (formId: string) => {
   //  get the service category list from the table
   //  return the service category list to the service category controller
   try {
-    const category = await prisma.serviceSubForm.findMany({
+    const subForm = await prisma.serviceSubForm.findMany({
       where: {
         formId: formId,
         isDeprecated: false,
@@ -485,16 +496,38 @@ const getAllServiceSubForm = async (
         createdAt: "asc",
       },
     });
-    if (!category) {
+    if (!subForm) {
       return {
         message: "Empty Data",
         statusCode: 200,
         data: [],
       };
     }
-    const response: ServiceSubFormResponse = {
+
+    const mappedSubForm = subForm.map((data) => ({
+      id: data.id,
+      question: data.question,
+      type: data.type,
+      options: data.options,
+      formId: data.formId,
+      compulsory: data.compulsory,
+      fileName: data.fileName,
+      fileLink: data.fileLink,
+      fileType: data.fileType,
+      fileSize: data.fileSize,
+      allowOther: data.allowOther,
+      dependsOn: {
+        dependentField: data.dependentField,
+        dependentOptions: data.dependentOptions,
+      },
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      isDeprecated: data.isDeprecated,
+    }));
+
+    const response = {
       message: "Service sub forms fetched successfully",
-      data: category,
+      data: mappedSubForm,
       statusCode: 200,
     };
 
@@ -510,17 +543,36 @@ const getServiceSubForm = async (
   //  get the service category list from the table
   //  return the service category list to the service category controller
   try {
-    const category = await prisma.serviceSubForm.findUnique({
+    const subForm = await prisma.serviceSubForm.findUnique({
       where: {
         id: id,
       },
     });
-    if (!category) {
+    if (!subForm) {
       throw new BadRequest("Service sub form not found!.");
     }
     const response: ServiceSubFormResponse = {
       message: "Service sub form fetched successfully",
-      data: category,
+      data: {
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      },
       statusCode: 200,
     };
 
@@ -550,20 +602,39 @@ const updateServiceSubForm = async (
       throw new BadRequest("Service sub form not found!.");
     }
 
-    const updateCategory = await prisma.serviceSubForm.update({
+    const subForm = await prisma.serviceSubForm.update({
       where: {
         id: id,
       },
       data: serviceSubFormPayload,
     });
 
-    if (!updateCategory) {
+    if (!subForm) {
       throw new BadRequest("Error occured while updating service sub form!.");
     }
 
     return {
       message: "Service sub form updated successfully",
-      data: updateCategory,
+      data: {
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      },
       statusCode: 200,
     };
   } catch (error) {

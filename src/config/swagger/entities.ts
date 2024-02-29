@@ -306,13 +306,9 @@ interface ServiceCategorySubForm {
       type: string;
       description: string;
       require: string[];
-      items: {
-        type: string;
-        require: string[];
-        properties: {
-          field: Props;
-          options: Props;
-        };
+      properties: {
+        field: Props;
+        options: Props;
       };
     };
   };
@@ -331,13 +327,9 @@ interface ServiceSubForm {
       type: string;
       description: string;
       require: string[];
-      items: {
-        type: string;
-        require: string[];
-        properties: {
-          field: Props;
-          options: Props;
-        };
+      properties: {
+        field: Props;
+        options: Props;
       };
     };
 
