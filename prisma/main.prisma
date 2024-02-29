@@ -195,6 +195,8 @@ model ServiceSubForm {
       fileType String?
       fileLink String?
       fileSize String?
+      dependentField String?
+      dependentOptions String[]
       allowOther Boolean @default(false)
       compulsory Boolean @default(false)
       createdAt DateTime @default(now())
@@ -202,7 +204,6 @@ model ServiceSubForm {
       isDeprecated Boolean   @default(false)
       form ServiceForm @relation(fields: [formId], references: [id])
       formId String
-      dependsOn SubFormDependant[]
       }
 model Product {
       id String @id @default(uuid())
@@ -247,6 +248,8 @@ model ProductSubForm {
       options String[]
       type String?
       allowOther Boolean @default(false)
+      dependentField String?
+      dependentOptions String[]
       fileName String?
       fileType String?
       fileLink String?
@@ -257,22 +260,10 @@ model ProductSubForm {
       updatedAt DateTime @default(now())
       form ProductForm @relation(fields: [formId], references: [id])
       formId String
-      dependsOn SubFormDependant[]
+    
 
 }
 
-model SubFormDependant {
-      id String @id @default(uuid())
-      field String?
-      options String[]
-      isDeprecated Boolean   @default(false)
-      createdAt DateTime @default(now())
-      updatedAt DateTime @default(now())
-      productSubForm ProductSubForm? @relation(fields: [productSubFormId], references: [id])
-      productSubFormId String?
-      serviceSubForm ServiceSubForm? @relation(fields: [serviceSubFormId], references: [id])
-      serviceSubFormId String?
-}
 
 model ProductRequest {
       id String @id @default(uuid())

@@ -310,9 +310,6 @@ const getAllProductForm = async (): Promise<ProductFormResponse> => {
           where: {
             isDeprecated: false,
           },
-          include: {
-            dependsOn: true,
-          },
         },
       },
     });
@@ -371,7 +368,7 @@ const getProductFormByProduct = async (
   // return the product form to the product controller
 
   try {
-    const serviceForm = await prisma.productForm.findMany({
+    const productForm = await prisma.productForm.findMany({
       where: {
         productId: productId,
         isDeprecated: false,
@@ -387,20 +384,41 @@ const getProductFormByProduct = async (
           where: {
             isDeprecated: false,
           },
-          include: {
-            dependsOn: true,
-          },
         },
       },
     });
 
-    if (!serviceForm) {
+    if (!productForm) {
       throw new BadRequest("Product form not found!");
     }
 
+    const modifiedData = productForm.map((item) => ({
+      ...item,
+      productSubForm: item.productSubForm.map((subForm) => ({
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      })),
+    }));
+
     const response: ProductFormResponse = {
       message: "Product form fetched successfully",
-      data: serviceForm,
+      data: modifiedData,
       statusCode: 200,
     };
     return response;
@@ -491,7 +509,6 @@ const removeProductForm = async (id: string) => {
 //create product sub form product
 const saveProductSubForm = async (
   productCategoryPayload: ProductSubFormPayload,
-  dependsOn: Dependant[],
   formId: string
 ): Promise<ProductSubFormResponse> => {
   //   //add the new service category to the table
@@ -516,47 +533,40 @@ const saveProductSubForm = async (
       );
     }
 
-    const productSubForm = await prisma.productSubForm.create({
+    const subForm = await prisma.productSubForm.create({
       data: productCategoryPayload,
     });
-    if (!productSubForm) {
+    if (!subForm) {
       throw new BadRequest(
         "Error occured while creating this Product sub form"
       );
-    }
-    const dependantValue = dependsOn?.map((data: Dependant) => ({
-      field: data?.field,
-      options: data?.options,
-      productSubFormId: productSubForm.id,
-    }));
-
-    const subFormDependant = await prisma.subFormDependant.createMany({
-      data: dependantValue,
-      skipDuplicates: true,
-    });
-    if (!subFormDependant) {
-      throw new BadRequest("Error occured while saving dependants");
     }
     logger.info({
       message: `Product sub form created successfully`,
     });
 
-    const subForm = await prisma.productSubForm.findUnique({
-      where: {
-        id: productSubForm.id,
-      },
-      include: {
-        dependsOn: true,
-      },
-    });
-
-    if (!subForm) {
-      throw new BadRequest("Error occured while getting Product Sub Form");
-    }
-
     const response: ProductSubFormResponse = {
       message: "Product sub form created successfully",
-      data: subForm,
+      data: {
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      },
       statusCode: 200,
     };
     return response;
@@ -572,7 +582,7 @@ const getAllProductSubForm = async (
   //  get the service category list from the table
   //  return the service category list to the service category controller
   try {
-    const category = await prisma.productSubForm.findMany({
+    const subForm = await prisma.productSubForm.findMany({
       where: {
         formId: formId,
         isDeprecated: false,
@@ -581,16 +591,38 @@ const getAllProductSubForm = async (
         createdAt: "asc",
       },
     });
-    if (!category) {
+    if (!subForm) {
       return {
         message: "Empty Data",
         statusCode: 200,
         data: [],
       };
     }
+
+    const mappedSubForm = subForm.map((data) => ({
+      id: data.id,
+      question: data.question,
+      type: data.type,
+      options: data.options,
+      formId: data.formId,
+      compulsory: data.compulsory,
+      fileName: data.fileName,
+      fileLink: data.fileLink,
+      fileType: data.fileType,
+      fileSize: data.fileSize,
+      allowOther: data.allowOther,
+      dependsOn: {
+        field: data?.dependentField,
+        options: data?.dependentOptions,
+      },
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      isDeprecated: data.isDeprecated,
+    }));
+
     const response: ProductSubFormResponse = {
       message: "Product sub forms fetched successfully",
-      data: category,
+      data: mappedSubForm,
       statusCode: 200,
     };
 
@@ -606,17 +638,36 @@ const getProductSubForm = async (
   //  get the service category list from the table
   //  return the service category list to the service category controller
   try {
-    const category = await prisma.productSubForm.findUnique({
+    const subForm = await prisma.productSubForm.findUnique({
       where: {
         id: id,
       },
     });
-    if (!category) {
+    if (!subForm) {
       throw new BadRequest("Product sub form not found!.");
     }
     const response: ProductSubFormResponse = {
       message: "Product sub form fetched successfully",
-      data: category,
+      data: {
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      },
       statusCode: 200,
     };
 
@@ -646,20 +697,39 @@ const updateProductSubForm = async (
       throw new BadRequest("Product sub form not found!.");
     }
 
-    const updateCategory = await prisma.productSubForm.update({
+    const subForm = await prisma.productSubForm.update({
       where: {
         id: id,
       },
       data: serviceCategorySubFormPayload,
     });
 
-    if (!updateCategory) {
+    if (!subForm) {
       throw new BadRequest("Error occured while updating product sub form!.");
     }
 
     return {
       message: "Product sub form updated successfully",
-      data: updateCategory,
+      data: {
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      },
       statusCode: 200,
     };
   } catch (error) {

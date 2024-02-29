@@ -270,6 +270,8 @@ exports.Prisma.ServiceSubFormScalarFieldEnum = {
   fileType: 'fileType',
   fileLink: 'fileLink',
   fileSize: 'fileSize',
+  dependentField: 'dependentField',
+  dependentOptions: 'dependentOptions',
   allowOther: 'allowOther',
   compulsory: 'compulsory',
   createdAt: 'createdAt',
@@ -318,6 +320,8 @@ exports.Prisma.ProductSubFormScalarFieldEnum = {
   options: 'options',
   type: 'type',
   allowOther: 'allowOther',
+  dependentField: 'dependentField',
+  dependentOptions: 'dependentOptions',
   fileName: 'fileName',
   fileType: 'fileType',
   fileLink: 'fileLink',
@@ -327,17 +331,6 @@ exports.Prisma.ProductSubFormScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   formId: 'formId'
-};
-
-exports.Prisma.SubFormDependantScalarFieldEnum = {
-  id: 'id',
-  field: 'field',
-  options: 'options',
-  isDeprecated: 'isDeprecated',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  productSubFormId: 'productSubFormId',
-  serviceSubFormId: 'serviceSubFormId'
 };
 
 exports.Prisma.ProductRequestScalarFieldEnum = {
@@ -495,7 +488,6 @@ exports.Prisma.ModelName = {
   Product: 'Product',
   ProductForm: 'ProductForm',
   ProductSubForm: 'ProductSubForm',
-  SubFormDependant: 'SubFormDependant',
   ProductRequest: 'ProductRequest',
   ProductRequestQA: 'ProductRequestQA',
   ProductRequestQASubForm: 'ProductRequestQASubForm',

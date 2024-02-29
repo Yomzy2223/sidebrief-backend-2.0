@@ -667,14 +667,15 @@ const options: OpenAPIDefinition = {
               type: "boolean",
               description: "status of the question",
             },
-            fileName: {
-              type: "string",
-              description: "name of the file",
-            },
             allowOther: {
               type: "boolean",
               description: "allow other answer of the file",
             },
+            fileName: {
+              type: "string",
+              description: "name of the file",
+            },
+
             fileLink: {
               type: "string",
               description: "link of the file",
@@ -689,20 +690,16 @@ const options: OpenAPIDefinition = {
             },
             dependsOn: {
               require: ["field", "options"],
-              type: "array",
+              type: "object",
               description: "The question of the profile selected",
-              items: {
-                type: "object",
-                require: ["question", "answer", "type", "compulsory"],
-                properties: {
-                  field: {
-                    type: "string",
-                    description: "field name",
-                  },
-                  options: {
-                    type: "array",
-                    description: "option",
-                  },
+              properties: {
+                field: {
+                  type: "string",
+                  description: "field name",
+                },
+                options: {
+                  type: "array",
+                  description: "option",
                 },
               },
             },
@@ -730,32 +727,30 @@ const options: OpenAPIDefinition = {
               type: "boolean",
               description: "status of the question",
             },
-            fileName: {
-              type: "string",
-              description: "name of the file",
-            },
+
             allowOther: {
               type: "boolean",
               description: "allow other answer",
             },
             dependsOn: {
-              type: "array",
+              type: "object",
               description: "The question of the profile selected",
               require: ["field", "options"],
-              items: {
-                type: "object",
-                require: ["question", "answer", "type", "compulsory"],
-                properties: {
-                  field: {
-                    type: "string",
-                    description: "field name",
-                  },
-                  options: {
-                    type: "array",
-                    description: "option",
-                  },
+
+              properties: {
+                field: {
+                  type: "string",
+                  description: "field name",
+                },
+                options: {
+                  type: "array",
+                  description: "option",
                 },
               },
+            },
+            fileName: {
+              type: "string",
+              description: "name of the file",
             },
             fileLink: {
               type: "string",

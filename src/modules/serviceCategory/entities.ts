@@ -33,6 +33,8 @@ export interface ServiceSubFormPayload {
   allowOther?: boolean;
   fileLink?: string;
   fileSize?: string;
+  dependentField?: string;
+  dependentOptions?: string[];
 }
 
 export interface Dependant {
@@ -53,7 +55,20 @@ export interface ServiceSubFormData {
   question: string | null;
   type: string | null;
   options: string[];
-  formId: string;
+  formId: string | null;
+  compulsory: Boolean;
+  fileName: string | null;
+  fileLink: string | null;
+  fileType: string | null;
+  fileSize: string | null;
+  allowOther: Boolean;
+  dependsOn: {
+    field: string | null;
+    options: string[];
+  };
+  createdAt: Date | null;
+  updatedAt: Date | null;
+  isDeprecated: boolean;
 }
 
 export interface ServiceFormResponse {
@@ -85,4 +100,6 @@ export interface UpdateServiceSubFormPayload {
   allowOther?: boolean;
   fileLink?: string;
   fileSize: string;
+  dependentField?: string;
+  dependentOptions?: string[];
 }
