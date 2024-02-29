@@ -311,7 +311,7 @@ const getAllProductForm = async (): Promise<ProductFormResponse> => {
             isDeprecated: false,
           },
           include: {
-            dependant: true,
+            dependsOn: true,
           },
         },
       },
@@ -388,7 +388,7 @@ const getProductFormByProduct = async (
             isDeprecated: false,
           },
           include: {
-            dependant: true,
+            dependsOn: true,
           },
         },
       },
@@ -546,7 +546,7 @@ const saveProductSubForm = async (
         id: productSubForm.id,
       },
       include: {
-        dependant: true,
+        dependsOn: true,
       },
     });
 

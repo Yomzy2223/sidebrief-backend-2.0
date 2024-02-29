@@ -111,7 +111,7 @@ export interface ProductSubFormResponseData {
   compulsory?: boolean;
   fileName?: string | null;
   fileType?: string | null;
-  dependsOn?: string | null;
+  dependsOn?: any[];
   allowOther?: boolean | null;
   fileLink?: string | null;
   fileSize?: string | null;

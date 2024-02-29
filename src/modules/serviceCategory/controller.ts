@@ -332,7 +332,6 @@ const ServiceSubFormModifier = async (
       compulsory: servicePayload?.compulsory,
       fileName: servicePayload?.fileName,
       allowOther: servicePayload?.allowOther,
-      dependsOn: servicePayload?.dependsOn,
       fileLink: servicePayload?.fileLink,
       fileSize: servicePayload?.fileSize,
       fileType: servicePayload?.fileType,
