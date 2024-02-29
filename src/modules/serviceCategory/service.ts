@@ -317,7 +317,7 @@ const getServiceForm = async (id: string): Promise<ServiceFormResponse> => {
   //  get the service category list from the table
   //  return the service category list to the service category controller
   try {
-    const category = await prisma.serviceForm.findUnique({
+    const serviceForm = await prisma.serviceForm.findUnique({
       where: {
         id: id,
       },
@@ -330,12 +330,37 @@ const getServiceForm = async (id: string): Promise<ServiceFormResponse> => {
       },
     });
 
-    if (!category) {
+    if (!serviceForm) {
       throw new BadRequest("Service form not found!.");
     }
+
+    const modifiedData = {
+      ...serviceForm,
+      subForm: serviceForm.subForm.map((subForm) => ({
+        id: subForm?.id,
+        question: subForm?.question,
+        type: subForm?.type,
+        options: subForm?.options,
+        formId: subForm?.formId,
+        compulsory: subForm?.compulsory,
+        fileName: subForm?.fileName,
+        fileLink: subForm?.fileLink,
+        fileType: subForm?.fileType,
+        fileSize: subForm?.fileSize,
+        allowOther: subForm?.allowOther,
+        dependsOn: {
+          field: subForm?.dependentField,
+          options: subForm?.dependentOptions,
+        },
+        createdAt: subForm?.createdAt,
+        updatedAt: subForm?.updatedAt,
+        isDeprecated: subForm?.isDeprecated,
+      })),
+    };
+
     const response: ServiceFormResponse = {
       message: "Service form fetched successfully",
-      data: category,
+      data: modifiedData,
       statusCode: 200,
     };
 
@@ -364,7 +389,6 @@ const updateServiceForm = async (
     if (!category) {
       throw new BadRequest("Service Form not found!.");
     }
-    console.log(servicePayload);
     const updateCategory = await prisma.serviceForm.update({
       where: {
         id: id,
