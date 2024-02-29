@@ -266,7 +266,7 @@ const getAllServiceForm = async (
             isDeprecated: false,
           },
           include: {
-            dependant: true,
+            dependsOn: true,
           },
         },
       },
@@ -304,7 +304,7 @@ const getServiceForm = async (id: string): Promise<ServiceFormResponse> => {
             isDeprecated: false,
           },
           include: {
-            dependant: true,
+            dependsOn: true,
           },
         },
       },
@@ -450,7 +450,7 @@ const saveServiceSubForm = async (
         id: serviceSubForm.id,
       },
       include: {
-        dependant: true,
+        dependsOn: true,
       },
     });
 

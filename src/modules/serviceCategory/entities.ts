@@ -82,7 +82,6 @@ export interface UpdateServiceSubFormPayload {
   compulsory?: boolean;
   fileName?: string;
   fileType?: string;
-  dependsOn?: string;
   allowOther?: boolean;
   fileLink?: string;
   fileSize: string;
