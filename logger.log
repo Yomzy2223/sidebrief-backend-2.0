@@ -7844,3 +7844,4 @@ Invalid `prisma.userDocument.findUnique()` invocation in
 Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
 
 Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+info: Label: 02-Mar-2024 10:55:59: service sub forms created successfully

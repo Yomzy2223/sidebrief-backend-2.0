@@ -116,7 +116,7 @@ interface ProductServices {
     currency: Props;
     timeline: Props;
     feature: Props;
-    dependsOn: Props;
+    canAlsoDo: Props;
   };
 }
 

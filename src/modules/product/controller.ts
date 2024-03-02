@@ -49,7 +49,7 @@ const ProductCreator = async (
       amount: productServicePayload.amount,
       feature: productServicePayload.feature,
       timeline: productServicePayload.timeline,
-      dependsOn: productServicePayload?.dependsOn,
+      canAlsoDo: productServicePayload?.canAlsoDo,
       serviceId: serviceId,
     };
 
@@ -131,7 +131,7 @@ const ProductModifier = async (
       timeline: productServicePayload.timeline,
       feature: productServicePayload.feature,
       serviceId: productServicePayload.serviceId,
-      dependsOn: productServicePayload?.dependsOn,
+      canAlsoDo: productServicePayload?.canAlsoDo,
     };
 
     const updateservice = await updateProductService(id, values);

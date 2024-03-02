@@ -310,7 +310,7 @@ const options: OpenAPIDefinition = {
               description: "The timeline for the product service ",
               required: true,
             },
-            dependsOn: {
+            canAlsoDo: {
               type: "array",
               description: "The products that depend on this product",
               required: true,

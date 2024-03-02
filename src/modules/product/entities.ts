@@ -6,7 +6,7 @@ export interface ProductPayload {
   amount: number;
   timeline: string;
   feature: string[];
-  dependsOn: string[];
+  canAlsoDo: string[];
   serviceId: string;
 }
 
@@ -20,7 +20,7 @@ export interface ProductData {
   timeline: string;
   feature: string[];
   serviceId: string;
-  dependsOn: string[];
+  canAlsoDo: string[];
   createdAt: Date;
   updatedAt: Date;
 }
