@@ -291,6 +291,7 @@ const getAllServiceForm = async (
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,
@@ -348,6 +349,7 @@ const getServiceForm = async (id: string): Promise<ServiceFormResponse> => {
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,
@@ -490,6 +492,7 @@ const saveServiceSubForm = async (
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,
@@ -579,6 +582,7 @@ const getAllServiceSubForm = async (formId: string) => {
       fileType: data.fileType,
       fileSize: data.fileSize,
       allowOther: data.allowOther,
+      documentType: data.documentType,
       dependsOn: {
         dependentField: data.dependentField,
         dependentOptions: data.dependentOptions,
@@ -628,6 +632,7 @@ const getServiceSubForm = async (
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,
@@ -690,6 +695,7 @@ const updateServiceSubForm = async (
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,

@@ -325,6 +325,7 @@ export type ServiceSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
     fileSize: string | null
     dependentField: string | null
     dependentOptions: string[]
+    documentType: string | null
     allowOther: boolean
     compulsory: boolean
     createdAt: Date
@@ -419,6 +420,7 @@ export type ProductSubFormPayload<ExtArgs extends $Extensions.Args = $Extensions
     fileType: string | null
     fileLink: string | null
     fileSize: string | null
+    documentType: string | null
     compulsory: boolean
     isDeprecated: boolean
     createdAt: Date
@@ -15399,6 +15401,7 @@ export namespace Prisma {
     fileLink: string | null
     fileSize: string | null
     dependentField: string | null
+    documentType: string | null
     allowOther: boolean | null
     compulsory: boolean | null
     createdAt: Date | null
@@ -15416,6 +15419,7 @@ export namespace Prisma {
     fileLink: string | null
     fileSize: string | null
     dependentField: string | null
+    documentType: string | null
     allowOther: boolean | null
     compulsory: boolean | null
     createdAt: Date | null
@@ -15435,6 +15439,7 @@ export namespace Prisma {
     fileSize: number
     dependentField: number
     dependentOptions: number
+    documentType: number
     allowOther: number
     compulsory: number
     createdAt: number
@@ -15454,6 +15459,7 @@ export namespace Prisma {
     fileLink?: true
     fileSize?: true
     dependentField?: true
+    documentType?: true
     allowOther?: true
     compulsory?: true
     createdAt?: true
@@ -15471,6 +15477,7 @@ export namespace Prisma {
     fileLink?: true
     fileSize?: true
     dependentField?: true
+    documentType?: true
     allowOther?: true
     compulsory?: true
     createdAt?: true
@@ -15490,6 +15497,7 @@ export namespace Prisma {
     fileSize?: true
     dependentField?: true
     dependentOptions?: true
+    documentType?: true
     allowOther?: true
     compulsory?: true
     createdAt?: true
@@ -15583,6 +15591,7 @@ export namespace Prisma {
     fileSize: string | null
     dependentField: string | null
     dependentOptions: string[]
+    documentType: string | null
     allowOther: boolean
     compulsory: boolean
     createdAt: Date
@@ -15619,6 +15628,7 @@ export namespace Prisma {
     fileSize?: boolean
     dependentField?: boolean
     dependentOptions?: boolean
+    documentType?: boolean
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: boolean
@@ -15639,6 +15649,7 @@ export namespace Prisma {
     fileSize?: boolean
     dependentField?: boolean
     dependentOptions?: boolean
+    documentType?: boolean
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: boolean
@@ -18539,6 +18550,7 @@ export namespace Prisma {
     fileType: string | null
     fileLink: string | null
     fileSize: string | null
+    documentType: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
     createdAt: Date | null
@@ -18556,6 +18568,7 @@ export namespace Prisma {
     fileType: string | null
     fileLink: string | null
     fileSize: string | null
+    documentType: string | null
     compulsory: boolean | null
     isDeprecated: boolean | null
     createdAt: Date | null
@@ -18575,6 +18588,7 @@ export namespace Prisma {
     fileType: number
     fileLink: number
     fileSize: number
+    documentType: number
     compulsory: number
     isDeprecated: number
     createdAt: number
@@ -18594,6 +18608,7 @@ export namespace Prisma {
     fileType?: true
     fileLink?: true
     fileSize?: true
+    documentType?: true
     compulsory?: true
     isDeprecated?: true
     createdAt?: true
@@ -18611,6 +18626,7 @@ export namespace Prisma {
     fileType?: true
     fileLink?: true
     fileSize?: true
+    documentType?: true
     compulsory?: true
     isDeprecated?: true
     createdAt?: true
@@ -18630,6 +18646,7 @@ export namespace Prisma {
     fileType?: true
     fileLink?: true
     fileSize?: true
+    documentType?: true
     compulsory?: true
     isDeprecated?: true
     createdAt?: true
@@ -18723,6 +18740,7 @@ export namespace Prisma {
     fileType: string | null
     fileLink: string | null
     fileSize: string | null
+    documentType: string | null
     compulsory: boolean
     isDeprecated: boolean
     createdAt: Date
@@ -18759,6 +18777,7 @@ export namespace Prisma {
     fileType?: boolean
     fileLink?: boolean
     fileSize?: boolean
+    documentType?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: boolean
@@ -18779,6 +18798,7 @@ export namespace Prisma {
     fileType?: boolean
     fileLink?: boolean
     fileSize?: boolean
+    documentType?: boolean
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: boolean
@@ -28589,6 +28609,7 @@ export namespace Prisma {
     fileSize: 'fileSize',
     dependentField: 'dependentField',
     dependentOptions: 'dependentOptions',
+    documentType: 'documentType',
     allowOther: 'allowOther',
     compulsory: 'compulsory',
     createdAt: 'createdAt',
@@ -28653,6 +28674,7 @@ export namespace Prisma {
     fileType: 'fileType',
     fileLink: 'fileLink',
     fileSize: 'fileSize',
+    documentType: 'documentType',
     compulsory: 'compulsory',
     isDeprecated: 'isDeprecated',
     createdAt: 'createdAt',
@@ -29670,6 +29692,7 @@ export namespace Prisma {
     fileSize?: StringNullableFilter | string | null
     dependentField?: StringNullableFilter | string | null
     dependentOptions?: StringNullableListFilter
+    documentType?: StringNullableFilter | string | null
     allowOther?: BoolFilter | boolean
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
@@ -29690,6 +29713,7 @@ export namespace Prisma {
     fileSize?: SortOrderInput | SortOrder
     dependentField?: SortOrderInput | SortOrder
     dependentOptions?: SortOrder
+    documentType?: SortOrderInput | SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
@@ -29714,6 +29738,7 @@ export namespace Prisma {
     fileSize?: SortOrderInput | SortOrder
     dependentField?: SortOrderInput | SortOrder
     dependentOptions?: SortOrder
+    documentType?: SortOrderInput | SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
@@ -29739,6 +29764,7 @@ export namespace Prisma {
     fileSize?: StringNullableWithAggregatesFilter | string | null
     dependentField?: StringNullableWithAggregatesFilter | string | null
     dependentOptions?: StringNullableListFilter
+    documentType?: StringNullableWithAggregatesFilter | string | null
     allowOther?: BoolWithAggregatesFilter | boolean
     compulsory?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
@@ -29940,6 +29966,7 @@ export namespace Prisma {
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
     fileSize?: StringNullableFilter | string | null
+    documentType?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
@@ -29960,6 +29987,7 @@ export namespace Prisma {
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
     fileSize?: SortOrderInput | SortOrder
+    documentType?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
@@ -29984,6 +30012,7 @@ export namespace Prisma {
     fileType?: SortOrderInput | SortOrder
     fileLink?: SortOrderInput | SortOrder
     fileSize?: SortOrderInput | SortOrder
+    documentType?: SortOrderInput | SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
@@ -30009,6 +30038,7 @@ export namespace Prisma {
     fileType?: StringNullableWithAggregatesFilter | string | null
     fileLink?: StringNullableWithAggregatesFilter | string | null
     fileSize?: StringNullableWithAggregatesFilter | string | null
+    documentType?: StringNullableWithAggregatesFilter | string | null
     compulsory?: BoolWithAggregatesFilter | boolean
     isDeprecated?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
@@ -31780,6 +31810,7 @@ export namespace Prisma {
     fileSize?: string | null
     dependentField?: string | null
     dependentOptions?: ServiceSubFormCreatedependentOptionsInput | Enumerable<string>
+    documentType?: string | null
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
@@ -31799,6 +31830,7 @@ export namespace Prisma {
     fileSize?: string | null
     dependentField?: string | null
     dependentOptions?: ServiceSubFormCreatedependentOptionsInput | Enumerable<string>
+    documentType?: string | null
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
@@ -31818,6 +31850,7 @@ export namespace Prisma {
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependentField?: NullableStringFieldUpdateOperationsInput | string | null
     dependentOptions?: ServiceSubFormUpdatedependentOptionsInput | Enumerable<string>
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31837,6 +31870,7 @@ export namespace Prisma {
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependentField?: NullableStringFieldUpdateOperationsInput | string | null
     dependentOptions?: ServiceSubFormUpdatedependentOptionsInput | Enumerable<string>
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31856,6 +31890,7 @@ export namespace Prisma {
     fileSize?: string | null
     dependentField?: string | null
     dependentOptions?: ServiceSubFormCreatedependentOptionsInput | Enumerable<string>
+    documentType?: string | null
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
@@ -31875,6 +31910,7 @@ export namespace Prisma {
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependentField?: NullableStringFieldUpdateOperationsInput | string | null
     dependentOptions?: ServiceSubFormUpdatedependentOptionsInput | Enumerable<string>
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31893,6 +31929,7 @@ export namespace Prisma {
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependentField?: NullableStringFieldUpdateOperationsInput | string | null
     dependentOptions?: ServiceSubFormUpdatedependentOptionsInput | Enumerable<string>
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32168,6 +32205,7 @@ export namespace Prisma {
     fileType?: string | null
     fileLink?: string | null
     fileSize?: string | null
+    documentType?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
@@ -32187,6 +32225,7 @@ export namespace Prisma {
     fileType?: string | null
     fileLink?: string | null
     fileSize?: string | null
+    documentType?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
@@ -32206,6 +32245,7 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32225,6 +32265,7 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32244,6 +32285,7 @@ export namespace Prisma {
     fileType?: string | null
     fileLink?: string | null
     fileSize?: string | null
+    documentType?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
@@ -32263,6 +32305,7 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -32281,6 +32324,7 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -33818,6 +33862,7 @@ export namespace Prisma {
     fileSize?: SortOrder
     dependentField?: SortOrder
     dependentOptions?: SortOrder
+    documentType?: SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
@@ -33835,6 +33880,7 @@ export namespace Prisma {
     fileLink?: SortOrder
     fileSize?: SortOrder
     dependentField?: SortOrder
+    documentType?: SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
@@ -33852,6 +33898,7 @@ export namespace Prisma {
     fileLink?: SortOrder
     fileSize?: SortOrder
     dependentField?: SortOrder
+    documentType?: SortOrder
     allowOther?: SortOrder
     compulsory?: SortOrder
     createdAt?: SortOrder
@@ -34038,6 +34085,7 @@ export namespace Prisma {
     fileType?: SortOrder
     fileLink?: SortOrder
     fileSize?: SortOrder
+    documentType?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
@@ -34055,6 +34103,7 @@ export namespace Prisma {
     fileType?: SortOrder
     fileLink?: SortOrder
     fileSize?: SortOrder
+    documentType?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
@@ -34072,6 +34121,7 @@ export namespace Prisma {
     fileType?: SortOrder
     fileLink?: SortOrder
     fileSize?: SortOrder
+    documentType?: SortOrder
     compulsory?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
@@ -36682,6 +36732,7 @@ export namespace Prisma {
     fileSize?: string | null
     dependentField?: string | null
     dependentOptions?: ServiceSubFormCreatedependentOptionsInput | Enumerable<string>
+    documentType?: string | null
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
@@ -36700,6 +36751,7 @@ export namespace Prisma {
     fileSize?: string | null
     dependentField?: string | null
     dependentOptions?: ServiceSubFormCreatedependentOptionsInput | Enumerable<string>
+    documentType?: string | null
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
@@ -36772,6 +36824,7 @@ export namespace Prisma {
     fileSize?: StringNullableFilter | string | null
     dependentField?: StringNullableFilter | string | null
     dependentOptions?: StringNullableListFilter
+    documentType?: StringNullableFilter | string | null
     allowOther?: BoolFilter | boolean
     compulsory?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
@@ -37078,6 +37131,7 @@ export namespace Prisma {
     fileType?: string | null
     fileLink?: string | null
     fileSize?: string | null
+    documentType?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
@@ -37096,6 +37150,7 @@ export namespace Prisma {
     fileType?: string | null
     fileLink?: string | null
     fileSize?: string | null
+    documentType?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
@@ -37196,6 +37251,7 @@ export namespace Prisma {
     fileType?: StringNullableFilter | string | null
     fileLink?: StringNullableFilter | string | null
     fileSize?: StringNullableFilter | string | null
+    documentType?: StringNullableFilter | string | null
     compulsory?: BoolFilter | boolean
     isDeprecated?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
@@ -38803,6 +38859,7 @@ export namespace Prisma {
     fileSize?: string | null
     dependentField?: string | null
     dependentOptions?: ServiceSubFormCreatedependentOptionsInput | Enumerable<string>
+    documentType?: string | null
     allowOther?: boolean
     compulsory?: boolean
     createdAt?: Date | string
@@ -38821,6 +38878,7 @@ export namespace Prisma {
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependentField?: NullableStringFieldUpdateOperationsInput | string | null
     dependentOptions?: ServiceSubFormUpdatedependentOptionsInput | Enumerable<string>
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38839,6 +38897,7 @@ export namespace Prisma {
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependentField?: NullableStringFieldUpdateOperationsInput | string | null
     dependentOptions?: ServiceSubFormUpdatedependentOptionsInput | Enumerable<string>
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38857,6 +38916,7 @@ export namespace Prisma {
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
     dependentField?: NullableStringFieldUpdateOperationsInput | string | null
     dependentOptions?: ServiceSubFormUpdatedependentOptionsInput | Enumerable<string>
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     allowOther?: BoolFieldUpdateOperationsInput | boolean
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -38984,6 +39044,7 @@ export namespace Prisma {
     fileType?: string | null
     fileLink?: string | null
     fileSize?: string | null
+    documentType?: string | null
     compulsory?: boolean
     isDeprecated?: boolean
     createdAt?: Date | string
@@ -39002,6 +39063,7 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39020,6 +39082,7 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -39038,6 +39101,7 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileLink?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableStringFieldUpdateOperationsInput | string | null
+    documentType?: NullableStringFieldUpdateOperationsInput | string | null
     compulsory?: BoolFieldUpdateOperationsInput | boolean
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

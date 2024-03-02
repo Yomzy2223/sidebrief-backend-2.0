@@ -341,6 +341,7 @@ const getAllProductForm = async (): Promise<ProductFormResponse> => {
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,
@@ -400,6 +401,7 @@ const getProductForm = async (id: string): Promise<ProductFormResponse> => {
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,
@@ -468,6 +470,7 @@ const getProductFormByProduct = async (
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,
@@ -621,6 +624,7 @@ const saveProductSubForm = async (
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,
@@ -712,6 +716,7 @@ const getAllProductSubForm = async (
       fileType: data.fileType,
       fileSize: data.fileSize,
       allowOther: data.allowOther,
+      documentType: data.documentType,
       dependsOn: {
         field: data?.dependentField,
         options: data?.dependentOptions,
@@ -761,6 +766,7 @@ const getProductSubForm = async (
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,
@@ -822,6 +828,7 @@ const updateProductSubForm = async (
         fileType: subForm?.fileType,
         fileSize: subForm?.fileSize,
         allowOther: subForm?.allowOther,
+        documentType: subForm?.documentType,
         dependsOn: {
           field: subForm?.dependentField,
           options: subForm?.dependentOptions,

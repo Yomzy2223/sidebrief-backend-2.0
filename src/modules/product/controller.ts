@@ -317,6 +317,7 @@ const ProductSubFormCreator = async (
       fileLink: serviceCategoryPayload?.fileLink,
       fileType: serviceCategoryPayload?.fileType,
       fileSize: serviceCategoryPayload?.fileSize,
+      documentType: serviceCategoryPayload?.documentType,
       dependentField: serviceCategoryPayload?.dependsOn?.field,
       dependentOptions: serviceCategoryPayload?.dependsOn?.options,
       formId: formId,
@@ -357,6 +358,7 @@ const ProductMultipleSubFormCreator = async (
         allowOther: data?.allowOther,
         dependentField: data?.dependsOn?.field,
         dependentOptions: data?.dependsOn?.options,
+        documentType: data?.documentType,
         formId: formId,
       })
     );
@@ -411,6 +413,7 @@ const ProductSubFormModifier = async (
       fileSize: serviceCategoryPayload?.fileSize,
       fileType: serviceCategoryPayload?.fileType,
       allowOther: serviceCategoryPayload?.allowOther,
+      documentType: serviceCategoryPayload?.documentType,
       dependentField: serviceCategoryPayload?.dependsOn?.field,
       dependentOptions: serviceCategoryPayload?.dependsOn?.options,
     };

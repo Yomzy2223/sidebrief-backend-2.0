@@ -284,6 +284,7 @@ const ServiceSubFormCreator = async (
       fileType: servicePayload?.fileType,
       fileSize: servicePayload?.fileSize,
       allowOther: servicePayload?.allowOther,
+      documentType: servicePayload?.documentType,
       dependentField: servicePayload?.dependsOn?.field,
       dependentOptions: servicePayload?.dependsOn?.options,
       formId: formId,
@@ -322,6 +323,7 @@ const ServiceMultipleSubFormCreator = async (
         fileType: data?.fileType,
         fileSize: data?.fileSize,
         allowOther: data?.allowOther,
+        documentType: data?.documentType,
         dependentField: data?.dependsOn?.field,
         dependentOptions: data?.dependsOn?.options,
         formId: formId,
@@ -378,6 +380,7 @@ const ServiceSubFormModifier = async (
       fileLink: servicePayload?.fileLink,
       fileSize: servicePayload?.fileSize,
       fileType: servicePayload?.fileType,
+      documentType: servicePayload?.documentType,
       dependentField: servicePayload?.dependsOn?.field,
       dependentOptions: servicePayload?.dependsOn?.options,
     };
