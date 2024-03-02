@@ -291,7 +291,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   amount: 'amount',
   timeline: 'timeline',
   feature: 'feature',
-  dependsOn: 'dependsOn',
+  canAlsoDo: 'canAlsoDo',
   hasShares: 'hasShares',
   hasAgent: 'hasAgent',
   hasOwner: 'hasOwner',

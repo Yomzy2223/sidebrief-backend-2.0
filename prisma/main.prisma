@@ -219,7 +219,7 @@ model Product {
       amount Int
       timeline String
       feature String[]
-      dependsOn String[]
+      canAlsoDo String[]
       hasShares Boolean @default(false)
       hasAgent Boolean @default(false)
       hasOwner Boolean @default(false)

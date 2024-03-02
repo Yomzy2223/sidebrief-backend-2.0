@@ -356,7 +356,7 @@ export type ProductPayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     amount: number
     timeline: string
     feature: string[]
-    dependsOn: string[]
+    canAlsoDo: string[]
     hasShares: boolean
     hasAgent: boolean
     hasOwner: boolean
@@ -16466,7 +16466,7 @@ export namespace Prisma {
     amount: number
     timeline: number
     feature: number
-    dependsOn: number
+    canAlsoDo: number
     hasShares: number
     hasAgent: number
     hasOwner: number
@@ -16541,7 +16541,7 @@ export namespace Prisma {
     amount?: true
     timeline?: true
     feature?: true
-    dependsOn?: true
+    canAlsoDo?: true
     hasShares?: true
     hasAgent?: true
     hasOwner?: true
@@ -16652,7 +16652,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature: string[]
-    dependsOn: string[]
+    canAlsoDo: string[]
     hasShares: boolean
     hasAgent: boolean
     hasOwner: boolean
@@ -16694,7 +16694,7 @@ export namespace Prisma {
     amount?: boolean
     timeline?: boolean
     feature?: boolean
-    dependsOn?: boolean
+    canAlsoDo?: boolean
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -16721,7 +16721,7 @@ export namespace Prisma {
     amount?: boolean
     timeline?: boolean
     feature?: boolean
-    dependsOn?: boolean
+    canAlsoDo?: boolean
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -28609,7 +28609,7 @@ export namespace Prisma {
     amount: 'amount',
     timeline: 'timeline',
     feature: 'feature',
-    dependsOn: 'dependsOn',
+    canAlsoDo: 'canAlsoDo',
     hasShares: 'hasShares',
     hasAgent: 'hasAgent',
     hasOwner: 'hasOwner',
@@ -29759,7 +29759,7 @@ export namespace Prisma {
     amount?: IntFilter | number
     timeline?: StringFilter | string
     feature?: StringNullableListFilter
-    dependsOn?: StringNullableListFilter
+    canAlsoDo?: StringNullableListFilter
     hasShares?: BoolFilter | boolean
     hasAgent?: BoolFilter | boolean
     hasOwner?: BoolFilter | boolean
@@ -29785,7 +29785,7 @@ export namespace Prisma {
     amount?: SortOrder
     timeline?: SortOrder
     feature?: SortOrder
-    dependsOn?: SortOrder
+    canAlsoDo?: SortOrder
     hasShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
@@ -29815,7 +29815,7 @@ export namespace Prisma {
     amount?: SortOrder
     timeline?: SortOrder
     feature?: SortOrder
-    dependsOn?: SortOrder
+    canAlsoDo?: SortOrder
     hasShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
@@ -29846,7 +29846,7 @@ export namespace Prisma {
     amount?: IntWithAggregatesFilter | number
     timeline?: StringWithAggregatesFilter | string
     feature?: StringNullableListFilter
-    dependsOn?: StringNullableListFilter
+    canAlsoDo?: StringNullableListFilter
     hasShares?: BoolWithAggregatesFilter | boolean
     hasAgent?: BoolWithAggregatesFilter | boolean
     hasOwner?: BoolWithAggregatesFilter | boolean
@@ -31910,7 +31910,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -31935,7 +31935,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -31960,7 +31960,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -31985,7 +31985,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -32010,7 +32010,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -32033,7 +32033,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -32055,7 +32055,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -33890,7 +33890,7 @@ export namespace Prisma {
     amount?: SortOrder
     timeline?: SortOrder
     feature?: SortOrder
-    dependsOn?: SortOrder
+    canAlsoDo?: SortOrder
     hasShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
@@ -34987,7 +34987,7 @@ export namespace Prisma {
     set: Enumerable<string>
   }
 
-  export type ProductCreatedependsOnInput = {
+  export type ProductCreatecanAlsoDoInput = {
     set: Enumerable<string>
   }
 
@@ -35038,7 +35038,7 @@ export namespace Prisma {
     push?: string | Enumerable<string>
   }
 
-  export type ProductUpdatedependsOnInput = {
+  export type ProductUpdatecanAlsoDoInput = {
     set?: Enumerable<string>
     push?: string | Enumerable<string>
   }
@@ -36490,7 +36490,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36514,7 +36514,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36601,7 +36601,7 @@ export namespace Prisma {
     amount?: IntFilter | number
     timeline?: StringFilter | string
     feature?: StringNullableListFilter
-    dependsOn?: StringNullableListFilter
+    canAlsoDo?: StringNullableListFilter
     hasShares?: BoolFilter | boolean
     hasAgent?: BoolFilter | boolean
     hasOwner?: BoolFilter | boolean
@@ -37022,7 +37022,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -37046,7 +37046,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -37126,7 +37126,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -37150,7 +37150,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -37304,7 +37304,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -37328,7 +37328,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -37525,7 +37525,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -37549,7 +37549,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -38663,7 +38663,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
-    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductCreatecanAlsoDoInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -38696,7 +38696,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -38720,7 +38720,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -38744,7 +38744,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
-    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
+    canAlsoDo?: ProductUpdatecanAlsoDoInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean

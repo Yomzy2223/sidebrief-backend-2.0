@@ -6,7 +6,7 @@ export interface ProductPayload {
   amount: number;
   timeline: string;
   feature: string[];
-  dependsOn: string[];
+  canAlsoDo: string[];
   serviceId: string;
 }
 

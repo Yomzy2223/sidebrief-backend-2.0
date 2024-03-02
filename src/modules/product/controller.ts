@@ -49,7 +49,7 @@ const ProductCreator = async (
       amount: productServicePayload.amount,
       feature: productServicePayload.feature,
       timeline: productServicePayload.timeline,
-      dependsOn: productServicePayload?.dependsOn,
+      canAlsoDo: productServicePayload?.canAlsoDo,
       serviceId: serviceId,
     };
 
