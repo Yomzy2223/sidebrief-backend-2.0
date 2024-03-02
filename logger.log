@@ -7845,3 +7845,257 @@ Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1
 
 Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
 info: Label: 02-Mar-2024 10:55:59: service sub forms created successfully
+info: Label: 02-Mar-2024 14:04:40: service sub form created successfully
+error: Label: 02-Mar-2024 14:09:52: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:09:59: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:07: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:13: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:20: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:26: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:32: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:38: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:44: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:51: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:02: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:20: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:26: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:33: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:39: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:45: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:59: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:12:14: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:12:21: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:12:28: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:12:34: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:13:08: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:13:14: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called

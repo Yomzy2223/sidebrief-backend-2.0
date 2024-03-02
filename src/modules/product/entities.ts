@@ -89,6 +89,7 @@ export interface ProductSubFormPayload {
   allowOther?: boolean;
   fileLink?: string;
   fileSize?: string;
+  documentType?: string;
   dependentField?: string;
   dependentOptions?: string[];
 }
@@ -104,6 +105,7 @@ export interface MProductSubFormPayload {
   allowOther?: boolean;
   fileLink?: string;
   fileSize?: string;
+  documentType?: string;
   dependsOn?: {
     field?: string;
     options?: string[];
@@ -125,6 +127,7 @@ export interface UpdateProductSubFormPayload {
   allowOther?: boolean;
   fileLink?: string;
   fileSize?: string;
+  documentType?: string;
   dependentField: string;
   dependentOptions: string[];
 }
@@ -141,6 +144,7 @@ export interface ProductSubFormResponseData {
   fileType: string | null;
   fileSize: string | null;
   allowOther: Boolean;
+  documentType?: string | null;
   dependsOn: {
     field: string | null;
     options: string[];

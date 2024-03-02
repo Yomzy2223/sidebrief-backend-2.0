@@ -313,6 +313,7 @@ interface ServiceCategorySubForm {
     fileLink: Props;
     fileSize: Props;
     fileType: Props;
+    documentType: Props;
     dependsOn: {
       type: string;
       description: string;
@@ -337,6 +338,7 @@ interface ServiceSubForm {
     fileLink: Props;
     fileSize: Props;
     fileType: Props;
+    documentType: Props;
     dependsOn: {
       type: string;
       description: string;
@@ -368,6 +370,7 @@ interface ServiceCategoryMultipleSubForm {
           fileLink: Props;
           fileSize: Props;
           fileType: Props;
+          documentType: Props;
           dependsOn: {
             type: string;
             description: string;

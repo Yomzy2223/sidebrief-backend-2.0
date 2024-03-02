@@ -723,6 +723,10 @@ const options: OpenAPIDefinition = {
               type: "string",
               description: "size of the file",
             },
+            documentType: {
+              type: "string",
+              description: "type of the document",
+            },
             dependsOn: {
               require: ["field", "options"],
               type: "object",
@@ -789,6 +793,10 @@ const options: OpenAPIDefinition = {
                   fileSize: {
                     type: "string",
                     description: "size of the file",
+                  },
+                  documentType: {
+                    type: "string",
+                    description: "type of the document",
                   },
                   dependsOn: {
                     require: ["field", "options"],
@@ -868,6 +876,10 @@ const options: OpenAPIDefinition = {
             fileType: {
               type: "string",
               description: "type of the file",
+            },
+            documentType: {
+              type: "string",
+              description: "type of the document",
             },
           },
         },

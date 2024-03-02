@@ -33,6 +33,7 @@ export interface ServiceSubFormPayload {
   allowOther?: boolean;
   fileLink?: string;
   fileSize?: string;
+  documentType?: string;
   dependentField?: string;
   dependentOptions?: string[];
 }
@@ -48,6 +49,7 @@ export interface MServiceSubFormPayload {
   allowOther?: boolean;
   fileLink?: string;
   fileSize?: string;
+  documentType?: string;
   dependsOn?: {
     field?: string;
     options?: string[];
@@ -78,6 +80,7 @@ export interface ServiceSubFormData {
   fileType: string | null;
   fileSize: string | null;
   allowOther: Boolean;
+  documentType: string | null;
   dependsOn: {
     field: string | null;
     options: string[];
@@ -115,7 +118,8 @@ export interface UpdateServiceSubFormPayload {
   fileType?: string;
   allowOther?: boolean;
   fileLink?: string;
-  fileSize: string;
+  fileSize?: string;
+  documentType?: string;
   dependentField?: string;
   dependentOptions?: string[];
 }

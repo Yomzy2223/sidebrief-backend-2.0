@@ -202,6 +202,7 @@ model ServiceSubForm {
       fileSize String?
       dependentField String?
       dependentOptions String[]
+      documentType String?
       allowOther Boolean @default(false)
       compulsory Boolean @default(false)
       createdAt DateTime @default(now())
@@ -260,6 +261,7 @@ model ProductSubForm {
       fileType String?
       fileLink String?
       fileSize String?
+      documentType String?
       compulsory Boolean @default(false)
       isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
