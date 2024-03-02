@@ -7800,3 +7800,47 @@ Invalid `prisma.userDocument.findUnique()` invocation in
 Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
 
 Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:51:48: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:51:54: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:51:54: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:52:01: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called

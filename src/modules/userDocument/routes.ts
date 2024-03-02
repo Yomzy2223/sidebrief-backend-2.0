@@ -1,5 +1,5 @@
 import express from "express";
-import { userAuth, staffAuth } from "../../middleware/auth";
+import { userAuth } from "../../middleware/auth";
 const router = express.Router();
 
 import {
@@ -10,10 +10,10 @@ import {
   CreateUserDocument,
 } from "./controller";
 
-router.post("/:userId", CreateUserDocument);
-router.get("/user/:userId", GetAllDocumentsByUserId);
-router.get("/:id", GetDocument);
-router.put("/:id", UpdateDocument);
-router.delete("/:id", DeleteDocument);
+router.post("/:userId", userAuth, CreateUserDocument);
+router.get("/user/:userId", userAuth, GetAllDocumentsByUserId);
+router.get("/:id", userAuth, GetDocument);
+router.put("/:id", userAuth, UpdateDocument);
+router.delete("/:id", userAuth, DeleteDocument);
 
 export default router;
