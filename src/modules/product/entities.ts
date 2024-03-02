@@ -20,7 +20,7 @@ export interface ProductData {
   timeline: string;
   feature: string[];
   serviceId: string;
-  dependsOn: string[];
+  canAlsoDo: string[];
   createdAt: Date;
   updatedAt: Date;
 }
