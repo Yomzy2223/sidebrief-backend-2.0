@@ -201,6 +201,7 @@ export type UserPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultAr
     teamMember: TeamMemberPayload<ExtArgs>[]
     account: AccountPayload<ExtArgs>[]
     productRequest: ProductRequestPayload<ExtArgs>[]
+    document: UserDocumentPayload<ExtArgs>[]
   }
   scalars: $Extensions.GetResult<{
     id: string
@@ -238,16 +239,20 @@ export type UserPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultAr
 export type User = runtime.Types.DefaultSelection<UserPayload>
 export type UserDocumentPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
   name: "UserDocument"
-  objects: {}
+  objects: {
+    user: UserPayload<ExtArgs>
+  }
   scalars: $Extensions.GetResult<{
     id: string
-    name: string
-    type: string
-    description: string
-    userId: string
+    name: string | null
+    type: string | null
+    link: string | null
+    size: string | null
+    belongsTo: string | null
     isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
+    userId: string
   }, ExtArgs["result"]["userDocument"]>
   composites: {}
 }
@@ -351,6 +356,7 @@ export type ProductPayload<ExtArgs extends $Extensions.Args = $Extensions.Defaul
     amount: number
     timeline: string
     feature: string[]
+    dependsOn: string[]
     hasShares: boolean
     hasAgent: boolean
     hasOwner: boolean
@@ -3418,12 +3424,14 @@ export namespace Prisma {
     teamMember: number
     account: number
     productRequest: number
+    document: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     teamMember?: boolean | UserCountOutputTypeCountTeamMemberArgs
     account?: boolean | UserCountOutputTypeCountAccountArgs
     productRequest?: boolean | UserCountOutputTypeCountProductRequestArgs
+    document?: boolean | UserCountOutputTypeCountDocumentArgs
   }
 
   // Custom InputTypes
@@ -3460,6 +3468,14 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountProductRequestArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: ProductRequestWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountDocumentArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: UserDocumentWhereInput
   }
 
 
@@ -11554,6 +11570,7 @@ export namespace Prisma {
     teamMember?: boolean | User$teamMemberArgs<ExtArgs>
     account?: boolean | User$accountArgs<ExtArgs>
     productRequest?: boolean | User$productRequestArgs<ExtArgs>
+    document?: boolean | User$documentArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -11588,6 +11605,7 @@ export namespace Prisma {
     teamMember?: boolean | User$teamMemberArgs<ExtArgs>
     account?: boolean | User$accountArgs<ExtArgs>
     productRequest?: boolean | User$productRequestArgs<ExtArgs>
+    document?: boolean | User$documentArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeArgs<ExtArgs>
   }
 
@@ -11966,6 +11984,8 @@ export namespace Prisma {
     account<T extends User$accountArgs<ExtArgs> = {}>(args?: Subset<T, User$accountArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<AccountPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
     productRequest<T extends User$productRequestArgs<ExtArgs> = {}>(args?: Subset<T, User$productRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<ProductRequestPayload<ExtArgs>, T, 'findMany', never>| Null>;
+
+    document<T extends User$documentArgs<ExtArgs> = {}>(args?: Subset<T, User$documentArgs<ExtArgs>>): Prisma.PrismaPromise<$Types.GetResult<UserDocumentPayload<ExtArgs>, T, 'findMany', never>| Null>;
 
     private get _document();
     /**
@@ -12386,6 +12406,27 @@ export namespace Prisma {
 
 
   /**
+   * User.document
+   */
+  export type User$documentArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserDocument
+     */
+    select?: UserDocumentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
+    where?: UserDocumentWhereInput
+    orderBy?: Enumerable<UserDocumentOrderByWithRelationInput>
+    cursor?: UserDocumentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Enumerable<UserDocumentScalarFieldEnum>
+  }
+
+
+  /**
    * User without action
    */
   export type UserArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
@@ -12416,33 +12457,39 @@ export namespace Prisma {
     id: string | null
     name: string | null
     type: string | null
-    description: string | null
-    userId: string | null
+    link: string | null
+    size: string | null
+    belongsTo: string | null
     isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    userId: string | null
   }
 
   export type UserDocumentMaxAggregateOutputType = {
     id: string | null
     name: string | null
     type: string | null
-    description: string | null
-    userId: string | null
+    link: string | null
+    size: string | null
+    belongsTo: string | null
     isDeprecated: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    userId: string | null
   }
 
   export type UserDocumentCountAggregateOutputType = {
     id: number
     name: number
     type: number
-    description: number
-    userId: number
+    link: number
+    size: number
+    belongsTo: number
     isDeprecated: number
     createdAt: number
     updatedAt: number
+    userId: number
     _all: number
   }
 
@@ -12451,33 +12498,39 @@ export namespace Prisma {
     id?: true
     name?: true
     type?: true
-    description?: true
-    userId?: true
+    link?: true
+    size?: true
+    belongsTo?: true
     isDeprecated?: true
     createdAt?: true
     updatedAt?: true
+    userId?: true
   }
 
   export type UserDocumentMaxAggregateInputType = {
     id?: true
     name?: true
     type?: true
-    description?: true
-    userId?: true
+    link?: true
+    size?: true
+    belongsTo?: true
     isDeprecated?: true
     createdAt?: true
     updatedAt?: true
+    userId?: true
   }
 
   export type UserDocumentCountAggregateInputType = {
     id?: true
     name?: true
     type?: true
-    description?: true
-    userId?: true
+    link?: true
+    size?: true
+    belongsTo?: true
     isDeprecated?: true
     createdAt?: true
     updatedAt?: true
+    userId?: true
     _all?: true
   }
 
@@ -12556,13 +12609,15 @@ export namespace Prisma {
 
   export type UserDocumentGroupByOutputType = {
     id: string
-    name: string
-    type: string
-    description: string
-    userId: string
+    name: string | null
+    type: string | null
+    link: string | null
+    size: string | null
+    belongsTo: string | null
     isDeprecated: boolean
     createdAt: Date
     updatedAt: Date
+    userId: string
     _count: UserDocumentCountAggregateOutputType | null
     _min: UserDocumentMinAggregateOutputType | null
     _max: UserDocumentMaxAggregateOutputType | null
@@ -12586,22 +12641,31 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     type?: boolean
-    description?: boolean
-    userId?: boolean
+    link?: boolean
+    size?: boolean
+    belongsTo?: boolean
     isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | UserArgs<ExtArgs>
   }, ExtArgs["result"]["userDocument"]>
 
   export type UserDocumentSelectScalar = {
     id?: boolean
     name?: boolean
     type?: boolean
-    description?: boolean
-    userId?: boolean
+    link?: boolean
+    size?: boolean
+    belongsTo?: boolean
     isDeprecated?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    userId?: boolean
+  }
+
+  export type UserDocumentInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    user?: boolean | UserArgs<ExtArgs>
   }
 
 
@@ -12974,6 +13038,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
     constructor(_dmmf: runtime.DMMFClass, _queryType: 'query' | 'mutation', _rootField: string, _clientMethod: string, _args: any, _dataPath: string[], _errorFormat: ErrorFormat, _measurePerformance?: boolean | undefined, _isList?: boolean);
 
+    user<T extends UserArgs<ExtArgs> = {}>(args?: Subset<T, UserArgs<ExtArgs>>): Prisma__UserClient<$Types.GetResult<UserPayload<ExtArgs>, T, 'findUnique', never> | Null, never, ExtArgs>;
 
     private get _document();
     /**
@@ -13011,6 +13076,10 @@ export namespace Prisma {
      */
     select?: UserDocumentSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
+    /**
      * Filter, which UserDocument to fetch.
      */
     where: UserDocumentWhereUniqueInput
@@ -13037,6 +13106,10 @@ export namespace Prisma {
      */
     select?: UserDocumentSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
+    /**
      * Filter, which UserDocument to fetch.
      */
     where: UserDocumentWhereUniqueInput
@@ -13051,6 +13124,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserDocument
      */
     select?: UserDocumentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
     /**
      * Filter, which UserDocument to fetch.
      */
@@ -13108,6 +13185,10 @@ export namespace Prisma {
      */
     select?: UserDocumentSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
+    /**
      * Filter, which UserDocument to fetch.
      */
     where?: UserDocumentWhereInput
@@ -13153,6 +13234,10 @@ export namespace Prisma {
      */
     select?: UserDocumentSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
+    /**
      * Filter, which UserDocuments to fetch.
      */
     where?: UserDocumentWhereInput
@@ -13193,6 +13278,10 @@ export namespace Prisma {
      */
     select?: UserDocumentSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
+    /**
      * The data needed to create a UserDocument.
      */
     data: XOR<UserDocumentCreateInput, UserDocumentUncheckedCreateInput>
@@ -13219,6 +13308,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserDocument
      */
     select?: UserDocumentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
     /**
      * The data needed to update a UserDocument.
      */
@@ -13254,6 +13347,10 @@ export namespace Prisma {
      */
     select?: UserDocumentSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
+    /**
      * The filter to search for the UserDocument to update in case it exists.
      */
     where: UserDocumentWhereUniqueInput
@@ -13276,6 +13373,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserDocument
      */
     select?: UserDocumentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
     /**
      * Filter which UserDocument to delete.
      */
@@ -13302,6 +13403,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the UserDocument
      */
     select?: UserDocumentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: UserDocumentInclude<ExtArgs> | null
   }
 
 
@@ -16361,6 +16466,7 @@ export namespace Prisma {
     amount: number
     timeline: number
     feature: number
+    dependsOn: number
     hasShares: number
     hasAgent: number
     hasOwner: number
@@ -16435,6 +16541,7 @@ export namespace Prisma {
     amount?: true
     timeline?: true
     feature?: true
+    dependsOn?: true
     hasShares?: true
     hasAgent?: true
     hasOwner?: true
@@ -16545,6 +16652,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature: string[]
+    dependsOn: string[]
     hasShares: boolean
     hasAgent: boolean
     hasOwner: boolean
@@ -16586,6 +16694,7 @@ export namespace Prisma {
     amount?: boolean
     timeline?: boolean
     feature?: boolean
+    dependsOn?: boolean
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -16612,6 +16721,7 @@ export namespace Prisma {
     amount?: boolean
     timeline?: boolean
     feature?: boolean
+    dependsOn?: boolean
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -28429,11 +28539,13 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     type: 'type',
-    description: 'description',
-    userId: 'userId',
+    link: 'link',
+    size: 'size',
+    belongsTo: 'belongsTo',
     isDeprecated: 'isDeprecated',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    userId: 'userId'
   };
 
   export type UserDocumentScalarFieldEnum = (typeof UserDocumentScalarFieldEnum)[keyof typeof UserDocumentScalarFieldEnum]
@@ -28497,6 +28609,7 @@ export namespace Prisma {
     amount: 'amount',
     timeline: 'timeline',
     feature: 'feature',
+    dependsOn: 'dependsOn',
     hasShares: 'hasShares',
     hasAgent: 'hasAgent',
     hasOwner: 'hasOwner',
@@ -29258,6 +29371,7 @@ export namespace Prisma {
     teamMember?: TeamMemberListRelationFilter
     account?: AccountListRelationFilter
     productRequest?: ProductRequestListRelationFilter
+    document?: UserDocumentListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -29288,6 +29402,7 @@ export namespace Prisma {
     teamMember?: TeamMemberOrderByRelationAggregateInput
     account?: AccountOrderByRelationAggregateInput
     productRequest?: ProductRequestOrderByRelationAggregateInput
+    document?: UserDocumentOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = {
@@ -29360,24 +29475,30 @@ export namespace Prisma {
     OR?: Enumerable<UserDocumentWhereInput>
     NOT?: Enumerable<UserDocumentWhereInput>
     id?: StringFilter | string
-    name?: StringFilter | string
-    type?: StringFilter | string
-    description?: StringFilter | string
-    userId?: StringFilter | string
+    name?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
+    link?: StringNullableFilter | string | null
+    size?: StringNullableFilter | string | null
+    belongsTo?: StringNullableFilter | string | null
     isDeprecated?: BoolFilter | boolean
     createdAt?: DateTimeFilter | Date | string
     updatedAt?: DateTimeFilter | Date | string
+    userId?: StringFilter | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
   export type UserDocumentOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    description?: SortOrder
-    userId?: SortOrder
+    name?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
+    link?: SortOrderInput | SortOrder
+    size?: SortOrderInput | SortOrder
+    belongsTo?: SortOrderInput | SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
   }
 
   export type UserDocumentWhereUniqueInput = {
@@ -29386,13 +29507,15 @@ export namespace Prisma {
 
   export type UserDocumentOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
-    type?: SortOrder
-    description?: SortOrder
-    userId?: SortOrder
+    name?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
+    link?: SortOrderInput | SortOrder
+    size?: SortOrderInput | SortOrder
+    belongsTo?: SortOrderInput | SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
     _count?: UserDocumentCountOrderByAggregateInput
     _max?: UserDocumentMaxOrderByAggregateInput
     _min?: UserDocumentMinOrderByAggregateInput
@@ -29403,13 +29526,15 @@ export namespace Prisma {
     OR?: Enumerable<UserDocumentScalarWhereWithAggregatesInput>
     NOT?: Enumerable<UserDocumentScalarWhereWithAggregatesInput>
     id?: StringWithAggregatesFilter | string
-    name?: StringWithAggregatesFilter | string
-    type?: StringWithAggregatesFilter | string
-    description?: StringWithAggregatesFilter | string
-    userId?: StringWithAggregatesFilter | string
+    name?: StringNullableWithAggregatesFilter | string | null
+    type?: StringNullableWithAggregatesFilter | string | null
+    link?: StringNullableWithAggregatesFilter | string | null
+    size?: StringNullableWithAggregatesFilter | string | null
+    belongsTo?: StringNullableWithAggregatesFilter | string | null
     isDeprecated?: BoolWithAggregatesFilter | boolean
     createdAt?: DateTimeWithAggregatesFilter | Date | string
     updatedAt?: DateTimeWithAggregatesFilter | Date | string
+    userId?: StringWithAggregatesFilter | string
   }
 
   export type ServiceWhereInput = {
@@ -29634,6 +29759,7 @@ export namespace Prisma {
     amount?: IntFilter | number
     timeline?: StringFilter | string
     feature?: StringNullableListFilter
+    dependsOn?: StringNullableListFilter
     hasShares?: BoolFilter | boolean
     hasAgent?: BoolFilter | boolean
     hasOwner?: BoolFilter | boolean
@@ -29659,6 +29785,7 @@ export namespace Prisma {
     amount?: SortOrder
     timeline?: SortOrder
     feature?: SortOrder
+    dependsOn?: SortOrder
     hasShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
@@ -29688,6 +29815,7 @@ export namespace Prisma {
     amount?: SortOrder
     timeline?: SortOrder
     feature?: SortOrder
+    dependsOn?: SortOrder
     hasShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
@@ -29718,6 +29846,7 @@ export namespace Prisma {
     amount?: IntWithAggregatesFilter | number
     timeline?: StringWithAggregatesFilter | string
     feature?: StringNullableListFilter
+    dependsOn?: StringNullableListFilter
     hasShares?: BoolWithAggregatesFilter | boolean
     hasAgent?: BoolWithAggregatesFilter | boolean
     hasOwner?: BoolWithAggregatesFilter | boolean
@@ -31215,6 +31344,7 @@ export namespace Prisma {
     teamMember?: TeamMemberCreateNestedManyWithoutUserInput
     account?: AccountCreateNestedManyWithoutUserInput
     productRequest?: ProductRequestCreateNestedManyWithoutUserInput
+    document?: UserDocumentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -31245,6 +31375,7 @@ export namespace Prisma {
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
     productRequest?: ProductRequestUncheckedCreateNestedManyWithoutUserInput
+    document?: UserDocumentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -31275,6 +31406,7 @@ export namespace Prisma {
     teamMember?: TeamMemberUpdateManyWithoutUserNestedInput
     account?: AccountUpdateManyWithoutUserNestedInput
     productRequest?: ProductRequestUpdateManyWithoutUserNestedInput
+    document?: UserDocumentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -31305,6 +31437,7 @@ export namespace Prisma {
     teamMember?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     productRequest?: ProductRequestUncheckedUpdateManyWithoutUserNestedInput
+    document?: UserDocumentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -31390,65 +31523,76 @@ export namespace Prisma {
 
   export type UserDocumentCreateInput = {
     id?: string
-    name: string
-    type: string
-    description: string
-    userId: string
+    name?: string | null
+    type?: string | null
+    link?: string | null
+    size?: string | null
+    belongsTo?: string | null
     isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutDocumentInput
   }
 
   export type UserDocumentUncheckedCreateInput = {
     id?: string
-    name: string
-    type: string
-    description: string
-    userId: string
+    name?: string | null
+    type?: string | null
+    link?: string | null
+    size?: string | null
+    belongsTo?: string | null
     isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    userId: string
   }
 
   export type UserDocumentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    belongsTo?: NullableStringFieldUpdateOperationsInput | string | null
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutDocumentNestedInput
   }
 
   export type UserDocumentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    belongsTo?: NullableStringFieldUpdateOperationsInput | string | null
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserDocumentCreateManyInput = {
     id?: string
-    name: string
-    type: string
-    description: string
-    userId: string
+    name?: string | null
+    type?: string | null
+    link?: string | null
+    size?: string | null
+    belongsTo?: string | null
     isDeprecated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    userId: string
   }
 
   export type UserDocumentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    belongsTo?: NullableStringFieldUpdateOperationsInput | string | null
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31456,13 +31600,15 @@ export namespace Prisma {
 
   export type UserDocumentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    belongsTo?: NullableStringFieldUpdateOperationsInput | string | null
     isDeprecated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServiceCreateInput = {
@@ -31764,6 +31910,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -31788,6 +31935,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -31812,6 +31960,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -31836,6 +31985,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -31860,6 +32010,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -31882,6 +32033,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -31903,6 +32055,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -33415,6 +33568,12 @@ export namespace Prisma {
     none?: ProductRequestWhereInput
   }
 
+  export type UserDocumentListRelationFilter = {
+    every?: UserDocumentWhereInput
+    some?: UserDocumentWhereInput
+    none?: UserDocumentWhereInput
+  }
+
   export type TeamMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -33424,6 +33583,10 @@ export namespace Prisma {
   }
 
   export type ProductRequestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserDocumentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -33506,33 +33669,39 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
-    description?: SortOrder
-    userId?: SortOrder
+    link?: SortOrder
+    size?: SortOrder
+    belongsTo?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type UserDocumentMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
-    description?: SortOrder
-    userId?: SortOrder
+    link?: SortOrder
+    size?: SortOrder
+    belongsTo?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type UserDocumentMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     type?: SortOrder
-    description?: SortOrder
-    userId?: SortOrder
+    link?: SortOrder
+    size?: SortOrder
+    belongsTo?: SortOrder
     isDeprecated?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type ProductListRelationFilter = {
@@ -33721,6 +33890,7 @@ export namespace Prisma {
     amount?: SortOrder
     timeline?: SortOrder
     feature?: SortOrder
+    dependsOn?: SortOrder
     hasShares?: SortOrder
     hasAgent?: SortOrder
     hasOwner?: SortOrder
@@ -34465,6 +34635,13 @@ export namespace Prisma {
     connect?: Enumerable<ProductRequestWhereUniqueInput>
   }
 
+  export type UserDocumentCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<UserDocumentCreateWithoutUserInput>, Enumerable<UserDocumentUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<UserDocumentCreateOrConnectWithoutUserInput>
+    createMany?: UserDocumentCreateManyUserInputEnvelope
+    connect?: Enumerable<UserDocumentWhereUniqueInput>
+  }
+
   export type TeamMemberUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<Enumerable<TeamMemberCreateWithoutUserInput>, Enumerable<TeamMemberUncheckedCreateWithoutUserInput>>
     connectOrCreate?: Enumerable<TeamMemberCreateOrConnectWithoutUserInput>
@@ -34484,6 +34661,13 @@ export namespace Prisma {
     connectOrCreate?: Enumerable<ProductRequestCreateOrConnectWithoutUserInput>
     createMany?: ProductRequestCreateManyUserInputEnvelope
     connect?: Enumerable<ProductRequestWhereUniqueInput>
+  }
+
+  export type UserDocumentUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<Enumerable<UserDocumentCreateWithoutUserInput>, Enumerable<UserDocumentUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<UserDocumentCreateOrConnectWithoutUserInput>
+    createMany?: UserDocumentCreateManyUserInputEnvelope
+    connect?: Enumerable<UserDocumentWhereUniqueInput>
   }
 
   export type UserUpdatepartnerPermissionInput = {
@@ -34543,6 +34727,20 @@ export namespace Prisma {
     deleteMany?: Enumerable<ProductRequestScalarWhereInput>
   }
 
+  export type UserDocumentUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<UserDocumentCreateWithoutUserInput>, Enumerable<UserDocumentUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<UserDocumentCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<UserDocumentUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: UserDocumentCreateManyUserInputEnvelope
+    set?: Enumerable<UserDocumentWhereUniqueInput>
+    disconnect?: Enumerable<UserDocumentWhereUniqueInput>
+    delete?: Enumerable<UserDocumentWhereUniqueInput>
+    connect?: Enumerable<UserDocumentWhereUniqueInput>
+    update?: Enumerable<UserDocumentUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<UserDocumentUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<UserDocumentScalarWhereInput>
+  }
+
   export type TeamMemberUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<Enumerable<TeamMemberCreateWithoutUserInput>, Enumerable<TeamMemberUncheckedCreateWithoutUserInput>>
     connectOrCreate?: Enumerable<TeamMemberCreateOrConnectWithoutUserInput>
@@ -34583,6 +34781,34 @@ export namespace Prisma {
     update?: Enumerable<ProductRequestUpdateWithWhereUniqueWithoutUserInput>
     updateMany?: Enumerable<ProductRequestUpdateManyWithWhereWithoutUserInput>
     deleteMany?: Enumerable<ProductRequestScalarWhereInput>
+  }
+
+  export type UserDocumentUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<Enumerable<UserDocumentCreateWithoutUserInput>, Enumerable<UserDocumentUncheckedCreateWithoutUserInput>>
+    connectOrCreate?: Enumerable<UserDocumentCreateOrConnectWithoutUserInput>
+    upsert?: Enumerable<UserDocumentUpsertWithWhereUniqueWithoutUserInput>
+    createMany?: UserDocumentCreateManyUserInputEnvelope
+    set?: Enumerable<UserDocumentWhereUniqueInput>
+    disconnect?: Enumerable<UserDocumentWhereUniqueInput>
+    delete?: Enumerable<UserDocumentWhereUniqueInput>
+    connect?: Enumerable<UserDocumentWhereUniqueInput>
+    update?: Enumerable<UserDocumentUpdateWithWhereUniqueWithoutUserInput>
+    updateMany?: Enumerable<UserDocumentUpdateManyWithWhereWithoutUserInput>
+    deleteMany?: Enumerable<UserDocumentScalarWhereInput>
+  }
+
+  export type UserCreateNestedOneWithoutDocumentInput = {
+    create?: XOR<UserCreateWithoutDocumentInput, UserUncheckedCreateWithoutDocumentInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDocumentInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutDocumentNestedInput = {
+    create?: XOR<UserCreateWithoutDocumentInput, UserUncheckedCreateWithoutDocumentInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDocumentInput
+    upsert?: UserUpsertWithoutDocumentInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<UserUpdateWithoutDocumentInput, UserUncheckedUpdateWithoutDocumentInput>
   }
 
   export type ProductCreateNestedManyWithoutServiceInput = {
@@ -34761,6 +34987,10 @@ export namespace Prisma {
     set: Enumerable<string>
   }
 
+  export type ProductCreatedependsOnInput = {
+    set: Enumerable<string>
+  }
+
   export type ServiceCreateNestedOneWithoutProductsInput = {
     create?: XOR<ServiceCreateWithoutProductsInput, ServiceUncheckedCreateWithoutProductsInput>
     connectOrCreate?: ServiceCreateOrConnectWithoutProductsInput
@@ -34804,6 +35034,11 @@ export namespace Prisma {
   }
 
   export type ProductUpdatefeatureInput = {
+    set?: Enumerable<string>
+    push?: string | Enumerable<string>
+  }
+
+  export type ProductUpdatedependsOnInput = {
     set?: Enumerable<string>
     push?: string | Enumerable<string>
   }
@@ -35743,6 +35978,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     teamMember?: TeamMemberCreateNestedManyWithoutUserInput
     productRequest?: ProductRequestCreateNestedManyWithoutUserInput
+    document?: UserDocumentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountInput = {
@@ -35772,6 +36008,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     productRequest?: ProductRequestUncheckedCreateNestedManyWithoutUserInput
+    document?: UserDocumentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountInput = {
@@ -35811,6 +36048,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMember?: TeamMemberUpdateManyWithoutUserNestedInput
     productRequest?: ProductRequestUpdateManyWithoutUserNestedInput
+    document?: UserDocumentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountInput = {
@@ -35840,6 +36078,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMember?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     productRequest?: ProductRequestUncheckedUpdateManyWithoutUserNestedInput
+    document?: UserDocumentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TeamMemberCreateWithoutUserInput = {
@@ -35950,6 +36189,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserDocumentCreateWithoutUserInput = {
+    id?: string
+    name?: string | null
+    type?: string | null
+    link?: string | null
+    size?: string | null
+    belongsTo?: string | null
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserDocumentUncheckedCreateWithoutUserInput = {
+    id?: string
+    name?: string | null
+    type?: string | null
+    link?: string | null
+    size?: string | null
+    belongsTo?: string | null
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserDocumentCreateOrConnectWithoutUserInput = {
+    where: UserDocumentWhereUniqueInput
+    create: XOR<UserDocumentCreateWithoutUserInput, UserDocumentUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserDocumentCreateManyUserInputEnvelope = {
+    data: Enumerable<UserDocumentCreateManyUserInput>
+    skipDuplicates?: boolean
+  }
+
   export type TeamMemberUpsertWithWhereUniqueWithoutUserInput = {
     where: TeamMemberWhereUniqueInput
     update: XOR<TeamMemberUpdateWithoutUserInput, TeamMemberUncheckedUpdateWithoutUserInput>
@@ -36046,6 +36319,168 @@ export namespace Prisma {
     userId?: StringFilter | string
   }
 
+  export type UserDocumentUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserDocumentWhereUniqueInput
+    update: XOR<UserDocumentUpdateWithoutUserInput, UserDocumentUncheckedUpdateWithoutUserInput>
+    create: XOR<UserDocumentCreateWithoutUserInput, UserDocumentUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserDocumentUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserDocumentWhereUniqueInput
+    data: XOR<UserDocumentUpdateWithoutUserInput, UserDocumentUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserDocumentUpdateManyWithWhereWithoutUserInput = {
+    where: UserDocumentScalarWhereInput
+    data: XOR<UserDocumentUpdateManyMutationInput, UserDocumentUncheckedUpdateManyWithoutDocumentInput>
+  }
+
+  export type UserDocumentScalarWhereInput = {
+    AND?: Enumerable<UserDocumentScalarWhereInput>
+    OR?: Enumerable<UserDocumentScalarWhereInput>
+    NOT?: Enumerable<UserDocumentScalarWhereInput>
+    id?: StringFilter | string
+    name?: StringNullableFilter | string | null
+    type?: StringNullableFilter | string | null
+    link?: StringNullableFilter | string | null
+    size?: StringNullableFilter | string | null
+    belongsTo?: StringNullableFilter | string | null
+    isDeprecated?: BoolFilter | boolean
+    createdAt?: DateTimeFilter | Date | string
+    updatedAt?: DateTimeFilter | Date | string
+    userId?: StringFilter | string
+  }
+
+  export type UserCreateWithoutDocumentInput = {
+    id?: string
+    fullName: string
+    username?: string | null
+    email: string
+    password?: string | null
+    googleId?: string | null
+    phone?: string | null
+    picture?: string | null
+    isVerified?: boolean
+    referral?: string | null
+    country?: string | null
+    resetToken?: string | null
+    isPartner?: boolean
+    isStaff?: boolean
+    isPhoneRegistered?: boolean
+    isPhoneVerified?: boolean
+    isIdentificationRegistered?: boolean
+    isIdentificationVerified?: boolean
+    partnerPermission?: UserCreatepartnerPermissionInput | Enumerable<string>
+    staffPermission?: UserCreatestaffPermissionInput | Enumerable<string>
+    userPermission?: UserCreateuserPermissionInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    teamMember?: TeamMemberCreateNestedManyWithoutUserInput
+    account?: AccountCreateNestedManyWithoutUserInput
+    productRequest?: ProductRequestCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutDocumentInput = {
+    id?: string
+    fullName: string
+    username?: string | null
+    email: string
+    password?: string | null
+    googleId?: string | null
+    phone?: string | null
+    picture?: string | null
+    isVerified?: boolean
+    referral?: string | null
+    country?: string | null
+    resetToken?: string | null
+    isPartner?: boolean
+    isStaff?: boolean
+    isPhoneRegistered?: boolean
+    isPhoneVerified?: boolean
+    isIdentificationRegistered?: boolean
+    isIdentificationVerified?: boolean
+    partnerPermission?: UserCreatepartnerPermissionInput | Enumerable<string>
+    staffPermission?: UserCreatestaffPermissionInput | Enumerable<string>
+    userPermission?: UserCreateuserPermissionInput | Enumerable<string>
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    teamMember?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
+    account?: AccountUncheckedCreateNestedManyWithoutUserInput
+    productRequest?: ProductRequestUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutDocumentInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutDocumentInput, UserUncheckedCreateWithoutDocumentInput>
+  }
+
+  export type UserUpsertWithoutDocumentInput = {
+    update: XOR<UserUpdateWithoutDocumentInput, UserUncheckedUpdateWithoutDocumentInput>
+    create: XOR<UserCreateWithoutDocumentInput, UserUncheckedCreateWithoutDocumentInput>
+  }
+
+  export type UserUpdateWithoutDocumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    isPartner?: BoolFieldUpdateOperationsInput | boolean
+    isStaff?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneRegistered?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    isIdentificationRegistered?: BoolFieldUpdateOperationsInput | boolean
+    isIdentificationVerified?: BoolFieldUpdateOperationsInput | boolean
+    partnerPermission?: UserUpdatepartnerPermissionInput | Enumerable<string>
+    staffPermission?: UserUpdatestaffPermissionInput | Enumerable<string>
+    userPermission?: UserUpdateuserPermissionInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    teamMember?: TeamMemberUpdateManyWithoutUserNestedInput
+    account?: AccountUpdateManyWithoutUserNestedInput
+    productRequest?: ProductRequestUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutDocumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    googleId?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    picture?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    referral?: NullableStringFieldUpdateOperationsInput | string | null
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    resetToken?: NullableStringFieldUpdateOperationsInput | string | null
+    isPartner?: BoolFieldUpdateOperationsInput | boolean
+    isStaff?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneRegistered?: BoolFieldUpdateOperationsInput | boolean
+    isPhoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    isIdentificationRegistered?: BoolFieldUpdateOperationsInput | boolean
+    isIdentificationVerified?: BoolFieldUpdateOperationsInput | boolean
+    partnerPermission?: UserUpdatepartnerPermissionInput | Enumerable<string>
+    staffPermission?: UserUpdatestaffPermissionInput | Enumerable<string>
+    userPermission?: UserUpdateuserPermissionInput | Enumerable<string>
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    teamMember?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
+    account?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    productRequest?: ProductRequestUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type ProductCreateWithoutServiceInput = {
     id?: string
     name: string
@@ -36055,6 +36490,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36078,6 +36514,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36164,6 +36601,7 @@ export namespace Prisma {
     amount?: IntFilter | number
     timeline?: StringFilter | string
     feature?: StringNullableListFilter
+    dependsOn?: StringNullableListFilter
     hasShares?: BoolFilter | boolean
     hasAgent?: BoolFilter | boolean
     hasOwner?: BoolFilter | boolean
@@ -36584,6 +37022,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36607,6 +37046,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36686,6 +37126,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -36709,6 +37150,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -36862,6 +37304,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36885,6 +37328,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -36931,6 +37375,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     teamMember?: TeamMemberCreateNestedManyWithoutUserInput
     account?: AccountCreateNestedManyWithoutUserInput
+    document?: UserDocumentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProductRequestInput = {
@@ -36960,6 +37405,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     teamMember?: TeamMemberUncheckedCreateNestedManyWithoutUserInput
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
+    document?: UserDocumentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProductRequestInput = {
@@ -37079,6 +37525,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -37102,6 +37549,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -37148,6 +37596,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMember?: TeamMemberUpdateManyWithoutUserNestedInput
     account?: AccountUpdateManyWithoutUserNestedInput
+    document?: UserDocumentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProductRequestInput = {
@@ -37177,6 +37626,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teamMember?: TeamMemberUncheckedUpdateManyWithoutUserNestedInput
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    document?: UserDocumentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PaymentUpsertWithWhereUniqueWithoutProductRequestsInput = {
@@ -37698,6 +38148,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     account?: AccountCreateNestedManyWithoutUserInput
     productRequest?: ProductRequestCreateNestedManyWithoutUserInput
+    document?: UserDocumentCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTeamMemberInput = {
@@ -37727,6 +38178,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     account?: AccountUncheckedCreateNestedManyWithoutUserInput
     productRequest?: ProductRequestUncheckedCreateNestedManyWithoutUserInput
+    document?: UserDocumentUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTeamMemberInput = {
@@ -37795,6 +38247,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUpdateManyWithoutUserNestedInput
     productRequest?: ProductRequestUpdateManyWithoutUserNestedInput
+    document?: UserDocumentUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTeamMemberInput = {
@@ -37824,6 +38277,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     productRequest?: ProductRequestUncheckedUpdateManyWithoutUserNestedInput
+    document?: UserDocumentUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type TeamCreateWithoutInvitationInput = {
@@ -38038,6 +38492,18 @@ export namespace Prisma {
     productId?: string | null
   }
 
+  export type UserDocumentCreateManyUserInput = {
+    id?: string
+    name?: string | null
+    type?: string | null
+    link?: string | null
+    size?: string | null
+    belongsTo?: string | null
+    isDeprecated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type TeamMemberUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     isLaunchMember?: BoolFieldUpdateOperationsInput | boolean
@@ -38152,6 +38618,42 @@ export namespace Prisma {
     productId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type UserDocumentUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    belongsTo?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserDocumentUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    belongsTo?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserDocumentUncheckedUpdateManyWithoutDocumentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableStringFieldUpdateOperationsInput | string | null
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: NullableStringFieldUpdateOperationsInput | string | null
+    belongsTo?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeprecated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ProductCreateManyServiceInput = {
     id?: string
     name: string
@@ -38161,6 +38663,7 @@ export namespace Prisma {
     amount: number
     timeline: string
     feature?: ProductCreatefeatureInput | Enumerable<string>
+    dependsOn?: ProductCreatedependsOnInput | Enumerable<string>
     hasShares?: boolean
     hasAgent?: boolean
     hasOwner?: boolean
@@ -38193,6 +38696,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -38216,6 +38720,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean
@@ -38239,6 +38744,7 @@ export namespace Prisma {
     amount?: IntFieldUpdateOperationsInput | number
     timeline?: StringFieldUpdateOperationsInput | string
     feature?: ProductUpdatefeatureInput | Enumerable<string>
+    dependsOn?: ProductUpdatedependsOnInput | Enumerable<string>
     hasShares?: BoolFieldUpdateOperationsInput | boolean
     hasAgent?: BoolFieldUpdateOperationsInput | boolean
     hasOwner?: BoolFieldUpdateOperationsInput | boolean

@@ -182,6 +182,34 @@ const options: OpenAPIDefinition = {
             },
           },
         },
+        //user document
+        UserDocument: {
+          type: "object",
+          require: ["name", "link", "type", "size", "belongsTo"],
+          properties: {
+            name: {
+              type: "string",
+              description: "name of the file",
+            },
+
+            link: {
+              type: "string",
+              description: "link of the file",
+            },
+            type: {
+              type: "string",
+              description: "type of the file",
+            },
+            size: {
+              type: "string",
+              description: "size of the file",
+            },
+            belongsTo: {
+              type: "string",
+              description: "The owner of the document",
+            },
+          },
+        },
 
         //STAFF
         Staffs: {
@@ -243,6 +271,8 @@ const options: OpenAPIDefinition = {
             "currency",
             "amount",
             "timeline",
+            "feature",
+            "dependsOn",
           ],
           properties: {
             name: {
@@ -278,6 +308,11 @@ const options: OpenAPIDefinition = {
             timeline: {
               type: "string",
               description: "The timeline for the product service ",
+              required: true,
+            },
+            dependsOn: {
+              type: "array",
+              description: "The products that depend on this product",
               required: true,
             },
           },
@@ -706,6 +741,76 @@ const options: OpenAPIDefinition = {
           },
         },
 
+        ServiceCategoryMultipleSubForm: {
+          type: "object",
+          require: ["subform"],
+          properties: {
+            subform: {
+              type: "array",
+              description: "",
+              items: {
+                type: "object",
+                require: ["question", "type", "compulsory", "options"],
+
+                properties: {
+                  question: {
+                    type: "string",
+                    description: "the form question",
+                  },
+                  type: {
+                    type: "string",
+                    description: "type of the question",
+                  },
+                  options: {
+                    type: "array",
+                    description: "options of the question",
+                  },
+                  compulsory: {
+                    type: "boolean",
+                    description: "status of the question",
+                  },
+                  allowOther: {
+                    type: "boolean",
+                    description: "allow other answer of the file",
+                  },
+                  fileName: {
+                    type: "string",
+                    description: "name of the file",
+                  },
+
+                  fileLink: {
+                    type: "string",
+                    description: "link of the file",
+                  },
+                  fileType: {
+                    type: "string",
+                    description: "type of the file",
+                  },
+                  fileSize: {
+                    type: "string",
+                    description: "size of the file",
+                  },
+                  dependsOn: {
+                    require: ["field", "options"],
+                    type: "object",
+                    description: "The question of the profile selected",
+                    properties: {
+                      field: {
+                        type: "string",
+                        description: "field name",
+                      },
+                      options: {
+                        type: "array",
+                        description: "option",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+
         ServiceSubForm: {
           type: "object",
           require: ["question", "type", "compulsory", "options"],
@@ -994,10 +1099,10 @@ const options: OpenAPIDefinition = {
         name: "Users",
         description: "The users management API",
       },
-      // {
-      //   name: "Staffs",
-      //   description: "The staffs management API",
-      // },
+      {
+        name: "User Document",
+        description: "The user document management API",
+      },
       {
         name: "Banks",
         description: "The banks management API",
@@ -1710,6 +1815,41 @@ const options: OpenAPIDefinition = {
       },
 
       "/products/subforms/{formId}": {
+        post: {
+          tags: ["Product"],
+          summary: "Create a new service sub form",
+          description: "Create new service sub form in system",
+          parameters: [
+            {
+              name: "formId",
+              in: "path",
+              required: true,
+              description: "ID of form to be fetched",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceCategoryMultipleSubForm", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New service sub form is created",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategoryMultipleSubForm",
+              },
+            },
+          },
+        },
+
         get: {
           summary: "Get all service sub forms under a service category",
           tags: ["Product"],
@@ -2112,6 +2252,40 @@ const options: OpenAPIDefinition = {
       },
 
       "/services/subforms/{formId}": {
+        post: {
+          tags: ["Service"],
+          summary: "Create new service sub forms",
+          description: "Create new service sub forms in system",
+          parameters: [
+            {
+              name: "formId",
+              in: "path",
+              required: true,
+              description: "ID of service sub form to be fetched",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/ServiceCategoryMultipleSubForm", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New service sub form is created",
+              schema: {
+                $ref: "#/components/schemas/ServiceCategorySubForm",
+              },
+            },
+          },
+        },
         get: {
           summary: "Get all service sub forms under a service category",
           tags: ["Service"],
@@ -2910,6 +3084,147 @@ const options: OpenAPIDefinition = {
               description: "Bank is updated",
               schema: {
                 $ref: "#/components/schemas/Banks",
+              },
+            },
+          },
+        },
+      },
+
+      //user document
+      "/userDocument/{userId}": {
+        post: {
+          tags: ["User Document"],
+          summary: "Create a new document",
+          description: "Create new document in system",
+          parameters: [
+            {
+              name: "userId",
+              in: "path",
+              required: true,
+              description: "ID of user to be fetched",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserDocument", //
+                },
+              },
+            },
+          },
+          produces: ["application/json"],
+          responses: {
+            200: {
+              description: "New bank is created",
+              schema: {
+                $ref: "#/components/schemas/UserDocument",
+              },
+            },
+          },
+        },
+      },
+
+      "/userDocument/user/{userId}": {
+        get: {
+          tags: ["User Document"],
+          summary: "Get all documents in system",
+          parameters: [
+            {
+              name: "userId",
+              in: "path",
+              required: true,
+              description: "ID of user to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/Banks",
+              },
+            },
+          },
+        },
+      },
+
+      "/userDocument/{id}": {
+        get: {
+          summary: "Get a user document with given ID",
+          tags: ["User Document"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of User Document to be fetched",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "User Document is fetched",
+              schema: {
+                $ref: "#/components/schemas/UserDocument",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete a user document with given ID",
+          tags: ["User Document"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of user document to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "User Document is deleted",
+              schema: {
+                $ref: "#/components/schemas/UserDocument",
+              },
+            },
+          },
+        },
+
+        put: {
+          summary: "Update document with give ID",
+          tags: ["User Document"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of document to be updated",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UserDocument", //
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Document is updated",
+              schema: {
+                $ref: "#/components/schemas/UserDocument",
               },
             },
           },

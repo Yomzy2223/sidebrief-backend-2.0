@@ -148,7 +148,7 @@ const updateService = async (
     }
 
     return {
-      message: "Servic updated successfully",
+      message: "Service updated successfully",
       data: updateCategory,
       statusCode: 200,
     };
@@ -506,6 +506,45 @@ const saveServiceSubForm = async (
   }
 };
 
+//create multiple service subforms
+const saveMultipleServiceSubForm = async (
+  servicePayload: ServiceSubFormPayload[],
+  formId: string
+): Promise<ServiceSubFormResponse> => {
+  //   //add the new service category to the table
+
+  try {
+    const checkService = await prisma.serviceForm.findUnique({
+      where: { id: formId },
+    });
+    if (!checkService) {
+      throw new BadRequest("Service form does not exist");
+    }
+
+    const subForm = await prisma.serviceSubForm.createMany({
+      data: servicePayload,
+      skipDuplicates: true,
+    });
+    if (!subForm) {
+      throw new BadRequest(
+        "Error occured while creating this service sub forms"
+      );
+    }
+
+    logger.info({
+      message: `service sub forms created successfully`,
+    });
+
+    const response: ServiceSubFormResponse = {
+      message: "Service sub forms created successfully",
+      statusCode: 200,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 //get all service category service
 const getAllServiceSubForm = async (formId: string) => {
   //  get the service category list from the table
@@ -782,4 +821,5 @@ export {
   removeServiceSubForm,
   trashedService,
   trashedServiceForm,
+  saveMultipleServiceSubForm,
 };

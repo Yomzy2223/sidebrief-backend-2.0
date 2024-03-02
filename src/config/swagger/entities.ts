@@ -22,7 +22,17 @@ interface User {
     isStaff: Props;
   };
 }
-
+interface UserDocument {
+  type: string;
+  require: string[];
+  properties: {
+    name: Props;
+    type: Props;
+    link: Props;
+    size: Props;
+    belongsTo: Props;
+  };
+}
 interface UserLogin {
   type: string;
   require: string[];
@@ -106,6 +116,7 @@ interface ProductServices {
     currency: Props;
     timeline: Props;
     feature: Props;
+    dependsOn: Props;
   };
 }
 
@@ -313,7 +324,6 @@ interface ServiceCategorySubForm {
     };
   };
 }
-
 interface ServiceSubForm {
   type: string;
   require: string[];
@@ -323,6 +333,10 @@ interface ServiceSubForm {
     type: Props;
     compulsory: Props;
     fileName: Props;
+    allowOther: Props;
+    fileLink: Props;
+    fileSize: Props;
+    fileType: Props;
     dependsOn: {
       type: string;
       description: string;
@@ -332,13 +346,43 @@ interface ServiceSubForm {
         options: Props;
       };
     };
-
-    allowOther: Props;
-    fileLink: Props;
-    fileSize: Props;
-    fileType: Props;
   };
 }
+interface ServiceCategoryMultipleSubForm {
+  type: string;
+  require: string[];
+  properties: {
+    subform: {
+      type: string;
+      description: string;
+      items: {
+        type: string;
+        require: string[];
+        properties: {
+          question: Props;
+          options: Props;
+          type: Props;
+          compulsory: Props;
+          allowOther: Props;
+          fileName: Props;
+          fileLink: Props;
+          fileSize: Props;
+          fileType: Props;
+          dependsOn: {
+            type: string;
+            description: string;
+            require: string[];
+            properties: {
+              field: Props;
+              options: Props;
+            };
+          };
+        };
+      };
+    };
+  };
+}
+
 interface CreateProduct {
   type: string;
   require: string[];
@@ -469,6 +513,7 @@ interface ComponentDefinition {
     UserLoginWithGoogle: UserLoginWithGoogle;
     UserForgot: UserForgot;
     UserReset: UserReset;
+    UserDocument: UserDocument;
 
     //Staffs
     Staffs: Staffs;
@@ -512,6 +557,8 @@ interface ComponentDefinition {
     CreateProduct: CreateProduct;
     AddProductQA: AddProductQA;
     GetProductQAByQuestion: GetProductQAByQuestion;
+
+    ServiceCategoryMultipleSubForm: ServiceCategoryMultipleSubForm;
   };
   responses: {
     401: ResponseProps;

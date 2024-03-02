@@ -22,9 +22,11 @@ import {
 } from "./service";
 import {
   Dependant,
+  MProductSubFormPayload,
   ProductSubFormPayload,
   UpdateProductSubFormPayload,
 } from "./entities";
+import { saveMultipleServiceSubForm } from "../serviceCategory/service";
 
 // create a new product service
 const ProductCreator = async (
@@ -47,6 +49,7 @@ const ProductCreator = async (
       amount: productServicePayload.amount,
       feature: productServicePayload.feature,
       timeline: productServicePayload.timeline,
+      dependsOn: productServicePayload?.dependsOn,
       serviceId: serviceId,
     };
 
@@ -128,6 +131,7 @@ const ProductModifier = async (
       timeline: productServicePayload.timeline,
       feature: productServicePayload.feature,
       serviceId: productServicePayload.serviceId,
+      dependsOn: productServicePayload?.dependsOn,
     };
 
     const updateservice = await updateProductService(id, values);
@@ -326,6 +330,45 @@ const ProductSubFormCreator = async (
   }
 };
 
+const ProductMultipleSubFormCreator = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the validated payload from the the request body
+    // get the product id from the the request params
+    // send the validated payload and the form id to product service
+    // return response to the client
+
+    const formId = req.params.formId;
+    const subformPayload: ProductSubFormPayload[] = req.body.subform;
+
+    const requiredData = subformPayload?.map(
+      (data: MProductSubFormPayload) => ({
+        question: data?.question,
+        type: data?.type,
+        options: data?.options,
+        compulsory: data?.compulsory,
+        fileName: data?.fileName,
+        fileLink: data?.fileLink,
+        fileType: data?.fileType,
+        fileSize: data?.fileSize,
+        allowOther: data?.allowOther,
+        dependentField: data?.dependsOn?.field,
+        dependentOptions: data?.dependsOn?.options,
+        formId: formId,
+      })
+    );
+
+    const category = await saveMultipleServiceSubForm(requiredData, formId);
+
+    return res.status(category.statusCode).json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
 //get all product subforms
 const ProductSubFormsFetcher = async (
   req: Request,
@@ -476,4 +519,5 @@ export {
   ProductSubFormRemover,
   TrashedProductFetcher,
   TrashedProductFormFetcher,
+  ProductMultipleSubFormCreator,
 };

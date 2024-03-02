@@ -13,6 +13,7 @@ import collaboratorRoutes from "./src/modules/collaborator/routes";
 import productRoutes from "./src/modules/product/routes";
 import productRequestRoutes from "./src/modules/productRequest/routes";
 import paymentRoutes from "./src/modules/payment/routes";
+import userDocumentRoutes from "./src/modules/userDocument/routes";
 // const connectDb = require("./src/config/database");
 import logger from "./src/config/logger";
 import swaggerJSDoc from "swagger-jsdoc";
@@ -82,6 +83,8 @@ app.use("/productRequest", productRequestRoutes);
 
 //payment
 app.use("/payment", paymentRoutes);
+//user document
+app.use("/userDocument", userDocumentRoutes);
 
 const specs = swaggerJSDoc(options);
 app.use(
