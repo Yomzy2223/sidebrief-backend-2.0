@@ -26,6 +26,7 @@ import {
   ServiceSubFormRemover,
   TrashedServicesFetcher,
   TrashedServicesFormFetcher,
+  ServiceMultipleSubFormCreator,
 } from "./controller";
 
 router.post("/", staffAuth, validator(validateService), ServiceCreator);
@@ -61,6 +62,12 @@ router.post(
   // staffAuth,
   // validator(validateServiceSubForm),
   ServiceSubFormCreator
+);
+router.post(
+  "/subforms/:formId",
+  // staffAuth,
+  // validator(validateServiceSubForm),
+  ServiceMultipleSubFormCreator
 );
 router.get("/subforms/:formId", ServiceSubFormFetcher);
 router.get("/subform/:id", ServiceACategorySubFormFetcher);

@@ -17,9 +17,11 @@ import {
   removeServiceSubForm,
   trashedService,
   trashedServiceForm,
+  saveMultipleServiceSubForm,
 } from "./service";
 import {
   Dependant,
+  MServiceSubFormPayload,
   ServiceFormPayload,
   ServiceSubFormPayload,
   UpdateServiceFormPayload,
@@ -295,6 +297,45 @@ const ServiceSubFormCreator = async (
   }
 };
 
+const ServiceMultipleSubFormCreator = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the validated payload from the the request body
+    // get the service category id from the the request params
+    // send the validated payload and the category id to saveServiceForm service
+    // return response to the client
+
+    const formId = req.params.formId;
+    const servicePayload: ServiceSubFormPayload[] = req.body.subform;
+
+    const requiredData = servicePayload?.map(
+      (data: MServiceSubFormPayload) => ({
+        question: data?.question,
+        type: data?.type,
+        options: data?.options,
+        compulsory: data?.compulsory,
+        fileName: data?.fileName,
+        fileLink: data?.fileLink,
+        fileType: data?.fileType,
+        fileSize: data?.fileSize,
+        allowOther: data?.allowOther,
+        dependentField: data?.dependsOn?.field,
+        dependentOptions: data?.dependsOn?.options,
+        formId: formId,
+      })
+    );
+
+    const category = await saveMultipleServiceSubForm(requiredData, formId);
+
+    return res.status(category.statusCode).json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
 //get all service category forms
 const ServiceSubFormFetcher = async (
   req: Request,
@@ -444,4 +485,5 @@ export {
   ServiceSubFormRemover,
   TrashedServicesFetcher,
   TrashedServicesFormFetcher,
+  ServiceMultipleSubFormCreator,
 };

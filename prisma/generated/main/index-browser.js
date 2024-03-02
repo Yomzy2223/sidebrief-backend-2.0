@@ -233,11 +233,13 @@ exports.Prisma.UserDocumentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   type: 'type',
-  description: 'description',
-  userId: 'userId',
+  link: 'link',
+  size: 'size',
+  belongsTo: 'belongsTo',
   isDeprecated: 'isDeprecated',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 };
 
 exports.Prisma.ServiceScalarFieldEnum = {
@@ -289,6 +291,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   amount: 'amount',
   timeline: 'timeline',
   feature: 'feature',
+  dependsOn: 'dependsOn',
   hasShares: 'hasShares',
   hasAgent: 'hasAgent',
   hasOwner: 'hasOwner',

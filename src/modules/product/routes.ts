@@ -27,6 +27,7 @@ import {
   ProductSubFormRemover,
   TrashedProductFetcher,
   TrashedProductFormFetcher,
+  ProductMultipleSubFormCreator,
 } from "./controller";
 
 // Product  route
@@ -74,6 +75,13 @@ router.post(
   // staffAuth,
 
   ProductSubFormCreator
+);
+
+router.post(
+  "/subforms/:formId",
+  // staffAuth,
+
+  ProductMultipleSubFormCreator
 );
 router.get("/subforms/:formId", ProductSubFormsFetcher);
 router.get("/subform/:id", ProductSubFormFetcher);

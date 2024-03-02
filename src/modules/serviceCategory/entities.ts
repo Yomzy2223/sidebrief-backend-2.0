@@ -37,6 +37,22 @@ export interface ServiceSubFormPayload {
   dependentOptions?: string[];
 }
 
+export interface MServiceSubFormPayload {
+  question?: string;
+  type?: string;
+  options?: string[];
+  formId: string;
+  compulsory?: boolean;
+  fileName?: string;
+  fileType?: string;
+  allowOther?: boolean;
+  fileLink?: string;
+  fileSize?: string;
+  dependsOn?: {
+    field?: string;
+    options?: string[];
+  };
+}
 export interface Dependant {
   field?: string;
   options?: string[];
@@ -80,7 +96,7 @@ export interface ServiceFormResponse {
 export interface ServiceSubFormResponse {
   statusCode: number;
   message: string;
-  data: ServiceSubFormData | ServiceSubFormData[];
+  data?: ServiceSubFormData | ServiceSubFormData[];
 }
 
 export interface UpdateServiceFormPayload {

@@ -7601,3 +7601,246 @@ info: Label: 29-Feb-2024 11:34:02: Product sub form created successfully
 error: Label: 29-Feb-2024 14:00:18: Authorization token is missing. with error Error: Authorization token is missing. occurred when PUT /products/subform/bb91dba4-f5e1-4b4d-ae30-a134d21e2f32 was called
 info: Label: 29-Feb-2024 14:02:03: Product sub form created successfully
 error: Label: 29-Feb-2024 14:03:36: Product sub form with this question already exists with error Error: Product sub form with this question already exists occurred when POST /products/subform/2e4c24b6-5f4e-496f-8c3a-b45123222596 was called
+error: Label: 02-Mar-2024 09:19:52: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/product/service.ts:64:42
+
+  61 //  get the product service  list from the table
+  62 //  return the product service list to the product service controller
+  63 try {
+→ 64   const service = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /products was called
+error: Label: 02-Mar-2024 10:41:40: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:18:36
+
+  15 //   //add the new document to the table
+  16 
+  17 try {
+→ 18   const user = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /userDocument/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:41:48: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:18:36
+
+  15 //   //add the new document to the table
+  16 
+  17 try {
+→ 18   const user = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /userDocument/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+info: Label: 02-Mar-2024 10:41:58: string uploaded successfully
+error: Label: 02-Mar-2024 10:44:01: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:118:48
+
+  115 //  return the document to the document controller
+  116 
+  117 try {
+→ 118   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when PUT /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:46:38: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:46:46: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:46:46: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:46:54: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:01: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:09: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:15: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:36: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:42: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:49: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:55: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:48:23: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:48:29: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:48:38: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:51:48: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:51:54: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:51:54: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:52:01: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called

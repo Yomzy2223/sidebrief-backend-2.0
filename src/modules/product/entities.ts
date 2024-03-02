@@ -6,6 +6,7 @@ export interface ProductPayload {
   amount: number;
   timeline: string;
   feature: string[];
+  dependsOn: string[];
   serviceId: string;
 }
 
@@ -19,6 +20,9 @@ export interface ProductData {
   timeline: string;
   feature: string[];
   serviceId: string;
+  dependsOn: string[];
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface ProductResponse {
@@ -88,6 +92,24 @@ export interface ProductSubFormPayload {
   dependentField?: string;
   dependentOptions?: string[];
 }
+
+export interface MProductSubFormPayload {
+  question?: string;
+  type?: string;
+  options?: string[];
+  formId: string;
+  compulsory?: boolean;
+  fileName?: string;
+  fileType?: string;
+  allowOther?: boolean;
+  fileLink?: string;
+  fileSize?: string;
+  dependsOn?: {
+    field?: string;
+    options?: string[];
+  };
+}
+
 export interface Dependant {
   field?: string;
   options?: string[];
@@ -131,5 +153,5 @@ export interface ProductSubFormResponseData {
 export interface ProductSubFormResponse {
   statusCode: number;
   message: string;
-  data: ProductSubFormResponseData | ProductSubFormResponseData[];
+  data?: ProductSubFormResponseData | ProductSubFormResponseData[];
 }

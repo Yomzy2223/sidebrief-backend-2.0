@@ -68,6 +68,9 @@ const getAllProductService = async (): Promise<ProductResponse> => {
           isDeprecated: false,
         },
       },
+      orderBy: {
+        createdAt: "asc",
+      },
     });
     if (!service) {
       return {
@@ -104,6 +107,9 @@ const getProductByService = async (
         service: {
           isDeprecated: false,
         },
+      },
+      orderBy: {
+        createdAt: "asc",
       },
     });
 
@@ -631,6 +637,45 @@ const saveProductSubForm = async (
   }
 };
 
+//create multiple product subforms
+const saveMultipleProductSubForm = async (
+  productPayload: ProductSubFormPayload[],
+  formId: string
+): Promise<ProductSubFormResponse> => {
+  //   //add the new product forms to the table
+
+  try {
+    const checkProductForm = await prisma.productForm.findUnique({
+      where: { id: formId },
+    });
+    if (!checkProductForm) {
+      throw new BadRequest("Product form does not exist");
+    }
+
+    const subForm = await prisma.productSubForm.createMany({
+      data: productPayload,
+      skipDuplicates: true,
+    });
+    if (!subForm) {
+      throw new BadRequest(
+        "Error occured while creating this product sub forms"
+      );
+    }
+
+    logger.info({
+      message: `product sub forms created successfully`,
+    });
+
+    const response: ProductSubFormResponse = {
+      message: "Product sub forms created successfully",
+      statusCode: 200,
+    };
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
 //get all product sub form
 const getAllProductSubForm = async (
   formId: string
@@ -890,4 +935,5 @@ export {
   removeProductSubForm,
   trashedProduct,
   trashedProductForm,
+  saveMultipleProductSubForm,
 };
