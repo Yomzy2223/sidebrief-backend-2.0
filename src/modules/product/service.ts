@@ -268,7 +268,7 @@ const saveProductForm = async (
     });
     if (checkServiceDeletedForm) {
       throw new BadRequest(
-        "Product form with this title already exists, please restrore from trash"
+        "Product form with this title already exists, please restore from trash"
       );
     }
 
