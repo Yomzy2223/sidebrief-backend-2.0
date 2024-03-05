@@ -19,6 +19,7 @@ import {
   removeProductSubForm,
   trashedProduct,
   trashedProductForm,
+  saveMultipleProductSubForm,
 } from "./service";
 import {
   Dependant,
@@ -26,7 +27,6 @@ import {
   ProductSubFormPayload,
   UpdateProductSubFormPayload,
 } from "./entities";
-import { saveMultipleServiceSubForm } from "../serviceCategory/service";
 
 // create a new product service
 const ProductCreator = async (
@@ -363,7 +363,7 @@ const ProductMultipleSubFormCreator = async (
       })
     );
 
-    const category = await saveMultipleServiceSubForm(requiredData, formId);
+    const category = await saveMultipleProductSubForm(requiredData, formId);
 
     return res.status(category.statusCode).json(category);
   } catch (error) {
