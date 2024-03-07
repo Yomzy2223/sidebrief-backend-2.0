@@ -12,6 +12,7 @@ import {
   ProductRequestWithoutDataResponse,
   ProfileData,
   UpdateProductRequestIdPayload,
+  UpdateRequest,
 } from "./entities";
 import EmailSender from "../../services/emailEngine";
 
@@ -610,6 +611,117 @@ const getProductRequestByCountry = async (country: string) => {
   }
 };
 
+// update product request service
+const updateProductRequestService = async (
+  id: string,
+  productServicePayload: UpdateRequest
+) => {
+  // take both id and service payload from the product request  controller
+  //  check if the product  request exists
+  //  update the product  request
+  //  return the product  request to the product controller
+
+  try {
+    const checkService = await prisma.productRequest.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!checkService) {
+      throw new BadRequest("Product request not found!");
+    }
+
+    const updateService = await prisma.productRequest.update({
+      where: {
+        id: id,
+      },
+      data: productServicePayload,
+    });
+
+    if (!updateService) {
+      throw new BadRequest("Error occurred while updating Product request!.");
+    }
+
+    return {
+      message: "Product request updated successfully",
+      statusCode: 200,
+      data: updateService,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+// remove product service
+
+const removeProductRequestService = async (id: string) => {
+  //take id from the product request controller
+  //check if the product request exists
+  //remove the product request from the record
+  //return response to the product request controller
+
+  try {
+    const checkRequest = await prisma.productRequest.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!checkRequest) {
+      throw new BadRequest("Product request not found!");
+    }
+
+    const deleteRequest = await prisma.productRequest.update({
+      where: {
+        id: id,
+      },
+      data: {
+        isDeprecated: true,
+      },
+    });
+
+    return {
+      message: "Product request deleted successfully",
+      statusCode: 200,
+    };
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getAllProductRequestService =
+  async (): Promise<ProductRequestResponse> => {
+    //  get the product request  list from the table
+    //  return the product request list to the product request controller
+    try {
+      const requests = await prisma.productRequest.findMany({
+        where: {
+          isDeprecated: false,
+        },
+        orderBy: {
+          createdAt: "asc",
+        },
+      });
+      if (!requests) {
+        return {
+          message: "Empty Data",
+          statusCode: 200,
+          data: [],
+        };
+      }
+      const response: ProductRequestResponse = {
+        message: "Product requests fetched successfully",
+        data: requests,
+        statusCode: 200,
+      };
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  };
+
 export {
   initializeProductRequest,
   createProductRequestQA,
@@ -624,4 +736,7 @@ export {
   getAllProductRequestQAByQuestion,
   getAllProductRequestsByServiceId,
   getProductRequestByCountry,
+  updateProductRequestService,
+  removeProductRequestService,
+  getAllProductRequestService,
 };

@@ -20,6 +20,9 @@ import {
   GetAllProductRequestQAByQuestion,
   GetAllProductRequestsByServiceId,
   GetAllProductRequestsByCountry,
+  ProductRequestsFetcher,
+  ProductRequestModifier,
+  ProductRequestRequestRemover,
 } from "./controller";
 const router = express.Router();
 
@@ -33,6 +36,9 @@ router.get("/user/:userId", userAuth, GetAllProductRequestsByUserId);
 router.get("/:id", GetProductRequestById);
 router.get("/service/:serviceId", GetAllProductRequestsByServiceId);
 router.get("/country/:country", GetAllProductRequestsByCountry);
+router.get("/", ProductRequestsFetcher);
+router.put("/:id", ProductRequestModifier);
+router.delete("/:id", ProductRequestRequestRemover);
 
 router.post(
   "/productId",

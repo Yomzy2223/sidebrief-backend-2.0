@@ -2,6 +2,12 @@ export interface ProductRequestPayload {
   userId: string;
   productId: string;
 }
+
+export interface UpdateRequest {
+  email: string;
+  address: string;
+}
+
 export interface FormPayload {
   title?: string;
   type?: string;

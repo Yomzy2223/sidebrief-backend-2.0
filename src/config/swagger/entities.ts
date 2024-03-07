@@ -386,6 +386,15 @@ interface ServiceCategoryMultipleSubForm {
   };
 }
 
+interface UpdateProduct {
+  type: string;
+  require: string[];
+  properties: {
+    email: Props;
+    address: Props;
+  };
+}
+
 interface CreateProduct {
   type: string;
   require: string[];
@@ -394,6 +403,7 @@ interface CreateProduct {
     productId: Props;
   };
 }
+
 interface GetProductQAByQuestion {
   type: string;
   require: string[];
@@ -558,6 +568,7 @@ interface ComponentDefinition {
     ServiceCategory: ServiceCategory;
     ServiceCategoryForm: ServiceCategoryForm;
     CreateProduct: CreateProduct;
+    UpdateProduct: UpdateProduct;
     AddProductQA: AddProductQA;
     GetProductQAByQuestion: GetProductQAByQuestion;
 

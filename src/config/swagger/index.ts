@@ -899,6 +899,21 @@ const options: OpenAPIDefinition = {
           },
         },
 
+        UpdateProduct: {
+          type: "object",
+          require: ["address", "email"],
+          properties: {
+            address: {
+              type: "string",
+              description: "The address of the product request",
+            },
+            email: {
+              type: "string",
+              description: "The email of the product request",
+            },
+          },
+        },
+
         AddProductQA: {
           type: "object",
           require: ["form"],
@@ -2457,6 +2472,19 @@ const options: OpenAPIDefinition = {
             },
           },
         },
+
+        get: {
+          tags: ["Product Request"],
+          summary: "Get all product requests in system",
+          responses: {
+            200: {
+              description: "OK",
+              schema: {
+                $ref: "#/components/schemas/CreateProduct",
+              },
+            },
+          },
+        },
       },
 
       "/productRequest/user/{userId}": {
@@ -2499,6 +2527,61 @@ const options: OpenAPIDefinition = {
           responses: {
             200: {
               description: "Product is fetched",
+              schema: {
+                $ref: "#/components/schemas/CreateProduct",
+              },
+            },
+          },
+        },
+
+        put: {
+          summary: "Update a product request with give ID",
+          tags: ["Product Request"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of product request to be updated",
+              type: "string",
+            },
+          ],
+          requestBody: {
+            // expected request body
+            content: {
+              // content-type
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/UpdateProduct", //
+                },
+              },
+            },
+          },
+          responses: {
+            200: {
+              description: "Product request is updated",
+              schema: {
+                $ref: "#/components/schemas/UpdateProduct",
+              },
+            },
+          },
+        },
+
+        delete: {
+          summary: "Delete a product request with given ID",
+          tags: ["Product Request"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              description: "ID of product request to be deleted",
+              type: "string",
+            },
+          ],
+          responses: {
+            200: {
+              description: "product request is deleted",
               schema: {
                 $ref: "#/components/schemas/CreateProduct",
               },

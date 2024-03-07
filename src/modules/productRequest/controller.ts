@@ -12,6 +12,9 @@ import {
   getAllProductRequestsByUserId,
   getAllProductRequestsByServiceId,
   getProductRequestByCountry,
+  removeProductRequestService,
+  getAllProductRequestService,
+  updateProductRequestService,
 } from "./service";
 
 //get a user with id
@@ -290,6 +293,70 @@ const GetAllProductRequestsByCountry = async (
   }
 };
 
+const ProductRequestsFetcher = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // check if there is id
+    // pass the id to the service
+    // return service request  to client
+
+    const requests = await getAllProductRequestService();
+
+    return res.status(requests.statusCode).json(requests);
+  } catch (error) {
+    next(error);
+  }
+};
+
+// update an existing product request
+const ProductRequestModifier = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // get the validated payload from the the request body
+    // get the id from req.params
+    // send the validated payload to update product request service
+    // return response to the client
+    const id: string = req.params.id;
+    const serviceFormPayload = req.body;
+    const values = {
+      email: serviceFormPayload.email,
+      address: serviceFormPayload.address,
+    };
+
+    const request = await updateProductRequestService(id, values);
+    return res.status(request.statusCode).json(request);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const ProductRequestRequestRemover = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    //check if there is id
+    // send the id to the delete request service
+    //return response to the client
+
+    const id: string = req.params.id;
+    const deleteRequest = await removeProductRequestService(id);
+
+    return res
+      .status(deleteRequest.statusCode)
+      .json({ message: deleteRequest.message });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export {
   CreateProductRequest,
   AddProductRequestQA,
@@ -303,4 +370,7 @@ export {
   GetAllProductRequestQAByQuestion,
   GetAllProductRequestsByServiceId,
   GetAllProductRequestsByCountry,
+  ProductRequestModifier,
+  ProductRequestRequestRemover,
+  ProductRequestsFetcher,
 };
