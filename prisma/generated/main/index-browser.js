@@ -196,7 +196,10 @@ exports.Prisma.AccountScalarFieldEnum = {
   userId: 'userId',
   type: 'type',
   provider: 'provider',
-  scope: 'scope'
+  scope: 'scope',
+  isDeprecated: 'isDeprecated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -205,6 +208,7 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   email: 'email',
   password: 'password',
+  googleId: 'googleId',
   phone: 'phone',
   picture: 'picture',
   isVerified: 'isVerified',
@@ -229,13 +233,16 @@ exports.Prisma.UserDocumentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   type: 'type',
-  description: 'description',
-  userId: 'userId',
+  link: 'link',
+  size: 'size',
+  belongsTo: 'belongsTo',
+  isDeprecated: 'isDeprecated',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 };
 
-exports.Prisma.ServiceCategoryScalarFieldEnum = {
+exports.Prisma.ServiceScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
@@ -244,30 +251,49 @@ exports.Prisma.ServiceCategoryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ServiceCategoryFormScalarFieldEnum = {
+exports.Prisma.ServiceFormScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  compulsory: 'compulsory',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated',
+  serviceId: 'serviceId'
+};
+
+exports.Prisma.ServiceSubFormScalarFieldEnum = {
   id: 'id',
   question: 'question',
   type: 'type',
   options: 'options',
+  fileName: 'fileName',
+  fileType: 'fileType',
+  fileLink: 'fileLink',
+  fileSize: 'fileSize',
+  dependentField: 'dependentField',
+  dependentOptions: 'dependentOptions',
+  documentType: 'documentType',
+  allowOther: 'allowOther',
+  compulsory: 'compulsory',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  serviceCategoryId: 'serviceCategoryId'
+  isDeprecated: 'isDeprecated',
+  formId: 'formId'
 };
 
-exports.Prisma.ServiceScalarFieldEnum = {
+exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  type: 'type',
-  code: 'code',
   description: 'description',
   country: 'country',
-  price: 'price',
+  currency: 'currency',
+  amount: 'amount',
   timeline: 'timeline',
   feature: 'feature',
-  categoryForm: 'categoryForm',
+  canAlsoDo: 'canAlsoDo',
   hasShares: 'hasShares',
-  numberOfShares: 'numberOfShares',
-  requiredDocuments: 'requiredDocuments',
   hasAgent: 'hasAgent',
   hasOwner: 'hasOwner',
   hasController: 'hasController',
@@ -276,32 +302,44 @@ exports.Prisma.ServiceScalarFieldEnum = {
   agentIsCalled: 'agentIsCalled',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  serviceCategoryId: 'serviceCategoryId'
+  isDeprecated: 'isDeprecated',
+  serviceId: 'serviceId'
 };
 
-exports.Prisma.ServiceTemplateScalarFieldEnum = {
+exports.Prisma.ProductFormScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  title: 'title',
   type: 'type',
   description: 'description',
+  compulsory: 'compulsory',
   createdAt: 'createdAt',
+  isDeprecated: 'isDeprecated',
   updatedAt: 'updatedAt',
-  serviceId: 'serviceId'
+  productId: 'productId'
 };
 
-exports.Prisma.ServiceFormScalarFieldEnum = {
+exports.Prisma.ProductSubFormScalarFieldEnum = {
   id: 'id',
   question: 'question',
-  type: 'type',
   options: 'options',
+  type: 'type',
+  allowOther: 'allowOther',
+  dependentField: 'dependentField',
+  dependentOptions: 'dependentOptions',
+  fileName: 'fileName',
+  fileType: 'fileType',
+  fileLink: 'fileLink',
+  fileSize: 'fileSize',
+  documentType: 'documentType',
+  compulsory: 'compulsory',
+  isDeprecated: 'isDeprecated',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  serviceId: 'serviceId'
+  formId: 'formId'
 };
 
-exports.Prisma.ProductScalarFieldEnum = {
+exports.Prisma.ProductRequestScalarFieldEnum = {
   id: 'id',
-  country: 'country',
   email: 'email',
   address: 'address',
   paid: 'paid',
@@ -309,19 +347,37 @@ exports.Prisma.ProductScalarFieldEnum = {
   status: 'status',
   currentState: 'currentState',
   createdAt: 'createdAt',
+  isDeprecated: 'isDeprecated',
   updatedAt: 'updatedAt',
-  serviceId: 'serviceId',
+  productId: 'productId',
   userId: 'userId'
 };
 
-exports.Prisma.ProductQAScalarFieldEnum = {
+exports.Prisma.ProductRequestQAScalarFieldEnum = {
   id: 'id',
-  question: 'question',
-  answer: 'answer',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  compulsory: 'compulsory',
   isGeneral: 'isGeneral',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  productId: 'productId'
+  isDeprecated: 'isDeprecated',
+  requestId: 'requestId'
+};
+
+exports.Prisma.ProductRequestQASubFormScalarFieldEnum = {
+  id: 'id',
+  question: 'question',
+  answer: 'answer',
+  type: 'type',
+  fileName: 'fileName',
+  fileType: 'fileType',
+  fileLink: 'fileLink',
+  fileSize: 'fileSize',
+  compulsory: 'compulsory',
+  isDeprecated: 'isDeprecated',
+  requestQAId: 'requestQAId'
 };
 
 exports.Prisma.ClaimScalarFieldEnum = {
@@ -329,7 +385,8 @@ exports.Prisma.ClaimScalarFieldEnum = {
   value: 'value',
   userId: 'userId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated'
 };
 
 exports.Prisma.TeamScalarFieldEnum = {
@@ -339,7 +396,8 @@ exports.Prisma.TeamScalarFieldEnum = {
   userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  productId: 'productId'
+  isDeprecated: 'isDeprecated',
+  productRequestId: 'productRequestId'
 };
 
 exports.Prisma.TeamMemberScalarFieldEnum = {
@@ -351,7 +409,8 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
   teamId: 'teamId',
   userId: 'userId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated'
 };
 
 exports.Prisma.InvitationScalarFieldEnum = {
@@ -362,7 +421,8 @@ exports.Prisma.InvitationScalarFieldEnum = {
   expireIn: 'expireIn',
   invitedBy: 'invitedBy',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated'
 };
 
 exports.Prisma.PaymentScalarFieldEnum = {
@@ -373,7 +433,8 @@ exports.Prisma.PaymentScalarFieldEnum = {
   email: 'email',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  productId: 'productId'
+  isDeprecated: 'isDeprecated',
+  productRequestId: 'productRequestId'
 };
 
 exports.Prisma.ParterScalarFieldEnum = {
@@ -390,7 +451,8 @@ exports.Prisma.ParterScalarFieldEnum = {
   servicesCompleted: 'servicesCompleted',
   servicesDeclined: 'servicesDeclined',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeprecated: 'isDeprecated'
 };
 
 exports.Prisma.SortOrder = {
@@ -410,7 +472,7 @@ exports.Prisma.NullsOrder = {
 exports.ProductActivityStage = {
   START: 'START',
   PAYMENT: 'PAYMENT',
-  PRORIETOR: 'PRORIETOR',
+  PROPRIETOR: 'PROPRIETOR',
   REVIEW: 'REVIEW'
 };
 
@@ -425,13 +487,15 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   User: 'User',
   UserDocument: 'UserDocument',
-  ServiceCategory: 'ServiceCategory',
-  ServiceCategoryForm: 'ServiceCategoryForm',
   Service: 'Service',
-  ServiceTemplate: 'ServiceTemplate',
   ServiceForm: 'ServiceForm',
+  ServiceSubForm: 'ServiceSubForm',
   Product: 'Product',
-  ProductQA: 'ProductQA',
+  ProductForm: 'ProductForm',
+  ProductSubForm: 'ProductSubForm',
+  ProductRequest: 'ProductRequest',
+  ProductRequestQA: 'ProductRequestQA',
+  ProductRequestQASubForm: 'ProductRequestQASubForm',
   Claim: 'Claim',
   Team: 'Team',
   TeamMember: 'TeamMember',

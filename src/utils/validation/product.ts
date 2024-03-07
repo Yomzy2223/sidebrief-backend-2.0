@@ -2,31 +2,53 @@ const Validator = require("fastest-validator");
 
 const validate = new Validator();
 
-//product
-const productInitializationSchema = {
-  userId: { type: "string", min: 3, max: 50 },
-  country: { type: "string", min: 6, max: 200 },
-  question: { type: "string", min: 6, maz: 500 },
-  answer: { type: "string", min: 6, maz: 500 },
+// product service
+
+const productServiceSchema = {
+  name: { type: "string", min: 3, max: 50 },
+  currency: { type: "string", min: 3, max: 50 },
+  description: { type: "string", min: 3, max: 255 },
+  country: { type: "string", min: 3, max: 50 },
+  amount: { type: "number" },
+  timeline: { type: "string", min: 3, max: 50 },
+  feature: { type: "array", items: "string", min: 1 },
 };
 
-const initializeProductCredentials = validate.compile(
-  productInitializationSchema
-);
+const validateProductService = validate.compile(productServiceSchema);
 
-const produtQASchema = {
-  questionn: { type: "string", min: 3, max: 255 },
-  answer: { type: "array", min: 3, max: 300 },
-};
-const producQACredentials = validate.compile(produtQASchema);
+// product form
 
-const productSubmissionSchema = {
-  productId: { type: "string", items: "string", min: 3, max: 50 },
+const productFormSchema = {
+  question: { type: "string", min: 3, max: 255 },
+  type: { type: "string", min: 3, max: 50 },
+  options: { type: "array", items: "string", min: 3 },
+  productId: { type: "string", min: 6, max: 50 },
 };
-const submitProductCredentials = validate.compile(productSubmissionSchema);
+
+const validateProductForm = validate.compile(productFormSchema);
+
+// product
+
+const productSchema = {
+  userId: { type: "string", min: 6, max: 50 },
+  country: { type: "string", min: 3, max: 50 },
+};
+
+const validateProduct = validate.compile(productSchema);
+
+// form
+
+const formSchema = {
+  question: { type: "string", min: 3, max: 255 },
+  answer: { type: "any", min: 1, max: 255 },
+  isGeneral: "boolean",
+};
+
+const validateForm = validate.compile(formSchema);
 
 export {
-  initializeProductCredentials,
-  submitProductCredentials,
-  producQACredentials,
+  validateProductService,
+  validateForm,
+  validateProduct,
+  validateProductForm,
 };

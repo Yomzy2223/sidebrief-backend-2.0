@@ -12,6 +12,15 @@ const userSchema = {
 
 const validateUser = validate.compile(userSchema);
 
+//with google
+const userWithGoogleSchema = {
+  fullName: { type: "string", min: 3, max: 255 },
+  email: { type: "email", min: 3, max: 255 },
+  googleId: { type: "string", min: 3, max: 255 },
+};
+
+const validateUserWithGoogle = validate.compile(userWithGoogleSchema);
+
 //user login
 const loginSchema = {
   email: { type: "email", min: 3, max: 255 },
@@ -19,6 +28,16 @@ const loginSchema = {
 };
 
 const validateUserCredentials = validate.compile(loginSchema);
+
+//with google
+const loginWithGoogleSchema = {
+  email: { type: "email", min: 3, max: 255 },
+  googleId: { type: "string", min: 3, max: 255 },
+};
+
+const validateUserWithGoogleCredentials = validate.compile(
+  loginWithGoogleSchema
+);
 
 //staff registration
 const staffSchema = {
@@ -40,23 +59,29 @@ const bankSchema = {
 
 const validateBank = validate.compile(bankSchema);
 
-const serviceCategorySchema = {
-  name: { type: "string", min: 3, max: 50 },
+const serviceSchema = {
+  name: { type: "string", min: 3, max: 100 },
   description: { type: "string", min: 3, max: 255 },
 };
 
-const validateServiceCategory = validate.compile(serviceCategorySchema);
+const validateService = validate.compile(serviceSchema);
 
 // service category form
 
-const serviceCategoryFormSchema = {
-  question: { type: "string", min: 3, max: 255 },
-  type: { type: "string", min: 3, max: 50 },
-  options: { type: "array", items: "string", min: 3 },
-  serviceCategoryId: { type: "string", min: 6, max: 50 },
+const serviceFormSchema = {
+  title: { type: "string", min: 3, max: 255 },
+  description: { type: "string", min: 3, max: 255 },
+  type: { type: "string", min: 3, max: 2550 },
 };
 
-const validateServiceCategoryForm = validate.compile(serviceCategoryFormSchema);
+const validateServiceForm = validate.compile(serviceFormSchema);
+
+const serviceSubFormSchema = {
+  question: { type: "string", min: 3, max: 255 },
+  type: { type: "string", min: 3, max: 100 },
+};
+
+const validateServiceSubForm = validate.compile(serviceSubFormSchema);
 
 //user password rest
 const resetSchema = {
@@ -96,10 +121,9 @@ const validateDocument = validate.compile(documentSchema);
 
 const countrySchema = {
   name: { type: "string", min: 3, max: 255 },
-  iso: { type: "string", min: 3, max: 10 },
+  iso: { type: "string", min: 2, max: 10 },
   currency: { type: "string", min: 3, max: 10 },
-  code: { type: "string", min: 3, max: 10 },
-  flagUrl: { type: "string", min: 3, max: 255 },
+  code: { type: "string", min: 1, max: 10 },
 };
 
 const validateCountry = validate.compile(countrySchema);
@@ -115,12 +139,15 @@ export {
   validateUserCredentials,
   validateStaff,
   validateBank,
-  validateServiceCategory,
-  validateServiceCategoryForm,
+  validateService,
+  validateServiceForm,
   validateResetCredentials,
   validateUserUpdateCredentials,
   validateCollaborator,
   validateDocument,
   validateCountry,
   validateEmail,
+  validateUserWithGoogle,
+  validateUserWithGoogleCredentials,
+  validateServiceSubForm,
 };

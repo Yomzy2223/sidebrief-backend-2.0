@@ -207,7 +207,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/akinyemibamidele/Documents/Soss-v2/prisma/generated/client1",
+      "value": "/Users/akinyemibamidele/Documents/Soss-v2/prisma/generated/diligence",
       "fromEnvVar": null
     },
     "config": {
@@ -242,7 +242,7 @@ const fs = require('fs')
 
 config.dirname = __dirname
 if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
-  config.dirname = path.join(process.cwd(), "prisma/generated/client1")
+  config.dirname = path.join(process.cwd(), "prisma/generated/diligence")
   config.isBundled = true
 }
 
@@ -266,6 +266,6 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 path.join(__dirname, "libquery_engine-darwin.dylib.node");
-path.join(process.cwd(), "prisma/generated/client1/libquery_engine-darwin.dylib.node")
+path.join(process.cwd(), "prisma/generated/diligence/libquery_engine-darwin.dylib.node")
 path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "prisma/generated/client1/schema.prisma")
+path.join(process.cwd(), "prisma/generated/diligence/schema.prisma")

@@ -1,4 +1,4 @@
-import { PrismaClient } from "../../prisma/generated/client2";
+import { PrismaClient } from "../../prisma/generated/main";
 import request from "supertest";
 import app from "../../app";
 const prisma = new PrismaClient();
@@ -28,7 +28,7 @@ describe("Testing all service endpoints", () => {
     expect(userResponse.body.message).toBe("Login successfully");
     userToken = userResponse.body.data.token;
 
-    await prisma.serviceCategory.delete({
+    await prisma.service.delete({
       where: {
         name: "test",
       },

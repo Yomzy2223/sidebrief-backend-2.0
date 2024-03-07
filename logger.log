@@ -6130,3 +6130,1972 @@ info: Label: 20-Jan-2024 15:54:42: string created successfully
 info: Label: 22-Jan-2024 08:44:47: string created an account successfully with damola@gmail.com.
 error: Label: 22-Jan-2024 08:44:50: User with this email already exists with error Error: User with this email already exists occurred when POST /users was called
 error: Label: 22-Jan-2024 08:44:56: User with this email already exists with error Error: User with this email already exists occurred when POST /users was called
+info: Label: 25-Jan-2024 14:37:11: Bamidele Akinyemi created an account successfully with akinyemibamidele@gmail.com.
+info: Label: 25-Jan-2024 21:50:44: string created an account successfully with stringg@gmail.com.
+error: Label: 25-Jan-2024 21:51:51: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:24:41
+
+  21   userPayload: UserPayload
+  22 ): Promise<UserResponseProps> => {
+  23   try {
+→ 24     const checkUser = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /users was called
+error: Label: 25-Jan-2024 21:55:07: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:24:41
+
+  21   userPayload: UserPayload
+  22 ): Promise<UserResponseProps> => {
+  23   try {
+→ 24     const checkUser = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /users was called
+error: Label: 25-Jan-2024 21:55:33: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:24:41
+
+  21   userPayload: UserPayload
+  22 ): Promise<UserResponseProps> => {
+  23   try {
+→ 24     const checkUser = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /users was called
+error: Label: 25-Jan-2024 21:56:03: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:24:41
+
+  21   userPayload: UserPayload
+  22 ): Promise<UserResponseProps> => {
+  23   try {
+→ 24     const checkUser = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /users was called
+error: Label: 25-Jan-2024 21:56:41: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:24:41
+
+  21   userPayload: UserPayload
+  22 ): Promise<UserResponseProps> => {
+  23   try {
+→ 24     const checkUser = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /users was called
+error: Label: 26-Jan-2024 06:26:53: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:24:41
+
+  21   userPayload: UserPayload
+  22 ): Promise<UserResponseProps> => {
+  23   try {
+→ 24     const checkUser = await prisma.user.findUnique(
+The table `public.User` does not exist in the current database. occurred when POST /users was called
+error: Label: 26-Jan-2024 06:27:54: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/dist/src/modules/user/service.js:27:45
+
+  24 //create user service
+  25 const saveUser = (userPayload) => __awaiter(void 0, void 0, void 0, function* () {
+  26     try {
+→ 27         const checkUser = yield prisma.user.findUnique(
+The table `public.User` does not exist in the current database. occurred when POST /users was called
+error: Label: 26-Jan-2024 07:03:43: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /service/product/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+error: Label: 26-Jan-2024 07:05:06: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /service/product/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+error: Label: 26-Jan-2024 07:07:59: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /service/product/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+error: Label: 26-Jan-2024 07:11:30: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /service/product/8b93c53c-f445-49c0-a806-622b0849b9d0%20 was called
+error: Label: 26-Jan-2024 07:13:23: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.staff.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/staff/service.ts:140:38
+
+  137 //   //return the staff to the staff controller
+  138 
+  139 try {
+→ 140   const staff = await prisma.staff.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /staffs/login was called
+error: Label: 26-Jan-2024 07:16:48: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /service/product/8b93c53c-f445-49c0-a806-622b0849b9d0%20 was called
+error: Label: 26-Jan-2024 07:19:15: Service does not exist with error Error: Service does not exist occurred when POST /service/product/8b93c53c-f445-49c0-a806-622b0849b9d0%20 was called
+error: Label: 26-Jan-2024 07:31:30: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+error: Label: 26-Jan-2024 07:32:19: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /services/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+error: Label: 26-Jan-2024 07:32:52: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /services/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+error: Label: 26-Jan-2024 07:32:57: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /services/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+error: Label: 26-Jan-2024 07:34:17: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /services/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+error: Label: 26-Jan-2024 07:35:23: Service does not exist with error Error: Service does not exist occurred when POST /service/product/8b93c53c-f445-49c0-a806-622b0849b9d0%20 was called
+error: Label: 26-Jan-2024 07:36:50: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /services/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+error: Label: 26-Jan-2024 07:36:57: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /services/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+info: Label: 26-Jan-2024 07:37:20: $ product service category created successfully
+error: Label: 26-Jan-2024 07:38:38: Service does not exist with error Error: Service does not exist occurred when POST /service/product/8b93c53c-f445-49c0-a806-622b0849b9d0%20 was called
+info: Label: 26-Jan-2024 07:39:38: $ product service category created successfully
+info: Label: 26-Jan-2024 07:42:52: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 26-Jan-2024 07:43:56: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /service/product/8b93c53c-f445-49c0-a806-622b0849b9d0 was called
+info: Label: 26-Jan-2024 07:58:06: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 26-Jan-2024 08:00:01: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 08:01:44: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 08:03:22: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 08:10:57: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 08:13:18: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 08:13:21: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 08:13:23: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 08:13:24: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+info: Label: 26-Jan-2024 08:14:11: staff with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 26-Jan-2024 08:55:50: staff with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 26-Jan-2024 08:58:08: staff with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 26-Jan-2024 08:58:46: staff with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 26-Jan-2024 08:58:53: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 08:59:32: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 09:02:21: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 09:02:34: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 09:02:35: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 09:02:49: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 09:03:00: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 10:00:23: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /services was called
+error: Label: 26-Jan-2024 10:24:52: Unexpected token } in JSON at position 74 with error SyntaxError: Unexpected token } in JSON at position 74 occurred when POST /users/login was called
+info: Label: 26-Jan-2024 10:27:44: User with akinyemibamidele2024@gmail.com signed in successfully.
+info: Label: 26-Jan-2024 14:24:40: Emmanuel Test created an account successfully with emma@gmail.com.
+info: Label: 29-Jan-2024 09:59:26: Bamidele created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 29-Jan-2024 10:02:18: User not found!. with error Error: User not found!. occurred when GET /users/ee382073-ae41-4df0-ad8e-f5243e97277d%20 was called
+error: Label: 29-Jan-2024 10:04:17: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:04:20: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:09:26: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:28:50: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:29:14: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:32:20: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:33:52: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:37:05: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:39:12: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:39:12: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+error: Label: 29-Jan-2024 10:39:53: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+info: Label: 29-Jan-2024 10:40:36: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 29-Jan-2024 10:41:17: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 29-Jan-2024 10:42:14: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when GET /users was called
+info: Label: 29-Jan-2024 11:26:53: compliance service category created successfully
+info: Label: 29-Jan-2024 11:34:25: $ product service category created successfully
+error: Label: 29-Jan-2024 11:37:48: Error occured with error Error: 
+Invalid `prisma.serviceForm.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:233:50
+
+  230   throw new BadRequest("Service does not exist");
+  231 }
+  232 
+→ 233 const serviceForm = await prisma.serviceForm.create({
+        data: {
+          question: 'what is your role',
+          type: 'string',
+          compulsory: true,
+          options: [],
+          serviceId: '737ec9ac-6644-493e-a690-ecdb2221b09a',
+          fileName: 'string',
+          ~~~~~~~~
+          fileDescription: 'string',
+          ~~~~~~~~~~~~~~~
+          fileLink: 'string',
+          ~~~~~~~~
+          fileType: 'string'
+          ~~~~~~~~
+        }
+      })
+
+Unknown arg `fileName` in data.fileName for type ServiceFormUncheckedCreateInput. Available args:
+
+type ServiceFormUncheckedCreateInput {
+  id?: String
+  question: String
+  type: String
+  options?: ServiceFormCreateoptionsInput | List<String>
+  compulsory?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  serviceId: String
+  serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
+}
+Unknown arg `fileDescription` in data.fileDescription for type ServiceFormUncheckedCreateInput. Available args:
+
+type ServiceFormUncheckedCreateInput {
+  id?: String
+  question: String
+  type: String
+  options?: ServiceFormCreateoptionsInput | List<String>
+  compulsory?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  serviceId: String
+  serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
+}
+Unknown arg `fileLink` in data.fileLink for type ServiceFormUncheckedCreateInput. Available args:
+
+type ServiceFormUncheckedCreateInput {
+  id?: String
+  question: String
+  type: String
+  options?: ServiceFormCreateoptionsInput | List<String>
+  compulsory?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  serviceId: String
+  serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
+}
+Unknown arg `fileType` in data.fileType for type ServiceFormUncheckedCreateInput. Did you mean `type`? Available args:
+type ServiceFormUncheckedCreateInput {
+  id?: String
+  question: String
+  type: String
+  options?: ServiceFormCreateoptionsInput | List<String>
+  compulsory?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  serviceId: String
+  serviceSubForm?: ServiceSubFormUncheckedCreateNestedManyWithoutServiceFormInput
+}
+
+ occurred when POST /service/product/form/737ec9ac-6644-493e-a690-ecdb2221b09a was called
+error: Label: 29-Jan-2024 11:52:56: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /service/product/form/737ec9ac-6644-493e-a690-ecdb2221b09a was called
+error: Label: 29-Jan-2024 11:53:26: User not found!. with error Error: User not found!. occurred when POST /users/login was called
+info: Label: 29-Jan-2024 11:58:11: Bamidele Akinyemi created an account successfully with akinyemibamidele@gmail.com.
+error: Label: 29-Jan-2024 12:02:02: Service does not exist with error Error: Service does not exist occurred when POST /service/product/form/737ec9ac-6644-493e-a690-ecdb2221b09a was called
+info: Label: 29-Jan-2024 12:02:50: compliance service category created successfully
+error: Label: 29-Jan-2024 12:03:56: Unexpected token 
+ in JSON at position 104 with error SyntaxError: Unexpected token 
+ in JSON at position 104 occurred when POST /service/product/950ac24d-b0f9-443f-8510-fde562c8b0d8 was called
+info: Label: 29-Jan-2024 12:04:20: $ product service category created successfully
+info: Label: 29-Jan-2024 12:04:46: Service form created successfully
+error: Label: 29-Jan-2024 12:11:43: User is not authorized. with error Error: User is not authorized. occurred when POST /product was called
+info: Label: 29-Jan-2024 12:12:35: Bamidele User created an account successfully with akinyemi@sidebrief.com.
+error: Label: 29-Jan-2024 12:12:56:  User not found. with error Error:  User not found. occurred when POST /product was called
+error: Label: 29-Jan-2024 12:13:57:  User not found. with error Error:  User not found. occurred when POST /product was called
+info: Label: 29-Jan-2024 12:15:45: 59141925-c04a-4e19-8283-b7b68ebf72c8 created a product successfully
+error: Label: 29-Jan-2024 12:17:51: Error occured with error Error: 
+Invalid `prisma.productQA.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/product/service.ts:262:60
+
+  259   fileLink: productQAPayload.form[0].file.link,
+  260   fileType: productQAPayload.form[0].file.type,
+  261 };
+→ 262 const createProductFormData = await prisma.productQA.create({
+        data: {
+          question: 'what is your country',
+          answer: [
+            'Nigeria'
+          ],
+          type: 'person',
+          compulsory: true,
+          isGeneral: true,
+          productId: '1b19b431-e378-495d-a748-f5a202cf9435',
+          fileName: 'string',
+          ~~~~~~~~
+          fileDescription: 'string',
+          ~~~~~~~~~~~~~~~
+          fileLink: 'string',
+          ~~~~~~~~
+          fileType: 'string'
+          ~~~~~~~~
+        }
+      })
+
+Unknown arg `fileName` in data.fileName for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileDescription` in data.fileDescription for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileLink` in data.fileLink for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileType` in data.fileType for type ProductQAUncheckedCreateInput. Did you mean `type`? Available args:
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+
+ occurred when POST /product/form/1b19b431-e378-495d-a748-f5a202cf9435 was called
+error: Label: 29-Jan-2024 12:18:37: Error occured with error Error: 
+Invalid `prisma.productQA.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/product/service.ts:262:60
+
+  259   fileLink: productQAPayload.form[0].file.link,
+  260   fileType: productQAPayload.form[0].file.type,
+  261 };
+→ 262 const createProductFormData = await prisma.productQA.create({
+        data: {
+          question: 'what is your country',
+          answer: [
+            'Nigeria'
+          ],
+          type: 'person',
+          compulsory: true,
+          isGeneral: true,
+          productId: '1b19b431-e378-495d-a748-f5a202cf9435',
+          fileName: 'string',
+          ~~~~~~~~
+          fileDescription: 'string',
+          ~~~~~~~~~~~~~~~
+          fileLink: 'string',
+          ~~~~~~~~
+          fileType: 'string'
+          ~~~~~~~~
+        }
+      })
+
+Unknown arg `fileName` in data.fileName for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileDescription` in data.fileDescription for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileLink` in data.fileLink for type ProductQAUncheckedCreateInput. Available args:
+
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+Unknown arg `fileType` in data.fileType for type ProductQAUncheckedCreateInput. Did you mean `type`? Available args:
+type ProductQAUncheckedCreateInput {
+  id?: String
+  question: String
+  answer?: ProductQACreateanswerInput | List<String>
+  type: String
+  compulsory?: Boolean
+  isGeneral?: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  productId: String
+  productSubForm?: ProductQASubFormUncheckedCreateNestedManyWithoutProductQAInput
+}
+
+ occurred when POST /product/form/1b19b431-e378-495d-a748-f5a202cf9435 was called
+error: Label: 29-Jan-2024 12:22:20: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.user.findFirst()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:26:41
+
+  23 if (!user) {
+  24   throw new Unauthorized("Invalid or expired user token.");
+  25 }
+→ 26 const checkUser = await prisma.user.findFirst(
+The table `public.User` does not exist in the current database. occurred when GET /product/%7BuserId%7D was called
+error: Label: 29-Jan-2024 12:23:41: User is not authorized. with error Error: User is not authorized. occurred when GET /product/%7BuserId%7D was called
+info: Label: 29-Jan-2024 12:27:37: Bamidele User created an account successfully with akinyemi@sidebrief.com.
+error: Label: 29-Jan-2024 12:28:27: Staff is not authorized. with error Error: Staff is not authorized. occurred when POST /services was called
+info: Label: 29-Jan-2024 12:29:04: Bamidele User created an account successfully with akinyemi2@sidebrief.com.
+info: Label: 29-Jan-2024 12:29:32: compliance service category created successfully
+info: Label: 29-Jan-2024 12:30:02: $ product service category created successfully
+info: Label: 29-Jan-2024 12:30:45: User with akinyemi@sidebrief.com signed in successfully.
+info: Label: 29-Jan-2024 12:32:00: 288f5b4e-b60a-4cc8-8f59-2766a9a4f158 created a product successfully
+info: Label: 29-Jan-2024 12:41:42: Form saved successfully for product with 5d6df9e0-0f41-49ec-896e-f511b74f7798 
+error: Label: 31-Jan-2024 10:22:32: Error occured with error Error: Unknown authentication strategy "google-signup" occurred when GET /users/auth/google was called
+info: Label: 31-Jan-2024 10:58:52: Bamidele created an account successfully with akinyemibamidele2@gmail.com.
+error: Label: 31-Jan-2024 10:59:14: Error occured with error Error: Illegal arguments: undefined, object occurred when POST /users/google/login was called
+error: Label: 31-Jan-2024 10:59:46: Error occured with error Error: Illegal arguments: undefined, object occurred when POST /users/google/login was called
+error: Label: 31-Jan-2024 11:02:00: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google/login was called
+error: Label: 31-Jan-2024 11:04:58: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google/login was called
+info: Label: 31-Jan-2024 11:06:59: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 31-Jan-2024 11:07:39: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google/login was called
+error: Label: 31-Jan-2024 11:24:15: Authorization token is missing. with error Error: Authorization token is missing. occurred when GET /users/3c706ce0-32ac-4185-a0c3-71f8dfcffb2a was called
+info: Label: 31-Jan-2024 14:13:26: Bamidele Akinyemi created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 31-Jan-2024 14:13:42: User with akinyemibamidele2@gmail.com signed in successfully.
+error: Label: 31-Jan-2024 14:13:52: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/google was called
+error: Label: 31-Jan-2024 19:24:03: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:461:36
+
+  458 // generate reset token string
+  459 // save and send the reset token the user
+  460 
+→ 461 const user = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /users/forgotpassword was called
+info: Label: 31-Jan-2024 20:10:32: Testing the server
+info: Label: 31-Jan-2024 20:13:48: Testing the server
+info: Label: 31-Jan-2024 20:14:24: Testing the server
+info: Label: 31-Jan-2024 20:15:11: Testing the server
+info: Label: 31-Jan-2024 20:15:11: Testing the server
+info: Label: 01-Feb-2024 14:38:15: string created an account successfully with string@gmail.com.
+info: Label: 01-Feb-2024 14:39:15: string service category created successfully
+info: Label: 01-Feb-2024 14:39:39: service category form created successfully
+info: Label: 01-Feb-2024 14:40:53: service category sub form created successfully
+info: Label: 01-Feb-2024 14:46:09: service category form created successfully
+error: Label: 01-Feb-2024 15:04:00: Error occured with error Error: Illegal arguments: string, object occurred when POST /users/login was called
+error: Label: 01-Feb-2024 15:08:15: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/login was called
+info: Label: 01-Feb-2024 15:08:33: User with string@gmail.com signed in successfully.
+error: Label: 01-Feb-2024 15:08:51: Invalid credentials! with error Error: Invalid credentials! occurred when POST /users/login was called
+info: Label: 02-Feb-2024 11:30:31: string created an account successfully with akinyemibamidele2@gmail.com.
+info: Label: 02-Feb-2024 11:34:24: string created an account successfully with akinyemi@sidebrief.com.
+info: Label: 02-Feb-2024 11:37:53: string created an account successfully with akindanemmy2161@gmail.com.
+error: Label: 02-Feb-2024 15:55:33: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:459:36
+
+  456 // save the new password and update reset token to null
+  457 
+  458 try {
+→ 459   const user = await prisma.user.findUnique({
+          where: {
+        ?   email?: String,
+        ?   id?: String
+          }
+        })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 15:56:06: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:459:36
+
+  456 // save the new password and update reset token to null
+  457 
+  458 try {
+→ 459   const user = await prisma.user.findUnique({
+          where: {
+        ?   email?: String,
+        ?   id?: String
+          }
+        })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 15:56:46: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:459:36
+
+  456 // save the new password and update reset token to null
+  457 
+  458 try {
+→ 459   const user = await prisma.user.findUnique({
+          where: {
+        ?   email?: String,
+        ?   id?: String
+          }
+        })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 15:58:16: Error occured with error Error: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:460:36
+
+  457 
+  458 try {
+  459   console.log("rrrrrr", changePayload);
+→ 460   const user = await prisma.user.findUnique({
+          where: {
+        ?   email?: String,
+        ?   id?: String
+          }
+        })
+
+Argument where of type UserWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 16:01:55: User not found!. with error Error: User not found!. occurred when POST /users/passwordreset was called
+error: Label: 02-Feb-2024 16:10:35: User not found!. with error Error: User not found!. occurred when POST /users/passwordreset was called
+info: Label: 02-Feb-2024 16:12:00: User with akinyemibamidele2@gmail.com signed in successfully.
+info: Label: 05-Feb-2024 11:06:13: string created an account successfully with akinyemi@sidebrief.com.
+error: Label: 05-Feb-2024 11:08:52: Error occured with error TypeError: Cannot read properties of undefined (reading 'name') occurred when POST /product/form/d6af2008-5ef4-4fcc-a98b-5d7b6b092e70 was called
+error: Label: 05-Feb-2024 11:10:56: Error occured with error TypeError: Cannot read properties of undefined (reading 'name') occurred when POST /product/form/d6af2008-5ef4-4fcc-a98b-5d7b6b092e70 was called
+error: Label: 05-Feb-2024 11:11:26: Error occured with error TypeError: Cannot read properties of undefined (reading 'name') occurred when POST /product/form/d6af2008-5ef4-4fcc-a98b-5d7b6b092e70 was called
+error: Label: 05-Feb-2024 11:13:05: Error occured with error TypeError: Cannot read properties of undefined (reading 'name') occurred when POST /product/form/d6af2008-5ef4-4fcc-a98b-5d7b6b092e70 was called
+error: Label: 05-Feb-2024 13:21:56: Error occured with error TypeError: Cannot read properties of undefined (reading 'name') occurred when POST /product/form/d6af2008-5ef4-4fcc-a98b-5d7b6b092e70 was called
+info: Label: 05-Feb-2024 13:26:41: Form saved successfully for product with d6af2008-5ef4-4fcc-a98b-5d7b6b092e70 
+info: Label: 05-Feb-2024 20:57:17: User with akinyemi@sidebrief.com signed in successfully.
+info: Label: 05-Feb-2024 20:59:08: service category sub form created successfully
+error: Label: 05-Feb-2024 20:59:59: Product service not found!. with error Error: Product service not found!. occurred when GET /service/product/888eabf0-4831-4b90-87a7-6e6f3984d63b was called
+info: Label: 05-Feb-2024 21:07:05: $ product service category created successfully
+error: Label: 05-Feb-2024 21:07:23: Product service not found!. with error Error: Product service not found!. occurred when GET /service/product/888eabf0-4831-4b90-87a7-6e6f3984d63b was called
+info: Label: 05-Feb-2024 21:10:08: Service form created successfully
+error: Label: 05-Feb-2024 21:10:24: Service form not found!. with error Error: Service form not found!. occurred when GET /service/product/form/34a74bc7-f508-4e01-88c7-516d3309a203 was called
+error: Label: 05-Feb-2024 21:10:59: Service form not found!. with error Error: Service form not found!. occurred when GET /service/product/form/34a74bc7-f508-4e01-88c7-516d3309a203 was called
+info: Label: 05-Feb-2024 21:11:11: Service form created successfully
+error: Label: 05-Feb-2024 21:11:22: Service form not found!. with error Error: Service form not found!. occurred when GET /service/product/form/90bd10f-1553-4faa-bb89-f28f1ee8549d was called
+error: Label: 05-Feb-2024 21:12:33: Service form not found!. with error Error: Service form not found!. occurred when GET /service/product/form/90bd10f-1553-4faa-bb89-f28f1ee8549d was called
+info: Label: 05-Feb-2024 21:12:50: Service form created successfully
+info: Label: 05-Feb-2024 21:18:32: service sub form created successfully
+error: Label: 05-Feb-2024 21:25:36: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:296:36
+
+  293 //   //return the user to the user controller
+  294 
+  295 try {
+→ 296   const user = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /users/login was called
+error: Label: 05-Feb-2024 21:25:52: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/user/service.ts:296:36
+
+  293 //   //return the user to the user controller
+  294 
+  295 try {
+→ 296   const user = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /users/login was called
+info: Label: 05-Feb-2024 21:29:00: User with akinyemi@sidebrief.com signed in successfully.
+error: Label: 05-Feb-2024 21:38:57: User not found!. with error Error: User not found!. occurred when POST /users/login was called
+info: Label: 05-Feb-2024 21:39:10: User with akinyemi@sidebrief.com signed in successfully.
+error: Label: 06-Feb-2024 09:55:04: User not found!. with error Error: User not found!. occurred when POST /users/login was called
+info: Label: 06-Feb-2024 09:55:14: User with akinyemi@sidebrief.com signed in successfully.
+error: Label: 10-Feb-2024 11:34:11: Error occured with error Error: 
+Invalid `prisma.service.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:33:42
+
+  30 if (!checkService) {
+  31   throw new BadRequest("Service does not exist");
+  32 }
+→ 33 const service = await prisma.service.create({
+       data: {
+         name: 'string',
+         description: 'string',
+         country: 'string',
+         currency: 'string',
+     +   amount: Int,
+     ?   feature?: ServiceCreatefeatureInput | String[],
+         timeline: 'string',
+         serviceCategoryId: '888eabf0-4831-4b90-87a7-6e6f3984d63b',
+         ~~~~~~~~~~~~~~~~~
+     +   category: {
+     +     create?: ServiceCategoryCreateWithoutServicesInput | ServiceCategoryUncheckedCreateWithoutServicesInput,
+     +     connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput,
+     +     connect?: ServiceCategoryWhereUniqueInput
+     +   },
+     ?   id?: String,
+     ?   hasShares?: Boolean,
+     ?   hasAgent?: Boolean,
+     ?   hasOwner?: Boolean,
+     ?   hasController?: Boolean,
+     ?   controllerIsCalled?: String | null,
+     ?   OwnerIsCalled?: String | null,
+     ?   agentIsCalled?: String | null,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime,
+     ?   products?: {
+     ?     create?: ProductCreateWithoutServiceInput | ProductCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ProductCreateOrConnectWithoutServiceInput | ProductCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ProductCreateManyServiceInputEnvelope,
+     ?     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput
+     ?   },
+     ?   templates?: {
+     ?     create?: ServiceTemplateCreateWithoutServiceInput | ServiceTemplateCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceTemplateCreateOrConnectWithoutServiceInput | ServiceTemplateCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceTemplateCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceTemplateWhereUniqueInput | ServiceTemplateWhereUniqueInput
+     ?   },
+     ?   forms?: {
+     ?     create?: ServiceFormCreateWithoutServiceInput | ServiceFormCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceFormCreateOrConnectWithoutServiceInput | ServiceFormCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceFormCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceFormWhereUniqueInput | ServiceFormWhereUniqueInput
+     ?   }
+       }
+     })
+
+Unknown arg `serviceCategoryId` in data.serviceCategoryId for type ServiceCreateInput.
+Argument amount for data.amount is missing.
+Argument category for data.category is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /service/product/888eabf0-4831-4b90-87a7-6e6f3984d63b was called
+error: Label: 10-Feb-2024 11:34:51: Error occured with error Error: 
+Invalid `prisma.service.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:33:42
+
+  30 if (!checkService) {
+  31   throw new BadRequest("Service does not exist");
+  32 }
+→ 33 const service = await prisma.service.create({
+       data: {
+         name: 'string',
+         description: 'string',
+         country: 'string',
+         currency: 'string',
+     +   amount: Int,
+     ?   feature?: ServiceCreatefeatureInput | String[],
+         timeline: 'string',
+         serviceCategoryId: '888eabf0-4831-4b90-87a7-6e6f3984d63b',
+         ~~~~~~~~~~~~~~~~~
+     +   category: {
+     +     create?: ServiceCategoryCreateWithoutServicesInput | ServiceCategoryUncheckedCreateWithoutServicesInput,
+     +     connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput,
+     +     connect?: ServiceCategoryWhereUniqueInput
+     +   },
+     ?   id?: String,
+     ?   hasShares?: Boolean,
+     ?   hasAgent?: Boolean,
+     ?   hasOwner?: Boolean,
+     ?   hasController?: Boolean,
+     ?   controllerIsCalled?: String | null,
+     ?   OwnerIsCalled?: String | null,
+     ?   agentIsCalled?: String | null,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime,
+     ?   products?: {
+     ?     create?: ProductCreateWithoutServiceInput | ProductCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ProductCreateOrConnectWithoutServiceInput | ProductCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ProductCreateManyServiceInputEnvelope,
+     ?     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput
+     ?   },
+     ?   templates?: {
+     ?     create?: ServiceTemplateCreateWithoutServiceInput | ServiceTemplateCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceTemplateCreateOrConnectWithoutServiceInput | ServiceTemplateCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceTemplateCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceTemplateWhereUniqueInput | ServiceTemplateWhereUniqueInput
+     ?   },
+     ?   forms?: {
+     ?     create?: ServiceFormCreateWithoutServiceInput | ServiceFormCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceFormCreateOrConnectWithoutServiceInput | ServiceFormCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceFormCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceFormWhereUniqueInput | ServiceFormWhereUniqueInput
+     ?   }
+       }
+     })
+
+Unknown arg `serviceCategoryId` in data.serviceCategoryId for type ServiceCreateInput.
+Argument amount for data.amount is missing.
+Argument category for data.category is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /service/product/888eabf0-4831-4b90-87a7-6e6f3984d63b was called
+error: Label: 10-Feb-2024 11:40:59: Error occured with error Error: 
+Invalid `prisma.service.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:34:42
+
+  31   throw new BadRequest("Service does not exist");
+  32 }
+  33 console.log("ddd", checkService);
+→ 34 const service = await prisma.service.create({
+       data: {
+         name: 'string',
+         description: 'string',
+         country: 'string',
+         currency: 'string',
+     +   amount: Int,
+     ?   feature?: ServiceCreatefeatureInput | String[],
+         timeline: 'string',
+         serviceCategoryId: '888eabf0-4831-4b90-87a7-6e6f3984d63b',
+         ~~~~~~~~~~~~~~~~~
+     +   category: {
+     +     create?: ServiceCategoryCreateWithoutServicesInput | ServiceCategoryUncheckedCreateWithoutServicesInput,
+     +     connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput,
+     +     connect?: ServiceCategoryWhereUniqueInput
+     +   },
+     ?   id?: String,
+     ?   hasShares?: Boolean,
+     ?   hasAgent?: Boolean,
+     ?   hasOwner?: Boolean,
+     ?   hasController?: Boolean,
+     ?   controllerIsCalled?: String | null,
+     ?   OwnerIsCalled?: String | null,
+     ?   agentIsCalled?: String | null,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime,
+     ?   products?: {
+     ?     create?: ProductCreateWithoutServiceInput | ProductCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ProductCreateOrConnectWithoutServiceInput | ProductCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ProductCreateManyServiceInputEnvelope,
+     ?     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput
+     ?   },
+     ?   templates?: {
+     ?     create?: ServiceTemplateCreateWithoutServiceInput | ServiceTemplateCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceTemplateCreateOrConnectWithoutServiceInput | ServiceTemplateCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceTemplateCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceTemplateWhereUniqueInput | ServiceTemplateWhereUniqueInput
+     ?   },
+     ?   forms?: {
+     ?     create?: ServiceFormCreateWithoutServiceInput | ServiceFormCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceFormCreateOrConnectWithoutServiceInput | ServiceFormCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceFormCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceFormWhereUniqueInput | ServiceFormWhereUniqueInput
+     ?   }
+       }
+     })
+
+Unknown arg `serviceCategoryId` in data.serviceCategoryId for type ServiceCreateInput.
+Argument amount for data.amount is missing.
+Argument category for data.category is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /service/product/888eabf0-4831-4b90-87a7-6e6f3984d63b was called
+error: Label: 10-Feb-2024 11:44:29: Error occured with error Error: 
+Invalid `prisma.service.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:34:42
+
+  31   throw new BadRequest("Service does not exist");
+  32 }
+  33 console.log("ddd", checkService, productServicePayload);
+→ 34 const service = await prisma.service.create({
+       data: {
+         name: 'string',
+         description: 'string',
+         country: 'string',
+         currency: 'string',
+     +   amount: Int,
+     ?   feature?: ServiceCreatefeatureInput | String[],
+         timeline: 'string',
+         serviceCategoryId: '888eabf0-4831-4b90-87a7-6e6f3984d63b',
+         ~~~~~~~~~~~~~~~~~
+     +   category: {
+     +     create?: ServiceCategoryCreateWithoutServicesInput | ServiceCategoryUncheckedCreateWithoutServicesInput,
+     +     connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput,
+     +     connect?: ServiceCategoryWhereUniqueInput
+     +   },
+     ?   id?: String,
+     ?   hasShares?: Boolean,
+     ?   hasAgent?: Boolean,
+     ?   hasOwner?: Boolean,
+     ?   hasController?: Boolean,
+     ?   controllerIsCalled?: String | null,
+     ?   OwnerIsCalled?: String | null,
+     ?   agentIsCalled?: String | null,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime,
+     ?   products?: {
+     ?     create?: ProductCreateWithoutServiceInput | ProductCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ProductCreateOrConnectWithoutServiceInput | ProductCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ProductCreateManyServiceInputEnvelope,
+     ?     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput
+     ?   },
+     ?   templates?: {
+     ?     create?: ServiceTemplateCreateWithoutServiceInput | ServiceTemplateCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceTemplateCreateOrConnectWithoutServiceInput | ServiceTemplateCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceTemplateCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceTemplateWhereUniqueInput | ServiceTemplateWhereUniqueInput
+     ?   },
+     ?   forms?: {
+     ?     create?: ServiceFormCreateWithoutServiceInput | ServiceFormCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceFormCreateOrConnectWithoutServiceInput | ServiceFormCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceFormCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceFormWhereUniqueInput | ServiceFormWhereUniqueInput
+     ?   }
+       }
+     })
+
+Unknown arg `serviceCategoryId` in data.serviceCategoryId for type ServiceCreateInput.
+Argument amount for data.amount is missing.
+Argument category for data.category is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /service/product/888eabf0-4831-4b90-87a7-6e6f3984d63b was called
+error: Label: 10-Feb-2024 11:46:21: Error occured with error Error: 
+Invalid `prisma.service.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:34:42
+
+  31   throw new BadRequest("Service does not exist");
+  32 }
+  33 console.log("ddd", checkService, productServicePayload);
+→ 34 const service = await prisma.service.create({
+       data: {
+         name: 'string',
+         description: 'string',
+         country: 'string',
+         currency: 'string',
+     +   amount: Int,
+     ?   feature?: ServiceCreatefeatureInput | String[],
+         timeline: 'string',
+         serviceCategoryId: '888eabf0-4831-4b90-87a7-6e6f3984d63b',
+         ~~~~~~~~~~~~~~~~~
+     +   category: {
+     +     create?: ServiceCategoryCreateWithoutServicesInput | ServiceCategoryUncheckedCreateWithoutServicesInput,
+     +     connectOrCreate?: ServiceCategoryCreateOrConnectWithoutServicesInput,
+     +     connect?: ServiceCategoryWhereUniqueInput
+     +   },
+     ?   id?: String,
+     ?   hasShares?: Boolean,
+     ?   hasAgent?: Boolean,
+     ?   hasOwner?: Boolean,
+     ?   hasController?: Boolean,
+     ?   controllerIsCalled?: String | null,
+     ?   OwnerIsCalled?: String | null,
+     ?   agentIsCalled?: String | null,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime,
+     ?   products?: {
+     ?     create?: ProductCreateWithoutServiceInput | ProductCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput | ProductUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ProductCreateOrConnectWithoutServiceInput | ProductCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ProductCreateManyServiceInputEnvelope,
+     ?     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput
+     ?   },
+     ?   templates?: {
+     ?     create?: ServiceTemplateCreateWithoutServiceInput | ServiceTemplateCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput | ServiceTemplateUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceTemplateCreateOrConnectWithoutServiceInput | ServiceTemplateCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceTemplateCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceTemplateWhereUniqueInput | ServiceTemplateWhereUniqueInput
+     ?   },
+     ?   forms?: {
+     ?     create?: ServiceFormCreateWithoutServiceInput | ServiceFormCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput | ServiceFormUncheckedCreateWithoutServiceInput,
+     ?     connectOrCreate?: ServiceFormCreateOrConnectWithoutServiceInput | ServiceFormCreateOrConnectWithoutServiceInput,
+     ?     createMany?: ServiceFormCreateManyServiceInputEnvelope,
+     ?     connect?: ServiceFormWhereUniqueInput | ServiceFormWhereUniqueInput
+     ?   }
+       }
+     })
+
+Unknown arg `serviceCategoryId` in data.serviceCategoryId for type ServiceCreateInput.
+Argument amount for data.amount is missing.
+Argument category for data.category is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /service/product/888eabf0-4831-4b90-87a7-6e6f3984d63b was called
+info: Label: 10-Feb-2024 11:47:02: $ product service category created successfully
+error: Label: 16-Feb-2024 14:01:18: Authorization token is missing. with error Error: Authorization token is missing. occurred when POST /services was called
+info: Label: 16-Feb-2024 14:11:31: Martins Odelana created an account successfully with martins@sidebrief.com.
+error: Label: 16-Feb-2024 14:12:29: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 16-Feb-2024 14:13:26: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+info: Label: 16-Feb-2024 14:15:15: staff with martins@sidebrief.com signed in successfully.
+error: Label: 16-Feb-2024 14:16:22: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 16-Feb-2024 14:16:49: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 16-Feb-2024 14:21:41: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+info: Label: 17-Feb-2024 15:12:20: staff with martins@sidebrief.com signed in successfully.
+error: Label: 17-Feb-2024 15:14:02: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:14:45: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:16:02: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:19:54: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:20:09: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:21:47: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+error: Label: 17-Feb-2024 15:21:51: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+info: Label: 17-Feb-2024 15:23:15: staff with martins@sidebrief.com signed in successfully.
+error: Label: 17-Feb-2024 15:23:37: Authentification error, please check your token. with error Error: Authentification error, please check your token. occurred when POST /services was called
+info: Label: 17-Feb-2024 15:28:27: staff with martins@sidebrief.com signed in successfully.
+info: Label: 17-Feb-2024 15:31:01: Odelana Martins created an account successfully with martins@sidebrief.com.
+error: Label: 17-Feb-2024 15:31:40: User not found!. with error Error: User not found!. occurred when POST /users/login was called
+info: Label: 17-Feb-2024 15:31:51: User with martins@sidebrief.com signed in successfully.
+info: Label: 17-Feb-2024 15:33:02: launch service category created successfully
+error: Label: 17-Feb-2024 15:36:10: Unexpected number in JSON at position 128 with error SyntaxError: Unexpected number in JSON at position 128 occurred when POST /service/product/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0Y2VmZjU4LWQwM2MtNDQ3MC04OTFiLTdlOGMzMjYxMmRlYSIsImlhdCI6MTcwODE4MDMxMSwiZXhwIjoxNzA5Mzg5OTExfQ.D6Pd3EiDiGGSTPxn1sEaJP-q8bfRtsXnd8XhBN3Xhag was called
+error: Label: 17-Feb-2024 15:37:16: Unexpected token r in JSON at position 34 with error SyntaxError: Unexpected token r in JSON at position 34 occurred when POST /service/product/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0Y2VmZjU4LWQwM2MtNDQ3MC04OTFiLTdlOGMzMjYxMmRlYSIsImlhdCI6MTcwODE4MDMxMSwiZXhwIjoxNzA5Mzg5OTExfQ.D6Pd3EiDiGGSTPxn1sEaJP-q8bfRtsXnd8XhBN3Xhag was called
+error: Label: 17-Feb-2024 15:37:37: Unexpected token r in JSON at position 34 with error SyntaxError: Unexpected token r in JSON at position 34 occurred when POST /service/product/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0Y2VmZjU4LWQwM2MtNDQ3MC04OTFiLTdlOGMzMjYxMmRlYSIsImlhdCI6MTcwODE4MDMxMSwiZXhwIjoxNzA5Mzg5OTExfQ.D6Pd3EiDiGGSTPxn1sEaJP-q8bfRtsXnd8XhBN3Xhag was called
+error: Label: 17-Feb-2024 15:37:56: Service does not exist with error Error: Service does not exist occurred when POST /service/product/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0Y2VmZjU4LWQwM2MtNDQ3MC04OTFiLTdlOGMzMjYxMmRlYSIsImlhdCI6MTcwODE4MDMxMSwiZXhwIjoxNzA5Mzg5OTExfQ.D6Pd3EiDiGGSTPxn1sEaJP-q8bfRtsXnd8XhBN3Xhag was called
+info: Label: 17-Feb-2024 15:38:59: $ product service category created successfully
+info: Label: 17-Feb-2024 15:47:14: Martins Odelana created an account successfully with odelanamartins1@gmail.com.
+info: Label: 17-Feb-2024 15:48:19: e16c87c8-d1c9-4918-9ce9-bea0fe864ed9 created a product successfully
+info: Label: 18-Feb-2024 01:08:18: User with undefined initiated a transfer payment successfully
+info: Label: 18-Feb-2024 01:10:24: User with undefined initiated a transfer payment successfully
+error: Label: 17-Feb-2024 13:58:43: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:51
+
+  56 //  get the service category list from the table
+  57 //  return the service category list to the service category controller
+  58 try {
+→ 59   const category = await prisma.serviceCategory.findMany(
+The table `public.ServiceCategory` does not exist in the current database. occurred when GET /services was called
+error: Label: 17-Feb-2024 13:59:26: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceCategory.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:51
+
+  56 //  get the service category list from the table
+  57 //  return the service category list to the service category controller
+  58 try {
+→ 59   const category = await prisma.serviceCategory.findMany(
+The table `public.ServiceCategory` does not exist in the current database. occurred when GET /services was called
+info: Label: 17-Feb-2024 22:58:26: User with undefined initiated a transfer payment successfully
+error: Label: 19-Feb-2024 13:55:17: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findFirst()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/middleware/auth.ts:71:42
+
+  68   throw new Unauthorized("Invalid or expired staff token.");
+  69 }
+  70 
+→ 71 const checkStaff = await prisma.user.findFirst(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /service/product/form/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+error: Label: 19-Feb-2024 13:56:23: Error occured with error Error: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:248:55
+
+  245   throw new BadRequest("Service does not exist");
+  246 }
+  247 
+→ 248 const checkServiceForm = await prisma.serviceForm.findUnique({
+        where: {
+      ?   title?: String,
+      ?   id?: String
+        }
+      })
+
+Argument where of type ServiceFormWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /service/product/form/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+error: Label: 19-Feb-2024 13:59:12: Error occured with error Error: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:248:55
+
+  245   throw new BadRequest("Service does not exist");
+  246 }
+  247 console.log(serviceFormPayload);
+→ 248 const checkServiceForm = await prisma.serviceForm.findUnique({
+        where: {
+      ?   title?: String,
+      ?   id?: String
+        }
+      })
+
+Argument where of type ServiceFormWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+ occurred when POST /service/product/form/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+error: Label: 19-Feb-2024 14:44:02: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:320:50
+
+  317 // return the service form to the service form controller
+  318 
+  319 try {
+→ 320   const serviceForm = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /service/product/form/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+error: Label: 19-Feb-2024 14:46:06: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productService/service.ts:320:50
+
+  317 // return the service form to the service form controller
+  318 
+  319 try {
+→ 320   const serviceForm = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /service/product/form/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+error: Label: 19-Feb-2024 14:54:21: Service form does not exist with error Error: Service form does not exist occurred when POST /service/product/subform/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+info: Label: 19-Feb-2024 14:55:01: service sub form created successfully
+info: Label: 19-Feb-2024 17:22:43: Service form created successfully
+error: Label: 19-Feb-2024 17:23:25: Service form with this title already exists with error Error: Service form with this title already exists occurred when POST /service/product/form/ef3c68ad-1a8a-4e29-9122-a8f3293b21f1 was called
+error: Label: 19-Feb-2024 17:24:29: Service form with this title already exists with error Error: Service form with this title already exists occurred when POST /service/product/form/7d842cba-de17-42db-a8ba-6ab39b65ac0d was called
+info: Label: 19-Feb-2024 17:25:20: Service form created successfully
+info: Label: 22-Feb-2024 10:11:08: User with string@gmail.com signed in successfully.
+info: Label: 22-Feb-2024 10:11:46: string Service created successfully
+error: Label: 22-Feb-2024 10:12:18: Error occured with error Error: 
+Invalid `prisma.serviceForm.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/dist/src/modules/serviceCategory/service.js:192:55
+
+  189 if (checkServiceForm) {
+  190     throw new requestErrors_1.BadRequest("Service form with this title already exists");
+  191 }
+→ 192 const categoryForm = yield prisma.serviceForm.create({
+        data: {
+          title: 'string',
+          type: 'string',
+          description: 'string',
+          compulsory: true,
+          serviceId: undefined,
+      +   service: {
+      +     create?: ServiceCreateWithoutFormInput | ServiceUncheckedCreateWithoutFormInput,
+      +     connectOrCreate?: ServiceCreateOrConnectWithoutFormInput,
+      +     connect?: ServiceWhereUniqueInput
+      +   },
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime,
+      ?   isDeprecated?: Boolean,
+      ?   subForm?: {
+      ?     create?: ServiceSubFormCreateWithoutFormInput | ServiceSubFormCreateWithoutFormInput | ServiceSubFormUncheckedCreateWithoutFormInput | ServiceSubFormUncheckedCreateWithoutFormInput,
+      ?     connectOrCreate?: ServiceSubFormCreateOrConnectWithoutFormInput | ServiceSubFormCreateOrConnectWithoutFormInput,
+      ?     createMany?: ServiceSubFormCreateManyFormInputEnvelope,
+      ?     connect?: ServiceSubFormWhereUniqueInput | ServiceSubFormWhereUniqueInput
+      ?   }
+        }
+      })
+
+Argument service for data.service is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /services/form/d3d323d1-38ce-4f41-b7d3-146e663f8467 was called
+error: Label: 22-Feb-2024 10:13:27: Error occured with error Error: 
+Invalid `prisma.serviceForm.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:206:51
+
+  203   throw new BadRequest("Service form with this title already exists");
+  204 }
+  205 
+→ 206 const categoryForm = await prisma.serviceForm.create({
+        data: {
+          title: 'string',
+          type: 'string',
+          description: 'string',
+          compulsory: true,
+          serviceId: undefined,
+      +   service: {
+      +     create?: ServiceCreateWithoutFormInput | ServiceUncheckedCreateWithoutFormInput,
+      +     connectOrCreate?: ServiceCreateOrConnectWithoutFormInput,
+      +     connect?: ServiceWhereUniqueInput
+      +   },
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime,
+      ?   isDeprecated?: Boolean,
+      ?   subForm?: {
+      ?     create?: ServiceSubFormCreateWithoutFormInput | ServiceSubFormCreateWithoutFormInput | ServiceSubFormUncheckedCreateWithoutFormInput | ServiceSubFormUncheckedCreateWithoutFormInput,
+      ?     connectOrCreate?: ServiceSubFormCreateOrConnectWithoutFormInput | ServiceSubFormCreateOrConnectWithoutFormInput,
+      ?     createMany?: ServiceSubFormCreateManyFormInputEnvelope,
+      ?     connect?: ServiceSubFormWhereUniqueInput | ServiceSubFormWhereUniqueInput
+      ?   }
+        }
+      })
+
+Argument service for data.service is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /services/form/d3d323d1-38ce-4f41-b7d3-146e663f8467 was called
+error: Label: 22-Feb-2024 10:15:18: Error occured with error Error: 
+Invalid `prisma.serviceForm.create()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:206:51
+
+  203   throw new BadRequest("Service form with this title already exists");
+  204 }
+  205 
+→ 206 const categoryForm = await prisma.serviceForm.create({
+        data: {
+          title: 'string',
+          type: 'string',
+          description: 'string',
+          compulsory: true,
+          serviceId: undefined,
+      +   service: {
+      +     create?: ServiceCreateWithoutFormInput | ServiceUncheckedCreateWithoutFormInput,
+      +     connectOrCreate?: ServiceCreateOrConnectWithoutFormInput,
+      +     connect?: ServiceWhereUniqueInput
+      +   },
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime,
+      ?   isDeprecated?: Boolean,
+      ?   subForm?: {
+      ?     create?: ServiceSubFormCreateWithoutFormInput | ServiceSubFormCreateWithoutFormInput | ServiceSubFormUncheckedCreateWithoutFormInput | ServiceSubFormUncheckedCreateWithoutFormInput,
+      ?     connectOrCreate?: ServiceSubFormCreateOrConnectWithoutFormInput | ServiceSubFormCreateOrConnectWithoutFormInput,
+      ?     createMany?: ServiceSubFormCreateManyFormInputEnvelope,
+      ?     connect?: ServiceSubFormWhereUniqueInput | ServiceSubFormWhereUniqueInput
+      ?   }
+        }
+      })
+
+Argument service for data.service is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+ occurred when POST /services/form/d3d323d1-38ce-4f41-b7d3-146e663f8467 was called
+info: Label: 22-Feb-2024 10:15:56: Service form created successfully
+info: Label: 23-Feb-2024 08:30:29: User with string@gmail.com signed in successfully.
+error: Label: 23-Feb-2024 09:39:52: Service with this Id does not exist with error Error: Service with this Id does not exist occurred when GET /productRequest/service/24534523452?page=1&pageSize=10 was called
+error: Label: 23-Feb-2024 11:50:25: Product not found!. with error Error: Product not found!. occurred when GET /products/4678cda0-fb37-4fd8-9991-6bdb7650951d was called
+info: Label: 23-Feb-2024 16:28:47: User with string@gmail.com signed in successfully.
+error: Label: 23-Feb-2024 16:33:31: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceForm.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:318:53
+
+  315   throw new BadRequest("Service Form not found!.");
+  316 }
+  317 
+→ 318 const updateCategory = await prisma.serviceForm.update(
+Unique constraint failed on the fields: (`title`) occurred when PUT /services/form/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 23-Feb-2024 16:37:56: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceForm.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:318:53
+
+  315   throw new BadRequest("Service Form not found!.");
+  316 }
+  317 
+→ 318 const updateCategory = await prisma.serviceForm.update(
+Unique constraint failed on the fields: (`title`) occurred when PUT /services/form/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 23-Feb-2024 16:39:12: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.serviceForm.update()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:318:53
+
+  315   throw new BadRequest("Service Form not found!.");
+  316 }
+  317 console.log(servicePayload);
+→ 318 const updateCategory = await prisma.serviceForm.update(
+Unique constraint failed on the fields: (`title`) occurred when PUT /services/form/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 25-Feb-2024 14:51:41: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 14:57:25: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 14:58:03: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 14:59:23: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:00:11: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:00:49: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:57:43
+
+  54 //  get the service category list from the table
+  55 //  return the service category list to the service category controller
+  56 try {
+→ 57   const category = await prisma.service.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services was called
+error: Label: 25-Feb-2024 15:01:50: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:03:22: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequest.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:60
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const findProductRequest = await prisma.productRequest.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:09:23: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:11:29: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:14:42: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:17:14: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:18:23: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 25-Feb-2024 15:20:05: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:576:43
+
+  573 //return response to the controller
+  574 console.log("testing");
+  575 try {
+→ 576   const products = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/country/nigeria was called
+error: Label: 26-Feb-2024 17:26:07: Product not found!. with error Error: Product not found!. occurred when GET /products/trashed was called
+error: Label: 26-Feb-2024 17:27:43: Product not found!. with error Error: Product not found!. occurred when GET /products/trashed was called
+error: Label: 26-Feb-2024 17:29:00: Service not found!. with error Error: Service not found!. occurred when GET /services/trashed was called
+error: Label: 26-Feb-2024 17:31:47: Service not found!. with error Error: Service not found!. occurred when GET /services/trashed was called
+error: Label: 26-Feb-2024 17:32:06: Product not found!. with error Error: Product not found!. occurred when GET /products/trashed was called
+info: Label: 26-Feb-2024 17:41:43: Form saved successfully for Product Request with 0ceaa01d-e7b0-4c6e-bd3a-9b4a7a47ccfe 
+error: Label: 27-Feb-2024 10:52:30: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.productRequestQA.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/productRequest/service.ts:401:53
+
+  398 //  get the all the productRequest QA
+  399 //  return the  list to the productRequest QA controller
+  400 try {
+→ 401   const GeneralQA = await prisma.productRequestQA.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /productRequest/form/0ceaa01d-e7b0-4c6e-bd3a-9b4a7a47ccfe was called
+error: Label: 28-Feb-2024 16:33:05: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.subFormDependant.createMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:431:60
+
+  428   productSubFormId: serviceSubForm.id,
+  429 }));
+  430 
+→ 431 const subFormDependant = await prisma.subFormDependant.createMany(
+Foreign key constraint failed on the field: `SubFormDependant_productSubFormId_fkey (index)` occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:34:22: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:400:51
+
+  397 //   //add the new service category to the table
+  398 
+  399 try {
+→ 400   const checkService = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:34:37: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:400:51
+
+  397 //   //add the new service category to the table
+  398 
+  399 try {
+→ 400   const checkService = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:34:48: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:400:51
+
+  397 //   //add the new service category to the table
+  398 
+  399 try {
+→ 400   const checkService = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:34:56: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceForm.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:400:51
+
+  397 //   //add the new service category to the table
+  398 
+  399 try {
+→ 400   const checkService = await prisma.serviceForm.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:35:05: Service form with this title already exists with error Error: Service form with this title already exists occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:35:20: Error occured with error PrismaClientKnownRequestError: 
+Invalid `prisma.subFormDependant.createMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:431:60
+
+  428   productSubFormId: serviceSubForm.id,
+  429 }));
+  430 console.log(dependantValue);
+→ 431 const subFormDependant = await prisma.subFormDependant.createMany(
+Foreign key constraint failed on the field: `SubFormDependant_productSubFormId_fkey (index)` occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+error: Label: 28-Feb-2024 16:36:58: Service form with this title already exists with error Error: Service form with this title already exists occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+info: Label: 28-Feb-2024 16:37:06: service sub form created successfully
+error: Label: 28-Feb-2024 16:38:24: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/product/service.ts:64:42
+
+  61 //  get the product service  list from the table
+  62 //  return the product service list to the product service controller
+  63 try {
+→ 64   const service = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /products was called
+info: Label: 28-Feb-2024 16:39:32: Product sub form created successfully
+error: Label: 29-Feb-2024 11:15:18: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:43
+
+  56 //  get the service category list from the table
+  57 //  return the service category list to the service category controller
+  58 try {
+→ 59   const category = await prisma.service.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services was called
+error: Label: 29-Feb-2024 11:15:35: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:43
+
+  56 //  get the service category list from the table
+  57 //  return the service category list to the service category controller
+  58 try {
+→ 59   const category = await prisma.service.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services was called
+error: Label: 29-Feb-2024 11:15:56: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:43
+
+  56 //  get the service category list from the table
+  57 //  return the service category list to the service category controller
+  58 try {
+→ 59   const category = await prisma.service.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services was called
+error: Label: 29-Feb-2024 11:16:02: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:43
+
+  56 //  get the service category list from the table
+  57 //  return the service category list to the service category controller
+  58 try {
+→ 59   const category = await prisma.service.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services was called
+error: Label: 29-Feb-2024 11:16:09: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.service.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:59:43
+
+  56 //  get the service category list from the table
+  57 //  return the service category list to the service category controller
+  58 try {
+→ 59   const category = await prisma.service.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services was called
+info: Label: 29-Feb-2024 11:24:56: service sub form created successfully
+error: Label: 29-Feb-2024 11:29:54: Service form with this title already exists with error Error: Service form with this title already exists occurred when POST /services/subform/50bffbb0-99f4-49c3-b7a7-6b3eef79209c was called
+info: Label: 29-Feb-2024 11:30:05: service sub form created successfully
+error: Label: 29-Feb-2024 11:31:31: Product sub form with this question already exists with error Error: Product sub form with this question already exists occurred when POST /products/subform/2e4c24b6-5f4e-496f-8c3a-b45123222596 was called
+error: Label: 29-Feb-2024 11:33:52: Product sub form with this question already exists with error Error: Product sub form with this question already exists occurred when POST /products/subform/2e4c24b6-5f4e-496f-8c3a-b45123222596 was called
+info: Label: 29-Feb-2024 11:34:02: Product sub form created successfully
+error: Label: 29-Feb-2024 14:00:18: Authorization token is missing. with error Error: Authorization token is missing. occurred when PUT /products/subform/bb91dba4-f5e1-4b4d-ae30-a134d21e2f32 was called
+info: Label: 29-Feb-2024 14:02:03: Product sub form created successfully
+error: Label: 29-Feb-2024 14:03:36: Product sub form with this question already exists with error Error: Product sub form with this question already exists occurred when POST /products/subform/2e4c24b6-5f4e-496f-8c3a-b45123222596 was called
+error: Label: 02-Mar-2024 09:19:52: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.product.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/product/service.ts:64:42
+
+  61 //  get the product service  list from the table
+  62 //  return the product service list to the product service controller
+  63 try {
+→ 64   const service = await prisma.product.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /products was called
+error: Label: 02-Mar-2024 10:41:40: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:18:36
+
+  15 //   //add the new document to the table
+  16 
+  17 try {
+→ 18   const user = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /userDocument/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:41:48: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.user.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:18:36
+
+  15 //   //add the new document to the table
+  16 
+  17 try {
+→ 18   const user = await prisma.user.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when POST /userDocument/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+info: Label: 02-Mar-2024 10:41:58: string uploaded successfully
+error: Label: 02-Mar-2024 10:44:01: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:118:48
+
+  115 //  return the document to the document controller
+  116 
+  117 try {
+→ 118   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when PUT /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:46:38: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:46:46: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:46:46: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:46:54: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:01: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:09: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:15: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:36: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:42: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:49: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:47:55: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:55:49
+
+  52 //  get the document list from the table
+  53 //  return the document list to the document controller
+  54 try {
+→ 55   const documents = await prisma.userDocument.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:48:23: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:48:29: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:48:38: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:51:48: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:51:54: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+error: Label: 02-Mar-2024 10:51:54: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/user/5c99014f-4d5f-4771-9c6e-8e56d3afd819 was called
+error: Label: 02-Mar-2024 10:52:01: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.userDocument.findUnique()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/userDocument/service.ts:87:48
+
+  84 //   //return the document to the document controller
+  85 
+  86 try {
+→ 87   const document = await prisma.userDocument.findUnique(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /userDocument/a3383588-f49f-4351-98f8-4556e1d7c09e was called
+info: Label: 02-Mar-2024 10:55:59: service sub forms created successfully
+info: Label: 02-Mar-2024 14:04:40: service sub form created successfully
+error: Label: 02-Mar-2024 14:09:52: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:09:59: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:07: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:13: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:20: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:26: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:32: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:38: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:44: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:10:51: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:02: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:20: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:26: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:33: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:39: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:45: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:11:59: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:12:14: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:12:21: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:12:28: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:12:34: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:13:08: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called
+error: Label: 02-Mar-2024 14:13:14: Error occured with error PrismaClientInitializationError: 
+Invalid `prisma.serviceSubForm.findMany()` invocation in
+/Users/akinyemibamidele/Documents/Soss-v2/src/modules/serviceCategory/service.ts:556:49
+
+  553 //  get the service category list from the table
+  554 //  return the service category list to the service category controller
+  555 try {
+→ 556   const subForm = await prisma.serviceSubForm.findMany(
+Can't reach database server at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`
+
+Please make sure your database server is running at `sidebrief-developement-db.ck9d9gpajngq.us-east-1.rds.amazonaws.com`:`5432`. occurred when GET /services/subforms/44208cb2-aa2c-401c-a4d6-c657f3b4de7d was called

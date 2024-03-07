@@ -3,7 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output = "./generated/client2"
+  output = "./generated/main"
 }
 
 datasource db {
@@ -14,7 +14,7 @@ datasource db {
 enum ProductActivityStage {
   START
   PAYMENT
-  PRORIETOR
+  PROPRIETOR
   REVIEW
 }
 
@@ -114,6 +114,9 @@ model Account {
       type String
       provider String
       scope String
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
       user User @relation(fields: [userId], references: [id])
 }
 
@@ -123,11 +126,12 @@ model User {
       fullName String
       username String?
       email String @unique
-      password String
+      password String?
+      googleId String?
       phone String?
       picture String?
       isVerified Boolean @default(false)
-      referral String
+      referral String?
       country String?
       resetToken String?
       isPartner Boolean @default(false)
@@ -141,57 +145,83 @@ model User {
       staffPermission String[]
       userPermission  String[]
       account Account[]
-      product Product[]
+      productRequest ProductRequest[]
+      document UserDocument[]
       isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      
 }
 
 model UserDocument {
       id String @id @default(uuid())
-      name String
-      type String
-      description String
-      userId String
+      name String?
+      type String?
+      link String?
+      size String?
+      belongsTo String?
+      isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      user User @relation(fields: [userId], references: [id])
+      userId String
 }
-model ServiceCategory {
+model Service {
       id String @id @default(uuid())
       name String @unique
       description String
       isDeprecated Boolean   @default(false)
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      services Service[]
-      form ServiceCategoryForm[]
+      products Product[]
+      form ServiceForm[]
 }
 
-model ServiceCategoryForm {  
-  id String @id @default(uuid())
-  question String
-  type String
-  options String[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
-  serviceCategoryId String
+model ServiceForm {  
+      id String @id @default(uuid())
+      title String?
+      description String?
+      type String?
+      compulsory Boolean @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
+      service Service @relation(fields: [serviceId], references: [id])
+      serviceId String
+      subForm ServiceSubForm[]
 }
 
-model Service {
+model ServiceSubForm {  
+      id String @id @default(uuid())
+      question String?
+      type String?
+      options String[]
+      fileName String?
+      fileType String?
+      fileLink String?
+      fileSize String?
+      dependentField String?
+      dependentOptions String[]
+      documentType String?
+      allowOther Boolean @default(false)
+      compulsory Boolean @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
+      form ServiceForm @relation(fields: [formId], references: [id])
+      formId String
+      }
+model Product {
       id String @id @default(uuid())
       name String
-      type String
-      code String
       description String
       country String
-      price String
+      currency String
+      amount Int
       timeline String
       feature String[]
-      categoryForm String[]
+      canAlsoDo String[]
       hasShares Boolean @default(false)
-      numberOfShares String
-      requiredDocuments String[]
       hasAgent Boolean @default(false)
       hasOwner Boolean @default(false)
       hasController Boolean @default(false)
@@ -200,35 +230,51 @@ model Service {
       agentIsCalled String?
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      category ServiceCategory @relation(fields: [serviceCategoryId], references: [id])
-      serviceCategoryId String
-      products Product[]
-      templates ServiceTemplate[]
-      forms ServiceForm[]
+      isDeprecated Boolean   @default(false)
+      service Service @relation(fields: [serviceId], references: [id])
+      serviceId String
+      request ProductRequest[]
+      form ProductForm[]
 }
-model ServiceTemplate {
-  id String @id @default(uuid())
-  name String
-  type String
-  description String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  service Service @relation(fields: [serviceId], references: [id])
-  serviceId String
-}
-model ServiceForm {  
-  id String @id @default(uuid())
-  question String
-  type String
-  options String[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  service Service @relation(fields: [serviceId], references: [id])
-  serviceId String
-}
-model Product {
+model ProductForm {  
       id String @id @default(uuid())
-      country String
+      title String? 
+      type String?
+      description String?
+      compulsory Boolean @default(false)
+      createdAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
+      updatedAt DateTime @default(now())
+      product Product @relation(fields: [productId], references: [id])
+      productId String
+      productSubForm ProductSubForm[]
+}
+model ProductSubForm {
+      id String @id @default(uuid())
+      question String?
+      options String[]
+      type String?
+      allowOther Boolean @default(false)
+      dependentField String?
+      dependentOptions String[]
+      fileName String?
+      fileType String?
+      fileLink String?
+      fileSize String?
+      documentType String?
+      compulsory Boolean @default(false)
+      isDeprecated Boolean   @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      form ProductForm @relation(fields: [formId], references: [id])
+      formId String
+    
+
+}
+
+
+model ProductRequest {
+      id String @id @default(uuid())
       email String?
       address String?
       paid Boolean @default(false)
@@ -237,33 +283,53 @@ model Product {
       status String @default("pending")
       currentState ProductActivityStage @default(START)
       createdAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
       updatedAt DateTime @default(now())
-      service Service? @relation(fields: [serviceId], references: [id])
+      product Product? @relation(fields: [productId], references: [id])
       user User @relation(fields: [userId], references: [id])
-      serviceId String?
+      productId String?
       userId String
       Payment Payment[]
-      productQA ProductQA[]
+      requestQA ProductRequestQA[]
 }
-model ProductQA {  
-  id String @id @default(uuid())
-  question String
-  answer String[]
-  isGeneral Boolean
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  products Product @relation(fields: [productId], references: [id])
-  productId String
+model ProductRequestQA {  
+      id String @id @default(uuid())
+      title String? 
+      description String?
+      type String?
+      compulsory Boolean @default(false)
+      isGeneral Boolean @default(false)
+      createdAt DateTime @default(now())
+      updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
+      request ProductRequest @relation(fields: [requestId], references: [id])
+      requestId String
+      subForm ProductRequestQASubForm[]
 }
 
 
+model ProductRequestQASubForm {
+      id String @id @default(uuid())
+      question String?
+      answer String[]
+      type String?
+      fileName String?
+      fileType String?
+      fileLink String?
+      fileSize String?
+      compulsory Boolean @default(false)
+      isDeprecated Boolean   @default(false)
+      requestQA ProductRequestQA @relation(fields: [requestQAId], references: [id])
+      requestQAId String
 
+}
 model Claim {
       id String @id @default(uuid())
       value String
       userId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
 }
 model Team {
       id String @id @default(uuid())
@@ -272,10 +338,11 @@ model Team {
       userId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      product Product @relation(fields: [productId], references: [id])
-      productId String
+      isDeprecated Boolean   @default(false)
+      productRequest ProductRequest @relation(fields: [productRequestId], references: [id])
+      productRequestId String
       invitation Invitation[]
-teamMember TeamMember[]
+      teamMember TeamMember[]
 }
 
 model TeamMember {
@@ -288,6 +355,7 @@ model TeamMember {
       userId String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
       team Team @relation(fields: [teamId], references: [id])
       user User @relation(fields: [userId], references: [id])
 }
@@ -301,6 +369,7 @@ model Invitation {
       invitedBy String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
       team Team @relation(fields: [teamId], references: [id])
    
 }
@@ -312,8 +381,9 @@ model Payment  {
       email String
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
-      products Product @relation(fields: [productId], references: [id])
-      productId String
+      isDeprecated Boolean   @default(false)
+      productRequests ProductRequest @relation(fields: [productRequestId], references: [id])
+      productRequestId String
 }
 
 model Parter {
@@ -331,4 +401,5 @@ model Parter {
       servicesDeclined String[]
       createdAt DateTime @default(now())
       updatedAt DateTime @default(now())
+      isDeprecated Boolean   @default(false)
 }

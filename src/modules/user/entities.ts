@@ -3,7 +3,19 @@ export interface UserPayload {
   email: string;
   password: string;
   referral: string;
+  isPartner: boolean;
+  isStaff: boolean;
 }
+export interface UserWithGooglePayload {
+  fullName: string;
+  email: string;
+  googleId: string;
+  picture: string;
+  phone: string;
+  isPartner: boolean;
+  isStaff: boolean;
+}
+
 export interface UserResponseProps {
   message: string;
   statusCode: number;
@@ -20,8 +32,10 @@ export interface UserResponse {
   token?: string;
   refreshToken?: string;
   tokenExpiresIn?: number;
-  isVerified: boolean;
-  referral: string | null;
+  isVerified?: boolean;
+  referral?: string | null;
+  isPartner?: boolean;
+  isStaff?: boolean;
 }
 
 export interface UserLogin {
@@ -29,6 +43,10 @@ export interface UserLogin {
   password: string;
 }
 
+export interface UserLoginWithGoogle {
+  email: string;
+  googleId: string;
+}
 export interface ForgotPassword {
   email: string;
 }

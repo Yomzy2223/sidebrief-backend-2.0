@@ -24,7 +24,7 @@ const CreateCountry = async (
     const values: CountryPayload = {
       name: countryPayload.name.toLowerCase(),
       iso: countryPayload.iso,
-      flagUrl: countryPayload.flagUrl,
+      flagUrl: "",
       code: countryPayload.code,
       currency: countryPayload.currency,
     };

@@ -18,15 +18,50 @@ interface User {
     email: Props;
     password: Props;
     referral: Props;
+    isPartner: Props;
+    isStaff: Props;
   };
 }
-
+interface UserDocument {
+  type: string;
+  require: string[];
+  properties: {
+    name: Props;
+    type: Props;
+    link: Props;
+    size: Props;
+    belongsTo: Props;
+  };
+}
 interface UserLogin {
   type: string;
   require: string[];
   properties: {
     email: Props;
     password: Props;
+  };
+}
+
+interface UsersWithGoogle {
+  type: string;
+  require: string[];
+  properties: {
+    fullName: Props;
+    email: Props;
+    phone: Props;
+    picture: Props;
+    googleId: Props;
+    isPartner: Props;
+    isStaff: Props;
+  };
+}
+
+interface UserLoginWithGoogle {
+  type: string;
+  require: string[];
+  properties: {
+    email: Props;
+    googleId: Props;
   };
 }
 
@@ -75,17 +110,13 @@ interface ProductServices {
   require: string[];
   properties: {
     name: Props;
-    type: Props;
-    code: Props;
     description: Props;
     country: Props;
-    price: Props;
+    amount: Props;
+    currency: Props;
     timeline: Props;
     feature: Props;
-    requiredDocuments: Props;
-    categoryForm: Props;
-    numberOfShares: Props;
-    serviceCategoryId: Props;
+    canAlsoDo: Props;
   };
 }
 
@@ -94,10 +125,20 @@ interface ServiceForms {
   type: string;
   require: string[];
   properties: {
+    title: Props;
+    description: Props;
+    type: Props;
+    compulsory: Props;
+  };
+}
+
+interface ProductServiceForms {
+  type: string;
+  require: string[];
+  properties: {
     question: Props;
     type: Props;
     options: Props;
-    serviceId: Props;
   };
 }
 
@@ -110,6 +151,17 @@ interface Banks {
     code: Props;
     url: Props;
     image: Props;
+  };
+}
+
+interface Country {
+  type: string;
+  require: string[];
+  properties: {
+    name: Props;
+    code: Props;
+    iso: Props;
+    currency: Props;
   };
 }
 
@@ -228,13 +280,118 @@ interface ServiceCategory {
     description: Props;
   };
 }
+interface ProductServiceId {
+  type: string;
+  require: string[];
+  properties: {
+    requestId: Props;
+    productId: Props;
+  };
+}
+
 interface ServiceCategoryForm {
   type: string;
   require: string[];
   properties: {
-    question: Props;
+    title: Props;
+    description: Props;
     type: Props;
+    compulsory: Props;
+  };
+}
+
+interface ServiceCategorySubForm {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
     options: Props;
+    type: Props;
+    compulsory: Props;
+    allowOther: Props;
+    fileName: Props;
+    fileLink: Props;
+    fileSize: Props;
+    fileType: Props;
+    documentType: Props;
+    dependsOn: {
+      type: string;
+      description: string;
+      require: string[];
+      properties: {
+        field: Props;
+        options: Props;
+      };
+    };
+  };
+}
+interface ServiceSubForm {
+  type: string;
+  require: string[];
+  properties: {
+    question: Props;
+    options: Props;
+    type: Props;
+    compulsory: Props;
+    fileName: Props;
+    allowOther: Props;
+    fileLink: Props;
+    fileSize: Props;
+    fileType: Props;
+    documentType: Props;
+    dependsOn: {
+      type: string;
+      description: string;
+      require: string[];
+      properties: {
+        field: Props;
+        options: Props;
+      };
+    };
+  };
+}
+interface ServiceCategoryMultipleSubForm {
+  type: string;
+  require: string[];
+  properties: {
+    subform: {
+      type: string;
+      description: string;
+      items: {
+        type: string;
+        require: string[];
+        properties: {
+          question: Props;
+          options: Props;
+          type: Props;
+          compulsory: Props;
+          allowOther: Props;
+          fileName: Props;
+          fileLink: Props;
+          fileSize: Props;
+          fileType: Props;
+          documentType: Props;
+          dependsOn: {
+            type: string;
+            description: string;
+            require: string[];
+            properties: {
+              field: Props;
+              options: Props;
+            };
+          };
+        };
+      };
+    };
+  };
+}
+
+interface UpdateProduct {
+  type: string;
+  require: string[];
+  properties: {
+    email: Props;
+    address: Props;
   };
 }
 
@@ -243,17 +400,53 @@ interface CreateProduct {
   require: string[];
   properties: {
     userId: Props;
-    country: Props;
+    productId: Props;
+  };
+}
+
+interface GetProductQAByQuestion {
+  type: string;
+  require: string[];
+  properties: {
     question: Props;
-    answer: Props;
+    requestId: Props;
   };
 }
 interface AddProductQA {
   type: string;
   require: string[];
   properties: {
-    question: Props;
-    answer: Props;
+    title: Props;
+    description: Props;
+    type: Props;
+    compulsory: Props;
+    isGeneral: Props;
+
+    subForm: {
+      type: string;
+      description: string;
+      items: {
+        type: string;
+        require: string[];
+        properties: {
+          question: Props;
+          answer: Props;
+          type: Props;
+          compulsory: Props;
+          file: {
+            type: string;
+            description: string;
+            require: string[];
+            properties: {
+              name: Props;
+              link: Props;
+              size: Props;
+              type: Props;
+            };
+          };
+        };
+      };
+    };
   };
 }
 
@@ -272,7 +465,7 @@ export interface PaymentInitialization {
     account_bank: Props;
     type: Props;
     productId: Props;
-    serviceId: Props;
+    requestId: Props;
   };
 }
 
@@ -281,7 +474,7 @@ export interface PaymentConfirmation {
   require: string[];
   properties: {
     email?: Props;
-    productId?: Props;
+    requestId?: Props;
   };
 }
 
@@ -316,19 +509,24 @@ interface ComponentDefinition {
       type: string;
       flows: {};
     };
-    BearerAuth: {
+    bearerAuth: {
       type: string;
       name: string;
+      scheme: string;
       in: string;
       description: string;
+      bearerFormat: string;
     };
   };
   schemas: {
     // Users
     Users: User;
     UserLogin: UserLogin;
+    UserWithGoogle: UsersWithGoogle;
+    UserLoginWithGoogle: UserLoginWithGoogle;
     UserForgot: UserForgot;
     UserReset: UserReset;
+    UserDocument: UserDocument;
 
     //Staffs
     Staffs: Staffs;
@@ -337,10 +535,11 @@ interface ComponentDefinition {
     //ProductServices
     ProductServices: ProductServices;
     ServiceForms: ServiceForms;
+    ServiceCategorySubForm: ServiceCategorySubForm;
 
     //Banks
     Banks: Banks;
-
+    Country: Country;
     //Diligence
     DiligenceEnterprise: DiligenceEnterprise;
     DiligenceManager: DiligenceManager;
@@ -351,7 +550,8 @@ interface ComponentDefinition {
     UpdateDiligenceRequest: UpdateDiligenceRequest;
     DiligenceDocument: DiligenceDocument;
     UpdateManyRequest: UpdateManyRequest;
-
+    ProductServiceId: ProductServiceId;
+    ServiceSubForm: ServiceSubForm;
     //Bank
     CreateNigerianBank: CreateNigerianBank;
     UpdateNigerianBank: UpdateNigerianBank;
@@ -368,7 +568,11 @@ interface ComponentDefinition {
     ServiceCategory: ServiceCategory;
     ServiceCategoryForm: ServiceCategoryForm;
     CreateProduct: CreateProduct;
+    UpdateProduct: UpdateProduct;
     AddProductQA: AddProductQA;
+    GetProductQAByQuestion: GetProductQAByQuestion;
+
+    ServiceCategoryMultipleSubForm: ServiceCategoryMultipleSubForm;
   };
   responses: {
     401: ResponseProps;
@@ -397,6 +601,11 @@ export interface OpenAPIDefinition {
     schemas: string[];
     servers: ServerDefinition[];
     components: ComponentDefinition;
+    security: [
+      {
+        bearerAuth: any;
+      }
+    ];
     tags: TagDefinition[];
     paths: any;
   };

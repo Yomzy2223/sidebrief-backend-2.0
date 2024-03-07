@@ -1,42 +1,125 @@
-export interface ServiceCategoryPayload {
+export interface ServicePayload {
   name: string;
   description: string;
 }
-export interface ServiceCategoryData {
+export interface ServiceData {
   id: string;
   name: string;
   description: string;
 }
 
-export interface ServiceCategoryResponse {
+export interface ServiceResponse {
   statusCode: number;
   message: string;
-  data: ServiceCategoryData | ServiceCategoryData[];
+  data: ServiceData | ServiceData[];
 }
 
-export interface ServiceCategoryFormPayload {
-  question: string;
+export interface ServiceFormPayload {
+  title: string;
   type: string;
-  options: string[];
-  serviceCategoryId: string;
+  description: string;
+  serviceId: string;
+  compulsory: boolean;
 }
 
-export interface ServiceCategoryFormData {
+export interface ServiceSubFormPayload {
+  question?: string;
+  type?: string;
+  options?: string[];
+  formId: string;
+  compulsory?: boolean;
+  fileName?: string;
+  fileType?: string;
+  allowOther?: boolean;
+  fileLink?: string;
+  fileSize?: string;
+  documentType?: string;
+  dependentField?: string;
+  dependentOptions?: string[];
+}
+
+export interface MServiceSubFormPayload {
+  question?: string;
+  type?: string;
+  options?: string[];
+  formId: string;
+  compulsory?: boolean;
+  fileName?: string;
+  fileType?: string;
+  allowOther?: boolean;
+  fileLink?: string;
+  fileSize?: string;
+  documentType?: string;
+  dependsOn?: {
+    field?: string;
+    options?: string[];
+  };
+}
+export interface Dependant {
+  field?: string;
+  options?: string[];
+}
+
+export interface ServiceFormData {
   id: string;
-  question: string;
-  type: string;
-  options: string[];
-  serviceCategoryId: string;
+  title: string | null;
+  type: string | null;
+  description: string | null;
+  serviceId: string;
 }
 
-export interface ServiceCategoryFormResponse {
+export interface ServiceSubFormData {
+  id: string;
+  question: string | null;
+  type: string | null;
+  options: string[];
+  formId: string | null;
+  compulsory: Boolean;
+  fileName: string | null;
+  fileLink: string | null;
+  fileType: string | null;
+  fileSize: string | null;
+  allowOther: Boolean;
+  documentType: string | null;
+  dependsOn: {
+    field: string | null;
+    options: string[];
+  };
+  createdAt: Date | null;
+  updatedAt: Date | null;
+  isDeprecated: boolean;
+}
+
+export interface ServiceFormResponse {
   statusCode: number;
   message: string;
-  data: ServiceCategoryFormData | ServiceCategoryFormData[];
+  data: ServiceFormData | ServiceFormData[];
 }
 
-export interface UpdateServiceCategoryFormPayload {
-  question: string;
+export interface ServiceSubFormResponse {
+  statusCode: number;
+  message: string;
+  data?: ServiceSubFormData | ServiceSubFormData[];
+}
+
+export interface UpdateServiceFormPayload {
+  title: string;
   type: string;
-  options: string[];
+  description: string;
+  compulsory: boolean;
+}
+
+export interface UpdateServiceSubFormPayload {
+  question?: string;
+  type?: string;
+  options?: string[];
+  compulsory?: boolean;
+  fileName?: string;
+  fileType?: string;
+  allowOther?: boolean;
+  fileLink?: string;
+  fileSize?: string;
+  documentType?: string;
+  dependentField?: string;
+  dependentOptions?: string[];
 }

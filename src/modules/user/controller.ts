@@ -11,8 +11,9 @@ import {
   changePassword,
   updateProfile,
   deleteUser,
+  saveUserWithGoogle,
 } from "./service";
-import { UserPayload } from "./entities";
+import { UserPayload, UserWithGooglePayload } from "./entities";
 const UserRegisration = async (
   req: Request,
   res: Response,
@@ -26,12 +27,45 @@ const UserRegisration = async (
       email: userPayload.email.toLowerCase(),
       password: cryptedPassword,
       referral: userPayload.referral,
+      isPartner: userPayload.isPartner,
+      isStaff: userPayload.isStaff,
       partnerPermission: [],
       staffPermission: [],
       userPermission: [],
     };
 
     const user = await saveUser(userValues);
+
+    return res
+      .status(user.statusCode)
+      .json({ message: user.message, data: user.data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//with google
+const UserRegisrationWithGoogle = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userPayload: UserWithGooglePayload = req.body;
+    const userValues = {
+      fullName: userPayload.fullName,
+      email: userPayload.email.toLowerCase(),
+      googleId: userPayload.googleId,
+      picture: userPayload.picture,
+      phone: userPayload.phone,
+      isPartner: userPayload.isPartner,
+      isStaff: userPayload.isStaff,
+      partnerPermission: [],
+      staffPermission: [],
+      userPermission: [],
+    };
+
+    const user = await saveUserWithGoogle(userValues);
 
     return res
       .status(user.statusCode)
@@ -195,6 +229,7 @@ const UserProfileModifier = async (
 
 export {
   UserRegisration,
+  UserRegisrationWithGoogle,
   UserFetcher,
   UserGrantor,
   UsersFetcher,

@@ -1,4 +1,4 @@
-import { PrismaClient } from "../../../prisma/generated/client2";
+import { PrismaClient } from "../../../prisma/generated/main";
 import logger from "../../config/logger";
 import { BadRequest } from "../../utils/requestErrors";
 import { CountryPayload, CountryResponse } from "./entities";
@@ -14,7 +14,7 @@ const saveCountry = async (
     const checkCountry = await prisma.country.findUnique({
       where: { name: countryPayload.name },
     });
-    if (!checkCountry) {
+    if (checkCountry) {
       throw new BadRequest("Country with this name already exists");
     }
 

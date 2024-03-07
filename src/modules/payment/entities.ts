@@ -9,12 +9,12 @@ export interface PaymentPayload {
   expiry_year?: string;
   account_bank?: string;
   type?: string;
+  requestId?: string;
   productId?: string;
-  serviceId?: string;
 }
 export interface ConfirmPayload {
   email?: string;
-  productId?: string;
+  requestId?: string;
 }
 
 export interface OtpPayload {
